@@ -237,37 +237,37 @@
 <context>
     <name>ClosableImage</name>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="117"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="87"/>
         <source>Delete Image</source>
         <translation>Afbeelding verwijderen</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="124"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="94"/>
         <source>Zoom Image</source>
         <translation>Inzoomen op afbeelding</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="130"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="100"/>
         <source>Capture random screenshot</source>
         <translation>Maak een willekeurige schermafdruk</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="136"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="106"/>
         <source>Select another image</source>
         <translation>Selecteer een andere afbeelding</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="425"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="407"/>
         <source>Really delete image?</source>
         <translation>Afbeelding daadwerkelijk verwijderen?</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="426"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="408"/>
         <source>Are you sure you want to delete this image?</source>
         <translation>Weet je zeker dat je deze afbeelding wilt verwijderen?</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="428"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="410"/>
         <source>Do not ask again</source>
         <translation>Vraag dit niet nogmaals</translation>
     </message>
@@ -2808,7 +2808,7 @@ The directories containing your music must contain subdirectories for each artis
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="311"/>
-        <source>Main Window Theme (changing it requires restart of MediaElch)</source>
+        <source>Main Window Theme</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5104,8 +5104,8 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="942"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="790"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="793"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="792"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="795"/>
         <source>Codec</source>
         <translation>Codec</translation>
     </message>
@@ -5257,69 +5257,69 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation>Studio toevoegen</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="487"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="488"/>
         <source>Downloading images...</source>
         <translation>Downloaden afbeeldingen...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="494"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="495"/>
         <source>Scraping...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="782"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="818"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="784"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="820"/>
         <source>Track %1</source>
         <translation>Spoor %1</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="1055"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="789"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="792"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="823"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="824"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="791"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="794"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="825"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="826"/>
         <source>Language</source>
         <translation>Taal</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="791"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="794"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="793"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="796"/>
         <source>Channels</source>
         <translation>Kanalen</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="809"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="811"/>
         <source>Subtitles</source>
         <translation>Ondertitels</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="852"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="854"/>
         <source>Stream details could not be loaded!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="923"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="925"/>
         <source>Saving movie...</source>
         <translation>Opslaan film...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="928"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="930"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; opgeslagen</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="904"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="952"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="906"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="954"/>
         <source>Saving movies...</source>
         <translation>Films opslaan...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="921"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="923"/>
         <source>Movies Saved</source>
         <translation>Films Opgeslagen</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="973"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="975"/>
         <source>All Movies Saved</source>
         <translation>Alle films opgeslagen</translation>
     </message>
@@ -6262,18 +6262,18 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation>Logfile %1 kon niet beschreven worden.</translation>
     </message>
     <message>
-        <location filename="../../src/main.cpp" line="72"/>
+        <location filename="../../src/main.cpp" line="75"/>
         <source>Stylesheet could not be opened!</source>
         <translation>Stylesheet kon niet worden geopend</translation>
     </message>
     <message>
-        <location filename="../../src/main.cpp" line="74"/>
-        <source>The default stylesheet could not be openend for reading.</source>
-        <translation>De standaard stylesheet kon niet worden geopend om te lezen.</translation>
+        <location filename="../../src/main.cpp" line="78"/>
+        <source>The default stylesheet could not be opened for reading.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main.cpp" line="75"/>
-        <source>The custom stylesheet could not be openend for reading. Using: %1</source>
+        <location filename="../../src/main.cpp" line="79"/>
+        <source>The custom stylesheet could not be opened for reading. Using: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -9163,37 +9163,37 @@ episode after scraping</source>
         <translation>Tag toevoegen</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="476"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="477"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; opgeslagen</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="518"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="519"/>
         <source>Please wait while your TV show is scraped</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="745"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="746"/>
         <source>Downloading images...</source>
         <translation>Afbeeldingen downloaden...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="899"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="900"/>
         <source>Unknown Actor</source>
         <translation>Onbekende acteur</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="900"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="901"/>
         <source>Unknown Role</source>
         <translation>Onbekende rol</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="981"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="982"/>
         <source>Choose Image</source>
         <translation>Kies afbeelding</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="981"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="982"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Afbeeldingen (*.jpg *.jpeg *.png)</translation>
     </message>
@@ -9363,7 +9363,7 @@ episode after scraping</source>
 <context>
     <name>mediaelch::MovieDiskLoader</name>
     <message>
-        <location filename="../../src/file_search/movie/MovieDirectorySearcher.cpp" line="392"/>
+        <location filename="../../src/file_search/movie/MovieDirectorySearcher.cpp" line="386"/>
         <source>Storing movies in database...</source>
         <translation type="unfinished"></translation>
     </message>

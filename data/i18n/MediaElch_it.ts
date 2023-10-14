@@ -237,37 +237,37 @@
 <context>
     <name>ClosableImage</name>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="117"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="87"/>
         <source>Delete Image</source>
         <translation>Cancella immagine</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="124"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="94"/>
         <source>Zoom Image</source>
         <translation>Zoom immagine</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="130"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="100"/>
         <source>Capture random screenshot</source>
         <translation>Cattura schermata casuale</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="136"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="106"/>
         <source>Select another image</source>
         <translation>Seleziona altra immagine</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="425"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="407"/>
         <source>Really delete image?</source>
         <translation>Vuoi veramente cancellare l&apos;immagine?</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="426"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="408"/>
         <source>Are you sure you want to delete this image?</source>
         <translation>Sei sicuro di cancellare l&apos;immagine?</translation>
     </message>
     <message>
-        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="428"/>
+        <location filename="../../src/ui/small_widgets/ClosableImage.cpp" line="410"/>
         <source>Do not ask again</source>
         <translation>Non chiedere di nuovo</translation>
     </message>
@@ -993,7 +993,7 @@
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="346"/>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="426"/>
         <source>TMDB ID</source>
-        <translation type="unfinished"></translation>
+        <translation>TMDB ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="321"/>
@@ -1280,7 +1280,7 @@
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="382"/>
         <source>TV Show - TMDB ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Serie TV - TMDB ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="383"/>
@@ -1300,7 +1300,7 @@
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="389"/>
         <source>Episode - TMDB ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Episodio - TMDB ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="429"/>
@@ -2418,7 +2418,7 @@
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="136"/>
         <source>TMDB ID &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>TMDB ID &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="424"/>
@@ -2428,22 +2428,22 @@
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="425"/>
         <source>TMDB ID</source>
-        <translation type="unfinished"></translation>
+        <translation>TMDB ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="426"/>
         <source>Movie has no TMDB ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Il Film non ha un ID TMDB</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="426"/>
         <source>No TMDB ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Nessun ID TMDB</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="426"/>
         <source>TMDB</source>
-        <translation type="unfinished"></translation>
+        <translation>TMDB</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="478"/>
@@ -2796,7 +2796,7 @@ Le cartelle che contengono la tua musica devono contenere sottocartelle per cias
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="244"/>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="263"/>
         <source>Words to exclude from media names (separated by commas and non case-sensitive)</source>
-        <translation type="unfinished"></translation>
+        <translation>Parole da escludere dai nomi dei media (separate da virgole e non case-sensitive)</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="270"/>
@@ -2810,8 +2810,8 @@ Le cartelle che contengono la tua musica devono contenere sottocartelle per cias
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="311"/>
-        <source>Main Window Theme (changing it requires restart of MediaElch)</source>
-        <translation>Tema della finestra principale (una modifica richiederà un riavvio di MediaElch)</translation>
+        <source>Main Window Theme</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="42"/>
@@ -5107,8 +5107,8 @@ Se vuoi cercare per un ID di TMDb inizia la stringa con &quot;id&quot;.</transla
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="942"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="790"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="793"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="792"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="795"/>
         <source>Codec</source>
         <translation>Codec</translation>
     </message>
@@ -5260,69 +5260,69 @@ Se vuoi cercare per un ID di TMDb inizia la stringa con &quot;id&quot;.</transla
         <translation>Aggiungi studio</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="487"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="488"/>
         <source>Downloading images...</source>
         <translation>Download immagini in corso...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="494"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="495"/>
         <source>Scraping...</source>
         <translation>Scraping...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="782"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="818"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="784"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="820"/>
         <source>Track %1</source>
         <translation>Traccia %1</translation>
     </message>
     <message>
         <location filename="../../src/ui/movies/MovieWidget.ui" line="1055"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="789"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="792"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="823"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="824"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="791"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="794"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="825"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="826"/>
         <source>Language</source>
         <translation>Lingua</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="791"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="794"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="793"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="796"/>
         <source>Channels</source>
         <translation>Canali</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="809"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="811"/>
         <source>Subtitles</source>
         <translation>Sottotitoli</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="852"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="854"/>
         <source>Stream details could not be loaded!</source>
         <translation>I dettagli dello stream non possono essere caricati!</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="923"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="925"/>
         <source>Saving movie...</source>
         <translation>Salvataggio film in corso...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="928"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="930"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Salvato/i</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="904"/>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="952"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="906"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="954"/>
         <source>Saving movies...</source>
         <translation>Salvataggio film in corso...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="921"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="923"/>
         <source>Movies Saved</source>
         <translation>Film salvati</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieWidget.cpp" line="973"/>
+        <location filename="../../src/ui/movies/MovieWidget.cpp" line="975"/>
         <source>All Movies Saved</source>
         <translation>Tutti i Film salvati</translation>
     </message>
@@ -6265,19 +6265,19 @@ Se vuoi cercare per un ID di TMDb inizia la stringa con &quot;id&quot;.</transla
         <translation>Impossibile aprire il file di log %1 in scrittura.</translation>
     </message>
     <message>
-        <location filename="../../src/main.cpp" line="72"/>
+        <location filename="../../src/main.cpp" line="75"/>
         <source>Stylesheet could not be opened!</source>
         <translation>Impossibile aprire lo stylesheet</translation>
     </message>
     <message>
-        <location filename="../../src/main.cpp" line="74"/>
-        <source>The default stylesheet could not be openend for reading.</source>
-        <translation>Lo stylesheet di default non può essere aperto in lettura.</translation>
+        <location filename="../../src/main.cpp" line="78"/>
+        <source>The default stylesheet could not be opened for reading.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main.cpp" line="75"/>
-        <source>The custom stylesheet could not be openend for reading. Using: %1</source>
-        <translation>Lo stylesheet personalizzato non può essere aperto in lettura. Sto utilizzando: %1</translation>
+        <location filename="../../src/main.cpp" line="79"/>
+        <source>The custom stylesheet could not be opened for reading. Using: %1</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/globals/Helper.cpp" line="393"/>
@@ -7630,7 +7630,8 @@ Se vuoi cercare per un ID di TMDb inizia la stringa con &quot;id&quot;.</transla
         <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="466"/>
         <source>You need to update the show once and load the show&apos;s TMDB ID to list missing episodes.
 Afterwards MediaElch will check automatically for new episodes on startup.</source>
-        <translation type="unfinished"></translation>
+        <translation>Devi aggiornare la Serie TV almeno una volta ed inserire l&apos;ID TMDB della Serie per poter elencare gli episodi mancanti.
+Successivamente MediaElch cercherà automaticamente i nuovi episodi durante l&apos;avvio.</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="470"/>
@@ -8464,7 +8465,7 @@ Episodio dopo lo scraping</translation>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="246"/>
         <source>Open episode on IMDb.com</source>
-        <translation type="unfinished"></translation>
+        <translation>Apri la pagina dell&apos;episodio su IMDb.com</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="249"/>
@@ -8475,7 +8476,7 @@ Episodio dopo lo scraping</translation>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="256"/>
         <source>Open episode on TVmaze.com</source>
-        <translation type="unfinished"></translation>
+        <translation>Apri la pagina dell&apos;episodio su TVmaze.com</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="330"/>
@@ -8952,7 +8953,7 @@ Episodio dopo lo scraping</translation>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="135"/>
         <source>Open TV show on TMDB.com</source>
-        <translation type="unfinished"></translation>
+        <translation>Apri la pagina della Serie TV su TMDB.com</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="138"/>
@@ -8964,17 +8965,17 @@ Episodio dopo lo scraping</translation>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="155"/>
         <source>Open TV show on TVmaze.com</source>
-        <translation type="unfinished"></translation>
+        <translation>Apri la pagina della Serie TV su TVmaze.com</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="165"/>
         <source>TheTVDB</source>
-        <translation type="unfinished"></translation>
+        <translation>TheTVDB</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="175"/>
         <source>TVmaze</source>
-        <translation type="unfinished"></translation>
+        <translation>TVmaze</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="221"/>
@@ -8984,12 +8985,12 @@ Episodio dopo lo scraping</translation>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="241"/>
         <source>TMDB</source>
-        <translation type="unfinished"></translation>
+        <translation>TMDB</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="251"/>
         <source>Open TV show on IMDb.com</source>
-        <translation type="unfinished"></translation>
+        <translation>Apri la pagina della Serie TV su IMDb.com</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="537"/>
@@ -9168,37 +9169,37 @@ Episodio dopo lo scraping</translation>
         <translation>Aggiungi tag</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="476"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="477"/>
         <source>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Saved</source>
         <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; Salvato/i</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="518"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="519"/>
         <source>Please wait while your TV show is scraped</source>
         <translation>Attendere mentre la tua Serie TV viene scaricata</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="745"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="746"/>
         <source>Downloading images...</source>
         <translation>Download immagini...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="899"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="900"/>
         <source>Unknown Actor</source>
         <translation>Attore sconosciuto</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="900"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="901"/>
         <source>Unknown Role</source>
         <translation>Ruolo sconosciuto</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="981"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="982"/>
         <source>Choose Image</source>
         <translation>Scegli immagine</translation>
     </message>
     <message>
-        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="981"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.cpp" line="982"/>
         <source>Images (*.jpg *.jpeg)</source>
         <translation>Immagini (*.jpg *.jpeg)</translation>
     </message>
@@ -9368,7 +9369,7 @@ Episodio dopo lo scraping</translation>
 <context>
     <name>mediaelch::MovieDiskLoader</name>
     <message>
-        <location filename="../../src/file_search/movie/MovieDirectorySearcher.cpp" line="392"/>
+        <location filename="../../src/file_search/movie/MovieDirectorySearcher.cpp" line="386"/>
         <source>Storing movies in database...</source>
         <translation>Salvataggio Film nel database...</translation>
     </message>
@@ -9445,7 +9446,7 @@ Episodio dopo lo scraping</translation>
     <message>
         <location filename="../../src/scrapers/tv_show/custom/CustomTvScraper.cpp" line="33"/>
         <source>The custom TV scraper combines multiple scrapers so that details can be loaded from different sites in one step. It depends on TMDB for loading other scraper IDs.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lo scraper TV personalizzato combina scraper multipli così che i dettagli possano essere recuperati da siti diversi in un passaggio unico. Dipende da TMDB per recuperare gli ID degli altri scraper.</translation>
     </message>
 </context>
 <context>
@@ -9795,7 +9796,7 @@ Episodio dopo lo scraping</translation>
     <message>
         <location filename="../../src/scrapers/concert/tmdb/TmdbConcert.cpp" line="28"/>
         <source>The Movie Database (TMDB) is a community built movie and TV database. Every piece of data has been added by our amazing community dating back to 2008. TMDB&apos;s strong international focus and breadth of data is largely unmatched and something we&apos;re incredibly proud of. Put simply, we live and breathe community and that&apos;s precisely what makes us different.</source>
-        <translation type="unfinished"></translation>
+        <translation>The Movie Database (TMDB) è un database di contenuti per Film e Serie TV gestito dalla comunità. Ogni dato è stato aggiunto dalla nostra fantastica comunità a partire dal 2008. Il respiro internazionale di TMDB e l&apos;ampiezza dei suoi dati sono ampiamente insuperati e qualcosa di cui andiamo incredibilmente fieri. Semplicemente, noi viviamo e respiriamo nella nostra comunità e questo è esattamente quello che ci rende differenti.</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/concert/tmdb/TmdbConcert.cpp" line="132"/>
@@ -9808,7 +9809,7 @@ Episodio dopo lo scraping</translation>
     <message>
         <location filename="../../src/scrapers/image/TmdbImages.cpp" line="16"/>
         <source>The Movie Database (TMDB) is a community built movie and TV database. Every piece of data has been added by our amazing community dating back to 2008. TMDB&apos;s strong international focus and breadth of data is largely unmatched and something we&apos;re incredibly proud of. Put simply, we live and breathe community and that&apos;s precisely what makes us different.</source>
-        <translation type="unfinished"></translation>
+        <translation>The Movie Database (TMDB) è un database di contenuti per Film e Serie TV gestito dalla comunità. Ogni dato è stato aggiunto dalla nostra fantastica comunità a partire dal 2008. Il respiro internazionale di TMDB e l&apos;ampiezza dei suoi dati sono ampiamente insuperati e qualcosa di cui andiamo incredibilmente fieri. Semplicemente, noi viviamo e respiriamo nella nostra comunità e questo è esattamente quello che ci rende differenti.</translation>
     </message>
 </context>
 <context>
@@ -9816,7 +9817,7 @@ Episodio dopo lo scraping</translation>
     <message>
         <location filename="../../src/scrapers/movie/tmdb/TmdbMovie.cpp" line="37"/>
         <source>The Movie Database (TMDB) is a community built movie and TV database. Every piece of data has been added by our amazing community dating back to 2008. TMDB&apos;s strong international focus and breadth of data is largely unmatched and something we&apos;re incredibly proud of. Put simply, we live and breathe community and that&apos;s precisely what makes us different.</source>
-        <translation type="unfinished"></translation>
+        <translation>The Movie Database (TMDB) è un database di contenuti per Film e Serie TV gestito dalla comunità. Ogni dato è stato aggiunto dalla nostra fantastica comunità a partire dal 2008. Il respiro internazionale di TMDB e l&apos;ampiezza dei suoi dati sono ampiamente insuperati e qualcosa di cui andiamo incredibilmente fieri. Semplicemente, noi viviamo e respiriamo nella nostra comunità e questo è esattamente quello che ci rende differenti.</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/movie/tmdb/TmdbMovie.cpp" line="150"/>
@@ -9829,7 +9830,7 @@ Episodio dopo lo scraping</translation>
     <message>
         <location filename="../../src/scrapers/movie/tmdb/TmdbMovieScrapeJob.cpp" line="137"/>
         <source>TMDB did not respond successfully for a movie collection request.</source>
-        <translation type="unfinished"></translation>
+        <translation>TMDB non ha risposto correttamente ad una richiesta per una collezione di film.</translation>
     </message>
 </context>
 <context>
@@ -9837,7 +9838,7 @@ Episodio dopo lo scraping</translation>
     <message>
         <location filename="../../src/scrapers/tv_show/tmdb/TmdbTv.cpp" line="20"/>
         <source>The Movie Database (TMDB) is a community built movie and TV database. Every piece of data has been added by our amazing community dating back to 2008. TMDB&apos;s strong international focus and breadth of data is largely unmatched and something we&apos;re incredibly proud of. Put simply, we live and breathe community and that&apos;s precisely what makes us different.</source>
-        <translation type="unfinished"></translation>
+        <translation>The Movie Database (TMDB) è un database di contenuti per Film e Serie TV gestito dalla comunità. Ogni dato è stato aggiunto dalla nostra fantastica comunità a partire dal 2008. Il respiro internazionale di TMDB e l&apos;ampiezza dei suoi dati sono ampiamente insuperati e qualcosa di cui andiamo incredibilmente fieri. Semplicemente, noi viviamo e respiriamo nella nostra comunità e questo è esattamente quello che ci rende differenti.</translation>
     </message>
 </context>
 <context>
@@ -9845,7 +9846,7 @@ Episodio dopo lo scraping</translation>
     <message>
         <location filename="../../src/scrapers/tv_show/tmdb/TmdbTvEpisodeScrapeJob.cpp" line="26"/>
         <source>TMDB show ID is invalid! Cannot load requested episode.</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;ID TMDB della Serie TV non è valido! Non è possibile recuperare l&apos;episodio richiesto.</translation>
     </message>
 </context>
 <context>
@@ -9853,7 +9854,7 @@ Episodio dopo lo scraping</translation>
     <message>
         <location filename="../../src/scrapers/tv_show/tmdb/TmdbTvSeasonScrapeJob.cpp" line="25"/>
         <source>Show is missing a TMDB id</source>
-        <translation type="unfinished"></translation>
+        <translation>La Serie TV non ha un ID TMDB</translation>
     </message>
 </context>
 <context>
@@ -9874,7 +9875,7 @@ Episodio dopo lo scraping</translation>
     <message>
         <location filename="../../src/scrapers/tv_show/tmdb/TmdbTvShowScrapeJob.cpp" line="23"/>
         <source>Show is missing a TMDB id</source>
-        <translation type="unfinished"></translation>
+        <translation>La Serie TV non ha un ID TMDB</translation>
     </message>
 </context>
 <context>
@@ -9903,7 +9904,7 @@ Episodio dopo lo scraping</translation>
     <message>
         <location filename="../../src/scrapers/tv_show/tvmaze/TvMazeSeasonScrapeJob.cpp" line="25"/>
         <source>Show is missing a TMDB id</source>
-        <translation type="unfinished"></translation>
+        <translation>La Serie TV non ha un ID TMDB</translation>
     </message>
 </context>
 <context>
