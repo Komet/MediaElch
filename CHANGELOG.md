@@ -9,12 +9,13 @@
   - Opening and immediately closing the trailer search could crash MediaElch
   - Exclusion filters are now applied to all folders, not just a file's parent directory (#1653)  
     Thanks to GitHub user `Neinei0k` for implementing it!
-- UI:
-  - Dark Theme: The music file list (artist/album) is now readable (better colors)
-  - Dark Theme: The search/filter result list has explicit colors: they are now readable (#1629)
+- UI: Dark Theme:
+  - The music file list (artist/album) is now readable (better colors)
+  - The search/filter result list has explicit colors: they are now readable (#1629)
+  - TV Status field and the Movie Streamdetails->Stereo fields are now properly colored (#1657)
 - UniversalMusicScraper: If an artist has no Discogs link on MusicBrainz, MediaElch was stuck.
 - ADE: Overview and posters are properly scraped again (#1650)
-- IMDb: Fix scraping of episode IDs from season pages.
+- IMDb: Fix scraping of episode IDs from season pages
 
 ### Changed
 
