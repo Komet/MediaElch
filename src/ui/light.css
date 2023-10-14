@@ -32,15 +32,12 @@
 #centralWidget QTimeEdit,
 #centralWidget QDateTimeEdit,
 #centralWidget QDoubleSpinBox,
-#centralWidget QComboBox:editable {
+#centralWidget QComboBox:editable,
+#centralWidget QComboBox {
     background-color: #fcfcfc;
     color: #31363b;
     border: 0;
     border-bottom: 1px dotted #ebebeb;
-}
-#centralWidget QComboBox {
-    border: 0;
-    border-bottom: 1px dotted #e0e0e0;
 }
 
 #centralWidget QLineEdit:disabled,
