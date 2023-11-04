@@ -253,6 +253,7 @@ void TvShowWidgetEpisode::onClear()
 
     blocked = ui->firstAired->blockSignals(true);
     ui->firstAired->setDate(QDate::currentDate());
+    ui->lblMissingFirstAired->setVisible(true);
     ui->firstAired->blockSignals(blocked);
 
     blocked = ui->playCount->blockSignals(true);
@@ -402,6 +403,7 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
 
     ui->top250->setValue(m_episode->top250());
     ui->firstAired->setDate(m_episode->firstAired());
+    ui->lblMissingFirstAired->setVisible(!m_episode->firstAired().isValid());
     ui->playCount->setValue(m_episode->playCount());
     ui->lastPlayed->setDateTime(m_episode->lastPlayed());
     ui->studio->setText(m_episode->network());
@@ -1007,6 +1009,7 @@ void TvShowWidgetEpisode::onCertificationChange(QString text)
 void TvShowWidgetEpisode::onFirstAiredChange(QDate date)
 {
     m_episode->setFirstAired(date);
+    ui->lblMissingFirstAired->setVisible(!date.isValid());
     ui->buttonRevert->setVisible(true);
 }
 
