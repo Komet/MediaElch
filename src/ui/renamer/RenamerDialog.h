@@ -27,7 +27,7 @@ public:
     void setEpisodes(QVector<TvShowEpisode*> episodes);
     void setRenameType(RenameType type);
 
-    bool renameErrorOccured() const;
+    bool renameErrorOccurred() const;
 
     int addResultToTable(const QString& oldFileName, const QString& newFileName, Renamer::RenameOperation operation);
     void setResultStatus(int row, Renamer::RenameResult result);
@@ -49,6 +49,13 @@ private slots:
     void onRenamed();
 
 private:
+    void renameType(const bool isDryRun);
+    void renameMovies(QVector<Movie*> movies, const RenamerConfig& config);
+    void renameConcerts(QVector<Concert*> concerts, const RenamerConfig& config);
+    void renameEpisodes(QVector<TvShowEpisode*> episodes, const RenamerConfig& config);
+    void renameTvShows(const QVector<TvShow*>& shows, const QString& directoryPattern, const bool& dryRun = false);
+
+private:
     Ui::RenamerDialog* ui = nullptr;
 
     QVector<Movie*> m_movies;
@@ -59,13 +66,4 @@ private:
     bool m_filesRenamed = 0;
     mediaelch::FileFilter m_extraFiles;
     bool m_renameErrorOccured = 0;
-
-    void renameType(const bool isDryRun);
-    void renameMovies(QVector<Movie*> movies, const RenamerConfig& config);
-    void renameConcerts(QVector<Concert*> concerts, const RenamerConfig& config);
-    void renameEpisodes(QVector<TvShowEpisode*> episodes, const RenamerConfig& config);
-    void renameShows(QVector<TvShow*> shows,
-        const QString& directoryPattern,
-        const bool& renameDirectories,
-        const bool& dryRun = false);
 };

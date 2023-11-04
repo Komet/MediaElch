@@ -172,7 +172,7 @@ void RenamerDialog::onRenamed()
     emit sigFilesRenamed(m_renameType);
 }
 
-bool RenamerDialog::renameErrorOccured() const
+bool RenamerDialog::renameErrorOccurred() const
 {
     return m_renameErrorOccured;
 }
@@ -257,7 +257,9 @@ void RenamerDialog::renameType(const bool isDryRun)
         config.directoryPattern = ui->seasonNaming->text();
         config.renameDirectories = ui->chkSeasonDirectories->isChecked();
         renameEpisodes(m_episodes, config);
-        renameShows(m_shows, ui->directoryNaming->text(), ui->chkDirectoryNaming->isChecked(), isDryRun);
+        if (config.renameDirectories) {
+            renameTvShows(m_shows, ui->directoryNaming->text(), isDryRun);
+        }
     }
     if (isDryRun) {
         m_filesRenamed = true;
@@ -321,12 +323,9 @@ void RenamerDialog::renameEpisodes(QVector<TvShowEpisode*> episodes, const Renam
     }
 }
 
-void RenamerDialog::renameShows(QVector<TvShow*> shows,
-    const QString& directoryPattern,
-    const bool& renameDirectories,
-    const bool& dryRun)
+void RenamerDialog::renameTvShows(const QVector<TvShow*>& shows, const QString& directoryPattern, const bool& dryRun)
 {
-    if ((renameDirectories && directoryPattern.isEmpty()) || !renameDirectories) {
+    if (directoryPattern.isEmpty()) {
         return;
     }
 

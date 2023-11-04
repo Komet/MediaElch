@@ -685,7 +685,7 @@ void MainWindow::onKodiSyncFinished()
 
 void MainWindow::onFilesRenamed(RenameType type)
 {
-    if (m_renamer->renameErrorOccured()) {
+    if (m_renamer->renameErrorOccurred()) {
         m_fileScannerDialog->setForceReload(true);
         if (type == RenameType::Movies) {
             m_fileScannerDialog->setReloadType(FileScannerDialog::ReloadType::Movies);
