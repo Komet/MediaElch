@@ -214,8 +214,6 @@ studios: (N<6)
   - Warner Bros.
   - Legendary Entertainment
   - Double Dare You (DDY)
-  - Double Dare You (DDY)
-  - Double Dare You (DDY)
 trailer: 
 playcount: 0
 lastPlayed: <not set or invalid>

@@ -32,7 +32,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 network: 
-thumbnail: https://bilder.fernsehserien.de/epg/epg-archiv/2023/04/13/2f5d5278e6e323566b730778242089248132f888_b-w-970.jpg.jpg
+thumbnail: https://bilder.fernsehserien.de/epg/epg-archiv/2023/07/12/36697e2a489c466da77a317662e19791_b-w-970.jpg.jpg
 actors: (N>5)
  - id: 
    name: Dan Castellaneta

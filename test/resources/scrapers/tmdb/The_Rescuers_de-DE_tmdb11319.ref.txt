@@ -22,7 +22,7 @@ tagline:
     Zwei kleine Agenten gegen die böseste Frau der Welt in einem umwerfenden Animati
     onsabenteuer!
 ratings (N=1)
-  source=themoviedb | rating=6.6 | votes=2000 | min=0 | max=10
+  source=themoviedb | rating=6.8 | votes=2000 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 released: 1977-06-22
@@ -35,7 +35,7 @@ actors: (N>10)
  - id: 
    name: Bob Newhart
    role: Bernard (voice)
-   thumb: http://image.tmdb.org/t/p/original/kOyxzZMzbCcXMddD17F8S33I3ZU.jpg
+   thumb: http://image.tmdb.org/t/p/original/kj9lWESb2cC3beTypLKTCH0HipH.jpg
    order: 0
    imageHasChanged: false
  - id: 
@@ -47,7 +47,7 @@ actors: (N>10)
  - id: 
    name: Geraldine Page
    role: Madame Medusa (voice)
-   thumb: http://image.tmdb.org/t/p/original/j4MIWqbktbtFIGEz3DvB47gDnWB.jpg
+   thumb: http://image.tmdb.org/t/p/original/5G8uNYzNtEMBSnOUUs6ms1JcOJj.jpg
    order: 2
    imageHasChanged: false
  - id: 
@@ -229,17 +229,17 @@ backdrops: (N>10)
     aspect: 
     season: SeasonNumber=xx
   - id: 
-    originalUrl: http://image.tmdb.org/t/p/original/j50Sr0ULbsf0Rbw0BB91ZbtQoaB.jpg
-    thumbUrl: http://image.tmdb.org/t/p/w780/j50Sr0ULbsf0Rbw0BB91ZbtQoaB.jpg
-    originalSize: h=2160 w=3840
+    originalUrl: http://image.tmdb.org/t/p/original/87F4k8S5Q5U6INzytrERgJJ5Q56.jpg
+    thumbUrl: http://image.tmdb.org/t/p/w780/87F4k8S5Q5U6INzytrERgJJ5Q56.jpg
+    originalSize: h=1080 w=1920
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
   - id: 
-    originalUrl: http://image.tmdb.org/t/p/original/87F4k8S5Q5U6INzytrERgJJ5Q56.jpg
-    thumbUrl: http://image.tmdb.org/t/p/w780/87F4k8S5Q5U6INzytrERgJJ5Q56.jpg
-    originalSize: h=1080 w=1920
+    originalUrl: http://image.tmdb.org/t/p/original/j50Sr0ULbsf0Rbw0BB91ZbtQoaB.jpg
+    thumbUrl: http://image.tmdb.org/t/p/w780/j50Sr0ULbsf0Rbw0BB91ZbtQoaB.jpg
+    originalSize: h=2160 w=3840
     language: 
     hint: 
     aspect: 
