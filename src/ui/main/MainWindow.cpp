@@ -222,24 +222,6 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
     connect(ui->movieDuplicatesWidget, &MovieDuplicates::sigJumpToMovie,     this, &MainWindow::onJumpToMovie);
     // clang-format on
 
-#ifdef Q_OS_WIN
-    setStyleSheet(styleSheet() + " #centralWidget { border-bottom: 1px solid rgba(0, 0, 0, 100); } ");
-
-    QFont font = ui->labelMovies->font();
-    font.setPointSize(font.pointSize() - 3);
-    font.setBold(true);
-    ui->labelMovies->setFont(font);
-    ui->labelConcerts->setFont(font);
-    ui->labelShows->setFont(font);
-    ui->labelMusic->setFont(font);
-    ui->labelDownloads->setFont(font);
-
-    for (QToolButton* btn : ui->menuWidget->findChildren<QToolButton*>()) {
-        btn->setIconSize(QSize(32, 32));
-    }
-    ui->navbar->setFixedHeight(56);
-#endif
-
     if (Settings::instance()->startupSection() == "tvshows") {
         onMenu(ui->buttonTvshows);
     } else if (Settings::instance()->startupSection() == "concerts") {
