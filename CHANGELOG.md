@@ -3,6 +3,10 @@
 
 ## Upcoming
 
+### Notes
+
+- MediaElch for macOS 11 and later now uses Qt 6.6.0
+
 ### Fixed
 
 - Movies: 
