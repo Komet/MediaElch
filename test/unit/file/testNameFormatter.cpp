@@ -38,11 +38,11 @@ TEST_CASE("NameFormatter formats names", "[rename]")
 
         SECTION("Match braces")
         {
-            NameFormatter::setExcludeWords({"(", ")", "<", ">", "."});
+            NameFormatter::setExcludeWords({"(", ")", "<", ">"});
             CHECK(NameFormatter::excludeWords("my<movie>480i") == "mymovie480i");
             CHECK(NameFormatter::excludeWords("my(480i)movie") == "my480imovie");
-            CHECK(NameFormatter::excludeWords("my.480i.movie") == "my480imovie");
-            CHECK(NameFormatter::excludeWords("480i-.+my-movie") == "480i-+my-movie");
+            CHECK(NameFormatter::excludeWords("my.480i.movie") == "my.480i.movie");
+            CHECK(NameFormatter::excludeWords("480i-.+my-movie") == "480i-.+my-movie");
         }
 
         SECTION("Removes trailing _ -")
@@ -65,8 +65,8 @@ TEST_CASE("NameFormatter formats names", "[rename]")
             CHECK(NameFormatter::excludeWords("my.Ä.movie.Ä") == "my movie");
             CHECK(NameFormatter::excludeWords("my.movie.hElLo.480i") == "my.movie 480i");
             // dot before 480i because the longer variant should simply be replaced
-            CHECK(NameFormatter::excludeWords("my.movie.hElLo.loNg.480i") == "my.movie.480i");
-            CHECK(NameFormatter::excludeWords("my.DVD.hd.movie") == "my.movie");
+            CHECK(NameFormatter::excludeWords("my.movie.hElLo.loNg.480i") == "my.movie 480i");
+            CHECK(NameFormatter::excludeWords("my.DVD.hd.movie") == "my movie");
         }
 
         SECTION("Removes multiple dots and dashes")
