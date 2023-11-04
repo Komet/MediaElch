@@ -36,7 +36,7 @@ for our nightly builds.
 Use .ci/macOS/build_macOS_release_Qt6.sh if you want to build MediaElch.
 
 You may need to adapt your \$PATH or macdeployqt may not be found.
-  export PATH="\$HOME/Qt/6.5.2/macos/bin/:\$PATH"
+  export PATH="\$HOME/Qt/${MAC_QT_6_VERSION}/macos/bin/:\$PATH"
 
 Options
   --no-confirm   Package MediaElch without confirm dialog.
@@ -85,8 +85,8 @@ parse_params "$@"
 #######################################################
 # Getting Details
 
-print_important "Using Qt6 from \$HOME/Qt/6.5.2"
-export PATH="$HOME/Qt/6.5.2/macos/bin/:$OLD_PATH"
+print_important "Using Qt6 from \$HOME/Qt/${MAC_QT_6_VERSION}"
+export PATH="$HOME/Qt/${MAC_QT_6_VERSION}/macos/bin/:$OLD_PATH"
 
 # Check for macOS build and packaging dependencies
 ./.ci/macOS/check_macOS_dependencies.sh
