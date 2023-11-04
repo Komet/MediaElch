@@ -1280,7 +1280,7 @@
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="382"/>
         <source>TV Show - TMDB ID</source>
-        <translation type="unfinished"></translation>
+        <translation>TV Serie - TMDB ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="383"/>
@@ -1300,7 +1300,7 @@
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="389"/>
         <source>Episode - TMDB ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Episode - TMDB ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="429"/>
@@ -2418,7 +2418,7 @@
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="136"/>
         <source>TMDB ID &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>TMDB ID &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="424"/>
@@ -2433,17 +2433,17 @@
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="426"/>
         <source>Movie has no TMDB ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Film hat keine TMDB ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="426"/>
         <source>No TMDB ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine TMDB ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="426"/>
         <source>TMDB</source>
-        <translation type="unfinished"></translation>
+        <translation>TMDB</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="478"/>
@@ -2795,7 +2795,7 @@ Deine Musik muss in Unterverzeichnissen mit Interpreten und Alben organisiert se
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="244"/>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="263"/>
         <source>Words to exclude from media names (separated by commas and non case-sensitive)</source>
-        <translation type="unfinished"></translation>
+        <translation>Von Mediennamen auszuschließende Wörter (durch Kommas getrennt, groß-/kleinschreibungsunabhängig)</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="270"/>
@@ -2810,7 +2810,7 @@ Deine Musik muss in Unterverzeichnissen mit Interpreten und Alben organisiert se
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="311"/>
         <source>Main Window Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Hauptfenster-Design</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="42"/>
@@ -6271,12 +6271,12 @@ Wenn du bei TMDb nach einer ID suchen möchtest, stelle bitte &quot;id&quot; vor
     <message>
         <location filename="../../src/main.cpp" line="78"/>
         <source>The default stylesheet could not be opened for reading.</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Standard Stylesheet konnte nicht zum Lesen geöffnet werden.</translation>
     </message>
     <message>
         <location filename="../../src/main.cpp" line="79"/>
         <source>The custom stylesheet could not be opened for reading. Using: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Standard Stylesheet konnte nicht zum Lesen geöffnet werden. Verwendet wird: %1</translation>
     </message>
     <message>
         <location filename="../../src/globals/Helper.cpp" line="393"/>
@@ -8464,7 +8464,7 @@ automatisch nach dem Laden</translation>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="246"/>
         <source>Open episode on IMDb.com</source>
-        <translation type="unfinished"></translation>
+        <translation>Öffne die Episode auf IMDb.com</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="249"/>
@@ -8475,7 +8475,7 @@ automatisch nach dem Laden</translation>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="256"/>
         <source>Open episode on TVmaze.com</source>
-        <translation type="unfinished"></translation>
+        <translation>Öffne die Episode auf TVmaze.com</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="330"/>
@@ -8952,7 +8952,7 @@ automatisch nach dem Laden</translation>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="135"/>
         <source>Open TV show on TMDB.com</source>
-        <translation type="unfinished"></translation>
+        <translation>Öffne die Serie auf TMDB.com</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="138"/>
@@ -8964,17 +8964,17 @@ automatisch nach dem Laden</translation>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="155"/>
         <source>Open TV show on TVmaze.com</source>
-        <translation type="unfinished"></translation>
+        <translation>Öffne die Serie auf TVmaze.com</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="165"/>
         <source>TheTVDB</source>
-        <translation type="unfinished"></translation>
+        <translation>TheTVDB</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="175"/>
         <source>TVmaze</source>
-        <translation type="unfinished"></translation>
+        <translation>TVmaze</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="221"/>
@@ -8984,12 +8984,12 @@ automatisch nach dem Laden</translation>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="241"/>
         <source>TMDB</source>
-        <translation type="unfinished"></translation>
+        <translation>TMDB</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="251"/>
         <source>Open TV show on IMDb.com</source>
-        <translation type="unfinished"></translation>
+        <translation>Öffne die Serie auf IMDb.com</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="537"/>
@@ -9445,7 +9445,7 @@ automatisch nach dem Laden</translation>
     <message>
         <location filename="../../src/scrapers/tv_show/custom/CustomTvScraper.cpp" line="33"/>
         <source>The custom TV scraper combines multiple scrapers so that details can be loaded from different sites in one step. It depends on TMDB for loading other scraper IDs.</source>
-        <translation type="unfinished"></translation>
+        <translation>Der Eigene-Serien-Scraper kombiniert mehrere Scraper, sodass Details von mehreren Seiten auf einmal geladen werden können. Er baut auf TMDB für das Laden andere Scraper-IDs auf.</translation>
     </message>
 </context>
 <context>
@@ -9795,7 +9795,7 @@ automatisch nach dem Laden</translation>
     <message>
         <location filename="../../src/scrapers/concert/tmdb/TmdbConcert.cpp" line="28"/>
         <source>The Movie Database (TMDB) is a community built movie and TV database. Every piece of data has been added by our amazing community dating back to 2008. TMDB&apos;s strong international focus and breadth of data is largely unmatched and something we&apos;re incredibly proud of. Put simply, we live and breathe community and that&apos;s precisely what makes us different.</source>
-        <translation type="unfinished"></translation>
+        <translation>The Movie Database (TMDB) ist eine durch die Community aufgebaute Film- und TV-Datenbank. Jede einzelne Information wurde durch unsere wunderbare Community seit 2008 hinzugefügt. TMDBs starker internationaler Fokus und Weite an Informationen ist weitestgehend unübertroffen und etwas, auf das wir unglaublich stolz sind. Um es einfach auszudrücken, wir leben und atmen Community und das ist genau das, was uns anders macht.</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/concert/tmdb/TmdbConcert.cpp" line="132"/>
@@ -9808,7 +9808,7 @@ automatisch nach dem Laden</translation>
     <message>
         <location filename="../../src/scrapers/image/TmdbImages.cpp" line="16"/>
         <source>The Movie Database (TMDB) is a community built movie and TV database. Every piece of data has been added by our amazing community dating back to 2008. TMDB&apos;s strong international focus and breadth of data is largely unmatched and something we&apos;re incredibly proud of. Put simply, we live and breathe community and that&apos;s precisely what makes us different.</source>
-        <translation type="unfinished"></translation>
+        <translation>The Movie Database (TMDB) ist eine durch die Community aufgebaute Film- und TV-Datenbank. Jede einzelne Information wurde durch unsere wunderbare Community seit 2008 hinzugefügt. TMDBs starker internationaler Fokus und Weite an Informationen ist weitestgehend unübertroffen und etwas, auf das wir unglaublich stolz sind. Um es einfach auszudrücken, wir leben und atmen Community und das ist genau das, was uns anders macht.</translation>
     </message>
 </context>
 <context>
@@ -9816,7 +9816,7 @@ automatisch nach dem Laden</translation>
     <message>
         <location filename="../../src/scrapers/movie/tmdb/TmdbMovie.cpp" line="37"/>
         <source>The Movie Database (TMDB) is a community built movie and TV database. Every piece of data has been added by our amazing community dating back to 2008. TMDB&apos;s strong international focus and breadth of data is largely unmatched and something we&apos;re incredibly proud of. Put simply, we live and breathe community and that&apos;s precisely what makes us different.</source>
-        <translation type="unfinished"></translation>
+        <translation>The Movie Database (TMDB) ist eine durch die Community aufgebaute Film- und TV-Datenbank. Jede einzelne Information wurde durch unsere wunderbare Community seit 2008 hinzugefügt. TMDBs starker internationaler Fokus und Weite an Informationen ist weitestgehend unübertroffen und etwas, auf das wir unglaublich stolz sind. Um es einfach auszudrücken, wir leben und atmen Community und das ist genau das, was uns anders macht.</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/movie/tmdb/TmdbMovie.cpp" line="150"/>
@@ -9829,7 +9829,7 @@ automatisch nach dem Laden</translation>
     <message>
         <location filename="../../src/scrapers/movie/tmdb/TmdbMovieScrapeJob.cpp" line="137"/>
         <source>TMDB did not respond successfully for a movie collection request.</source>
-        <translation type="unfinished"></translation>
+        <translation>Anfrage auf eine Filmzusammenstellung wurde von TMDB nicht erfolgreich beantwortet.</translation>
     </message>
 </context>
 <context>
@@ -9837,7 +9837,7 @@ automatisch nach dem Laden</translation>
     <message>
         <location filename="../../src/scrapers/tv_show/tmdb/TmdbTv.cpp" line="20"/>
         <source>The Movie Database (TMDB) is a community built movie and TV database. Every piece of data has been added by our amazing community dating back to 2008. TMDB&apos;s strong international focus and breadth of data is largely unmatched and something we&apos;re incredibly proud of. Put simply, we live and breathe community and that&apos;s precisely what makes us different.</source>
-        <translation type="unfinished"></translation>
+        <translation>The Movie Database (TMDB) ist eine durch die Community aufgebaute Film- und TV-Datenbank. Jede einzelne Information wurde durch unsere wunderbare Community seit 2008 hinzugefügt. TMDBs starker internationaler Fokus und Weite an Informationen ist weitestgehend unübertroffen und etwas, auf das wir unglaublich stolz sind. Um es einfach auszudrücken, wir leben und atmen Community und das ist genau das, was uns anders macht.</translation>
     </message>
 </context>
 <context>
@@ -9845,7 +9845,7 @@ automatisch nach dem Laden</translation>
     <message>
         <location filename="../../src/scrapers/tv_show/tmdb/TmdbTvEpisodeScrapeJob.cpp" line="26"/>
         <source>TMDB show ID is invalid! Cannot load requested episode.</source>
-        <translation type="unfinished"></translation>
+        <translation>TMDB Serien-ID ist fehlerhaft! Die geforderte Episode kann nicht geladen werden.</translation>
     </message>
 </context>
 <context>
@@ -9853,7 +9853,7 @@ automatisch nach dem Laden</translation>
     <message>
         <location filename="../../src/scrapers/tv_show/tmdb/TmdbTvSeasonScrapeJob.cpp" line="25"/>
         <source>Show is missing a TMDB id</source>
-        <translation type="unfinished"></translation>
+        <translation>Der Serie fehlt eine TMDB ID</translation>
     </message>
 </context>
 <context>
@@ -9874,7 +9874,7 @@ automatisch nach dem Laden</translation>
     <message>
         <location filename="../../src/scrapers/tv_show/tmdb/TmdbTvShowScrapeJob.cpp" line="23"/>
         <source>Show is missing a TMDB id</source>
-        <translation type="unfinished"></translation>
+        <translation>Der Serie fehlt eine TMDB ID</translation>
     </message>
 </context>
 <context>
@@ -9903,7 +9903,7 @@ automatisch nach dem Laden</translation>
     <message>
         <location filename="../../src/scrapers/tv_show/tvmaze/TvMazeSeasonScrapeJob.cpp" line="25"/>
         <source>Show is missing a TMDB id</source>
-        <translation type="unfinished"></translation>
+        <translation>Der Serie fehlt eine TMDB ID</translation>
     </message>
 </context>
 <context>
@@ -9919,7 +9919,7 @@ automatisch nach dem Laden</translation>
     <message>
         <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="495"/>
         <source>The Universal Music Scraper combines multiple scapers into one, including TheAudioDb, MusicBrainz, and Discogs.</source>
-        <translation type="unfinished"></translation>
+        <translation>Der Universal-Music-Scraper vereint mehrere Scraper in einen. Dazu gehören TheAudioDb, MusicBrainz und Discogs.</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="513"/>

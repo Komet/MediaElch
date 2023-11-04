@@ -1286,7 +1286,7 @@ Por exemplo:  &lt;baseFileName&gt;-poster.jpg,folder.jpg</translation>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="382"/>
         <source>TV Show - TMDB ID</source>
-        <translation type="unfinished"></translation>
+        <translation>TV Show - TMDb ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="383"/>
@@ -1306,7 +1306,7 @@ Por exemplo:  &lt;baseFileName&gt;-poster.jpg,folder.jpg</translation>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="389"/>
         <source>Episode - TMDB ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Episode - TMDb ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/export/CsvExportDialog.cpp" line="429"/>
@@ -2424,7 +2424,7 @@ Por exemplo:  &lt;baseFileName&gt;-poster.jpg,folder.jpg</translation>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="136"/>
         <source>TMDB ID &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>TMDb ID &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="424"/>
@@ -2439,17 +2439,17 @@ Por exemplo:  &lt;baseFileName&gt;-poster.jpg,folder.jpg</translation>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="426"/>
         <source>Movie has no TMDB ID</source>
-        <translation type="unfinished"></translation>
+        <translation>O filme não tem TMDb ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="426"/>
         <source>No TMDB ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Sem TMDb ID</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="426"/>
         <source>TMDB</source>
-        <translation type="unfinished"></translation>
+        <translation>TMDb</translation>
     </message>
     <message>
         <location filename="../../src/ui/small_widgets/FilterWidget.cpp" line="478"/>
@@ -2810,7 +2810,7 @@ e o arquivo será movido para dentro da nova Pasta</translation>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="244"/>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="263"/>
         <source>Words to exclude from media names (separated by commas and non case-sensitive)</source>
-        <translation type="unfinished"></translation>
+        <translation>Palavras a serem excluídas dos nomes de mídia (separadas por vírgulas e sem distinção entre maiúsculas e minúsculas)</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="270"/>
@@ -2825,7 +2825,7 @@ e o arquivo será movido para dentro da nova Pasta</translation>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="311"/>
         <source>Main Window Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Tema da janela principal</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="42"/>
@@ -6298,12 +6298,12 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
     <message>
         <location filename="../../src/main.cpp" line="78"/>
         <source>The default stylesheet could not be opened for reading.</source>
-        <translation type="unfinished"></translation>
+        <translation>A folha de Estilo Padrão não pôde ser aberta para leitura.</translation>
     </message>
     <message>
         <location filename="../../src/main.cpp" line="79"/>
         <source>The custom stylesheet could not be opened for reading. Using: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>A folha de Estilo Personalizada não pôde ser aberta para leitura. Usando: %1</translation>
     </message>
     <message>
         <location filename="../../src/globals/Helper.cpp" line="393"/>
@@ -7658,7 +7658,8 @@ Portanto, se você selecionar outros scrapers serão necessárias múltiplas bus
         <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="466"/>
         <source>You need to update the show once and load the show&apos;s TMDB ID to list missing episodes.
 Afterwards MediaElch will check automatically for new episodes on startup.</source>
-        <translation type="unfinished"></translation>
+        <translation>Você precisa atualizar o programa uma vez e carregar o TMDb ID do programa para listar os episódios ausentes.
+Posteriormente, o MediaElch verificará automaticamente se há novos episódios na inicialização.</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowFilesWidget.cpp" line="470"/>
@@ -8496,7 +8497,7 @@ Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o núme
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="246"/>
         <source>Open episode on IMDb.com</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir episódio em IMDB.com</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="249"/>
@@ -8507,7 +8508,7 @@ Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o núme
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="256"/>
         <source>Open episode on TVmaze.com</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir episódio em TVmaze.com</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.ui" line="330"/>
@@ -8984,7 +8985,7 @@ Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o núme
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="135"/>
         <source>Open TV show on TMDB.com</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir Série em TMDb.com</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="138"/>
@@ -8996,17 +8997,17 @@ Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o núme
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="155"/>
         <source>Open TV show on TVmaze.com</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir Série em TVmaze.com</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="165"/>
         <source>TheTVDB</source>
-        <translation type="unfinished"></translation>
+        <translation>TheTVDB</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="175"/>
         <source>TVmaze</source>
-        <translation type="unfinished"></translation>
+        <translation>TVmaze</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="221"/>
@@ -9016,12 +9017,12 @@ Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o núme
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="241"/>
         <source>TMDB</source>
-        <translation type="unfinished"></translation>
+        <translation>TMDb</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="251"/>
         <source>Open TV show on IMDb.com</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir Série em IMDB.com</translation>
     </message>
     <message>
         <location filename="../../src/ui/tv_show/TvShowWidgetTvShow.ui" line="537"/>
@@ -9477,7 +9478,7 @@ Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o núme
     <message>
         <location filename="../../src/scrapers/tv_show/custom/CustomTvScraper.cpp" line="33"/>
         <source>The custom TV scraper combines multiple scrapers so that details can be loaded from different sites in one step. It depends on TMDB for loading other scraper IDs.</source>
-        <translation type="unfinished"></translation>
+        <translation>O scraper de TV personalizado combina vários scrapers para que os detalhes possam ser carregados de diferentes sites em uma única etapa. Depende do TMDb para carregar outros IDs de scrapers.</translation>
     </message>
 </context>
 <context>
@@ -9485,7 +9486,7 @@ Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o núme
     <message>
         <location filename="../../src/scrapers/music/Discogs.cpp" line="207"/>
         <source>Discogs is a database of information about audio recordings, including commercial releases, promotional releases, and bootleg or off-label releases. </source>
-        <translation type="unfinished"></translation>
+        <translation>Discogs é um banco de dados de informações sobre gravações de áudio, incluindo lançamentos comerciais, lançamentos promocionais e lançamentos piratas ou off-label.</translation>
     </message>
 </context>
 <context>
@@ -9827,7 +9828,7 @@ Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o núme
     <message>
         <location filename="../../src/scrapers/concert/tmdb/TmdbConcert.cpp" line="28"/>
         <source>The Movie Database (TMDB) is a community built movie and TV database. Every piece of data has been added by our amazing community dating back to 2008. TMDB&apos;s strong international focus and breadth of data is largely unmatched and something we&apos;re incredibly proud of. Put simply, we live and breathe community and that&apos;s precisely what makes us different.</source>
-        <translation type="unfinished"></translation>
+        <translation>The Movie Database (TMDb) é um banco de dados de Filmes e Séries criado pela comunidade. Cada dado foi adicionado por nossa incrível comunidade desde 2008. O forte foco internacional e a amplitude de dados do TMDb são incomparáveis ​​e são algo de que estamos extremamente orgulhosos. Simplificando, vivemos e respiramos comunidade e é precisamente isso que nos torna diferentes.</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/concert/tmdb/TmdbConcert.cpp" line="132"/>
@@ -9840,7 +9841,7 @@ Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o núme
     <message>
         <location filename="../../src/scrapers/image/TmdbImages.cpp" line="16"/>
         <source>The Movie Database (TMDB) is a community built movie and TV database. Every piece of data has been added by our amazing community dating back to 2008. TMDB&apos;s strong international focus and breadth of data is largely unmatched and something we&apos;re incredibly proud of. Put simply, we live and breathe community and that&apos;s precisely what makes us different.</source>
-        <translation type="unfinished"></translation>
+        <translation>The Movie Database (TMDb) é um banco de dados de Filmes e Séries criado pela comunidade. Cada dado foi adicionado por nossa incrível comunidade desde 2008. O forte foco internacional e a amplitude de dados do TMDb são incomparáveis ​​e são algo de que estamos extremamente orgulhosos. Simplificando, vivemos e respiramos comunidade e é precisamente isso que nos torna diferentes.</translation>
     </message>
 </context>
 <context>
@@ -9848,7 +9849,7 @@ Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o núme
     <message>
         <location filename="../../src/scrapers/movie/tmdb/TmdbMovie.cpp" line="37"/>
         <source>The Movie Database (TMDB) is a community built movie and TV database. Every piece of data has been added by our amazing community dating back to 2008. TMDB&apos;s strong international focus and breadth of data is largely unmatched and something we&apos;re incredibly proud of. Put simply, we live and breathe community and that&apos;s precisely what makes us different.</source>
-        <translation type="unfinished"></translation>
+        <translation>The Movie Database (TMDb) é um banco de dados de Filmes e Séries criado pela comunidade. Cada dado foi adicionado por nossa incrível comunidade desde 2008. O forte foco internacional e a amplitude de dados do TMDb são incomparáveis ​​e são algo de que estamos extremamente orgulhosos. Simplificando, vivemos e respiramos comunidade e é precisamente isso que nos torna diferentes.</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/movie/tmdb/TmdbMovie.cpp" line="150"/>
@@ -9861,7 +9862,7 @@ Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o núme
     <message>
         <location filename="../../src/scrapers/movie/tmdb/TmdbMovieScrapeJob.cpp" line="137"/>
         <source>TMDB did not respond successfully for a movie collection request.</source>
-        <translation type="unfinished"></translation>
+        <translation>O TMDb não respondeu com êxito a uma Requisição de Dados de uma Coleção de Filmes.</translation>
     </message>
 </context>
 <context>
@@ -9869,7 +9870,7 @@ Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o núme
     <message>
         <location filename="../../src/scrapers/tv_show/tmdb/TmdbTv.cpp" line="20"/>
         <source>The Movie Database (TMDB) is a community built movie and TV database. Every piece of data has been added by our amazing community dating back to 2008. TMDB&apos;s strong international focus and breadth of data is largely unmatched and something we&apos;re incredibly proud of. Put simply, we live and breathe community and that&apos;s precisely what makes us different.</source>
-        <translation type="unfinished"></translation>
+        <translation>The Movie Database (TMDb) é um banco de dados de Filmes e Séries criado pela comunidade. Cada dado foi adicionado por nossa incrível comunidade desde 2008. O forte foco internacional e a amplitude de dados do TMDb são incomparáveis ​​e são algo de que estamos extremamente orgulhosos. Simplificando, vivemos e respiramos comunidade e é precisamente isso que nos torna diferentes.</translation>
     </message>
 </context>
 <context>
@@ -9877,7 +9878,7 @@ Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o núme
     <message>
         <location filename="../../src/scrapers/tv_show/tmdb/TmdbTvEpisodeScrapeJob.cpp" line="26"/>
         <source>TMDB show ID is invalid! Cannot load requested episode.</source>
-        <translation type="unfinished"></translation>
+        <translation>O TMDb ID da Série não é válido! Não é possível carregar o Episódio solicitado.</translation>
     </message>
 </context>
 <context>
@@ -9885,7 +9886,7 @@ Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o núme
     <message>
         <location filename="../../src/scrapers/tv_show/tmdb/TmdbTvSeasonScrapeJob.cpp" line="25"/>
         <source>Show is missing a TMDB id</source>
-        <translation type="unfinished"></translation>
+        <translation>A Série está sem um TMDb ID</translation>
     </message>
 </context>
 <context>
@@ -9906,7 +9907,7 @@ Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o núme
     <message>
         <location filename="../../src/scrapers/tv_show/tmdb/TmdbTvShowScrapeJob.cpp" line="23"/>
         <source>Show is missing a TMDB id</source>
-        <translation type="unfinished"></translation>
+        <translation>A Série está sem um TMDb ID</translation>
     </message>
 </context>
 <context>
@@ -9935,7 +9936,7 @@ Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o núme
     <message>
         <location filename="../../src/scrapers/tv_show/tvmaze/TvMazeSeasonScrapeJob.cpp" line="25"/>
         <source>Show is missing a TMDB id</source>
-        <translation type="unfinished"></translation>
+        <translation>A Série está sem um TMDb ID</translation>
     </message>
 </context>
 <context>
@@ -9951,7 +9952,7 @@ Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o núme
     <message>
         <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="495"/>
         <source>The Universal Music Scraper combines multiple scapers into one, including TheAudioDb, MusicBrainz, and Discogs.</source>
-        <translation type="unfinished"></translation>
+        <translation>O Universal Music Scraper combina vários Scapers em um só, incluindo TheAudioDb, MusicBrainz e Discogs.</translation>
     </message>
     <message>
         <location filename="../../src/scrapers/music/UniversalMusicScraper.cpp" line="513"/>

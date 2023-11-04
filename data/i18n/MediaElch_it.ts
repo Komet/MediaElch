@@ -2811,7 +2811,7 @@ Le cartelle che contengono la tua musica devono contenere sottocartelle per cias
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="311"/>
         <source>Main Window Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Tema finestra principale</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="42"/>
@@ -6267,17 +6267,17 @@ Se vuoi cercare per un ID di TMDb inizia la stringa con &quot;id&quot;.</transla
     <message>
         <location filename="../../src/main.cpp" line="75"/>
         <source>Stylesheet could not be opened!</source>
-        <translation>Impossibile aprire lo stylesheet</translation>
+        <translation>Impossibile aprire il foglio di stile!</translation>
     </message>
     <message>
         <location filename="../../src/main.cpp" line="78"/>
         <source>The default stylesheet could not be opened for reading.</source>
-        <translation type="unfinished"></translation>
+        <translation>Il foglio di stile di default non può essere aperto in lettura.</translation>
     </message>
     <message>
         <location filename="../../src/main.cpp" line="79"/>
         <source>The custom stylesheet could not be opened for reading. Using: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Il foglio di stile personalizzato non può essere aperto in lettura. Sto utilizzando: %1</translation>
     </message>
     <message>
         <location filename="../../src/globals/Helper.cpp" line="393"/>
