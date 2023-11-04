@@ -39,6 +39,7 @@ public:
     void setMovieDirectories(const QVector<mediaelch::MediaDirectory>& directories);
 
 public slots:
+    /// Reload movies. Emits finished() when reloaded.
     void reload(bool reloadFromDisk);
     void abort(bool quiet = false);
 

@@ -28,12 +28,18 @@ void listMovies()
 {
     Manager::instance()->movieFileSearcher()->setMovieDirectories(
         Settings::instance()->directorySettings().movieDirectories());
+
+    QEventLoop loop;
+    QEventLoop::connect(
+        Manager::instance()->movieFileSearcher(), &mediaelch::MovieFileSearcher::finished, &loop, &QEventLoop::quit);
     Manager::instance()->movieFileSearcher()->reload(false);
+    loop.exec();
+
     MovieModel* movieModel = Manager::instance()->movieModel();
 
     TableLayout layout;
-    layout.addColumn(TableColumn("ImDb Id", 9));
-    layout.addColumn(TableColumn("Title", 30));
+    layout.addColumn(TableColumn("IMDb ID", 10));
+    layout.addColumn(TableColumn("Title", 40));
     layout.addColumn(TableColumn("Genres", 30));
 
     std::cout << "List of all movies: \n\n";
@@ -64,7 +70,7 @@ void listConcerts()
     ConcertModel* concertModel = Manager::instance()->concertModel();
 
     TableLayout layout;
-    layout.addColumn(TableColumn("ImDb Id", 9));
+    layout.addColumn(TableColumn("IMDb ID", 10));
     layout.addColumn(TableColumn("Title", 30));
     layout.addColumn(TableColumn("Genres", 30));
 
@@ -130,8 +136,10 @@ void listTvShows()
     TvShowModel* tvShowModel = Manager::instance()->tvShowModel();
 
     TableLayout layout;
-    layout.addColumn(TableColumn("ImDb id", 8));
-    layout.addColumn(TableColumn("TvDB id", 8));
+    layout.addColumn(TableColumn("IMDb ID", 10));
+    layout.addColumn(TableColumn("TMDB ID", 7));
+    layout.addColumn(TableColumn("TVmaze ID", 9));
+    layout.addColumn(TableColumn("TVDb ID", 8));
     layout.addColumn(TableColumn("Title", 30));
     layout.addColumn(TableColumn("Network", 15));
 
@@ -143,7 +151,9 @@ void listTvShows()
     for (TvShow* show : tvShowModel->tvShows()) {
         if (show != nullptr) {
             table.writeCell(show->imdbId().toString());
-            table.writeCell(show->tvdbId().toString());
+            table.writeCell(show->tmdbId().toString());
+            table.writeCell(show->tvmazeId().toString());
+            table.writeCell(show->tvdbId().isValid() ? show->tvdbId().withPrefix() : "");
             table.writeCell(show->title());
             table.writeCell(show->network());
         }
