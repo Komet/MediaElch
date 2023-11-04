@@ -35,7 +35,7 @@ and builds a release binary of MediaElch for macOS for Qt5.
 Uses hard-coded paths of the current maintainer.
 
 You may need to adapt your \$PATH or macdeployqt may not be found.
-  export PATH="\$HOME/Qt/5.15.2/clang_64/bin/:\$PATH"
+  export PATH="\$HOME/Qt/${MAC_QT_5_VERSION}/clang_64/bin/:\$PATH"
 
 Options
   --no-confirm   Build MediaElch without confirm dialog.
@@ -81,8 +81,8 @@ parse_params "$@"
 export CXX=clang++
 export CC=clang
 
-print_important "Using Qt5 from \$HOME/Qt/5.15.2"
-export PATH="$HOME/Qt/5.15.2/clang_64/bin/:$OLD_PATH"
+print_important "Using Qt5 from \$HOME/Qt/${MAC_QT_5_VERSION}"
+export PATH="${HOME}/Qt/${MAC_QT_5_VERSION}/clang_64/bin/:${OLD_PATH}"
 
 # Check for macOS build and packaging dependencies
 ./.ci/macOS/check_macOS_dependencies.sh
