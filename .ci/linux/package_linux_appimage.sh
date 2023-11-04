@@ -101,7 +101,7 @@ unset QT_PLUGIN_PATH
 unset LD_LIBRARY_PATH
 # linuxdeployqt uses $VERSION this for naming the file
 VERSION="${ME_VERSION}"
-EXTRA_QT_PLUGINS="qt5dxcb-plugin"
+EXTRA_QT_PLUGINS="qt5dxcb-plugin;svg"
 
 export VERSION
 export EXTRA_QT_PLUGINS
