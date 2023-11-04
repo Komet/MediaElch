@@ -30,7 +30,7 @@ bool ImageCapture::captureImage(FilePath file,
         }
     }
 
-#ifdef Q_OS_OSX
+#ifdef Q_OS_MACOS
     QString ffmpegbin = QCoreApplication::applicationDirPath() + "/ffmpeg";
 #elif defined(Q_OS_WIN)
     QString ffmpegbin = QCoreApplication::applicationDirPath() + "/vendor/ffmpeg.exe";
@@ -67,7 +67,7 @@ bool ImageCapture::captureImage(FilePath file,
                       << "-f"
                       << "mjpeg" << tmpFile.fileName());
     if (!ffmpeg.waitForStarted()) {
-#if defined(Q_OS_WIN) || defined(Q_OS_OSX)
+#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
         NotificationBox::instance()->showError(tr("Could not start ffmpeg"));
 #else
         NotificationBox::instance()->showError(
