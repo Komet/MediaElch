@@ -243,6 +243,7 @@ void TvShowWidgetTvShow::onClear()
 
     blocked = ui->firstAired->blockSignals(true);
     ui->firstAired->setDate(QDate::currentDate());
+    ui->lblMissingFirstAired->setVisible(true);
     ui->firstAired->blockSignals(blocked);
 
     blocked = ui->overview->blockSignals(true);
@@ -351,6 +352,7 @@ void TvShowWidgetTvShow::updateTvShowInfo()
     ui->userRating->setValue(m_show->userRating());
     ui->top250->setValue(m_show->top250());
     ui->firstAired->setDate(m_show->firstAired());
+    ui->lblMissingFirstAired->setVisible(!m_show->firstAired().isValid());
     ui->studio->setText(m_show->network());
     ui->overview->setPlainText(m_show->overview());
     ui->runtime->setValue(static_cast<int>(m_show->runtime().count()));
@@ -1108,6 +1110,7 @@ void TvShowWidgetTvShow::onRuntimeChange(int runtime)
 void TvShowWidgetTvShow::onFirstAiredChange(QDate date)
 {
     m_show->setFirstAired(date);
+    ui->lblMissingFirstAired->setVisible(!date.isValid());
     ui->buttonRevert->setVisible(true);
 }
 

@@ -29,7 +29,9 @@
     For example, the country's release date will be used.
   - If a movie has more than one certification in a given language, we sometimes accidentally
     ignored the selected language if TMDB has an empty certification for it (#1641)
-- UI: Images are now loaded asynchronously, which should improve the performance when switching items (#1640)
+- UI:
+  - Images are now loaded asynchronously, which should improve the performance when switching items (#1640)
+  - TV shows: If the "first aired" date is invalid/missing, MediaElch shows the current date, but adds a "missing" marker (#1663)
 - TV shows: The TMDB id, if available, is now marked as "default" in NFO files.
 - Settings: Changing the main window theme no longer requires a restart.
 
