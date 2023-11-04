@@ -70,7 +70,7 @@ const char* const helpMessage = R"(Usage: mediaelch [options] <command> [command
 Options:
  -h, --help        Print this help notice. For help on commands, use
                    `mediaelch <command> --help`.
- -v, --version     Print Mediaelch's version.
+ -v, --version     Print MediaElch's version.
  --verbose=<level> Verbosity level (0: only errors, 4: everything)
 
 commands:
@@ -91,6 +91,13 @@ static void printHelp()
     std::cout << helpMessage << std::endl;
 }
 
+static void printVersion()
+{
+    QString version = QCoreApplication::applicationName() + QLatin1Char(' ') + QCoreApplication::applicationVersion()
+                      + QLatin1Char('\n');
+    std::cout << version.toStdString();
+}
+
 static void printUnsupported(QString command)
 {
     std::cout << "Command '" << command.toStdString() << "' not supported, yet." << std::endl;
@@ -99,9 +106,9 @@ static void printUnsupported(QString command)
 static int parseArguments(QApplication& app)
 {
     QCommandLineParser parser;
-    parser.addVersionOption();
     // custom help option that lists all commands
     parser.addOption({{"h", "?", "help"}, "Print help"});
+    parser.addOption({"version", "Print version"});
     parser.addOption({"verbose", "Verbosity level (0: only errors, 4: everything)", "level"});
     parser.addHelpOption();
     parser.addPositionalArgument("command", "The command to execute.");
@@ -120,7 +127,7 @@ static int parseArguments(QApplication& app)
 
     switch (commandFromString(command)) {
     case Command::Help: printHelp(); return 0;
-    case Command::Version: parser.showVersion();
+    case Command::Version: printVersion(); return 0;
     case Command::List: return mediaelch::cli::list(app, parser);
     case Command::Reload: return mediaelch::cli::reload(app, parser);
     case Command::Settings:
@@ -134,14 +141,20 @@ static int parseArguments(QApplication& app)
             printHelp();
             return 0;
         }
+        if (command.isEmpty() && parser.isSet("version")) {
+            printVersion();
+            return 0;
+        }
 
         parser.process(app);
         if (command.isEmpty()) {
             std::cout << "Missing command" << std::endl;
+            std::cout << "Use --help to print help." << std::endl;
             return 1;
         }
 
         std::cout << "Unknown command: " << command.toStdString() << std::endl;
+        std::cout << "Use --help to print help." << std::endl;
 
         return 1;
     }
