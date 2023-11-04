@@ -105,7 +105,7 @@ RUN pip install --upgrade pip && pip3 install cmake cmake_format
 
 # https://github.com/rui314/mold
 RUN cd /opt && git clone https://github.com/rui314/mold.git && \
-    cd mold && git checkout v1.11.0 && \
+    cd mold && git checkout v2.3.2 && \
     ./install-build-deps.sh && \
     mkdir build && cd build && \
     cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=clang++ .. && \
@@ -114,7 +114,7 @@ RUN cd /opt && git clone https://github.com/rui314/mold.git && \
 
 # Multicore build always fails for some reason, so we use -j1
 RUN cd /opt && git clone https://github.com/KDE/clazy.git && \
-    cd /opt/clazy && git checkout 0c5835055002658feec8a51382f0ab8f9cffbd3f && \
+    cd /opt/clazy && git checkout c1281a89d45937bdadf6ac966523cf5b18c6f714 && \
     cmake -S . -B build -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang -GNinja && \
     cmake --build build && \
