@@ -91,13 +91,13 @@ public:
         const QColor& color,
         const QString& painterName = QString(),
         int markerNum = -1,
-        float scaleFactor = 0.9f);
+        float scaleFactor = 0.98f);
     QIcon icon(const QString& name,
         const QColor& color,
         const QColor& selectionColor,
         const QString& painterName = QString(),
         int markerNum = -1,
-        float scaleFactor = 0.9f);
+        float scaleFactor = 0.98f);
     QIcon icon(MyIconFontIconPainter* painter, const QVariantMap& optionMap = QVariantMap());
 
     void give(const QString& name, MyIconFontIconPainter* painter);

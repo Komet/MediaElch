@@ -218,19 +218,19 @@
 #centralWidget #buttonMusic,
 #centralWidget #buttonDownloads {
     border: none;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 6px;
+    margin-right: 6px;
 }
-#centralWidget #labelMovies,
 #centralWidget #labelShows,
 #centralWidget #labelConcerts,
 #centralWidget #labelMusic,
 #centralWidget #labelDownloads,
 #centralWidget #labelPlugins {
     color: rgba(255, 255, 255, 200);
-    margin-top: 15px;
+    margin-top: 8px;
 }
 #centralWidget #labelMovies {
+    color: rgba(255, 255, 255, 200);
     margin-top: 0px;
 }
 

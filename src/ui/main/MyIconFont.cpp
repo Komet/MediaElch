@@ -12,6 +12,7 @@
 
 #include <QFile>
 #include <QFontDatabase>
+#include <QtMath>
 #include <utility>
 
 class StarIconPainter : public MyIconFontIconPainter
@@ -59,34 +60,35 @@ public:
         // add some 'padding' around the icon
         double drawSize = static_cast<double>(rect.height()) * options.value("scale-factor").toDouble();
 
-        painter->setFont(awesome->font(qRound(drawSize)));
+        painter->setFont(awesome->font(qFloor(drawSize)));
         painter->drawText(rect, text, QTextOption(Qt::AlignCenter | Qt::AlignVCenter));
 
         // Marker Text
         QString marker = options.value("marker-text").toString();
 
-        const float size = 0.6f;
+        const float size = 0.64f;
         QRect starRect(rect.left() + 1,
-            qRound(static_cast<float>(rect.top()) + static_cast<float>(rect.height()) * (1 - size)) - 1,
+            qRound(static_cast<float>(rect.top()) + static_cast<float>(rect.height()) * (1.0f - size)) - 1.0f,
             qRound(static_cast<float>(rect.width()) * size),
             qRound(static_cast<float>(rect.height()) * size));
         painter->setBrush(starColor);
         painter->setPen(starColor);
 
-        // Font size depends on the number of digits
-        const elch_ssize_t digits = marker.size();
+        // Font size depends on the number of digits: just a heuristic (via trial and error)
+        const auto digits = static_cast<double>(marker.size());
         drawSize = static_cast<double>(starRect.height()) * options.value("scale-factor").toDouble();
-#if defined Q_OS_MAC
-        drawSize *= 0.8;
-#elif defined Q_OS_WIN
-        drawSize *= 0.85;
-#else
-        drawSize *= 0.9;
-#endif
-        drawSize = drawSize - (static_cast<double>(digits) * 2.4 + 2.);
+
+        // drawSize is dependent on the device pixel ratio. So all other values have to
+        // be dependent on drawSize to get something consistent. Values are %.
+        double digitScale = 0.13 * drawSize;
+        double markerOffset = 0.08 * drawSize;
+
+        double minFontSize = 5;
+        double markerSize = (1.0 * drawSize) - (digits * digitScale + markerOffset);
+        drawSize = static_cast<int>(qMax(minFontSize, markerSize));
 
         QFont f;
-        f.setPointSizeF(drawSize);
+        f.setPixelSize(qFloor(drawSize));
         painter->setFont(f);
 
         painter->setRenderHint(QPainter::Antialiasing, true);
@@ -150,7 +152,7 @@ public:
         secondRect.setWidth(static_cast<int>(rect.width() * scale));
         secondRect.setHeight(static_cast<int>(rect.height() * scale));
 
-        const int drawSize = qRound(static_cast<double>(firstRect.height()) * options.value("scale-factor").toDouble());
+        const int drawSize = qFloor(static_cast<double>(firstRect.height()) * options.value("scale-factor").toDouble());
 
         painter->setFont(awesome->font(drawSize));
         painter->drawText(firstRect, text, QTextOption(Qt::AlignCenter | Qt::AlignVCenter));
@@ -259,7 +261,7 @@ private:
 //---------------------------------------------------------------------------------------
 
 /// The default icon colors
-MyIconFont::MyIconFont(QObject* parent) : QObject(parent)
+MyIconFont::MyIconFont(QObject* parent) : QObject(parent), fontIconPainter_{new MyIconFontCharIconPainter()}
 {
     // initialize the default options
     setDefaultOption("color", QColor(50, 50, 50));
@@ -267,21 +269,18 @@ MyIconFont::MyIconFont(QObject* parent) : QObject(parent)
     setDefaultOption("color-disabled", QColor(70, 70, 70, 60));
     setDefaultOption("color-active", QColor(10, 10, 10));
     setDefaultOption("color-selected", QColor(10, 10, 10));
-    setDefaultOption("scale-factor", 0.9);
+    setDefaultOption("scale-factor", 0.98);
 
     setDefaultOption("text", QVariant());
     setDefaultOption("text-disabled", QVariant());
     setDefaultOption("text-active", QVariant());
     setDefaultOption("text-selected", QVariant());
-
-    fontIconPainter_ = new MyIconFontCharIconPainter();
 }
 
 
 MyIconFont::~MyIconFont()
 {
     delete fontIconPainter_;
-    //    delete errorIconPainter_;
     qDeleteAll(painterMap_);
 }
 
@@ -432,6 +431,7 @@ QIcon MyIconFont::icon(int character, const QVariantMap& options)
 ///
 /// You can use the icon names as defined on https://fontawesome.com/ without
 /// the 'icon-' prefix
+///
 /// \param name the name of the icon
 /// \param options extra option to pass to the icon renderer
 QIcon MyIconFont::icon(const QString& name, const QVariantMap& options)
@@ -447,7 +447,7 @@ QIcon MyIconFont::icon(const QString& name, const QVariantMap& options)
     // this method first tries to retrieve the icon
     MyIconFontIconPainter* painter = painterMap_.value(name);
     if (painter == nullptr) {
-        return QIcon();
+        return {};
     }
 
     return icon(painter, optionMap);
@@ -480,13 +480,14 @@ QIcon MyIconFont::icon(const QString& name,
     return icon(name, color, QColor(10, 10, 10), painterName, markerNum, scaleFactor);
 }
 
-/// Create a dynamic icon by simlpy supplying a painter object
-/// The ownership of the painter is NOT transfered.
+/// Create a dynamic icon by simply supplying a painter object
+/// The ownership of the painter is NOT transferred.
+///
 /// \param painter a dynamic painter that is going to paint the icon
 /// \param optionMap the options to pass to the painter
 QIcon MyIconFont::icon(MyIconFontIconPainter* painter, const QVariantMap& optionMap)
 {
-    // Warning, when you use memoryleak detection. You should turn it off for the next call
+    // Warning, when you use memory leak detection. You should turn it off for the next call
     // QIcon's placed in gui items are often cached and not deleted when my memory-leak detection checks for leaks.
     // I'm not sure if it's a Qt bug or something I do wrong
     auto* engine = new MyIconFontIconPainterIconEngine(this, painter, optionMap);
@@ -504,7 +505,9 @@ void MyIconFont::give(const QString& name, MyIconFontIconPainter* painter)
     painterMap_.insert(name, painter);
 }
 
-/// Creates/Gets the icon font with a given size in pixels. This can be usefull to use a label for displaying icons
+/// Creates/Gets the icon font with a given size in pixels. This can be useful to use a label for displaying icons
+/// IMPORTANT: `size` is device dependent; its size is in pixel, not point!
+///            See https://doc.qt.io/qt-6/qfont.html#setPixelSize
 /// Example:
 ///
 ///    QLabel* label = new QLabel( QChar( icon_group ) );
@@ -512,6 +515,6 @@ void MyIconFont::give(const QString& name, MyIconFontIconPainter* painter)
 QFont MyIconFont::font(int size)
 {
     QFont font(fontName_);
-    font.setPointSize(size);
+    font.setPixelSize(size);
     return font;
 }

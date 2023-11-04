@@ -98,8 +98,8 @@
          </property>
          <property name="iconSize">
           <size>
-           <width>28</width>
-           <height>28</height>
+           <width>32</width>
+           <height>32</height>
           </size>
          </property>
          <property name="page" stdset="0">
@@ -129,8 +129,8 @@
          </property>
          <property name="iconSize">
           <size>
-           <width>28</width>
-           <height>28</height>
+           <width>32</width>
+           <height>32</height>
           </size>
          </property>
          <property name="page" stdset="0">
@@ -160,8 +160,8 @@
          </property>
          <property name="iconSize">
           <size>
-           <width>28</width>
-           <height>28</height>
+           <width>32</width>
+           <height>32</height>
           </size>
          </property>
          <property name="page" stdset="0">
@@ -191,8 +191,8 @@
          </property>
          <property name="iconSize">
           <size>
-           <width>28</width>
-           <height>28</height>
+           <width>32</width>
+           <height>32</height>
           </size>
          </property>
          <property name="page" stdset="0">
@@ -222,8 +222,8 @@
          </property>
          <property name="iconSize">
           <size>
-           <width>28</width>
-           <height>28</height>
+           <width>32</width>
+           <height>32</height>
           </size>
          </property>
          <property name="page" stdset="0">
@@ -271,8 +271,8 @@
          </property>
          <property name="iconSize">
           <size>
-           <width>28</width>
-           <height>28</height>
+           <width>32</width>
+           <height>32</height>
           </size>
          </property>
          <property name="page" stdset="0">
@@ -320,8 +320,8 @@
          </property>
          <property name="iconSize">
           <size>
-           <width>28</width>
-           <height>28</height>
+           <width>32</width>
+           <height>32</height>
           </size>
          </property>
          <property name="page" stdset="0">
@@ -369,8 +369,8 @@
          </property>
          <property name="iconSize">
           <size>
-           <width>28</width>
-           <height>28</height>
+           <width>32</width>
+           <height>32</height>
           </size>
          </property>
          <property name="page" stdset="0">
@@ -418,8 +418,8 @@
          </property>
          <property name="iconSize">
           <size>
-           <width>28</width>
-           <height>28</height>
+           <width>32</width>
+           <height>32</height>
           </size>
          </property>
          <property name="page" stdset="0">
@@ -434,14 +434,14 @@
         <layout class="QVBoxLayout" name="layoutImport"/>
        </item>
        <item>
-        <spacer name="verticalSpacer">
+        <spacer name="menuSpacer">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
-           <height>40</height>
+           <height>20</height>
           </size>
          </property>
         </spacer>
@@ -529,7 +529,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>72</width>
+                <width>83</width>
                 <height>736</height>
                </rect>
               </property>
@@ -607,7 +607,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>100</width>
+                <width>49</width>
                 <height>30</height>
                </rect>
               </property>
@@ -704,7 +704,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>100</width>
+                <width>49</width>
                 <height>30</height>
                </rect>
               </property>
@@ -826,7 +826,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>100</width>
+                <width>83</width>
                 <height>30</height>
                </rect>
               </property>

@@ -17,6 +17,7 @@
   - The music file list (artist/album) is now readable (better colors)
   - The search/filter result list has explicit colors: they are now readable (#1629)
   - TV Status field and the Movie Streamdetails->Stereo fields are now properly colored (#1657)
+  - The numbers and icons in the left navigation bar were not properly scaled (#1662)
 - UniversalMusicScraper: If an artist has no Discogs link on MusicBrainz, MediaElch was stuck.
 - ADE: Overview and posters are properly scraped again (#1650)
 - IMDb: Fix scraping of episode IDs from season pages
