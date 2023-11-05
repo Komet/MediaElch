@@ -202,7 +202,8 @@ if new_version_name.is_dev:
 else:
     print(f"  git commit -m 'release: Release MediaElch v{new_version_name.short}'")
 
-print("""  git push -u origin prepare-release
+print("""  git checkout -b prepare-release
+  git push -u origin prepare-release
 """)
 
 if not new_version_name.is_dev:

@@ -10,8 +10,8 @@ namespace constants {
 
 // Update versions via ./scripts/release/bump_version.py
 constexpr char AppName[] = "MediaElch";
-constexpr char AppVersionStr[] = "2.10.5"; // major.minor.patch
-constexpr char AppVersionFullStr[] = "2.10.5-dev"; // major.minor.patch[-identifier]
+constexpr char AppVersionStr[] = "2.10.6"; // major.minor.patch
+constexpr char AppVersionFullStr[] = "2.10.6"; // major.minor.patch[-identifier]
 constexpr char VersionName[] = "Benzar";
 constexpr char OrganizationName[] = "kvibes";
 

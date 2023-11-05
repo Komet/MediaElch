@@ -1,11 +1,11 @@
 # Changelog
 
 
-## Upcoming
+## 2.10.6 - 2023-12-03
 
 ### Notes
 
-- MediaElch for macOS 11 and later now uses Qt 6.6.0
+- MediaElch for macOS 11 and later now uses Qt 6.6.1
 
 ### Fixed
 
