@@ -63,8 +63,9 @@ fi
 print_important "Building ${IMAGE} from ${DOCKERFILE} if necessary."
 docker build --pull -t "${IMAGE}" -f "${DOCKERFILE}" .
 
-print_important "Now building MediaElch using travis-build_release.sh"
+BUILD_SCRIPT="./.ci/docker/build-${OS:?}.sh"
+print_important "Now building MediaElch using ${BUILD_SCRIPT}"
 print_info "Using user:group id: $(id -u "$(whoami)"):$(id -g "$(whoami)")"
 
 docker run --rm --user "$(id -u "$(whoami)"):$(id -g "$(whoami)")" -it -v "${PROJECT_PATH}":/opt/src "${IMAGE}" \
-	bash -xc "cd /opt/src && ./.ci/docker/build-${OS:?}.sh ${DIST}"
+	bash -xc "cd /opt/src && ${BUILD_SCRIPT} ${DIST}"

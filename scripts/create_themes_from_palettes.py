@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 # This script can be used to update light.css, which is based on
 # base.css and palette_light.json.
