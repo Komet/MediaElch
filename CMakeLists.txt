@@ -218,6 +218,13 @@ if(APPLE)
 endif()
 
 # ------------------------------------------------------------------------------
+# Other Config
+
+# Used for easy version access.
+configure_file(data/VERSION.txt.in VERSION.txt @ONLY)
+
+
+# ------------------------------------------------------------------------------
 # Installation
 install(TARGETS mediaelch
   RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}" RENAME MediaElch
@@ -267,6 +274,8 @@ set(CPACK_PACKAGE_ICON              "${CMAKE_CURRENT_SOURCE_DIR}/MediaElch.ico")
 set(CPACK_RESOURCE_FILE_LICENSE     "${CMAKE_CURRENT_SOURCE_DIR}/COPYING")
 set(CPACK_RESOURCE_FILE_README      "${CMAKE_CURRENT_SOURCE_DIR}/README.md")
 set(CPACK_RESOURCE_FILE_WELCOME     "${CMAKE_CURRENT_SOURCE_DIR}/data/installer/welcome.txt")
+set(CPACK_PACKAGE_FILE_NAME         "mediaelch-${PROJECT_VERSION}")
+set(CPACK_SOURCE_PACKAGE_FILE_NAME  "mediaelch-${PROJECT_VERSION}")
 
 set(CPACK_PACKAGE_EXECUTABLES "mediaelch;MediaElch") # MediaElch is an alias for
                                                      # mediaelch. Used by NSIS
@@ -274,18 +283,38 @@ set(CPACK_PACKAGE_EXECUTABLES "mediaelch;MediaElch") # MediaElch is an alias for
 # Ignore these files when creating a source package.
 # Essentially just our .gitignore and a few other files.
 set(CPACK_SOURCE_IGNORE_FILES "/\\\\.git/"      # We don't need git files
+                              "/\\\\.idea/"     # IDEs
+                              "/\\\\.vscode/"
+                              "/\\\\.gdb/"
+                              "/\\\\.venv/"
+                              "/\\\\.tx/"
                               "\\\\.swp$"
                               "\\\\.DS_Store$"
-                              "/.ci/"           # CI files
+                              "/\\\\.ci/"       # CI files
+                              "Jenkinsfile$"       # CI files
                               "/build.*/"       # Any build executables
+                              "/cmake-build-debug/"
                               "/ZenLib/"
+                              "Makefile$"
+                              ".*\\\\.log$"
                               "/MediaInfoDLL/"
-                              "/docs/user/"     # Git submodule
                               "/scripts/"       # scripts and generated data
                               "/\\\\.github/"   # issue templates, etc.
                               "\\\\.#"
-                              ".*AppImage$"
+                              ".*\\\\.AppImage$"
+                              ".*\\\\.zip$"
+                              ".*\\\\.dmg$"
+                              ".*\\\\.app$"
+                              ".*\\\\.tar\\\\.gz$"
+                              ".*\\\\.7z$"
                               ".*\\\\.user.*"
+                              "\\\\.gdbinit"
+                              "\\\\.clang-tidy"
+                              "\\\\.clang-format"
+                              "/obs/"                      # Packaging
+                              "/tmp/"
+                              "/debian/"
+                              "/third_party/packaging_.*/"
                               "/#"
                               ".*~")
 # cmake-format: on
@@ -293,7 +322,7 @@ set(CPACK_SOURCE_IGNORE_FILES "/\\\\.git/"      # We don't need git files
 if (NOT CPACK_GENERATOR)
   if(APPLE)
     set(CPACK_GENERATOR "DragNDrop;Bundle")
-  elseif(WIN32 )
+  elseif(WIN32)
     set(CPACK_GENERATOR "ZIP")
   else()
     set(CPACK_GENERATOR "TGZ")
