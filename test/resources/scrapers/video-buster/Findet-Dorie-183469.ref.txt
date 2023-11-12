@@ -64,8 +64,6 @@ certification: FSK 0
 genres: (N<6)
   - Animation
   - Kids
-  - Animation
-  - Kids
 tags: (N>5)
   - CGI-Animation
   - Pixar
