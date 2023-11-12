@@ -159,8 +159,8 @@ actors: (N>80)
    name: Milton Barnes
    role: McTighe
    thumb:
-    https://m.media-amazon.com/images/M/MV5BYjhlYTA4Y2QtYTk1Ny00MTUyLTk3ZWMtMjk0YjQ1
-    MjM2ZDY3XkEyXkFqcGdeQXVyMjQwMDg0Ng@@.jpg
+    https://m.media-amazon.com/images/M/MV5BMzkwNDZmYTQtMzU2MC00OWQ2LTg1YmItNzFkNmFl
+    MmIzNGNhXkEyXkFqcGdeQXVyMjI5Njk2MjE@.jpg
    order: 15
    imageHasChanged: false
  - id: 

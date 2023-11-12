@@ -138,7 +138,7 @@ actors: (N>800)
    imageHasChanged: false
  - id: 1228157
    name: Mike Schwartz
-   role: Lloyd, Patient, Delivery Guy
+   role: Lloyd, Delivery Guy, Patient
    thumb: https://image.tmdb.org/t/p/original/91JdROqsqiH8tN5ipAdo69ge4xW.jpg
    order: 17
    imageHasChanged: false

@@ -54,7 +54,7 @@ actors: (N>30)
  - id: 
    name: Diane Keaton
    role: Jenny (voice)
-   thumb: http://image.tmdb.org/t/p/original/tnx7pJqisfAzvXOR5wHQsbnH9XH.jpg
+   thumb: http://image.tmdb.org/t/p/original/siSWRRFN9uO6iCN7y9OrHU5IaJ.jpg
    order: 4
    imageHasChanged: false
  - id: 
@@ -138,7 +138,7 @@ actors: (N>30)
  - id: 
    name: John Ratzenberger
    role: Husband Crab (Bill) (voice)
-   thumb: http://image.tmdb.org/t/p/original/e5aNU09v1q6WYTx9pNzC7yjSpve.jpg
+   thumb: http://image.tmdb.org/t/p/original/oRtDEOuIO1yDhTz5dORBdxXuLMO.jpg
    order: 18
    imageHasChanged: false
  - id: 
@@ -160,7 +160,7 @@ countries: (N=1)
 studios: (N<6)
   - Pixar
   - Walt Disney Pictures
-trailer: https://www.youtube.com/watch?v=JhvrQeY3doI
+trailer: https://www.youtube.com/watch?v=iG0P6bjyUNI
 playcount: 0
 lastPlayed: <not set or invalid>
 dateAdded: <not set or invalid>

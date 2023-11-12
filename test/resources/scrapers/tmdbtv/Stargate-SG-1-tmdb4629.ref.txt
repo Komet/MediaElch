@@ -55,120 +55,120 @@ actors: (N>800)
    thumb: https://image.tmdb.org/t/p/original/hxU7NXyTmVe7hbGnKJiLU6r9uQw.jpg
    order: 2
    imageHasChanged: false
+ - id: 51800
+   name: Teryl Rothery
+   role: Dr. Janet Fraiser
+   thumb: https://image.tmdb.org/t/p/original/16rUSnTH56cKatjd6kjEYEfU4cA.jpg
+   order: 3
+   imageHasChanged: false
  - id: 26086
    name: Michael Shanks
    role: Daniel Jackson, Thor (voice), Dr. Daniel Jackson
    thumb: https://image.tmdb.org/t/p/original/4YkOrSUmfKljqTMwGIo50oviKe1.jpg
-   order: 3
+   order: 4
    imageHasChanged: false
  - id: 15863
    name: Don S. Davis
    role: George Hammond
    thumb: https://image.tmdb.org/t/p/original/gxUvCXIFxAMqcWgosErBP5rHKDw.jpg
-   order: 4
+   order: 5
    imageHasChanged: false
  - id: 16180
    name: Robert Picardo
    role: Richard Woolsey
    thumb: https://image.tmdb.org/t/p/original/9TOY0mhWRMlU5Ur8QHMoDecWs2n.jpg
-   order: 5
+   order: 6
    imageHasChanged: false
  - id: 26054
    name: Claudia Black
    role: Vala Mal Doran
    thumb: https://image.tmdb.org/t/p/original/eIYn2naiftYwPnclwcYgyWkEtuA.jpg
-   order: 6
+   order: 7
    imageHasChanged: false
  - id: 26048
    name: Ben Browder
    role: Cameron Mitchell
    thumb: https://image.tmdb.org/t/p/original/28gdcjphnh7zjpWxgWWVvv9XMA7.jpg
-   order: 7
+   order: 8
    imageHasChanged: false
  - id: 2222
    name: Beau Bridges
    role: Hank Landry
    thumb: https://image.tmdb.org/t/p/original/Aiezvt0Uj2Ka9QVW3GvuRLkNS2V.jpg
-   order: 8
+   order: 9
    imageHasChanged: false
  - id: 21563
    name: Corin Nemec
    role: Jonas Quinn
    thumb: https://image.tmdb.org/t/p/original/vndALqWdbdM4IMMU6CTmOCMjzEA.jpg
-   order: 9
+   order: 10
    imageHasChanged: false
  - id: 1225394
    name: Peter Williams
    role: Apophis
    thumb: https://image.tmdb.org/t/p/original/lLCIT3kWr4RWg2boqS5vjUiR7KF.jpg
-   order: 10
+   order: 11
    imageHasChanged: false
  - id: 118463
    name: Peter DeLuise
    role:
-    Director / Peter DeLuise, Airman, SF Guard (Uncredited), Tok'ra Guard, Machine G
-    un Guard, Free Jaffa (Voice only) (Uncredited), Young Urgo in Uniform, Interview
-    er, Lieutenant, Screaming Villager, Man Leaving Cafe
+    Director / Peter DeLuise, Airman, SF Guard (Uncredited), Machine Gun Guard, Scre
+    aming Villager, Young Urgo in Uniform, Lieutenant, Free Jaffa (Voice only) (Uncr
+    edited), Man Leaving Cafe, Interviewer, Tok'ra Guard
    thumb: https://image.tmdb.org/t/p/original/sLkSOm6HBLB4VCfshQLdSEq63tr.jpg
-   order: 11
+   order: 12
    imageHasChanged: false
  - id: 118462
    name: Bill Dow
    role: Bill Lee
    thumb: https://image.tmdb.org/t/p/original/dfl1WQzIRhswOw4zQxo6YKWL3Ik.jpg
-   order: 12
+   order: 13
    imageHasChanged: false
  - id: 1218926
    name: Colin Cunningham
    role: Paul Davis
    thumb: https://image.tmdb.org/t/p/original/5ooKQ9tpLZDtDc5dHeREdvAWAOJ.jpg
-   order: 13
+   order: 14
    imageHasChanged: false
  - id: 91404
    name: Eric Breker
    role: Albert Reynolds, Colonel Reynolds
    thumb: https://image.tmdb.org/t/p/original/bD08h8S2wmXmw6MDD2mHuRO4J2B.jpg
-   order: 14
+   order: 15
    imageHasChanged: false
  - id: 59245
    name: Laara Sadiq
-   role: Technician #2, Technician Davis, Technican, Technician
+   role: Technician #2, Technician Davis, Technician, Technican
    thumb: https://image.tmdb.org/t/p/original/l7MkydwslaXo1EmYrRpJARnaFKs.jpg
-   order: 15
+   order: 16
    imageHasChanged: false
  - id: 1366510
    name: Fraser Aitcheson
    role:
-    Hathor's Jaffa, Free Jaffa (Uncredited), Dakara Jaffa 3 (Uncredited), Jaffa Guar
-    d, Apophis' Red Jaffa, Jaffa Warrior, Anubis' Jaffa, Free Jaffa 2 (Uncredited), 
-    Orderly, Jaffa, Ares' Jaffa commander (Uncredited), Jaffa Commander, Tagrean Wor
+    Hathor's Jaffa, Free Jaffa (Uncredited), Jaffa Warrior, Jaffa, Jaffa Commander, 
+    Ares' Jaffa commander (Uncredited), Anubis' Jaffa, Orderly, Dakara Jaffa 3 (Uncr
+    edited), Free Jaffa 2 (Uncredited), Jaffa Guard, Apophis' Red Jaffa, Tagrean Wor
     ker
    thumb: https://image.tmdb.org/t/p/original/j0fou5tZvXHe3GcVr24UnYQLg6S.jpg
-   order: 16
+   order: 17
    imageHasChanged: false
  - id: 780
    name: Ronny Cox
    role: Senator Robert Kinsey
    thumb: https://image.tmdb.org/t/p/original/cKkVkqft2RacSDhsKxO8nMFgeAd.jpg
-   order: 17
+   order: 18
    imageHasChanged: false
  - id: 158575
    name: Tom McBeath
    role: Harry Maybourne
    thumb: https://image.tmdb.org/t/p/original/vKeYC2KlMiq4S48ZafMll7jl9CJ.jpg
-   order: 18
-   imageHasChanged: false
- - id: 26089
-   name: Garry Chalk
-   role: Colonel Chekov
-   thumb: https://image.tmdb.org/t/p/original/jESGnBSP0OjFxJejN1OPsjXA9sJ.jpg
    order: 19
    imageHasChanged: false
   - ... and >800 more
 posters: (N=1)
-  - id: https://image.tmdb.org/t/p/original/rst5xc4f7v1KiDiQjzDiZqLtBpl.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/rst5xc4f7v1KiDiQjzDiZqLtBpl.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/rst5xc4f7v1KiDiQjzDiZqLtBpl.jpg
+  - id: https://image.tmdb.org/t/p/original/dQjmI7XxI47v8IM2MUysHG0LuU2.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/dQjmI7XxI47v8IM2MUysHG0LuU2.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/dQjmI7XxI47v8IM2MUysHG0LuU2.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
@@ -194,90 +194,90 @@ seasonPoster S00: (N=1)
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S01: (N=1)
-  - id: https://image.tmdb.org/t/p/original/41fvYyPQdREnjxlM1a1DFtcw7Jm.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/41fvYyPQdREnjxlM1a1DFtcw7Jm.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/41fvYyPQdREnjxlM1a1DFtcw7Jm.jpg
+  - id: https://image.tmdb.org/t/p/original/tiib6A0kZ0NoUeuUbcU0hIu2jlM.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/tiib6A0kZ0NoUeuUbcU0hIu2jlM.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/tiib6A0kZ0NoUeuUbcU0hIu2jlM.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S02: (N=1)
-  - id: https://image.tmdb.org/t/p/original/bJ5RV7CP40YcgxMKlaUvsy627My.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/bJ5RV7CP40YcgxMKlaUvsy627My.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/bJ5RV7CP40YcgxMKlaUvsy627My.jpg
+  - id: https://image.tmdb.org/t/p/original/lBMPJS97E8t6ULrE6hrZSkdne15.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/lBMPJS97E8t6ULrE6hrZSkdne15.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/lBMPJS97E8t6ULrE6hrZSkdne15.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S03: (N=1)
-  - id: https://image.tmdb.org/t/p/original/q2z1WaiQQaQhKgJEUgXElIJEZs5.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/q2z1WaiQQaQhKgJEUgXElIJEZs5.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/q2z1WaiQQaQhKgJEUgXElIJEZs5.jpg
+  - id: https://image.tmdb.org/t/p/original/y784rvtXTNm2g6x3LqIpAFWY6di.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/y784rvtXTNm2g6x3LqIpAFWY6di.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/y784rvtXTNm2g6x3LqIpAFWY6di.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S04: (N=1)
-  - id: https://image.tmdb.org/t/p/original/yRQlA86uDFvKlVG7mbO7pSBIyWG.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/yRQlA86uDFvKlVG7mbO7pSBIyWG.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/yRQlA86uDFvKlVG7mbO7pSBIyWG.jpg
+  - id: https://image.tmdb.org/t/p/original/vpPEa8vqMr1WtXbE6fA0ABGeFoe.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/vpPEa8vqMr1WtXbE6fA0ABGeFoe.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/vpPEa8vqMr1WtXbE6fA0ABGeFoe.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S05: (N=1)
-  - id: https://image.tmdb.org/t/p/original/A8JjgFiSito3mta01xumsyDq1oG.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/A8JjgFiSito3mta01xumsyDq1oG.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/A8JjgFiSito3mta01xumsyDq1oG.jpg
+  - id: https://image.tmdb.org/t/p/original/tn0VrEaDdiefOGnphHkTJNAeqxM.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/tn0VrEaDdiefOGnphHkTJNAeqxM.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/tn0VrEaDdiefOGnphHkTJNAeqxM.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S06: (N=1)
-  - id: https://image.tmdb.org/t/p/original/qBJhimyg81D8ME79Yi9P9C8XAt8.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/qBJhimyg81D8ME79Yi9P9C8XAt8.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/qBJhimyg81D8ME79Yi9P9C8XAt8.jpg
+  - id: https://image.tmdb.org/t/p/original/hFSLju61oOogrqiq0VD4eLdjV84.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/hFSLju61oOogrqiq0VD4eLdjV84.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/hFSLju61oOogrqiq0VD4eLdjV84.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S07: (N=1)
-  - id: https://image.tmdb.org/t/p/original/140Bxoffh0KfibLninGfLmrn06S.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/140Bxoffh0KfibLninGfLmrn06S.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/140Bxoffh0KfibLninGfLmrn06S.jpg
+  - id: https://image.tmdb.org/t/p/original/r16NyHvsOFbm95j7ezfD2ZmMi5l.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/r16NyHvsOFbm95j7ezfD2ZmMi5l.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/r16NyHvsOFbm95j7ezfD2ZmMi5l.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S08: (N=1)
-  - id: https://image.tmdb.org/t/p/original/nHV2kSDyflVRoQxsQAWeQdzknGP.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/nHV2kSDyflVRoQxsQAWeQdzknGP.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/nHV2kSDyflVRoQxsQAWeQdzknGP.jpg
+  - id: https://image.tmdb.org/t/p/original/47vubDA11B0y6edXbgVunQh9SBF.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/47vubDA11B0y6edXbgVunQh9SBF.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/47vubDA11B0y6edXbgVunQh9SBF.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S09: (N=1)
-  - id: https://image.tmdb.org/t/p/original/1XWFRVrJlsLulGTk0HQZztfYqHA.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/1XWFRVrJlsLulGTk0HQZztfYqHA.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/1XWFRVrJlsLulGTk0HQZztfYqHA.jpg
+  - id: https://image.tmdb.org/t/p/original/qthzwn3wvra7UXHeuGONacTO0lT.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/qthzwn3wvra7UXHeuGONacTO0lT.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/qthzwn3wvra7UXHeuGONacTO0lT.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S10: (N=1)
-  - id: https://image.tmdb.org/t/p/original/abVYv6nyWeQOoYLGLe3nIiGCNfH.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/abVYv6nyWeQOoYLGLe3nIiGCNfH.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/abVYv6nyWeQOoYLGLe3nIiGCNfH.jpg
+  - id: https://image.tmdb.org/t/p/original/zWQUWJ1NbLLQhMDcyQ9OImG6oGg.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/zWQUWJ1NbLLQhMDcyQ9OImG6oGg.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/zWQUWJ1NbLLQhMDcyQ9OImG6oGg.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 

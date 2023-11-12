@@ -26,7 +26,7 @@ tags: (N=0)
 certification: 
 network: FOX
 episodeGuideUrl: 
-actors: (N>60)
+actors: (N>80)
  - id: 14854
    name: Dan Castellaneta
    role: Homer Simpson
@@ -147,7 +147,7 @@ actors: (N>60)
    thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/2108.jpg
    order: 19
    imageHasChanged: false
-  - ... and >40 more
+  - ... and >60 more
 posters: (N>30)
   - id: https://static.tvmaze.com/uploads/images/original_untouched/476/1192162.jpg
     originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/476/1192162.jpg
@@ -500,6 +500,15 @@ seasonPoster S33: (N=1)
   - id: https://static.tvmaze.com/uploads/images/original_untouched/450/1126672.jpg
     originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/450/1126672.jpg
     thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/450/1126672.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+seasonPoster S34: (N=1)
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/482/1206203.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/482/1206203.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/482/1206203.jpg
     originalSize: h=-1 w=-1
     language: en
     hint: 
