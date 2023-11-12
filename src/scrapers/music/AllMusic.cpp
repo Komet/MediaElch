@@ -39,6 +39,23 @@ QUrl AllMusicApi::makeArtistMoodsUrl(const AllMusicId& artistId)
     return QUrl(QStringLiteral("https://www.allmusic.com/artist/%1/moodsThemesAjax").arg(artistId.toString()));
 }
 
+
+QUrl AllMusicApi::makeAlbumUrl(const AllMusicId& albumId)
+{
+    return QUrl(QStringLiteral("https://www.allmusic.com/artist/%1").arg(albumId.toString()));
+}
+
+QUrl AllMusicApi::makeAlbumReviewUrl(const AllMusicId& albumId)
+{
+    return QUrl(QStringLiteral("https://www.allmusic.com/album/%1/reviewAjax").arg(albumId.toString()));
+}
+
+QUrl AllMusicApi::makeAlbumMoodsUrl(const AllMusicId& albumId)
+{
+    return QUrl(QStringLiteral("https://www.allmusic.com/album/%1/moodsThemesAjax").arg(albumId.toString()));
+}
+
+
 AllMusic::AllMusic(QObject* parent) : QObject(parent)
 {
 }
@@ -88,21 +105,6 @@ void AllMusic::parseAndAssignAlbum(const QString& html, Album& album, const QSet
             }
             if (!artists.isEmpty()) {
                 album.setArtist(artists.join(", "));
-            }
-        }
-    }
-
-    if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Review, infos, album)) {
-        rx.setPattern(R"(<div class="text" itemprop="reviewBody">(.*)</div>)");
-        match = rx.match(html);
-        if (match.hasMatch()) {
-            QString review = match.captured(1);
-            album.setReview(removeHtmlEntities(review));
-
-        } else if (useJson) {
-            const QString review = removeHtmlEntities(doc.value("review").toObject().value("reviewBody").toString());
-            if (!review.isEmpty()) {
-                album.setReview(removeHtmlEntities(review));
             }
         }
     }
@@ -162,17 +164,32 @@ void AllMusic::parseAndAssignAlbum(const QString& html, Album& album, const QSet
             }
         }
     }
+}
 
-    if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Moods, infos, album)) {
-        rx.setPattern("<h[34]>Album Moods</h[34]>[\\n\\s]*<div>(.*)</div>");
-        match = rx.match(html);
+
+void AllMusic::parseAndAssignAlbumReview(const QString& html, Album& artist, const QSet<MusicScraperInfo>& infos)
+{
+    if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Review, infos, artist)) {
+        artist.setReview(removeHtmlEntities(html));
+    }
+}
+
+void AllMusic::parseAndAssignAlbumMoods(const QString& html, Album& artist, const QSet<MusicScraperInfo>& infos)
+{
+    // TODO(refactor): Deduplicate code with artist
+    if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Moods, infos, artist)) {
+        // `<div>` until next header
+        QRegularExpression rx(R"(<div id="moodsGrid">(.*)<h3>)",
+            QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
+
+        QRegularExpressionMatch match = rx.match(html);
         if (match.hasMatch()) {
             QString moods = match.captured(1);
-            rx.setPattern("<a [^>]*>(.*)</a>");
+            rx.setPattern("<a[^>]+>(.*)</a>");
 
             QRegularExpressionMatchIterator matches = rx.globalMatch(moods);
             while (matches.hasNext()) {
-                album.addMood(removeHtmlEntities(matches.next().captured(1)));
+                artist.addMood(removeHtmlEntities(matches.next().captured(1)));
             }
         }
     }
@@ -271,17 +288,15 @@ void AllMusic::parseAndAssignArtistBiography(const QString& html, Artist& artist
 
 void AllMusic::parseAndAssignArtistMoods(const QString& html, Artist& artist, const QSet<MusicScraperInfo>& infos)
 {
-    QRegularExpression rx;
-    rx.setPatternOptions(QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
-    QRegularExpressionMatch match;
-
     if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Moods, infos, artist)) {
-        // <div> until next header
-        rx.setPattern(R"(<div id="moodsGrid">(.*)<h3>)");
-        match = rx.match(html);
+        // `<div>` until next header
+        QRegularExpression rx(R"(<div id="moodsGrid">(.*)<h3>)",
+            QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
+
+        QRegularExpressionMatch match = rx.match(html);
         if (match.hasMatch()) {
             QString moods = match.captured(1);
-            rx.setPattern("<a [^>]*>(.*)</a>");
+            rx.setPattern("<a[^>]+>(.*)</a>");
 
             QRegularExpressionMatchIterator matches = rx.globalMatch(moods);
             while (matches.hasNext()) {

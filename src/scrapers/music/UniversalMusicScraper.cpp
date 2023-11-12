@@ -161,8 +161,8 @@ void UniversalArtistScrapeJob::doStart()
         appendDownloadElement(
             "theaudiodb", "tadb_discography", m_scraper->m_theAudioDbApi.makeArtistDiscographyUrl(artistMbId));
 
-        if (artist().allMusicId().isValid()) {
-            const auto& amId = artist().allMusicId();
+        const auto& amId = artist().allMusicId();
+        if (amId.isValid()) {
             appendDownloadElement("allmusic", "am_data", m_scraper->m_allMusicApi.makeArtistUrl(amId));
             appendDownloadElement("allmusic", "am_biography", m_scraper->m_allMusicApi.makeArtistBiographyUrl(amId));
             appendDownloadElement("allmusic", "am_moods", m_scraper->m_allMusicApi.makeArtistMoodsUrl(amId));
@@ -189,9 +189,8 @@ void UniversalArtistScrapeJob::doStart()
             mediaelch::network::useFirefoxUserAgent(request);
             if (elem.source == "musicbrainz") {
                 request.setRawHeader("Accept-Language", config().locale.toString().toUtf8());
-            } else if (elem.source.startsWith("am_")) {
+            } else if (elem.source == "allmusic") {
                 // TODO(refactor): For biography/moods we need a proper referrer header.
-                const auto& amId = artist().allMusicId();
                 QUrl referrer = m_scraper->m_allMusicApi.makeArtistUrl(amId);
                 request.setRawHeader("Referer", referrer.toString().toUtf8());
             }
@@ -295,10 +294,10 @@ void UniversalArtistScrapeJob::processDownloadElement(DownloadElement elem)
         } else if (elem.type == "tadb_discography") {
             m_scraper->m_theAudioDb.parseAndAssignArtistDiscography(parsedJson, artist(), config().details);
         }
-    } else if (elem.type == "am_data") {
-        m_scraper->m_allMusic.parseAndAssignArtist(elem.contents, artist(), config().details);
     } else if (elem.type == "musicbrainz_biography") {
         m_scraper->m_musicBrainz.parseAndAssignArtist(elem.contents, artist(), config().details);
+    } else if (elem.type == "am_data") {
+        m_scraper->m_allMusic.parseAndAssignArtist(elem.contents, artist(), config().details);
     } else if (elem.type == "am_biography") {
         m_scraper->m_allMusic.parseAndAssignArtistBiography(elem.contents, artist(), config().details);
     } else if (elem.type == "am_moods") {
@@ -341,10 +340,12 @@ void UniversalAlbumScrapeJob::doStart()
             "tadb_data",
             QUrl(QStringLiteral("https://www.theaudiodb.com/api/v1/json/%1/album-mb.php?i=%2")
                      .arg(m_scraper->m_tadbApiKey, album().mbReleaseGroupId().toString())));
-        if (album().allMusicId().isValid()) {
-            appendDownloadElement("allmusic",
-                "am_data",
-                QStringLiteral("https://www.allmusic.com/album/%1").arg(album().allMusicId().toString()));
+
+        const auto& amId = album().allMusicId();
+        if (amId.isValid()) {
+            appendDownloadElement("allmusic", "am_data", m_scraper->m_allMusicApi.makeAlbumUrl(amId));
+            appendDownloadElement("allmusic", "am_review", m_scraper->m_allMusicApi.makeAlbumReviewUrl(amId));
+            appendDownloadElement("allmusic", "am_moods", m_scraper->m_allMusicApi.makeAlbumMoodsUrl(amId));
         }
 
         if (!discogsId.isEmpty()) {
@@ -368,6 +369,15 @@ void UniversalAlbumScrapeJob::doStart()
         for (const DownloadElement& elem : asConst(m_albumDownloads)) {
             QNetworkRequest request(elem.url);
             mediaelch::network::useFirefoxUserAgent(request);
+
+            if (elem.source == "musicbrainz") {
+                request.setRawHeader("Accept-Language", config().locale.toString().toUtf8());
+            } else if (elem.source == "allmusic") {
+                // TODO(refactor): For review/moods we need a proper referrer header.
+                QUrl referrer = m_scraper->m_allMusicApi.makeAlbumUrl(amId);
+                request.setRawHeader("Referer", referrer.toString().toUtf8());
+            }
+
             QNetworkReply* elemReply = m_scraper->m_network.getWithWatcher(request);
             connect(elemReply, &QNetworkReply::finished, this, &UniversalAlbumScrapeJob::onAlbumLoadFinished);
         }
@@ -483,6 +493,10 @@ void UniversalAlbumScrapeJob::processDownloadElement(DownloadElement elem)
 
     } else if (elem.type == "am_data") {
         m_scraper->m_allMusic.parseAndAssignAlbum(elem.contents, album(), config().details);
+    } else if (elem.type == "am_review") {
+        m_scraper->m_allMusic.parseAndAssignAlbumReview(elem.contents, album(), config().details);
+    } else if (elem.type == "am_moods") {
+        m_scraper->m_allMusic.parseAndAssignAlbumMoods(elem.contents, album(), config().details);
     }
 }
 
