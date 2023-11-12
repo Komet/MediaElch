@@ -1,19 +1,19 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: mediaelch
 Source: https://www.mediaelch.de/
-Copyright: 2012-2021 Daniel Kabel <info@kvibes.de>
+Copyright: 2012-2023 Daniel Kabel <info@kvibes.de>
 
 Files: *
 Copyright: 2012-2018 Daniel Kabel <info@kvibes.de>
            2018-2023 Andre Meyering <info@andremeyering.de>
 License: LGPL-3.0-only
 
-Files: quazip/*
+Files: third_party/quazip/*
 Copyright:
   2005-2012 Sergey A. Tachenov
-License: LGPL-2.1+
+License: LGPL-2.1-only
 
-License: LGPL-2.1+
+License: LGPL-2.1-only
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU Lesser Public License as published by
  the Free Software Foundation; either version 2.1, or (at your option)
