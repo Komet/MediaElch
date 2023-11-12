@@ -22,7 +22,7 @@
 - ADE: Overview and posters are properly scraped again (#1650)
 - IMDb: Fix scraping of episode IDs from season pages
 - AppImage: the SVG plugin is now shipped explicitly, fixing the icons in the navigation bar (#1662)
-- AllMusic: Fixed biography and mood scraping (#1606)
+- AllMusic/Universal Music Scraper: Fixed biography and mood scraping (#1606)
 
 ### Changed
 
