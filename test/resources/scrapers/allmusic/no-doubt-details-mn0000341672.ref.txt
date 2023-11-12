@@ -15,13 +15,7 @@ styles: (N>5)
   - Post-Grunge
   - Ska-Punk
   - ... and <6 more
-moods: (N>30)
-  - Bittersweet
-  - Boisterous
-  - Brassy
-  - Celebratory
-  - Cheerful
-  - ... and >30 more
+moods: (N=0)
 yearsActive: 1980s - 2010s
 formed: 1986 in Anaheim, CA
 born: 

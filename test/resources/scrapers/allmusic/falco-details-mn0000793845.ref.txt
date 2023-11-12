@@ -12,13 +12,7 @@ styles: (N<6)
   - Dance-Pop
   - New Wave
   - Punk/New Wave
-moods: (N>10)
-  - Quirky
-  - Silly
-  - Stylish
-  - Boisterous
-  - Energetic
-  - ... and >10 more
+moods: (N=0)
 yearsActive: 1970s - 1990s
 formed: 
 born: February 19, 1957 in Vienna, Austria
