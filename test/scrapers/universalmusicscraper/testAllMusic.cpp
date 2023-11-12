@@ -24,12 +24,11 @@ TEST_CASE("AllMusic", "[music][AllMusic][load_data]")
         Artist artist;
 
         const auto url = api.makeArtistUrl(id);
-        QString html = test::downloadSyncOrFail(url);
-        REQUIRE_FALSE(html.isEmpty());
+        QString html = test::musicDownloadSyncOrFail(url);
 
         allmusic.parseAndAssignArtist(html, artist, allDetails);
 
-        test::scraper::compareAgainstReference(artist, "scrapers/allmusic/aloma-faith-details-mn0000341672");
+        test::scraper::compareAgainstReference(artist, "scrapers/allmusic/paloma-faith-details-mn0000341672");
     }
 
     SECTION("Load Artist (Person) Biography for dead artist")
@@ -38,12 +37,26 @@ TEST_CASE("AllMusic", "[music][AllMusic][load_data]")
         Artist artist;
 
         const auto url = api.makeArtistBiographyUrl(id);
-        QString html = test::downloadSyncOrFail(url);
-        REQUIRE_FALSE(html.isEmpty());
+        QString html = test::musicDownloadSyncOrFail(url, api.makeArtistUrl(id));
 
         allmusic.parseAndAssignArtistBiography(html, artist, allDetails);
 
+        REQUIRE_THAT(artist.biography(), StartsWith("Falco Biography by"));
         test::scraper::compareAgainstReference(artist, "scrapers/allmusic/falco-biography-mn0000793845");
+    }
+
+    SECTION("Load Artist (Person) Moods for dead artist")
+    {
+        AllMusicId id{"falco-mn0000793845"};
+        Artist artist;
+
+        const auto url = api.makeArtistMoodsUrl(id);
+        QString html = test::musicDownloadSyncOrFail(url, api.makeArtistUrl(id));
+
+        allmusic.parseAndAssignArtistMoods(html, artist, allDetails);
+
+        REQUIRE_FALSE(artist.moods().isEmpty());
+        test::scraper::compareAgainstReference(artist, "scrapers/allmusic/falco-moods-mn0000793845");
     }
 
     SECTION("Load Artist (Person) Details for dead artist")
@@ -52,8 +65,7 @@ TEST_CASE("AllMusic", "[music][AllMusic][load_data]")
         Artist artist;
 
         const auto url = api.makeArtistUrl(id);
-        QString html = test::downloadSyncOrFail(url);
-        REQUIRE_FALSE(html.isEmpty());
+        QString html = test::musicDownloadSyncOrFail(url);
 
         allmusic.parseAndAssignArtist(html, artist, allDetails);
 
@@ -66,11 +78,9 @@ TEST_CASE("AllMusic", "[music][AllMusic][load_data]")
         Artist artist;
 
         const auto url = api.makeArtistUrl(id);
-        QString html = test::downloadSyncOrFail(url);
-        REQUIRE_FALSE(html.isEmpty());
+        QString html = test::musicDownloadSyncOrFail(url);
 
         allmusic.parseAndAssignArtist(html, artist, allDetails);
-
         test::scraper::compareAgainstReference(artist, "scrapers/allmusic/no-doubt-details-mn0000341672");
     }
 
@@ -80,12 +90,25 @@ TEST_CASE("AllMusic", "[music][AllMusic][load_data]")
         Artist artist;
 
         const auto url = api.makeArtistBiographyUrl(id);
-        QString html = test::downloadSyncOrFail(url);
-        REQUIRE_FALSE(html.isEmpty());
+        QString html = test::musicDownloadSyncOrFail(url, api.makeArtistUrl(id));
 
-        allmusic.parseAndAssignArtistBiography(html, artist, QSet<MusicScraperInfo>{MusicScraperInfo::Biography});
+        allmusic.parseAndAssignArtistBiography(html, artist, allDetails);
 
-        REQUIRE_THAT(artist.biography(), StartsWith("Chart-topping new wave"));
+        REQUIRE_THAT(artist.biography(), StartsWith("No Doubt Biography"));
         test::scraper::compareAgainstReference(artist, "scrapers/allmusic/no-doubt-biography-mn0000341672");
+    }
+
+    SECTION("Load Artist (Band) Moods")
+    {
+        AllMusicId id{"no-doubt-mn0000341672"};
+        Artist artist;
+
+        const auto url = api.makeArtistMoodsUrl(id);
+        QString html = test::musicDownloadSyncOrFail(url, api.makeArtistUrl(id));
+
+        allmusic.parseAndAssignArtistMoods(html, artist, allDetails);
+
+        REQUIRE_FALSE(artist.moods().isEmpty());
+        test::scraper::compareAgainstReference(artist, "scrapers/allmusic/no-doubt-moods-mn0000341672");
     }
 }

@@ -28,6 +28,7 @@ public:
 public:
     QUrl makeArtistUrl(const AllMusicId& artistId);
     QUrl makeArtistBiographyUrl(const AllMusicId& artistId);
+    QUrl makeArtistMoodsUrl(const AllMusicId& artistId);
 
 private:
     network::NetworkManager m_network;
@@ -44,6 +45,7 @@ public:
     void parseAndAssignAlbum(const QString& html, Album& album, const QSet<MusicScraperInfo>& infos);
     void parseAndAssignArtist(const QString& html, Artist& artist, const QSet<MusicScraperInfo>& infos);
     void parseAndAssignArtistBiography(const QString& html, Artist& artist, const QSet<MusicScraperInfo>& infos);
+    void parseAndAssignArtistMoods(const QString& html, Artist& artist, const QSet<MusicScraperInfo>& infos);
     void parseAndAssignArtistDiscography(const QString& html, Artist& artist, const QSet<MusicScraperInfo>& infos);
 };
 

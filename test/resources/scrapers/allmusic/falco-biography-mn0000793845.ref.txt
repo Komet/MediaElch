@@ -5,8 +5,26 @@ mbId:
 allMusicId: 
 name: 
 biography:
-    Wholly unique Austrian dance-pop star who gained international fame with "Der Ko
-    mmissar" and "Rock Me Amadeus."
+    Falco Biography by Jason Ankeny 
+￼ Falco was the most internationally successful
+     pop artist ever to come out of Austria, best known for his 1986 chart-topping h
+    it "Rock Me Amadeus." Born Johann Holzel in Vienna on February 19, 1957, he was 
+    a classically trained child prodigy, but after graduating from the Vienna Conser
+    vatoire, he relocated to West Berlin and began fronting a jazz-rock band. Rechri
+    stening himself Falco in honor of the German skier Falko Weissflog, he returned 
+    to Vienna in time to play bass on the punk outfit Drahdiwaberl's 1979 album Psyc
+    ho Today, penning their best-known song, "Ganz Wein." Falco began his solo caree
+    r in 1982 with the LP Einzelhaft; his "Der Kommissar," which fused techno-pop wi
+    th rapped German lyrics, became a major European hit and a club favorite in the 
+    U.S., with a cover version by the group After the Fire reaching the Top Five in 
+    1983. The follow-up, "Jeanny," was banned outright by radio as a result of its t
+    heme of prostitution, but nevertheless went on to top the German charts. While 1
+    984's Junge Roemer attracted little attention, in 1986 Falco issued Falco 3, hig
+    hlighted by the single "Rock Me Amadeus," a campy blend of classical music and s
+    ynth pop which topped both the American and British charts. While the rock balla
+    d "Vienna Calling" was a minor hit, Falco's subsequent efforts, including 1986's
+     Emotional and 1988's Wiener Blut, fared poorly; he had been long out of the spo
+    tlight when he died in a car accident on February 6, 1998 at the age of 40.
 discography: (N=0)
 genres: (N=0)
 styles: (N=0)

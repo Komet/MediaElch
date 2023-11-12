@@ -14,13 +14,7 @@ styles: (N<6)
   - Contemporary Pop/Rock
   - Neo-Soul
   - Dance-Pop
-moods: (N>20)
-  - Playful
-  - Rowdy
-  - Bittersweet
-  - Brash
-  - Exuberant
-  - ... and >10 more
+moods: (N=0)
 yearsActive: 2000s - 2020s
 formed: 
 born: July 21, 1981 in London, England

@@ -12,7 +12,7 @@ QNetworkRequest requestWithDefaults(const QUrl& url)
 #if QT_VERSION < QT_VERSION_CHECK(5, 9, 0)
     request.setAttribute(QNetworkRequest::FollowRedirectsAttribute, true);
 #elif QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    // Default in Qt6; in Qt5, defautl was ManualRedirectPolicy
+    // Default in Qt6; in Qt5, default was ManualRedirectPolicy
     request.setAttribute(QNetworkRequest::RedirectPolicyAttribute, QNetworkRequest::NoLessSafeRedirectPolicy);
 #endif
     request.setHeader(QNetworkRequest::UserAgentHeader, mediaelch::currentVersionIdentifier());

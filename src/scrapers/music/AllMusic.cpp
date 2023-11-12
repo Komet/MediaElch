@@ -23,7 +23,20 @@ QUrl AllMusicApi::makeArtistUrl(const AllMusicId& artistId)
 
 QUrl AllMusicApi::makeArtistBiographyUrl(const AllMusicId& artistId)
 {
-    return QUrl(QStringLiteral("https://www.allmusic.com/artist/%1/biography").arg(artistId.toString()));
+    // Somewhere around 2023-10, the URL changed from (a) to (b)
+    //  a) https://www.allmusic.com/artist/%1/biography
+    //  b) https://www.allmusic.com/artist/%1#biography
+    // Where (b) loads the biography via JavaScript from:
+    //  - https://www.allmusic.com/artist/%1/biographyAjax
+    //  - https://www.allmusic.com/artist/%1//biographyAjax
+    // which only contains the biography. Sometimes with `//`, sometimes with `/`.
+    // Both works with a proper referrer header.
+    return QUrl(QStringLiteral("https://www.allmusic.com/artist/%1/biographyAjax").arg(artistId.toString()));
+}
+
+QUrl AllMusicApi::makeArtistMoodsUrl(const AllMusicId& artistId)
+{
+    return QUrl(QStringLiteral("https://www.allmusic.com/artist/%1/moodsThemesAjax").arg(artistId.toString()));
 }
 
 AllMusic::AllMusic(QObject* parent) : QObject(parent)
@@ -247,9 +260,24 @@ void AllMusic::parseAndAssignArtist(const QString& html, Artist& artist, const Q
             }
         }
     }
+}
+
+void AllMusic::parseAndAssignArtistBiography(const QString& html, Artist& artist, const QSet<MusicScraperInfo>& infos)
+{
+    if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Biography, infos, artist)) {
+        artist.setBiography(removeHtmlEntities(html));
+    }
+}
+
+void AllMusic::parseAndAssignArtistMoods(const QString& html, Artist& artist, const QSet<MusicScraperInfo>& infos)
+{
+    QRegularExpression rx;
+    rx.setPatternOptions(QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
+    QRegularExpressionMatch match;
 
     if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Moods, infos, artist)) {
-        rx.setPattern(R"(<h3 class="headline">Artists Moods</h3>[\n\s]*<ul>(.*)</ul>)");
+        // <div> until next header
+        rx.setPattern(R"(<div id="moodsGrid">(.*)<h3>)");
         match = rx.match(html);
         if (match.hasMatch()) {
             QString moods = match.captured(1);
@@ -263,19 +291,6 @@ void AllMusic::parseAndAssignArtist(const QString& html, Artist& artist, const Q
     }
 }
 
-void AllMusic::parseAndAssignArtistBiography(const QString& html, Artist& artist, const QSet<MusicScraperInfo>& infos)
-{
-    if (UniversalMusicScraper::shouldLoad(MusicScraperInfo::Biography, infos, artist)) {
-        QRegularExpression rx(R"(<p class="biography">\n\s*<span>(.*)</span>)");
-        rx.setPatternOptions(QRegularExpression::InvertedGreedinessOption | //
-                             QRegularExpression::DotMatchesEverythingOption);
-        QRegularExpressionMatch match = rx.match(html);
-        if (match.hasMatch()) {
-            QString biography = match.captured(1);
-            artist.setBiography(removeHtmlEntities(biography));
-        }
-    }
-}
 
 void AllMusic::parseAndAssignArtistDiscography(const QString& html, Artist& artist, const QSet<MusicScraperInfo>& infos)
 {

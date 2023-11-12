@@ -165,6 +165,7 @@ void UniversalArtistScrapeJob::doStart()
             const auto& amId = artist().allMusicId();
             appendDownloadElement("allmusic", "am_data", m_scraper->m_allMusicApi.makeArtistUrl(amId));
             appendDownloadElement("allmusic", "am_biography", m_scraper->m_allMusicApi.makeArtistBiographyUrl(amId));
+            appendDownloadElement("allmusic", "am_moods", m_scraper->m_allMusicApi.makeArtistMoodsUrl(amId));
         }
         if (!discogsId.isEmpty()) {
             // TODO: This is currently a hack: The proper order in which fields are used is determined in
@@ -188,6 +189,11 @@ void UniversalArtistScrapeJob::doStart()
             mediaelch::network::useFirefoxUserAgent(request);
             if (elem.source == "musicbrainz") {
                 request.setRawHeader("Accept-Language", config().locale.toString().toUtf8());
+            } else if (elem.source.startsWith("am_")) {
+                // TODO(refactor): For biography/moods we need a proper referrer header.
+                const auto& amId = artist().allMusicId();
+                QUrl referrer = m_scraper->m_allMusicApi.makeArtistUrl(amId);
+                request.setRawHeader("Referer", referrer.toString().toUtf8());
             }
 
             QNetworkReply* elemReply = m_scraper->m_network.getWithWatcher(request);
@@ -270,7 +276,7 @@ void UniversalArtistScrapeJob::appendDownloadElement(QString source, QString typ
 void UniversalArtistScrapeJob::processDownloadElement(DownloadElement elem)
 {
     // If there is no content, i.e. an empty string, then there was
-    // a network error or we got an empty result.
+    // a network error, or we got an empty result.
     if (elem.contents.isEmpty()) {
         return;
     }
@@ -295,6 +301,8 @@ void UniversalArtistScrapeJob::processDownloadElement(DownloadElement elem)
         m_scraper->m_musicBrainz.parseAndAssignArtist(elem.contents, artist(), config().details);
     } else if (elem.type == "am_biography") {
         m_scraper->m_allMusic.parseAndAssignArtistBiography(elem.contents, artist(), config().details);
+    } else if (elem.type == "am_moods") {
+        m_scraper->m_allMusic.parseAndAssignArtistMoods(elem.contents, artist(), config().details);
     }
 }
 

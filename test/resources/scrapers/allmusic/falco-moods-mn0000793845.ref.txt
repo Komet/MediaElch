@@ -1,0 +1,23 @@
+Artist Reference File
+----------------------
+
+mbId: 
+allMusicId: 
+name: 
+biography: 
+discography: (N=0)
+genres: (N=0)
+styles: (N=0)
+moods: (N>10)
+  - Quirky
+  - Silly
+  - Stylish
+  - Boisterous
+  - Energetic
+  - ... and >10 more
+yearsActive: 
+formed: 
+born: 
+died: 
+disbanded: 
+extraFanarts: (N=0)
