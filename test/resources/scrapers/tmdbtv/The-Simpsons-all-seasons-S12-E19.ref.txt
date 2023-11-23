@@ -30,6 +30,60 @@ epBookmark: <not set or invalid>
 certification: 
 network: 
 thumbnail: https://image.tmdb.org/t/p/original/2Bay9dWHz1uW3gE2hwZsjeQQ6bl.jpg
-actors: (N=0)
+actors: (N>5)
+ - id: 129662
+   name: Marcia Mitzman Gaven
+   role: 
+   thumb: https://image.tmdb.org/t/p/original/s76tf8OkMBk1yrDwWLKUI81m13N.jpg
+   order: 0
+   imageHasChanged: false
+ - id: 6036
+   name: Marcia Wallace
+   role: Edna Krabappel (voice)
+   thumb: https://image.tmdb.org/t/p/original/bDCnZlPdUOyeQN0ewvoEjadBr9V.jpg
+   order: 1
+   imageHasChanged: false
+ - id: 158020
+   name: Shawn Colvin
+   role: 
+   thumb: https://image.tmdb.org/t/p/original
+   order: 2
+   imageHasChanged: false
+ - id: 198
+   name: Dan Castellaneta
+   role: Homer Simpson / Abe Simpson / Barney Gumble / Krusty (voice)
+   thumb: https://image.tmdb.org/t/p/original/AmeqWhP4A46AWkM4kVphg6jOTQX.jpg
+   order: 3
+   imageHasChanged: false
+ - id: 199
+   name: Julie Kavner
+   role: Marge Simpson / Patty Bouvier / Selma Bouvier (voice)
+   thumb: https://image.tmdb.org/t/p/original/xxiu7PC7RDOJmCuB6i81gEVrDQW.jpg
+   order: 4
+   imageHasChanged: false
+ - id: 200
+   name: Nancy Cartwright
+   role: Bart Simpson / Nelson Muntz / Ralph Wiggum (voice)
+   thumb: https://image.tmdb.org/t/p/original/40qNhyYJhSE2Yiy4pnXSZhdufO6.jpg
+   order: 5
+   imageHasChanged: false
+ - id: 5586
+   name: Yeardley Smith
+   role: Lisa Simpson (voice)
+   thumb: https://image.tmdb.org/t/p/original/9AjPwbb3uz4GfgOPBYsy2ILvwkB.jpg
+   order: 6
+   imageHasChanged: false
+ - id: 5587
+   name: Hank Azaria
+   role: Moe Szyslak / Chief Wiggum / Apu / Comic Book Guy / Carl (voice)
+   thumb: https://image.tmdb.org/t/p/original/yFDw4b0jucuFWNnGcBPfpYUtn16.jpg
+   order: 7
+   imageHasChanged: false
+ - id: 6008
+   name: Harry Shearer
+   role: Ned Flanders / Mr. Burns / Smithers / Skinner / Lenny (voice)
+   thumb: https://image.tmdb.org/t/p/original/au1mO0Mb9gni7h0rJCSokBTDnVf.jpg
+   order: 8
+   imageHasChanged: false
 streamDetails: <not loaded>
 files: (N=0)

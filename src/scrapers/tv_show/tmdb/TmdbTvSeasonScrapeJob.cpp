@@ -44,12 +44,13 @@ void TmdbTvSeasonScrapeJob::loadSeasons(QList<SeasonNumber> seasons)
     }
 
     const SeasonNumber nextSeason = seasons.takeFirst();
-    const TmdbApi::ApiCallback callback = [this, seasons](QJsonDocument json, ScraperError error) {
+    const TmdbApi::ApiCallback callback = [this, season = nextSeason, seasons](QJsonDocument json, ScraperError error) {
         if (error.hasError()) {
             setScraperError(error);
             emitFinished();
             return;
         }
+        m_actors[season] = TmdbTvSeasonParser::parseSeasonActors(m_api, json);
         const auto onEpisode = [this](TvShowEpisode* episode) { storeEpisode(episode); };
         // Pass `this` so that newly generated episodes belong to this instance.
         TmdbTvSeasonParser::parseEpisodes(m_api, json, this, onEpisode);
@@ -61,7 +62,7 @@ void TmdbTvSeasonScrapeJob::loadSeasons(QList<SeasonNumber> seasons)
 
 void TmdbTvSeasonScrapeJob::loadAllSeasons()
 {
-    m_api.loadMinimalInfos(config().locale, m_showId, [this](QJsonDocument json, ScraperError error) {
+    m_api.loadMinimalDetails(config().locale, m_showId, [this](QJsonDocument json, ScraperError error) {
         if (error.hasError()) {
             setScraperError(error);
             emitFinished();
@@ -83,6 +84,12 @@ void TmdbTvSeasonScrapeJob::storeEpisode(TvShowEpisode* episode)
 {
     const SeasonNumber season = episode->seasonNumber();
     if (config().shouldLoadAllSeasons() || config().seasons.contains(season)) {
+        // Add all actors of the season to each episode.
+        MediaElch_Debug_Ensures(m_actors.contains(season));
+        const auto& actors = m_actors[season];
+        for (const Actor& actor : actors) {
+            episode->addActor(actor);
+        }
         m_episodes[{season, episode->episodeNumber()}] = episode;
     } else {
         // Only store episodes that are actually requested.

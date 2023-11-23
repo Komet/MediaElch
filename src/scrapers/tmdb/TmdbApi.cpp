@@ -109,7 +109,7 @@ void TmdbApi::loadShowInfos(const Locale& locale, const TmdbId& id, TmdbApi::Api
     sendGetRequest(locale, getShowUrl(id, locale), callback);
 }
 
-void TmdbApi::loadMinimalInfos(const Locale& locale, const TmdbId& id, TmdbApi::ApiCallback callback)
+void TmdbApi::loadMinimalDetails(const Locale& locale, const TmdbId& id, ApiCallback callback)
 {
     sendGetRequest(locale, getShowUrl(id, locale, true), callback);
 }

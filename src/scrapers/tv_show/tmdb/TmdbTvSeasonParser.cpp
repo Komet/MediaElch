@@ -32,5 +32,29 @@ void TmdbTvSeasonParser::parseEpisodes(TmdbApi& api,
     }
 }
 
+QVector<Actor> TmdbTvSeasonParser::parseSeasonActors(TmdbApi& api, const QJsonDocument& data)
+{
+    if (data.isEmpty()) {
+        return {};
+    }
+
+    QVector<Actor> actors{};
+
+    const QJsonObject credits = data["credits"].toObject();
+    const QJsonArray cast = credits["cast"].toArray();
+
+    for (const QJsonValue& val : cast) {
+        QJsonObject actorObj = val.toObject();
+        Actor actor;
+        actor.name = actorObj["name"].toString();
+        actor.role = actorObj["character"].toString();
+        actor.id = QString::number(actorObj["id"].toInt(-1));
+        actor.thumb = api.makeImageUrl(actorObj["profile_path"].toString()).toString();
+        actors.push_back(std::move(actor));
+    }
+
+    return actors;
+}
+
 } // namespace scraper
 } // namespace mediaelch
