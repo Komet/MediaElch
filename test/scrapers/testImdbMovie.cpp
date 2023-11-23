@@ -122,7 +122,7 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
             const auto tags = m.tags();
             REQUIRE(tags.size() >= 20);
             CHECK_THAT(tags, Contains("prison"));
-            CHECK_THAT(tags, Contains("corruption"));
+            CHECK_THAT(tags, Contains("suicide"));
         }
 
         SECTION("'load all tags' is false")
@@ -133,6 +133,7 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
 
             const auto tags = m.tags();
             REQUIRE(tags.size() >= 2);
+            REQUIRE(tags.size() <= 20);
             CHECK(tags[0] == "reading-lesson");
         }
     }
