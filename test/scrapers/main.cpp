@@ -82,6 +82,7 @@ int main(int argc, char** argv)
 #
 # Scraper tests are flaky.  You most likely want to run
 #
+#   export ASAN_OPTIONS=detect_leaks=0
 #   export MEDIAELCH_UPDATE_REF_FILES=1
 #   ninja # or make
 #   ./test/scrapers/mediaelch_test_scrapers
