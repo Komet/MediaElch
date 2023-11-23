@@ -55,16 +55,16 @@ actors: (N>800)
    thumb: https://image.tmdb.org/t/p/original/hxU7NXyTmVe7hbGnKJiLU6r9uQw.jpg
    order: 2
    imageHasChanged: false
- - id: 51800
-   name: Teryl Rothery
-   role: Dr. Janet Fraiser
-   thumb: https://image.tmdb.org/t/p/original/16rUSnTH56cKatjd6kjEYEfU4cA.jpg
-   order: 3
-   imageHasChanged: false
  - id: 26086
    name: Michael Shanks
    role: Daniel Jackson, Thor (voice), Dr. Daniel Jackson
    thumb: https://image.tmdb.org/t/p/original/4YkOrSUmfKljqTMwGIo50oviKe1.jpg
+   order: 3
+   imageHasChanged: false
+ - id: 51800
+   name: Teryl Rothery
+   role: Dr. Janet Fraiser
+   thumb: https://image.tmdb.org/t/p/original/16rUSnTH56cKatjd6kjEYEfU4cA.jpg
    order: 4
    imageHasChanged: false
  - id: 15863
@@ -112,9 +112,9 @@ actors: (N>800)
  - id: 118463
    name: Peter DeLuise
    role:
-    Director / Peter DeLuise, Airman, SF Guard (Uncredited), Machine Gun Guard, Scre
-    aming Villager, Young Urgo in Uniform, Lieutenant, Free Jaffa (Voice only) (Uncr
-    edited), Man Leaving Cafe, Interviewer, Tok'ra Guard
+    Director / Peter DeLuise, Airman, SF Guard (Uncredited), Interviewer, Free Jaffa
+     (Voice only) (Uncredited), Young Urgo in Uniform, Machine Gun Guard, Screaming 
+    Villager, Tok'ra Guard, Lieutenant, Man Leaving Cafe
    thumb: https://image.tmdb.org/t/p/original/sLkSOm6HBLB4VCfshQLdSEq63tr.jpg
    order: 12
    imageHasChanged: false
@@ -138,17 +138,17 @@ actors: (N>800)
    imageHasChanged: false
  - id: 59245
    name: Laara Sadiq
-   role: Technician #2, Technician Davis, Technician, Technican
+   role: Technician #2, Technician, Technician Davis, Technican
    thumb: https://image.tmdb.org/t/p/original/l7MkydwslaXo1EmYrRpJARnaFKs.jpg
    order: 16
    imageHasChanged: false
  - id: 1366510
    name: Fraser Aitcheson
    role:
-    Hathor's Jaffa, Free Jaffa (Uncredited), Jaffa Warrior, Jaffa, Jaffa Commander, 
-    Ares' Jaffa commander (Uncredited), Anubis' Jaffa, Orderly, Dakara Jaffa 3 (Uncr
-    edited), Free Jaffa 2 (Uncredited), Jaffa Guard, Apophis' Red Jaffa, Tagrean Wor
-    ker
+    Hathor's Jaffa, Ares' Jaffa commander (Uncredited), Apophis' Red Jaffa, Tagrean 
+    Worker, Dakara Jaffa 3 (Uncredited), Jaffa Warrior, Free Jaffa 2 (Uncredited), J
+    affa Guard, Jaffa Commander, Anubis' Jaffa, Free Jaffa (Uncredited), Orderly, Ja
+    ffa
    thumb: https://image.tmdb.org/t/p/original/j0fou5tZvXHe3GcVr24UnYQLg6S.jpg
    order: 17
    imageHasChanged: false

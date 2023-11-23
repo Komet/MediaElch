@@ -90,7 +90,7 @@ actors: (N>800)
    imageHasChanged: false
  - id: 49551
    name: Aloma Wright
-   role: Laverne Roberts, Nurse Roberts, Nurse Shirley
+   role: Laverne Roberts, Nurse Shirley
    thumb: https://image.tmdb.org/t/p/original/18zBXoQRTpgLyHHKXSzlxgYlaSB.jpg
    order: 9
    imageHasChanged: false
@@ -138,7 +138,7 @@ actors: (N>800)
    imageHasChanged: false
  - id: 1228157
    name: Mike Schwartz
-   role: Lloyd, Delivery Guy, Patient
+   role: Lloyd, Patient, Delivery Guy
    thumb: https://image.tmdb.org/t/p/original/91JdROqsqiH8tN5ipAdo69ge4xW.jpg
    order: 17
    imageHasChanged: false

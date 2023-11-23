@@ -28,9 +28,9 @@ overview:
     a dolphin in "Night of the Dolphin."
 writers: (N<6)
   - Don Payne
+  - Rob LaZebnik
   - Carolyn Omine
   - John Frink
-  - Rob LaZebnik
 directors: (N=1)
   - Matthew Nastuk
 playCount: 0
@@ -268,7 +268,7 @@ tvmazeId:
 title: The Great Money Caper
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=6.8 | votes=10 | min=0 | max=10
+  source=tmdb | rating=7 | votes=20 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12

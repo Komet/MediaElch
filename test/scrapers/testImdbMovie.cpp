@@ -92,29 +92,13 @@ TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
         CHECK_THAT(m.writer(), Contains("Andrew Stanton"));
         CHECK_THAT(m.writer(), Contains("Victoria Strouse"));
 
-        const auto genres = m.genres();
-        REQUIRE(genres.size() >= 2);
-        CHECK(genres[0] == "Animation");
-        CHECK(genres[1] == "Adventure");
+        REQUIRE(m.genres().size() >= 2);
+        REQUIRE(m.tags().size() >= 2);
+        REQUIRE(m.studios().size() >= 2);
+        REQUIRE(m.countries().size() >= 1);
+        REQUIRE(m.actors().actors().size() >= 2);
 
-        const auto tags = m.tags();
-        REQUIRE(tags.size() >= 2);
-        CHECK(tags[0] == "father-son-relationship");
-        CHECK(tags[1] == "no-opening-credits");
-
-        const auto studios = m.studios();
-        REQUIRE(studios.size() >= 2);
-        CHECK(studios[0] == "Pixar Animation Studios");
-        CHECK(studios[1] == "Walt Disney Pictures");
-
-        const auto countries = m.countries();
-        REQUIRE(countries.size() == 1);
-        CHECK(countries[0] == "United States");
-
-        const auto actors = m.actors().actors();
-        REQUIRE(actors.size() >= 2);
-        CHECK_THAT(actors, HasActor("Ellen DeGeneres", "Dory"));
-        CHECK_THAT(actors, HasActor("Albert Brooks", "Marlin"));
+        test::scraper::compareAgainstReference(m, "scrapers/imdb/Finding_Dory_tt2277860");
     }
 
     SECTION("'Top 250' movie has correct details")
