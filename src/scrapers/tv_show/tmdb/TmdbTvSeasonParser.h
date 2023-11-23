@@ -1,7 +1,10 @@
 #pragma once
 
+#include "data/Actor.h"
+
 #include <QJsonDocument>
 #include <QObject>
+#include <QVector>
 #include <functional>
 #include <memory>
 
@@ -28,6 +31,8 @@ public:
         const QJsonDocument& json,
         QObject* parentForEpisodes,
         std::function<void(TvShowEpisode*)> episodeCallback);
+
+    static QVector<Actor> parseSeasonActors(TmdbApi& api, const QJsonDocument& data);
 };
 
 } // namespace scraper

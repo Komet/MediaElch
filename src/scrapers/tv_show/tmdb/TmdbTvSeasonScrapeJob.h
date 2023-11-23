@@ -1,9 +1,12 @@
 #pragma once
 
+#include "data/Actor.h"
 #include "scrapers/tv_show/SeasonScrapeJob.h"
 #include "scrapers/tv_show/tmdb/TmdbTvEpisodeParser.h"
 
 #include <QList>
+#include <QMap>
+#include <QVector>
 
 namespace mediaelch {
 namespace scraper {
@@ -27,6 +30,7 @@ private:
 private:
     TmdbApi& m_api;
     TmdbId m_showId;
+    QMap<SeasonNumber, QVector<Actor>> m_actors;
 };
 
 } // namespace scraper

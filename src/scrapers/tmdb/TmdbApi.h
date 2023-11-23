@@ -76,7 +76,7 @@ public:
 
     void searchForShow(const Locale& locale, const QString& query, bool includeAdult, ApiCallback callback);
     void loadShowInfos(const Locale& locale, const TmdbId& id, ApiCallback callback);
-    void loadMinimalInfos(const Locale& locale, const TmdbId& id, ApiCallback callback);
+    void loadMinimalDetails(const Locale& locale, const TmdbId& id, ApiCallback callback);
 
     void loadEpisode(const Locale& locale,
         const TmdbId& showId,

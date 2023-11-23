@@ -65,29 +65,28 @@ void TmdbTvEpisodeParser::parseInfos(const TmdbApi& api, TvShowEpisode& episode,
     }
 
     // -------------------------------------
+
+    auto addActors = [&](QJsonArray cast) {
+        for (const QJsonValue& val : cast) {
+            QJsonObject actorObj = val.toObject();
+            Actor actor;
+            actor.name = actorObj["name"].toString();
+            actor.role = actorObj["character"].toString();
+            actor.id = QString::number(actorObj["id"].toInt(-1));
+            actor.thumb = api.makeImageUrl(actorObj["profile_path"].toString()).toString();
+            episode.addActor(actor);
+        }
+    };
+
     const QJsonObject credits = data["credits"].toObject();
-    const QJsonArray cast = credits["cast"].toArray();
 
-    for (const QJsonValue& val : cast) {
-        QJsonObject actorObj = val.toObject();
-        Actor actor;
-        actor.name = actorObj["name"].toString();
-        actor.role = actorObj["character"].toString();
-        actor.id = QString::number(actorObj["id"].toInt(-1));
-        actor.thumb = api.makeImageUrl(actorObj["profile_path"].toString()).toString();
-        episode.addActor(actor);
-    }
+    addActors(credits["cast"].toArray());
 
-    const QJsonArray guestStars = credits["guest_stars"].toArray();
-
-    for (const QJsonValue& val : guestStars) {
-        QJsonObject actorObj = val.toObject();
-        Actor actor;
-        actor.name = actorObj["name"].toString();
-        actor.role = actorObj["character"].toString();
-        actor.id = QString::number(actorObj["id"].toInt(-1));
-        actor.thumb = api.makeImageUrl(actorObj["profile_path"].toString()).toString();
-        episode.addActor(actor);
+    if (credits.contains("guest_stars")) {
+        addActors(credits["guest_stars"].toArray());
+    } else if (data.contains("guest_stars")) {
+        // for season bulk loading
+        addActors(data["guest_stars"].toArray());
     }
 
     // -------------------------------------
