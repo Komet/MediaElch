@@ -1,0 +1,227 @@
+Movie Reference File
+----------------------
+
+imdbId: tt2277860
+tmdbId: 
+wikidataId: 
+mediaCenterId: -1
+title: Findet Dorie
+sortTitle: 
+originalTitle: Finding Dory
+overview:
+    Dory is a wide-eyed, blue tang fish who suffers from memory loss every 10 second
+    s or so. The one thing she can remember is that she somehow became separated fro
+    m her parents as a child. With help from her friends Nemo and Marlin, Dory embar
+    ks on an epic adventure to find them. Her journey brings her to the Marine Life 
+    Institute, a conservatory that houses diverse ocean species.
+outline:
+    Friendly but forgetful blue tang Dory begins a search for her long-lost parents 
+    and everyone learns a few things about the real meaning of family along the way.
+movie set: tmdbid= | name=
+movie set overview: 
+tagline: She just kept swimming...
+ratings (N=1)
+  source=imdb | rating=7.2 | votes=200000 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+released: 2016-09-29
+runtime: 97min
+writer: Andrew Stanton, Andrew Stanton, Victoria Strouse
+director: Andrew Stanton, Angus MacLane
+actors: (N>60)
+ - id: 
+   name: Ellen DeGeneres
+   role: Dory
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BNDAwMzAyNDEzMV5BMl5BanBnXkFtZTcwMDU3MTAx
+    Mw@@.jpg
+   order: 0
+   imageHasChanged: false
+ - id: 
+   name: Albert Brooks
+   role: Marlin
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTM4MzEwMTMxN15BMl5BanBnXkFtZTcwNTQwMTc2
+    NQ@@.jpg
+   order: 1
+   imageHasChanged: false
+ - id: 
+   name: Ed O'Neill
+   role: Hank
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BNTI2NjcyODk0NV5BMl5BanBnXkFtZTgwNTMxODc4
+    NzE@.jpg
+   order: 2
+   imageHasChanged: false
+ - id: 
+   name: Kaitlin Olson
+   role: Destiny
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTMxODAwMjQxNV5BMl5BanBnXkFtZTYwODEyMjAz
+    .jpg
+   order: 3
+   imageHasChanged: false
+ - id: 
+   name: Hayden Rolence
+   role: Nemo
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTk2NTYxMzQ5NV5BMl5BanBnXkFtZTgwNzM2Njgw
+    OTE@.jpg
+   order: 4
+   imageHasChanged: false
+ - id: 
+   name: Ty Burrell
+   role: Bailey
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTM2MjE1NzIxNl5BMl5BanBnXkFtZTcwNTY4NjI4
+    NA@@.jpg
+   order: 5
+   imageHasChanged: false
+ - id: 
+   name: Diane Keaton
+   role: Jenny
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTY5NDI5OTEyOF5BMl5BanBnXkFtZTgwMzU4NDI1
+    NzM@.jpg
+   order: 6
+   imageHasChanged: false
+ - id: 
+   name: Eugene Levy
+   role: Charlie
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTM0NTQ5NjA3Ml5BMl5BanBnXkFtZTYwMDgwMjQ1
+    .jpg
+   order: 7
+   imageHasChanged: false
+ - id: 
+   name: Sloane Murray
+   role: Young Dory
+   thumb: 
+   order: 8
+   imageHasChanged: false
+ - id: 
+   name: Idris Elba
+   role: Fluke
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BNzEzMTI2NjEyNF5BMl5BanBnXkFtZTcwNTA0OTE4
+    OA@@.jpg
+   order: 9
+   imageHasChanged: false
+ - id: 
+   name: Dominic West
+   role: Rudder
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMjM1MDU1Mzg3N15BMl5BanBnXkFtZTgwNTcwNzcy
+    MzI@.jpg
+   order: 10
+   imageHasChanged: false
+ - id: 
+   name: Bob Peterson
+   role: Mr. Ray / Additional Voices
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTU4NTQ4ODI5N15BMl5BanBnXkFtZTYwNzIwODA3
+    .jpg
+   order: 11
+   imageHasChanged: false
+ - id: 
+   name: Kate McKinnon
+   role: Wife Fish
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMjQwMzEwMDQ2NF5BMl5BanBnXkFtZTgwMzU4NTY4
+    NjE@.jpg
+   order: 12
+   imageHasChanged: false
+ - id: 
+   name: Bill Hader
+   role: Husband Fish (Stan)
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BNTY3MzgwMjE3N15BMl5BanBnXkFtZTcwNjc2MjE3
+    NA@@.jpg
+   order: 13
+   imageHasChanged: false
+ - id: 
+   name: Sigourney Weaver
+   role: Sigourney Weaver
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTk1MTcyNTE3OV5BMl5BanBnXkFtZTcwMTA0MTMy
+    Mw@@.jpg
+   order: 14
+   imageHasChanged: false
+ - id: 
+   name: Alexander Gould
+   role: Passenger Carl / Additional Voices
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BNDY3OWIxYmYtZGYyMi00ZGYzLWJiNjEtMDIxMGJl
+    NmY4ZGRjXkEyXkFqcGdeQXVyODU1MTAxMDg@.jpg
+   order: 15
+   imageHasChanged: false
+ - id: 
+   name: Torbin Xan Bullock
+   role: Gerald / Additional Voices
+   thumb: 
+   order: 16
+   imageHasChanged: false
+ - id: 
+   name: Andrew Stanton
+   role: Crush / Additional Voices
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTQ3NGE0ZjctNGUwMC00ODMyLTg5ZDktY2IxOTIw
+    NmM3Nzg4XkEyXkFqcGdeQXVyMTEzNTE2NzQx.jpg
+   order: 17
+   imageHasChanged: false
+ - id: 
+   name: Katherine Ringgold
+   role: Chickenfish
+   thumb: 
+   order: 18
+   imageHasChanged: false
+ - id: 
+   name: Lucia Geddes
+   role: Tween Dory
+   thumb: 
+   order: 19
+   imageHasChanged: false
+  - ... and >40 more
+certification: PG
+genres: (N<6)
+  - Animation
+  - Adventure
+  - Comedy
+  - Family
+tags: (N<6)
+  - father-son-relationship
+  - no-opening-credits
+  - female-protagonist
+  - motor-vehicle
+  - controversy
+countries: (N<6)
+  - United States
+  - China
+studios: (N<6)
+  - Pixar Animation Studios
+  - Walt Disney Pictures
+trailer: 
+playcount: 0
+lastPlayed: <not set or invalid>
+dateAdded: <not set or invalid>
+discType: Single
+color label: 0
+resumeTime: position=0 / total=0
+streamDetails: <nullptr>
+subtitles: (N=0)
+fileLastModified: <not set or invalid>
+files: (N=0)
+folderName: 
+posters: (N=1)
+  - id: 
+    originalUrl: https://m.media-amazon.com/images/M/MV5BYWVmYTcwZDYtYzNmNC00M2U2LWFjZWYtOWRlY2NiNjc5ZjdiXkEyXkFqcGdeQXVyNjY5Mjg5MjA@.jpg
+    thumbUrl: https://m.media-amazon.com/images/M/MV5BYWVmYTcwZDYtYzNmNC00M2U2LWFjZWYtOWRlY2NiNjc5ZjdiXkEyXkFqcGdeQXVyNjY5Mjg5MjA@.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+backdrops: (N=0)
+discArts: (N=0)
+clearArts: (N=0)
+logos: (N=0)

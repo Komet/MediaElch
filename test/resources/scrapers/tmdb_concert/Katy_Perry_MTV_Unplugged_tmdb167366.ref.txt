@@ -43,7 +43,7 @@ posters: (N<6)
     originalUrl: http://image.tmdb.org/t/p/original/vG4RfHd2DkH5EeDPP2Ed87IuG66.jpg
     thumbUrl: http://image.tmdb.org/t/p/w342/vG4RfHd2DkH5EeDPP2Ed87IuG66.jpg
     originalSize: h=1080 w=720
-    language: en
+    language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx

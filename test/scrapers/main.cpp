@@ -77,6 +77,19 @@ int main(int argc, char** argv)
         return 1;
     }
 
+    std::cerr << R"(
+###########################################################
+#
+# Scraper tests are flaky.  You most likely want to run
+#
+#   export MEDIAELCH_UPDATE_REF_FILES=1
+#   ninja # or make
+#   ./test/scrapers/mediaelch_test_scrapers
+#
+###########################################################
+
+)";
+
     std::cerr << "Using resource directory: "
               << QDir::toNativeSeparators(test::resourceDir().absolutePath()).toStdString() << "\n";
     std::cerr << "Using temp directory:     " //
