@@ -35,7 +35,7 @@ static auto makeScrapeJob(const QString& id)
 // VideoBuster is a German website so search results and movie
 // details in these tests are German as well.
 
-TEST_CASE("VideoBuster returns valid search results", "[VideoBuster][search]")
+TEST_CASE("VideoBuster returns valid search results", "[movie][VideoBuster][search]")
 {
     SECTION("Search by movie name returns correct results")
     {
@@ -49,7 +49,7 @@ TEST_CASE("VideoBuster returns valid search results", "[VideoBuster][search]")
 }
 
 
-TEST_CASE("VideoBuster scrapes correct movie details", "[VideoBuster][load_data]")
+TEST_CASE("VideoBuster scrapes correct movie details", "[movie][VideoBuster][load_data]")
 {
     VideoBuster videoBuster;
     // VideoBuster has no outline

@@ -31,7 +31,7 @@ static auto makeScrapeJob(const QString& id, bool loadAllTags = false)
     return std::make_unique<ImdbMovieScrapeJob>(getImdbApi(), makeImdbConfig(id), loadAllTags);
 }
 
-TEST_CASE("IMDb returns valid search results", "[IMDb][search]")
+TEST_CASE("IMDb returns valid search results", "[movie][IMDb][search]")
 {
     SECTION("Search by movie name returns correct results")
     {
@@ -57,7 +57,7 @@ TEST_CASE("IMDb returns valid search results", "[IMDb][search]")
     }
 }
 
-TEST_CASE("IMDb scrapes correct movie details", "[scraper][IMDb][load_data]")
+TEST_CASE("IMDb scrapes correct movie details", "[movie][IMDb][load_data]")
 {
     SECTION("'Normal' movie has correct details")
     {

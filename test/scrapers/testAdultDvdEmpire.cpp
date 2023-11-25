@@ -31,7 +31,7 @@ static auto makeScrapeJob(QString id)
     return std::make_unique<AdultDvdEmpireScrapeJob>(getAdultDvdEmpireApi(), makeAdultDvdEmpireConfig(id));
 }
 
-TEST_CASE("AdultDvdEmpire returns valid search results", "[AdultDvdEmpire][search]")
+TEST_CASE("AdultDvdEmpire returns valid search results", "[movie][AdultDvdEmpire][search]")
 {
     SECTION("Search by movie name returns correct results")
     {
@@ -44,7 +44,7 @@ TEST_CASE("AdultDvdEmpire returns valid search results", "[AdultDvdEmpire][searc
     }
 }
 
-TEST_CASE("AdultDvdEmpire scrapes correct movie details", "[AdultDvdEmpire][load_data]")
+TEST_CASE("AdultDvdEmpire scrapes correct movie details", "[movie][AdultDvdEmpire][load_data]")
 {
     AdultDvdEmpire hm;
 
