@@ -1,6 +1,7 @@
 #include "scrapers/tv_show/imdb/ImdbTvShowSearchJob.h"
 
 #include "data/tv_show/TvShow.h"
+#include "scrapers/ScraperUtils.h"
 #include "scrapers/tv_show/imdb/ImdbTvShowParser.h"
 
 #include <QRegularExpression>
@@ -16,25 +17,40 @@ ImdbTvShowSearchJob::ImdbTvShowSearchJob(ImdbApi& api, ShowSearchJob::Config _co
 void ImdbTvShowSearchJob::doStart()
 {
     if (ImdbId::isValidFormat(config().query)) {
-        ImdbId id = ImdbId(config().query);
-        m_api.loadTitle(config().locale, id, ImdbApi::PageKind::Main, [this](QString html, ScraperError error) {
-            if (!error.hasError()) {
-                TvShow show;
-                ImdbTvShowParser parser(show);
-                error = parser.parseInfos(html);
-                if (!error.hasError() && !show.title().isEmpty()) {
-                    ShowSearchJob::Result result;
-                    result.title = show.title();
-                    result.identifier = ShowIdentifier(config().query);
-                    result.released = show.firstAired();
-                    m_results.push_back(std::move(result));
-                }
-            }
-            setScraperError(error);
-            emitFinished();
-        });
-        return;
+        searchViaImdbId();
+    } else {
+        searchViaQuery();
     }
+}
+
+
+void ImdbTvShowSearchJob::searchViaImdbId()
+{
+    MediaElch_Debug_Ensures(ImdbId::isValidFormat(config().query));
+
+    ImdbId id = ImdbId(config().query);
+    m_api.loadTitle(config().locale, id, ImdbApi::PageKind::Main, [this](QString html, ScraperError error) {
+        if (!error.hasError()) {
+            TvShow show;
+            ImdbTvShowParser parser(show);
+            error = parser.parseInfos(html);
+            if (!error.hasError() && !show.title().isEmpty()) {
+                ShowSearchJob::Result result;
+                result.title = show.title();
+                result.identifier = ShowIdentifier(config().query);
+                result.released = show.firstAired();
+                m_results.push_back(std::move(result));
+            }
+        }
+        setScraperError(error);
+        emitFinished();
+    });
+}
+
+void ImdbTvShowSearchJob::searchViaQuery()
+{
+    MediaElch_Debug_Ensures(!ImdbId::isValidFormat(config().query));
+
     m_api.searchForShow(config().locale, config().query, [this](QString html, ScraperError error) {
         if (error.hasError()) {
             // pass; already set
@@ -57,38 +73,30 @@ void ImdbTvShowSearchJob::doStart()
 
 QVector<ShowSearchJob::Result> ImdbTvShowSearchJob::parseSearch(const QString& html)
 {
-    static const QRegularExpression rxIsSearchPage(R"(<div class="lister-list">)");
+    // Note: Keep in sync with ImdbMovieSearchJob::parseSearch
+    // TODO: De-duplicate?
 
-    QRegularExpressionMatch match = rxIsSearchPage.match(html);
-    if (!match.hasMatch()) {
-        return parseResultFromShowPage(html);
-    }
+    // Search result table from "https://www.imdb.com/search/title/?title=..."
+    static const QRegularExpression rx(R"(<a href="/title/(tt[\d]+)/[^>]+>(.+)</a>.*(\d{4}))",
+        QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
+    // Entries are numbered: Remove Number.
+    static const QRegularExpression listNo(
+        R"(^\d+\.\s+)", QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
 
-    static const QRegularExpression rxSearchListItem(
-        R"(<div class="col-title">(.+?)</div>)", QRegularExpression::DotMatchesEverythingOption);
-    static const QRegularExpression rxDetailsFromItem(
-        R"(<a href="/title/(tt\d+)/[^"]+?"\r?\n?>(.+?)</a>)", QRegularExpression::DotMatchesEverythingOption);
-    static const QRegularExpression rxYearFromItem(R"(<span class="lister-item-year [^"]+?">\((\d+)[^\d])");
-
-    QString item;
     QVector<ShowSearchJob::Result> results;
-    QRegularExpressionMatch resultMatch = rxSearchListItem.match(html, 0);
-    while (resultMatch.hasMatch()) {
-        item = resultMatch.captured(1);
-        match = rxDetailsFromItem.match(item);
+    QRegularExpressionMatchIterator matches = rx.globalMatch(html);
+    QRegularExpressionMatch match;
+    while (matches.hasNext()) {
+        match = matches.next();
         if (match.hasMatch()) {
+            QString title = normalizeFromHtml(match.captured(2));
+            title.remove(listNo);
             ShowSearchJob::Result result;
-            result.title = match.captured(2);
+            result.title = title;
             result.identifier = ShowIdentifier(match.captured(1));
-            match = rxYearFromItem.match(item);
-            if (match.hasMatch()) {
-                result.released = QDate::fromString(match.captured(1), "yyyy");
-            }
-
+            result.released = QDate::fromString(match.captured(3), "yyyy");
             results.push_back(std::move(result));
         }
-        // Next result if it exists.
-        resultMatch = rxSearchListItem.match(html, resultMatch.capturedEnd());
     }
 
     return results;

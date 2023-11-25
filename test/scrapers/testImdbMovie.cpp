@@ -41,7 +41,7 @@ TEST_CASE("IMDb returns valid search results", "[movie][IMDb][search]")
 
         REQUIRE(scraperResults.length() >= 1);
         CHECK_THAT(scraperResults[0].title, StartsWith("Finding Dory"));
-        // 2023-11-25: not available: CHECK(scraperResults[0].released == QDate(2016, 1, 1));
+        CHECK(scraperResults[0].released == QDate(2016, 1, 1));
     }
 
     SECTION("Search by IMDb ID returns correct results")

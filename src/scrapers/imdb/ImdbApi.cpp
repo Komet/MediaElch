@@ -126,10 +126,10 @@ QUrl ImdbApi::makeMovieSearchUrl(const QString& searchStr, bool includeAdult) co
     if (includeAdult) {
         queries.addQueryItem("adult", "include");
     }
+    queries.addQueryItem("title", searchStr);
     queries.addQueryItem("title_type", "feature,tv_movie,short,video,tv_short"); // Movie categories
     queries.addQueryItem("view", "simple");
     queries.addQueryItem("count", "100");
-    queries.addQueryItem("title", searchStr);
     return makeFullUrl("/search/title/?" + queries.toString());
 }
 
@@ -155,6 +155,7 @@ QUrl ImdbApi::makeShowSearchUrl(const QString& searchStr) const
     queries.addQueryItem("title", searchStr);
     queries.addQueryItem("title_type", "tv_series,tv_miniseries");
     queries.addQueryItem("view", "simple");
+    queries.addQueryItem("count", "100");
     return makeFullUrl("/search/title/?" + queries.toString());
 }
 
