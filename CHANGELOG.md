@@ -24,6 +24,7 @@
   - Fix scraping of episode IDs from season pages
   - Fix tag loading: option "load all tags" (#1634)
   - Fix movie search
+  - Fix TV show search
 - TMDB: Don't store invalid poster/actor image URLs (only the base URL was stored)
 - HotMovies: Fix movie scraping
 - AppImage: the SVG plugin is now shipped explicitly, fixing the icons in the navigation bar (#1662)

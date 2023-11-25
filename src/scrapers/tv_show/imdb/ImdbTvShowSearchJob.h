@@ -16,6 +16,9 @@ public:
     void doStart() override;
 
 private:
+    void searchViaImdbId();
+    void searchViaQuery();
+
     QVector<ShowSearchJob::Result> parseSearch(const QString& html);
     QVector<ShowSearchJob::Result> parseResultFromShowPage(const QString& html);
     /// \brief   Check if the HTML page is a 404 page
