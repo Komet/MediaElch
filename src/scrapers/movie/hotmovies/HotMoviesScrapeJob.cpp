@@ -31,6 +31,8 @@ void HotMoviesScrapeJob::doStart()
 
 void HotMoviesScrapeJob::parseAndAssignInfos(const QString& html)
 {
+    static QRegularExpression numberRx("\\d+"); // must be greedy
+
     QRegularExpression rx;
     rx.setPatternOptions(QRegularExpression::InvertedGreedinessOption | QRegularExpression::DotMatchesEverythingOption);
     QRegularExpressionMatch match;
@@ -49,33 +51,51 @@ void HotMoviesScrapeJob::parseAndAssignInfos(const QString& html)
 
     // Only the main like count has text after the thumbs-up-count
     // In 2019, it contained a link (therefore `</a>`).
-    // As of 2020-04-05 this is was the case anymore but as of 2022-06-05 it's there again.
-    rx.setPattern(R"(<span class="thumbs-up-count">(\d+)</span>(</a>)?<br /><span class="thumbs-up-text")");
+    // As of 2020-04-05 this wasn't the case anymore but as of 2022-06-05 it's there again.
+    // As of 2023-11-25, no votes are available
+    // rx.setPattern(R"(<span class="thumbs-up-count">(\d+)</span>(</a>)?<br /><span class="thumbs-up-text")");
+    // match = rx.match(html);
+    // if (match.hasMatch()) {
+    //     Rating rating;
+    //     rating.voteCount = match.captured(1).toInt();
+    //     rating.source = "HotMovies";
+    //     m_movie->ratings().setOrAddRating(rating);
+    // }
+
+    rx.setPattern(R"(<strong>Release Year:</strong> ?(\d{4}))");
     match = rx.match(html);
     if (match.hasMatch()) {
-        Rating rating;
-        rating.voteCount = match.captured(1).toInt();
-        rating.source = "HotMovies";
-        m_movie->ratings().setOrAddRating(rating);
+        QDate date = QDate::fromString(match.captured(1), "yyyy");
+        if (date.isValid()) {
+            m_movie->setReleased(date);
+        }
     }
 
-    rx.setPattern("<strong>Released:</strong> ?([0-9]{4})");
+    rx.setPattern(R"(<strong>Released:</strong> ?([A-Za-z]+ \d{2} \d{4}))");
     match = rx.match(html);
     if (match.hasMatch()) {
-        m_movie->setReleased(QDate::fromString(match.captured(1), "yyyy"));
+        QDate date = QDate::fromString(match.captured(1), "MMM dd yyyy");
+        if (date.isValid()) {
+            m_movie->setReleased(date);
+        }
     }
 
-    rx.setPattern(R"(<span(?: itemprop="duration")? datetime="PT[^"]+">([^<]*)</span>)");
+    rx.setPattern(R"re(Run Time:\s</[^>]+>\s+((?:\d+\s+hrs\.\s+)?\d+\s+min))re");
     match = rx.match(html);
     if (match.hasMatch()) {
         using namespace std::chrono;
-        QStringList runtimeStr = match.captured(1).split(":");
-        if (runtimeStr.count() == 3) {
-            minutes runtime = hours(runtimeStr.at(0).toInt()) + minutes(runtimeStr.at(1).toInt());
+
+        QRegularExpressionMatchIterator matches = numberRx.globalMatch(match.captured(1));
+
+        QString first = matches.hasNext() ? matches.next().captured(0) : "";
+        QString second = matches.hasNext() ? matches.next().captured(0) : "";
+
+        if (!second.isEmpty()) {
+            minutes runtime = hours(first.toInt()) + minutes(second.toInt());
             m_movie->setRuntime(runtime);
 
-        } else if (runtimeStr.count() == 2) {
-            minutes runtime = minutes(runtimeStr.at(0).toInt());
+        } else if (!first.isEmpty()) {
+            minutes runtime = minutes(first.toInt());
             m_movie->setRuntime(runtime);
         }
     }
@@ -86,7 +106,7 @@ void HotMoviesScrapeJob::parseAndAssignInfos(const QString& html)
         m_movie->setOverview(decodeAndTrim(match.captured(1)));
     }
 
-    rx.setPattern(R"rx(data-front="([^"]+)")rx");
+    rx.setPattern(R"rx(id="front-cover".+>.*<img src="(https://[^"]+)")rx");
     match = rx.match(html);
     if (match.hasMatch()) {
         Poster p;
@@ -95,14 +115,15 @@ void HotMoviesScrapeJob::parseAndAssignInfos(const QString& html)
         m_movie->images().addPoster(p);
     }
 
-    rx.setPattern(R"rx(data-back="([^"]+)")rx");
-    match = rx.match(html);
-    if (match.hasMatch()) {
-        Poster p;
-        p.thumbUrl = match.captured(1);
-        p.originalUrl = match.captured(1);
-        m_movie->images().addBackdrop(p);
-    }
+    // TODO: Backcover (we need a proper HTML parser for that)
+    // rx.setPattern(R"rx(id="back-cover"[^>]+>\n\s+<img src="([^"]+)")rx");
+    // match = rx.match(html);
+    // if (match.hasMatch()) {
+    //     Poster p;
+    //     p.thumbUrl = match.captured(1);
+    //     p.originalUrl = match.captured(1);
+    //     m_movie->images().addBackdrop(p);
+    // }
 
     rx.setPattern(R"re(<strong>Starring:</strong>(.*)</div>)re");
     match = rx.match(html);
@@ -124,7 +145,7 @@ void HotMoviesScrapeJob::parseAndAssignInfos(const QString& html)
     }
 
     {
-        rx.setPattern("title=\"Plot Oriented -> ([^\"]+)\"");
+        rx.setPattern("Label=\"Category\">([^<]+)</a>");
         QRegularExpressionMatchIterator matches = rx.globalMatch(html);
         while (matches.hasNext()) {
             m_movie->addGenre(decodeAndTrim(matches.next().captured(1)));

@@ -15,8 +15,7 @@ outline:
 movie set: tmdbid= | name="M" Is For Mischief
 movie set overview: 
 tagline: 
-ratings (N=1)
-  source=HotMovies | rating=0 | votes=40 | min=0 | max=10
+ratings (N=0)
 userRating: 0
 imdbTop250: 0
 released: 2012-01-01
@@ -31,7 +30,7 @@ actors: (N<6)
    order: 0
    imageHasChanged: false
  - id: 
-   name: McKenzee Miles
+   name: Mackenzie Childs
    role: 
    thumb: 
    order: 1
@@ -43,24 +42,28 @@ actors: (N<6)
    order: 2
    imageHasChanged: false
  - id: 
-   name: Mocha Jay
+   name: McKenzee Miles
    role: 
    thumb: 
    order: 3
    imageHasChanged: false
  - id: 
-   name: Mackenzie Childs
+   name: Mocha Jay
    role: 
    thumb: 
    order: 4
    imageHasChanged: false
 certification: 
-genres: (N=1)
-  - Vignettes
+genres: (N>10)
+  - 18+ Schoolgirls
+  - 18+ Teens
+  - Age
+  - Character
+  - Clothing
+  - ... and >5 more
 tags: (N=0)
 countries: (N=0)
-studios: (N=1)
-  - Innocent High
+studios: (N=0)
 trailer: 
 playcount: 0
 lastPlayed: <not set or invalid>
@@ -75,22 +78,14 @@ files: (N=0)
 folderName: 
 posters: (N=1)
   - id: 
-    originalUrl: https://image3.hotmovies.com/image2/xfront/214/214343.xfront.0.jpg
-    thumbUrl: https://image3.hotmovies.com/image2/xfront/214/214343.xfront.0.jpg
+    originalUrl: https://imgs1cdn.adultempire.com/products/99/1613899h.jpg
+    thumbUrl: https://imgs1cdn.adultempire.com/products/99/1613899h.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
-backdrops: (N=1)
-  - id: 
-    originalUrl: https://image3.hotmovies.com/image2/xback/214/214343.xback.0.jpg
-    thumbUrl: https://image3.hotmovies.com/image2/xback/214/214343.xback.0.jpg
-    originalSize: h=-1 w=-1
-    language: 
-    hint: 
-    aspect: 
-    season: SeasonNumber=xx
+backdrops: (N=0)
 discArts: (N=0)
 clearArts: (N=0)
 logos: (N=0)
