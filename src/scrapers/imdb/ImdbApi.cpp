@@ -126,7 +126,7 @@ QUrl ImdbApi::makeMovieSearchUrl(const QString& searchStr, bool includeAdult) co
     if (includeAdult) {
         queries.addQueryItem("adult", "include");
     }
-    queries.addQueryItem("title_type", "feature,documentary,tv_movie,short,video"); // Movie categories
+    queries.addQueryItem("title_type", "feature,tv_movie,short,video,tv_short"); // Movie categories
     queries.addQueryItem("view", "simple");
     queries.addQueryItem("count", "100");
     queries.addQueryItem("title", searchStr);

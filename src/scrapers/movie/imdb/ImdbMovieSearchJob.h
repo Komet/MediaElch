@@ -18,6 +18,9 @@ public:
     void doStart() override;
 
 private:
+    void searchViaImdbId();
+    void searchViaQuery();
+
     void parseSearch(const QString& html);
     void parseIdFromMovieReferencePage(const QString& html);
 

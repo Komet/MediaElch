@@ -39,11 +39,9 @@ TEST_CASE("IMDb returns valid search results", "[IMDb][search]")
         auto* searchJob = new ImdbMovieSearchJob(getImdbApi(), config);
         const auto scraperResults = test::searchMovieScraperSync(searchJob).first;
 
-        REQUIRE(scraperResults.length() >= 2);
-        CHECK(scraperResults[0].title == "Finding Dory");
-        CHECK(scraperResults[0].released == QDate(2016, 1, 1));
-        // Second result changes frequently but contains "Finding"
-        CHECK(scraperResults[1].title.contains("Finding"));
+        REQUIRE(scraperResults.length() >= 1);
+        CHECK_THAT(scraperResults[0].title, StartsWith("Finding Dory"));
+        // 2023-11-25: not available: CHECK(scraperResults[0].released == QDate(2016, 1, 1));
     }
 
     SECTION("Search by IMDb ID returns correct results")

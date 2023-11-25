@@ -151,8 +151,8 @@ actors: (N>80)
    name: Joe Pingue
    role: Captain Merrit
    thumb:
-    https://m.media-amazon.com/images/M/MV5BODBjZmY4OTQtYjA3NC00YmFlLTgxYzMtZTRlYjli
-    ZmE1OWMwXkEyXkFqcGdeQXVyMTI1MzY2MTQ1.jpg
+    https://m.media-amazon.com/images/M/MV5BOTIzYTc2OGEtYTViZi00MjI3LThiYmItYzYyZTI4
+    MjEwMTVjXkEyXkFqcGdeQXVyMTI1MzY2MTQ1.jpg
    order: 14
    imageHasChanged: false
  - id: 

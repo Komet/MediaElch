@@ -1,5 +1,6 @@
 #include "scrapers/movie/imdb/ImdbMovieSearchJob.h"
 
+#include "scrapers/ScraperUtils.h"
 #include "scrapers/imdb/ImdbApi.h"
 
 #include <QFile>
@@ -16,19 +17,30 @@ ImdbMovieSearchJob::ImdbMovieSearchJob(ImdbApi& api, MovieSearchJob::Config _con
 void ImdbMovieSearchJob::doStart()
 {
     if (ImdbId::isValidFormat(config().query)) {
-        m_api.loadTitle(Locale("en"),
-            ImdbId(config().query),
-            ImdbApi::PageKind::Reference,
-            [this](QString data, ScraperError error) {
-                if (error.hasError()) {
-                    setScraperError(error);
-                } else {
-                    parseIdFromMovieReferencePage(data);
-                }
-                emitFinished();
-            });
-        return;
+        searchViaImdbId();
+    } else {
+        searchViaQuery();
     }
+}
+
+void ImdbMovieSearchJob::searchViaImdbId()
+{
+    MediaElch_Debug_Ensures(ImdbId::isValidFormat(config().query));
+
+    m_api.loadTitle(
+        Locale("en"), ImdbId(config().query), ImdbApi::PageKind::Reference, [this](QString data, ScraperError error) {
+            if (error.hasError()) {
+                setScraperError(error);
+            } else {
+                parseIdFromMovieReferencePage(data);
+            }
+            emitFinished();
+        });
+}
+
+void ImdbMovieSearchJob::searchViaQuery()
+{
+    MediaElch_Debug_Ensures(!ImdbId::isValidFormat(config().query));
 
     m_api.searchForMovie(Locale("en"), config().query, config().includeAdult, [this](QString data, ScraperError error) {
         if (error.hasError()) {
@@ -39,6 +51,7 @@ void ImdbMovieSearchJob::doStart()
         emitFinished();
     });
 }
+
 
 void ImdbMovieSearchJob::parseIdFromMovieReferencePage(const QString& html)
 {
@@ -70,9 +83,11 @@ void ImdbMovieSearchJob::parseIdFromMovieReferencePage(const QString& html)
 void ImdbMovieSearchJob::parseSearch(const QString& html)
 {
     // Search result table from "https://www.imdb.com/search/title/?title=..."
-    static const QRegularExpression rx(
-        R"(<a href="/title/(tt[\d]+)/[^"]*"\n>([^<]+)</a>\n.*(?: \(I+\) |>)\(([0-9]+)[) ])",
+    static const QRegularExpression rx(R"(<a href="/title/(tt[\d]+)/[^>]+>(.+)</a>)",
         QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
+    // Entries are numbered: Remove Number.
+    static const QRegularExpression listNo(
+        R"(^\d+\.\s+)", QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
 
     QRegularExpressionMatchIterator matches = rx.globalMatch(html);
 
@@ -80,10 +95,12 @@ void ImdbMovieSearchJob::parseSearch(const QString& html)
     while (matches.hasNext()) {
         match = matches.next();
         if (match.hasMatch()) {
+            QString title = normalizeFromHtml(match.captured(2));
+            title.remove(listNo);
             MovieSearchJob::Result result;
-            result.title = match.captured(2);
+            result.title = title;
             result.identifier = MovieIdentifier(match.captured(1));
-            result.released = QDate::fromString(match.captured(3), "yyyy");
+            // result.released = QDate::fromString(match.captured(3), "yyyy");
             m_results << result;
         }
     }
