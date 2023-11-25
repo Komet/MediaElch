@@ -26,7 +26,7 @@ tags: (N=0)
 certification: 
 network: FOX
 episodeGuideUrl: 
-actors: (N>300)
+actors: (N>400)
  - id: 14854
    name: Dan Castellaneta
    role: Homer Simpson
@@ -99,16 +99,16 @@ actors: (N>300)
    thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/2110.jpg
    order: 11
    imageHasChanged: false
- - id: 14854
-   name: Dan Castellaneta
-   role: Abraham Simpson
-   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/2116.jpg
-   order: 12
-   imageHasChanged: false
  - id: 14856
    name: Nancy Cartwright
    role: Nelson Muntz
    thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/2197.jpg
+   order: 12
+   imageHasChanged: false
+ - id: 14854
+   name: Dan Castellaneta
+   role: Abraham Simpson
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/2116.jpg
    order: 13
    imageHasChanged: false
  - id: 14859
@@ -123,16 +123,16 @@ actors: (N>300)
    thumb: https://static.tvmaze.com/uploads/images/original_untouched/42/107111.jpg
    order: 15
    imageHasChanged: false
- - id: 14859
-   name: Harry Shearer
-   role: Kent Brockman
-   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/2183.jpg
-   order: 16
-   imageHasChanged: false
  - id: 14854
    name: Dan Castellaneta
    role: Krusty the Klown
    thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/2201.jpg
+   order: 16
+   imageHasChanged: false
+ - id: 14859
+   name: Harry Shearer
+   role: Kent Brockman
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/2183.jpg
    order: 17
    imageHasChanged: false
  - id: 14854
