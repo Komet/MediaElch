@@ -62,7 +62,7 @@ TEST_CASE("HotMovies scrapes correct movie details", "[HotMovies][load_data]")
 
     SECTION("Movie has correct details")
     {
-        auto scrapeJob = makeScrapeJob("https://www.hotmovies.com/video/292788/Magic-Mike-XXXL-A-Hardcore-Parody/");
+        auto scrapeJob = makeScrapeJob("https://www.hotmovies.com/1747611/magic-mike-xxxl-porn-video.html");
         test::scrapeMovieScraperSync(scrapeJob.get(), false);
         auto& m = scrapeJob->movie();
 
@@ -73,7 +73,7 @@ TEST_CASE("HotMovies scrapes correct movie details", "[HotMovies][load_data]")
 
     SECTION("Movie has correct set")
     {
-        auto scrapeJob = makeScrapeJob("https://www.hotmovies.com/video/214343/-M-Is-For-Mischief-Number-3/");
+        auto scrapeJob = makeScrapeJob("https://www.hotmovies.com/1616127/m-is-for-mischief-no-3-porn-video.html");
         test::scrapeMovieScraperSync(scrapeJob.get(), false);
         auto& m = scrapeJob->movie();
 

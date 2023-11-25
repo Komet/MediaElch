@@ -25,6 +25,7 @@
   - Fix tag loading: option "load all tags" (#1634)
   - Fix movie search
 - TMDB: Don't store invalid poster/actor image URLs (only the base URL was stored)
+- HotMovies: Fix movie scraping
 - AppImage: the SVG plugin is now shipped explicitly, fixing the icons in the navigation bar (#1662)
 - AllMusic/Universal Music Scraper: Fixed biography and mood scraping (#1606)
 
