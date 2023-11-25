@@ -46,7 +46,7 @@ actors: (N>5)
  - id: 158020
    name: Shawn Colvin
    role: 
-   thumb: https://image.tmdb.org/t/p/original
+   thumb: 
    order: 2
    imageHasChanged: false
  - id: 198

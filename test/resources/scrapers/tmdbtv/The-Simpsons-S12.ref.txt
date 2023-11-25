@@ -254,7 +254,7 @@ actors: (N>10)
  - id: 95973
    name: Amy Tan
    role: 
-   thumb: https://image.tmdb.org/t/p/original
+   thumb: 
    order: 3
    imageHasChanged: false
  - id: 12217
@@ -887,7 +887,7 @@ actors: (N>10)
  - id: 95197
    name: Robert Schimmel
    role: Prisoner (voice)
-   thumb: https://image.tmdb.org/t/p/original
+   thumb: 
    order: 3
    imageHasChanged: false
  - id: 6036
@@ -1082,7 +1082,7 @@ actors: (N>10)
  - id: 1214270
    name: Pete Sampras
    role: 
-   thumb: https://image.tmdb.org/t/p/original
+   thumb: 
    order: 3
    imageHasChanged: false
  - id: 129662
@@ -1762,7 +1762,7 @@ actors: (N>5)
  - id: 158020
    name: Shawn Colvin
    role: 
-   thumb: https://image.tmdb.org/t/p/original
+   thumb: 
    order: 2
    imageHasChanged: false
  - id: 198

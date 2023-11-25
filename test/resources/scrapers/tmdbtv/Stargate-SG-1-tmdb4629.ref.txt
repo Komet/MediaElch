@@ -112,9 +112,9 @@ actors: (N>800)
  - id: 118463
    name: Peter DeLuise
    role:
-    Director / Peter DeLuise, Airman, SF Guard (Uncredited), Interviewer, Free Jaffa
-     (Voice only) (Uncredited), Young Urgo in Uniform, Machine Gun Guard, Screaming 
-    Villager, Tok'ra Guard, Lieutenant, Man Leaving Cafe
+    Director / Peter DeLuise, Airman, SF Guard (Uncredited), Man Leaving Cafe, Inter
+    viewer, Free Jaffa (Voice only) (Uncredited), Machine Gun Guard, Young Urgo in U
+    niform, Screaming Villager, Lieutenant, Tok'ra Guard
    thumb: https://image.tmdb.org/t/p/original/sLkSOm6HBLB4VCfshQLdSEq63tr.jpg
    order: 12
    imageHasChanged: false
@@ -138,17 +138,17 @@ actors: (N>800)
    imageHasChanged: false
  - id: 59245
    name: Laara Sadiq
-   role: Technician #2, Technician, Technician Davis, Technican
+   role: Technician #2, Technican, Technician Davis, Technician
    thumb: https://image.tmdb.org/t/p/original/l7MkydwslaXo1EmYrRpJARnaFKs.jpg
    order: 16
    imageHasChanged: false
  - id: 1366510
    name: Fraser Aitcheson
    role:
-    Hathor's Jaffa, Ares' Jaffa commander (Uncredited), Apophis' Red Jaffa, Tagrean 
-    Worker, Dakara Jaffa 3 (Uncredited), Jaffa Warrior, Free Jaffa 2 (Uncredited), J
-    affa Guard, Jaffa Commander, Anubis' Jaffa, Free Jaffa (Uncredited), Orderly, Ja
-    ffa
+    Hathor's Jaffa, Jaffa Warrior, Jaffa, Ares' Jaffa commander (Uncredited), Jaffa 
+    Commander, Anubis' Jaffa, Free Jaffa (Uncredited), Orderly, Dakara Jaffa 3 (Uncr
+    edited), Free Jaffa 2 (Uncredited), Jaffa Guard, Apophis' Red Jaffa, Tagrean Wor
+    ker
    thumb: https://image.tmdb.org/t/p/original/j0fou5tZvXHe3GcVr24UnYQLg6S.jpg
    order: 17
    imageHasChanged: false
@@ -194,18 +194,18 @@ seasonPoster S00: (N=1)
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S01: (N=1)
-  - id: https://image.tmdb.org/t/p/original/tiib6A0kZ0NoUeuUbcU0hIu2jlM.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/tiib6A0kZ0NoUeuUbcU0hIu2jlM.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/tiib6A0kZ0NoUeuUbcU0hIu2jlM.jpg
+  - id: https://image.tmdb.org/t/p/original/agAdgRtkIJ3mBUoj6ttvpBLLmM2.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/agAdgRtkIJ3mBUoj6ttvpBLLmM2.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/agAdgRtkIJ3mBUoj6ttvpBLLmM2.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S02: (N=1)
-  - id: https://image.tmdb.org/t/p/original/lBMPJS97E8t6ULrE6hrZSkdne15.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/lBMPJS97E8t6ULrE6hrZSkdne15.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/lBMPJS97E8t6ULrE6hrZSkdne15.jpg
+  - id: https://image.tmdb.org/t/p/original/grsuns2nSQa4cIjASRATekqaLLd.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/grsuns2nSQa4cIjASRATekqaLLd.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/grsuns2nSQa4cIjASRATekqaLLd.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
