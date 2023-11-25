@@ -41,7 +41,7 @@ static void cleanupMovie(Movie& movie)
     movie.setOverview(overview);
 }
 
-TEST_CASE("HotMovies returns valid search results", "[HotMovies][search]")
+TEST_CASE("HotMovies returns valid search results", "[movie][HotMovies][search]")
 {
     SECTION("Search by movie name returns correct results")
     {
@@ -56,7 +56,7 @@ TEST_CASE("HotMovies returns valid search results", "[HotMovies][search]")
     }
 }
 
-TEST_CASE("HotMovies scrapes correct movie details", "[HotMovies][load_data]")
+TEST_CASE("HotMovies scrapes correct movie details", "[movie][HotMovies][load_data]")
 {
     HotMovies hm;
 

@@ -33,7 +33,7 @@ static auto makeScrapeJob(QString id, QString genre)
     return std::make_unique<AebnScrapeJob>(getAebnApi(), makeAebnConfig(std::move(id)), std::move(genre));
 }
 
-TEST_CASE("AEBN returns valid search results", "[AEBN][search]")
+TEST_CASE("AEBN returns valid search results", "[movie][AEBN][search]")
 {
     SECTION("Search by movie name returns correct results")
     {
@@ -46,7 +46,7 @@ TEST_CASE("AEBN returns valid search results", "[AEBN][search]")
     }
 }
 
-TEST_CASE("AEBN scrapes correct movie details", "[AEBN][load_data]")
+TEST_CASE("AEBN scrapes correct movie details", "[movie][AEBN][load_data]")
 {
     SECTION("Movie has correct details")
     {
