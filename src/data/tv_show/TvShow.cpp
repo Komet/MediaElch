@@ -317,7 +317,7 @@ void TvShow::scrapeData(mediaelch::scraper::TvScraper* scraper,
 
             for (TvShowEpisode* episode : scrapedEpisodes) {
                 // TODO: We need to download images (e.g. actor thumbs somewhere)
-                
+
                 // Map according to advanced settings
                 const QString network = helper::mapStudio(episode->network());
                 const Certification certification = helper::mapCertification(episode->certification());

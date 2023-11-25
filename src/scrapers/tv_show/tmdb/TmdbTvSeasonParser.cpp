@@ -49,7 +49,9 @@ QVector<Actor> TmdbTvSeasonParser::parseSeasonActors(TmdbApi& api, const QJsonDo
         actor.name = actorObj["name"].toString();
         actor.role = actorObj["character"].toString();
         actor.id = QString::number(actorObj["id"].toInt(-1));
-        actor.thumb = api.makeImageUrl(actorObj["profile_path"].toString()).toString();
+        if (!actorObj["profile_path"].toString().isEmpty()) {
+            actor.thumb = api.makeImageUrl(actorObj["profile_path"].toString()).toString();
+        }
         actors.push_back(std::move(actor));
     }
 

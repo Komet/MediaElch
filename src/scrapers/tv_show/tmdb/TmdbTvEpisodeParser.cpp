@@ -73,7 +73,9 @@ void TmdbTvEpisodeParser::parseInfos(const TmdbApi& api, TvShowEpisode& episode,
             actor.name = actorObj["name"].toString();
             actor.role = actorObj["character"].toString();
             actor.id = QString::number(actorObj["id"].toInt(-1));
-            actor.thumb = api.makeImageUrl(actorObj["profile_path"].toString()).toString();
+            if (!actorObj["profile_path"].toString().isEmpty()) {
+                actor.thumb = api.makeImageUrl(actorObj["profile_path"].toString()).toString();
+            }
             episode.addActor(actor);
         }
     };

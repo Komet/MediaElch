@@ -87,19 +87,19 @@ void TmdbTvShowParser::parseInfos(const QJsonDocument& json, const Locale& local
     // -------------------------------------
     {
         Poster showPoster;
-        showPoster.id = m_api.makeImageUrl(data.value("poster_path").toString()).toString();
-        showPoster.thumbUrl = showPoster.id;
-        showPoster.originalUrl = showPoster.id;
-        if (!showPoster.id.isEmpty()) {
+        if (!data.value("poster_path").toString().isEmpty()) {
+            showPoster.id = m_api.makeImageUrl(data.value("poster_path").toString()).toString();
+            showPoster.thumbUrl = showPoster.id;
+            showPoster.originalUrl = showPoster.id;
             m_show.addPoster(showPoster);
         }
     }
     {
         Poster showBackdrop;
-        showBackdrop.id = m_api.makeImageUrl(data["backdrop_path"].toString()).toString();
-        showBackdrop.thumbUrl = showBackdrop.id;
-        showBackdrop.originalUrl = showBackdrop.id;
-        if (!showBackdrop.id.isEmpty()) {
+        if (!data.value("backdrop_path").toString().isEmpty()) {
+            showBackdrop.id = m_api.makeImageUrl(data["backdrop_path"].toString()).toString();
+            showBackdrop.thumbUrl = showBackdrop.id;
+            showBackdrop.originalUrl = showBackdrop.id;
             m_show.addBackdrop(showBackdrop);
         }
     }
@@ -109,14 +109,15 @@ void TmdbTvShowParser::parseInfos(const QJsonDocument& json, const Locale& local
         QJsonArray posters = images["posters"].toArray();
         for (QJsonValueRef posterVal : posters) {
             QJsonObject posterObj = posterVal.toObject();
-            Poster poster;
-            poster.id = m_api.makeImageUrl(posterObj.value("file_path").toString()).toString();
-            poster.thumbUrl = poster.id;
-            poster.originalUrl = poster.id;
-            poster.language = posterObj["iso_639_1"].toString();
-            poster.aspect = QString::number(posterObj["aspect"].toDouble());
-            poster.originalSize = {posterObj["width"].toInt(), posterObj["height"].toInt()};
-            if (!poster.id.isEmpty()) {
+            if (!posterObj.value("file_path").toString().isEmpty()) {
+                Poster poster;
+                poster.id = m_api.makeImageUrl(posterObj.value("file_path").toString()).toString();
+                poster.thumbUrl = poster.id;
+                poster.originalUrl = poster.id;
+                poster.language = posterObj["iso_639_1"].toString();
+                poster.aspect = QString::number(posterObj["aspect"].toDouble());
+                poster.originalSize = {posterObj["width"].toInt(), posterObj["height"].toInt()};
+
                 m_show.addPoster(poster);
             }
         }
@@ -125,14 +126,15 @@ void TmdbTvShowParser::parseInfos(const QJsonDocument& json, const Locale& local
         QJsonArray backdrops = images["backdrops"].toArray();
         for (QJsonValueRef backdropVal : backdrops) {
             QJsonObject backdropObj = backdropVal.toObject();
-            Poster backdrop;
-            backdrop.id = m_api.makeImageUrl(backdropObj.value("file_path").toString()).toString();
-            backdrop.thumbUrl = backdrop.id;
-            backdrop.originalUrl = backdrop.id;
-            backdrop.language = backdropObj["iso_639_1"].toString();
-            backdrop.aspect = QString::number(backdropObj["aspect"].toDouble());
-            backdrop.originalSize = {backdropObj["width"].toInt(), backdropObj["height"].toInt()};
-            if (!backdrop.id.isEmpty()) {
+            if (!backdropObj.value("file_path").toString().isEmpty()) {
+                Poster backdrop;
+                backdrop.id = m_api.makeImageUrl(backdropObj.value("file_path").toString()).toString();
+                backdrop.thumbUrl = backdrop.id;
+                backdrop.originalUrl = backdrop.id;
+                backdrop.language = backdropObj["iso_639_1"].toString();
+                backdrop.aspect = QString::number(backdropObj["aspect"].toDouble());
+                backdrop.originalSize = {backdropObj["width"].toInt(), backdropObj["height"].toInt()};
+
                 m_show.addBackdrop(backdrop);
             }
         }
@@ -152,11 +154,12 @@ void TmdbTvShowParser::parseInfos(const QJsonDocument& json, const Locale& local
 
             SeasonNumber season = SeasonNumber(seasonInt);
 
-            Poster seasonPoster;
-            seasonPoster.id = m_api.makeImageUrl(seasonObj["poster_path"].toString()).toString();
-            seasonPoster.thumbUrl = seasonPoster.id;
-            seasonPoster.originalUrl = seasonPoster.id;
-            if (!seasonPoster.id.isEmpty()) {
+            if (!seasonObj.value("poster_path").toString().isEmpty()) {
+                Poster seasonPoster;
+                seasonPoster.id = m_api.makeImageUrl(seasonObj["poster_path"].toString()).toString();
+                seasonPoster.thumbUrl = seasonPoster.id;
+                seasonPoster.originalUrl = seasonPoster.id;
+
                 m_show.addSeasonPoster(season, seasonPoster);
             }
         }
@@ -191,7 +194,7 @@ void TmdbTvShowParser::parseInfos(const QJsonDocument& json, const Locale& local
             actor.role = roles.join(", ");
             actor.id = QString::number(actorObj["id"].toInt());
 
-            if (!actorObj["profile_path"].isNull()) {
+            if (!actorObj["profile_path"].toString().isEmpty()) {
                 actor.thumb = m_api.makeImageUrl(actorObj["profile_path"].toString()).toString();
             }
 
