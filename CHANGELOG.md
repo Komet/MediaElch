@@ -31,22 +31,29 @@
 
 ### Fixed
 
-- Movies: 
+- Movies:
+
   - Opening and immediately closing the trailer search could crash MediaElch
   - Exclusion filters are now applied to all folders, not just a file's parent directory (#1653)  
     Thanks to GitHub user `Neinei0k` for implementing it!
+
 - UI: Dark Theme:
+
   - The music file list (artist/album) is now readable (better colors)
   - The search/filter result list has explicit colors: they are now readable (#1629)
   - TV Status field and the Movie streamdetails->Stereo fields are now properly colored (#1657)
   - The numbers and icons in the left navigation bar were not properly scaled (#1662)
+
 - UniversalMusicScraper: If an artist has no Discogs link on MusicBrainz, MediaElch was stuck.
 - ADE: Overview and posters are properly scraped again (#1650)
+
 - IMDb:
+
   - Fix scraping of episode IDs from season pages
   - Fix tag loading: option "load all tags" (#1634)
   - Fix movie search
   - Fix TV show search
+
 - TMDB: Don't store invalid poster/actor image URLs (only the base URL was stored)
 - HotMovies: Fix movie scraping
 - AppImage: the SVG plugin is now shipped explicitly, fixing the icons in the navigation bar (#1662)
@@ -56,13 +63,17 @@
 
 - Image Dialog: Images downloaded from fanart.tv are now sorted by preferred language, if set (#1619)
 - TMDB:
+
   - API queries now set a "region" based on the selected language.
     For example, the country's release date will be used.
   - If a movie has more than one certification in a given language, we sometimes accidentally
     ignored the selected language if TMDB has an empty certification for it (#1641)
+
 - UI:
+
   - Images are now loaded asynchronously, which should improve the performance when switching items (#1640)
   - TV shows: If the "first aired" date is invalid/missing, MediaElch shows the current date, but adds a "missing" marker (#1663)
+
 - TV shows: The TMDB id, if available, is now marked as "default" in NFO files.
 - Settings: Changing the main window theme no longer requires a restart.
 
@@ -73,7 +84,8 @@
 
 ### Added
 
-- TV Shows: 
+- TV Shows:
+
   - Episode's TMDB id is now shown as well (#1644)
   - IDs (e.g. IMDb ID) now have a button that takes you to the corresponding website (#1645)
 
@@ -94,11 +106,14 @@
 - Custom Movie Scraper: Images from fanart.tv were not loaded, even though it was selected in MediaElch's settings (#1598)
 - IMDb TV: If a season has an episode No. 0 (e.g. a pilot), it could not be scraped and all other episodes were offset by 1 (#1614)
 - Fernsehserien.de: Fix TV show search
-- Universal Music Scraper: 
+
+- Universal Music Scraper:
+
   - MusicBrainz works again (#1597)
   - MusicBrainz now loads an artist's biography in the preferred langauge
   - Discogs correctly loads an artists discography again (#1606)
   - AllMusic loads album ratings again
+
 - The TV show revert button did not revert anything (#1615)
 - UI: The image dialog did not have a properly distributed image table (#1620) 
 
@@ -120,17 +135,23 @@
 ### Fixed
 
  - UI:
+
    - Selecting TV shows / episodes or artist / albums now has proper background colors on Windows and macOS (#1569) 
    - Color labels have better color for the dark theme (#1545)
    - The language dropdown menu is now sorted according to the translated language names (#1560)
    - Fix the ordering of custom movie scraper details; previously it was sorted randomly (#1562)
    - After scraping movie images, the "has image" icons were not immediately updated (#1591)
+
+ - ADE:
+
+   - Fix title and actor scraping (#1592)
+   - Remove `On Sale!` from title if ADE sets it
+
+
  - If a movie directory contains an invalid `*.nfo` file, it was not listed properly when reloading movies (#1564)
  - macOS: When a new directory is added in the settings window, the main window was moved on top (#1577)
  - TV shows: You can now search by an IMDb ID when scraping TV shows.
- - ADE:
-   - Fix title and actor scraping (#1592)
-   - Remove `On Sale!` from title if ADE sets it
+
 
 ### Added
 
@@ -164,19 +185,27 @@ If you package MediaElch, e.g. for some Linux distributions, these notes may be 
 ### Bugfixes
 
  - macOS: CMD+R now correctly triggers a reload.
+
  - If a movie directory had "auto-reload" enabled, each start of MediaElch added
    entries to our cache database without remove old entries.  The database
    size grew fast.  Clicking "reload" is a workaround (#1487)
+
  - IMDb:
+
    - Movie search did not return any results.
    - TV show search did not return any results.
    - TV show runtimes are scraped correctly again.
- - UI: 
+
+ - UI:
+
    - Incorrectly scaled tables on HighDPI display now work with Qt6.
    - If the renamer dialog was re-opened, the placeholder-table was mixed up.
- - Multi-Movie Scraper: 
+
+ - Multi-Movie Scraper:
+
    - If using TheMovieDb, scraping could get stuck and not continue (#1505)
    - Adult Scrapers were always shown, even if disabled.
+
  - TV Show Scraper: The "Downloading images..." dialog was not removed when finished (#1507)
  - AllMusic: Fix loading of "born" and "died" (#1336)
  - TvTunes: Spaces around titles were not removed
