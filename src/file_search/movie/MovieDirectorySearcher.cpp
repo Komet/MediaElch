@@ -390,7 +390,7 @@ void MovieDiskLoader::storeAndAddToDatabase()
         // See also: Use https://stackoverflow.com/a/47473949/1603627
         // We do this in just one thread.
         movie->setLabel(m_db->getLabel(movie->files()));
-        m_db->addMovie(movie, DirectoryPath(m_dir.path));
+        m_db->addMovie(movie, m_dir.path);
         m_store->addMovie(movie);
     }
     m_db->commit();
@@ -408,7 +408,7 @@ void MovieDatabaseLoader::doStart()
     QVector<Movie*> movies;
     {
         std::unique_ptr<Database> db(Database::newConnection(this));
-        movies = db->moviesInDirectory(DirectoryPath(m_dir.path), this);
+        movies = db->moviesInDirectory(m_dir.path, this);
     }
     if (isAborted()) {
         return;

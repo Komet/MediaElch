@@ -105,7 +105,7 @@ TmdbImages::TmdbImages(QObject* parent) : ImageProvider(parent)
     m_tmdb = new mediaelch::scraper::TmdbMovie(this);
 }
 
-TmdbImages::~TmdbImages(){};
+TmdbImages::~TmdbImages() = default;
 
 const ImageProvider::ScraperMeta& TmdbImages::meta() const
 {

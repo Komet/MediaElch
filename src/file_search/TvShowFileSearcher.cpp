@@ -111,7 +111,7 @@ void TvShowFileSearcher::reloadEpisodes(const mediaelch::DirectoryPath& showDir)
         }
     }
     if (index != -1) {
-        path = mediaelch::DirectoryPath(m_directories[index].path);
+        path = m_directories[index].path;
     }
 
     // search for contents
@@ -523,7 +523,7 @@ void TvShowFileSearcher::setupShows(QMap<QString, QVector<QStringList>>& content
             }
         }
         if (index != -1) {
-            path = mediaelch::DirectoryPath(m_directories[index].path);
+            path = m_directories[index].path;
         }
 
         auto* show = new TvShow(mediaelch::DirectoryPath(it.key()), this);

@@ -81,7 +81,7 @@ void MovieFileSearcher::reload(bool reloadFromDisk)
         // was cleared above.  If the directory is disabled, we also clear the cache if
         // autoReload is on.
         if (movieDir.autoReload && !reloadFromDisk) {
-            Manager::instance()->database()->clearMoviesInDirectory(DirectoryPath(movieDir.path));
+            Manager::instance()->database()->clearMoviesInDirectory(movieDir.path);
         }
         if (!movieDir.disabled) {
             movieDir.autoReload = movieDir.autoReload || reloadFromDisk;
