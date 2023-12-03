@@ -7,11 +7,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleGetInfoString</key>
-	<string>2.10.6</string>
+	<string>2.10.7</string>
 	<key>CFBundleVersion</key>
-	<string>2.10.6</string>
+	<string>2.10.7</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.10.6</string>
+	<string>2.10.7</string>
 	<key>CFBundleExecutable</key>
 	<string>MediaElch</string>
 	<key>CFBundleHelpBookFolder</key>

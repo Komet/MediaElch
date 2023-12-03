@@ -1,6 +1,28 @@
 # Changelog
 
 
+## Upcoming
+
+### Notes
+
+- tbd
+
+### Fixed
+
+- tbd
+
+### Changed
+
+- tbd
+
+### Removed
+
+- tbd
+
+### Added
+
+- tbd
+
 ## 2.10.6 - 2023-12-03
 
 ### Notes
