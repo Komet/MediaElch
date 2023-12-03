@@ -5,7 +5,7 @@
 ###########################################################
 # macOS
 
-export MAC_QT_6_VERSION="6.6.0"
+export MAC_QT_6_VERSION="6.6.1"
 export MAC_QT_5_VERSION="5.15.2"
 # From https://mediaarea.net/download/binary/libmediainfo0/${MAC_MEDIAINFO_VERSION}/MediaInfo_DLL_${MAC_MEDIAINFO_VERSION}_Mac_x86_64+arm64.tar.bz2
 # Mirror at https://files.ameyering.de/binaries/macOS/mediainfo/
