@@ -196,6 +196,18 @@
     background-color: #33393d;
     border-right: 1px solid #1E1E1E;
 }
+
+#menuWidget QToolButton {
+    border: none;
+    padding-left: 4px;
+    padding-right: 4px;
+    margin: 0px;
+}
+#menuWidget QToolButton:hover {
+    border-radius: 4px;
+    background-color: #C3C9Cd;
+}
+
 #centralWidget #scrollArea,
 #centralWidget #scrollAreaWidgetContents_2,
 #centralWidget #scrollAreaWidgetContents_3,
@@ -304,13 +316,28 @@ Message #progressBar::chunk:horizontal {
 }
 
 /*********************************************************
- Navbar
+ * Navbar
  *********************************************************/
+Navbar #btnAbout {
+    border-right: 0px;
+}
+Navbar #widget {
+    background-color: #272c2f;
+    border-bottom: 1px solid #1E1E1E;
+}
 Navbar QToolButton {
     border: none;
+    border-radius: 5px;
     border-right: 1px solid #1E1E1E;
     padding-left: 10px;
     padding-right: 10px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin: 0px;
+}
+Navbar QToolButton:hover {
+    border-radius: 5px;
+    background-color: #2c3135;
 }
 Navbar QToolButton::menu-indicator {
     subcontrol-origin: padding;
@@ -319,13 +346,6 @@ Navbar QToolButton::menu-indicator {
     image: url(':/img/ui_select_dark.svg');
     width: 16px;
     height: 16px;
-}
-Navbar #btnAbout {
-    border-right: 0px;
-}
-Navbar #widget {
-    background-color: #272c2f;
-    border-bottom: 1px solid #1E1E1E;
 }
 Navbar #btnDonate {
     border-radius: 4px;
@@ -546,6 +566,7 @@ FilterWidget #lineEdit {
     border: none;
     background-color: transparent;
     border-bottom: 1px dotted #1E1E1E;
+    color: #EBEBEB;
 }
 
 #filterList {

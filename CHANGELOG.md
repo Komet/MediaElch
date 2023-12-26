@@ -13,7 +13,7 @@
 
 ### Changed
 
-- tbd
+- UI: Navigation and menu bar icons now have a hover effect.
 
 ### Removed
 
