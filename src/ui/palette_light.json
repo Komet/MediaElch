@@ -4,6 +4,7 @@
   "background_primary_color": "#ffffff",
   "background_secondary_color": "#f9f9f9",
   "background_sidebar_color": "#33393d",
+  "background_sidebar_hover_color": "#C3C9Cd",
 
   "table_selection_gradient_top": "#4185b6",
   "table_selection_gradient_bottom": "#1b6aa5",

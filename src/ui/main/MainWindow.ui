@@ -50,16 +50,16 @@
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
        <property name="spacing">
-        <number>16</number>
+        <number>8</number>
        </property>
        <property name="leftMargin">
-        <number>6</number>
+        <number>2</number>
        </property>
        <property name="topMargin">
         <number>20</number>
        </property>
        <property name="rightMargin">
-        <number>6</number>
+        <number>2</number>
        </property>
        <property name="bottomMargin">
         <number>0</number>
@@ -529,7 +529,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>83</width>
+                <width>72</width>
                 <height>736</height>
                </rect>
               </property>
@@ -826,7 +826,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>83</width>
+                <width>72</width>
                 <height>30</height>
                </rect>
               </property>
