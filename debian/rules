@@ -1,8 +1,10 @@
 #!/usr/bin/make -f
 
-QT_SELECT=qt5
-export QT_SELECT
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+export DEB_CFLAGS_MAINT_APPEND  = -Wall -pedantic
+export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
 
-include /usr/share/cdbs/1/rules/debhelper.mk
-include /usr/share/cdbs/1/class/qmake.mk
+export QT_SELECT = 5
 
+%:
+	dh $@

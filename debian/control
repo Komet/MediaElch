@@ -3,8 +3,8 @@ Section: misc
 Priority: optional
 Maintainer: Andre Meyering <info@andremeyering.de>
 Standards-Version: 4.6.2
-Build-Depends: debhelper (>= 13.0.0),
-               cdbs,
+Build-Depends: debhelper-compat (= 13),
+               cmake,
                libmediainfo-dev,
                libmediainfo0 | libmediainfo0v5,
                libqt5opengl5-dev,
