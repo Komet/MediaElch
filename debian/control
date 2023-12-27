@@ -6,41 +6,24 @@ Standards-Version: 4.6.2
 Build-Depends: debhelper-compat (= 13),
                cmake,
                libmediainfo-dev,
-               libmediainfo0 | libmediainfo0v5,
                libqt5opengl5-dev,
                libqt5svg5-dev,
                libzen-dev,
                qt5-qmake,
                qtbase5-dev,
-               qtbase5-dev-tools,
-               qtchooser,
                qtmultimedia5-dev,
                qttools5-dev,
-               qttools5-dev-tools,
-               zlib1g-dev,
 Homepage: https://mediaelch.github.io/mediaelch-doc/
+Rules-Requires-Root: no
 Vcs-Browser: https://github.com/Komet/MediaElch/
 Vcs-Git: https://github.com/Komet/MediaElch.git
 
 Package: mediaelch
 Architecture: any
-Depends: ${shlibs:Depends},
-         ${misc:Depends},
-         libmediainfo0 | libmediainfo0v5,
-         libpulse0
-         libqt5concurrent5,
-         libqt5core5 | libqt5core5a,
-         libqt5gui5,
-         libqt5multimedia5,
-         libqt5multimediawidgets5,
-         libqt5network5,
-         libqt5opengl5,
-         libqt5sql5,
-         libqt5sql5-sqlite,
-         libqt5svg5,
-         libqt5xml5,
-         libzen0 | libzen0v5,
-         zlib1g,
+Depends: ${misc:Depends},
+         ${shlibs:Depends},
+         libmediainfo0v5,
+         libzen0v5,
 Description: Media Manager for Kodi
  MediaElch is your Media Manager for handling movies, TV shows, concerts and
  music in Kodi. It is designed to gather information from various movie
