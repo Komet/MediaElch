@@ -6,15 +6,14 @@ Standards-Version: 4.6.2
 Build-Depends: debhelper-compat (= 13),
                cmake,
                libmediainfo-dev,
-               libqt5opengl5-dev,
-               libqt5svg5-dev,
-               libquazip1-qt5-dev,
+               libqt6opengl6-dev,
+               libquazip1-qt6-dev,
                libxkbcommon-dev,
                libzen-dev,
-               qt5-qmake,
-               qtbase5-dev,
-               qtmultimedia5-dev,
-               qttools5-dev,
+               qt6-base-dev,
+               qt6-multimedia-dev,
+               qt6-svg-dev,
+               qt6-tools-dev,
 Homepage: https://mediaelch.github.io/mediaelch-doc/
 Rules-Requires-Root: no
 Vcs-Browser: https://github.com/Komet/MediaElch/
