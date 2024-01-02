@@ -85,7 +85,6 @@ target_link_libraries(
 
 # DL open/close
 if(UNIX)
-  target_link_libraries(libmediaelch PRIVATE curl)
   if(NOT APPLE)
     # libmediainfo requires dlopen/dlclose
     target_link_libraries(libmediaelch PRIVATE ${CMAKE_DL_LIBS})

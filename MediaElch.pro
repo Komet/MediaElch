@@ -56,7 +56,6 @@ contains(DEFINES, EXTERN_QUAZIP) {
     message("Updater disabled")
 }
 
-unix:LIBS += -lcurl
 macx:LIBS += -framework Foundation
 unix:!macx {
     LIBS += -ldl
