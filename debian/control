@@ -5,7 +5,6 @@ Maintainer: Andre Meyering <info@andremeyering.de>
 Standards-Version: 4.6.2
 Build-Depends: debhelper (>= 13.0.0),
                cdbs,
-               libcurl4-openssl-dev | libcurl4-gnutls-dev,
                libmediainfo-dev,
                libmediainfo0 | libmediainfo0v5,
                libpulse-dev,
@@ -28,7 +27,6 @@ Package: mediaelch
 Architecture: any
 Depends: ${shlibs:Depends},
          ${misc:Depends},
-         libcurl3 | libcurl4,
          libmediainfo0 | libmediainfo0v5,
          libpulse0
          libqt5concurrent5,
