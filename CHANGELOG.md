@@ -13,6 +13,8 @@
 
 ### Changed
 
+- debian: Now uses Qt 6 on Ubuntu Lunar (23.04) and later (#1697)
+  Thank you, Philipp (GitHub user `iluminat23`) for this change!
 - UI: Navigation and menu bar icons now have a hover effect.
 
 ### Removed
@@ -25,9 +27,10 @@
 
 ## 2.10.6 - 2023-12-03
 
-### Notes
+### Known Issues
 
-- MediaElch for macOS 11 and later now uses Qt 6.6.1
+- MediaElch for macOS 11 and later now uses Qt 6.6.1 which has some major issues. Qt 6.6.2 or later will fix it.
+  See https://github.com/Komet/MediaElch/issues/1687 for details.
 
 ### Fixed
 
