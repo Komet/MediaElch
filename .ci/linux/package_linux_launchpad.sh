@@ -96,7 +96,7 @@ prepare_deb() {
 	# Remove untracked files but keep changes
 	git clean -fdx
 	# .git is ~20MB, so remove it
-	rm -rf scripts obs .ci docs .git
+	rm -rf scripts obs .ci .git
 
 	# A bit of useful information
 	echo $GIT_HASH > .githash
