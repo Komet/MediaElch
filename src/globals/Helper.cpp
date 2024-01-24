@@ -302,6 +302,20 @@ QString mapStudio(const QString& text)
     return text;
 }
 
+QStringList mapStudio(const QStringList& studios)
+{
+    if (Settings::instance()->advanced()->studioMappings().isEmpty()) {
+        return studios;
+    }
+
+    QStringList mappedStudios;
+    for (const QString& studio : studios) {
+        mappedStudios << mapStudio(studio);
+    }
+    return mappedStudios;
+}
+
+
 QString mapCountry(const QString& text)
 {
     if (Settings::instance()->advanced()->countryMappings().isEmpty()) {
@@ -314,10 +328,24 @@ QString mapCountry(const QString& text)
     return text;
 }
 
+QStringList mapCountry(const QStringList& countries)
+{
+    if (Settings::instance()->advanced()->countryMappings().isEmpty()) {
+        return countries;
+    }
+
+    QStringList mappedCountries;
+    for (const QString& country : countries) {
+        mappedCountries << mapCountry(country);
+    }
+    return mappedCountries;
+}
+
+
 QString formatFileSizeBinary(double size, const QLocale& locale)
 {
     // We use the decimal system, i.e. 1000 and not the binary system with 1000.
-    // Otherwise the units would be GiB, Mib and kiB.
+    // Otherwise, the units would be GiB, Mib and kiB.
     if (size > 1024. * 1024. * 1024.) {
         return QString("%1 GiB").arg(locale.toString(size / 1024.0 / 1024.0 / 1024.0, 'f', 2));
     }

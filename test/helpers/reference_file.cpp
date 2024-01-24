@@ -535,7 +535,7 @@ public:
     {
         writeToReference(m_out, "certification", certification);
     }
-    void exportNetwork(const QString& network) override { writeToReference(m_out, "network", network); }
+    void exportNetworks(const QStringList& networks) override { writeToReference(m_out, "networks", networks); }
     void exportEpisodeGuideUrl(const QString& episodeGuideUrl) override
     {
         writeToReference(m_out, "episodeGuideUrl", episodeGuideUrl);
@@ -656,7 +656,7 @@ public:
     {
         writeToReference(m_out, "certification", certification);
     }
-    void exportNetwork(const QString& network) override { writeToReference(m_out, "network", network); }
+    void exportNetworks(const QStringList& networks) override { writeToReference(m_out, "networks", networks); }
     void exportThumbnail(const QUrl& thumbnail) override { writeToReference(m_out, "thumbnail", thumbnail); }
     void exportActors(const Actors& actors) override { writeToReference(m_out, "actors", actors); }
     void exportStreamDetails(const StreamDetails* streamDetails) override

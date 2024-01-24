@@ -23,7 +23,7 @@ genres: (N=1)
   - Comedyserien
 tags: (N=0)
 certification: 
-network: 
+networks: (N=0)
 episodeGuideUrl: 
 actors: (N=0)
 posters: (N=0)

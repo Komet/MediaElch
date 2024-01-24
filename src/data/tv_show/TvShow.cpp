@@ -74,7 +74,7 @@ void TvShow::clear(QSet<ShowScraperInfo> infos)
         m_genres.clear();
     }
     if (infos.contains(ShowScraperInfo::Network)) {
-        m_network.clear();
+        m_networks.clear();
     }
     if (infos.contains(ShowScraperInfo::Overview)) {
         m_overview.clear();
@@ -212,7 +212,7 @@ void TvShow::exportTo(Exporter& exporter) const
     exporter.exportGenres(m_genres);
     exporter.exportTags(m_tags);
     exporter.exportCertification(m_certification);
-    exporter.exportNetwork(m_network);
+    exporter.exportNetworks(m_networks);
     exporter.exportEpisodeGuideUrl(m_episodeGuideUrl);
     exporter.exportActors(m_actors);
     exporter.exportPosters(m_posters);
@@ -319,10 +319,10 @@ void TvShow::scrapeData(mediaelch::scraper::TvScraper* scraper,
                 // TODO: We need to download images (e.g. actor thumbs somewhere)
 
                 // Map according to advanced settings
-                const QString network = helper::mapStudio(episode->network());
+                const QStringList networks = helper::mapStudio(episode->networks());
                 const Certification certification = helper::mapCertification(episode->certification());
 
-                episode->setNetwork(network);
+                episode->setNetworks(networks);
                 episode->setCertification(certification);
             }
 
@@ -353,11 +353,11 @@ void TvShow::scrapeData(mediaelch::scraper::TvScraper* scraper,
 
         // Map according to advanced settings
         const QStringList genres = helper::mapGenre(job->tvShow().genres());
-        const QString network = helper::mapStudio(job->tvShow().network());
+        const QStringList networks = helper::mapStudio(job->tvShow().networks());
         const Certification certification = helper::mapCertification(job->tvShow().certification());
 
         job->tvShow().setGenres(genres);
-        job->tvShow().setNetwork(network);
+        job->tvShow().setNetworks(networks);
         job->tvShow().setCertification(certification);
 
         scraper::copyDetailsToShow(*this, job->tvShow(), job->config().details);
@@ -513,9 +513,9 @@ Certification TvShow::certification() const
  * \return Network of the show
  * \see TvShow::setNetwork
  */
-QString TvShow::network() const
+QStringList TvShow::networks() const
 {
-    return m_network;
+    return m_networks;
 }
 
 /**
@@ -878,10 +878,6 @@ void TvShow::setGenres(QStringList genres)
     setChanged(true);
 }
 
-/**
- * \brief Adds a genre
- * \see TvShow::genres
- */
 void TvShow::addGenre(QString genre)
 {
     if (genre.isEmpty()) {
@@ -897,25 +893,27 @@ void TvShow::addTag(QString tag)
     setChanged(true);
 }
 
-/**
- * \brief Sets the certification
- * \see TvShow::certification
- */
 void TvShow::setCertification(Certification certification)
 {
     m_certification = certification;
     setChanged(true);
 }
 
-/**
- * \brief Sets the network
- * \see TvShow::network
- */
-void TvShow::setNetwork(QString network)
+void TvShow::setNetworks(QStringList networks)
 {
-    m_network = network;
+    m_networks = networks;
     setChanged(true);
 }
+
+void TvShow::addNetwork(QString network)
+{
+    if (network.isEmpty()) {
+        return;
+    }
+    m_networks.append(network);
+    setChanged(true);
+}
+
 
 /**
  * \brief Sets the plot
@@ -1530,12 +1528,15 @@ QDebug operator<<(QDebug dbg, const TvShow& show)
     }
     out.append(QStringLiteral("  FirstAired:    ").append(show.firstAired().toString("yyyy-MM-dd")).append(nl));
     out.append(QStringLiteral("  Certification: ").append(show.certification().toString()).append(nl));
-    out.append(QStringLiteral("  Network:       ").append(show.network()).append(nl));
+    const auto& networks = show.networks();
+    for (const QString& network : networks) {
+        out.append(QStringLiteral("  Network:       ").append(network)).append(nl);
+    }
     out.append(QStringLiteral("  Overview:      ").append(show.overview())).append(nl);
     out.append(QStringLiteral("  Status:        ").append(show.status())).append(nl);
     const auto& genres = show.genres();
     for (const QString& genre : genres) {
-        out.append(QString("  Genre:         ").append(genre)).append(nl);
+        out.append(QStringLiteral("  Genre:         ").append(genre)).append(nl);
     }
     for (const Actor* actor : show.actors().actors()) {
         out.append(QStringLiteral("  Actor:         ").append(nl));

@@ -406,7 +406,7 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->lblMissingFirstAired->setVisible(!m_episode->firstAired().isValid());
     ui->playCount->setValue(m_episode->playCount());
     ui->lastPlayed->setDateTime(m_episode->lastPlayed());
-    ui->studio->setText(m_episode->network());
+    ui->studio->setText(m_episode->networks().join(", "));
     ui->overview->setPlainText(m_episode->overview());
     ui->epBookmark->setTime(m_episode->epBookmark());
 
@@ -810,8 +810,6 @@ void TvShowWidgetEpisode::onPosterDownloadFinished(DownloadManagerElement elem)
     }
 }
 
-/*** add/remove/edit Actors, Genres, Countries and Studios ***/
-
 /**
  * \brief Adds a director
  */
@@ -1022,21 +1020,19 @@ void TvShowWidgetEpisode::onPlayCountChange(int value)
     ui->buttonRevert->setVisible(true);
 }
 
-/**
- * \brief Marks the episode as changed when the last played date has changed
- */
 void TvShowWidgetEpisode::onLastPlayedChange(QDateTime dateTime)
 {
     m_episode->setLastPlayed(dateTime);
     ui->buttonRevert->setVisible(true);
 }
 
-/**
- * \brief Marks the episode as changed when the studio has changed
- */
 void TvShowWidgetEpisode::onStudioChange(QString text)
 {
-    m_episode->setNetwork(text);
+    QStringList networks = text.split(",", Qt::SkipEmptyParts);
+    for (auto& network : networks) {
+        network = network.trimmed();
+    }
+    m_episode->setNetworks(networks);
     ui->buttonRevert->setVisible(true);
 }
 
@@ -1049,9 +1045,6 @@ void TvShowWidgetEpisode::onEpBookmarkChange(QTime time)
     ui->buttonRevert->setVisible(true);
 }
 
-/**
- * \brief Marks the episode as changed when the overview has changed
- */
 void TvShowWidgetEpisode::onOverviewChange()
 {
     m_episode->setOverview(ui->overview->toPlainText());

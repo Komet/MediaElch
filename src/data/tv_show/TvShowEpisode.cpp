@@ -99,7 +99,7 @@ void TvShowEpisode::clear(const QSet<EpisodeScraperInfo>& infos)
         m_overview = "";
     }
     if (infos.contains(EpisodeScraperInfo::Network)) {
-        m_network = "";
+        m_networks.clear();
     }
     if (infos.contains(EpisodeScraperInfo::Title)) {
         m_title.clear();
@@ -155,7 +155,7 @@ void TvShowEpisode::exportTo(Exporter& exporter) const
     exporter.exportTags(m_tags);
     exporter.exportEpBookmark(m_epBookmark);
     exporter.exportCertification(m_certification);
-    exporter.exportNetwork(m_network);
+    exporter.exportNetworks(m_networks);
     exporter.exportThumbnail(m_thumbnail);
     exporter.exportActors(m_actors);
     exporter.exportStreamDetails(m_streamDetails);
@@ -253,10 +253,10 @@ void TvShowEpisode::scrapeData(mediaelch::scraper::TvScraper* scraper,
     auto* scrapeJob = scraper->loadEpisode(config);
     connect(scrapeJob, &scraper::EpisodeScrapeJob::loadFinished, this, [this](scraper::EpisodeScrapeJob* job) {
         // Map according to advanced settings
-        const QString network = helper::mapStudio(job->episode().network());
+        const QStringList networks = helper::mapStudio(job->episode().networks());
         const Certification certification = helper::mapCertification(job->episode().certification());
 
-        job->episode().setNetwork(network);
+        job->episode().setNetworks(networks);
         job->episode().setCertification(certification);
 
         clear(job->config().details);
@@ -494,22 +494,16 @@ Certification TvShowEpisode::certification() const
     return Certification::NoCertification;
 }
 
-/**
- * \property TvShowEpisode::network
- * \brief Holds the network of the episode
- * \return Network
- * \see TvShowEpisode::setNetwork
- */
-QString TvShowEpisode::network() const
+QStringList TvShowEpisode::networks() const
 {
-    if (!m_network.isEmpty()) {
-        return m_network;
+    if (!m_networks.isEmpty()) {
+        return m_networks;
     }
     if (m_show != nullptr) {
-        return m_show->network();
+        return m_show->networks();
     }
 
-    return QString();
+    return {};
 }
 
 /**
@@ -786,44 +780,33 @@ void TvShowEpisode::setLastPlayed(QDateTime lastPlayed)
     setChanged(true);
 }
 
-/**
- * \brief Set the first aired date
- * \param firstAired Date of first air
- * \see TvShowEpisode::firstAired
- */
 void TvShowEpisode::setFirstAired(QDate firstAired)
 {
     m_firstAired = firstAired;
     setChanged(true);
 }
 
-/**
- * \brief Sets the certification
- * \param certification Certification
- * \see TvShowEpisode::certification
- */
 void TvShowEpisode::setCertification(Certification certification)
 {
     m_certification = certification;
     setChanged(true);
 }
 
-/**
- * \brief Sets the network
- * \param network Name of the network
- * \see TvShowEpisode::network
- */
-void TvShowEpisode::setNetwork(QString network)
+void TvShowEpisode::setNetworks(QStringList networks)
 {
-    m_network = network;
+    m_networks = networks;
     setChanged(true);
 }
 
-/**
- * \brief Sets the thumbnail
- * \param url URL of the thumbnail
- * \see TvShowEpisode::thumbnail
- */
+void TvShowEpisode::addNetwork(QString network)
+{
+    if (network.isEmpty()) {
+        return;
+    }
+    m_networks.append(network);
+    setChanged(true);
+}
+
 void TvShowEpisode::setThumbnail(QUrl url)
 {
     m_thumbnail = url;
@@ -853,12 +836,6 @@ void TvShowEpisode::setModelItem(EpisodeModelItem* item)
     m_modelItem = item;
 }
 
-/*** REMOVER ***/
-
-/**
- * \brief Removes a writer
- * \see TvShowEpisode::writers
- */
 void TvShowEpisode::removeWriter(QString* writer)
 {
     for (elch_ssize_t i = 0, n = m_writers.size(); i < n; ++i) {

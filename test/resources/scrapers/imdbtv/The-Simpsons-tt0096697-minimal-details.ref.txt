@@ -28,7 +28,7 @@ tags: (N<6)
   - cult tv
   - family as protagonists
 certification: TV-14
-network: 
+networks: (N=0)
 episodeGuideUrl: 
 actors: (N=0)
 posters: (N=1)

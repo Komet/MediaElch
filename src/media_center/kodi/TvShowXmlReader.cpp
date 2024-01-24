@@ -164,8 +164,8 @@ bool TvShowXmlReader::parseNfoDom(QDomDocument domDoc)
         m_show.setDateAdded(QDateTime::fromString(
             domDoc.elementsByTagName("dateadded").at(0).toElement().text(), "yyyy-MM-dd HH:mm:ss"));
     }
-    if (!domDoc.elementsByTagName("studio").isEmpty()) {
-        m_show.setNetwork(domDoc.elementsByTagName("studio").at(0).toElement().text());
+    for (int i = 0, n = domDoc.elementsByTagName("studio").size(); i < n; i++) {
+        m_show.addNetwork(domDoc.elementsByTagName("studio").at(i).toElement().text());
     }
     if (!domDoc.elementsByTagName("episodeguide").isEmpty()
         && !domDoc.elementsByTagName("episodeguide").at(0).toElement().elementsByTagName("url").isEmpty()) {

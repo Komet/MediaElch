@@ -36,7 +36,7 @@ firstAired: 2019-06-05
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: 
 actors: (N=0)
 streamDetails: <not loaded>
@@ -85,7 +85,7 @@ firstAired: 2019-06-05
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: 
 actors: (N=0)
 streamDetails: <not loaded>
@@ -133,7 +133,7 @@ firstAired: 2019-06-05
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: 
 actors: (N=0)
 streamDetails: <not loaded>

@@ -134,7 +134,8 @@ QByteArray TvShowXmlWriterGeneric::getTvShowXml(bool testMode)
     }
     xml.writeTextElement("dateadded", m_show.dateAdded().toString("yyyy-MM-dd HH:mm:ss"));
     xml.writeTextElement("status", m_show.status());
-    xml.writeTextElement("studio", m_show.network());
+
+    KodiXml::writeStringsAsOneTagEach(xml, "studio", m_show.networks());
 
     if (m_show.runtime() > 0min) {
         xml.writeTextElement("runtime", QString::number(m_show.runtime().count()));
@@ -209,11 +210,7 @@ QByteArray TvShowXmlWriterGeneric::getTvShowXml(bool testMode)
         xml.writeEndElement();
     }
 
-    const auto& genres = m_show.genres();
-    for (const QString& genre : genres) {
-        xml.writeTextElement("genre", genre);
-    }
-
+    KodiXml::writeStringsAsOneTagEach(xml, "genre", m_show.genres());
     KodiXml::writeStringsAsOneTagEach(xml, "tag", m_show.tags());
 
     if (writeThumbUrlsToNfo()) {

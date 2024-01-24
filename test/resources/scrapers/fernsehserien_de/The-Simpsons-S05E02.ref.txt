@@ -31,8 +31,8 @@ firstAired: 1999-10-02
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
-thumbnail: https://bilder.fernsehserien.de/epg/epg-archiv/2023/07/12/36697e2a489c466da77a317662e19791_b-w-970.jpg.jpg
+networks: (N=0)
+thumbnail: https://bilder.fernsehserien.de/epg/epg-archiv/2023/12/29/1cab57f153f64abba59b474141d0c5b5_b-w-970.jpg.jpg
 actors: (N>5)
  - id: 
    name: Dan Castellaneta

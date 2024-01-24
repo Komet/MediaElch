@@ -28,7 +28,7 @@ movie set: tmdbid= | name=
 movie set overview: 
 tagline: Alles andere kannste vergessen.
 ratings (N=1)
-  source=VideoBuster | rating=3.6 | votes=300 | min=0 | max=10
+  source=VideoBuster | rating=3.6 | votes=400 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 released: 2016-01-01

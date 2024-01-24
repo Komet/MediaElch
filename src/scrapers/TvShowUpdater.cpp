@@ -56,10 +56,10 @@ void TvShowUpdater::updateShow(TvShow* show, bool force)
 
         for (TvShowEpisode* episode : scrapedEpisodes) {
             // Map according to advanced settings
-            const QString network = helper::mapStudio(episode->network());
+            const QStringList networks = helper::mapStudio(episode->networks());
             const Certification certification = helper::mapCertification(episode->certification());
 
-            episode->setNetwork(network);
+            episode->setNetworks(networks);
             episode->setCertification(certification);
         }
 

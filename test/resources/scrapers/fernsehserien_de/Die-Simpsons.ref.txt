@@ -47,7 +47,7 @@ genres: (N<6)
   - Zeichentrick
 tags: (N=0)
 certification: 
-network: 
+networks: (N=0)
 episodeGuideUrl: 
 actors: (N>5)
  - id: 

@@ -28,7 +28,7 @@ firstAired: 2017-10-21
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: 
 actors: (N=0)
 streamDetails: <not loaded>
@@ -63,7 +63,7 @@ firstAired: 2018-12-28
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: 
 actors: (N=0)
 streamDetails: <not loaded>
@@ -104,7 +104,7 @@ firstAired: 2013-12-11
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: 
 actors: (N>20)
  - id: 
@@ -282,7 +282,7 @@ firstAired: 2013-12-18
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: 
 actors: (N=0)
 streamDetails: <not loaded>
@@ -326,7 +326,7 @@ firstAired: 2013-12-25
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: 
 actors: (N>10)
  - id: 
@@ -451,7 +451,7 @@ firstAired: 2014-08-20
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: 
 actors: (N>10)
  - id: 
@@ -564,7 +564,7 @@ firstAired: 2014-08-13
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: 
 actors: (N>10)
  - id: 
@@ -712,7 +712,7 @@ firstAired: 2014-08-27
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: 
 actors: (N>20)
  - id: 
@@ -877,7 +877,7 @@ firstAired: 2016-10-21
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: 
 actors: (N=0)
 streamDetails: <not loaded>
@@ -918,7 +918,7 @@ firstAired: 2016-10-21
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: 
 actors: (N=0)
 streamDetails: <not loaded>
@@ -959,7 +959,7 @@ firstAired: 2016-10-21
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: 
 actors: (N=0)
 streamDetails: <not loaded>
@@ -1000,7 +1000,7 @@ firstAired: 2016-10-21
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://bilder.fernsehserien.de/epg/epg-archiv/2023/06/27/8abb4a16afad1c293bc9223bb03dd5fea5b5eb68_b-w-970.jpg.jpg
 actors: (N=0)
 streamDetails: <not loaded>
@@ -1040,7 +1040,7 @@ firstAired: 2016-10-21
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: 
 actors: (N=0)
 streamDetails: <not loaded>
@@ -1087,7 +1087,7 @@ firstAired: 2016-10-21
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: 
 actors: (N=0)
 streamDetails: <not loaded>
@@ -1132,7 +1132,7 @@ firstAired: 2017-12-29
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://bilder.fernsehserien.de/epg/epg-archiv/2023/06/21/cb156451408e9ad77756c7b7361f7b5f80123b4f_b-w-970.jpg.jpg
 actors: (N=0)
 streamDetails: <not loaded>
@@ -1174,7 +1174,7 @@ firstAired: 2017-12-29
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: 
 actors: (N=0)
 streamDetails: <not loaded>
@@ -1218,7 +1218,7 @@ firstAired: 2017-12-29
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://bilder.fernsehserien.de/epg/epg-archiv/2023/07/12/26d30b7bd6ec47bc9d65b643923986e1_b-w-970.jpg.jpg
 actors: (N=0)
 streamDetails: <not loaded>
@@ -1263,7 +1263,7 @@ firstAired: 2017-12-29
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: 
 actors: (N=0)
 streamDetails: <not loaded>
@@ -1305,7 +1305,7 @@ firstAired: 2017-12-29
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: 
 actors: (N=0)
 streamDetails: <not loaded>
@@ -1346,7 +1346,7 @@ firstAired: 2017-12-29
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: 
 actors: (N=0)
 streamDetails: <not loaded>
@@ -1389,7 +1389,7 @@ firstAired: 2019-06-05
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: 
 actors: (N=0)
 streamDetails: <not loaded>
@@ -1438,7 +1438,7 @@ firstAired: 2019-06-05
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: 
 actors: (N=0)
 streamDetails: <not loaded>
@@ -1486,7 +1486,7 @@ firstAired: 2019-06-05
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: 
 actors: (N=0)
 streamDetails: <not loaded>
@@ -1521,7 +1521,7 @@ firstAired: 2023-06-15
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: 
 actors: (N=0)
 streamDetails: <not loaded>
@@ -1556,7 +1556,7 @@ firstAired: 2023-06-15
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: 
 actors: (N=0)
 streamDetails: <not loaded>
@@ -1591,7 +1591,7 @@ firstAired: 2023-06-15
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: 
 actors: (N=0)
 streamDetails: <not loaded>
@@ -1626,7 +1626,7 @@ firstAired: 2023-06-15
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: 
 actors: (N=0)
 streamDetails: <not loaded>
@@ -1661,7 +1661,7 @@ firstAired: 2023-06-15
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: 
 actors: (N=0)
 streamDetails: <not loaded>

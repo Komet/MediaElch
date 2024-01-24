@@ -30,7 +30,7 @@ firstAired: 2017-12-29
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: 
 actors: (N=0)
 streamDetails: <not loaded>

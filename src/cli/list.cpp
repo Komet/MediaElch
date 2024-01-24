@@ -155,7 +155,7 @@ void listTvShows()
             table.writeCell(show->tvmazeId().toString());
             table.writeCell(show->tvdbId().isValid() ? show->tvdbId().withPrefix() : "");
             table.writeCell(show->title());
-            table.writeCell(show->network());
+            table.writeCell(show->networks().join(", "));
         }
     }
 }
