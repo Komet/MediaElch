@@ -349,7 +349,9 @@ void TvShowMultiScrapeDialog::scrapeNext()
         if (show != nullptr) {
             const auto id = getShowIdentifierForScraper(*m_currentScraper, *show);
             if (id.str().isEmpty()) {
-                logToUser(tr("Skipping show \"%1\" because it does not have a valid ID."));
+                logToUser(tr("Skipping show \"%1\" because it does not have a valid ID and you requested only shows "
+                             "with an ID to be scraped.")
+                              .arg(show->title()));
                 scrapeNext();
                 return;
             }
