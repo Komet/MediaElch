@@ -34,12 +34,12 @@ genres: (N<6)
   - Comedy
 tags: (N=0)
 certification: 
-network: 
+networks: (N=0)
 episodeGuideUrl: 
 actors: (N>5)
  - id: 
    name: Sarah Chalke
-   role: Elliot Reid (197 Folgen, 2001–2010)
+   role: Elliot Reid (179 Folgen, 2001–2010)
    thumb: https://bilder.fernsehserien.de/gfx/person_1000/s/sarah-chalke.jpg
    order: 0
    imageHasChanged: false
@@ -51,7 +51,7 @@ actors: (N>5)
    imageHasChanged: false
  - id: 
    name: John C. McGinley
-   role: Dr. Perry Cox (186 Folgen, 2001–2010)
+   role: Dr. Perry Cox (182 Folgen, 2001–2010)
    thumb: https://bilder.fernsehserien.de/gfx/person_1000/j/john-c-mcginley.jpg
    order: 2
    imageHasChanged: false

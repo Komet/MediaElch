@@ -24,7 +24,7 @@ firstAired: 1998-10-09
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://m.media-amazon.com/images/M/MV5BMTU2NDQ1NTI2MF5BMl5BanBnXkFtZTgwNDMzMTM1NjM@._V1_UX400_CR0,0,400,225_AL_.jpg
 actors: (N=0)
 streamDetails: <not loaded>

@@ -114,31 +114,21 @@ void EpisodeXmlWriterGeneric::writeSingleEpisodeDetails(QXmlStreamWriter& xml, T
     xml.writeTextElement("playcount", QString("%1").arg(episode->playCount()));
     xml.writeTextElement("lastplayed", episode->lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
     xml.writeTextElement("aired", episode->firstAired().toString("yyyy-MM-dd"));
-    xml.writeTextElement("studio", episode->network());
+    KodiXml::writeStringsAsOneTagEach(xml, "studio", episode->networks());
     if (!episode->epBookmark().isNull() && QTime(0, 0, 0).secsTo(episode->epBookmark()) > 0) {
         xml.writeTextElement("epbookmark", QString("%1").arg(QTime(0, 0, 0).secsTo(episode->epBookmark())));
     }
 
-    const auto& writers = episode->writers();
-    for (const QString& writer : writers) {
-        xml.writeTextElement("credits", writer);
-    }
+    KodiXml::writeStringsAsOneTagEach(xml, "credits", episode->writers());
+    KodiXml::writeStringsAsOneTagEach(xml, "director", episode->directors());
 
-    const auto& directors = episode->directors();
-    for (const QString& director : directors) {
-        xml.writeTextElement("director", director);
-    }
     if (writeThumbUrlsToNfo() && !episode->thumbnail().isEmpty()) {
         xml.writeTextElement("thumb", episode->thumbnail().toString());
     }
 
     writeActors(xml, episode->actors());
 
-    // officially not supported but scraper providers start to support it
-    const auto& tags = episode->tags();
-    for (const QString& tag : tags) {
-        xml.writeTextElement("tag", tag);
-    }
+    KodiXml::writeStringsAsOneTagEach(xml, "tag", episode->tags());
 
     KodiXml::writeStreamDetails(xml, episode->streamDetails(), {});
 

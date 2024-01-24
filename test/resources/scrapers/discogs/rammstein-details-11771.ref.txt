@@ -129,8 +129,6 @@ discography: (N>90)
     year: 2003
   - title: Lichtspielhaus
     year: 2003
-  - title: Music Box
-    year: 2003
   - title: Reise, Reise Videospecial
     year: 2004
   - title: Interview Disc 1
@@ -142,8 +140,6 @@ discography: (N>90)
   - title: Platinum Collection '2003 - "Links" Greatest Hits 
     year: 2004
   - title: Reise,Reise Interview
-    year: 2004
-  - title: Mutter
     year: 2004
   - title: Ohne Dich
     year: 2004
@@ -229,6 +225,10 @@ discography: (N>90)
     year: 2022
   - title: Adieu
     year: 2022
+  - title: MTV / VOX
+    year: 
+  - title: Rammstein Tipo - Duplicamos La Imagen
+    year: 
 genres: (N=0)
 styles: (N=0)
 moods: (N=0)

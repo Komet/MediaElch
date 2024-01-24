@@ -106,7 +106,8 @@ TEST_CASE("TV show XML writer for Kodi v20", "[data][tvshow][kodi][nfo]")
         show.addGenre("Drama");
         show.addTag("BestTag");
         show.setStatus("Ended");
-        show.setNetwork("The WB");
+        show.addNetwork("The WB");
+        show.addNetwork("The other WB");
         {
             Poster banner;
             banner.thumbUrl = "http://thetvdb.com/banners/graphical/71035-g7.jpg";

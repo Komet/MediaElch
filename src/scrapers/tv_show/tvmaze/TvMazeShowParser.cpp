@@ -177,12 +177,13 @@ void TvMazeShowParser::parseInfos(const QJsonDocument& json)
 
     // -------------------------------------
     {
+        // TVMaze only supports one network.
         QString network = data["network"].toObject()["name"].toString();
         if (network.isEmpty()) {
             network = data["webChannel"].toObject()["name"].toString();
         }
         if (!network.isEmpty()) {
-            m_show.setNetwork(network);
+            m_show.addNetwork(network);
         }
     }
 }

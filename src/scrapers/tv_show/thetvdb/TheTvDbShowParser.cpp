@@ -25,7 +25,7 @@ void TheTvDbShowParser::parseInfos(const QJsonObject& json)
 
     // TheTVDb month and day don't have a leading zero
     m_show.setFirstAired(QDate::fromString(showData.value("firstAired").toString(), "yyyy-M-d"));
-    m_show.setNetwork(showData.value("network").toString());
+    m_show.addNetwork(showData.value("network").toString());
     m_show.setOverview(showData.value("overview").toString());
 
     {

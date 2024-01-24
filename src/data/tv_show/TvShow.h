@@ -69,7 +69,7 @@ public:
     QStringList tags() const;
     QVector<QString*> genresPointer();
     Certification certification() const;
-    QString network() const;
+    QStringList networks() const;
     QString overview() const;
     TmdbId tmdbId() const;
     TvDbId tvdbId() const;
@@ -132,7 +132,8 @@ public:
     void addGenre(QString genre);
     void addTag(QString tag);
     void setCertification(Certification certification);
-    void setNetwork(QString network);
+    void setNetworks(QStringList networks);
+    void addNetwork(QString network);
     void setOverview(QString overview);
     void setTmdbId(TmdbId id);
     void setTvdbId(TvDbId id);
@@ -252,7 +253,7 @@ public:
         virtual void exportGenres(const QStringList& genres) = 0;
         virtual void exportTags(const QStringList& tags) = 0;
         virtual void exportCertification(const Certification& certification) = 0;
-        virtual void exportNetwork(const QString& network) = 0;
+        virtual void exportNetworks(const QStringList& networks) = 0;
         virtual void exportEpisodeGuideUrl(const QString& episodeGuideUrl) = 0;
         virtual void exportActors(const Actors& actors) = 0;
         virtual void exportPosters(const QVector<Poster>& posters) = 0;
@@ -292,7 +293,7 @@ private:
     QStringList m_genres;
     QStringList m_tags;
     Certification m_certification;
-    QString m_network;
+    QStringList m_networks;
     QString m_overview;
     TmdbId m_tmdbId;
     TvDbId m_tvdbId;

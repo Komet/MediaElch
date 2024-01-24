@@ -30,7 +30,7 @@ genres: (N<6)
   - Fantasy
 tags: (N=0)
 certification: 
-network: 
+networks: (N=0)
 episodeGuideUrl: 
 actors: (N>5)
  - id: 
@@ -48,7 +48,9 @@ actors: (N>5)
  - id: 
    name: Emilia Clarke
    role: Daenerys Targaryen
-   thumb: https://bilder.fernsehserien.de/gfx/person_1000/e/emilia-clarke.jpg
+   thumb:
+    https://bilder.fernsehserien.de/gfx/person_1000/e/emilia-clarke-46506-1704360411
+    .jpg
    order: 2
    imageHasChanged: false
  - id: 

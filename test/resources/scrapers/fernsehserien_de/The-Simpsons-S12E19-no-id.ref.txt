@@ -30,7 +30,7 @@ firstAired: 2002-02-04
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://bilder.fernsehserien.de/epg/epg-archiv/2023/07/13/e59b825d2c9947a888dd410bd0701b01_b-w-970.jpg.jpg
 actors: (N<6)
  - id: 

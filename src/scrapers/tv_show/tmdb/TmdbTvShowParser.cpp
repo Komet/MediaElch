@@ -205,13 +205,11 @@ void TmdbTvShowParser::parseInfos(const QJsonDocument& json, const Locale& local
     // -------------------------------------
     {
         QJsonArray networks = data["networks"].toArray();
-        QStringList gatheredNetworks;
         for (QJsonValueRef val : networks) {
             QString name = val.toObject()["name"].toString();
-            gatheredNetworks.append(name);
-        }
-        if (!gatheredNetworks.isEmpty()) {
-            m_show.setNetwork(gatheredNetworks.join(", "));
+            if (!name.isEmpty()) {
+                m_show.addNetwork(name);
+            }
         }
     }
 

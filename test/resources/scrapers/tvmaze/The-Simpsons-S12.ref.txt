@@ -32,7 +32,7 @@ firstAired: 2000-11-01
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/69/173084.jpg
 actors: (N=0)
 streamDetails: <not loaded>
@@ -71,7 +71,7 @@ firstAired: 2000-11-05
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/42/107421.jpg
 actors: (N=0)
 streamDetails: <not loaded>
@@ -112,7 +112,7 @@ firstAired: 2000-11-12
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/42/106357.jpg
 actors: (N=0)
 streamDetails: <not loaded>
@@ -151,7 +151,7 @@ firstAired: 2000-11-19
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/69/173083.jpg
 actors: (N=0)
 streamDetails: <not loaded>
@@ -190,7 +190,7 @@ firstAired: 2000-11-26
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/69/173082.jpg
 actors: (N=0)
 streamDetails: <not loaded>
@@ -229,7 +229,7 @@ firstAired: 2000-12-03
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/41/103758.jpg
 actors: (N=0)
 streamDetails: <not loaded>
@@ -267,7 +267,7 @@ firstAired: 2000-12-10
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/44/110913.jpg
 actors: (N=0)
 streamDetails: <not loaded>
@@ -305,7 +305,7 @@ firstAired: 2000-12-17
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/69/173078.jpg
 actors: (N=0)
 streamDetails: <not loaded>
@@ -344,7 +344,7 @@ firstAired: 2001-01-07
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/69/173076.jpg
 actors: (N=0)
 streamDetails: <not loaded>
@@ -382,7 +382,7 @@ firstAired: 2001-01-14
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/69/173075.jpg
 actors: (N=0)
 streamDetails: <not loaded>
@@ -423,7 +423,7 @@ firstAired: 2001-02-04
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/46/117222.jpg
 actors: (N=0)
 streamDetails: <not loaded>
@@ -461,7 +461,7 @@ firstAired: 2001-02-11
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/69/173074.jpg
 actors: (N=0)
 streamDetails: <not loaded>
@@ -501,7 +501,7 @@ firstAired: 2001-02-18
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/69/173073.jpg
 actors: (N=0)
 streamDetails: <not loaded>
@@ -540,7 +540,7 @@ firstAired: 2001-02-25
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/42/106656.jpg
 actors: (N=0)
 streamDetails: <not loaded>
@@ -579,7 +579,7 @@ firstAired: 2001-03-04
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/69/173072.jpg
 actors: (N=0)
 streamDetails: <not loaded>
@@ -618,7 +618,7 @@ firstAired: 2001-03-11
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/49/124221.jpg
 actors: (N=0)
 streamDetails: <not loaded>
@@ -657,7 +657,7 @@ firstAired: 2001-04-01
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/68/172197.jpg
 actors: (N=0)
 streamDetails: <not loaded>
@@ -696,7 +696,7 @@ firstAired: 2001-04-29
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/69/173071.jpg
 actors: (N=0)
 streamDetails: <not loaded>
@@ -735,7 +735,7 @@ firstAired: 2001-05-06
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/69/173070.jpg
 actors: (N=0)
 streamDetails: <not loaded>
@@ -774,7 +774,7 @@ firstAired: 2001-05-13
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/69/173069.jpg
 actors: (N=0)
 streamDetails: <not loaded>
@@ -813,7 +813,7 @@ firstAired: 2001-05-20
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/69/173068.jpg
 actors: (N=0)
 streamDetails: <not loaded>

@@ -37,7 +37,9 @@ QString mapGenre(const QString& text);
 QStringList mapGenre(const QStringList& genres);
 Certification mapCertification(const Certification& certification);
 QString mapStudio(const QString& text);
+QStringList mapStudio(const QStringList& studio);
 QString mapCountry(const QString& text);
+QStringList mapCountry(const QStringList& countries);
 
 QString formatFileSizeBinary(double size, const QLocale& locale);
 QString formatFileSize(double size, const QLocale& locale);

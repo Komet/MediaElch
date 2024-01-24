@@ -353,7 +353,7 @@ void TvShowWidgetTvShow::updateTvShowInfo()
     ui->top250->setValue(m_show->top250());
     ui->firstAired->setDate(m_show->firstAired());
     ui->lblMissingFirstAired->setVisible(!m_show->firstAired().isValid());
-    ui->studio->setText(m_show->network());
+    ui->studio->setText(m_show->networks().join(", "));
     ui->overview->setPlainText(m_show->overview());
     ui->runtime->setValue(static_cast<int>(m_show->runtime().count()));
     if (m_show->status() == "Continuing") {
@@ -833,8 +833,6 @@ void TvShowWidgetTvShow::onDownloadsLeft(int left, DownloadManagerElement elem)
         Constants::TvShowProgressMessageId + elem.show->showId());
 }
 
-/*** add/remove/edit Actors, Genres, Countries and Studios ***/
-
 /**
  * \brief Adds a genre
  */
@@ -1114,18 +1112,16 @@ void TvShowWidgetTvShow::onFirstAiredChange(QDate date)
     ui->buttonRevert->setVisible(true);
 }
 
-/**
- * \brief Marks the show as changed when the studio has changed
- */
-void TvShowWidgetTvShow::onStudioChange(QString studio)
+void TvShowWidgetTvShow::onStudioChange(QString studios)
 {
-    m_show->setNetwork(std::move(studio));
+    QStringList networks = studios.split(",", Qt::SkipEmptyParts);
+    for (auto& network : networks) {
+        network = network.trimmed();
+    }
+    m_show->setNetworks(networks);
     ui->buttonRevert->setVisible(true);
 }
 
-/**
- * \brief Marks the show as changed when the overview has changed
- */
 void TvShowWidgetTvShow::onOverviewChange()
 {
     m_show->setOverview(ui->overview->toPlainText());

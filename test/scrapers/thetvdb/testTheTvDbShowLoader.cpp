@@ -61,7 +61,7 @@ TEST_CASE("TheTvDb scrapes show details", "[show][TheTvDb][load_data]")
         CHECK(show.imdbId() == ImdbId("tt0285403"));
         CHECK(show.certification() == Certification("TV-PG"));
         CHECK(show.firstAired() == QDate(2001, 10, 2));
-        CHECK(show.network() == "ABC (US)"); // Could also be NBC
+        CHECK_THAT(show.networks(), Contains("ABC (US)")); // Could also be NBC
         CHECK_THAT(show.overview(), Contains("Scrubs focuses on the lives of several people"));
 
         REQUIRE_FALSE(show.ratings().isEmpty());

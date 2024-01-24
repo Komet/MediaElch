@@ -32,7 +32,7 @@ firstAired: 2001-05-06
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://image.tmdb.org/t/p/original/2Bay9dWHz1uW3gE2hwZsjeQQ6bl.jpg
 actors: (N>5)
  - id: 198

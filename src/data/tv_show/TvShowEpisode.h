@@ -79,7 +79,7 @@ public:
     QStringList tags() const;
     QTime epBookmark() const;
     Certification certification() const;
-    QString network() const;
+    QStringList networks() const;
     QString seasonString() const;
     QString seasonName() const;
     QString episodeString() const;
@@ -121,7 +121,8 @@ public:
     void setFirstAired(QDate firstAired);
     void addTag(QString tag);
     void setCertification(Certification certification);
-    void setNetwork(QString network);
+    void setNetworks(QStringList network);
+    void addNetwork(QString network);
     void setThumbnail(QUrl url);
     void setThumbnailImage(QByteArray thumbnail);
     void setEpBookmark(QTime epBookmark);
@@ -212,7 +213,7 @@ public:
         virtual void exportTags(const QStringList& tags) = 0;
         virtual void exportEpBookmark(const QTime& epBookmark) = 0;
         virtual void exportCertification(const Certification& certification) = 0;
-        virtual void exportNetwork(const QString& network) = 0;
+        virtual void exportNetworks(const QStringList& networks) = 0;
         virtual void exportThumbnail(const QUrl& thumbnail) = 0;
         virtual void exportActors(const Actors& actors) = 0;
         virtual void exportStreamDetails(const StreamDetails* streamDetails) = 0;
@@ -251,7 +252,7 @@ private:
     QStringList m_tags;
     QTime m_epBookmark;
     Certification m_certification;
-    QString m_network;
+    QStringList m_networks;
     QUrl m_thumbnail;
     QByteArray m_thumbnailImage;
     EpisodeModelItem* m_modelItem = nullptr;

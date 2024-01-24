@@ -247,7 +247,7 @@ void CsvTvShowExport::exportTvShows(const QVector<TvShow*>& shows, std::function
             {s(Field::ShowSortTitle), show->sortTitle()},
             {s(Field::ShowOriginalTitle), show->originalTitle()},
             {s(Field::ShowFirstAired), show->firstAired().toString(Qt::ISODate)},
-            {s(Field::ShowNetwork), show->network()},
+            {s(Field::ShowNetwork), show->networks().join(", ")},
             {s(Field::ShowCertification), show->certification().toString()},
             {s(Field::ShowGenres), show->genres().join(", ")},
             {s(Field::ShowTags), show->tags().join(", ")},

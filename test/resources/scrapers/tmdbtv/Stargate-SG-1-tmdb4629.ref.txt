@@ -28,13 +28,15 @@ genres: (N<6)
   - Mystery
 tags: (N>5)
   - space travel
-  - alien
   - space
   - travel
+  - alien
   - alien planet
   - ... and <6 more
 certification: TV-PG
-network: Showtime, Syfy
+networks: (N<6)
+  - Showtime
+  - Syfy
 episodeGuideUrl: 
 actors: (N>800)
  - id: 26085
@@ -61,16 +63,16 @@ actors: (N>800)
    thumb: https://image.tmdb.org/t/p/original/4YkOrSUmfKljqTMwGIo50oviKe1.jpg
    order: 3
    imageHasChanged: false
- - id: 51800
-   name: Teryl Rothery
-   role: Dr. Janet Fraiser
-   thumb: https://image.tmdb.org/t/p/original/16rUSnTH56cKatjd6kjEYEfU4cA.jpg
-   order: 4
-   imageHasChanged: false
  - id: 15863
    name: Don S. Davis
    role: George Hammond
    thumb: https://image.tmdb.org/t/p/original/gxUvCXIFxAMqcWgosErBP5rHKDw.jpg
+   order: 4
+   imageHasChanged: false
+ - id: 51800
+   name: Teryl Rothery
+   role: Janet Fraiser
+   thumb: https://image.tmdb.org/t/p/original/16rUSnTH56cKatjd6kjEYEfU4cA.jpg
    order: 5
    imageHasChanged: false
  - id: 16180
@@ -112,9 +114,9 @@ actors: (N>800)
  - id: 118463
    name: Peter DeLuise
    role:
-    Director / Peter DeLuise, Airman, SF Guard (Uncredited), Man Leaving Cafe, Inter
-    viewer, Free Jaffa (Voice only) (Uncredited), Machine Gun Guard, Young Urgo in U
-    niform, Screaming Villager, Lieutenant, Tok'ra Guard
+    Director / Peter DeLuise, Airman, SF Guard (Uncredited), Young Urgo in Uniform, 
+    Tok'ra Guard, Lieutenant, Man Leaving Cafe, Screaming Villager, Interviewer, Mac
+    hine Gun Guard, Free Jaffa (Voice only) (Uncredited)
    thumb: https://image.tmdb.org/t/p/original/sLkSOm6HBLB4VCfshQLdSEq63tr.jpg
    order: 12
    imageHasChanged: false
@@ -136,32 +138,32 @@ actors: (N>800)
    thumb: https://image.tmdb.org/t/p/original/bD08h8S2wmXmw6MDD2mHuRO4J2B.jpg
    order: 15
    imageHasChanged: false
+ - id: 111378
+   name: Cliff Simon
+   role: Ba'al
+   thumb: https://image.tmdb.org/t/p/original/e8t2fD2kFUMQBJDRm2ehcvdCxBJ.jpg
+   order: 16
+   imageHasChanged: false
  - id: 59245
    name: Laara Sadiq
-   role: Technician #2, Technican, Technician Davis, Technician
+   role: Technician #2, Technician Davis, Technican, Technician
    thumb: https://image.tmdb.org/t/p/original/l7MkydwslaXo1EmYrRpJARnaFKs.jpg
-   order: 16
+   order: 17
    imageHasChanged: false
  - id: 1366510
    name: Fraser Aitcheson
    role:
-    Hathor's Jaffa, Jaffa Warrior, Jaffa, Ares' Jaffa commander (Uncredited), Jaffa 
-    Commander, Anubis' Jaffa, Free Jaffa (Uncredited), Orderly, Dakara Jaffa 3 (Uncr
-    edited), Free Jaffa 2 (Uncredited), Jaffa Guard, Apophis' Red Jaffa, Tagrean Wor
-    ker
+    Hathor's Jaffa, Jaffa Commander, Jaffa Warrior, Dakara Jaffa 3 (Uncredited), Anu
+    bis' Jaffa, Free Jaffa 2 (Uncredited), Jaffa Guard, Apophis' Red Jaffa, Orderly,
+     Tagrean Worker, Jaffa, Ares' Jaffa commander (Uncredited), Free Jaffa (Uncredit
+    ed)
    thumb: https://image.tmdb.org/t/p/original/j0fou5tZvXHe3GcVr24UnYQLg6S.jpg
-   order: 17
+   order: 18
    imageHasChanged: false
  - id: 780
    name: Ronny Cox
    role: Senator Robert Kinsey
    thumb: https://image.tmdb.org/t/p/original/cKkVkqft2RacSDhsKxO8nMFgeAd.jpg
-   order: 18
-   imageHasChanged: false
- - id: 158575
-   name: Tom McBeath
-   role: Harry Maybourne
-   thumb: https://image.tmdb.org/t/p/original/vKeYC2KlMiq4S48ZafMll7jl9CJ.jpg
    order: 19
    imageHasChanged: false
   - ... and >800 more

@@ -69,7 +69,10 @@ static void copyDetailToShow(TvShow& target, TvShow& source, ShowScraperInfo det
         break;
     }
     case ShowScraperInfo::Network: {
-        target.setNetwork(source.network());
+        const auto networks = source.networks();
+        for (const QString& network : networks) {
+            target.addNetwork(network);
+        }
         break;
     }
     case ShowScraperInfo::Overview: {
@@ -197,7 +200,10 @@ static void copyDetailToEpisode(TvShowEpisode& target, const TvShowEpisode& sour
         break;
     }
     case EpisodeScraperInfo::Network: {
-        target.setNetwork(source.network());
+        const auto& networks = source.networks();
+        for (const QString& network : networks) {
+            target.addNetwork(network);
+        }
         break;
     }
     case EpisodeScraperInfo::Overview: {

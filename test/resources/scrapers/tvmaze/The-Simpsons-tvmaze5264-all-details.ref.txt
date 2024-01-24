@@ -27,7 +27,7 @@ firstAired: 2001-05-06
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/69/173070.jpg
 actors: (N=0)
 streamDetails: <not loaded>

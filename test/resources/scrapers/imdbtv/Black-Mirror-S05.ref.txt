@@ -29,7 +29,7 @@ firstAired: 2019-06-05
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://m.media-amazon.com/images/M/MV5BOWRlMWM4MTItMTNhMi00ZjgwLWIzYTEtMDI1MjNmOTlhYjA4XkEyXkFqcGdeQXVyNDg4NjY5OTQ@._V1_UX400_CR0,0,400,225_AL_.jpg
 actors: (N=0)
 streamDetails: <not loaded>
@@ -65,7 +65,7 @@ firstAired: 2019-06-05
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://m.media-amazon.com/images/M/MV5BZmVkYjk1ODQtODk5OC00ZGY1LTg3YzMtYTBiYjg5MGEwYTk1XkEyXkFqcGdeQXVyNDg4NjY5OTQ@._V1_UX400_CR0,0,400,225_AL_.jpg
 actors: (N=0)
 streamDetails: <not loaded>
@@ -101,7 +101,7 @@ firstAired: 2019-06-05
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://m.media-amazon.com/images/M/MV5BOTQ1N2I2OTctNWE4NC00YjBiLWE5ZGItZWRjMjNlOGZmNmU0XkEyXkFqcGdeQXVyNDg4NjY5OTQ@._V1_UX400_CR0,0,400,225_AL_.jpg
 actors: (N=0)
 streamDetails: <not loaded>

@@ -361,7 +361,7 @@ void SimpleEngine::replaceVars(QString& m, const TvShow* show, bool subDir)
     m.replace("{{ TVSHOW.CERTIFICATION }}", show->certification().toString().toHtmlEscaped());
     m.replace(
         "{{ TVSHOW.FIRST_AIRED }}", show->firstAired().isValid() ? show->firstAired().toString("yyyy-MM-dd") : "");
-    m.replace("{{ TVSHOW.STUDIO }}", show->network().toHtmlEscaped());
+    m.replace("{{ TVSHOW.STUDIO }}", show->networks().join(", ").toHtmlEscaped());
     m.replace("{{ TVSHOW.PLOT }}", show->overview().toHtmlEscaped().replace("\n", "<br />"));
     m.replace("{{ TVSHOW.TAGS }}", show->tags().join(", ").toHtmlEscaped());
     m.replace("{{ TVSHOW.GENRES }}", show->genres().join(", ").toHtmlEscaped());
@@ -451,7 +451,7 @@ void SimpleEngine::replaceVars(QString& m, const TvShowEpisode* episode, bool su
         episode->firstAired().isValid() ? episode->firstAired().toString("yyyy-MM-dd") : "");
     m.replace("{{ EPISODE.LAST_PLAYED }}",
         episode->lastPlayed().isValid() ? episode->lastPlayed().toString("yyyy-MM-dd hh:mm") : "");
-    m.replace("{{ EPISODE.STUDIO }}", episode->network().toHtmlEscaped());
+    m.replace("{{ EPISODE.STUDIO }}", episode->networks().join(", ").toHtmlEscaped());
     m.replace("{{ EPISODE.PLOT }}", episode->overview().toHtmlEscaped().replace("\n", "<br />"));
     m.replace("{{ EPISODE.WRITERS }}", episode->writers().join(", ").toHtmlEscaped());
     m.replace("{{ EPISODE.DIRECTORS }}", episode->directors().join(", ").toHtmlEscaped());

@@ -181,8 +181,9 @@ bool EpisodeXmlReader::parseNfoDom(QDomElement episodeDetails)
             }
         }
     }
-    if (!episodeDetails.elementsByTagName("studio").isEmpty()) {
-        m_episode.setNetwork(episodeDetails.elementsByTagName("studio").at(0).toElement().text());
+
+    for (int i = 0, n = episodeDetails.elementsByTagName("studio").size(); i < n; i++) {
+        m_episode.addNetwork(episodeDetails.elementsByTagName("studio").at(i).toElement().text());
     }
 
     // tags are officially not yet supported, even by Kodi 19 but scraper providers start

@@ -76,7 +76,7 @@ private slots:
     void onUserRatingChange(double value);
     void onTop250Change(int value);
     void onFirstAiredChange(QDate date);
-    void onStudioChange(QString studio);
+    void onStudioChange(QString studios);
     void onOverviewChange();
     void onActorEdited(QTableWidgetItem* item);
     void onRuntimeChange(int runtime);

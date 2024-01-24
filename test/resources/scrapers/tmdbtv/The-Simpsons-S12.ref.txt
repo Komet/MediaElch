@@ -28,9 +28,9 @@ overview:
     a dolphin in "Night of the Dolphin."
 writers: (N<6)
   - Don Payne
-  - Rob LaZebnik
   - Carolyn Omine
   - John Frink
+  - Rob LaZebnik
 directors: (N=1)
   - Matthew Nastuk
 playCount: 0
@@ -39,7 +39,7 @@ firstAired: 2000-11-01
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://image.tmdb.org/t/p/original/w5WbT0dzggTabsPM9fTqzxvJIQA.jpg
 actors: (N>5)
  - id: 6036
@@ -122,7 +122,7 @@ firstAired: 2000-11-05
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://image.tmdb.org/t/p/original/7KqfXGaCAvTVRne3nMxDdGSQqKS.jpg
 actors: (N>10)
  - id: 75341
@@ -230,13 +230,13 @@ firstAired: 2000-11-12
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://image.tmdb.org/t/p/original/eVB8FoLCUQOJXPl9uIrSwILUH3.jpg
 actors: (N>10)
  - id: 4690
    name: Christopher Walken
    role: 
-   thumb: https://image.tmdb.org/t/p/original/3Ht7zld9UcnHyOa7WY7HrNjlJn6.jpg
+   thumb: https://image.tmdb.org/t/p/original/ApgDL7nudR9T2GpjCG4vESgymO2.jpg
    order: 0
    imageHasChanged: false
  - id: 49819
@@ -266,7 +266,7 @@ actors: (N>10)
  - id: 69597
    name: Drew Barrymore
    role: 
-   thumb: https://image.tmdb.org/t/p/original/mVQdb6w6gXmLZ6nZ3K9Fw3vzawM.jpg
+   thumb: https://image.tmdb.org/t/p/original/w0lfuDg0vwqtmF3FUr9oiQvFS4b.jpg
    order: 5
    imageHasChanged: false
  - id: 3266
@@ -349,7 +349,7 @@ firstAired: 2000-11-19
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://image.tmdb.org/t/p/original/fHmxaDYvXCmsZqs6WulMamdu9Wi.jpg
 actors: (N>5)
  - id: 11866
@@ -432,7 +432,7 @@ firstAired: 2000-11-26
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://image.tmdb.org/t/p/original/lAOtgJtTADRrr5gxNdh4kEuepD5.jpg
 actors: (N>5)
  - id: 44051
@@ -524,7 +524,7 @@ firstAired: 2000-12-03
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://image.tmdb.org/t/p/original/gjBbpzQ3b3E7fHb5gkMCHsOImFQ.jpg
 actors: (N>5)
  - id: 2463
@@ -613,7 +613,7 @@ firstAired: 2000-12-10
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://image.tmdb.org/t/p/original/7BGkc4yGkjdTxo4L3d4JvqotGcQ.jpg
 actors: (N>5)
  - id: 819
@@ -696,7 +696,7 @@ firstAired: 2000-12-17
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://image.tmdb.org/t/p/original/qkYS65fLQl7ViimNkGabSlCVlQu.jpg
 actors: (N>5)
  - id: 6035
@@ -787,7 +787,7 @@ firstAired: 2001-01-07
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://image.tmdb.org/t/p/original/5uTFgcEU2TkH4rTdgWE3tusXZs6.jpg
 actors: (N>5)
  - id: 198
@@ -863,13 +863,13 @@ firstAired: 2001-01-14
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://image.tmdb.org/t/p/original/s5lvq1sIdICOqX0kKzdAWUQNdCT.jpg
 actors: (N>10)
  - id: 2232
    name: Michael Keaton
    role: Jack Crowley (voice)
-   thumb: https://image.tmdb.org/t/p/original/82rxrGxOqQW2NjKsIiNbDYHFfmb.jpg
+   thumb: https://image.tmdb.org/t/p/original/baeHNv3qrVsnApuKbZXiJOhqMnw.jpg
    order: 0
    imageHasChanged: false
  - id: 119713
@@ -971,7 +971,7 @@ firstAired: 2001-02-04
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://image.tmdb.org/t/p/original/u7nlutZgBVe7QbSsNrYbGa30a8x.jpg
 actors: (N>5)
  - id: 11161
@@ -1058,7 +1058,7 @@ firstAired: 2001-02-11
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://image.tmdb.org/t/p/original/zPO8DEthCIGNpWErs3bvRuT4emQ.jpg
 actors: (N>10)
  - id: 1214573
@@ -1173,7 +1173,7 @@ firstAired: 2001-02-18
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://image.tmdb.org/t/p/original/p2zf41UdmgoPBXS0xSrIMldqOFq.jpg
 actors: (N>5)
  - id: 75341
@@ -1261,7 +1261,7 @@ firstAired: 2001-02-25
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://image.tmdb.org/t/p/original/9MTd6DWjQccIztGqN3IXd3wZ4v0.jpg
 actors: (N>10)
  - id: 269848
@@ -1273,7 +1273,7 @@ actors: (N>10)
  - id: 12111
    name: Justin Timberlake
    role: Justin Timberlake (voice)
-   thumb: https://image.tmdb.org/t/p/original/6Yk5t9RwkdkAT8Qv45934Eez2CA.jpg
+   thumb: https://image.tmdb.org/t/p/original/hFfgtpXWlsbuzgwBKdRWdvrcRad.jpg
    order: 1
    imageHasChanged: false
  - id: 77073
@@ -1369,7 +1369,7 @@ firstAired: 2001-03-04
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://image.tmdb.org/t/p/original/qWzLc6ln1aGwtPGu6NcUpQwYkx0.jpg
 actors: (N>5)
  - id: 6035
@@ -1466,7 +1466,7 @@ firstAired: 2001-03-11
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://image.tmdb.org/t/p/original/9jlTs2EYzfgGG86kzO82jLnk9Qu.jpg
 actors: (N>5)
  - id: 129332
@@ -1567,7 +1567,7 @@ firstAired: 2001-04-01
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://image.tmdb.org/t/p/original/2muVedvhUd87ZFWmEfnS9Y8WT1d.jpg
 actors: (N>5)
  - id: 198
@@ -1623,7 +1623,7 @@ tvmazeId:
 title: Trilogy of Error
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=7.8 | votes=20 | min=0 | max=10
+  source=tmdb | rating=7.6 | votes=20 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -1644,7 +1644,7 @@ firstAired: 2001-04-29
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://image.tmdb.org/t/p/original/2rRKXgrKzGJncVQkFtzQpvZ9RkU.jpg
 actors: (N>5)
  - id: 51391
@@ -1744,7 +1744,7 @@ firstAired: 2001-05-06
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://image.tmdb.org/t/p/original/2Bay9dWHz1uW3gE2hwZsjeQQ6bl.jpg
 actors: (N>5)
  - id: 129662
@@ -1839,7 +1839,7 @@ firstAired: 2001-05-13
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://image.tmdb.org/t/p/original/kYNauorldGvl55Vx0x6E7mbP9Gy.jpg
 actors: (N>5)
  - id: 198
@@ -1921,7 +1921,7 @@ firstAired: 2001-05-20
 tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
-network: 
+networks: (N=0)
 thumbnail: https://image.tmdb.org/t/p/original/lNcBNNaPp3Uk14iIJuQkpIjNfJM.jpg
 actors: (N>5)
  - id: 6036
