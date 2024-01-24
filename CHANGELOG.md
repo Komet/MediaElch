@@ -16,6 +16,7 @@
 - debian: Now uses Qt 6 on Ubuntu Lunar (23.04) and later (#1697)
   Thank you, Philipp (GitHub user `iluminat23`) for this change!
 - UI: Navigation and menu bar icons now have a hover effect.
+- IMDb: The year in search results works again.
 
 ### Removed
 

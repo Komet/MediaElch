@@ -82,8 +82,8 @@ void ImdbMovieSearchJob::parseIdFromMovieReferencePage(const QString& html)
 
 void ImdbMovieSearchJob::parseSearch(const QString& html)
 {
-    // Search result table from "https://www.imdb.com/search/title/?title=..."
-    static const QRegularExpression rx(R"(<a href="/title/(tt[\d]+)/[^>]+>(.+)</a>.*(\d{4}))",
+    // Search result table from "https://www.imdb.com/search/title/?title=Hercules"
+    static const QRegularExpression rx(R"(<a href="/title/(tt[\d]+)/[^>]+>(.+)</a>.*(\d{4})[–<])",
         QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
     // Entries are numbered: Remove Number.
     static const QRegularExpression listNo(

@@ -77,7 +77,7 @@ QVector<ShowSearchJob::Result> ImdbTvShowSearchJob::parseSearch(const QString& h
     // TODO: De-duplicate?
 
     // Search result table from "https://www.imdb.com/search/title/?title=..."
-    static const QRegularExpression rx(R"(<a href="/title/(tt[\d]+)/[^>]+>(.+)</a>.*(\d{4}))",
+    static const QRegularExpression rx(R"(<a href="/title/(tt[\d]+)/[^>]+>(.+)</a>.*(\d{4})[–<])",
         QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
     // Entries are numbered: Remove Number.
     static const QRegularExpression listNo(
