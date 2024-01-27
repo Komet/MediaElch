@@ -26,8 +26,6 @@ public:
 signals:
     void sigRemoveImage(QByteArray);
     void sigRemoveImage(QString);
-    /// \deprecated Use sigImagesDropped() instead.
-    void sigImageDropped(QUrl imageUrl);
     void sigImagesDropped(QVector<QUrl> imageUrls);
 
 protected:

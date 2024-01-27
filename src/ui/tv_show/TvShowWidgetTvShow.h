@@ -84,7 +84,7 @@ private slots:
     void onRemoveExtraFanart(QString file);
     void onRemoveExtraFanart(QByteArray image);
     void onAddExtraFanart();
-    void onExtraFanartDropped(QUrl imageUrl);
+    void onExtraFanartDropped(QVector<QUrl> imageUrls);
 
     void onImdbIdOpen();
     void onTmdbIdOpen();

@@ -111,7 +111,7 @@ ConcertWidget::ConcertWidget(QWidget* parent) : QWidget(parent), ui(new Ui::Conc
         this,
         elchOverload<QString>(&ConcertWidget::onRemoveExtraFanart));
     connect(ui->btnAddExtraFanart, &QAbstractButton::clicked, this, &ConcertWidget::onAddExtraFanart);
-    connect(ui->fanarts, &ImageGallery::sigImageDropped, this, &ConcertWidget::onExtraFanartDropped);
+    connect(ui->fanarts, &ImageGallery::sigImagesDropped, this, &ConcertWidget::onExtraFanartDropped);
 
     QPainter p;
     QPixmap revert(":/img/arrow_circle_left.png");
@@ -607,14 +607,14 @@ void ConcertWidget::onAddExtraFanart()
     }
 }
 
-void ConcertWidget::onExtraFanartDropped(QUrl imageUrl)
+void ConcertWidget::onExtraFanartDropped(QVector<QUrl> imageUrls)
 {
     if (m_concert == nullptr) {
         return;
     }
     ui->fanarts->setLoading(true);
     emit setActionSaveEnabled(false, MainWidgets::Concerts);
-    m_concert->controller()->loadImages(ImageType::ConcertExtraFanart, QVector<QUrl>() << imageUrl);
+    m_concert->controller()->loadImages(ImageType::ConcertExtraFanart, imageUrls);
     onInfoChanged();
 }
 

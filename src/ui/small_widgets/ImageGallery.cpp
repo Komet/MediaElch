@@ -382,7 +382,6 @@ void ImageGallery::dropEvent(QDropEvent* event)
         }
     }
     if (!imageUrls.isEmpty()) {
-        emit sigImageDropped(imageUrls.first());
         emit sigImagesDropped(imageUrls);
     }
 }

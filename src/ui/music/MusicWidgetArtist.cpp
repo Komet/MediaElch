@@ -92,7 +92,7 @@ MusicWidgetArtist::MusicWidgetArtist(QWidget* parent) : QWidget(parent), ui(new 
             this, elchOverload<QString>(&MusicWidgetArtist::onRemoveExtraFanart));
 
     connect(ui->btnAddExtraFanart, &QAbstractButton::clicked,          this, &MusicWidgetArtist::onAddExtraFanart);
-    connect(ui->fanarts,           &ImageGallery::sigImageDropped,     this, &MusicWidgetArtist::onExtraFanartDropped);
+    connect(ui->fanarts,           &ImageGallery::sigImagesDropped,    this, &MusicWidgetArtist::onExtraFanartDropped);
 
     connect(ui->btnAddAlbum,    &QAbstractButton::clicked,  this, &MusicWidgetArtist::onAddAlbum);
     connect(ui->btnRemoveAlbum, &QAbstractButton::clicked,  this, &MusicWidgetArtist::onRemoveAlbum);
@@ -563,14 +563,14 @@ void MusicWidgetArtist::onAddExtraFanart()
     }
 }
 
-void MusicWidgetArtist::onExtraFanartDropped(QUrl imageUrl)
+void MusicWidgetArtist::onExtraFanartDropped(QVector<QUrl> imageUrls)
 {
     if (m_artist.isNull()) {
         return;
     }
     ui->fanarts->setLoading(true);
     emit sigSetActionSaveEnabled(false, MainWidgets::Music);
-    m_artist->controller()->loadImages(ImageType::ArtistExtraFanart, QVector<QUrl>() << imageUrl);
+    m_artist->controller()->loadImages(ImageType::ArtistExtraFanart, imageUrls);
     ui->buttonRevert->setVisible(true);
 }
 

@@ -145,7 +145,7 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget* parent) :
         this,
         elchOverload<QString>(&TvShowWidgetTvShow::onRemoveExtraFanart));
     connect(ui->btnAddExtraFanart, &QAbstractButton::clicked, this, &TvShowWidgetTvShow::onAddExtraFanart);
-    connect(ui->fanarts, &ImageGallery::sigImageDropped, this, &TvShowWidgetTvShow::onExtraFanartDropped);
+    connect(ui->fanarts, &ImageGallery::sigImagesDropped, this, &TvShowWidgetTvShow::onExtraFanartDropped);
 
     onClear();
 
@@ -1178,18 +1178,23 @@ void TvShowWidgetTvShow::onAddExtraFanart()
     }
 }
 
-void TvShowWidgetTvShow::onExtraFanartDropped(QUrl imageUrl)
+void TvShowWidgetTvShow::onExtraFanartDropped(QVector<QUrl> imageUrls)
 {
     if (m_show == nullptr) {
         return;
     }
-    emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
-    DownloadManagerElement d;
-    d.imageType = ImageType::TvShowExtraFanart;
-    d.url = std::move(imageUrl);
-    d.show = m_show;
-    m_posterDownloadManager->addDownload(d);
+
+    for (const QUrl& url : imageUrls) {
+        DownloadManagerElement d;
+        d.imageType = ImageType::TvShowExtraFanart;
+        d.url = url;
+        d.show = m_show;
+        m_posterDownloadManager->addDownload(d);
+    }
+
     ui->buttonRevert->setVisible(true);
+
+    emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
 }
 
 void TvShowWidgetTvShow::onDownloadTune()
