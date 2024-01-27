@@ -7,6 +7,7 @@
 #include <QPointer>
 #include <QString>
 #include <QTableWidgetItem>
+#include <QVector>
 #include <QWidget>
 
 namespace Ui {
@@ -54,7 +55,7 @@ private slots:
     void onRemoveExtraFanart(QString file);
     void onRemoveExtraFanart(QByteArray image);
     void onAddExtraFanart();
-    void onExtraFanartDropped(QUrl imageUrl);
+    void onExtraFanartDropped(QVector<QUrl> imageUrls);
     void onAddAlbum();
     void onRemoveAlbum();
     void onAlbumEdited(QTableWidgetItem* item);
