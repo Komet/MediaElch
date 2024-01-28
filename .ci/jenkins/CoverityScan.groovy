@@ -48,8 +48,8 @@ pipeline {
           sh '''
             JOB_DIR="$(pwd)"
 
-            COVERITY=cov-analysis-linux64-2022.06.tar.gz
-            COVERITY_DIR=cov-analysis-linux64-2022.6.0
+            COVERITY=cov-analysis-linux64-2023.6.2.tar.gz
+            COVERITY_DIR=cov-analysis-linux64-2023.6.2
 
             if [ ! -d "${COVERITY_DIR}" ]; then
               rm -f ${COVERITY} # ensure tar.gz does not exist

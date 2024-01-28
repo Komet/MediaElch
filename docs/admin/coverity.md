@@ -1,6 +1,6 @@
 # Coverity Static Analysis
 
-__State__: last updated 2023-05-11
+__State__: last updated 2024-01-28
 
 ## What is Coverity?
 
@@ -29,10 +29,11 @@ The next steps are shown in following bash script. You need to add Coverity's
 
 ```sh
 # Note: You will need to adapt the path.
-export PATH="${HOME}/Projects/Private/cov-analysis-linux64-2021.12.1/bin/:${PATH}"
+export PATH="${HOME}/Projects/Private/cov-analysis-linux64-2023.6.2/bin/:${PATH}"
 git clone https://github.com/Komet/MediaElch.git
 cd MediaElch
-mkdir -p build/coverity && cd build/coverity
+mkdir -p build/coverity
+d build/coverity
 cmake -S ../.. -B . -DENABLE_TESTS=ON -DMEDIAELCH_FORCE_QT6=ON
 cov-build --dir cov-int make -j 12
 if grep "compilation units (100%) successfully" cov-int/build-log.txt; then
@@ -65,6 +66,7 @@ because it also uses more recent compiler versions.
 
 Once a month would be optimal. But should be done at least once before
 a new release to ensure that no obvious bugs are deployed.
+Our CI does it once a month, so no manual execution is required.
 
 
 ## Who has write-access to Coverity?
