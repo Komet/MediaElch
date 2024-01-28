@@ -1,6 +1,6 @@
 # Codecov
 
-__State__: last updated 2023-05-11
+__State__: last updated 2024-01-28
 
 ## What is Codecov?
 
@@ -31,12 +31,15 @@ Then use the [Codecov Uploader](https://docs.codecov.com/docs/codecov-uploader):
 
 ```sh
 # In MediaElch's source directory
-cd build/coverage
-ninja coverage
+cmake --preset debug-gcc
+cmake --build --preset debug-gcc
+cmake --build --preset debug-gcc --target coverage
+
+cd build/debug-gcc
 
 curl -Os https://uploader.codecov.io/latest/linux/codecov
-
 chmod +x codecov
+
 export CODECOV_TOKEN="<YOUR TOKEN>"
 unset NODE_OPTIONS # See Codecov documentation; workaround as of 2023-05-11
 ./codecov --token "${CODECOV_TOKEN}" --branch master --file=coverage-merged.info
