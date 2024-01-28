@@ -96,7 +96,7 @@ actors: (N>30)
  - id: 
    name: Bill Hader
    role: Husband Fish (Stan) (voice)
-   thumb: http://image.tmdb.org/t/p/original/dm5x0mPXyibcNgVH4nPvOuAwxWt.jpg
+   thumb: http://image.tmdb.org/t/p/original/qyT50vQ9PQIEctE1IxDTEsBKstU.jpg
    order: 11
    imageHasChanged: false
  - id: 

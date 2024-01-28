@@ -45,7 +45,7 @@ actors: (N>5)
    imageHasChanged: false
  - id: 
    name: Donald Faison
-   role: Chris Turk (186 Folgen, 2001–2010)
+   role: Chris Turk (182 Folgen, 2001–2010)
    thumb: https://bilder.fernsehserien.de/gfx/person_1000/d/donald-faison.jpg
    order: 1
    imageHasChanged: false
@@ -57,7 +57,7 @@ actors: (N>5)
    imageHasChanged: false
  - id: 
    name: Zach Braff
-   role: Dr. John „J.D.“ Dorian (182 Folgen, 2001–2010)
+   role: Dr. John „J.D.“ Dorian (178 Folgen, 2001–2010)
    thumb: https://bilder.fernsehserien.de/gfx/person_1000/z/zach-braff.jpg
    order: 3
    imageHasChanged: false
@@ -69,7 +69,7 @@ actors: (N>5)
    imageHasChanged: false
  - id: 
    name: Judy Reyes
-   role: Carla Espinosa (175 Folgen, 2001–2010)
+   role: Carla Espinosa (171 Folgen, 2001–2010)
    thumb: https://bilder.fernsehserien.de/gfx/person_1000/j/judy-reyes.jpg
    order: 5
    imageHasChanged: false

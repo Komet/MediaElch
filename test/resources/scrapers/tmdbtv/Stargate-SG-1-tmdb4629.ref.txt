@@ -114,9 +114,9 @@ actors: (N>800)
  - id: 118463
    name: Peter DeLuise
    role:
-    Director / Peter DeLuise, Airman, SF Guard (Uncredited), Young Urgo in Uniform, 
-    Tok'ra Guard, Lieutenant, Man Leaving Cafe, Screaming Villager, Interviewer, Mac
-    hine Gun Guard, Free Jaffa (Voice only) (Uncredited)
+    Director / Peter DeLuise, Airman, SF Guard (Uncredited), Tok'ra Guard, Young Urg
+    o in Uniform, Machine Gun Guard, Free Jaffa (Voice only) (Uncredited), Lieutenan
+    t, Man Leaving Cafe, Interviewer, Screaming Villager
    thumb: https://image.tmdb.org/t/p/original/sLkSOm6HBLB4VCfshQLdSEq63tr.jpg
    order: 12
    imageHasChanged: false
@@ -153,10 +153,10 @@ actors: (N>800)
  - id: 1366510
    name: Fraser Aitcheson
    role:
-    Hathor's Jaffa, Jaffa Commander, Jaffa Warrior, Dakara Jaffa 3 (Uncredited), Anu
-    bis' Jaffa, Free Jaffa 2 (Uncredited), Jaffa Guard, Apophis' Red Jaffa, Orderly,
-     Tagrean Worker, Jaffa, Ares' Jaffa commander (Uncredited), Free Jaffa (Uncredit
-    ed)
+    Hathor's Jaffa, Free Jaffa (Uncredited), Tagrean Worker, Jaffa, Jaffa Warrior, F
+    ree Jaffa 2 (Uncredited), Jaffa Guard, Apophis' Red Jaffa, Dakara Jaffa 3 (Uncre
+    dited), Ares' Jaffa commander (Uncredited), Anubis' Jaffa, Jaffa Commander, Orde
+    rly
    thumb: https://image.tmdb.org/t/p/original/j0fou5tZvXHe3GcVr24UnYQLg6S.jpg
    order: 18
    imageHasChanged: false

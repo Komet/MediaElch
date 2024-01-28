@@ -96,7 +96,7 @@ actors: (N>30)
  - id: 
    name: Bill Hader
    role: Husband Fish (Stan) (voice)
-   thumb: http://image.tmdb.org/t/p/original/dm5x0mPXyibcNgVH4nPvOuAwxWt.jpg
+   thumb: http://image.tmdb.org/t/p/original/qyT50vQ9PQIEctE1IxDTEsBKstU.jpg
    order: 11
    imageHasChanged: false
  - id: 
@@ -160,7 +160,7 @@ countries: (N=1)
 studios: (N<6)
   - Pixar
   - Walt Disney Pictures
-trailer: https://www.youtube.com/watch?v=iG0P6bjyUNI
+trailer: https://www.youtube.com/watch?v=JhvrQeY3doI
 playcount: 0
 lastPlayed: <not set or invalid>
 dateAdded: <not set or invalid>
