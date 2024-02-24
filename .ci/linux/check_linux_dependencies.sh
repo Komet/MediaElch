@@ -38,7 +38,7 @@ check_dependencies_linux() {
 	require_command gcc
 	require_command g++
 	require_command qmake # we move to cmake in the future, but require it for now
-	require_command cmake
+	# require_command cmake # TODO: If installed via Python, this may fail
 
 	echo ""
 	print_important "Checking package dependencies for Linux:"

@@ -16,6 +16,8 @@ RUN apt-get update && \
         openssh-client \
         g++-8 gcc-8 \
         build-essential \
+        debhelper \
+        devscripts \
         git \
         wget \
         tree \
