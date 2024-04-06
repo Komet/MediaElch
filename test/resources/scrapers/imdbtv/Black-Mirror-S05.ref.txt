@@ -20,7 +20,13 @@ season: SeasonNumber=05
 episode: EpisodeNumber=01
 displaySeason: SeasonNumber=xx
 displayEpisode: EpisodeNumber=xx
-overview: 
+overview:
+    Danny and Karl were best friends in college. Eleven years later and Danny has bu
+    ilt a stable life with a wife and son while Karl remains wild, seemingly incapab
+    le of growing up. When Karl attends Danny's birthday party, they seem to find th
+    eir old groove. The gift of a virtual reality game introduces new possibilities.
+     While playing the nostalgic video game from their youth, both men discover a ne
+    w form of satisfaction.
 writers: (N=0)
 directors: (N=0)
 playCount: 0
@@ -56,7 +62,12 @@ season: SeasonNumber=05
 episode: EpisodeNumber=02
 displaySeason: SeasonNumber=xx
 displayEpisode: EpisodeNumber=xx
-overview: 
+overview:
+    After kidnapping an intern at a tech company, a mysterious Uber driver is surrou
+    nded by police in a meadow. The story follows an hours long standoff between the
+     police and the kidnapper, who doesn't want money or to harm his victim, as his 
+    true motive slowly becomes clearer the further that the situation spirals out of
+     control.
 writers: (N=0)
 directors: (N=0)
 playCount: 0

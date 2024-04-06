@@ -168,22 +168,15 @@ void ImdbTvEpisodeParser::parseInfos(TvShowEpisode& episode, const QString& html
     // }
 
     // --------------------------------------
-    rx.setPattern("<p itemprop=\"description\">(.*)</p>");
+    rx.setPattern(R"re(Plot Summary</td>(.*)</td>)re");
     match = rx.match(html);
     if (match.hasMatch()) {
         QString outline = match.captured(1);
-        outline = outline.remove("See full summary&nbsp;&raquo;").trimmed();
+        outline = outline.remove("Plot Summary").trimmed();
+        outline = outline.remove("Plot Synopsis").trimmed();
         episode.setOverview(removeHtmlEntities(outline));
     }
-
-    // --------------------------------------
-    rx.setPattern(R"(<div class="summary_text">(.*)</div>)");
-    match = rx.match(html);
-    if (match.hasMatch()) {
-        QString outline = match.captured(1);
-        outline = outline.remove("See full summary&nbsp;&raquo;").trimmed();
-        episode.setOverview(removeHtmlEntities(outline));
-    }
+    
     // --------------------------------------
 
     rx.setPattern(R"(<h2>Storyline</h2>\n +\n +<div class="inline canwrap">\n +<p>\n +<span>(.*)</span>)");

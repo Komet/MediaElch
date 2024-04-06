@@ -15,7 +15,15 @@ season: SeasonNumber=12
 episode: EpisodeNumber=19
 displaySeason: SeasonNumber=xx
 displayEpisode: EpisodeNumber=xx
-overview: 
+overview:
+    Ned opens a theme park to the memory of his late wife Maude and it becomes a hug
+    e success when people kneeling in front of a statue of Maude experience mystic v
+    isions. The reason for this is that a grille in front of the statue is an out-pi
+    pe for a propane gas line and they are getting high on the gas. Unfortunately th
+    e park is closed down when Homer and Ned try to stop two children from lighting 
+    a candle before the altar and are charged with assault.Ned does,however,enjoy th
+    e further company of Rachel Jordan,despite his efforts to turn her into a clone 
+    of Maude. Written by don @ minifie-1
 writers: (N=0)
 directors: (N=0)
 playCount: 0

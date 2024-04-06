@@ -15,7 +15,16 @@ season: SeasonNumber=01
 episode: EpisodeNumber=01
 displaySeason: SeasonNumber=xx
 displayEpisode: EpisodeNumber=xx
-overview: 
+overview:
+    Buffy Summers just moved with her mom from L.A. (where she set fire to the schoo
+    l gym) to Sunnydale, which is, alas, experiencing a plague of vampires. She meet
+    s nerd Willow Rosenberg, cool skateboarder Xander Harris, and his mate Jesse McN
+    ally, fashionable snooty Cordelia Chase and the somewhat creepy British libraria
+    n, Rupert Giles. When a corpse with bite-marks is found in a locker, she realize
+    s, but refuses to acknowledge, that her vampire-killing past is catching up with
+     her and keeps Giles, her watcher (trainer), at arms-length, but is stalked by A
+    ngel who refers to the hell-mouth. Finally her destiny kicks in. Written by KGF 
+    Vissers
 writers: (N=0)
 directors: (N=0)
 playCount: 0
