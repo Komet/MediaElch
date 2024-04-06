@@ -21,7 +21,7 @@ movie set: tmdbid= | name=
 movie set overview: 
 tagline: She just kept swimming...
 ratings (N=1)
-  source=imdb | rating=7.2 | votes=200000 | min=0 | max=10
+  source=imdb | rating=7.2 | votes=300000 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 released: 2016-09-29

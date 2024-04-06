@@ -178,8 +178,8 @@ actors: (N>30)
    name: Lauren Gottlieb
    role: Special appearance in song '20-20'
    thumb:
-    https://m.media-amazon.com/images/M/MV5BMjAwOTVlYTEtMTczYy00YjU3LTlhZGUtOWE2ZmY5
-    MGEzNTIyXkEyXkFqcGdeQXVyNDAzNDk0MTQ@.jpg
+    https://m.media-amazon.com/images/M/MV5BNzEwM2EwYmItZWY2Zi00YWM2LWJlNWYtYmVkMDlk
+    MDM2NTMxXkEyXkFqcGdeQXVyMTg3MTU5NzQ@.jpg
    order: 18
    imageHasChanged: false
  - id: 

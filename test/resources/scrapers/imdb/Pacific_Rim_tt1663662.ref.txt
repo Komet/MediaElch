@@ -127,8 +127,8 @@ actors: (N>80)
    name: Larry Joe Campbell
    role: Construction Worker
    thumb:
-    https://m.media-amazon.com/images/M/MV5BNmEyNmJlNmQtYjgzZC00NDc2LWFmZDctNWUxZDJj
-    ZGNiOWEzXkEyXkFqcGdeQXVyMjQwMDg0Ng@@.jpg
+    https://m.media-amazon.com/images/M/MV5BNjUyODRhYmUtZDQ1MS00MDAxLWJhZTAtOGNkMjA1
+    NDYwZDBmXkEyXkFqcGdeQXVyMjQzMjQwNjg@.jpg
    order: 11
    imageHasChanged: false
  - id: 

@@ -167,8 +167,12 @@ discography: (N>90)
     year: 2005
   - title: Völkerball
     year: 2006
+  - title: Mann Gegen Mann (Digital Exclusive Version 1)
+    year: 2006
   - title: Völkerball
     year: 2006
+  - title: MP3 Collection
+    year: 2008
   - title: Liebe Ist Für Alle Da
     year: 2009
   - title: Pussy
@@ -225,10 +229,6 @@ discography: (N>90)
     year: 2022
   - title: Adieu
     year: 2022
-  - title: MTV / VOX
-    year: 
-  - title: Rammstein Tipo - Duplicamos La Imagen
-    year: 
 genres: (N=0)
 styles: (N=0)
 moods: (N=0)

@@ -1001,7 +1001,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
-thumbnail: https://bilder.fernsehserien.de/epg/epg-archiv/2023/06/27/8abb4a16afad1c293bc9223bb03dd5fea5b5eb68_b-w-970.jpg.jpg
+thumbnail: 
 actors: (N=0)
 streamDetails: <not loaded>
 files: (N=0)
@@ -1133,7 +1133,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
-thumbnail: https://bilder.fernsehserien.de/epg/epg-archiv/2023/06/21/cb156451408e9ad77756c7b7361f7b5f80123b4f_b-w-970.jpg.jpg
+thumbnail: 
 actors: (N=0)
 streamDetails: <not loaded>
 files: (N=0)
@@ -1219,7 +1219,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
-thumbnail: https://bilder.fernsehserien.de/epg/epg-archiv/2023/07/12/26d30b7bd6ec47bc9d65b643923986e1_b-w-970.jpg.jpg
+thumbnail: 
 actors: (N=0)
 streamDetails: <not loaded>
 files: (N=0)

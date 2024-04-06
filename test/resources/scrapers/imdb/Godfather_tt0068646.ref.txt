@@ -20,14 +20,13 @@ overview:
     o the thing he was most reluctant in doing and wage a mob war against all the ot
     her mafia families which could tear the Corleone family apart.
 outline:
-    Don Vito Corleone, head of a mafia family, decides to hand over his empire to hi
-    s youngest son Michael. However, his decision unintentionally puts the lives of 
-    his loved ones in grave danger.
+    The aging patriarch of an organized crime dynasty transfers control of his cland
+    estine empire to his reluctant son.
 movie set: tmdbid= | name=
 movie set overview: 
 tagline: An offer you can't refuse.
 ratings (N=1)
-  source=imdb | rating=9.2 | votes=1900000 | min=0 | max=10
+  source=imdb | rating=9.2 | votes=2000000 | min=0 | max=10
 userRating: 0
 imdbTop250: 2
 released: 1972-03-24

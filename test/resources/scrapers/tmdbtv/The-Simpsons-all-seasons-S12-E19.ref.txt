@@ -82,7 +82,7 @@ actors: (N>5)
  - id: 6008
    name: Harry Shearer
    role: Ned Flanders / Mr. Burns / Smithers / Skinner / Lenny (voice)
-   thumb: https://image.tmdb.org/t/p/original/au1mO0Mb9gni7h0rJCSokBTDnVf.jpg
+   thumb: 
    order: 8
    imageHasChanged: false
 streamDetails: <not loaded>
