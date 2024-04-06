@@ -30,8 +30,8 @@ TEST_CASE("FernsehserienDe scrapes episode details", "[episode][FernsehserienDe]
 
     SECTION("Loads all details of episode with thumbnail")
     {
-        // https://www.fernsehserien.de/die-simpsons/folgen/5x02-am-kap-der-angst-62116
-        QString episodeId("die-simpsons/folgen/5x02-am-kap-der-angst-62116");
+        // https://www.fernsehserien.de/die-simpsons/folgen/31x01-der-winter-unseres-monetarisierten-vergnuegens-1306622
+        QString episodeId("die-simpsons/folgen/31x01-der-winter-unseres-monetarisierten-vergnuegens-1306622");
         EpisodeIdentifier id(episodeId);
         EpisodeScrapeJob::Config config{id, Locale("de-DE"), allEpisodeScraperInfos()};
 
@@ -40,7 +40,7 @@ TEST_CASE("FernsehserienDe scrapes episode details", "[episode][FernsehserienDe]
         auto& episode = scrapeJob->episode();
 
         REQUIRE_FALSE(episode.title().isEmpty());
-        test::scraper::compareAgainstReference(episode, "scrapers/fernsehserien_de/The-Simpsons-S05E02");
+        test::scraper::compareAgainstReference(episode, "scrapers/fernsehserien_de/The-Simpsons-S31E01");
     }
 
     SECTION("Loads details with season and episode number of show with >10 seasons")

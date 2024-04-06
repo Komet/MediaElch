@@ -829,7 +829,7 @@ void FernsehserienDeEpisodeScrapeJob::parseEpisode(const QString& html)
     //       is most likely the German one.
     static QRegularExpression firstAiredRegEx(R"re(<ea-angabe-datum>.*?(\d{2}[.]\d{2}[.]\d{4})<)re");
     static QRegularExpression thumbDivRegEx(
-        R"re(<div class="episode-output-inhalt">.*?</picture>)re", QRegularExpression::DotMatchesEverythingOption);
+        R"re(<div class="episode-output-inhalt"[^>]*>.*?</picture>)re", QRegularExpression::DotMatchesEverythingOption);
     static QRegularExpression thumbRegEx(
         R"re(<img src="(https://bilder.fernsehserien.de/[^"]+?)")re", QRegularExpression::DotMatchesEverythingOption);
 
