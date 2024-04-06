@@ -1,0 +1,106 @@
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Der Winter unseres monetarisierten Vergnügens
+showTitle: 
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=31
+episode: EpisodeNumber=01
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    Homer ist peinlich berührt, als er von Sportreporter Anger Watkins wegen einer k
+    leinen Wissenslücke vor laufender Kamera vorgeführt wird. Verärgert befolgt er M
+    arges Rat und entwickelt seine eigene Sportsendung fürs Internet. Als stattdesse
+    n jedoch ein Video online geht, auf dem sich Homer und Bart prügeln, treffen Vat
+    er und Sohn damit unbewusst den Nerv der Zeit. Binnen kurzem erlangen die beiden
+     Kultstatus im Netz und träumen schon vom großen Geld. Doch der Ruhm hat seinen 
+    Preis. (Text: ORF)
+writers: (N=0)
+directors: (N=1)
+  - Bob Anderson
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2020-08-10
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+networks: (N=0)
+thumbnail: https://bilder.fernsehserien.de/epg/epg-archiv/2023/12/28/797af5e1fe8e4a22b2cecb34a4a825b6_b-w-970.jpg.jpg
+actors: (N>10)
+ - id: 
+   name: Christoph Jablonka
+   role: Homer Simpson
+   thumb: 
+   order: 0
+   imageHasChanged: false
+ - id: 
+   name: Anke Engelke
+   role: Marge Simpson
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/a/anke-engelke-1618295317.jpg
+   order: 1
+   imageHasChanged: false
+ - id: 
+   name: Sandra Schwittau
+   role: Bart Simpson
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/s/sandra-schwittau.jpg
+   order: 2
+   imageHasChanged: false
+ - id: 
+   name: Sabine Bohlmann
+   role: Maggie Simpso, Lisa Marie Simpson
+   thumb:
+    https://bilder.fernsehserien.de/gfx/person_1000/s/sabine-bohlmann-176-1645705469
+    .jpg
+   order: 3
+   imageHasChanged: false
+ - id: 
+   name: Dan Castellaneta
+   role: 
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/d/dan-castellaneta.jpg
+   order: 4
+   imageHasChanged: false
+ - id: 
+   name: Hank Azaria
+   role: 
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/h/hank-azaria.jpg
+   order: 5
+   imageHasChanged: false
+ - id: 
+   name: Harry Shearer
+   role: 
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/h/harry-shearer.jpg
+   order: 6
+   imageHasChanged: false
+ - id: 
+   name: Julie Kavner
+   role: 
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/j/julie-kavner.jpg
+   order: 7
+   imageHasChanged: false
+ - id: 
+   name: Nancy Cartwright
+   role: 
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/n/nancy-cartwright.jpg
+   order: 8
+   imageHasChanged: false
+ - id: 
+   name: Pamela Hayden
+   role: 
+   thumb: 
+   order: 9
+   imageHasChanged: false
+ - id: 
+   name: Yeardley Smith
+   role: 
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/y/yeardley-smith-1619199809.jpg
+   order: 10
+   imageHasChanged: false
+streamDetails: <not loaded>
+files: (N=0)
