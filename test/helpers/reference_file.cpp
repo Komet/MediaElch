@@ -750,8 +750,8 @@ QString serializeForReference(const mediaelch::EpisodeMap& episodes)
         it.next();
         out << "\n\n"
             << QString('=').repeated(80) << "\n" //
-            << "Season " << it.key().first.toPaddedString() << " - "
-            << "Episode " << it.key().second.toPaddedString() << "\n\n";
+            << "Season " << it.key().first.toPaddedString() << " - " << "Episode " << it.key().second.toPaddedString()
+            << "\n\n";
         TvShowEpisode* episode = it.value();
         test::normalizeForReferenceFile(*episode);
         TvShowEpisodeTestExporter exporter{out};

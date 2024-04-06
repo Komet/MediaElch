@@ -431,9 +431,7 @@ void ClosableImage::dragMoveEvent(QDragMoveEvent* event)
 {
     const QMimeData* mimeData = event->mimeData();
     QUrl url = mimeData->urls().at(0);
-    QStringList filters = QStringList() << ".jpg"
-                                        << ".jpeg"
-                                        << ".png";
+    QStringList filters = QStringList() << ".jpg" << ".jpeg" << ".png";
     for (const QString& filter : filters) {
         if (url.toString().endsWith(filter, Qt::CaseInsensitive)) {
             event->acceptProposedAction();
@@ -446,9 +444,7 @@ void ClosableImage::dragEnterEvent(QDragEnterEvent* event)
 {
     const QMimeData* mimeData = event->mimeData();
     QUrl url = mimeData->urls().at(0);
-    QStringList filters = QStringList() << ".jpg"
-                                        << ".jpeg"
-                                        << ".png";
+    QStringList filters = QStringList() << ".jpg" << ".jpeg" << ".png";
     for (const QString& filter : filters) {
         if (url.toString().endsWith(filter, Qt::CaseInsensitive)) {
             event->acceptProposedAction();
@@ -462,9 +458,7 @@ void ClosableImage::dropEvent(QDropEvent* event)
     const QMimeData* mimeData = event->mimeData();
     if (mimeData->hasUrls() && !mimeData->urls().isEmpty()) {
         QUrl url = mimeData->urls().at(0);
-        QStringList filters = QStringList() << ".jpg"
-                                            << ".jpeg"
-                                            << ".png";
+        QStringList filters = QStringList() << ".jpg" << ".jpeg" << ".png";
         for (const QString& filter : filters) {
             if (url.toString().endsWith(filter, Qt::CaseInsensitive)) {
                 emit sigImageDropped(m_imageType, url);
