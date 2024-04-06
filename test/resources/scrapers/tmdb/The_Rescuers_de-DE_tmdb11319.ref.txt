@@ -28,9 +28,9 @@ imdbTop250: 0
 released: 1977-06-22
 runtime: 78min
 writer:
-    Larry Clemmons, Ken Anderson, Vance Gerry, Burny Mattinson, David Michener, Fran
-    k Thomas, Ted Berman, Margery Sharp, Fred Lucky, Dick Sebast
-director: John Lounsbery
+    David Michener, Ted Berman, Ken Anderson, Dick Sebast, Larry Clemmons, Margery S
+    harp, Fred Lucky, Frank Thomas, Vance Gerry, Burny Mattinson
+director: Wolfgang Reitherman
 actors: (N>10)
  - id: 
    name: Bob Newhart
@@ -53,7 +53,7 @@ actors: (N>10)
  - id: 
    name: Joe Flynn
    role: Mr. Snoops (voice)
-   thumb: http://image.tmdb.org/t/p/original/km1TY2ieAp51uKLDBNUEANvUmaq.jpg
+   thumb: http://image.tmdb.org/t/p/original/vjKwTMfbrbb7LiqYuizy1j8OG9s.jpg
    order: 3
    imageHasChanged: false
  - id: 
@@ -210,28 +210,12 @@ posters: (N>30)
     hint: 
     aspect: 
     season: SeasonNumber=xx
-  - ... and >20 more
+  - ... and >30 more
 backdrops: (N>10)
   - id: 
     originalUrl: http://image.tmdb.org/t/p/original/dSlofjxxcTSLmnH6602WsSSELU5.jpg
     thumbUrl: http://image.tmdb.org/t/p/w780/dSlofjxxcTSLmnH6602WsSSELU5.jpg
     originalSize: h=1080 w=1920
-    language: 
-    hint: 
-    aspect: 
-    season: SeasonNumber=xx
-  - id: 
-    originalUrl: http://image.tmdb.org/t/p/original/kRbXMT2ysEJ84Tr2Nk9c88w3mv.jpg
-    thumbUrl: http://image.tmdb.org/t/p/w780/kRbXMT2ysEJ84Tr2Nk9c88w3mv.jpg
-    originalSize: h=2160 w=3840
-    language: 
-    hint: 
-    aspect: 
-    season: SeasonNumber=xx
-  - id: 
-    originalUrl: http://image.tmdb.org/t/p/original/2rJ1LDxVS2EofZmRT7YiCgIFSq3.jpg
-    thumbUrl: http://image.tmdb.org/t/p/w780/2rJ1LDxVS2EofZmRT7YiCgIFSq3.jpg
-    originalSize: h=1440 w=2560
     language: 
     hint: 
     aspect: 
@@ -245,8 +229,24 @@ backdrops: (N>10)
     aspect: 
     season: SeasonNumber=xx
   - id: 
-    originalUrl: http://image.tmdb.org/t/p/original/j50Sr0ULbsf0Rbw0BB91ZbtQoaB.jpg
-    thumbUrl: http://image.tmdb.org/t/p/w780/j50Sr0ULbsf0Rbw0BB91ZbtQoaB.jpg
+    originalUrl: http://image.tmdb.org/t/p/original/bOash26erxuv6EqA1ZQ6ZytpHca.jpg
+    thumbUrl: http://image.tmdb.org/t/p/w780/bOash26erxuv6EqA1ZQ6ZytpHca.jpg
+    originalSize: h=1080 w=1920
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: http://image.tmdb.org/t/p/original/jToyymxSX9YU1iIabEa22XQucob.jpg
+    thumbUrl: http://image.tmdb.org/t/p/w780/jToyymxSX9YU1iIabEa22XQucob.jpg
+    originalSize: h=1080 w=1920
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: http://image.tmdb.org/t/p/original/kRbXMT2ysEJ84Tr2Nk9c88w3mv.jpg
+    thumbUrl: http://image.tmdb.org/t/p/w780/kRbXMT2ysEJ84Tr2Nk9c88w3mv.jpg
     originalSize: h=2160 w=3840
     language: 
     hint: 

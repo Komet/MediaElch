@@ -28,9 +28,9 @@ overview:
     a dolphin in "Night of the Dolphin."
 writers: (N<6)
   - Don Payne
+  - Rob LaZebnik
   - Carolyn Omine
   - John Frink
-  - Rob LaZebnik
 directors: (N=1)
   - Matthew Nastuk
 playCount: 0
@@ -81,7 +81,7 @@ actors: (N>5)
  - id: 6008
    name: Harry Shearer
    role: Ned Flanders / Mr. Burns / Smithers / Skinner / Lenny (voice)
-   thumb: https://image.tmdb.org/t/p/original/au1mO0Mb9gni7h0rJCSokBTDnVf.jpg
+   thumb: 
    order: 6
    imageHasChanged: false
 streamDetails: <not loaded>
@@ -188,7 +188,7 @@ actors: (N>10)
  - id: 6008
    name: Harry Shearer
    role: Ned Flanders / Mr. Burns / Smithers / Skinner / Lenny (voice)
-   thumb: https://image.tmdb.org/t/p/original/au1mO0Mb9gni7h0rJCSokBTDnVf.jpg
+   thumb: 
    order: 10
    imageHasChanged: false
 streamDetails: <not loaded>
@@ -266,7 +266,7 @@ actors: (N>10)
  - id: 69597
    name: Drew Barrymore
    role: 
-   thumb: https://image.tmdb.org/t/p/original/w0lfuDg0vwqtmF3FUr9oiQvFS4b.jpg
+   thumb: https://image.tmdb.org/t/p/original/mVQdb6w6gXmLZ6nZ3K9Fw3vzawM.jpg
    order: 5
    imageHasChanged: false
  - id: 3266
@@ -308,7 +308,7 @@ actors: (N>10)
  - id: 6008
    name: Harry Shearer
    role: Ned Flanders / Mr. Burns / Smithers / Skinner / Lenny (voice)
-   thumb: https://image.tmdb.org/t/p/original/au1mO0Mb9gni7h0rJCSokBTDnVf.jpg
+   thumb: 
    order: 12
    imageHasChanged: false
 streamDetails: <not loaded>
@@ -391,7 +391,7 @@ actors: (N>5)
  - id: 6008
    name: Harry Shearer
    role: Ned Flanders / Mr. Burns / Smithers / Skinner / Lenny (voice)
-   thumb: https://image.tmdb.org/t/p/original/au1mO0Mb9gni7h0rJCSokBTDnVf.jpg
+   thumb: 
    order: 6
    imageHasChanged: false
 streamDetails: <not loaded>
@@ -480,7 +480,7 @@ actors: (N>5)
  - id: 6008
    name: Harry Shearer
    role: Ned Flanders / Mr. Burns / Smithers / Skinner / Lenny (voice)
-   thumb: https://image.tmdb.org/t/p/original/au1mO0Mb9gni7h0rJCSokBTDnVf.jpg
+   thumb: 
    order: 7
    imageHasChanged: false
 streamDetails: <not loaded>
@@ -572,7 +572,7 @@ actors: (N>5)
  - id: 6008
    name: Harry Shearer
    role: Ned Flanders / Mr. Burns / Smithers / Skinner / Lenny (voice)
-   thumb: https://image.tmdb.org/t/p/original/au1mO0Mb9gni7h0rJCSokBTDnVf.jpg
+   thumb: 
    order: 7
    imageHasChanged: false
 streamDetails: <not loaded>
@@ -619,7 +619,7 @@ actors: (N>5)
  - id: 819
    name: Edward Norton
    role: 
-   thumb: https://image.tmdb.org/t/p/original/5XBzD5WuTyVQZeS4VI25z2moMeY.jpg
+   thumb: https://image.tmdb.org/t/p/original/8nytsqL59SFJTVYVrN72k6qkGgJ.jpg
    order: 0
    imageHasChanged: false
  - id: 198
@@ -655,7 +655,7 @@ actors: (N>5)
  - id: 6008
    name: Harry Shearer
    role: Ned Flanders / Mr. Burns / Smithers / Skinner / Lenny (voice)
-   thumb: https://image.tmdb.org/t/p/original/au1mO0Mb9gni7h0rJCSokBTDnVf.jpg
+   thumb: 
    order: 6
    imageHasChanged: false
 streamDetails: <not loaded>
@@ -744,7 +744,7 @@ actors: (N>5)
  - id: 6008
    name: Harry Shearer
    role: Ned Flanders / Mr. Burns / Smithers / Skinner / Lenny (voice)
-   thumb: https://image.tmdb.org/t/p/original/au1mO0Mb9gni7h0rJCSokBTDnVf.jpg
+   thumb: 
    order: 7
    imageHasChanged: false
 streamDetails: <not loaded>
@@ -764,7 +764,7 @@ tvmazeId:
 title: HOMЯ
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=7.8 | votes=20 | min=0 | max=10
+  source=tmdb | rating=7.4 | votes=10 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -823,7 +823,7 @@ actors: (N>5)
  - id: 6008
    name: Harry Shearer
    role: Ned Flanders / Mr. Burns / Smithers / Skinner / Lenny (voice)
-   thumb: https://image.tmdb.org/t/p/original/au1mO0Mb9gni7h0rJCSokBTDnVf.jpg
+   thumb: 
    order: 5
    imageHasChanged: false
 streamDetails: <not loaded>
@@ -929,7 +929,7 @@ actors: (N>10)
  - id: 6008
    name: Harry Shearer
    role: Ned Flanders / Mr. Burns / Smithers / Skinner / Lenny (voice)
-   thumb: https://image.tmdb.org/t/p/original/au1mO0Mb9gni7h0rJCSokBTDnVf.jpg
+   thumb: 
    order: 10
    imageHasChanged: false
 streamDetails: <not loaded>
@@ -1013,7 +1013,7 @@ actors: (N>5)
  - id: 6008
    name: Harry Shearer
    role: Ned Flanders / Mr. Burns / Smithers / Skinner / Lenny (voice)
-   thumb: https://image.tmdb.org/t/p/original/au1mO0Mb9gni7h0rJCSokBTDnVf.jpg
+   thumb: 
    order: 6
    imageHasChanged: false
 streamDetails: <not loaded>
@@ -1130,7 +1130,7 @@ actors: (N>10)
  - id: 6008
    name: Harry Shearer
    role: Ned Flanders / Mr. Burns / Smithers / Skinner / Lenny (voice)
-   thumb: https://image.tmdb.org/t/p/original/au1mO0Mb9gni7h0rJCSokBTDnVf.jpg
+   thumb: 
    order: 11
    imageHasChanged: false
 streamDetails: <not loaded>
@@ -1221,7 +1221,7 @@ actors: (N>5)
  - id: 6008
    name: Harry Shearer
    role: Ned Flanders / Mr. Burns / Smithers / Skinner / Lenny (voice)
-   thumb: https://image.tmdb.org/t/p/original/au1mO0Mb9gni7h0rJCSokBTDnVf.jpg
+   thumb: 
    order: 7
    imageHasChanged: false
 streamDetails: <not loaded>
@@ -1273,7 +1273,7 @@ actors: (N>10)
  - id: 12111
    name: Justin Timberlake
    role: Justin Timberlake (voice)
-   thumb: https://image.tmdb.org/t/p/original/hFfgtpXWlsbuzgwBKdRWdvrcRad.jpg
+   thumb: https://image.tmdb.org/t/p/original/6Yk5t9RwkdkAT8Qv45934Eez2CA.jpg
    order: 1
    imageHasChanged: false
  - id: 77073
@@ -1285,7 +1285,7 @@ actors: (N>10)
  - id: 54651
    name: Joey Fatone
    role: Joey Fatone (voice)
-   thumb: https://image.tmdb.org/t/p/original/1VZTrzdu5xczHV6H0PuI5slyYXE.jpg
+   thumb: https://image.tmdb.org/t/p/original/5C2Kk4TMsx4DGotqLXKmt87Tj3g.jpg
    order: 3
    imageHasChanged: false
  - id: 591531
@@ -1327,7 +1327,7 @@ actors: (N>10)
  - id: 6008
    name: Harry Shearer
    role: Ned Flanders / Mr. Burns / Smithers / Skinner / Lenny (voice)
-   thumb: https://image.tmdb.org/t/p/original/au1mO0Mb9gni7h0rJCSokBTDnVf.jpg
+   thumb: 
    order: 10
    imageHasChanged: false
 streamDetails: <not loaded>
@@ -1423,7 +1423,7 @@ actors: (N>5)
  - id: 6008
    name: Harry Shearer
    role: Ned Flanders / Mr. Burns / Smithers / Skinner / Lenny (voice)
-   thumb: https://image.tmdb.org/t/p/original/au1mO0Mb9gni7h0rJCSokBTDnVf.jpg
+   thumb: 
    order: 8
    imageHasChanged: false
 streamDetails: <not loaded>
@@ -1526,7 +1526,7 @@ actors: (N>5)
  - id: 6008
    name: Harry Shearer
    role: Ned Flanders / Mr. Burns / Smithers / Skinner / Lenny (voice)
-   thumb: https://image.tmdb.org/t/p/original/au1mO0Mb9gni7h0rJCSokBTDnVf.jpg
+   thumb: 
    order: 9
    imageHasChanged: false
 streamDetails: <not loaded>
@@ -1603,7 +1603,7 @@ actors: (N>5)
  - id: 6008
    name: Harry Shearer
    role: Ned Flanders / Mr. Burns / Smithers / Skinner / Lenny (voice)
-   thumb: https://image.tmdb.org/t/p/original/au1mO0Mb9gni7h0rJCSokBTDnVf.jpg
+   thumb: 
    order: 5
    imageHasChanged: false
 streamDetails: <not loaded>
@@ -1704,7 +1704,7 @@ actors: (N>5)
  - id: 6008
    name: Harry Shearer
    role: Ned Flanders / Mr. Burns / Smithers / Skinner / Lenny (voice)
-   thumb: https://image.tmdb.org/t/p/original/au1mO0Mb9gni7h0rJCSokBTDnVf.jpg
+   thumb: 
    order: 9
    imageHasChanged: false
 streamDetails: <not loaded>
@@ -1798,7 +1798,7 @@ actors: (N>5)
  - id: 6008
    name: Harry Shearer
    role: Ned Flanders / Mr. Burns / Smithers / Skinner / Lenny (voice)
-   thumb: https://image.tmdb.org/t/p/original/au1mO0Mb9gni7h0rJCSokBTDnVf.jpg
+   thumb: 
    order: 8
    imageHasChanged: false
 streamDetails: <not loaded>
@@ -1875,7 +1875,7 @@ actors: (N>5)
  - id: 6008
    name: Harry Shearer
    role: Ned Flanders / Mr. Burns / Smithers / Skinner / Lenny (voice)
-   thumb: https://image.tmdb.org/t/p/original/au1mO0Mb9gni7h0rJCSokBTDnVf.jpg
+   thumb: 
    order: 5
    imageHasChanged: false
 streamDetails: <not loaded>
@@ -1963,7 +1963,7 @@ actors: (N>5)
  - id: 6008
    name: Harry Shearer
    role: Ned Flanders / Mr. Burns / Smithers / Skinner / Lenny (voice)
-   thumb: https://image.tmdb.org/t/p/original/au1mO0Mb9gni7h0rJCSokBTDnVf.jpg
+   thumb: 
    order: 6
    imageHasChanged: false
 streamDetails: <not loaded>

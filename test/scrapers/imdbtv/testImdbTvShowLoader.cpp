@@ -54,7 +54,7 @@ TEST_CASE("ImdbTv scrapes show details", "[show][ImdbTv][load_data]")
 
         REQUIRE(show.imdbId() == ImdbId("tt1475582"));
         test::scraper::compareAgainstReference(show, "scrapers/imdbtv/Sherlock-tt0285403");
-        CHECK(show.runtime() == 88min);
+        CHECK(show.runtime() == 90min);
     }
 
     // Other languages are not yet supported. Reason:

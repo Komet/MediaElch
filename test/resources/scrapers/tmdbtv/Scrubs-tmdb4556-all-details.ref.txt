@@ -48,7 +48,7 @@ actors: (N>800)
  - id: 11885
    name: John C. McGinley
    role: Perry Cox
-   thumb: https://image.tmdb.org/t/p/original/zNzNzVucekTjoPFZtGD1DZven93.jpg
+   thumb: https://image.tmdb.org/t/p/original/6fX2oNGiMez3DwmbGfrGECq63cI.jpg
    order: 2
    imageHasChanged: false
  - id: 38570
@@ -137,7 +137,7 @@ actors: (N>800)
    imageHasChanged: false
  - id: 1228157
    name: Mike Schwartz
-   role: Lloyd, Delivery Guy, Patient
+   role: Lloyd, Patient, Delivery Guy
    thumb: https://image.tmdb.org/t/p/original/91JdROqsqiH8tN5ipAdo69ge4xW.jpg
    order: 17
    imageHasChanged: false
