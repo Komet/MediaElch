@@ -15,7 +15,12 @@ season: SeasonNumber=01
 episode: EpisodeNumber=00
 displaySeason: SeasonNumber=xx
 displayEpisode: EpisodeNumber=xx
-overview: 
+overview:
+    Buffy Summers arrives for her first day at a new school, and already weird thing
+    s are happening. She investigates a dead body that is found in the girls' locker
+     room, and, with the help of her new friends Willow and Xander, she fights a gan
+    g of vampires. Also, she meets Cordelia and her friends, and Giles, her new Watc
+    her, tells her more about her destiny. Written by page8701
 writers: (N=0)
 directors: (N=0)
 playCount: 0

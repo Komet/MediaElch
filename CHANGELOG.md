@@ -9,7 +9,7 @@
 
 ### Fixed
 
-- tbd
+- IMDb: Episode's overviews are scraped again (#1724)
 
 ### Changed
 
