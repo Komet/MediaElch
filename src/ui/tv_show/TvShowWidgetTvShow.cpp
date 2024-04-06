@@ -1114,7 +1114,7 @@ void TvShowWidgetTvShow::onFirstAiredChange(QDate date)
 
 void TvShowWidgetTvShow::onStudioChange(QString studios)
 {
-    QStringList networks = studios.split(",", Qt::SkipEmptyParts);
+    QStringList networks = studios.split(",", ElchSplitBehavior::SkipEmptyParts);
     for (auto& network : networks) {
         network = network.trimmed();
     }
