@@ -1028,7 +1028,7 @@ void TvShowWidgetEpisode::onLastPlayedChange(QDateTime dateTime)
 
 void TvShowWidgetEpisode::onStudioChange(QString text)
 {
-    QStringList networks = text.split(",", Qt::SkipEmptyParts);
+    QStringList networks = text.split(",", ElchSplitBehavior::SkipEmptyParts);
     for (auto& network : networks) {
         network = network.trimmed();
     }
