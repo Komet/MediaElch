@@ -16,6 +16,7 @@ public:
         v19 = 19, ///< Matrix
         v20 = 20, ///< Nexus
         v21 = 21, ///< Omega
+        v22 = 22, ///< ?
         // when adding new values, also adapt:
         // isValid(), all(), fromInt() and constructor
     };
