@@ -417,7 +417,7 @@ class CsvConcertExport::FieldExport final : public mediaelch::ConcertData::Expor
 {
 public:
     void startExport() override { fields = {{s(Field::Type), "concert"}}; }
-    void endExport() override{};
+    void endExport() override {};
 
     // clang-format off
     void exportDatabaseId(DatabaseId databaseId) override { /* ignored */ Q_UNUSED(databaseId); }

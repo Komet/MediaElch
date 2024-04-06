@@ -46,9 +46,7 @@ void Extractor::extract(QString baseName, QStringList files, QString password)
     QFileInfo fi(file);
 
     QStringList parameters;
-    parameters << "x"
-               << "-o+"
-               << "-y";
+    parameters << "x" << "-o+" << "-y";
     if (!password.isEmpty()) {
         parameters << "-p" + password;
     }

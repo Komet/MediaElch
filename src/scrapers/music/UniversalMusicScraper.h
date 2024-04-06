@@ -132,7 +132,7 @@ public:
 
     ELCH_NODISCARD const ScraperMeta& meta() const override;
 
-    void initialize() override{};
+    void initialize() override {};
     ELCH_NODISCARD bool isInitialized() const override { return true; };
 
     ELCH_NODISCARD ArtistSearchJob* searchArtist(ArtistSearchJob::Config config) override;
