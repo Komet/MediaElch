@@ -150,7 +150,7 @@ void TheTvDbImages::loadTvShowData(TvDbId tvdbId, ImageType type, const mediaelc
         };
 
         auto* scrapeJob = tvdb->loadEpisode(config);
-        connect(scrapeJob, &EpisodeScrapeJob::loadFinished, this, episodeLoaded, Qt::UniqueConnection);
+        connect(scrapeJob, &EpisodeScrapeJob::loadFinished, this, episodeLoaded);
         scrapeJob->start();
 
     } else {
