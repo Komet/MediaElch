@@ -43,8 +43,10 @@ fi
 if [[ ! -d "ZenLib" ]]; then
 	print_info "Loading ZenLib"
 	mkdir -p tmp
+	rm -rf tmp/ZenLib # clean up in case previous runs were aborted
 	git clone --quiet --depth=1 --single-branch --branch=master https://github.com/MediaArea/ZenLib/ tmp/ZenLib
-	mv tmp/MediaInfoLib/Source/ZenLib ./ZenLib
+	mv tmp/ZenLib/Source/ZenLib ./ZenLib
+	rm -rf tmp
 fi
 
 cd "${PROJECT_DIR}"

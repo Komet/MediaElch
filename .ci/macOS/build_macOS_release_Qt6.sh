@@ -96,15 +96,19 @@ git submodule update --init
 if [[ ! -d "MediaInfoDLL" ]]; then
 	print_info "Loading MediaInfoDLL"
 	mkdir -p tmp
+	rm -rf tmp/MediaInfoDLL # clean up in case previous runs were aborted
 	git clone --quiet --depth=1 --branch="v${MAC_MEDIAINFO_VERSION:?}" https://github.com/MediaArea/MediaInfoLib/ tmp/MediaInfoLib
 	mv tmp/MediaInfoLib/Source/MediaInfoDLL ./MediaInfoDLL
+	rm -rf tmp
 fi
 
 if [[ ! -d "ZenLib" ]]; then
 	print_info "Loading ZenLib"
 	mkdir -p tmp
+	rm -rf tmp/ZenLib # clean up in case previous runs were aborted
 	git clone --quiet --depth=1 --single-branch --branch=master https://github.com/MediaArea/ZenLib/ tmp/ZenLib
-	mv tmp/MediaInfoLib/Source/ZenLib ./ZenLib
+	mv tmp/ZenLib/Source/ZenLib ./ZenLib
+	rm -rf tmp
 fi
 
 
