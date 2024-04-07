@@ -5,7 +5,13 @@
 
 ### Notes
 
-- tbd
+- macOS 11 and later:
+  - Qt was updated to v6.7.0.
+  - ffmpeg was updated to v6.1.1
+- Linux AppImage
+  - ffmpeg was updated to v6.1
+- Windows
+  - ffmpeg was updated to v7
 
 ### Fixed
 
