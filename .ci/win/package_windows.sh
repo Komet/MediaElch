@@ -76,7 +76,7 @@ cp "${MXE_LIB}/qt${QT_MAJOR_VERSION}/plugins/platforms/qwindows.dll" pkg-zip/Med
 cp "${MXE_LIB}/qt${QT_MAJOR_VERSION}/plugins/platforms/qminimal.dll" pkg-zip/MediaElch/platforms
 
 mkdir -p pkg-zip/MediaElch/styles
-cp "${MXE_LIB}/qt${QT_MAJOR_VERSION}/plugins/styles/qwindowsvistastyle.dll" pkg-zip/MediaElch/styles
+cp "${MXE_LIB}/qt${QT_MAJOR_VERSION}/plugins/styles/qmodernwindowsstyle.dll" pkg-zip/MediaElch/styles
 
 cp -R "${MXE_LIB}/qt${QT_MAJOR_VERSION}/plugins/imageformats/" pkg-zip/MediaElch/
 
