@@ -28,8 +28,8 @@ bin/libstdc++-6.dll
 bin/libwinpthread-1.dll
 bin/zlib1.dll
 bin/libzstd.dll
-bin/icuin66.dll
-bin/icuuc66.dll
-bin/icudt66.dll
+bin/icuin74.dll
+bin/icuuc74.dll
+bin/icudt74.dll
 bin/libbrotlidec.dll
 bin/libbrotlicommon.dll
