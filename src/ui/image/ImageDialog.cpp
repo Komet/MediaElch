@@ -113,15 +113,6 @@ int ImageDialog::execWithType(ImageType type)
             .toInt());
 
     m_providers = Manager::instance()->imageProviders(type);
-    setupProviderCombo();
-
-    ui->searchTerm->setLoading(false);
-    ui->searchTerm->setReadOnly(!hasImageProvider());
-    ui->searchTerm->setEnabled(hasImageProvider());
-    ui->imageProvider->setEnabled(hasImageProvider());
-    if (!hasImageProvider()) {
-        ui->comboLanguage->setInvalid();
-    }
     // show image widget
     ui->stackedWidget->setCurrentIndex(1);
 
@@ -141,8 +132,14 @@ int ImageDialog::execWithType(ImageType type)
         ui->searchTerm->clear();
     }
 
-    if (hasImageProvider()) {
-        onSearch(true);
+    setupProviderCombo();
+
+    ui->searchTerm->setLoading(false);
+    ui->searchTerm->setReadOnly(!hasImageProvider());
+    ui->searchTerm->setEnabled(hasImageProvider());
+    ui->imageProvider->setEnabled(hasImageProvider());
+    if (!hasImageProvider()) {
+        ui->comboLanguage->setInvalid();
     }
 
     if (!hasDefaultImages() && !hasImageProvider()) {
@@ -250,7 +247,7 @@ void ImageDialog::setAndStartDownloads(const QVector<Poster>& downloads)
     ui->labelLoading->setVisible(true);
     ui->labelSpinner->setVisible(true);
     renderTable();
-    if (downloads.count() == 0) {
+    if (m_elements.isEmpty()) {
         ui->stackedWidget->setCurrentIndex(2);
     }
     startNextDownload();
@@ -687,7 +684,7 @@ void ImageDialog::onProviderChanged(int index)
         setAndStartDownloads(m_defaultElements);
     } else {
         ui->searchTerm->setFocus();
-        onSearch();
+        onSearch(hasImageProvider());
     }
 }
 

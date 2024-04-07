@@ -10,7 +10,8 @@
 ### Fixed
 
 - IMDb: Episode's overviews are scraped again (#1724)
-- Ferhsehserien.de: Fix scraping of episode's thumbnails
+- fernsehserien.de: Fix scraping of episode's thumbnails
+- Possible crash when clicking on empty episode thumbnails.
 
 ### Changed
 

@@ -147,6 +147,7 @@ void TheTvDbImages::loadTvShowData(TvDbId tvdbId, ImageType type, const mediaelc
             m_dummyEpisode->clear(job->config().details);
             copyDetailsToEpisode(*m_dummyEpisode, job->episode(), job->config().details);
             job->deleteLater();
+            emit onLoadTvShowDataFinished();
         };
 
         auto* scrapeJob = tvdb->loadEpisode(config);
