@@ -80,12 +80,7 @@ void CustomEpisodeScrapeJob::loadWithScraper(const QString& scraperId, const Epi
 
     auto* scrapeJob = scraper->loadEpisode(scraperConfig);
     connect(scrapeJob, &EpisodeScrapeJob::loadFinished, this, [this](EpisodeScrapeJob* job) {
-        {
-            // locking to avoid concurrent access to m_episodes
-            // TODO: Remove, we're not concurrent, only asynchronous.
-            QMutexLocker locker(&m_loadMutex);
-            copyDetailsToEpisode(episode(), job->episode(), job->config().details);
-        }
+        copyDetailsToEpisode(episode(), job->episode(), job->config().details);
         job->deleteLater();
         decreaseCounterAndCheckIfFinished();
     });
@@ -94,10 +89,8 @@ void CustomEpisodeScrapeJob::loadWithScraper(const QString& scraperId, const Epi
 
 void CustomEpisodeScrapeJob::decreaseCounterAndCheckIfFinished()
 {
-    QMutexLocker locker(&m_loadMutex);
     --m_loadCounter;
     if (m_loadCounter <= 0) {
-        locker.unlock();
         emitFinished();
     }
 }

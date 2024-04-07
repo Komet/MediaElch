@@ -3,7 +3,6 @@
 #include "scrapers/tv_show/TvScraper.h"
 #include "scrapers/tv_show/custom/CustomTvScraperConfig.h"
 
-#include <QMutex>
 #include <QString>
 
 namespace mediaelch {
@@ -38,8 +37,6 @@ private:
 
 private:
     CustomTvScraperConfig m_customConfig;
-
-    QMutex m_loadMutex;
     int m_loadCounter = 0;
 };
 
