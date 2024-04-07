@@ -46,7 +46,7 @@ void CustomEpisodeScrapeJob::onTmdbLoaded(EpisodeScrapeJob* job)
     copyDetailsToEpisode(episode(), job->episode(), job->config().details);
     job->deleteLater();
 
-    const QStringList scrapersToUse = m_customConfig.scraperForShowDetails.values();
+    const QStringList scrapersToUse = m_customConfig.scraperForEpisodeDetails.values();
     const bool loadImdb = episode().imdbId().isValid() && scrapersToUse.contains(ImdbTv::ID);
 
     m_loadCounter = 1;
