@@ -26,7 +26,7 @@ mkdir -p third_party/packaging_win
 if [[ ! -f third_party/packaging_win/MediaInfoDLL.7z ]]; then
 	wget --no-verbose --output-document \
 		third_party/packaging_win/MediaInfoDLL.7z \
-		${WIN_MEDIAINFO_URL}
+		"${WIN_MEDIAINFO_URL}"
 	validate_sha512 "third_party/packaging_win/MediaInfoDLL.7z" "${WIN_MEDIAINFO_SHA512}"
 fi
 
@@ -40,8 +40,11 @@ if [[ ! -d MediaInfoDLL ]] || [[ ! -f third_party/packaging_win/MediaInfo.dll ]]
 	mv third_party/packaging_win/MediaInfo/MediaInfo.dll third_party/packaging_win/MediaInfo.dll
 fi
 
-if [[ ! -d ZenLib ]]; then
-	svn checkout --quiet --depth files https://github.com/MediaArea/ZenLib/trunk/Source/ZenLib ./ZenLib
+if [[ ! -d "ZenLib" ]]; then
+	print_info "Loading ZenLib"
+	mkdir -p tmp
+	git clone --quiet --depth=1 --single-branch --branch=master https://github.com/MediaArea/ZenLib/ tmp/ZenLib
+	mv tmp/MediaInfoLib/Source/ZenLib ./ZenLib
 fi
 
 cd "${PROJECT_DIR}"

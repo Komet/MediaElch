@@ -9,6 +9,7 @@ export MAC_QT_6_VERSION="6.6.1"
 export MAC_QT_5_VERSION="5.15.2"
 # From https://mediaarea.net/download/binary/libmediainfo0/${MAC_MEDIAINFO_VERSION}/MediaInfo_DLL_${MAC_MEDIAINFO_VERSION}_Mac_x86_64+arm64.tar.bz2
 # Mirror at https://files.ameyering.de/binaries/macOS/mediainfo/
+# Version is also used as Git tag for downloading header files.
 export MAC_MEDIAINFO_VERSION="23.07"
 export MAC_MEDIAINFO_URL="https://files.ameyering.de/binaries/macOS/mediainfo/MediaInfo_DLL_${MAC_MEDIAINFO_VERSION}_Mac_x86_64+arm64.tar.bz2"
 export MAC_MEDIAINFO_SHA512="d5ce0996d6ef7b5fc9fcbb4cb4a8bbd1957858a65e9773f4f520a156ed8c25b33e73c164baffafa67ec2f72dc5807644eb83dc27463792be0d63e8b539fc456e"
