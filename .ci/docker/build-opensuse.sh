@@ -31,7 +31,12 @@ echo "  Machine:      $(uname -m)"
 echo ""
 
 g++ --version
-qmake-qt5 --version
+
+if command -v "qmake-qt5" > /dev/null 2>&1; then
+  qmake-qt5 --version
+else
+  cmake --version
+fi
 
 #################################################
 # Build MediaElch
@@ -44,8 +49,14 @@ print_info "Build directory: $(readlink -f build/build-${DIST})"
 rm -rf build/build-${DIST}
 mkdir -p build/build-${DIST} && cd $_
 
-print_important "Running qmake"
-qmake-qt5 ../../MediaElch.pro CONFIG+=release
+if command -v "qmake-qt5" > /dev/null 2>&1; then
+  print_important "Running qmake"
+  qmake-qt5 ../../MediaElch.pro CONFIG+=release
+else
+  print_important "Running cmake"
+  cmake ../.. -DCMAKE_BUILD_TYPE=Release -DMEDIAELCH_FORCE_QT6=ON
+fi
+
 echo ""
 
 print_important "Building MediaElch (only warnings and errors shown)"
