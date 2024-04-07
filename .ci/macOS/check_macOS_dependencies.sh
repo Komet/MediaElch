@@ -16,7 +16,6 @@ require_command git
 require_command cmake
 require_command ninja
 require_command clang++
-require_command svn
 require_command tar
 require_command wget
 require_command 7za
