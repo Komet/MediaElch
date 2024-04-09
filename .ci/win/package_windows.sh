@@ -75,18 +75,22 @@ mkdir -p pkg-zip/MediaElch/platforms
 cp "${MXE_LIB}/qt${QT_MAJOR_VERSION}/plugins/platforms/qwindows.dll" pkg-zip/MediaElch/platforms
 cp "${MXE_LIB}/qt${QT_MAJOR_VERSION}/plugins/platforms/qminimal.dll" pkg-zip/MediaElch/platforms
 
-mkdir -p pkg-zip/MediaElch/styles
-cp "${MXE_LIB}/qt${QT_MAJOR_VERSION}/plugins/styles/qmodernwindowsstyle.dll" pkg-zip/MediaElch/styles
 
 cp -R "${MXE_LIB}/qt${QT_MAJOR_VERSION}/plugins/imageformats/" pkg-zip/MediaElch/
 
 if [[ "${QT_MAJOR_VERSION}" = "5" ]]; then
+	mkdir -p pkg-zip/MediaElch/styles
+	cp "${MXE_LIB}/qt${QT_MAJOR_VERSION}/plugins/styles/qwindowsvistastyle.dll" pkg-zip/MediaElch/styles
+
 	cp -R "${MXE_LIB}/qt${QT_MAJOR_VERSION}/plugins/mediaservice/" pkg-zip/MediaElch/
 
 	print_info "Copying opengl32sw.dll"
 	cp "${PROJECT_DIR}/third_party/packaging_win/opengl32sw.dll" pkg-zip/MediaElch/
 
 elif [[ "${QT_MAJOR_VERSION}" = "6" ]]; then
+	mkdir -p pkg-zip/MediaElch/styles
+	cp "${MXE_LIB}/qt${QT_MAJOR_VERSION}/plugins/styles/qmodernwindowsstyle.dll" pkg-zip/MediaElch/styles
+
 	mkdir -p pkg-zip/MediaElch/iconengines
 	cp "${MXE_LIB}/qt${QT_MAJOR_VERSION}/plugins/iconengines/qsvgicon.dll" pkg-zip/MediaElch/iconengines/
 
