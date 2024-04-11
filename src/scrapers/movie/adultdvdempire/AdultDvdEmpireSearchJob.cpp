@@ -32,8 +32,7 @@ void AdultDvdEmpireSearchJob::parseSearch(const QString& html)
 {
     QTextDocument doc;
 
-    QRegularExpression rx(
-        R"re(<a href="([^"]*)"[\r\n\s]*title="([^"]*)" Category="List Page" Label="Title">(?:.+released<\/small>[\n\r\s]+(\d{2}/\d{2}/\d{4})))re");
+    QRegularExpression rx(R"re(<a href="([^"]*)"[^>]*Label="Title"[^>]*>([^<]+)<\/a>[\r\n\s]*&nbsp;\((\d{4})\))re");
     rx.setPatternOptions(QRegularExpression::InvertedGreedinessOption | QRegularExpression::DotMatchesEverythingOption);
 
     QRegularExpressionMatchIterator matches = rx.globalMatch(html);
