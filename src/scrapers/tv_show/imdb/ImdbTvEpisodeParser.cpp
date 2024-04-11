@@ -176,7 +176,7 @@ void ImdbTvEpisodeParser::parseInfos(TvShowEpisode& episode, const QString& html
         outline = outline.remove("Plot Synopsis").trimmed();
         episode.setOverview(removeHtmlEntities(outline));
     }
-    
+
     // --------------------------------------
 
     rx.setPattern(R"(<h2>Storyline</h2>\n +\n +<div class="inline canwrap">\n +<p>\n +<span>(.*)</span>)");
