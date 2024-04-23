@@ -18,6 +18,7 @@
 - IMDb: 
   - Episode's overviews are scraped again (#1724, #1751)
   - TV show titles did not properly decode HTML entities (#1754)
+  - The year in search results works again.
 - fernsehserien.de: Fix scraping of episode's thumbnails.
 - TV Show: The custom episode scraper may not have loaded details from IMDb.
 - Possible crash when clicking on empty episode thumbnails.
@@ -30,7 +31,8 @@
 - debian: Now uses Qt 6 on Ubuntu Lunar (23.04) and later (#1697)
   Thank you, Philipp (GitHub user `iluminat23`) for this change!
 - UI: Navigation and menu bar icons now have a hover effect.
-- IMDb: The year in search results works again.
+- macOS: The Qt5 build for macOS X no longer supports automatic dark mode
+  detection.  Reason being that it doesn't work on macOS 10.13 (#1742)
 
 ### Removed
 
