@@ -90,7 +90,7 @@ subtitles: (N=0)
 fileLastModified: <not set or invalid>
 files: (N=0)
 folderName: 
-posters: (N=1)
+posters: (N<6)
   - id: 
     originalUrl: https://imgs1cdn.adultempire.com/products/72/1670472h.jpg
     thumbUrl: https://imgs1cdn.adultempire.com/products/72/1670472h.jpg
@@ -99,7 +99,23 @@ posters: (N=1)
     hint: 
     aspect: 
     season: SeasonNumber=xx
+  - id: 
+    originalUrl: https://imgs1cdn.adultempire.com/products/72/1670472bh.jpg
+    thumbUrl: https://imgs1cdn.adultempire.com/products/72/1670472bh.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
 backdrops: (N>40)
+  - id: 
+    originalUrl: https://imgs1cdn.adultempire.com/products/72/1670472bh.jpg
+    thumbUrl: https://imgs1cdn.adultempire.com/products/72/1670472bh.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
   - id: 
     originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_00170_1920c.jpg
     thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_00170_1920c.jpg
@@ -127,14 +143,6 @@ backdrops: (N>40)
   - id: 
     originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_00590_1920c.jpg
     thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_00590_1920c.jpg
-    originalSize: h=-1 w=-1
-    language: 
-    hint: 
-    aspect: 
-    season: SeasonNumber=xx
-  - id: 
-    originalUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_00730_1920c.jpg
-    thumbUrl: https://caps1cdn.adultempire.com/n/0472/1920/1670472_00730_1920c.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
