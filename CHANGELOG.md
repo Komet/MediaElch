@@ -20,6 +20,7 @@
 - TV Show: The custom episode scraper may not have loaded details from IMDb.
 - Possible crash when clicking on empty episode thumbnails.
 - ADE: Search works again (#1737)
+- ADE/HM: Back cover is also downloaded (#1743)
 
 ### Changed
 

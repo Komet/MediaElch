@@ -115,15 +115,17 @@ void HotMoviesScrapeJob::parseAndAssignInfos(const QString& html)
         m_movie->images().addPoster(p);
     }
 
-    // TODO: Backcover (we need a proper HTML parser for that)
-    // rx.setPattern(R"rx(id="back-cover"[^>]+>\n\s+<img src="([^"]+)")rx");
-    // match = rx.match(html);
-    // if (match.hasMatch()) {
-    //     Poster p;
-    //     p.thumbUrl = match.captured(1);
-    //     p.originalUrl = match.captured(1);
-    //     m_movie->images().addBackdrop(p);
-    // }
+    rx.setPattern(R"rx(<a href="([^"]+)"[\s\n]+class="[^"]+"[\s\n]+rel="boxcoverAlt")rx");
+    match = rx.match(html);
+    if (match.hasMatch()) {
+        Poster p;
+        p.thumbUrl = match.captured(1);
+        p.originalUrl = match.captured(1);
+        // add both as additional poster and backdrop (fanart)
+        // TODO: Add as "posterN" when we support it
+        m_movie->images().addPoster(p);
+        m_movie->images().addBackdrop(p);
+    }
 
     rx.setPattern(R"re(<strong>Starring:</strong>(.*)</div>)re");
     match = rx.match(html);
