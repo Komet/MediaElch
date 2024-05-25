@@ -1,7 +1,8 @@
 ## Submitting MediaElch issues
 
 If you have questions about how to use the MediaElch, please read the 
-[FAQ](doc/FAQ.md) first. You can find help in following communities:
+[FAQ](https://mediaelch.github.io/mediaelch-doc/faq.html) first.
+You can find help in following communities:
 
  - [English] [Kodi Forum](https://forum.kodi.tv/showthread.php?tid=136333)
  - [German] [Kodinerds](https://www.kodinerds.net/index.php/Thread/14560-MediaElch-MediaManager-for-Mac-Linux-Win/)
