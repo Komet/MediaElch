@@ -21,7 +21,6 @@ RUN apt-get update && \
     add-apt-repository ppa:ubuntu-toolchain-r/test && \
     apt-get update && apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
-        aptitude \
         build-essential \
         debhelper \
         devscripts \
@@ -71,7 +70,7 @@ RUN apt-get update && \
         libqt5opengl5-dev \
         libqt5svg5 \
         libqt5svg5-dev && \
-    aptitude install -y  \
+    apt-get install -y --no-install-recommends \
         qt6-base-dev \
         qt6-base-dev-tools \
         qt6-tools-dev \
@@ -105,7 +104,7 @@ RUN perl -MCPAN -e 'install PerlIO::gzip' && \
     perl -MCPAN -e 'JSON'
 
 RUN cd /opt && git clone https://github.com/rui314/mold.git && \
-    cd mold && git checkout v2.30.0 && \
+    cd mold && git checkout v2.31.0 && \
     ./install-build-deps.sh && \
     mkdir build && cd build && \
     cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=clang++ .. && \
