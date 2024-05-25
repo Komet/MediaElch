@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>934</width>
-    <height>851</height>
+    <height>928</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout" stretch="0,1">
@@ -517,12 +517,12 @@
               <item row="8" column="1">
                <layout class="QHBoxLayout" name="horizontalLayout_4">
                 <item>
-                 <widget class="QDateEdit" name="released">
+                 <widget class="QDateEdit" name="releaseDate">
                   <property name="buttonSymbols">
                    <enum>QAbstractSpinBox::NoButtons</enum>
                   </property>
                   <property name="displayFormat">
-                   <string notr="true">yyyy</string>
+                   <string extracomment="Date Format">yyyy-MM-dd</string>
                   </property>
                  </widget>
                 </item>
@@ -1596,6 +1596,12 @@
  </widget>
  <customwidgets>
   <customwidget>
+   <class>ImageGallery</class>
+   <extends>QWidget</extends>
+   <header>ui/small_widgets/ImageGallery.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
    <class>TagCloud</class>
    <extends>QWidget</extends>
    <header>ui/small_widgets/TagCloud.h</header>
@@ -1605,12 +1611,6 @@
    <class>ClosableImage</class>
    <extends>QLabel</extends>
    <header>ui/small_widgets/ClosableImage.h</header>
-  </customwidget>
-  <customwidget>
-   <class>ImageGallery</class>
-   <extends>QWidget</extends>
-   <header>ui/small_widgets/ImageGallery.h</header>
-   <container>1</container>
   </customwidget>
   <customwidget>
    <class>StereoModeComboBox</class>
