@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>954</width>
-    <height>828</height>
+    <height>835</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout" stretch="0,1">
@@ -592,7 +592,7 @@
                  <enum>QAbstractSpinBox::NoButtons</enum>
                 </property>
                 <property name="displayFormat">
-                 <string>dd.MM.yyyy</string>
+                 <string extracomment="Date Format">yyyy-MM-dd</string>
                 </property>
                </widget>
               </item>
@@ -1371,6 +1371,12 @@
  </widget>
  <customwidgets>
   <customwidget>
+   <class>ImageGallery</class>
+   <extends>QWidget</extends>
+   <header>ui/small_widgets/ImageGallery.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
    <class>TagCloud</class>
    <extends>QWidget</extends>
    <header>ui/small_widgets/TagCloud.h</header>
@@ -1380,12 +1386,6 @@
    <class>ClosableImage</class>
    <extends>QLabel</extends>
    <header>ui/small_widgets/ClosableImage.h</header>
-  </customwidget>
-  <customwidget>
-   <class>ImageGallery</class>
-   <extends>QWidget</extends>
-   <header>ui/small_widgets/ImageGallery.h</header>
-   <container>1</container>
   </customwidget>
   <customwidget>
    <class>SlidingStackedWidget</class>

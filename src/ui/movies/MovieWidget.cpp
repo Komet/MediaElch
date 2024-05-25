@@ -187,7 +187,7 @@ MovieWidget::MovieWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieWid
     connect(ui->certification,    &QComboBox::editTextChanged,      this, &MovieWidget::onCertificationChange);
     connect(ui->set,              &QComboBox::editTextChanged,      this, &MovieWidget::onSetChange);
     connect(ui->badgeWatched,     &Badge::clicked,                  this, &MovieWidget::onWatchedClicked);
-    connect(ui->released,         &QDateTimeEdit::dateChanged,      this, &MovieWidget::onReleasedChange);
+    connect(ui->releaseDate,      &QDateTimeEdit::dateChanged,      this, &MovieWidget::onReleasedChange);
     connect(ui->lastPlayed,       &QDateTimeEdit::dateTimeChanged,  this, &MovieWidget::onLastWatchedChange);
     connect(ui->overview,         &QTextEdit::textChanged,          this, &MovieWidget::onOverviewChange);
     connect(ui->outline,          &QTextEdit::textChanged,          this, &MovieWidget::onOutlineChange);
@@ -294,9 +294,9 @@ void MovieWidget::clear()
     ui->thumb->clear();
 
     bool blocked = false;
-    blocked = ui->released->blockSignals(true);
-    ui->released->setDate(QDate::currentDate());
-    ui->released->blockSignals(blocked);
+    blocked = ui->releaseDate->blockSignals(true);
+    ui->releaseDate->setDate(QDate::currentDate());
+    ui->releaseDate->blockSignals(blocked);
 
     blocked = ui->lastPlayed->blockSignals(true);
     ui->lastPlayed->setDateTime(QDateTime::currentDateTime());
@@ -556,7 +556,7 @@ void MovieWidget::updateMovieInfo()
     ui->playcount->blockSignals(true);
     ui->set->blockSignals(true);
     ui->certification->blockSignals(true);
-    ui->released->blockSignals(true);
+    ui->releaseDate->blockSignals(true);
     ui->lastPlayed->blockSignals(true);
     ui->overview->blockSignals(true);
     ui->outline->blockSignals(true);
@@ -580,7 +580,7 @@ void MovieWidget::updateMovieInfo()
     ui->tagline->setText(m_movie->tagline());
     ui->userRating->setValue(m_movie->userRating());
     ui->top250->setValue(m_movie->top250());
-    ui->released->setDate(m_movie->released());
+    ui->releaseDate->setDate(m_movie->released());
     ui->runtime->setValue(static_cast<int>(m_movie->runtime().count()));
     ui->trailer->setText(m_movie->trailer().toString());
     ui->playcount->setValue(m_movie->playcount());
@@ -701,7 +701,7 @@ void MovieWidget::updateMovieInfo()
     ui->top250->blockSignals(false);
     ui->runtime->blockSignals(false);
     ui->playcount->blockSignals(false);
-    ui->released->blockSignals(false);
+    ui->releaseDate->blockSignals(false);
     ui->lastPlayed->blockSignals(false);
     ui->overview->blockSignals(false);
     ui->outline->blockSignals(false);
