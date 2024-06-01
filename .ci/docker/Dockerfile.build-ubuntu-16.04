@@ -5,7 +5,8 @@ FROM ubuntu:xenial
 # MediaElch AppImage.
 
 RUN apt-get update && \
-    apt-get -y install software-properties-common
+    apt-get install -y python3-distro-info=0.18~ubuntu16.04.1 && \
+    apt-get install -y software-properties-common python3-software-properties
 
 RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test && \
     add-apt-repository -y ppa:beineri/opt-qt-5.12.9-xenial
