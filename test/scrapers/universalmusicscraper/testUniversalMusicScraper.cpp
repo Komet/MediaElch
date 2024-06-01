@@ -44,8 +44,8 @@ TEST_CASE("UniversalMusicScraper returns correct search results", "[music][Unive
         CHECK(scraperResults[0].identifier == "f3bfed3d-c1d2-3599-b6d7-3916be6c53dc");
 
         CHECK_THAT(scraperResults[1].title, StartsWith("Rosenrot"));
-        CHECK(scraperResults[1].groupIdentifier == "7bfae355-44ea-3be6-89de-40147131be51");
-        CHECK(scraperResults[1].identifier == "241739af-fc56-46b1-bd42-af06fdbff62a");
+        CHECK(scraperResults[1].groupIdentifier == "15e65e08-85d1-3145-85b2-e18b9fbd4cba");
+        CHECK(scraperResults[1].identifier == "3180b53a-5e7c-4e94-823a-792bea64acf0");
     }
 }
 

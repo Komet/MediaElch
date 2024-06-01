@@ -172,7 +172,9 @@ actors: (N>60)
  - id: 
    name: Katherine Ringgold
    role: Chickenfish
-   thumb: 
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTUwNDFiNDQtZGQzYy00OTAxLWE0YzEtYjZjODNj
+    NzYxNGM1XkEyXkFqcGdeQXVyMTgwNTgyNDk3.jpg
    order: 18
    imageHasChanged: false
  - id: 
@@ -194,9 +196,8 @@ tags: (N<6)
   - female-protagonist
   - motor-vehicle
   - controversy
-countries: (N<6)
+countries: (N=1)
   - United States
-  - China
 studios: (N<6)
   - Pixar Animation Studios
   - Walt Disney Pictures

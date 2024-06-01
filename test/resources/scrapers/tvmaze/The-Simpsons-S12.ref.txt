@@ -210,7 +210,7 @@ tvmazeId: 5251
 title: The Computer Wore Menace Shoes
 showTitle: 
 ratings (N=1)
-  source=tvmaze | rating=8.2 | votes=0 | min=0 | max=10
+  source=tvmaze | rating=8.4 | votes=0 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -249,7 +249,7 @@ tvmazeId: 5252
 title: The Great Money Caper
 showTitle: 
 ratings (N=1)
-  source=tvmaze | rating=7.8 | votes=0 | min=0 | max=10
+  source=tvmaze | rating=8 | votes=0 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12

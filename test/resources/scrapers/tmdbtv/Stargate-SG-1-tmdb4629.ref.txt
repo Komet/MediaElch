@@ -111,19 +111,19 @@ actors: (N>800)
    thumb: https://image.tmdb.org/t/p/original/lLCIT3kWr4RWg2boqS5vjUiR7KF.jpg
    order: 11
    imageHasChanged: false
- - id: 118463
-   name: Peter DeLuise
-   role:
-    Director / Peter DeLuise, Airman, SF Guard (Uncredited), Tok'ra Guard, Lieutenan
-    t, Machine Gun Guard, Free Jaffa (Voice only) (Uncredited), Young Urgo in Unifor
-    m, Man Leaving Cafe, Interviewer, Screaming Villager
-   thumb: https://image.tmdb.org/t/p/original/sLkSOm6HBLB4VCfshQLdSEq63tr.jpg
-   order: 12
-   imageHasChanged: false
  - id: 118462
    name: Bill Dow
    role: Bill Lee
    thumb: https://image.tmdb.org/t/p/original/dfl1WQzIRhswOw4zQxo6YKWL3Ik.jpg
+   order: 12
+   imageHasChanged: false
+ - id: 118463
+   name: Peter DeLuise
+   role:
+    Director / Peter DeLuise, Airman, SF Guard (Uncredited), Lieutenant, Man Leaving
+     Cafe, Free Jaffa (Voice only) (Uncredited), Interviewer, Tok'ra Guard, Screamin
+    g Villager, Machine Gun Guard, Young Urgo in Uniform
+   thumb: https://image.tmdb.org/t/p/original/sLkSOm6HBLB4VCfshQLdSEq63tr.jpg
    order: 13
    imageHasChanged: false
  - id: 1218926
@@ -153,10 +153,10 @@ actors: (N>800)
  - id: 1366510
    name: Fraser Aitcheson
    role:
-    Hathor's Jaffa, Free Jaffa 2 (Uncredited), Jaffa Guard, Apophis' Red Jaffa, Anub
-    is' Jaffa, Orderly, Ares' Jaffa commander (Uncredited), Tagrean Worker, Jaffa, J
-    affa Commander, Free Jaffa (Uncredited), Dakara Jaffa 3 (Uncredited), Jaffa Warr
-    ior
+    Hathor's Jaffa, Jaffa Commander, Dakara Jaffa 3 (Uncredited), Ares' Jaffa comman
+    der (Uncredited), Jaffa Guard, Free Jaffa 2 (Uncredited), Apophis' Red Jaffa, An
+    ubis' Jaffa, Orderly, Tagrean Worker, Jaffa Warrior, Jaffa, Free Jaffa (Uncredit
+    ed)
    thumb: https://image.tmdb.org/t/p/original/j0fou5tZvXHe3GcVr24UnYQLg6S.jpg
    order: 18
    imageHasChanged: false

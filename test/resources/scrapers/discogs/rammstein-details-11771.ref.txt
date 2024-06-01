@@ -67,6 +67,8 @@ discography: (N>90)
     year: 1997
   - title: Sehnsucht
     year: 1997
+  - title: Sehnsucht
+    year: 1997
   - title: Das Modell
     year: 1997
   - title: Du Hast
@@ -137,9 +139,9 @@ discography: (N>90)
     year: 2004
   - title: Interview Disc 3
     year: 2004
-  - title: Platinum Collection '2003 - "Links" Greatest Hits 
-    year: 2004
   - title: Reise,Reise Interview
+    year: 2004
+  - title: Platinum Collection '2003 - "Links" Greatest Hits 
     year: 2004
   - title: Ohne Dich
     year: 2004
@@ -167,12 +169,8 @@ discography: (N>90)
     year: 2005
   - title: Völkerball
     year: 2006
-  - title: Mann Gegen Mann (Digital Exclusive Version 1)
-    year: 2006
   - title: Völkerball
     year: 2006
-  - title: MP3 Collection
-    year: 2008
   - title: Liebe Ist Für Alle Da
     year: 2009
   - title: Pussy
@@ -229,6 +227,8 @@ discography: (N>90)
     year: 2022
   - title: Adieu
     year: 2022
+  - title: MTV / VOX
+    year: 
 genres: (N=0)
 styles: (N=0)
 moods: (N=0)

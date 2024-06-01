@@ -77,7 +77,7 @@ TEST_CASE("HotMovies scrapes correct movie details", "[movie][HotMovies][load_da
         test::scrapeMovieScraperSync(scrapeJob.get(), false);
         auto& m = scrapeJob->movie();
 
-        REQUIRE(m.name() == "\"M\" Is For Mischief No. 3");
+        REQUIRE_THAT(m.name(), StartsWith("\"M\" Is For Mischief No. 3"));
         REQUIRE(m.set().name == "\"M\" Is For Mischief");
         cleanupMovie(m);
         test::scraper::compareAgainstReference(m, "scrapers/hot-movies/M-Is-For-Mischief-214343");

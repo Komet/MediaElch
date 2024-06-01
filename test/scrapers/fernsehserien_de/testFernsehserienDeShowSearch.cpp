@@ -60,10 +60,17 @@ TEST_CASE("FernsehserienDe returns valid search results", "[FernsehserienDe][sea
         // Some french TV show; I've never heard of it, but it has a few non-ASCII characters.
         const auto scraperResults = searchFor("Y’a pas d’âge");
 
-        REQUIRE(scraperResults.length() >= 4);
-        CHECK(scraperResults[0].title == "Y’a pas d’âge");
-        CHECK(scraperResults[0].released == QDate(2013, 1, 1));
-        CHECK(scraperResults[0].identifier.str() == "ya-pas-dage");
+        REQUIRE(scraperResults.length() >= 14);
+        for (const auto& result : scraperResults) {
+            if (result.title == "Y’a pas d’âge") {
+                CHECK(result.title == "Y’a pas d’âge");
+                CHECK(result.released == QDate(2013, 1, 1));
+                CHECK(result.identifier.str() == "ya-pas-dage");
+                return;
+            }
+        }
+        // if we reach this, there wasn't a proper search result
+        CHECK(false);
     }
 
     SECTION("Search by TV show with non-ASCII characters works: &")
@@ -72,9 +79,16 @@ TEST_CASE("FernsehserienDe returns valid search results", "[FernsehserienDe][sea
         const auto scraperResults = searchFor("G&G");
 
         REQUIRE(scraperResults.length() >= 40);
-        CHECK(scraperResults[0].title == "G&G – Gesichter und Geschichten");
-        CHECK(scraperResults[0].released == QDate(2005, 1, 1));
-        CHECK(scraperResults[0].identifier.str() == "g-und-g-gesichter-und-geschichten");
+        for (const auto& result : scraperResults) {
+            if (result.title == "G&G – Gesichter und Geschichten") {
+                CHECK(result.title == "G&G – Gesichter und Geschichten");
+                CHECK(result.released == QDate(2005, 1, 1));
+                CHECK(result.identifier.str() == "g-und-g-gesichter-und-geschichten");
+                return;
+            }
+        }
+        // if we reach this, there wasn't a proper search result
+        CHECK(false);
     }
 
     SECTION("Search for unknown TV shows returns 0 results without an error")

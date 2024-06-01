@@ -14,7 +14,7 @@ overview:
     g sociopath" in modern-day London. Assisting him in his investigations: Afghanis
     tan War vet John Watson, who's introduced to Holmes by a mutual acquai...
 ratings (N=1)
-  source=imdb | rating=9 | votes=900000 | min=0 | max=10
+  source=imdb | rating=9 | votes=1000000 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 firstAired: 2010-10-24

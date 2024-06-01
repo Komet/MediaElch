@@ -71,7 +71,7 @@ actors: (N>10)
  - id: 
    name: Jim Jordan
    role: Orville (voice)
-   thumb: http://image.tmdb.org/t/p/original/gNupv2JEfBWfZVISoWP6q3cw4TT.jpg
+   thumb: http://image.tmdb.org/t/p/original/olggVPy2ZFyZ2NwY1poohcdgRXJ.jpg
    order: 6
    imageHasChanged: false
  - id: 

@@ -10,8 +10,8 @@ showTitle:
 originalTitle: 
 sortTitle: 
 overview:
-    The satiric adventures of a working-class family in the misfit city of Springfie
-    ld.
+    The satiric half-hour adventures of a working-class family in the misfit city of
+     Springfield.
 ratings (N=1)
   source=imdb | rating=8.6 | votes=400000 | min=0 | max=10
 userRating: 0
