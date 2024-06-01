@@ -59,8 +59,13 @@ bool ImageCapture::captureImage(FilePath file,
     tmpFile.close();
 
     ffmpeg.start(ffmpegbin,
-        QStringList() << "-y" << "-ss" << timeCode << "-i" << file.toNativePathString() << "-frames:v" << "1" << "-q:v"
-                      << "2" << "-f" << "mjpeg" << tmpFile.fileName());
+        QStringList() << "-y"
+                      << "-ss" << timeCode << "-i" << file.toNativePathString() << "-frames:v"
+                      << "1"
+                      << "-q:v"
+                      << "2"
+                      << "-f"
+                      << "mjpeg" << tmpFile.fileName());
     if (!ffmpeg.waitForStarted()) {
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
         NotificationBox::instance()->showError(tr("Could not start ffmpeg"));
