@@ -15,7 +15,7 @@
 
 ### Fixed
 
-- IMDb: Episode's overviews are scraped again (#1724)
+- IMDb: Episode's overviews are scraped again (#1724, #1751)
 - fernsehserien.de: Fix scraping of episode's thumbnails.
 - TV Show: The custom episode scraper may not have loaded details from IMDb.
 - Possible crash when clicking on empty episode thumbnails.

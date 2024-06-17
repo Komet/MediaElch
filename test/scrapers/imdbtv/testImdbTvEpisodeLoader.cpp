@@ -100,3 +100,28 @@ TEST_CASE("ImdbTv scrapes episode details for Buffy", "[buffy][episode][ImdbTv][
         test::scraper::compareAgainstReference(episode, "scrapers/imdbtv/Buffy-S01E01-minimal-details");
     }
 }
+
+TEST_CASE("ImdbTv scrapes episode details for 'All in the Family' S01E01", "[episode][ImdbTv][load_data]")
+{
+    SeasonNumber season(1);
+    EpisodeNumber episodeNumber(1);
+    ImdbId showId("tt0066626");
+    ImdbId episodeId("tt0509891");
+
+    SECTION("Loads details of episode S01E01")
+    {
+        EpisodeIdentifier id(episodeId);
+        EpisodeScrapeJob::Config config{id, Locale::English, {EpisodeScraperInfo::Title}};
+
+        auto scrapeJob = std::make_unique<ImdbTvEpisodeScrapeJob>(getImdbApi(), config);
+        test::scrapeEpisodeSync(scrapeJob.get());
+        auto& episode = scrapeJob->episode();
+
+        REQUIRE(episode.imdbId() == ImdbId("tt0509891"));
+        test::scraper::compareAgainstReference(
+            episode, "scrapers/imdbtv/All-in-the-Family-S01E01-tt0509891-minimal-details");
+
+        // These fields should not be set
+        CHECK_FALSE(episode.actors().hasActors());
+    }
+}

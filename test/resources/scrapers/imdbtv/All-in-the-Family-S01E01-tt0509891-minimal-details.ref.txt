@@ -1,0 +1,34 @@
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: tt0509891
+tvdbId: 
+tvmazeId: 
+title: Meet the Bunkers
+showTitle: 
+ratings (N=1)
+  source=imdb | rating=8.4 | votes=500 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=xx
+episode: EpisodeNumber=xx
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    In the series' premiere, Mike and Gloria plan a surprise party to celebrate Arch
+    ie and Edith's 22nd anniversary. But it quickly turns into a shouting match betw
+    een conservative Archie and the liberal "Meathead" on virtually every topic.
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 1971-01-12
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+networks: (N=0)
+thumbnail: https://m.media-amazon.com/images/M/MV5BMDE0MmU0ODMtNGQ1YS00NGNiLWExODMtMzNiODM3NzA0MDQ5XkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_UX400_CR0,0,400,225_AL_.jpg
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
