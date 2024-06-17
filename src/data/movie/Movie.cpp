@@ -85,7 +85,8 @@ void Movie::clear()
           << MovieScraperInfo::CdArt         //
           << MovieScraperInfo::Banner        //
           << MovieScraperInfo::Thumb         //
-          << MovieScraperInfo::ClearArt;
+          << MovieScraperInfo::ClearArt      //
+          << MovieScraperInfo::TvShowLink;
     clear(infos);
     m_nfoContent.clear();
 }
@@ -132,7 +133,10 @@ void Movie::clear(QSet<MovieScraperInfo> infos)
         m_runtime = 0min;
     }
     if (infos.contains(MovieScraperInfo::Trailer)) {
-        m_trailer = "";
+        m_trailer.clear();
+    }
+    if (infos.contains(MovieScraperInfo::TvShowLink)) {
+        m_tvShowLink.clear();
     }
     if (infos.contains(MovieScraperInfo::Certification)) {
         m_certification = Certification::NoCertification;
@@ -186,6 +190,7 @@ void Movie::exportTo(Movie::Exporter& exporter) const
     exporter.exportCountries(m_countries);
     exporter.exportStudios(m_studios);
     exporter.exportTrailer(m_trailer);
+    exporter.exportTvShowLink(m_tvShowLink);
     exporter.exportPlaycount(m_playcount);
     exporter.exportLastPlayed(m_lastPlayed);
     exporter.exportDateAdded(m_dateAdded);
@@ -381,6 +386,11 @@ QVector<QString*> Movie::studiosPointer()
 QUrl Movie::trailer() const
 {
     return m_trailer;
+}
+
+QString Movie::tvShowLink() const
+{
+    return m_tvShowLink;
 }
 
 const Actors& Movie::actors() const
@@ -705,6 +715,12 @@ void Movie::setDirector(QString director)
 void Movie::setTrailer(QUrl trailer)
 {
     m_trailer = std::move(trailer);
+    setChanged(true);
+}
+
+void Movie::setTvShowLink(QString tvShowLink)
+{
+    m_tvShowLink = std::move(tvShowLink);
     setChanged(true);
 }
 

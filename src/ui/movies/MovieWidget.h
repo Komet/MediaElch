@@ -92,6 +92,7 @@ private slots:
     void onRuntimeChange(int value);
     void onCertificationChange(QString text);
     void onTrailerChange(QString text);
+    void onTvShowLinkChange(QString text);
     void onWatchedClicked();
     void onPlayCountChange(int value);
     void onLastWatchedChange(QDateTime dateTime);

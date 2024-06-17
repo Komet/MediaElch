@@ -142,6 +142,10 @@ QByteArray MovieXmlWriterGeneric::getMovieXml(bool testMode)
 
     writeActors(xml, m_movie.actors());
 
+    if (!m_movie.tvShowLink().isEmpty()) {
+        xml.writeTextElement("showlink", m_movie.tvShowLink());
+    }
+
     // <resume>
     //   <position>0.000000</position>
     //   <total>0.000000</total>

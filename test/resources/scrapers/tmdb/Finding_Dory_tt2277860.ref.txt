@@ -84,7 +84,7 @@ actors: (N>60)
  - id: 
    name: Dominic West
    role: Rudder (voice)
-   thumb: http://image.tmdb.org/t/p/original/aCzmg3TWIElRFU15bnekttKOsYC.jpg
+   thumb: http://image.tmdb.org/t/p/original/iJIdrZrE57eWlXAtXbntzacW6B8.jpg
    order: 9
    imageHasChanged: false
  - id: 
@@ -160,7 +160,8 @@ countries: (N=1)
 studios: (N<6)
   - Pixar
   - Walt Disney Pictures
-trailer: https://www.youtube.com/watch?v=JhvrQeY3doI
+trailer: https://www.youtube.com/watch?v=iG0P6bjyUNI
+showlink: 
 playcount: 0
 lastPlayed: <not set or invalid>
 dateAdded: <not set or invalid>

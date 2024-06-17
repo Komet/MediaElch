@@ -146,6 +146,7 @@ void CsvMovieExport::exportMovies(const QVector<Movie*>& movies, std::function<v
             {s(Field::PlayCount), QString::number(movie->playcount())},
             {s(Field::LastPlayed), movie->lastPlayed().toString(Qt::ISODate)},
             {s(Field::MovieSet), movie->set().name},
+            {s(Field::TvShowLink), movie->tvShowLink()},
             {s(Field::Directory), dirFromFileList(movie->files())},
             {s(Field::Filenames), filesToString(movie->files())},
             {s(Field::LastModified), movie->fileLastModified().toString(Qt::ISODate)},
@@ -204,6 +205,7 @@ QString CsvMovieExport::fieldToString(Field field)
     case Field::PlayCount: return "movie_playcount";
     case Field::LastPlayed: return "movie_last_played";
     case Field::MovieSet: return "movie_set";
+    case Field::TvShowLink: return "tv_show_link";
     case Field::Directory: return "movie_directory";
     case Field::Filenames: return "movie_filenames";
     case Field::LastModified: return "movie_date_added";
