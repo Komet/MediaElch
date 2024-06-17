@@ -83,6 +83,7 @@ QString scraper::movieScraperDetailToString(MovieScraperInfo detail)
     case MovieScraperInfo::ClearArt: return QStringLiteral("clear-art");
     case MovieScraperInfo::Banner: return QStringLiteral("banner");
     case MovieScraperInfo::Thumb: return QStringLiteral("thumb");
+    case MovieScraperInfo::TvShowLink: return QStringLiteral("showlink");
     }
     MediaElch_Debug_Unreachable();
     return QStringLiteral("unknown");
