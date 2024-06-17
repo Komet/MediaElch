@@ -115,6 +115,7 @@ QSet<MovieScraperInfo> scraper::allMovieScraperInfos()
         MovieScraperInfo::ClearArt,
         MovieScraperInfo::Banner,
         MovieScraperInfo::Thumb,
+        MovieScraperInfo::TvShowLink,
         MovieScraperInfo::First};
 }
 

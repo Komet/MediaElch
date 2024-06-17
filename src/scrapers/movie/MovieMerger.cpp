@@ -58,6 +58,10 @@ void copyDetailToMovie(Movie& target,
         target.setTrailer(source.trailer());
         break;
     }
+    case MovieScraperInfo::TvShowLink: {
+        target.setTvShowLink(source.tvShowLink());
+        break;
+    }
     case MovieScraperInfo::Overview: {
         target.setOverview(source.overview());
         if (!source.outline().isEmpty()) {
