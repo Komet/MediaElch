@@ -28,9 +28,9 @@ overview:
     a dolphin in "Night of the Dolphin."
 writers: (N<6)
   - Don Payne
-  - Rob LaZebnik
   - Carolyn Omine
   - John Frink
+  - Rob LaZebnik
 directors: (N=1)
   - Matthew Nastuk
 playCount: 0
@@ -266,7 +266,7 @@ actors: (N>10)
  - id: 69597
    name: Drew Barrymore
    role: 
-   thumb: https://image.tmdb.org/t/p/original/mVQdb6w6gXmLZ6nZ3K9Fw3vzawM.jpg
+   thumb: https://image.tmdb.org/t/p/original/9xMu2GLC5otUcC11sEWC5aEAERQ.jpg
    order: 5
    imageHasChanged: false
  - id: 3266
@@ -980,41 +980,47 @@ actors: (N>5)
    thumb: https://image.tmdb.org/t/p/original/zBYnzxzlAIEoanEU00bGYJmRS6k.jpg
    order: 0
    imageHasChanged: false
+ - id: 27765
+   name: Richard Nixon
+   role: Self (Archive Footage)
+   thumb: https://image.tmdb.org/t/p/original/uCJeC6LXnv3KVA1YUNTpBh8uAhC.jpg
+   order: 1
+   imageHasChanged: false
  - id: 198
    name: Dan Castellaneta
    role: Homer Simpson / Abe Simpson / Barney Gumble / Krusty (voice)
    thumb: https://image.tmdb.org/t/p/original/AmeqWhP4A46AWkM4kVphg6jOTQX.jpg
-   order: 1
+   order: 2
    imageHasChanged: false
  - id: 199
    name: Julie Kavner
    role: Marge Simpson / Patty Bouvier / Selma Bouvier (voice)
    thumb: https://image.tmdb.org/t/p/original/xxiu7PC7RDOJmCuB6i81gEVrDQW.jpg
-   order: 2
+   order: 3
    imageHasChanged: false
  - id: 200
    name: Nancy Cartwright
    role: Bart Simpson / Nelson Muntz / Ralph Wiggum (voice)
    thumb: https://image.tmdb.org/t/p/original/40qNhyYJhSE2Yiy4pnXSZhdufO6.jpg
-   order: 3
+   order: 4
    imageHasChanged: false
  - id: 5586
    name: Yeardley Smith
    role: Lisa Simpson (voice)
    thumb: https://image.tmdb.org/t/p/original/9AjPwbb3uz4GfgOPBYsy2ILvwkB.jpg
-   order: 4
+   order: 5
    imageHasChanged: false
  - id: 5587
    name: Hank Azaria
    role: Moe Szyslak / Chief Wiggum / Apu / Comic Book Guy / Carl (voice)
    thumb: https://image.tmdb.org/t/p/original/yFDw4b0jucuFWNnGcBPfpYUtn16.jpg
-   order: 5
+   order: 6
    imageHasChanged: false
  - id: 6008
    name: Harry Shearer
    role: Ned Flanders / Mr. Burns / Smithers / Skinner / Lenny (voice)
    thumb: https://image.tmdb.org/t/p/original/7PnGZGVKJNDTUv3DkbaMEnCseT0.jpg
-   order: 6
+   order: 7
    imageHasChanged: false
 streamDetails: <not loaded>
 files: (N=0)

@@ -119,7 +119,7 @@ actors: (N>10)
  - id: 
    name: Dub Taylor
    role: Digger (voice)
-   thumb: http://image.tmdb.org/t/p/original/gDgTAXPq5vOW5CWxF2MaeQ9Kjkn.jpg
+   thumb: http://image.tmdb.org/t/p/original/kaVczv72Xu6OlyFdA7uxTKRJNMN.jpg
    order: 14
    imageHasChanged: false
  - id: 
@@ -158,6 +158,7 @@ countries: (N=1)
 studios: (N=1)
   - Walt Disney Productions
 trailer: https://www.youtube.com/watch?v=9d3At0Zng3k
+showlink: 
 playcount: 0
 lastPlayed: <not set or invalid>
 dateAdded: <not set or invalid>

@@ -40,6 +40,7 @@ bool MovieXmlReader::parseNfoDom(QDomDocument domDoc)
     tagParsers.insert("plot",          &MovieXmlReader::simpleString<&Movie::setOverview>);
     tagParsers.insert("outline",       &MovieXmlReader::simpleString<&Movie::setOutline>);
     tagParsers.insert("tagline",       &MovieXmlReader::simpleString<&Movie::setTagline>);
+    tagParsers.insert("showlink",      &MovieXmlReader::simpleString<&Movie::setTvShowLink>);
     tagParsers.insert("set",           &MovieXmlReader::movieSet);
     tagParsers.insert("actor",         &MovieXmlReader::movieActor);
     tagParsers.insert("thumb",         &MovieXmlReader::movieThumbnail);

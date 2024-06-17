@@ -184,6 +184,7 @@ MovieWidget::MovieWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieWid
     connect(ui->playcount,        elchOverload<int>(&QSpinBox::valueChanged),          this, &MovieWidget::onPlayCountChange);
 
     connect(ui->trailer,          &QLineEdit::textEdited,           this, &MovieWidget::onTrailerChange);
+    connect(ui->tvShowLink,       &QLineEdit::textEdited,           this, &MovieWidget::onTvShowLinkChange);
     connect(ui->certification,    &QComboBox::editTextChanged,      this, &MovieWidget::onCertificationChange);
     connect(ui->set,              &QComboBox::editTextChanged,      this, &MovieWidget::onSetChange);
     connect(ui->badgeWatched,     &Badge::clicked,                  this, &MovieWidget::onWatchedClicked);
@@ -270,6 +271,7 @@ void MovieWidget::clear()
     clear(ui->top250);
     clear(ui->runtime);
     clear(ui->trailer);
+    clear(ui->tvShowLink);
     clear(ui->playcount);
     clear(ui->overview);
     clear(ui->outline);
@@ -583,6 +585,7 @@ void MovieWidget::updateMovieInfo()
     ui->releaseDate->setDate(m_movie->released());
     ui->runtime->setValue(static_cast<int>(m_movie->runtime().count()));
     ui->trailer->setText(m_movie->trailer().toString());
+    ui->tvShowLink->setText(m_movie->tvShowLink());
     ui->playcount->setValue(m_movie->playcount());
     ui->lastPlayed->setDateTime(m_movie->lastPlayed());
     ui->overview->setPlainText(m_movie->overview());
@@ -1281,6 +1284,15 @@ void MovieWidget::onTrailerChange(QString text)
         return;
     }
     m_movie->setTrailer(text);
+    ui->buttonRevert->setVisible(true);
+}
+
+void MovieWidget::onTvShowLinkChange(QString text)
+{
+    if (m_movie == nullptr) {
+        return;
+    }
+    m_movie->setTvShowLink(text);
     ui->buttonRevert->setVisible(true);
 }
 

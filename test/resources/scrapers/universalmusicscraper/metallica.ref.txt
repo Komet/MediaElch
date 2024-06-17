@@ -153,6 +153,8 @@ discography: (N>100)
     year: 1993
   - title: Metallica "Live" Video Press Kit 1993
     year: 1993
+  - title: 6 Videos
+    year: 1993
   - title: One / Eye Of The Beholder
     year: 1993
   - title: Live Shit: Binge & Purge
@@ -248,8 +250,6 @@ discography: (N>100)
   - title: S & M Documentary
     year: 1999
   - title:  "S & M"  - Interview
-    year: 1999
-  - title: In The Studio "Load / Reload"
     year: 1999
 genres: (N=1)
   - Pop/Rock

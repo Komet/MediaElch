@@ -67,8 +67,6 @@ discography: (N>90)
     year: 1997
   - title: Sehnsucht
     year: 1997
-  - title: Sehnsucht
-    year: 1997
   - title: Das Modell
     year: 1997
   - title: Du Hast
@@ -228,6 +226,8 @@ discography: (N>90)
   - title: Adieu
     year: 2022
   - title: MTV / VOX
+    year: 
+  - title: Zeig Dich
     year: 
 genres: (N=0)
 styles: (N=0)

@@ -38,6 +38,8 @@
 
 - TV shows and episodes: If there is more than one network (separated by `,`),
   they will be stored as separate `<studio>` tags in the NFO file (#1705)
+- Movies have a new field "TV Show Link" which is stored as a `<showlink>` in Kodi.  
+  It is available in the UI via the movie's "Extended" tab (#1753).
 - Added Kodi v22 to Kodi selection menu.
 
 ## 2.10.6 - 2023-12-03
