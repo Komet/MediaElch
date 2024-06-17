@@ -103,7 +103,9 @@ season: SeasonNumber=05
 episode: EpisodeNumber=03
 displaySeason: SeasonNumber=xx
 displayEpisode: EpisodeNumber=xx
-overview: 
+overview:
+    A lonely teenager yearns to connect with her favorite pop star - whose charmed e
+    xistence isn't quite as rosy as it appears...
 writers: (N=0)
 directors: (N=0)
 playCount: 0

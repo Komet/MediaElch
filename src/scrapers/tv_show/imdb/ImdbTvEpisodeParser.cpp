@@ -168,23 +168,44 @@ void ImdbTvEpisodeParser::parseInfos(TvShowEpisode& episode, const QString& html
     // }
 
     // --------------------------------------
+    // Overview: Try different formats.
+
+    bool hasOverview = false;
     rx.setPattern(R"re(Plot Summary</td>(.*)</td>)re");
+    MediaElch_Debug_Assert(rx.isValid());
     match = rx.match(html);
     if (match.hasMatch()) {
         QString outline = match.captured(1);
         outline = outline.remove("Plot Summary").trimmed();
         outline = outline.remove("Plot Synopsis").trimmed();
-        episode.setOverview(removeHtmlEntities(outline));
+        outline = removeHtmlEntities(outline);
+        episode.setOverview(outline);
+        hasOverview = !outline.isEmpty();
     }
 
-    // --------------------------------------
-
-    rx.setPattern(R"(<h2>Storyline</h2>\n +\n +<div class="inline canwrap">\n +<p>\n +<span>(.*)</span>)");
-    match = rx.match(html);
-    if (match.hasMatch()) {
-        QString overview = removeHtmlEntities(match.captured(1));
-        episode.setOverview(overview);
+    if (!hasOverview) {
+        rx.setPattern(R"(<h2>Storyline</h2>\n +\n +<div class="inline canwrap">\n +<p>\n +<span>(.*)</span>)");
+        MediaElch_Debug_Assert(rx.isValid());
+        match = rx.match(html);
+        if (match.hasMatch()) {
+            QString overview = removeHtmlEntities(match.captured(1));
+            episode.setOverview(overview);
+            hasOverview = !overview.isEmpty();
+        }
     }
+
+    if (!hasOverview) {
+        rx.setPattern(R"(<section class="titlereference-section-overview">.+<hr>(.+)<hr>)");
+        MediaElch_Debug_Assert(rx.isValid());
+        match = rx.match(html);
+        if (match.hasMatch()) {
+            QString overview = removeHtmlEntities(match.captured(1));
+            episode.setOverview(overview);
+            hasOverview = !overview.isEmpty();
+        }
+    }
+
+    Q_UNUSED(hasOverview)
 
     // --------------------------------------
 
