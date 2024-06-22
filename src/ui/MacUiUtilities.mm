@@ -2,7 +2,7 @@
 
 #undef slots
 #import <Cocoa/Cocoa.h>
-#include <QtVersionChecks>
+#include <QtGlobal>
 
 namespace mediaelch {
 namespace ui {
