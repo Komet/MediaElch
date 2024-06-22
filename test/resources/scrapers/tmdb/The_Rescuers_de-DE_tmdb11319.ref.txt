@@ -28,9 +28,9 @@ imdbTop250: 0
 released: 1977-06-22
 runtime: 78min
 writer:
-    David Michener, Ted Berman, Ken Anderson, Dick Sebast, Larry Clemmons, Margery S
-    harp, Fred Lucky, Frank Thomas, Vance Gerry, Burny Mattinson
-director: Wolfgang Reitherman
+    Margery Sharp, Larry Clemmons, Ken Anderson, Frank Thomas, Vance Gerry, David Mi
+    chener, Fred Lucky, Burny Mattinson, Dick Sebast, Ted Berman
+director: Art Stevens
 actors: (N>10)
  - id: 
    name: Bob Newhart
@@ -158,7 +158,7 @@ countries: (N=1)
 studios: (N=1)
   - Walt Disney Productions
 trailer: https://www.youtube.com/watch?v=9d3At0Zng3k
-showlink: 
+showlink: (N=0)
 playcount: 0
 lastPlayed: <not set or invalid>
 dateAdded: <not set or invalid>
@@ -170,7 +170,7 @@ subtitles: (N=0)
 fileLastModified: <not set or invalid>
 files: (N=0)
 folderName: 
-posters: (N>30)
+posters: (N>40)
   - id: 
     originalUrl: http://image.tmdb.org/t/p/original/5CsR8E8rwNDfzzzaoamjbzoWnNI.jpg
     thumbUrl: http://image.tmdb.org/t/p/w342/5CsR8E8rwNDfzzzaoamjbzoWnNI.jpg

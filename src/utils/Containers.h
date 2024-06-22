@@ -28,5 +28,8 @@ QVector<T> setToVector(const QSet<T>& set)
 #endif
 }
 
+/// Split a string at the given delimiter and trim all entries.
+/// Removes empty entries.
+QStringList split_string_trimmed(const QString& str, const QString& delimiter);
 
 } // namespace mediaelch

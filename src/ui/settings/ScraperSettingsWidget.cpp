@@ -249,7 +249,7 @@ QString ScraperSettingsWidget::titleForMovieScraperInfo(MovieScraperInfo info)
     case MovieScraperInfo::ClearArt: return tr("Clear Art");
     case MovieScraperInfo::Banner: return tr("Banner");
     case MovieScraperInfo::Thumb: return tr("Thumb");
-    case MovieScraperInfo::TvShowLink: return tr("TV Show Link");
+    case MovieScraperInfo::TvShowLinks: return tr("TV Show Links");
     default: return tr("Unsupported");
     }
 }

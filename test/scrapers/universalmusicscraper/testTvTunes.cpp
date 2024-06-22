@@ -28,7 +28,7 @@ TEST_CASE("TvTunes search", "[music][TvTunes][search]")
     QVector<ScraperSearchResult> results;
 
     results = loadTvTunesDataSync(tvTunes, "The Simpsons");
-    REQUIRE(results.size() >= 50); // we limited to 50 max
+    REQUIRE(results.size() >= 40); // we limited to 50 max; but Simpsons has slightly fewer
     CHECK(results.first().name == "The Simpsons");
     CHECK(results.first().id == "https://www.televisiontunes.com/song/download/4780");
 

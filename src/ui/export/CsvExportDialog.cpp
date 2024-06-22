@@ -315,7 +315,7 @@ void CsvExportDialog::initializeItems()
         addField(Field::PlayCount, tr("Playcount"));
         addField(Field::LastPlayed, tr("Last played"));
         addField(Field::MovieSet, tr("Movie Set"));
-        addField(Field::TvShowLink, tr("TV Show Link"));
+        addField(Field::TvShowLinks, tr("TV Show Links"));
         addField(Field::Directory, tr("Directory"));
         addField(Field::Filenames, tr("Filename(s)"));
         addField(Field::LastModified, tr("Last Modified Date"));

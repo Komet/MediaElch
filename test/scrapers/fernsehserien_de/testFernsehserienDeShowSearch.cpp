@@ -80,7 +80,15 @@ TEST_CASE("FernsehserienDe returns valid search results", "[FernsehserienDe][sea
 
         REQUIRE(scraperResults.length() >= 40);
         for (const auto& result : scraperResults) {
-            if (result.title == "G&G – Gesichter und Geschichten") {
+            // The search on Fernsehserien.de is not... great.
+            // We don't find "G&G" as of 2024-06-22 anymore.
+            if (result.title.contains("Navy")) {
+                CHECK(result.title == "Navy CIS");
+                CHECK(result.released == QDate(2003, 1, 1));
+                CHECK(result.identifier.str() == "navy-cis");
+                return;
+            }
+            if (result.title.contains("Geschichten")) {
                 CHECK(result.title == "G&G – Gesichter und Geschichten");
                 CHECK(result.released == QDate(2005, 1, 1));
                 CHECK(result.identifier.str() == "g-und-g-gesichter-und-geschichten");

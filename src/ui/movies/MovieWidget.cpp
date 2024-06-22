@@ -19,6 +19,7 @@
 #include "ui/notifications/NotificationBox.h"
 #include "ui/small_widgets/ClosableImage.h"
 #include "ui/trailer/TrailerDialog.h"
+#include "utils/Containers.h"
 
 #include <QDesktopServices>
 #include <QDoubleValidator>
@@ -184,7 +185,7 @@ MovieWidget::MovieWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieWid
     connect(ui->playcount,        elchOverload<int>(&QSpinBox::valueChanged),          this, &MovieWidget::onPlayCountChange);
 
     connect(ui->trailer,          &QLineEdit::textEdited,           this, &MovieWidget::onTrailerChange);
-    connect(ui->tvShowLink,       &QLineEdit::textEdited,           this, &MovieWidget::onTvShowLinkChange);
+    connect(ui->tvShowLink,       &QLineEdit::textEdited,           this, &MovieWidget::onTvShowLinksChange);
     connect(ui->certification,    &QComboBox::editTextChanged,      this, &MovieWidget::onCertificationChange);
     connect(ui->set,              &QComboBox::editTextChanged,      this, &MovieWidget::onSetChange);
     connect(ui->badgeWatched,     &Badge::clicked,                  this, &MovieWidget::onWatchedClicked);
@@ -585,7 +586,7 @@ void MovieWidget::updateMovieInfo()
     ui->releaseDate->setDate(m_movie->released());
     ui->runtime->setValue(static_cast<int>(m_movie->runtime().count()));
     ui->trailer->setText(m_movie->trailer().toString());
-    ui->tvShowLink->setText(m_movie->tvShowLink());
+    ui->tvShowLink->setText(m_movie->tvShowLinks().join(", "));
     ui->playcount->setValue(m_movie->playcount());
     ui->lastPlayed->setDateTime(m_movie->lastPlayed());
     ui->overview->setPlainText(m_movie->overview());
@@ -1287,12 +1288,13 @@ void MovieWidget::onTrailerChange(QString text)
     ui->buttonRevert->setVisible(true);
 }
 
-void MovieWidget::onTvShowLinkChange(QString text)
+void MovieWidget::onTvShowLinksChange(QString text)
 {
     if (m_movie == nullptr) {
         return;
     }
-    m_movie->setTvShowLink(text);
+    QStringList links = mediaelch::split_string_trimmed(text, ",");
+    m_movie->setTvShowLinks(links);
     ui->buttonRevert->setVisible(true);
 }
 

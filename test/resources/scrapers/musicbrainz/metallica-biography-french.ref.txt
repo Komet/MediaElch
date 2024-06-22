@@ -6,54 +6,54 @@ allMusicId:
 name: 
 biography:
     Metallica est un groupe de heavy metal américain originaire de Californie et con
-    sidéré comme l'un des plus grand groupe de metal de tous les temps. C’est égalem
-    ent le groupe du style à avoir vendu le plus d’albums dans le monde. Formé à Los
-     Angeles en 1981, le groupe est composé de James Hetfield (chant, guitare rythmi
-    que) et Lars Ulrich (batterie), ainsi que du guitariste Kirk Hammett (arrivé en 
-    1983) et du bassiste Robert Trujillo, qui a rejoint le groupe en 2003. Les précé
-    dents membres du groupe incluent Dave Mustaine (après son exclusion, membre fond
-    ateur de Megadeth), les bassistes Ron McGovney (uniquement pour les démos), Clif
-    f Burton (pour les trois premiers albums ; décédé en 1986) et Jason Newsted (pre
-    nant la suite de Burton jusqu'à son départ du groupe en 2001 et remplacé en 2003
-     par Trujillo). Le groupe a longtemps collaboré avec le producteur Bob Rock, qui
-     a produit leurs albums de 1990 à 2003 et est devenu temporairement le bassiste 
-    studio intérimaire du groupe, entre le départ de Newsted et l'arrivée de Trujill
-    o. Le groupe se forme au début des années 1980 lorsque Hetfield se rend à une an
-    nonce postée dans un journal local par le batteur Lars Ulrich. 
-Metallica est re
-    nommé entre autres pour sa musique metal, rapide et puissante, qui le place comm
-    e le leader des « Big Four of Thrash » (l'un des quatre plus grands groupes de t
-    hrash metal) avec Slayer, Megadeth et Anthrax. Le groupe s'est forgé une réputat
-    ion mondiale chez les fans de musique underground et chez les critiques de la pr
-    esse spécialisée grâce à leurs cinq premiers albums, dont le troisième, Master o
-    f Puppets (1986), est décrit comme l'un des albums les plus influents de la scèn
-    e heavy thrash metal. En 1991, le groupe accède à une plus grande popularité grâ
-    ce au succès commercial de leur cinquième album éponyme — surnommé « The Black A
-    lbum » — qui arrive à la première place du classement Billboard 200 dès sa sorti
-    e. Dans cet album, le groupe explore diverses voies musicales avec des tempos pl
-    us longs et des rythmes massifs, ayant attiré l'attention d'une audience plus la
-    rge. Il est l'album le plus vendu du groupe et s'est écoulé à 30 millions d'exem
-    plaires dans le monde, ce qui en fait un des albums les plus vendus de l'histoir
-    e de la musique. 
-Depuis sa création, Metallica a produit onze albums studio, qu
-    atre albums live, cinq EP, 25 vidéoclips et 37 singles. Le groupe a remporté dix
-     Grammy Awards et a classé six albums consécutifs directement à la première plac
-    e du Billboard 200. Il se classe comme un des groupes les plus rentables de tous
-     les temps, avec plus de 200 millions de disques vendus dans le monde,. Metallic
-    a a également été classé comme l'un des meilleurs groupes musicaux dans un bon n
-    ombre de magazines spécialisés, dont Rolling Stone qui le classe 61e dans son To
-    p 100 des meilleurs groupes de tous les temps. 
-En 2012, Metallica fonde son pro
-    pre label discographique indépendant, Blackened Recordings, et acquiert tous les
-     droits de ses albums en studio. En 2014, Nielsen Soundscan annonce que l'album 
-    Metallica est devenu le premier depuis 1991 et le début de l'ère Soundscan à dép
-    asser les 16 millions d'exemplaires vendus aux États-Unis, faisant de lui l’œuvr
-    e musicale la plus achetée, tous genres confondus (chiffre dépassé depuis par l'
-    album Come On Over de Shania Twain sorti en 1997 et vendu à 17 millions d'exempl
-    aires). En 2016, selon le magazine Billboard, Metallica est le 3e plus gros vend
-    eurs de disques aux États-Unis depuis 1991 avec 54,26 millions d'unités écoulées
-     - derrière la star de la musique country Garth Brooks (69,52 millions) et les B
-    eatles (65,55 millions).
+    sidéré comme l'un des plus grands groupes de metal de tous les temps. C’est égal
+    ement le groupe du style à avoir vendu le plus d’albums dans le monde. Formé à L
+    os Angeles en 1981, le groupe est composé de James Hetfield (chant, guitare ryth
+    mique) et Lars Ulrich (batterie), ainsi que du guitariste Kirk Hammett (arrivé e
+    n 1983) et du bassiste Robert Trujillo, qui a rejoint le groupe en 2003. Les pré
+    cédents membres du groupe incluent Dave Mustaine (après son exclusion, membre fo
+    ndateur de Megadeth), les bassistes Ron McGovney (uniquement pour les démos), Cl
+    iff Burton (pour les trois premiers albums ; décédé en 1986) et Jason Newsted (p
+    renant la suite de Burton jusqu'à son départ du groupe en 2001 et remplacé en 20
+    03 par Trujillo). Le groupe a longtemps collaboré avec le producteur Bob Rock, q
+    ui a produit leurs albums de 1990 à 2003 et est devenu temporairement le bassist
+    e studio intérimaire du groupe, entre le départ de Newsted et l'arrivée de Truji
+    llo. Le groupe se forme au début des années 1980 lorsque Hetfield se rend à une 
+    annonce postée dans un journal local par le batteur Lars Ulrich. 
+Metallica est 
+    renommé entre autres pour sa musique metal, rapide et puissante, qui le place co
+    mme le leader des « Big Four of Thrash » (l'un des quatre plus grands groupes de
+     thrash metal) avec Slayer, Megadeth et Anthrax. Le groupe s'est forgé une réput
+    ation mondiale chez les fans de musique underground et chez les critiques de la 
+    presse spécialisée grâce à leurs cinq premiers albums, dont le troisième, Master
+     of Puppets (1986), est décrit comme l'un des albums les plus influents de la sc
+    ène heavy thrash metal. En 1991, le groupe accède à une plus grande popularité g
+    râce au succès commercial de leur cinquième album éponyme — surnommé « The Black
+     Album » — qui arrive à la première place du classement Billboard 200 dès sa sor
+    tie. Dans cet album, le groupe explore diverses voies musicales avec des tempos 
+    plus longs et des rythmes massifs, ayant attiré l'attention d'une audience plus 
+    large. Il est l'album le plus vendu du groupe et s'est écoulé à 30 millions d'ex
+    emplaires dans le monde, ce qui en fait un des albums les plus vendus de l'histo
+    ire de la musique. 
+Depuis sa création, Metallica a produit onze albums studio, 
+    quatre albums live, cinq EP, 25 vidéoclips et 37 singles. Le groupe a remporté d
+    ix Grammy Awards et a classé six albums consécutifs directement à la première pl
+    ace du Billboard 200. Il se classe comme un des groupes les plus rentables de to
+    us les temps, avec plus de 200 millions de disques vendus dans le monde,. Metall
+    ica a également été classé comme l'un des meilleurs groupes musicaux dans un bon
+     nombre de magazines spécialisés, dont Rolling Stone qui le classe 61e dans son 
+    Top 100 des meilleurs groupes de tous les temps. 
+En 2012, Metallica fonde son p
+    ropre label discographique indépendant, Blackened Recordings, et acquiert tous l
+    es droits de ses albums en studio. En 2014, Nielsen Soundscan annonce que l'albu
+    m Metallica est devenu le premier depuis 1991 et le début de l'ère Soundscan à d
+    épasser les 16 millions d'exemplaires vendus aux États-Unis, faisant de lui l’œu
+    vre musicale la plus achetée, tous genres confondus (chiffre dépassé depuis par 
+    l'album Come On Over de Shania Twain sorti en 1997 et vendu à 17 millions d'exem
+    plaires). En 2016, selon le magazine Billboard, Metallica est le 3e plus gros ve
+    ndeurs de disques aux États-Unis depuis 1991 avec 54,26 millions d'unités écoulé
+    es - derrière la star de la musique country Garth Brooks (69,52 millions) et les
+     Beatles (65,55 millions).
 discography: (N=0)
 genres: (N=0)
 styles: (N=0)
