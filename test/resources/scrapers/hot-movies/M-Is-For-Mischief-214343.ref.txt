@@ -65,7 +65,7 @@ tags: (N=0)
 countries: (N=0)
 studios: (N=0)
 trailer: 
-showlink: 
+showlink: (N=0)
 playcount: 0
 lastPlayed: <not set or invalid>
 dateAdded: <not set or invalid>

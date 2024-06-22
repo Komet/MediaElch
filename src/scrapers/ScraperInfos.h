@@ -39,7 +39,7 @@ enum class MovieScraperInfo : int
     ClearArt = 23,
     Banner = 24,
     Thumb = 25,
-    TvShowLink = 26, // not used for scraping
+    TvShowLinks = 26, // not used for scraping
     First = 1,
     Last = 26
 };

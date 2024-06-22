@@ -43,7 +43,7 @@ private:
         {MovieScraperInfo::CdArt, "CdArt"},
         {MovieScraperInfo::ClearArt, "ClearArt"},
         {MovieScraperInfo::Banner, "Banner"},
-        {MovieScraperInfo::TvShowLink, "TV Show Link"},
+        {MovieScraperInfo::TvShowLinks, "TV Show Links"},
         {MovieScraperInfo::Thumb, "Thumb"}};
 };
 

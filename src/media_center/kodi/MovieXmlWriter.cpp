@@ -119,7 +119,6 @@ QByteArray MovieXmlWriterGeneric::getMovieXml(bool testMode)
     for (const QString& credit : writersWithWhiteSpace) {
         writers << credit.trimmed();
     }
-
     KodiXml::writeStringsAsOneTagEach(xml, "credits", writers);
 
     QStringList directors;
@@ -142,9 +141,7 @@ QByteArray MovieXmlWriterGeneric::getMovieXml(bool testMode)
 
     writeActors(xml, m_movie.actors());
 
-    if (!m_movie.tvShowLink().isEmpty()) {
-        xml.writeTextElement("showlink", m_movie.tvShowLink());
-    }
+    KodiXml::writeStringsAsOneTagEach(xml, "showlink", m_movie.tvShowLinks());
 
     // <resume>
     //   <position>0.000000</position>

@@ -40,7 +40,6 @@ bool MovieXmlReader::parseNfoDom(QDomDocument domDoc)
     tagParsers.insert("plot",          &MovieXmlReader::simpleString<&Movie::setOverview>);
     tagParsers.insert("outline",       &MovieXmlReader::simpleString<&Movie::setOutline>);
     tagParsers.insert("tagline",       &MovieXmlReader::simpleString<&Movie::setTagline>);
-    tagParsers.insert("showlink",      &MovieXmlReader::simpleString<&Movie::setTvShowLink>);
     tagParsers.insert("set",           &MovieXmlReader::movieSet);
     tagParsers.insert("actor",         &MovieXmlReader::movieActor);
     tagParsers.insert("thumb",         &MovieXmlReader::movieThumbnail);
@@ -134,6 +133,16 @@ bool MovieXmlReader::parseNfoDom(QDomDocument domDoc)
         }
     }
     m_movie.setWriter(writers.join(", "));
+
+    QStringList tvShowLinks;
+    for (int i = 0, n = domDoc.elementsByTagName("showlink").size(); i < n; i++) {
+        const auto showlink =
+            domDoc.elementsByTagName("showlink").at(i).toElement().text().split(",", ElchSplitBehavior::SkipEmptyParts);
+        for (const QString& link : showlink) {
+            tvShowLinks.append(link.trimmed());
+        }
+    }
+    m_movie.setTvShowLinks(tvShowLinks);
 
     QStringList directors;
     for (int i = 0, n = domDoc.elementsByTagName("director").size(); i < n; i++) {

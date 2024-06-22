@@ -77,7 +77,7 @@ public:
         Type,         // @since 2.8.17
         LastModified, // @since 2.8.17
         WikidataId,   // @since 2.10.1
-        TvShowLink,   // @since 2.10.8
+        TvShowLinks,  // @since 2.10.8
     };
 
 public:

@@ -72,7 +72,7 @@ public:
     QStringList tags() const;
     QVector<QString*> studiosPointer();
     QUrl trailer() const;
-    QString tvShowLink() const;
+    QStringList tvShowLinks() const;
 
     const Actors& actors() const;
     Actors& actors();
@@ -120,7 +120,7 @@ public:
     void addStudio(QString studio);
     void addTag(QString tag);
     void setTrailer(QUrl trailer);
-    void setTvShowLink(QString tvShowLink);
+    void setTvShowLinks(QStringList tvShowLinks);
     void setActors(QVector<Actor> actors);
     void addActor(Actor actor);
     void addGenre(QString genre);
@@ -216,7 +216,7 @@ public:
         virtual void exportStudios(const QStringList& studios) = 0;
         virtual void exportTags(const QStringList& tags) = 0;
         virtual void exportTrailer(const QUrl& trailer) = 0;
-        virtual void exportTvShowLink(const QString& tvShowLink) = 0;
+        virtual void exportTvShowLinks(const QStringList& tvShowLinks) = 0;
         virtual void exportPlaycount(int playcount) = 0;
         virtual void exportLastPlayed(const QDateTime& lastPlayed) = 0;
         virtual void exportMovieSet(const MovieSet& set) = 0;
@@ -258,7 +258,7 @@ private:
     QStringList m_studios;
     QStringList m_tags;
     QUrl m_trailer;
-    QString m_tvShowLink;
+    QStringList m_tvShowLinks;
     int m_playcount = 0;
     QDateTime m_lastPlayed;
     ImdbId m_imdbId;

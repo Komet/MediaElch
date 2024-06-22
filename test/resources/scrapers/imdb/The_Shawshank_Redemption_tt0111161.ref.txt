@@ -196,7 +196,7 @@ countries: (N=1)
 studios: (N=1)
   - Castle Rock Entertainment
 trailer: 
-showlink: 
+showlink: (N=0)
 playcount: 0
 lastPlayed: <not set or invalid>
 dateAdded: <not set or invalid>

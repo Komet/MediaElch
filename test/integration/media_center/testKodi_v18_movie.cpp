@@ -160,7 +160,7 @@ TEST_CASE("Movie XML writer for Kodi v18", "[data][movie][kodi][nfo]")
         movie.setReleased(QDate::fromString("2016-03-09", Qt::ISODate));
         movie.addStudio("Summit Entertainment");
         movie.setTrailer(QUrl("TmovieFc19"));
-        movie.setTvShowLink("Some Allegiant show");
+        movie.setTvShowLinks({"Some Allegiant show 1", "Some Allegiant show 2"});
         // requires that setFiles() was called
         movie.streamDetails()->setVideoDetail(StreamDetails::VideoDetails::Codec, "h264");
         movie.streamDetails()->setVideoDetail(StreamDetails::VideoDetails::Aspect, "1.777778");
