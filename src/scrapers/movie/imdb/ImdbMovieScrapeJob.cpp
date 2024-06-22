@@ -189,7 +189,7 @@ void ImdbMovieScrapeJob::parseAndAssignTags(const QString& html)
     QRegularExpression rx;
     rx.setPatternOptions(QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
     if (m_loadAllTags) {
-        rx.setPattern(R"(<a[^>]+href="/search/keyword[^"]+"\n?>([^<]+)</a>)");
+        rx.setPattern(R"(<a[^>]+href="/search/(?:title/\?)keyword[^"]+"\n?>([^<]+)</a>)");
     } else {
         rx.setPattern(R"(<a[^>]+href="/keyword/[^"]+"[^>]*>([^<]+)</a>)");
     }
