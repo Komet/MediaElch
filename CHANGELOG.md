@@ -45,6 +45,8 @@
 - Movies have a new field "TV Show Link" which is stored as a `<showlink>` in Kodi.  
   It is available in the UI via the movie's "Extended" tab (#1753).
 - Added Kodi v22 to Kodi selection menu.
+- Concerts (i.e. music videos in Kodi) can now have multiple artists, each stored
+  as an `<artist>` tag in NFO files.  In the UI, it's a comma-separated list (#1709).
 
 ## 2.10.6 - 2023-12-03
 

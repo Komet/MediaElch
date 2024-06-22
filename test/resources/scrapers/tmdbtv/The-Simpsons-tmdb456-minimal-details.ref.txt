@@ -77,49 +77,49 @@ actors: (N>800)
  - id: 6009
    name: Pamela Hayden
    role:
-    Milhouse (voice), Milhouse / Jimbo (voice), Employment Agent / Admitted Fraud #2
-     / Angry Woman (voice), Milhouse / Rod Flanders (voice), Rod Flanders (voice), J
-    imbo (voice), Milhouse / Jimbo / Rod Flanders (voice), Son #1 / Son #2 (voice), 
-    Oats Crowd (voice), Milhouse / Jimbo / Janey (voice), Milhouse / Jimbo / Janey /
-     Kid / Bad Girl #2 (voice), Security Guard #1 (voice), People by Death Time (voi
-    ce), Sarah Wiggum (voice), Tortured People (voice), Straight-Edge Spuckler (voic
-    e), Milhouse / Announcer (voice), Milhouse / Janey / Dolph (voice), Brittany / M
-    erchandiser #1 (voice), Jimbo / Rod Flanders (voice), Mediocroto (voice), Milhou
-    se / Janey / Ex-Wife (voice), Milhouse / Boy (voice), Janey / Boy with Howie / H
-    owie's Mother (voice), Milhouse Van Houten / Sarah Wiggum (voice), Milhouse / Ps
-    ychiatrist (voice), Milhouse / Rod Flanders / Jimbo (voice), Milhouse / Ethan Fo
-    ley / Boy (voice), Lard Lad Donuts Employee (voice), Nurse (voice), Saultery Ste
-    vens (voice), Milhouse / Rod Flanders / Santa Woman (voice), Gloria Prince (voic
-    e), Milhouse / Svetlana / Woman in Audience #2 (voice), Wendell (voice), Milhous
-    e / Applicant / Woman in Audience (voice)
+    Milhouse (voice), Employment Agent / Admitted Fraud #2 / Angry Woman (voice), Mi
+    lhouse / Jimbo (voice), Milhouse / Rod Flanders (voice), Rod Flanders (voice), J
+    imbo (voice), Milhouse / Jimbo / Rod Flanders (voice), Sarah Wiggum (voice), Mil
+    house / Psychiatrist (voice), Milhouse Van Houten / Sarah Wiggum (voice), Milhou
+    se / Svetlana / Woman in Audience #2 (voice), Security Guard #1 (voice), Milhous
+    e / Applicant / Woman in Audience (voice), Lard Lad Donuts Employee (voice), Str
+    aight-Edge Spuckler (voice), Milhouse / Janey / Dolph (voice), Milhouse / Boy (v
+    oice), Milhouse / Rod Flanders / Jimbo (voice), Milhouse / Rod Flanders / Santa 
+    Woman (voice), Janey / Boy with Howie / Howie's Mother (voice), Milhouse / Jimbo
+     / Janey / Kid / Bad Girl #2 (voice), Milhouse / Jimbo / Janey (voice), Mediocro
+    to (voice), Son #1 / Son #2 (voice), Tortured People (voice), Jimbo / Rod Flande
+    rs (voice), Brittany / Merchandiser #1 (voice), Milhouse / Ethan Foley / Boy (vo
+    ice), Milhouse / Janey / Ex-Wife (voice), People by Death Time (voice), Saultery
+     Stevens (voice), Wendell (voice), Oats Crowd (voice), Gloria Prince (voice), Mi
+    lhouse / Announcer (voice), Nurse (voice)
    thumb: https://image.tmdb.org/t/p/original/mPMtuVB6AEulRhlfn69y5RvgmNT.jpg
    order: 6
    imageHasChanged: false
  - id: 34983
    name: Tress MacNeille
    role:
-    Ms. Dare / Gwen / Homer's Cousin's Wife (voice), Agnes Skinner (voice), (voice),
-     Dolph (voice), Shauna Chalmers (voice), Brandine Spuckler (voice), Ms. Muntz (v
-    oice), Doris (voice), Dolph / Shauna Chalmers (voice), Dolph / Agnes Skinner (vo
-    ice), DMV Worker (voice), Shauna Chalmers /Brandine Spuckler / Crazy Cat Lady (v
-    oice), Maya / Waitress / Baseball Player (voice), Crazy Cat Lady / Linda / Agnes
-     Skinner (voice), Shauna Chalmers / Dolph (voice), Gary (voice), Shauna Chalmers
-     / Crazy Cat Lady, Ms. Muntz / Mrs. Bad Halloween Candy / Shauna Chalmers (voice
-    ), Crazy Cat Lady / Agnes Skinner (voice), Mabel (voice), Crazy Cat Lady / Shaun
-    a Chalmers (voice), Ms. Mints (voice), Female Narrator (voice), Dolph / Madison 
-    (voice), Greta Wolfcastle / Mopey Mary (voice), Crazy Cat Lady (voice), Lindsay 
-    Naegle / Manjula / Lunchlady Doris / Cookie Kwan (voice), Brunella Pommelhorst /
-     Doris (voice), Kaitlyn (voice), Dr. Spivak's Mother (voice), Hazel (voice), Ms.
-     Albright / Churchgoer / Jimbo (voice), Mother (voice), Kumiko Nakamura / News R
-    eporter / Dolph / Wendell Borton (voice), Miss Springfield / Martha / Tracey (vo
-    ice), Moira (voice), Power Plant System (voice), Dolph / Cuddle Kitten NFT Leade
-    r (voice), Lindsey Naegle (voice), Cora (voice), Brunella Pommelhorst (voice), B
-    randine Spuckler / Ms. York (voice), Mrs. Vanderbilt (voice), Sandra (voice), Ag
-    nes Skinner / Shauna Chalmers /Brandine Spuckler (voice), Lady in Audience (voic
-    e), Brandine Del Roy / Plopper / Dubya Spuckler (voice), Mrs. Chase (voice), Agn
-    es Skinner / Doris (voice), Female Doctor (voice), Luigi's Mother (voice), Dolph
-     Shapiro / Shauna Chalmers (voice), Bad Girl #1 (voice), Agnes Skinner / Adil Ho
-    xha / Airport Announcer (voice)
+    Ms. Dare / Gwen / Homer's Cousin's Wife (voice), Agnes Skinner (voice), Dolph (v
+    oice), (voice), Shauna Chalmers (voice), Ms. Muntz (voice), Brandine Spuckler (v
+    oice), Doris (voice), Dolph / Agnes Skinner (voice), Dolph / Shauna Chalmers (vo
+    ice), Crazy Cat Lady (voice), Brandine Spuckler / Ms. York (voice), Greta Wolfca
+    stle / Mopey Mary (voice), Shauna Chalmers / Crazy Cat Lady, Hazel (voice), Dolp
+    h Shapiro / Shauna Chalmers (voice), Agnes Skinner / Adil Hoxha / Airport Announ
+    cer (voice), Bad Girl #1 (voice), Luigi's Mother (voice), Shauna Chalmers /Brand
+    ine Spuckler / Crazy Cat Lady (voice), Miss Springfield / Martha / Tracey (voice
+    ), Lady in Audience (voice), Lindsay Naegle / Manjula / Lunchlady Doris / Cookie
+     Kwan (voice), Dolph / Cuddle Kitten NFT Leader (voice), Brunella Pommelhorst / 
+    Doris (voice), Crazy Cat Lady / Agnes Skinner (voice), Brandine Del Roy / Ploppe
+    r / Dubya Spuckler (voice), Sandra (voice), Kumiko Nakamura / News Reporter / Do
+    lph / Wendell Borton (voice), Brunella Pommelhorst (voice), Cora (voice), Maya /
+     Waitress / Baseball Player (voice), Mrs. Chase (voice), Dolph / Madison (voice)
+    , Mother (voice), Female Doctor (voice), Agnes Skinner / Doris (voice), Crazy Ca
+    t Lady / Shauna Chalmers (voice), Ms. Mints (voice), Agnes Skinner / Shauna Chal
+    mers /Brandine Spuckler (voice), DMV Worker (voice), Power Plant System (voice),
+     Kaitlyn (voice), Crazy Cat Lady / Linda / Agnes Skinner (voice), Dr. Spivak's M
+    other (voice), Moira (voice), Mrs. Vanderbilt (voice), Ms. Muntz / Mrs. Bad Hall
+    oween Candy / Shauna Chalmers (voice), Shauna Chalmers / Dolph (voice), Female N
+    arrator (voice), Gary (voice), Ms. Albright / Churchgoer / Jimbo (voice), Lindse
+    y Naegle (voice), Mabel (voice)
    thumb: https://image.tmdb.org/t/p/original/gI2LsgByvSffQY34vabVnPmrHzw.jpg
    order: 7
    imageHasChanged: false
@@ -133,13 +133,13 @@ actors: (N>800)
    name: Chris Edgerly
    role:
     Viking Masseuse / Admitted Fraud #1 / Admitted Fraud #4 (voice), Tucker Carlson 
-    (voice), Commercial Guy at the Beach / Award Man (voice), Bowling Alley Manager 
-    (voice), Helicopter Man #2 (voice), Doctor (voice), Scotus Szyslak (voice), Nutz
-     Therapist (voice), Uber Hombre / Scarlet Pimpernel (voice), Stan Laurel (voice)
-    , Weinstein (voice), Beyond Bullying Professor (voice), Male Doctor (voice), Geo
-    rge Harrison / Coal Manager (voice), Flexulon / Hallucination Otto (voice), Boat
-     Owner / Neighborhood Meeting Notification (voice), Springfield Retirement Home 
-    Receptionist (voice)
+    (voice), Beyond Bullying Professor (voice), Bowling Alley Manager (voice), Male 
+    Doctor (voice), Flexulon / Hallucination Otto (voice), Commercial Guy at the Bea
+    ch / Award Man (voice), George Harrison / Coal Manager (voice), Boat Owner / Nei
+    ghborhood Meeting Notification (voice), Springfield Retirement Home Receptionist
+     (voice), Stan Laurel (voice), Doctor (voice), Scotus Szyslak (voice), Nutz Ther
+    apist (voice), Weinstein (voice), Uber Hombre / Scarlet Pimpernel (voice), Helic
+    opter Man #2 (voice)
    thumb: https://image.tmdb.org/t/p/original/bjkN9Ugv6Kd3Z3y9p9DgWAc10Q7.jpg
    order: 9
    imageHasChanged: false
@@ -147,14 +147,14 @@ actors: (N>800)
    name: Maggie Roswell
    role:
     Maude Flanders (voice), Helen Lovejoy (voice), Luann Van Houten (voice), Helen L
-    ovejoy / Luann Van Houten (voice), Helen Lovejoy / Elizabeth Hoover (voice), Eli
+    ovejoy / Luann Van Houten (voice), Elizabeth Hoover (voice), Helen Lovejoy / Eli
     zabeth Hoover (voice), Elizabeth Hoover / Luann Van Houten (voice), Helen Lovejo
-    y / Singing Waiters (voice), Helen Lovejoy / Elizabeth Hoover / Luann Van Houten
-     (voice), Miss Hoover / Mrs. Winfield (voice), Mother #1 / Daughter / Mother in 
-    Monroe ad (voice), Camper #2 / Reporter (voice), Gov. Mary Bailey (voice), Helen
-     Lovejoy / Institute Council Member #3 (voice), Maude Flanders / Helen Lovejoy (
-    voice), Elizabeth Hoover / Helen Lovejoy / Luann Van Houten (voice), Princess Ka
-    shmir / Fe-Mail-Man / Churchgoer (voice), Luann Van Houten / Maude Flanders (voi
+    y / Singing Waiters (voice), Luann Van Houten / Maude Flanders (voice), Mother #
+    1 / Daughter / Mother in Monroe ad (voice), Princess Kashmir / Fe-Mail-Man / Chu
+    rchgoer (voice), Camper #2 / Reporter (voice), Maude Flanders / Helen Lovejoy (v
+    oice), Helen Lovejoy / Elizabeth Hoover / Luann Van Houten (voice), Elizabeth Ho
+    over / Helen Lovejoy / Luann Van Houten (voice), Gov. Mary Bailey (voice), Miss 
+    Hoover / Mrs. Winfield (voice), Helen Lovejoy / Institute Council Member #3 (voi
     ce)
    thumb: https://image.tmdb.org/t/p/original/pLdSmH5HZYSwTd3aiPlZLbNzvPD.jpg
    order: 10
@@ -163,8 +163,8 @@ actors: (N>800)
    name: Russi Taylor
    role:
     , Martin Prince (voice), Sherri / Martin Prince (voice), Martin / Sherri / Terri
-     / Mother (voice), Martin / Sidney Swift / Ian (voice), Sherri / Terri / Inanima
-    te Carbon Rod #1 / Mrs. Winfield (voice)
+     / Mother (voice), Sherri / Terri / Inanimate Carbon Rod #1 / Mrs. Winfield (voi
+    ce), Martin / Sidney Swift / Ian (voice)
    thumb: https://image.tmdb.org/t/p/original/r79GVF7LyBExJP7cRMob8QQZ6IU.jpg
    order: 11
    imageHasChanged: false
@@ -173,9 +173,9 @@ actors: (N>800)
    role:
     Lionel Hutz / Troy McClure / Lyle Lanley / others  (voice), Lionel Hutz (voice),
      Troy McClure (voice), Lionel Hutz / Troy McClure (voice), Troy McClure / Lionel
-     Hutz (voice), Troy McClure / Jimmy Apollo (voice), Stockbroker / Horst (voice),
-     Tom / Nelson's Dad / Football Commentator / Announcer (voice), Troy McClure / J
-    oey / Godfather / Lionel Hutz (voice), Lyle Lanley (voice)
+     Hutz (voice), Tom / Nelson's Dad / Football Commentator / Announcer (voice), St
+    ockbroker / Horst (voice), Troy McClure / Joey / Godfather / Lionel Hutz (voice)
+    , Troy McClure / Jimmy Apollo (voice), Lyle Lanley (voice)
    thumb: https://image.tmdb.org/t/p/original/mPIkRF4vLwlBOHZOzpKDnBLzTtH.jpg
    order: 12
    imageHasChanged: false
@@ -189,21 +189,21 @@ actors: (N>800)
    name: Kevin Michael Richardson
    role:
     Dr. Hibbert (voice), Security Guard / Burns' Cellmate / many minor characters, N
-    arrator (voice), Devil Moe (voice), SendEx Employee (voice), Mr. Orlando / Mr. M
-    cBride (voice), Dr. Hibbert / Shaquille O'Neal (voice), Dr. Hibbert / Bleeding G
-    ums Murphy (voice), Prison Guard (voice), Prison Inmate (voice), Nigerian King (
-    voice), FBI Agent (voice), Groot (voice), Dr. Hibbert / TSA Leader (voice), Rich
-     Texan Accountant (voice), Ghanaian Man (voice), Turtle NFT (voice), Security gu
-    ard (voice), Co-Pilot (voice), Conductor (voice), Film Student #2 (voice), Jed H
-    awk (voice), Oliver Hardy (voice)
+    arrator (voice), SendEx Employee (voice), Conductor (voice), Devil Moe (voice), 
+    Prison Guard (voice), Dr. Hibbert / TSA Leader (voice), Dr. Hibbert / Shaquille 
+    O'Neal (voice), Film Student #2 (voice), Nigerian King (voice), Mr. Orlando / Mr
+    . McBride (voice), Prison Inmate (voice), Jed Hawk (voice), Rich Texan Accountan
+    t (voice), Security guard (voice), Turtle NFT (voice), Co-Pilot (voice), FBI Age
+    nt (voice), Groot (voice), Ghanaian Man (voice), Oliver Hardy (voice), Dr. Hibbe
+    rt / Bleeding Gums Murphy (voice)
    thumb: https://image.tmdb.org/t/p/original/xXt9Nh7RAT5bOen66TaXreNYmCl.jpg
    order: 14
    imageHasChanged: false
  - id: 110141
    name: Alex Désert
    role:
-    Carl Carlson (voice), Lou (voice), Carl Carlson/Fausto (voice), Audrey II (voice
-    ), Carl Carlson / Lou (voice)
+    Carl Carlson (voice), Lou (voice), Carl Carlson / Lou (voice), Audrey II (voice)
+    , Carl Carlson/Fausto (voice)
    thumb: https://image.tmdb.org/t/p/original/iz5fLxrOTKYUkpUmGXgVfCfIZxn.jpg
    order: 15
    imageHasChanged: false
@@ -211,9 +211,9 @@ actors: (N>800)
    name: Grey DeLisle
    role:
     Martin Prince (voice), Sherri / Terri (voice), Sherri / Terri / Martin Prince (v
-    oice), (voice), Terri (voice), Riley (voice), Martin / Martin's Brother (voice),
-     Gloria Prince / Martin Prince (voice), Martin Prince / Young Woman (voice), Ter
-    ri / Sherri / Martin Prince (voice)
+    oice), (voice), Terri / Sherri / Martin Prince (voice), Martin / Martin's Brothe
+    r (voice), Gloria Prince / Martin Prince (voice), Terri (voice), Riley (voice), 
+    Martin Prince / Young Woman (voice)
    thumb: https://image.tmdb.org/t/p/original/vrUHaXe1pG56yZkgH7Hs3LGRLTT.jpg
    order: 16
    imageHasChanged: false
@@ -226,9 +226,9 @@ actors: (N>800)
  - id: 34521
    name: Maurice LaMarche
    role:
-    Army recruiter 2 / Billy / others characters (voice), Orson Welles (voice), Milo
-     (voice), Fox announcer / Chinese #1 / Chinese #4 / Leprechaun (voice), Hedonism
-    bot Cosplayer (voice), Vincent Price (voice)
+    Army recruiter 2 / Billy / others characters (voice), Milo (voice), Vincent Pric
+    e (voice), Orson Welles (voice), Fox announcer / Chinese #1 / Chinese #4 / Lepre
+    chaun (voice), Hedonismbot Cosplayer (voice)
    thumb: https://image.tmdb.org/t/p/original/qCiL3EYAhLcNo0rNj5pczWo9MwG.jpg
    order: 18
    imageHasChanged: false
@@ -236,9 +236,9 @@ actors: (N>800)
    name: Jon Lovitz
    role:
     Artie Ziff / Llewellyn Sinclair / other minor characters., Artie Ziff (voice), L
-    lewellyn Sinclair / Ms. Sinclair (voice), Professor Lombardo / Donut Delivery Ma
-    n (voice), Selma's Cigarette (voice), Avery Devereaux / Aristotle Amandopoulis (
-    voice), Artie Ziff / Mr. Seckofsky (voice), Enrico Irritazio (voice)
+    lewellyn Sinclair / Ms. Sinclair (voice), Artie Ziff / Mr. Seckofsky (voice), Av
+    ery Devereaux / Aristotle Amandopoulis (voice), Enrico Irritazio (voice), Selma'
+    s Cigarette (voice), Professor Lombardo / Donut Delivery Man (voice)
    thumb: https://image.tmdb.org/t/p/original/jBXSLoDEVwYkNqSVWHV9yDo8whA.jpg
    order: 19
    imageHasChanged: false

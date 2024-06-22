@@ -430,7 +430,7 @@ public:
     void exportTitle(const QString& title)                 override { fields[s(Field::Title)]        = title; };
     void exportOriginalTitle(const QString& originalTitle) override { fields[s(Field::OriginalTitle)] = originalTitle; }
 
-    void exportArtist(const QString& artist)         override { fields[s(Field::Artist)]      = artist; }
+    void exportArtists(const QStringList& artists)   override { fields[s(Field::Artist)]      = artists.join(", "); }
     void exportAlbum(const QString& album)           override { fields[s(Field::Album)]       = album; }
     void exportOverview(const QString& overview)     override { fields[s(Field::Overview)]    = overview; }
     void exportRatings(const Ratings& ratings)       override { fields[s(Field::Ratings)]     = ratingsToString(ratings); }

@@ -4,6 +4,7 @@
 #include "globals/LocaleStringCompare.h"
 #include "globals/Manager.h"
 #include "log/Log.h"
+#include "utils/Containers.h"
 
 // Each change event listener requires the concert to be valid. This is a marco to avoid repitition.
 // do {} while() is used to force a semicolon after the use of this macro.
@@ -80,7 +81,7 @@ void ConcertInfoWidget::updateConcert(ConcertController* controller)
     ui->originalTitle->setText(m_concertController->concert()->originalTitle());
     ui->imdbId->setText(m_concertController->concert()->imdbId().toString());
     ui->tmdbId->setText(m_concertController->concert()->tmdbId().toString());
-    ui->artist->setText(m_concertController->concert()->artist());
+    ui->artist->setText(m_concertController->concert()->artists().join(", "));
     ui->album->setText(m_concertController->concert()->album());
     ui->tagline->setText(m_concertController->concert()->tagline());
 
@@ -180,7 +181,8 @@ void ConcertInfoWidget::onImdbIdChanged(QString text)
 void ConcertInfoWidget::onArtistChange(QString text)
 {
     ME_REQUIRE_CONCERT_OR_RETURN;
-    m_concertController->concert()->setArtist(text);
+    QStringList artists = mediaelch::split_string_trimmed(text, ",");
+    m_concertController->concert()->setArtists(artists);
     emit infoChanged();
 }
 

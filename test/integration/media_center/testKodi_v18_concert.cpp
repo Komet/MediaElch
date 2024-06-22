@@ -59,7 +59,9 @@ TEST_CASE("Concert XML writer for Kodi v18", "[data][concert][kodi][nfo]")
             // CHECK(concert.image(ImageType::ConcertBackdrop).size() == 57); // <fanart>
             CHECK(concert.backdrops().size() == 5);
             CHECK(concert.certification() == Certification("Rated R"));
-            CHECK(concert.artist() == "Rammstein");
+            REQUIRE(concert.artists().size() == 2);
+            CHECK(concert.artists().at(0) == "Rammstein");
+            CHECK(concert.artists().at(1) == "Rammstein2");
         });
     }
 }

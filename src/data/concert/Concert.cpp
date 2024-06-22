@@ -148,15 +148,9 @@ QString Concert::title() const
     return m_concert.title;
 }
 
-/**
- * \property Concert::artist
- * \brief Holds the concerts artist
- * \return The concerts artist
- * \see Concert::setArtist
- */
-QString Concert::artist() const
+QStringList Concert::artists() const
 {
-    return m_concert.artist;
+    return m_concert.artists;
 }
 
 /**
@@ -471,14 +465,9 @@ void Concert::setOriginalTitle(QString title)
     setChanged(true);
 }
 
-/**
- * \brief Sets the concerts artist
- * \param artist Artist of the concert
- * \see Concert::artist
- */
-void Concert::setArtist(QString artist)
+void Concert::setArtists(QStringList artists)
 {
-    m_concert.artist = std::move(artist);
+    m_concert.artists = std::move(artists);
     setChanged(true);
 }
 
@@ -942,7 +931,7 @@ void mediaelch::ConcertData::exportTo(mediaelch::ConcertData::Exporter& exporter
 
     exporter.exportTitle(title);
     exporter.exportOriginalTitle(originalTitle);
-    exporter.exportArtist(artist);
+    exporter.exportArtists(artists);
     exporter.exportAlbum(album);
     exporter.exportOverview(overview);
 

@@ -559,7 +559,8 @@ void ImportDialog::onImport()
         if (m_separateFolders) {
             QString newFolderName = ui->directoryNaming->text();
             Renamer::replace(newFolderName, "title", m_concert->title());
-            Renamer::replace(newFolderName, "artist", m_concert->artist());
+            Renamer::replace(
+                newFolderName, "artist", m_concert->artists().isEmpty() ? "" : m_concert->artists().first());
             Renamer::replace(newFolderName, "album", m_concert->album());
             Renamer::replace(newFolderName, "year", m_concert->released().toString("yyyy"));
             Renamer::replace(newFolderName,
@@ -586,7 +587,7 @@ void ImportDialog::onImport()
             QFileInfo fi(file);
             QString newFileName = ui->fileNaming->text();
             Renamer::replace(newFileName, "title", m_concert->title());
-            Renamer::replace(newFileName, "artist", m_concert->artist());
+            Renamer::replace(newFileName, "artist", m_concert->artists().isEmpty() ? "" : m_concert->artists().first());
             Renamer::replace(newFileName, "album", m_concert->album());
             Renamer::replace(newFileName, "year", m_concert->released().toString("yyyy"));
             Renamer::replace(newFileName, "extension", fi.suffix());
