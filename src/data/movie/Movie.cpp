@@ -191,7 +191,7 @@ void Movie::exportTo(Movie::Exporter& exporter) const
     exporter.exportStudios(m_studios);
     exporter.exportTrailer(m_trailer);
     exporter.exportTvShowLinks(m_tvShowLinks);
-    exporter.exportPlaycount(m_playcount);
+    exporter.exportPlayCount(m_playCount);
     exporter.exportLastPlayed(m_lastPlayed);
     exporter.exportDateAdded(m_dateAdded);
     exporter.exportDiscType(m_discType);
@@ -412,15 +412,9 @@ const mediaelch::FileList& Movie::files() const
     return m_files;
 }
 
-/**
- * \property Movie::playcount
- * \brief Holds the playcount
- * \return Playcount of the movie
- * \see Movie::setPlayCount
- */
-int Movie::playcount() const
+int Movie::playCount() const
 {
-    return m_playcount;
+    return m_playCount;
 }
 
 /**
@@ -484,7 +478,7 @@ QString Movie::folderName() const
 
 bool Movie::watched() const
 {
-    return m_playcount > 0;
+    return m_playCount > 0;
 }
 
 /**
@@ -735,14 +729,9 @@ void Movie::setActors(QVector<Actor> actors)
     setChanged(true);
 }
 
-/**
- * \brief Sets the movies playcount
- * \param playcount Playcount of the movie
- * \see Movie::playcount
- */
-void Movie::setPlayCount(int playcount)
+void Movie::setPlayCount(int playCount)
 {
-    m_playcount = playcount;
+    m_playCount = playCount;
     setChanged(true);
 }
 
@@ -1193,7 +1182,7 @@ QDebug operator<<(QDebug dbg, const Movie& movie)
     out.append(QString("  Tagline:       ").append(movie.tagline()).append(nl));
     out.append(QString("  Runtime:       %1").arg(movie.runtime().count()).append(nl));
     out.append(QString("  Certification: ").append(movie.certification().toString()).append(nl));
-    out.append(QString("  Playcount:     %1%2").arg(movie.playcount()).arg(nl));
+    out.append(QString("  Playcount:     %1%2").arg(movie.playCount()).arg(nl));
     out.append(QString("  Lastplayed:    ").append(movie.lastPlayed().toString("yyyy-MM-dd HH:mm:ss")).append(nl));
     out.append(QString("  TMDB ID:       ").append(movie.tmdbId().toString()).append(nl));
     out.append(QString("  Wikidata ID:   ").append(movie.wikidataId().toString()).append(nl));

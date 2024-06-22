@@ -73,7 +73,7 @@ QByteArray MovieXmlWriterGeneric::getMovieXml(bool testMode)
     }
 
     xml.writeTextElement("mpaa", m_movie.certification().toString());
-    xml.writeTextElement("playcount", QString("%1").arg(m_movie.playcount()));
+    xml.writeTextElement("playcount", QString("%1").arg(m_movie.playCount()));
     xml.writeTextElement("lastplayed", m_movie.lastPlayed().toString("yyyy-MM-dd HH:mm:ss"));
     // id
     xml.writeTextElement("id", m_movie.imdbId().toString());

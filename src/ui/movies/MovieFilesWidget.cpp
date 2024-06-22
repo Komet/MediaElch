@@ -202,7 +202,7 @@ void MovieFilesWidget::markAsWatched()
     for (const QModelIndex& index : ui->files->selectionModel()->selectedRows(0)) {
         const int row = index.model()->data(index, Qt::UserRole).toInt();
         Movie* movie = Manager::instance()->movieModel()->movie(row);
-        if (movie->playcount() < 1) {
+        if (movie->playCount() < 1) {
             movie->setPlayCount(1);
         }
         if (!movie->lastPlayed().isValid()) {

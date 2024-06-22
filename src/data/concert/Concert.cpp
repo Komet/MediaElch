@@ -286,15 +286,9 @@ const mediaelch::FileList& Concert::files() const
     return m_concert.files;
 }
 
-/**
- * \property Concert::playcount
- * \brief Holds the playcount
- * \return Playcount of the concert
- * \see Concert::setPlayCount
- */
-int Concert::playcount() const
+int Concert::playCount() const
 {
-    return m_concert.playcount;
+    return m_concert.playCount;
 }
 
 /**
@@ -361,7 +355,7 @@ bool Concert::streamDetailsLoaded() const
 
 bool Concert::watched() const
 {
-    return m_concert.playcount > 0;
+    return m_concert.playCount > 0;
 }
 
 /**
@@ -571,14 +565,9 @@ void Concert::setTrailer(QUrl trailer)
     setChanged(true);
 }
 
-/**
- * \brief Sets the concerts playcount
- * \param playcount Playcount of the concert
- * \see Concert::playcount
- */
-void Concert::setPlayCount(int playcount)
+void Concert::setPlayCount(int playCount)
 {
-    m_concert.playcount = playcount;
+    m_concert.playCount = playCount;
     setChanged(true);
 }
 
@@ -969,7 +958,7 @@ void mediaelch::ConcertData::exportTo(mediaelch::ConcertData::Exporter& exporter
     exporter.exportTags(tags);
     exporter.exportTrailer(trailer);
 
-    exporter.exportPlaycount(playcount);
+    exporter.exportPlayCount(playCount);
     exporter.exportLastPlayed(lastPlayed);
     exporter.exportLastModified(lastModified);
 

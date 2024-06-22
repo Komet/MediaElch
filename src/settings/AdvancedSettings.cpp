@@ -277,7 +277,12 @@ QDebug operator<<(QDebug dbg, const AdvancedSettings& settings)
 
     out << "Advanced settings:" << nl;
     out << "    locale:                  " << QLocale::languageToString(settings.m_locale.language()) << " ("
-        << QLocale::countryToString(settings.m_locale.country()) << ")" << nl;
+#if QT_VERSION < QT_VERSION_CHECK(6, 2, 0)
+        << QLocale::countryToString(settings.m_locale.country())
+#else
+        << QLocale::territoryToString(settings.m_locale.territory())
+#endif
+        << ")" << nl;
     out << "    debugLog:                " << (settings.m_debugLog ? "true" : "false") << nl;
     out << "    logFile:                 " << settings.m_logFile << nl;
     out << "    stylesheet:              "

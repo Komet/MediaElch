@@ -90,7 +90,7 @@ void ConcertInfoWidget::updateConcert(ConcertController* controller)
     ui->released->setDate(m_concertController->concert()->released());
     ui->runtime->setValue(static_cast<int>(m_concertController->concert()->runtime().count()));
     ui->trailer->setText(m_concertController->concert()->trailer().toString());
-    ui->playcount->setValue(m_concertController->concert()->playcount());
+    ui->playcount->setValue(m_concertController->concert()->playCount());
     ui->lastPlayed->setDateTime(m_concertController->concert()->lastPlayed());
     ui->overview->setPlainText(m_concertController->concert()->overview());
     ui->badgeWatched->setActive(m_concertController->concert()->watched());
@@ -261,8 +261,8 @@ void ConcertInfoWidget::onWatchedClicked()
     Concert* concert = m_concertController->concert();
 
     if (active) {
-        concert->setPlayCount(std::max(1, concert->playcount()));
-        ui->playcount->setValue(concert->playcount());
+        concert->setPlayCount(std::max(1, concert->playCount()));
+        ui->playcount->setValue(concert->playCount());
 
         if (!concert->lastPlayed().isValid()) {
             ui->lastPlayed->setDateTime(QDateTime::currentDateTime());

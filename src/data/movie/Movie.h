@@ -79,7 +79,7 @@ public:
 
     const mediaelch::FileList& files() const;
     QString folderName() const;
-    int playcount() const;
+    int playCount() const;
     QDateTime lastPlayed() const;
     ImdbId imdbId() const;
     TmdbId tmdbId() const;
@@ -125,7 +125,7 @@ public:
     void addActor(Actor actor);
     void addGenre(QString genre);
     void addCountry(QString country);
-    void setPlayCount(int playcount);
+    void setPlayCount(int playCount);
     void setLastPlayed(QDateTime lastPlayed);
     void setImdbId(ImdbId imdbId);
     void setTmdbId(TmdbId tmdbId);
@@ -217,7 +217,7 @@ public:
         virtual void exportTags(const QStringList& tags) = 0;
         virtual void exportTrailer(const QUrl& trailer) = 0;
         virtual void exportTvShowLinks(const QStringList& tvShowLinks) = 0;
-        virtual void exportPlaycount(int playcount) = 0;
+        virtual void exportPlayCount(int playCount) = 0;
         virtual void exportLastPlayed(const QDateTime& lastPlayed) = 0;
         virtual void exportMovieSet(const MovieSet& set) = 0;
         virtual void exportStreamDetails(const StreamDetails* streamDetails) = 0;
@@ -259,7 +259,7 @@ private:
     QStringList m_tags;
     QUrl m_trailer;
     QStringList m_tvShowLinks;
-    int m_playcount = 0;
+    int m_playCount = 0;
     QDateTime m_lastPlayed;
     ImdbId m_imdbId;
     TmdbId m_tmdbId;

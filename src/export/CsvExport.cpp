@@ -143,7 +143,7 @@ void CsvMovieExport::exportMovies(const QVector<Movie*>& movies, std::function<v
             {s(Field::Tags), movie->tags().join(", ")},
             {s(Field::Trailer), movie->trailer().toString()},
             {s(Field::Actors), actorsToString(movie->actors())},
-            {s(Field::PlayCount), QString::number(movie->playcount())},
+            {s(Field::PlayCount), QString::number(movie->playCount())},
             {s(Field::LastPlayed), movie->lastPlayed().toString(Qt::ISODate)},
             {s(Field::MovieSet), movie->set().name},
             {s(Field::TvShowLinks), movie->tvShowLinks().join(", ")},
@@ -444,7 +444,7 @@ public:
     void exportGenres(const QStringList& genres) override { fields[s(Field::Genres)]     = genres.join(", "); }
     void exportTags(const QStringList& tags)     override { fields[s(Field::Tags)]       = tags.join(", "); }
     void exportTrailer(const QUrl& trailer)      override { fields[s(Field::TrailerUrl)] = trailer.toString(); }
-    void exportPlaycount(const int& playcount)   override { fields[s(Field::Playcount)]  = QString::number(playcount); }
+    void exportPlayCount(const int& playCount)   override { fields[s(Field::Playcount)]  = QString::number(playCount); }
 
     void exportLastPlayed(const QDateTime& lastPlayed)           override { fields[s(Field::LastPlayed)]   = lastPlayed.toString(Qt::ISODate); }
     void exportLastModified(const QDateTime& lastModified)       override { fields[s(Field::LastModified)] = lastModified.toString(Qt::ISODate); }

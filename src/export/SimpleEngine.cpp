@@ -133,7 +133,7 @@ void SimpleEngine::replaceVars(QString& m, Movie* movie, bool subDir)
     }
 
     m.replace("{{ MOVIE.RUNTIME }}", QString::number(static_cast<double>(movie->runtime().count()), 'f', 0));
-    m.replace("{{ MOVIE.PLAY_COUNT }}", QString::number(movie->playcount(), 'f', 0));
+    m.replace("{{ MOVIE.PLAY_COUNT }}", QString::number(movie->playCount(), 'f', 0));
     m.replace("{{ MOVIE.LAST_PLAYED }}",
         movie->lastPlayed().isValid() ? movie->lastPlayed().toString("yyyy-MM-dd hh:mm") : "");
     m.replace(
@@ -237,7 +237,7 @@ void SimpleEngine::replaceVars(QString& m, const Concert* concert, const QString
     m.replace("{{ CONCERT.RUNTIME }}", QString::number(static_cast<double>(concert->runtime().count()), 'f', 0));
     m.replace("{{ CONCERT.CERTIFICATION }}", concert->certification().toString().toHtmlEscaped());
     m.replace("{{ CONCERT.TRAILER }}", concert->trailer().toString());
-    m.replace("{{ CONCERT.PLAY_COUNT }}", QString::number(concert->playcount(), 'f', 0));
+    m.replace("{{ CONCERT.PLAY_COUNT }}", QString::number(concert->playCount(), 'f', 0));
     m.replace("{{ CONCERT.LAST_PLAYED }}",
         concert->lastPlayed().isValid() ? concert->lastPlayed().toString("yyyy-MM-dd hh:mm") : "");
     m.replace("{{ CONCERT.FILE_LAST_MODIFIED }}",
