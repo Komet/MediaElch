@@ -27,7 +27,7 @@ ScraperError ImdbTvShowParser::parseInfos(const QString& html)
 
     QJsonObject data = json.object();
 
-    m_show.setTitle(data.value("name").toString());
+    m_show.setTitle(removeHtmlEntities(data.value("name").toString()));
     m_show.setOverview(removeHtmlEntities(data.value("description").toString()));
     m_show.setFirstAired(QDate::fromString(data.value("datePublished").toString(), Qt::ISODate));
     m_show.setCertification(Certification(data.value("contentRating").toString()));
@@ -54,7 +54,7 @@ ScraperError ImdbTvShowParser::parseInfos(const QString& html)
     // -------------------------------------
     const QStringList tags = data.value("keywords").toString().split(',');
     for (const auto& tag : tags) {
-        m_show.addTag(tag);
+        m_show.addTag(removeHtmlEntities(tag));
     }
 
     // -------------------------------------
@@ -69,7 +69,7 @@ ScraperError ImdbTvShowParser::parseInfos(const QString& html)
     // -------------------------------------
     const QJsonArray genres = data.value("genre").toArray();
     for (const QJsonValue& genreVal : genres) {
-        QString genre = genreVal.toString();
+        QString genre = removeHtmlEntities(genreVal.toString());
         if (!genre.isEmpty()) {
             m_show.addGenre(genre);
         }

@@ -5,7 +5,7 @@ tmdbId:
 tvdbId: 
 imdbId: tt1384816
 tvmazeId: 
-title: Mater&apos;s Tall Tales
+title: Mater's Tall Tales
 showTitle: 
 originalTitle: 
 sortTitle: 
