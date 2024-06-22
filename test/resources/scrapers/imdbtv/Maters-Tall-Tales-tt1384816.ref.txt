@@ -1,0 +1,51 @@
+TvShow Reference File
+----------------------
+
+tmdbId: 
+tvdbId: 
+imdbId: tt1384816
+tvmazeId: 
+title: Mater&apos;s Tall Tales
+showTitle: 
+originalTitle: 
+sortTitle: 
+overview:
+    Cruise into the crazy adventures of Tow Mater as you watch him be a fire truck, 
+    daredevil, import drifter, and even an astronaut.
+ratings (N=1)
+  source=imdb | rating=6.8 | votes=4000 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+firstAired: 2008-10-27
+runtime: 36min
+genres: (N<6)
+  - Animation
+  - Adventure
+  - Comedy
+tags: (N<6)
+  - astronaut
+  - space adventure
+  - car
+  - anthropomorphic car
+  - anthropomorphic vehicle
+certification: Not Rated
+networks: (N=0)
+episodeGuideUrl: 
+actors: (N=0)
+posters: (N=1)
+  - id:
+    https://m.media-amazon.com/images/M/MV5BYTZjYTA5MTAtOWNlMy00NDQxLWExZTgtMWYyNzA4
+    YTEwOGMwXkEyXkFqcGdeQXVyMTA1NjE5MTAz._V1_.jpg
+    originalUrl: https://m.media-amazon.com/images/M/MV5BYTZjYTA5MTAtOWNlMy00NDQxLWExZTgtMWYyNzA4YTEwOGMwXkEyXkFqcGdeQXVyMTA1NjE5MTAz._V1_.jpg
+    thumbUrl: https://m.media-amazon.com/images/M/MV5BYTZjYTA5MTAtOWNlMy00NDQxLWExZTgtMWYyNzA4YTEwOGMwXkEyXkFqcGdeQXVyMTA1NjE5MTAz._V1_.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+backdrops: (N=0)
+banners: (N=0)
+hasTune: false
+extraFanarts: (N=0)
+status: 
+dateAdded: <not set or invalid>

@@ -40,6 +40,20 @@ TEST_CASE("ImdbTv scrapes show details", "[show][ImdbTv][load_data]")
         test::scraper::compareAgainstReference(show, "scrapers/imdbtv/Scrubs-tt0285403");
     }
 
+    SECTION("Loads all details for a TV series with HTML entities")
+    {
+        ImdbTv imdbTv;
+        ShowScrapeJob::Config config{ShowIdentifier("tt1384816"), Locale("en-US"), imdbTv.meta().supportedShowDetails};
+
+        auto scrapeJob = std::make_unique<ImdbTvShowScrapeJob>(getImdbApi(), config);
+        test::scrapeTvScraperSync(scrapeJob.get());
+        auto& show = scrapeJob->tvShow();
+
+        REQUIRE(show.imdbId() == ImdbId("tt1384816"));
+        test::scraper::compareAgainstReference(show, "scrapers/imdbtv/Maters-Tall-Tales-tt1384816");
+    }
+
+
     SECTION("Loads correct runtime for Sherlock (2010)")
     {
         // Note: Sherlock runs longer than 1h
