@@ -34,6 +34,7 @@ void ConcertXmlReader::parse(QXmlStreamReader& reader)
 void ConcertXmlReader::parseConcert(QXmlStreamReader& reader)
 {
     Rating oldStyleRating;
+    QStringList artists;
     while (reader.readNextStartElement()) {
         if (reader.name() == QLatin1String("id")) {
             // v16 imdbid
@@ -50,7 +51,7 @@ void ConcertXmlReader::parseConcert(QXmlStreamReader& reader)
             m_concert.setOriginalTitle(reader.readElementText());
 
         } else if (reader.name() == QLatin1String("artist")) {
-            m_concert.setArtist(reader.readElementText());
+            artists << reader.readElementText();
 
         } else if (reader.name() == QLatin1String("album")) {
             m_concert.setAlbum(reader.readElementText());
@@ -132,6 +133,8 @@ void ConcertXmlReader::parseConcert(QXmlStreamReader& reader)
             reader.skipCurrentElement();
         }
     }
+
+    m_concert.setArtists(artists);
 
     if (oldStyleRating.rating > 0) {
         m_concert.ratings().setOrAddRating(oldStyleRating);

@@ -76,9 +76,15 @@ public:
         xml.writeTextElement("originaltitle", originalTitle);
     }
 
-    void exportArtist(const QString& artist) override
-    { //
-        xml.writeTextElement("artist", artist);
+    void exportArtists(const QStringList& artists) override
+    {
+        if (!artists.isEmpty()) {
+            KodiXml::writeStringsAsOneTagEach(xml, "artist", artists);
+        } else {
+            // Write an empty tag if there are no artists, because the tag is
+            // required by Kodi and we want to indicate that no artist was set.
+            xml.writeTextElement("artist", "");
+        }
     }
 
     void exportAlbum(const QString& album) override

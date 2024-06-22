@@ -357,7 +357,7 @@ public:
     {
         writeToReference(m_out, "originalTitle", originalTitle);
     }
-    void exportArtist(const QString& artist) override { writeToReference(m_out, "artist", artist); }
+    void exportArtists(const QStringList& artists) override { writeToReference(m_out, "artist", artists); }
     void exportAlbum(const QString& album) override { writeToReference(m_out, "album", album); }
     void exportOverview(const QString& overview) override { writeToReference(m_out, "overview", overview); }
     void exportRatings(const Ratings& ratings) override { writeToReference(m_out, "ratings", ratings); }

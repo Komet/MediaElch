@@ -54,7 +54,7 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert& concert)
             QDir currentDir = fi.dir();
 
             Renamer::replace(newFileName, "title", concert.title());
-            Renamer::replace(newFileName, "artist", concert.artist());
+            Renamer::replace(newFileName, "artist", concert.artists().isEmpty() ? "" : concert.artists().first());
             Renamer::replace(newFileName, "album", concert.album());
             Renamer::replace(newFileName, "year", concert.released().toString("yyyy"));
             Renamer::replace(newFileName, "extension", fi.suffix());
@@ -156,7 +156,7 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert& concert)
     if (m_config.renameDirectories && concert.inSeparateFolder()) {
         const auto videoDetails = concert.streamDetails()->videoDetails();
         Renamer::replace(newFolderName, "title", concert.title());
-        Renamer::replace(newFolderName, "artist", concert.artist());
+        Renamer::replace(newFolderName, "artist", concert.artists().isEmpty() ? "" : concert.artists().first());
         Renamer::replace(newFolderName, "album", concert.album());
         Renamer::replace(newFolderName, "year", concert.released().toString("yyyy"));
         Renamer::replaceCondition(newFolderName, "bluray", isBluRay);

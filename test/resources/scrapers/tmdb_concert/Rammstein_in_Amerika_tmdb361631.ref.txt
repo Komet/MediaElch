@@ -6,7 +6,7 @@ tmdbId: 361631
 imdbId: tt5053508
 title: Rammstein in Amerika
 originalTitle: Rammstein in Amerika
-artist: 
+artist: (N=0)
 album: 
 overview:
     The concert film celebrates the band’s legendary show in New York’s Madison Squa

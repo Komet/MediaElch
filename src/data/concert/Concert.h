@@ -42,7 +42,7 @@ public:
 
     QString title;
     QString originalTitle;
-    QString artist;
+    QStringList artists;
     QString album;
     QString overview;
 
@@ -88,7 +88,7 @@ public:
 
         virtual void exportTitle(const QString& title) = 0;
         virtual void exportOriginalTitle(const QString& originalTitle) = 0;
-        virtual void exportArtist(const QString& artist) = 0;
+        virtual void exportArtists(const QStringList& artists) = 0;
         virtual void exportAlbum(const QString& album) = 0;
         virtual void exportOverview(const QString& overview) = 0;
 
@@ -144,7 +144,7 @@ public:
 public:
     QString title() const;
     QString originalTitle() const;
-    QString artist() const;
+    QStringList artists() const;
     QString album() const;
     QString overview() const;
     Ratings& ratings();
@@ -183,7 +183,7 @@ public:
     void setFiles(const mediaelch::FileList& files);
     void setTitle(QString title);
     void setOriginalTitle(QString title);
-    void setArtist(QString artist);
+    void setArtists(QStringList artists);
     void setAlbum(QString album);
     void setOverview(QString overview);
     void setUserRating(double rating);
