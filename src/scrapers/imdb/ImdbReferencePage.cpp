@@ -20,7 +20,7 @@ QString ImdbReferencePage::extractTitle(const QString& html)
     rx.setPattern(R"(<h3 itemprop="name">\n([^<]+)<span)");
     match = rx.match(html);
     if (match.hasMatch()) {
-        return match.captured(1).trimmed();
+        return removeHtmlEntities(match.captured(1).trimmed());
     }
     return {};
 }
@@ -35,7 +35,7 @@ QString ImdbReferencePage::extractOriginalTitle(const QString& html)
     rx.setPattern(R"(</h3>\n([^\n]+)\n\s+<span class="titlereference-original-title)");
     match = rx.match(html);
     if (match.hasMatch()) {
-        return match.captured(1).trimmed();
+        return removeHtmlEntities(match.captured(1).trimmed());
     }
     return {};
 }
@@ -72,7 +72,7 @@ void ImdbReferencePage::extractStudios(Movie* movie, const QString& html)
         QRegularExpressionMatchIterator matches = rx.globalMatch(listHtml);
 
         while (matches.hasNext()) {
-            movie->addStudio(helper::mapStudio(matches.next().captured(1).trimmed()));
+            movie->addStudio(helper::mapStudio(removeHtmlEntities(matches.next().captured(1)).trimmed()));
         }
     }
 }
@@ -97,7 +97,7 @@ void ImdbReferencePage::extractDirectors(Movie* movie, const QString& html)
     QRegularExpressionMatchIterator matches = rx.globalMatch(directorsBlock);
 
     while (matches.hasNext()) {
-        directors << matches.next().captured(1).trimmed();
+        directors << removeHtmlEntities(matches.next().captured(1)).trimmed();
     }
     movie->setDirector(directors.join(", "));
 }
@@ -122,7 +122,7 @@ void ImdbReferencePage::extractWriters(Movie* movie, const QString& html)
     QRegularExpressionMatchIterator matches = rx.globalMatch(writersBlock);
 
     while (matches.hasNext()) {
-        writers << matches.next().captured(1).trimmed();
+        writers << removeHtmlEntities(matches.next().captured(1)).trimmed();
     }
     movie->setWriter(writers.join(", "));
 }
