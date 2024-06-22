@@ -146,10 +146,10 @@ public:
         }
     }
 
-    void exportPlaycount(const int& playcount) override
+    void exportPlayCount(const int& playCount) override
     {
-        if (playcount > 0) {
-            xml.writeTextElement("playcount", QString::number(playcount));
+        if (playCount > 0) {
+            xml.writeTextElement("playcount", QString::number(playCount));
         }
     }
 

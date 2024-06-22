@@ -372,7 +372,7 @@ public:
     void exportGenres(const QStringList& genres) override { writeToReference(m_out, "genres", genres); }
     void exportTags(const QStringList& tags) override { writeToReference(m_out, "tags", tags); }
     void exportTrailer(const QUrl& trailer) override { writeToReference(m_out, "trailer", trailer); }
-    void exportPlaycount(const int& playcount) override { writeToReference(m_out, "playcount", playcount); }
+    void exportPlayCount(const int& playCount) override { writeToReference(m_out, "playcount", playCount); }
     void exportLastPlayed(const QDateTime& lastPlayed) override { writeToReference(m_out, "lastPlayed", lastPlayed); }
     void exportLastModified(const QDateTime& lastModified) override
     {
@@ -463,7 +463,7 @@ public:
     {
         writeToReference(m_out, "showlink", tvShowLinks);
     }
-    void exportPlaycount(int playcount) override { writeToReference(m_out, "playcount", playcount); }
+    void exportPlayCount(int playCount) override { writeToReference(m_out, "playcount", playCount); }
     void exportLastPlayed(const QDateTime& lastPlayed) override { writeToReference(m_out, "lastPlayed", lastPlayed); }
     void exportMovieSet(const MovieSet& set) override
     {

@@ -758,11 +758,6 @@ void TvShowEpisode::setDirectors(QStringList directors)
     setChanged(true);
 }
 
-/**
- * \brief Sets the playcount
- * \param playCount Playcount
- * \see TvShowEpisode::playCount
- */
 void TvShowEpisode::setPlayCount(int playCount)
 {
     m_playCount = playCount;

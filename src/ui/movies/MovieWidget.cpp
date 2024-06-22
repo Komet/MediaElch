@@ -587,7 +587,7 @@ void MovieWidget::updateMovieInfo()
     ui->runtime->setValue(static_cast<int>(m_movie->runtime().count()));
     ui->trailer->setText(m_movie->trailer().toString());
     ui->tvShowLink->setText(m_movie->tvShowLinks().join(", "));
-    ui->playcount->setValue(m_movie->playcount());
+    ui->playcount->setValue(m_movie->playCount());
     ui->lastPlayed->setDateTime(m_movie->lastPlayed());
     ui->overview->setPlainText(m_movie->overview());
     ui->outline->setPlainText(m_movie->outline());
@@ -1308,8 +1308,8 @@ void MovieWidget::onWatchedClicked()
     ui->badgeWatched->setActive(active);
 
     if (active) {
-        m_movie->setPlayCount(std::max(1, m_movie->playcount()));
-        ui->playcount->setValue(m_movie->playcount());
+        m_movie->setPlayCount(std::max(1, m_movie->playCount()));
+        ui->playcount->setValue(m_movie->playCount());
 
         if (!m_movie->lastPlayed().isValid()) {
             ui->lastPlayed->setDateTime(QDateTime::currentDateTime());

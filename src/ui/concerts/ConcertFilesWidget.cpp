@@ -122,7 +122,7 @@ void ConcertFilesWidget::markAsWatched()
     for (const QModelIndex& index : ui->files->selectionModel()->selectedRows(0)) {
         int row = index.model()->data(index, Qt::UserRole).toInt();
         Concert* concert = Manager::instance()->concertModel()->concert(row);
-        concert->setPlayCount(std::max(1, concert->playcount()));
+        concert->setPlayCount(std::max(1, concert->playCount()));
 
         if (!concert->lastPlayed().isValid()) {
             concert->setLastPlayed(QDateTime::currentDateTime());

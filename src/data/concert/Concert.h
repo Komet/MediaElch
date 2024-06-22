@@ -58,7 +58,7 @@ public:
     QStringList tags;
     QUrl trailer;
 
-    int playcount{0};
+    int playCount{0};
     QDateTime lastPlayed;
     QDateTime lastModified;
 
@@ -104,7 +104,7 @@ public:
         virtual void exportTags(const QStringList& tags) = 0;
         virtual void exportTrailer(const QUrl& trailer) = 0;
 
-        virtual void exportPlaycount(const int& playcount) = 0;
+        virtual void exportPlayCount(const int& playCount) = 0;
         virtual void exportLastPlayed(const QDateTime& lastPlayed) = 0;
         virtual void exportLastModified(const QDateTime& lastModified) = 0;
 
@@ -160,7 +160,7 @@ public:
     QUrl trailer() const;
     const mediaelch::FileList& files() const;
     QString folderName() const;
-    int playcount() const;
+    int playCount() const;
     QDateTime lastPlayed() const;
     QDateTime lastModified() const;
     QVector<Poster> posters() const;
@@ -194,7 +194,7 @@ public:
     void setTrailer(QUrl trailer);
     void addGenre(QString genre);
     void addTag(QString tag);
-    void setPlayCount(int playcount);
+    void setPlayCount(int playCount);
     void setLastPlayed(QDateTime lastPlayed);
     void setLastModified(QDateTime lastModified);
     void setPosters(QVector<Poster> posters);
