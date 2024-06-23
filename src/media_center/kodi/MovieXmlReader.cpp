@@ -125,9 +125,9 @@ bool MovieXmlReader::parseNfoDom(QDomDocument domDoc)
     }
 
     QStringList writers;
-    for (int i = 0, n = domDoc.elementsByTagName("credits").size(); i < n; i++) {
-        const auto credits =
-            domDoc.elementsByTagName("credits").at(i).toElement().text().split(",", ElchSplitBehavior::SkipEmptyParts);
+    QDomNodeList domCredits = domDoc.elementsByTagName("credits");
+    for (int i = 0, n = domCredits.size(); i < n; i++) {
+        const auto credits = domCredits.at(i).toElement().text().split(",", ElchSplitBehavior::SkipEmptyParts);
         for (const QString& writer : credits) {
             writers.append(writer.trimmed());
         }
@@ -135,13 +135,12 @@ bool MovieXmlReader::parseNfoDom(QDomDocument domDoc)
     m_movie.setWriter(writers.join(", "));
 
     QStringList tvShowLinks;
-    for (int i = 0, n = domDoc.elementsByTagName("showlink").size(); i < n; i++) {
-        const auto showlink =
-            domDoc.elementsByTagName("showlink").at(i).toElement().text().split(",", ElchSplitBehavior::SkipEmptyParts);
-        for (const QString& link : showlink) {
-            tvShowLinks.append(link.trimmed());
-        }
+    QDomNodeList domShowLinks = domDoc.elementsByTagName("showlink");
+    for (int i = 0, n = domShowLinks.size(); i < n; i++) {
+        QString showLink = domShowLinks.at(i).toElement().text().trimmed();
+        tvShowLinks.append(showLink);
     }
+
     m_movie.setTvShowLinks(tvShowLinks);
 
     QStringList directors;

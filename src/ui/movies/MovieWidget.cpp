@@ -107,6 +107,12 @@ MovieWidget::MovieWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieWid
     connect(ui->studioCloud, &TagCloud::activated, this, &MovieWidget::addStudio);
     connect(ui->studioCloud, &TagCloud::deactivated, this, &MovieWidget::removeStudio);
 
+    ui->tvShowLinks->setText(tr("TV Show Links"));
+    ui->tvShowLinks->setPlaceholder(tr("Add TV Show"));
+    ui->tvShowLinks->setBadgeType(TagCloud::BadgeType::SimpleLabel);
+    connect(ui->tvShowLinks, &TagCloud::activated, this, &MovieWidget::onTvShowLinksChange);
+    connect(ui->tvShowLinks, &TagCloud::deactivated, this, &MovieWidget::onTvShowLinksChange);
+
     ui->labelSepFoldersWarning->setErrorMessage(ui->labelSepFoldersWarning->text());
 
     ui->poster->setImageType(ImageType::MoviePoster);
@@ -185,7 +191,6 @@ MovieWidget::MovieWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieWid
     connect(ui->playcount,        elchOverload<int>(&QSpinBox::valueChanged),          this, &MovieWidget::onPlayCountChange);
 
     connect(ui->trailer,          &QLineEdit::textEdited,           this, &MovieWidget::onTrailerChange);
-    connect(ui->tvShowLink,       &QLineEdit::textEdited,           this, &MovieWidget::onTvShowLinksChange);
     connect(ui->certification,    &QComboBox::editTextChanged,      this, &MovieWidget::onCertificationChange);
     connect(ui->set,              &QComboBox::editTextChanged,      this, &MovieWidget::onSetChange);
     connect(ui->badgeWatched,     &Badge::clicked,                  this, &MovieWidget::onWatchedClicked);
@@ -272,7 +277,7 @@ void MovieWidget::clear()
     clear(ui->top250);
     clear(ui->runtime);
     clear(ui->trailer);
-    clear(ui->tvShowLink);
+    clear(ui->tvShowLinks);
     clear(ui->playcount);
     clear(ui->overview);
     clear(ui->outline);
@@ -586,7 +591,6 @@ void MovieWidget::updateMovieInfo()
     ui->releaseDate->setDate(m_movie->released());
     ui->runtime->setValue(static_cast<int>(m_movie->runtime().count()));
     ui->trailer->setText(m_movie->trailer().toString());
-    ui->tvShowLink->setText(m_movie->tvShowLinks().join(", "));
     ui->playcount->setValue(m_movie->playCount());
     ui->lastPlayed->setDateTime(m_movie->lastPlayed());
     ui->overview->setPlainText(m_movie->overview());
@@ -678,6 +682,9 @@ void MovieWidget::updateMovieInfo()
     auto* completer = new QCompleter(studios, this);
     completer->setCaseSensitivity(Qt::CaseInsensitive);
     ui->studioCloud->setCompleter(completer);
+
+
+    ui->tvShowLinks->setTags(m_movie->tvShowLinks(), m_movie->tvShowLinks());
 
     // Streamdetails
     updateStreamDetails();
@@ -1288,13 +1295,14 @@ void MovieWidget::onTrailerChange(QString text)
     ui->buttonRevert->setVisible(true);
 }
 
-void MovieWidget::onTvShowLinksChange(QString text)
+void MovieWidget::onTvShowLinksChange()
 {
     if (m_movie == nullptr) {
         return;
     }
-    QStringList links = mediaelch::split_string_trimmed(text, ",");
-    m_movie->setTvShowLinks(links);
+
+    QStringList activeTags = ui->tvShowLinks->activeTags();
+    m_movie->setTvShowLinks(activeTags);
     ui->buttonRevert->setVisible(true);
 }
 

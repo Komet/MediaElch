@@ -24,6 +24,7 @@ public:
 
     explicit TagCloud(QWidget* parent = nullptr);
     ~TagCloud() override;
+
     void setTags(const QStringList& tags, const QStringList& activeTags);
     QStringList activeTags() const;
     void setText(const QString& text);

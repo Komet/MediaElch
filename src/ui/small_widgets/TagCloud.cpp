@@ -162,18 +162,13 @@ void TagCloud::mousePressEvent(QMouseEvent* event)
 
     child->setActive(!child->isActive());
     if (child->isActive()) {
-        emit activated(child->text());
-    } else {
-        emit deactivated(child->text());
-    }
-    if (child->isActive()) {
         if (!m_activeTags.contains(child->text())) {
             m_activeTags.append(child->text());
         }
+        emit activated(child->text());
     } else {
-        if (m_activeTags.contains(child->text())) {
-            m_activeTags.removeOne(child->text());
-        }
+        m_activeTags.removeOne(child->text());
+        emit deactivated(child->text());
     }
     repositionTags();
 }
