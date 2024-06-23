@@ -92,7 +92,7 @@ private slots:
     void onRuntimeChange(int value);
     void onCertificationChange(QString text);
     void onTrailerChange(QString text);
-    void onTvShowLinksChange(QString text);
+    void onTvShowLinksChange();
     void onWatchedClicked();
     void onPlayCountChange(int value);
     void onLastWatchedChange(QDateTime dateTime);
@@ -107,8 +107,8 @@ private slots:
     void onStreamDetailsEdited();
     /// \brief Forces a reload of stream details
     void onClickReloadStreamDetails();
-    /// \brief Fills the widget with streamdetails
-    /// \param reloadedFromFile If true, re-set the duration (non-streamdetails property)
+    /// \brief Fills the widget with stream details
+    /// \param reloadedFromFile If true, re-set the duration (non-stream details property)
     void updateStreamDetails(bool reloadedFromFile = false);
     void onDownloadTrailer();
     void onInsertYoutubeLink();

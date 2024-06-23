@@ -676,21 +676,7 @@
              <widget class="TagCloud" name="studioCloud" native="true"/>
             </item>
             <item>
-             <layout class="QFormLayout" name="formLayoutExtended">
-              <item row="0" column="0">
-               <widget class="QLabel" name="lvlTvShowLink">
-                <property name="toolTip">
-                 <string>Name of a related TV show</string>
-                </property>
-                <property name="text">
-                 <string>TV Show Link</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QLineEdit" name="tvShowLink"/>
-              </item>
-             </layout>
+             <widget class="TagCloud" name="tvShowLinks" native="true"/>
             </item>
             <item>
              <spacer name="verticalSpacer_3">
