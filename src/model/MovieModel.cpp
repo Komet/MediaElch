@@ -121,7 +121,7 @@ QVariant MovieModel::data(const QModelIndex& index, int role) const
             if (movie->files().isEmpty()) {
                 return QVariant();
             }
-            return movie->files().first().toString();
+            return movie->files().first().toNativePathString();
         }
         if (role == Roles::InfoLoadedRole) {
             return movie->controller()->infoLoaded();

@@ -32,7 +32,9 @@ public slots:
     void startScraperSearch();
     void saveInformation();
     void saveAll();
-    void setEnabledTrue(Movie* movie = nullptr);
+    /// \brief Sets the state of the main groupbox to enabled
+    void setEnabledTrue();
+    /// \brief Sets the state of the main groupbox to disabled
     void setDisabledTrue();
     void setBigWindow(bool bigWindow);
     void updateMovieInfo();
@@ -76,6 +78,7 @@ private slots:
     void addCountry(QString country);
     void removeCountry(QString country);
     void onRevertChanges();
+    void onPlayMovie();
     void onArtPageOne();
     void onArtPageTwo();
 
