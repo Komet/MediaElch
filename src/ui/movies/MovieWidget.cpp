@@ -139,7 +139,7 @@ MovieWidget::MovieWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieWid
     connect(ui->name,              &QLineEdit::textChanged,             this, &MovieWidget::movieNameChanged);
     connect(ui->subtitles,         &QTableWidget::itemChanged,          this, &MovieWidget::onSubtitleEdited);
     connect(ui->buttonRevert,      &QAbstractButton::clicked,           this, &MovieWidget::onRevertChanges);
-
+    connect(ui->buttonPlay,        &QAbstractButton::clicked,           this, &MovieWidget::onPlayMovie);
 
     connect(ui->buttonReloadStreamDetails, &QAbstractButton::clicked, this, &MovieWidget::onClickReloadStreamDetails);
 
@@ -333,30 +333,18 @@ void MovieWidget::movieNameChanged(QString text)
     ui->movieName->setText(text);
 }
 
-/**
- * \brief Sets the state of the main groupbox to enabled
- * \param movie Current movie
- */
-void MovieWidget::setEnabledTrue(Movie* movie)
+void MovieWidget::setEnabledTrue()
 {
-    if (movie != nullptr) {
-        qCDebug(generic) << "[MovieWidget] Opening:" << movie->name();
-    }
-    if ((movie != nullptr) && movie->controller()->downloadsInProgress()) {
-        qCDebug(generic) << "[MovieWidget] Downloads are in progress";
-        return;
-    }
     ui->movieGroupBox->setEnabled(true);
+    ui->buttonPlay->setEnabled(true);
     emit setActionSaveEnabled(true, MainWidgets::Movies);
     emit setActionSearchEnabled(true, MainWidgets::Movies);
 }
 
-/**
- * \brief Sets the state of the main groupbox to disabled
- */
 void MovieWidget::setDisabledTrue()
 {
     ui->movieGroupBox->setDisabled(true);
+    ui->buttonPlay->setDisabled(true);
     emit setActionSaveEnabled(false, MainWidgets::Movies);
     emit setActionSearchEnabled(false, MainWidgets::Movies);
 }
@@ -990,9 +978,24 @@ void MovieWidget::saveAll()
 /// \brief Revert changes for current movie
 void MovieWidget::onRevertChanges()
 {
+    if (m_movie == nullptr) {
+        return;
+    }
     m_movie->clearImages();
     m_movie->controller()->loadData(Manager::instance()->mediaCenterInterface(), true);
     updateMovieInfo();
+}
+
+void MovieWidget::onPlayMovie()
+{
+    if (m_movie == nullptr || m_movie->files().isEmpty()) {
+        return;
+    }
+    QString fileName = m_movie->files().first().toNativePathString();
+    if (fileName.isEmpty()) {
+        return;
+    }
+    QDesktopServices::openUrl(QUrl::fromLocalFile(fileName));
 }
 
 void MovieWidget::onSubtitleEdited(QTableWidgetItem* item)
