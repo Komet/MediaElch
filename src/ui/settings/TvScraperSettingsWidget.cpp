@@ -104,7 +104,7 @@ void TvScraperSettingsWidget::setupScraperDetails()
 
     ui->txtName->setText(meta.name);
     ui->txtId->setText(meta.identifier);
-    ui->txtDescription->setText(meta.description);
+    ui->txtDescription->setPlainText(meta.description);
     ui->txtWebsite->setText(helper::makeHtmlLink(meta.website));
     ui->txtTOS->setText(helper::makeHtmlLink(meta.termsOfService));
     ui->txtPrivacyPolicy->setText(helper::makeHtmlLink(meta.privacyPolicy));

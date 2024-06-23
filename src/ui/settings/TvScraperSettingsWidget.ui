@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
-    <height>400</height>
+    <width>612</width>
+    <height>439</height>
    </rect>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,1">
@@ -118,51 +118,6 @@
            </property>
           </widget>
          </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="lblDescription">
-           <property name="text">
-            <string>Description</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1">
-          <widget class="QLabel" name="txtDescription">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
-             <horstretch>1</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>340</width>
-             <height>140</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>480</width>
-             <height>800</height>
-            </size>
-           </property>
-           <property name="text">
-            <string notr="true">This is the scraper
-description which may span
-multiple lines.
-
-</string>
-           </property>
-           <property name="textFormat">
-            <enum>Qt::PlainText</enum>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-           </property>
-           <property name="wordWrap">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
          <item row="3" column="0">
           <widget class="QLabel" name="lblWebsite">
            <property name="text">
@@ -256,6 +211,13 @@ multiple lines.
            </property>
           </widget>
          </item>
+         <item row="7" column="1">
+          <widget class="QLabel" name="txtInitialized">
+           <property name="text">
+            <string notr="true">-</string>
+           </property>
+          </widget>
+         </item>
          <item row="8" column="0">
           <widget class="QLabel" name="lblDefaultLanguage">
            <property name="text">
@@ -266,10 +228,26 @@ multiple lines.
          <item row="8" column="1">
           <widget class="LanguageCombo" name="comboLanguage"/>
          </item>
-         <item row="7" column="1">
-          <widget class="QLabel" name="txtInitialized">
+         <item row="2" column="0">
+          <widget class="QLabel" name="lblDescription">
            <property name="text">
-            <string notr="true">-</string>
+            <string>Description</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QPlainTextEdit" name="txtDescription">
+           <property name="undoRedoEnabled">
+            <bool>false</bool>
+           </property>
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+           <property name="plainText">
+            <string>This is the scraper
+description which may span
+multiple lines.
+</string>
            </property>
           </widget>
          </item>
