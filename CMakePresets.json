@@ -56,6 +56,14 @@
             }
         },
         {
+            "name": "asan-mold",
+            "displayName": "asan-mold",
+            "inherits": "asan",
+            "cacheVariables": {
+                "ENABLE_MOLD_LINKER": "ON"
+            }
+        },
+        {
             "name": "ci",
             "displayName": "Continuous Integration for Qt5",
             "inherits": "asan",
@@ -102,6 +110,10 @@
         {
           "name": "asan",
           "configurePreset": "asan"
+        },
+        {
+          "name": "asan-mold",
+          "configurePreset": "asan-mold"
         },
         {
           "name": "debug",
