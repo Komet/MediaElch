@@ -33,6 +33,7 @@ TvMaze::TvMaze(QObject* parent) : TvScraper(parent)
         ShowScraperInfo::Runtime,
         ShowScraperInfo::Status,
         ShowScraperInfo::Actors,
+        ShowScraperInfo::FirstAired,
         ShowScraperInfo::Genres,
         ShowScraperInfo::Rating,
         ShowScraperInfo::ExtraArts //
