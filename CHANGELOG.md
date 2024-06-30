@@ -21,6 +21,7 @@
   - The year in search results works again.
   - Loading of all tags works again.
 - fernsehserien.de: Fix scraping of episode's thumbnails.
+- TVMaze: The premiered-date of TV shows was not properly scraped (#1767).
 - TV Show: The custom episode scraper may not have loaded details from IMDb.
 - Possible crash when clicking on empty episode thumbnails.
 - ADE: Search works again (#1737)
