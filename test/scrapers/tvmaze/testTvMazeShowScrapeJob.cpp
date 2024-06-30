@@ -41,4 +41,18 @@ TEST_CASE("TvMaze scrapes show details", "[show][TvMaze][load_data]")
         REQUIRE(show.tvmazeId() == TvMazeId("83"));
         test::scraper::compareAgainstReference(show, "scrapers/tvmaze/The-Simpsons-all-details");
     }
+
+    SECTION("Loads all details for The Three Stooges")
+    {
+        TvMaze tvdb;
+        ShowScrapeJob::Config config{ShowIdentifier("1751"), Locale::English, tvdb.meta().supportedShowDetails};
+
+        auto scrapeJob = std::make_unique<TvMazeShowScrapeJob>(getTvMazeApi(), config);
+        test::scrapeTvScraperSync(scrapeJob.get());
+        auto& show = scrapeJob->tvShow();
+
+        REQUIRE(show.tvdbId() == TvDbId("79173"));
+        REQUIRE(show.tvmazeId() == TvMazeId("1751"));
+        test::scraper::compareAgainstReference(show, "scrapers/tvmaze/The-Three-Stooges-all-details");
+    }
 }

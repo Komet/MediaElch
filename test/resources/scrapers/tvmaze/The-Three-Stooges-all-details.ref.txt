@@ -1,0 +1,67 @@
+TvShow Reference File
+----------------------
+
+tmdbId: 
+tvdbId: 79173
+imdbId: 
+tvmazeId: 1751
+title: The Three Stooges
+showTitle: 
+originalTitle: 
+sortTitle: 
+overview:
+    Watch as Moe, Larry and Curly go through life the only way a stooge can, with la
+    ughs and a lot of mischief.
+ratings (N=1)
+  source=tvmaze | rating=7.8 | votes=0 | min=0 | max=10
+userRating: 0
+imdbTop250: 0
+firstAired: 1934-05-05
+runtime: 20min
+genres: (N=1)
+  - Comedy
+tags: (N=0)
+certification: 
+networks: (N=1)
+  - Syndication
+episodeGuideUrl: 
+actors: (N=0)
+posters: (N<6)
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/9/24485.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/9/24485.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/9/24485.jpg
+    originalSize: h=-1 w=-1
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/9/24485.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/9/24485.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/9/24485.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/61/154981.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/61/154981.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/61/154981.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+backdrops: (N=1)
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/221/553057.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/221/553057.jpg
+    thumbUrl: 
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+banners: (N=0)
+hasTune: false
+extraFanarts: (N=0)
+status: Ended
+dateAdded: <not set or invalid>
