@@ -71,6 +71,7 @@ ConcertWidget::ConcertWidget(QWidget* parent) : QWidget(parent), ui(new Ui::Conc
         onInfoChanged();
     });
     connect(ui->buttonRevert,         &QAbstractButton::clicked,                         this, &ConcertWidget::onRevertChanges);
+    connect(ui->buttonPlay,           &QAbstractButton::clicked,                         this, &ConcertWidget::onPlayConcert);
     connect(ui->concertStreamdetails, &ConcertStreamDetailsWidget::runtimeChanged,       this, [ui_ = ui](std::chrono::minutes runtime) {
         ui_->concertInfo->setRuntime(runtime);
     });
@@ -202,6 +203,7 @@ void ConcertWidget::setEnabledTrue(Concert* concert)
         return;
     }
     ui->concertGroupBox->setEnabled(true);
+    ui->buttonPlay->setEnabled(true);
     emit setActionSaveEnabled(true, MainWidgets::Concerts);
     emit setActionSearchEnabled(true, MainWidgets::Concerts);
 }
@@ -212,6 +214,7 @@ void ConcertWidget::setEnabledTrue(Concert* concert)
 void ConcertWidget::setDisabledTrue()
 {
     ui->concertGroupBox->setDisabled(true);
+    ui->buttonPlay->setDisabled(true);
     emit setActionSaveEnabled(false, MainWidgets::Concerts);
     emit setActionSearchEnabled(false, MainWidgets::Concerts);
 }
@@ -487,20 +490,24 @@ void ConcertWidget::onSaveAll()
     ui->buttonRevert->setVisible(false);
 }
 
-/**
- * \brief Revert changes for current concert
- */
 void ConcertWidget::onRevertChanges()
 {
     m_concert->controller()->loadData(Manager::instance()->mediaCenterInterfaceConcert(), true);
     updateConcertInfo();
 }
 
-/*** add/remove/edit Genres ***/
+void ConcertWidget::onPlayConcert()
+{
+    if (m_concert == nullptr || m_concert->files().isEmpty()) {
+        return;
+    }
+    QString fileName = m_concert->files().first().toNativePathString();
+    if (fileName.isEmpty()) {
+        return;
+    }
+    QDesktopServices::openUrl(QUrl::fromLocalFile(fileName));
+}
 
-/**
- * \brief Adds a genre
- */
 void ConcertWidget::addGenre(QString genre)
 {
     if (m_concert == nullptr) {
