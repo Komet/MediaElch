@@ -15,7 +15,7 @@
     <number>0</number>
    </property>
    <property name="topMargin">
-    <number>0</number>
+    <number>20</number>
    </property>
    <property name="rightMargin">
     <number>0</number>
@@ -29,85 +29,71 @@
       <number>0</number>
      </property>
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout_5">
-       <property name="spacing">
-        <number>0</number>
+      <spacer name="horizontalSpacer_6">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
        </property>
-       <property name="topMargin">
-        <number>20</number>
+       <property name="sizeType">
+        <enum>QSizePolicy::Fixed</enum>
        </property>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_3">
-         <item>
-          <spacer name="horizontalSpacer_6">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::Fixed</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
-          <widget class="QToolButton" name="buttonRevert">
-           <property name="cursor">
-            <cursorShape>PointingHandCursor</cursorShape>
-           </property>
-           <property name="toolTip">
-            <string>Episode has changed. Click to revert changes.</string>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-           <property name="icon">
-            <iconset resource="../../../data/MediaElch.qrc">
-             <normaloff>:/img/arrow_circle_left.png</normaloff>:/img/arrow_circle_left.png</iconset>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="episodeName">
-           <property name="font">
-            <font>
-             <pointsize>22</pointsize>
-            </font>
-           </property>
-           <property name="text">
-            <string>Episode Title</string>
-           </property>
-           <property name="indent">
-            <number>4</number>
-           </property>
-           <property name="isHeader" stdset="0">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer name="horizontalSpacer_3">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
-          <widget class="MediaFlags" name="mediaFlags" native="true"/>
-         </item>
-        </layout>
-       </item>
-      </layout>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QToolButton" name="buttonRevert">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="toolTip">
+        <string>Episode has changed. Click to revert changes.</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="../../../data/MediaElch.qrc">
+         <normaloff>:/img/arrow_circle_left.png</normaloff>:/img/arrow_circle_left.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="episodeName">
+       <property name="font">
+        <font>
+         <pointsize>22</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Episode Title</string>
+       </property>
+       <property name="indent">
+        <number>4</number>
+       </property>
+       <property name="isHeader" stdset="0">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_3">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="MediaFlags" name="mediaFlags" native="true"/>
      </item>
      <item>
       <widget class="QLabel" name="missingLabel">
@@ -115,6 +101,55 @@
         <string>Episode missing</string>
        </property>
       </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_16">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Fixed</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QToolButton" name="buttonPlay">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="toolTip">
+        <string>Play movie</string>
+       </property>
+       <property name="text">
+        <string>...</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../../../data/MediaElch.qrc">
+         <normaloff>:/icons/actions/32/media-playback-start.svg</normaloff>:/icons/actions/32/media-playback-start.svg</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="hSpacerRight">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Fixed</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
      </item>
     </layout>
    </item>
@@ -1387,6 +1422,12 @@
    <header>ui/small_widgets/ClosableImage.h</header>
   </customwidget>
   <customwidget>
+   <class>RatingsWidget</class>
+   <extends>QWidget</extends>
+   <header>ui/small_widgets/RatingsWidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
    <class>StereoModeComboBox</class>
    <extends>QComboBox</extends>
    <header>ui/small_widgets/StereoModeComboBox.h</header>
@@ -1395,12 +1436,6 @@
    <class>MediaFlags</class>
    <extends>QWidget</extends>
    <header>ui/small_widgets/MediaFlags.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>RatingsWidget</class>
-   <extends>QWidget</extends>
-   <header>ui/small_widgets/RatingsWidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>

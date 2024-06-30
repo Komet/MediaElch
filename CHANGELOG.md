@@ -49,7 +49,7 @@
 - Added Kodi v22 to Kodi selection menu.
 - Concerts (i.e. music videos in Kodi) can now have multiple artists, each stored
   as an `<artist>` tag in NFO files.  In the UI, it's a comma-separated list (#1709).
-- UI: The movie page now has a "play movie" button in the top right corner (#1727).
+- UI: The movie, concert and episode pages now have a "play movie" button in the top right corner (#1727, #1764).
 
 ## 2.10.6 - 2023-12-03
 

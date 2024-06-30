@@ -77,6 +77,7 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget* parent) :
         &TvShowWidgetEpisode::onPosterDownloadFinished,
         static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
     connect(ui->buttonRevert, &QAbstractButton::clicked, this, &TvShowWidgetEpisode::onRevertChanges);
+    connect(ui->buttonPlay, &QAbstractButton::clicked, this, &TvShowWidgetEpisode::onPlayEpisode);
     connect(
         ui->buttonReloadStreamDetails, &QAbstractButton::clicked, this, &TvShowWidgetEpisode::onReloadStreamDetails);
     connect(ui->buttonAddActor, &QAbstractButton::clicked, this, &TvShowWidgetEpisode::onAddActor);
@@ -326,10 +327,12 @@ void TvShowWidgetEpisode::onClear()
  */
 void TvShowWidgetEpisode::onSetEnabled(bool enabled)
 {
-    if (m_episode != nullptr && m_episode->isDummy()) {
+    if (m_episode == nullptr || m_episode->isDummy()) {
         ui->episodeGroupBox->setEnabled(false);
+        ui->buttonPlay->setEnabled(false);
         return;
     }
+    ui->buttonPlay->setEnabled(enabled && !m_episode->isDummy());
     ui->episodeGroupBox->setEnabled(enabled);
 }
 
@@ -646,18 +649,24 @@ void TvShowWidgetEpisode::onSaveInformation()
     }
 }
 
-/**
- * \brief Reverts changes
- */
 void TvShowWidgetEpisode::onRevertChanges()
 {
     m_episode->loadData(Manager::instance()->mediaCenterInterfaceTvShow(), true, true);
     updateEpisodeInfo();
 }
 
-/**
- * \brief Shows the search widget
- */
+void TvShowWidgetEpisode::onPlayEpisode()
+{
+    if (m_episode == nullptr || m_episode->files().isEmpty()) {
+        return;
+    }
+    QString fileName = m_episode->files().first().toNativePathString();
+    if (fileName.isEmpty()) {
+        return;
+    }
+    QDesktopServices::openUrl(QUrl::fromLocalFile(fileName));
+}
+
 void TvShowWidgetEpisode::onStartScraperSearch()
 {
     if (m_episode == nullptr) {

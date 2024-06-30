@@ -12,7 +12,6 @@
 #include "scrapers/movie/custom/CustomMovieScraper.h"
 #include "ui/UiUtils.h"
 #include "ui/image/ImageDialog.h"
-#include "ui/image/ImagePreviewDialog.h"
 #include "ui/main/MainWindow.h"
 #include "ui/movies/MovieFilesWidget.h"
 #include "ui/movies/MovieSearch.h"
@@ -22,7 +21,6 @@
 #include "utils/Containers.h"
 
 #include <QDesktopServices>
-#include <QDoubleValidator>
 #include <QFileDialog>
 #include <QIntValidator>
 #include <QMovie>

@@ -27,6 +27,7 @@ public slots:
     void onClear();
     void onSaveInformation();
     void onStartScraperSearch();
+    void onPlayEpisode();
 
 signals:
     void sigSetActionSearchEnabled(bool, MainWidgets);

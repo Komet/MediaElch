@@ -33,6 +33,7 @@ public slots:
     void onStartScraperSearch();
     void onSaveInformation();
     void onSaveAll();
+    void onPlayConcert();
     void setEnabledTrue(Concert* concert = nullptr);
     void setDisabledTrue();
     void setBigWindow(bool bigWindow);
