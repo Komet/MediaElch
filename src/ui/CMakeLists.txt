@@ -20,6 +20,10 @@ add_library(
 
 if(APPLE)
   target_sources(mediaelch_ui PRIVATE MacUiUtilities.mm)
+  set_source_files_properties(
+    MacUiUtilities.mm PROPERTIES COMPILE_OPTIONS
+                                 "-fno-objc-msgsend-selector-stubs"
+  )
 endif()
 
 target_link_libraries(

@@ -213,7 +213,7 @@ if(APPLE)
     MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/MediaElch.plist"
   )
   target_sources(mediaelch PRIVATE MediaElch.icns)
-    set_source_files_properties(MediaElch.icns PROPERTIES
+  set_source_files_properties(MediaElch.icns PROPERTIES
             MACOSX_PACKAGE_LOCATION "Resources")
 endif()
 
