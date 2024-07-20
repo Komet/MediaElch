@@ -212,13 +212,17 @@ void Settings::loadSettings()
         settings()->value(KEY_EXCLUDE_WORDS).toString().remove(" ").split(",", ElchSplitBehavior::SkipEmptyParts);
 
     if (m_excludeWords.isEmpty()) {
+        // TODO: Add upgrade-process;
+        //   currently, new entries won't reach the user because the values are stored on the system.
+        //   New:
+        //     2024-07-21: uhd
         m_excludeWords = QStringLiteral(
             "ac3,dts,ddp5.1,custom,dc,divx,divx5,dsr,dsrip,dutch,dvd,dvdrip,dvdscr,dvdscreener,screener,dvdivx,"
             "cam,fragment,fs,hdtv,hdrip,hdtvrip,internal,limited,"
             "multisubs,ntsc,ogg,ogm,pal,pdtv,proper,repack,rerip,retail,r3,r5,bd5,se,svcd,swedish,german,"
             "nfofix,unrated,ws,telesync,ts,telecine,tc,"
             "brrip,bdrip,480p,480i,576p,576i,720p,720i,1080p,1080i,2160p,"
-            "hrhd,hrhdtv,hddvd,uhdtv,uhdv,bluray,"
+            "hrhd,hrhdtv,hddvd,uhdtv,uhdv,bluray,uhd,"
             "x264,h264,h.264,h.265,h265,hevc,web-dl,"
             "xvid,xvidvd,xxx,www,mkv")
                              .split(",", ElchSplitBehavior::SkipEmptyParts);

@@ -7,7 +7,22 @@ TEST_CASE("NameFormatter formats names", "[rename]")
 {
     // Just some words to search for.
     QStringList defaultExcludeWords{
-        "ac3", "dts", "divx5", "dsr", "dvd", "dvdrip", "fs", "hdtv", "480i", "720p", "1080p", "bluray", "h264", "mkv"};
+        "ac3",
+        "dts",
+        "divx5",
+        "dsr",
+        "dvd",
+        "dvdrip",
+        "fs",
+        "hdtv",
+        "480i",
+        "720p",
+        "1080p",
+        "bluray",
+        "h264",
+        "mkv",
+        "uhd", //
+    };
 
     SECTION("excludeWords works as expected")
     {
@@ -25,6 +40,10 @@ TEST_CASE("NameFormatter formats names", "[rename]")
             CHECK(NameFormatter::excludeWords("my-480i-movie") == "my movie");
             CHECK(NameFormatter::excludeWords("my.dsr.divx5.480i.movie") == "my movie");
             CHECK(NameFormatter::excludeWords("my[480i]movie") == "my movie");
+
+            // Issue #1773
+            CHECK(NameFormatter::excludeWords("THE_MATRIX_(1999)_(BLURAY)") == "THE_MATRIX_(1999)");
+            CHECK(NameFormatter::excludeWords("THE_MATRIX_(1999)_(UHD)") == "THE_MATRIX_(1999)");
         }
 
         SECTION("Only match basic words and not regex special characters")
