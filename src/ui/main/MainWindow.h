@@ -93,6 +93,7 @@ private slots:
     void onJumpToMovie(Movie* movie);
     void updateTvShows();
     void onCommandBarOpen();
+    void onSettingsTableOpen();
 
 private:
     MainWidgets currentTab() const;

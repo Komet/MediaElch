@@ -483,6 +483,7 @@ SOURCES += \
     src/ui/settings/NetworkSettingsWidget.cpp \
     src/ui/settings/ScraperSettingsTable.cpp \
     src/ui/settings/ScraperSettingsWidget.cpp \
+    src/ui/settings/SettingsDebugTable.cpp \
     src/ui/settings/SettingsWindow.cpp \
     src/ui/settings/TvScraperInfoWidget.cpp \
     src/ui/settings/TvShowSettingsWidget.cpp \
@@ -905,6 +906,7 @@ HEADERS += Version.h \
     src/ui/settings/NetworkSettingsWidget.h \
     src/ui/settings/ScraperSettingsTable.h \
     src/ui/settings/ScraperSettingsWidget.h \
+    src/ui/settings/SettingsDebugTable.h \
     src/ui/settings/SettingsWindow.h \
     src/ui/settings/TvScraperInfoWidget.h \
     src/ui/settings/TvShowSettingsWidget.h \
@@ -1025,6 +1027,7 @@ FORMS += \
     src/ui/settings/NetworkSettingsWidget.ui \
     src/ui/settings/ScraperSettingsTable.ui \
     src/ui/settings/ScraperSettingsWidget.ui \
+    src/ui/settings/SettingsDebugTable.ui \
     src/ui/settings/SettingsWindow.ui \
     src/ui/settings/TvScraperInfoWidget.ui \
     src/ui/settings/TvShowSettingsWidget.ui \

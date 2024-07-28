@@ -19,6 +19,7 @@
 #include "ui/renamer/ConcertRenamerDialog.h"
 #include "ui/renamer/MovieRenamerDialog.h"
 #include "ui/renamer/TvShowRenamerDialog.h"
+#include "ui/settings/SettingsDebugTable.h"
 #include "ui/settings/SettingsWindow.h"
 #include "ui/support/SupportDialog.h"
 
@@ -397,6 +398,14 @@ void MainWindow::setupToolbar()
     commandModelAction->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_O));
     connect(commandModelAction, &QAction::triggered, this, &MainWindow::onCommandBarOpen);
     addAction(commandModelAction);
+
+#ifdef QT_DEBUG
+    auto* settingsTableAction = new QAction("Settings Table", this);
+    settingsTableAction->setText(tr("Settings Table"));
+    settingsTableAction->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_T));
+    connect(settingsTableAction, &QAction::triggered, this, &MainWindow::onSettingsTableOpen);
+    addAction(settingsTableAction);
+#endif
 }
 
 /**
@@ -808,6 +817,12 @@ void MainWindow::onCommandBarOpen()
         commandBar->setModel(Manager::instance()->concertModel());
     }
     centralWidget()->setFocusProxy(commandBar);
+}
+
+void MainWindow::onSettingsTableOpen()
+{
+    auto* window = new SettingsDebugTable(*Settings::instance());
+    window->show();
 }
 
 MainWidgets MainWindow::currentTab() const
