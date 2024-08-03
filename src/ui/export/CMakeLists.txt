@@ -1,4 +1,9 @@
-add_library(mediaelch_ui_export OBJECT ExportDialog.cpp CsvExportDialog.cpp)
+add_library(
+  mediaelch_ui_export OBJECT
+  ExportDialog.cpp csv_export/CsvExportDialog.cpp
+  csv_export/CsvExportModule.cpp csv_export/CsvExportConfiguration.h
+  csv_export/CsvExportConfiguration.cpp
+)
 
 target_link_libraries(
   mediaelch_ui_export

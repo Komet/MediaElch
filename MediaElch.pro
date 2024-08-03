@@ -180,6 +180,7 @@ SOURCES += \
     src/globals/Manager.cpp \
     src/globals/MediaDirectory.cpp \
     src/globals/MessageIds.cpp \
+    src/globals/Module.cpp \
     src/globals/ScraperManager.cpp \
     src/globals/VersionInfo.cpp \
     src/import/DownloadFileSearcher.cpp \
@@ -370,7 +371,9 @@ SOURCES += \
     src/ui/concerts/ConcertSearchWidget.cpp \
     src/ui/concerts/ConcertStreamDetailsWidget.cpp \
     src/ui/concerts/ConcertWidget.cpp \
-    src/ui/export/CsvExportDialog.cpp \
+    src/ui/export/csv_export/CsvExportConfiguration.cpp \
+    src/ui/export/csv_export/CsvExportDialog.cpp \
+    src/ui/export/csv_export/CsvExportModule.cpp \
     src/ui/export/ExportDialog.cpp \
     src/ui/image/ImageDialog.cpp \
     src/ui/image/ImagePreviewDialog.cpp \
@@ -538,6 +541,7 @@ HEADERS += Version.h \
     src/globals/Manager.h \
     src/globals/MediaDirectory.h \
     src/globals/MessageIds.h \
+    src/globals/Module.h \
     src/globals/ScraperManager.h \
     src/globals/VersionInfo.h \
     src/import/DownloadFileSearcher.h \
@@ -728,7 +732,9 @@ HEADERS += Version.h \
     src/ui/concerts/ConcertSearchWidget.h \
     src/ui/concerts/ConcertStreamDetailsWidget.h \
     src/ui/concerts/ConcertWidget.h \
-    src/ui/export/CsvExportDialog.h \
+    src/ui/export/csv_export/CsvExportConfiguration.h \
+    src/ui/export/csv_export/CsvExportDialog.h \
+    src/ui/export/csv_export/CsvExportModule.h \
     src/ui/export/ExportDialog.h \
     src/ui/image/ImageDialog.h \
     src/ui/image/ImagePreviewDialog.h \
@@ -848,7 +854,7 @@ FORMS += \
     src/ui/concerts/ConcertSearchWidget.ui \
     src/ui/concerts/ConcertStreamDetailsWidget.ui \
     src/ui/concerts/ConcertWidget.ui \
-    src/ui/export/CsvExportDialog.ui \
+    src/ui/export/csv_export/CsvExportDialog.ui \
     src/ui/export/ExportDialog.ui \
     src/ui/image/ImageDialog.ui \
     src/ui/image/ImagePreviewDialog.ui \

@@ -1,6 +1,12 @@
 add_library(
-  mediaelch_globals OBJECT Globals.cpp MessageIds.cpp ScraperManager.cpp
-                           Manager.cpp Helper.cpp VersionInfo.cpp
+  mediaelch_globals OBJECT
+  Globals.cpp
+  MessageIds.cpp
+  ScraperManager.cpp
+  Manager.cpp
+  Helper.cpp
+  VersionInfo.cpp
+  Module.cpp
 )
 
 target_link_libraries(

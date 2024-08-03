@@ -15,6 +15,9 @@
 #include "scrapers/music/UniversalMusicScraper.h"
 #include "scrapers/trailer/HdTrailers.h"
 
+// TODO: Move manager to UI folder
+#include "ui/export/csv_export/CsvExportModule.h"
+
 Manager::Manager(QObject* parent) : QObject(parent)
 {
     using namespace mediaelch::scraper;
@@ -45,6 +48,9 @@ Manager::Manager(QObject* parent) : QObject(parent)
 
     m_iconFont = new MyIconFont(this);
     m_iconFont->initFontAwesome();
+
+    m_csvExportModule = new mediaelch::exporter::CsvExportModule(*Settings::instance());
+    m_csvExportModule->onInit();
 }
 
 Manager* Manager::instance()
@@ -218,4 +224,10 @@ QVector<mediaelch::scraper::TrailerProvider*> Manager::trailerProviders()
 MyIconFont* Manager::iconFont()
 {
     return m_iconFont;
+}
+
+mediaelch::exporter::CsvExportModule& Manager::csvExportModule()
+{
+    MediaElch_Ensures(m_csvExportModule != nullptr);
+    return *m_csvExportModule;
 }

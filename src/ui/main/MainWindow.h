@@ -73,7 +73,6 @@ private slots:
 private:
     MainWidgets currentTab() const;
     void setupToolbar();
-    void setIcons(QToolButton* button);
 
 private:
     Ui::MainWindow* ui = nullptr;

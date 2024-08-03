@@ -33,6 +33,42 @@ public:
     AdvancedSettings* advanced();
     void loadSettings();
     QSettings* settings();
+
+public:
+    using Value = QVariant;
+
+    struct Key
+    {
+        QString moduleName;
+        QString key;
+
+        Key() = default;
+        Key(QString _moduleName, QString _key) : moduleName{_moduleName}, key{_key} {}
+
+        ELCH_NODISCARD bool isNull() const { return key.isEmpty(); };
+        ELCH_NODISCARD bool operator==(const Key& k) const { return k.key == key; };
+        ELCH_NODISCARD bool operator<(const Key& k) const { return k.key < key; };
+    };
+
+    struct Item
+    {
+        Key key;
+        Value value;
+        Value defaultValue;
+        QString description;
+
+        bool isNull() const { return key.isNull(); }
+    };
+
+    using Items = QMap<Key, Item>;
+
+    /// Get the value under the given key.
+    /// Use in type-safe interfaces built on top of Settings.
+    ELCH_NODISCARD virtual Value value(const Key& key);
+    virtual void setValue(const Key& key, const Value& value);
+    virtual void setDefaultValue(const Key& key, const Value& value);
+
+public:
     ScraperSettings* scraperSettings(const QString& id);
 
     QSize mainWindowSize();
@@ -51,16 +87,6 @@ public:
     KodiSettings& kodiSettings();
     ImportSettings& importSettings();
     NetworkSettings& networkSettings();
-
-    QString csvExportSeparator();
-    QString csvExportReplacement();
-    QStringList csvExportTypes();
-    QStringList csvExportMovieFields();
-    QStringList csvExportTvShowFields();
-    QStringList csvExportTvEpisodeFields();
-    QStringList csvExportConcertFields();
-    QStringList csvExportMusicArtistFields();
-    QStringList csvExportMusicAlbumFields();
 
     bool deleteArchives() const;
     QStringList excludeWords();
@@ -128,16 +154,6 @@ public:
     void setMainWindowMaximized(bool max);
     void setMainSplitterState(QByteArray state);
     void setMovieDuplicatesSplitterState(QByteArray state);
-
-    void setCsvExportSeparator(QString separator);
-    void setCsvExportReplacement(QString replacement);
-    void setCsvExportTypes(QStringList types);
-    void setCsvExportMovieFields(QStringList fields);
-    void setCsvExportTvShowFields(QStringList fields);
-    void setCsvExportTvEpisodeFields(QStringList fields);
-    void setCsvExportConcertFields(QStringList fields);
-    void setCsvExportMusicArtistFields(QStringList fields);
-    void setCsvExportMusicAlbumFields(QStringList fields);
 
     void setDeleteArchives(bool deleteArchives);
     void setExcludeWords(QString words);
@@ -223,16 +239,6 @@ private:
     bool m_downloadActorImages = false;
     bool m_autoLoadStreamDetails = false;
 
-    QString m_csvExportSeparator;
-    QString m_csvExportReplacement;
-    QStringList m_csvExportTypes;
-    QStringList m_csvExportMovieFields;
-    QStringList m_csvExportTvShowFields;
-    QStringList m_csvExportTvEpisodeFields;
-    QStringList m_csvExportConcertFields;
-    QStringList m_csvExportMusicArtistFields;
-    QStringList m_csvExportMusicAlbumFields;
-
     QVector<DataFile> m_dataFiles;
     QVector<DataFile> m_initialDataFilesFrodo;
     bool m_usePlotForOutline = false;
@@ -263,4 +269,7 @@ private:
     int m_extraFanartsMusicArtists = 0;
 
     QPoint fixWindowPosition(QPoint p);
+
+private:
+    Items m_items; // TODO: Actually use as cache
 };
