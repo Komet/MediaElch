@@ -48,8 +48,6 @@ static constexpr char KEY_SCRAPER_TV_SHOW_DETAILS[] = "Scrapers/TvShows/%1";
 static constexpr char KEY_SCRAPER_TV_EPISODE_DETAILS[] = "Scrapers/Episodes/%1";
 static constexpr char KEY_SCRAPER_CONCERT_DETAILS[] = "Scrapers/Concerts/%1";
 static constexpr char KEY_SCRAPERS_SHOW_ADULT[] = "Scrapers/ShowAdult";
-static constexpr char KEY_SETTINGS_WINDOW_POSITION[] = "SettingsWindowPosition";
-static constexpr char KEY_SETTINGS_WINDOW_SIZE[] = "SettingsWindowSize";
 static constexpr char KEY_STARTUP_SECTION[] = "StartupSection";
 static constexpr char KEY_TV_SHOW_UPDATE_OPTION[] = "TvShowUpdateOption";
 static constexpr char KEY_TV_SHOWS_SEASON_ORDER[] = "TvShows/SeasonOrder";
@@ -58,6 +56,17 @@ static constexpr char KEY_USE_PLOT_FOR_OUTLINE[] = "Movies/UsePlotForOutline";
 static constexpr char KEY_USE_YOUTUBE_PLUGIN_URL[] = "UseYoutubePluginURLs";
 static constexpr char KEY_WARNINGS_DO_NOT_SHOW_DELETE_IMAGE_CONFIRM[] = "Warnings/DontShowDeleteImageConfirm";
 
+namespace {
+
+QPoint fixWindowPosition(QPoint p)
+{
+    p.setX(qMax(0, p.x()));
+    p.setY(qMax(0, p.y()));
+    return p;
+}
+
+
+} // namespace
 
 Settings::Settings(QObject* parent) : QObject(parent)
 {
@@ -195,7 +204,6 @@ void Settings::loadSettings()
     readAllItemsFromDisk();
 
     // Globals
-    m_settingsWindowSize = settings()->value(KEY_SETTINGS_WINDOW_SIZE).toSize();
     m_movieDuplicatesSplitterState = settings()->value(KEY_MOVIE_DUPLICATES_SPLITTER_STATE).toByteArray();
     m_autoLoadStreamDetails = settings()->value(KEY_AUTO_LOAD_STREAM_DETAILS, true).toBool();
     m_usePlotForOutline = settings()->value(KEY_USE_PLOT_FOR_OUTLINE, true).toBool();
@@ -216,7 +224,6 @@ void Settings::loadSettings()
     m_lastImagePath = mediaelch::DirectoryPath(settings()->value(KEY_LAST_IMAGE_PATH, QDir::homePath()).toString());
 
     // Window positions
-    m_settingsWindowPosition = fixWindowPosition(settings()->value(KEY_SETTINGS_WINDOW_POSITION).toPoint());
     m_importDialogPosition = fixWindowPosition(settings()->value(KEY_DOWNLOADS_IMPORT_DIALOG_POSITION).toPoint());
     m_makeMkvDialogPosition = fixWindowPosition(settings()->value(KEY_DOWNLOADS_MAKE_MKV_DIALOG_POSITION).toPoint());
 
@@ -473,16 +480,6 @@ void Settings::saveSettings()
 
 /*** GETTER ***/
 
-QSize Settings::settingsWindowSize()
-{
-    return m_settingsWindowSize;
-}
-
-QPoint Settings::settingsWindowPosition()
-{
-    return m_settingsWindowPosition;
-}
-
 QSize Settings::importDialogSize()
 {
     return m_importDialogSize;
@@ -597,18 +594,6 @@ bool Settings::ignoreDuplicateOriginalTitle() const
 }
 
 /*** SETTER ***/
-
-void Settings::setSettingsWindowSize(QSize settingsWindowSize)
-{
-    m_settingsWindowSize = settingsWindowSize;
-    settings()->setValue(KEY_SETTINGS_WINDOW_SIZE, settingsWindowSize);
-}
-
-void Settings::setSettingsWindowPosition(QPoint settingsWindowPosition)
-{
-    m_settingsWindowPosition = settingsWindowPosition;
-    settings()->setValue(KEY_SETTINGS_WINDOW_POSITION, settingsWindowPosition);
-}
 
 void Settings::setImportDialogSize(QSize size)
 {
@@ -1181,14 +1166,6 @@ mediaelch::DirectoryPath Settings::lastImagePath()
 {
     return m_lastImagePath;
 }
-
-QPoint Settings::fixWindowPosition(QPoint p)
-{
-    p.setX(qMax(0, p.x()));
-    p.setY(qMax(0, p.y()));
-    return p;
-}
-
 
 int Settings::extraFanartsMusicArtists() const
 {

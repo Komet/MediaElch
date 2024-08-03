@@ -14,27 +14,74 @@
 #include <QAction>
 #include <QLineEdit>
 
-SettingsWindow::SettingsWindow(QWidget* parent) :
+namespace {
+
+static constexpr char moduleName[] = "ui";
+static const Settings::Key KEY_SETTINGS_WINDOW_SIZE(moduleName, "SettingsWindowSize");
+static const Settings::Key KEY_SETTINGS_WINDOW_POSITION(moduleName, "SettingsWindowPosition");
+
+QPoint fixWindowPosition(QPoint p)
+{
+    p.setX(qMax(0, p.x()));
+    p.setY(qMax(0, p.y()));
+    return p;
+}
+
+} // namespace
+
+SettingsWindowConfiguration::SettingsWindowConfiguration(Settings& settings) : m_settings{settings}
+{
+}
+
+void SettingsWindowConfiguration::init()
+{
+    m_settings.setDefaultValue(KEY_SETTINGS_WINDOW_SIZE, QVariant{});
+    m_settings.setDefaultValue(KEY_SETTINGS_WINDOW_POSITION, QVariant{});
+}
+
+QSize SettingsWindowConfiguration::settingsWindowSize()
+{
+    return m_settings.value(KEY_SETTINGS_WINDOW_SIZE).toSize();
+}
+
+void SettingsWindowConfiguration::setSettingsWindowSize(QSize settingsWindowSize)
+{
+    m_settings.setValue(KEY_SETTINGS_WINDOW_SIZE, settingsWindowSize);
+}
+
+QPoint SettingsWindowConfiguration::settingsWindowPosition()
+{
+    return fixWindowPosition(m_settings.value(KEY_SETTINGS_WINDOW_POSITION).toPoint());
+}
+
+void SettingsWindowConfiguration::setSettingsWindowPosition(QPoint settingsWindowPosition)
+{
+    m_settings.setValue(KEY_SETTINGS_WINDOW_POSITION, settingsWindowPosition);
+}
+
+SettingsWindow::SettingsWindow(Settings& settings, QWidget* parent) :
     QMainWindow(parent),
     ui(new Ui::SettingsWindow),
+    m_settings{settings},
+    m_config{SettingsWindowConfiguration(settings)},
     m_buttonColor{QColor(128, 129, 132)},
     m_buttonActiveColor{QColor(70, 155, 198)}
 {
     ui->setupUi(this);
+    m_config.init();
 
     ui->settingsTabs->setCurrentIndex(0);
 
-    m_settings = Settings::instance(this);
-    ui->globalSettings->setSettings(*m_settings);
-    ui->exportSettings->setSettings(*m_settings);
-    ui->importSettings->setSettings(*m_settings);
-    ui->scraperSettings->setSettings(*m_settings);
-    ui->tvShowSettings->setSettings(*m_settings);
-    ui->movieSettings->setSettings(*m_settings);
-    ui->musicSettings->setSettings(*m_settings);
-    ui->kodiSettings->setSettings(*m_settings);
-    ui->concertSettings->setSettings(*m_settings);
-    ui->networkSettings->setSettings(*m_settings);
+    ui->globalSettings->setSettings(m_settings);
+    ui->exportSettings->setSettings(m_settings);
+    ui->importSettings->setSettings(m_settings);
+    ui->scraperSettings->setSettings(m_settings);
+    ui->tvShowSettings->setSettings(m_settings);
+    ui->movieSettings->setSettings(m_settings);
+    ui->musicSettings->setSettings(m_settings);
+    ui->kodiSettings->setSettings(m_settings);
+    ui->concertSettings->setSettings(m_settings);
+    ui->networkSettings->setSettings(m_settings);
 
     // clang-format off
     connect(ui->btnCancel, &QAbstractButton::clicked, this, &SettingsWindow::onCancel);
@@ -67,14 +114,13 @@ void SettingsWindow::show()
 {
     if (!isVisible()) {
         loadSettings();
-        m_settings->beginTransaction();
+        m_settings.beginTransaction();
 
         ui->exportSettings->show();
 
-        if (Settings::instance()->settingsWindowSize().isValid()
-            && !Settings::instance()->settingsWindowPosition().isNull()) {
-            move(Settings::instance()->settingsWindowPosition());
-            resize(Settings::instance()->settingsWindowSize());
+        if (m_config.settingsWindowSize().isValid() && !m_config.settingsWindowPosition().isNull()) {
+            move(m_config.settingsWindowPosition());
+            resize(m_config.settingsWindowSize());
         }
     }
     QMainWindow::show();
@@ -84,16 +130,16 @@ void SettingsWindow::show()
 
 void SettingsWindow::closeEvent(QCloseEvent* event)
 {
-    Settings::instance()->setSettingsWindowSize(size());
-    Settings::instance()->setSettingsWindowPosition(pos());
+    m_config.setSettingsWindowSize(size());
+    m_config.setSettingsWindowPosition(pos());
 
 #ifdef Q_OS_MAC
     saveSettings();
     emit sigSaved();
 #else
     if (!m_saveCloseHandled) {
-        m_settings->abortTransaction();
-        m_settings->loadSettings();
+        m_settings.abortTransaction();
+        m_settings.loadSettings();
     }
 #endif
 
@@ -110,8 +156,8 @@ void SettingsWindow::onSave()
 
 void SettingsWindow::onCancel()
 {
-    m_settings->abortTransaction();
-    m_settings->loadSettings();
+    m_settings.abortTransaction();
+    m_settings.loadSettings();
     m_saveCloseHandled = true;
     close();
 }
@@ -145,7 +191,7 @@ void SettingsWindow::loadSettings()
             return;
         }
         DataFileType dataFileType = DataFileType(lineEdit->property("dataFileType").toInt());
-        QVector<DataFile> dataFiles = m_settings->dataFiles(dataFileType);
+        QVector<DataFile> dataFiles = m_settings.dataFiles(dataFileType);
         QStringList filenames;
         for (const DataFile& dataFile : dataFiles) {
             filenames << dataFile.fileName();
@@ -181,7 +227,7 @@ void SettingsWindow::saveSettings()
     for (auto* lineEdit : findChildren<PlaceholderLineEdit*>()) {
         work(lineEdit);
     }
-    m_settings->setDataFiles(dataFiles);
+    m_settings.setDataFiles(dataFiles);
 
     ui->globalSettings->saveSettings();
     ui->exportSettings->saveSettings();
@@ -194,11 +240,11 @@ void SettingsWindow::saveSettings()
     ui->concertSettings->saveSettings();
     ui->networkSettings->saveSettings();
 
-    m_settings->saveSettings();
-    m_settings->commitTransaction();
+    m_settings.saveSettings();
+    m_settings.commitTransaction();
 
     auto* manager = Manager::instance();
-    auto& dirs = m_settings->directorySettings();
+    auto& dirs = m_settings.directorySettings();
     manager->movieFileSearcher()->setMovieDirectories(dirs.movieDirectories());
     manager->tvShowFileSearcher()->setTvShowDirectories(dirs.tvShowDirectories());
     manager->concertFileSearcher()->setConcertDirectories(dirs.concertDirectories());
