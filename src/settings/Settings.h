@@ -6,7 +6,6 @@
 #include "settings/AdvancedSettings.h"
 #include "settings/DataFile.h"
 #include "settings/DirectorySettings.h"
-#include "settings/ImportSettings.h"
 #include "settings/KodiSettings.h"
 #include "settings/NetworkSettings.h"
 #include "ui/renamer/RenamerDialog.h"
@@ -94,10 +93,8 @@ public:
 
     DirectorySettings& directorySettings();
     KodiSettings& kodiSettings();
-    ImportSettings& importSettings();
     NetworkSettings& networkSettings();
 
-    bool deleteArchives() const;
     QStringList excludeWords();
     bool useYoutubePluginUrls() const;
     bool downloadActorImages() const;
@@ -157,7 +154,6 @@ public:
     void setMakeMkvDialogPosition(QPoint position);
     void setMovieDuplicatesSplitterState(QByteArray state);
 
-    void setDeleteArchives(bool deleteArchives);
     void setExcludeWords(QString words);
     void setUseYoutubePluginUrls(bool use);
     void setDownloadActorImages(bool download);
@@ -218,10 +214,8 @@ private:
 
     DirectorySettings m_directorySettings;
     KodiSettings m_kodiSettings;
-    ImportSettings m_importSettings;
     NetworkSettings m_networkSettings;
 
-    bool m_deleteArchives = false;
     QStringList m_excludeWords;
     QSize m_importDialogSize;
     QPoint m_importDialogPosition;

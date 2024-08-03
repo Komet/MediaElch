@@ -7,7 +7,7 @@
 #include <QProcess>
 #include <QRegularExpression>
 
-Extractor::Extractor(QObject* parent) : QObject(parent)
+Extractor::Extractor(ImportSettings& settings, QObject* parent) : QObject(parent), m_settings{settings}
 {
 }
 
@@ -34,7 +34,7 @@ void Extractor::extract(QString baseName, QStringList files, QString password)
 
     std::sort(rarFiles.begin(), rarFiles.end());
 
-    QString unrar = Settings::instance()->importSettings().unrar();
+    QString unrar = m_settings.unrar();
 
     if (!QFileInfo(unrar).isFile()) {
         emit sigError(baseName, tr("Unrar not found"));
@@ -46,9 +46,7 @@ void Extractor::extract(QString baseName, QStringList files, QString password)
     QFileInfo fi(file);
 
     QStringList parameters;
-    parameters << "x"
-               << "-o+"
-               << "-y";
+    parameters << "x" << "-o+" << "-y";
     if (!password.isEmpty()) {
         parameters << "-p" + password;
     }

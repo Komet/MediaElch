@@ -1,33 +1,54 @@
 #include "settings/ImportSettings.h"
 
-void ImportSettings::loadSettings()
+
+namespace {
+
+static constexpr char moduleName[] = "import";
+static const Settings::Key KEY_SETTINGS_DOWNLOAD_UNRAR(moduleName, "Downloads/Unrar");
+static const Settings::Key KEY_SETTINGS_DOWNLOAD_MAKE_MKV(moduleName, "Downloads/MakeMkvCon");
+static const Settings::Key KEY_DOWNLOADS_DELETE_ARCHIVES(moduleName, "Downloads/DeleteArchives");
+
+} // namespace
+
+ImportSettings::ImportSettings(Settings& settings, QObject* parent) : QObject(parent), m_settings{settings}
 {
-    m_unrar = m_settings->value("Downloads/Unrar").toString();
-    m_makeMkvCon = m_settings->value("Downloads/MakeMkvCon").toString();
 }
 
-void ImportSettings::saveSettings()
-{
-    m_settings->setValue("Downloads/Unrar", m_unrar);
-    m_settings->setValue("Downloads/MakeMkvCon", m_makeMkvCon);
-}
+ImportSettings::~ImportSettings() = default;
 
-QString ImportSettings::makeMkvCon() const
+void ImportSettings::init()
 {
-    return m_makeMkvCon;
+    m_settings.setDefaultValue(KEY_SETTINGS_DOWNLOAD_UNRAR, QVariant{});
+    m_settings.setDefaultValue(KEY_SETTINGS_DOWNLOAD_MAKE_MKV, QVariant{});
+    m_settings.setDefaultValue(KEY_DOWNLOADS_DELETE_ARCHIVES, QVariant::fromValue(false));
 }
 
 QString ImportSettings::unrar() const
 {
-    return m_unrar;
+    return m_settings.value(KEY_SETTINGS_DOWNLOAD_UNRAR).toString();
+}
+
+QString ImportSettings::makeMkvCon() const
+{
+    return m_settings.value(KEY_SETTINGS_DOWNLOAD_MAKE_MKV).toString();
 }
 
 void ImportSettings::setUnrar(QString unrar)
 {
-    m_unrar = unrar;
+    m_settings.setValue(KEY_SETTINGS_DOWNLOAD_UNRAR, unrar);
 }
 
 void ImportSettings::setMakeMkvCon(QString makeMkvCon)
 {
-    m_makeMkvCon = makeMkvCon;
+    m_settings.setValue(KEY_SETTINGS_DOWNLOAD_MAKE_MKV, makeMkvCon);
+}
+
+void ImportSettings::setDeleteArchives(bool deleteArchives)
+{
+    m_settings.setValue(KEY_DOWNLOADS_DELETE_ARCHIVES, deleteArchives);
+}
+
+bool ImportSettings::deleteArchives() const
+{
+    return m_settings.value(KEY_DOWNLOADS_DELETE_ARCHIVES).toBool();
 }

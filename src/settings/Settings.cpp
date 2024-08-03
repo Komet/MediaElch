@@ -24,7 +24,6 @@ static constexpr char KEY_DONATED[] = "Donated";
 static constexpr char KEY_THEME[] = "Theme";
 
 static constexpr char KEY_DOWNLOAD_ACTOR_IMAGES[] = "DownloadActorImages";
-static constexpr char KEY_DOWNLOADS_DELETE_ARCHIVES[] = "Downloads/DeleteArchives";
 static constexpr char KEY_DOWNLOADS_IMPORT_DIALOG_POSITION[] = "Downloads/ImportDialogPosition";
 static constexpr char KEY_DOWNLOADS_IMPORT_DIALOG_SIZE[] = "Downloads/ImportDialogSize";
 static constexpr char KEY_DOWNLOADS_KEEP_SOURCE[] = "Downloads/KeepSource";
@@ -84,7 +83,6 @@ Settings::Settings(QObject* parent) : QObject(parent)
 
     m_directorySettings.setQSettings(m_settings);
     m_kodiSettings.setQSettings(m_settings);
-    m_importSettings.setQSettings(m_settings);
     m_networkSettings.setQSettings(m_settings);
 
     // Frodo
@@ -235,7 +233,6 @@ void Settings::loadSettings()
 
     m_directorySettings.loadSettings();
     m_kodiSettings.loadSettings();
-    m_importSettings.loadSettings();
     m_networkSettings.loadSettings();
 
     m_excludeWords =
@@ -361,7 +358,6 @@ void Settings::loadSettings()
     // ------------------------------------------------------------------------
 
     // Downloads
-    m_deleteArchives = settings()->value(KEY_DOWNLOADS_DELETE_ARCHIVES, false).toBool();
     m_importDialogSize = settings()->value(KEY_DOWNLOADS_IMPORT_DIALOG_SIZE).toSize();
     m_makeMkvDialogSize = settings()->value(KEY_DOWNLOADS_MAKE_MKV_DIALOG_SIZE).toSize();
     m_keepDownloadSource = settings()->value(KEY_DOWNLOADS_KEEP_SOURCE, true).toBool();
@@ -400,7 +396,6 @@ void Settings::saveSettings()
 
     m_directorySettings.saveSettings();
     m_kodiSettings.saveSettings();
-    m_importSettings.saveSettings();
     m_networkSettings.saveSettings();
 
     settings()->setValue(KEY_EXCLUDE_WORDS, m_excludeWords.join(","));
@@ -463,7 +458,6 @@ void Settings::saveSettings()
         settings()->endArray();
     }
 
-    settings()->setValue(KEY_DOWNLOADS_DELETE_ARCHIVES, m_deleteArchives);
     settings()->setValue(KEY_DOWNLOADS_KEEP_SOURCE, m_keepDownloadSource);
 
     settings()->setValue(KEY_TV_SHOWS_SHOW_MISSING_EPISODES, m_showMissingEpisodesHint);
@@ -513,11 +507,6 @@ DirectorySettings& Settings::directorySettings()
 KodiSettings& Settings::kodiSettings()
 {
     return m_kodiSettings;
-}
-
-ImportSettings& Settings::importSettings()
-{
-    return m_importSettings;
 }
 
 NetworkSettings& Settings::networkSettings()
@@ -1019,16 +1008,6 @@ void Settings::setCurrentConcertScraper(const QString& current)
     m_currentConcertScraper = current;
     settings()->setValue(KEY_SCRAPER_CURRENT_CONCERT_SCRAPER, current);
     settings()->sync();
-}
-
-void Settings::setDeleteArchives(bool deleteArchives)
-{
-    m_deleteArchives = deleteArchives;
-}
-
-bool Settings::deleteArchives() const
-{
-    return m_deleteArchives;
 }
 
 void Settings::setKeepDownloadSource(bool keep)

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "settings/ImportSettings.h"
+
 #include <QObject>
 #include <QProcess>
 #include <QString>
@@ -10,7 +12,7 @@ class Extractor : public QObject
 {
     Q_OBJECT
 public:
-    explicit Extractor(QObject* parent = nullptr);
+    explicit Extractor(ImportSettings& settings, QObject* parent = nullptr);
     ~Extractor() override;
 
 public slots:
@@ -28,5 +30,6 @@ private slots:
     void onFinished(int exitCode, QProcess::ExitStatus status);
 
 private:
+    ImportSettings& m_settings;
     QVector<QProcess*> m_processes;
 };

@@ -50,6 +50,7 @@ private slots:
 
 private:
     Ui::DownloadsWidget* ui;
+    ImportSettings* m_importSettings{nullptr};
 
     QMap<QString, mediaelch::DownloadFileSearcher::Package> m_packages;
     QMap<QString, mediaelch::DownloadFileSearcher::Import> m_imports;

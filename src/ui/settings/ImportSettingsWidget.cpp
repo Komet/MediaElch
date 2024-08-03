@@ -22,24 +22,23 @@ ImportSettingsWidget::~ImportSettingsWidget()
 
 void ImportSettingsWidget::setSettings(Settings& settings)
 {
-    m_settings = &settings;
+    m_settings = std::make_unique<ImportSettings>(settings);
 }
 
 void ImportSettingsWidget::loadSettings()
 {
     ui->chkDeleteArchives->setChecked(m_settings->deleteArchives());
-    ui->unrarPath->setText(m_settings->importSettings().unrar());
-    ui->makemkvconPath->setText(m_settings->importSettings().makeMkvCon());
+    ui->unrarPath->setText(m_settings->unrar());
+    ui->makemkvconPath->setText(m_settings->makeMkvCon());
 }
 
 void ImportSettingsWidget::saveSettings()
 {
     // Downloads
-    m_settings->importSettings().setUnrar(ui->unrarPath->text());
-    m_settings->importSettings().setMakeMkvCon(ui->makemkvconPath->text());
+    m_settings->setUnrar(ui->unrarPath->text());
+    m_settings->setMakeMkvCon(ui->makemkvconPath->text());
     m_settings->setDeleteArchives(ui->chkDeleteArchives->isChecked());
 }
-
 
 void ImportSettingsWidget::onChooseUnrar()
 {

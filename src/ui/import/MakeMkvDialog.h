@@ -2,6 +2,7 @@
 
 #include "data/movie/Movie.h"
 #include "import/MakeMkvCon.h"
+#include "settings/ImportSettings.h"
 
 #include <QDialog>
 #include <QMap>
@@ -17,7 +18,7 @@ class MakeMkvDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit MakeMkvDialog(QWidget* parent = nullptr);
+    explicit MakeMkvDialog(ImportSettings& settings, QWidget* parent = nullptr);
     ~MakeMkvDialog() override;
 
 public slots:
@@ -40,6 +41,7 @@ private slots:
 
 private:
     Ui::MakeMkvDialog* ui = nullptr;
+    ImportSettings& m_settings;
     MakeMkvCon* m_makeMkvCon = nullptr;
     QPointer<Movie> m_movie;
     QString m_title;
