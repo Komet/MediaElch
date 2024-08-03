@@ -1,4 +1,5 @@
 #include "Version.h"
+#include "globals/Manager.h"
 #include "log/Log.h"
 #include "settings/Settings.h"
 #include "ui/main/MainWindow.h"
@@ -175,7 +176,7 @@ int main(int argc, char* argv[])
     // Install a message handler here to get "nice" output but instantiate the
     // logger after the translator is installed to avoid calls to tr() prior
     // to updating the application's language. "Settings::instance()" instantiates
-    // "Manager" which instantiates all scrapers which themself add their settings
+    // "Manager" which instantiates all scrapers which themselves add their settings
     // with translated values to the settings dialog.
     qInstallMessageHandler(mediaelch::messageHandler);
 
@@ -194,7 +195,10 @@ int main(int argc, char* argv[])
     QFont font = QApplication::font();
     QApplication::setFont(font);
 
-    MainWindow window;
+    Manager::instance(); // initialize
+    MainWindowConfiguration windowConfig(*Settings::instance());
+    windowConfig.init();
+    MainWindow window(windowConfig);
     window.show();
     int ret = QApplication::exec();
 
