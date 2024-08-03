@@ -86,8 +86,6 @@ private:
 
     // TODO: Move these settings into custom ones
 public:
-    QSize settingsWindowSize();
-    QPoint settingsWindowPosition();
     QSize importDialogSize();
     QPoint importDialogPosition();
     QSize makeMkvDialogSize();
@@ -153,8 +151,6 @@ public:
 
     bool autoLoadStreamDetails() const;
 
-    void setSettingsWindowSize(QSize settingsWindowSize);
-    void setSettingsWindowPosition(QPoint settingsWindowPosition);
     void setImportDialogSize(QSize size);
     void setImportDialogPosition(QPoint position);
     void setMakeMkvDialogSize(QSize size);
@@ -227,8 +223,6 @@ private:
 
     bool m_deleteArchives = false;
     QStringList m_excludeWords;
-    QSize m_settingsWindowSize;
-    QPoint m_settingsWindowPosition;
     QSize m_importDialogSize;
     QPoint m_importDialogPosition;
     QSize m_makeMkvDialogSize;
@@ -265,8 +259,6 @@ private:
     bool m_donated = false;
     mediaelch::DirectoryPath m_lastImagePath;
     int m_extraFanartsMusicArtists = 0;
-
-    QPoint fixWindowPosition(QPoint p);
 
 private:
     Items m_items;
