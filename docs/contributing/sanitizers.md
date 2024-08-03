@@ -1,6 +1,6 @@
 # Sanitizers
 
-__State__: last updated 2022-12-22
+__State__: last updated 2024-08-03
 
 MediaElch uses GCC's and Clang's AddressSanitizer which allows us to find
 memory corruption issues like segmentation faults before it reaches our
@@ -40,3 +40,12 @@ export ASAN_OPTIONS=detect_leaks=0
 mkdir build && cd build
 qmake .. CONFIG+=sanitize
 ```
+
+## Troubleshooting
+
+### No filenames or line numbers shown
+
+Ensure that `llvm-symbolizer` is installed.
+If it is not in your `$PATH`, set `ASAN_SYMBOLIZER_PATH=/usr/bin/llvm-symbolizer`.
+
+See <https://stackoverflow.com/a/24572545/1603627>
