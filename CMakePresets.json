@@ -52,7 +52,8 @@
       "inherits": "debug",
       "cacheVariables": {
         "SANITIZE_UNDEFINED": "OFF",
-        "SANITIZE_ADDRESS": "ON"
+        "SANITIZE_ADDRESS": "ON",
+        "SANITIZE_MEMORY": "OFF"
       }
     },
     {
@@ -61,6 +62,16 @@
       "inherits": "asan",
       "cacheVariables": {
         "ENABLE_MOLD_LINKER": "ON"
+      }
+    },
+    {
+      "name": "msan",
+      "displayName": "msan",
+      "inherits": "debug",
+      "cacheVariables": {
+        "SANITIZE_UNDEFINED": "OFF",
+        "SANITIZE_ADDRESS": "OFF",
+        "SANITIZE_MEMORY": "ON"
       }
     },
     {
@@ -114,6 +125,10 @@
     {
       "name": "asan-mold",
       "configurePreset": "asan-mold"
+    },
+    {
+      "name": "msan",
+      "configurePreset": "msan"
     },
     {
       "name": "debug",
