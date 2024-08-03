@@ -3,6 +3,7 @@
 #include "data/movie/Movie.h"
 #include "log/Log.h"
 #include "network/NetworkRequest.h"
+#include "scrapers/movie/aebn/AebnConfiguration.h"
 #include "scrapers/movie/aebn/AebnScrapeJob.h"
 #include "scrapers/movie/aebn/AebnSearchJob.h"
 #include "settings/Settings.h"
@@ -14,10 +15,9 @@
 namespace mediaelch {
 namespace scraper {
 
-AEBN::AEBN(QObject* parent) :
+AEBN::AEBN(AebnConfiguration& settings, QObject* parent) :
     MovieScraper(parent),
-    m_language{"en"},
-    m_genreId{"101"}, // 101 => Straight
+    m_settings{settings},
     m_widget{new QWidget},
     m_box{new QComboBox(m_widget)},
     m_genreBox{new QComboBox(m_widget)}
@@ -40,31 +40,8 @@ AEBN::AEBN(QObject* parent) :
         MovieScraperInfo::Director,
         MovieScraperInfo::Set,
         MovieScraperInfo::Tags};
-    m_meta.supportedLanguages = {"bg",
-        "zh",
-        "hr",
-        "cs",
-        "da",
-        "nl",
-        "en",
-        "fi",
-        "fr",
-        "de",
-        "el",
-        "he",
-        "hu",
-        "it",
-        "ja",
-        "ko",
-        "no",
-        "pl",
-        "pt",
-        "ru",
-        "sl",
-        "es",
-        "sv",
-        "tr"};
-    m_meta.defaultLocale = "en";
+    m_meta.supportedLanguages = AebnConfiguration::supportedLanguages();
+    m_meta.defaultLocale = AebnConfiguration::defaultLocale();
     m_meta.isAdult = true;
 
     for (const mediaelch::Locale& lang : asConst(m_meta.supportedLanguages)) {
@@ -114,7 +91,7 @@ bool AEBN::isInitialized() const
 
 MovieSearchJob* AEBN::search(MovieSearchJob::Config config)
 {
-    return new AebnSearchJob(m_api, std::move(config), m_genreId, this);
+    return new AebnSearchJob(m_api, std::move(config), m_settings.genreId(), this);
 }
 
 MovieScrapeJob* AEBN::loadMovie(MovieScrapeJob::Config config)
@@ -122,13 +99,12 @@ MovieScrapeJob* AEBN::loadMovie(MovieScrapeJob::Config config)
     if (config.locale == Locale::NoLocale) {
         config.locale = meta().defaultLocale;
     }
-    return new AebnScrapeJob(m_api, std::move(config), m_genreId, this);
+    return new AebnScrapeJob(m_api, std::move(config), m_settings.genreId(), this);
 }
 
 void AEBN::changeLanguage(mediaelch::Locale locale)
 {
-    // Does not store the new language in settings.
-    m_language = locale;
+    m_settings.setLanguage(locale);
 }
 
 QSet<MovieScraperInfo> AEBN::scraperNativelySupports()
@@ -143,15 +119,15 @@ bool AEBN::hasSettings() const
 
 void AEBN::loadSettings(ScraperSettings& settings)
 {
-    m_language = settings.language(m_meta.defaultLocale);
+    mediaelch::Locale language = m_settings.language();
     for (int i = 0, n = m_box->count(); i < n; ++i) {
-        if (m_box->itemData(i).toString() == m_language) {
+        if (m_box->itemData(i).toString() == language) {
             m_box->setCurrentIndex(i);
         }
     }
-    m_genreId = settings.genre("101");
+    QString genreId = m_settings.genreId();
     for (int i = 0, n = m_genreBox->count(); i < n; ++i) {
-        if (m_genreBox->itemData(i).toString() == m_genreId) {
+        if (m_genreBox->itemData(i).toString() == genreId) {
             m_genreBox->setCurrentIndex(i);
         }
     }
@@ -159,11 +135,11 @@ void AEBN::loadSettings(ScraperSettings& settings)
 
 void AEBN::saveSettings(ScraperSettings& settings)
 {
-    m_language = m_box->itemData(m_box->currentIndex()).toString();
-    settings.setLanguage(m_language);
+    mediaelch::Locale language = m_box->itemData(m_box->currentIndex()).toString();
+    m_settings.setLanguage(language);
 
-    m_genreId = m_genreBox->itemData(m_genreBox->currentIndex()).toString();
-    settings.setGenre(m_genreId);
+    QString genreId = m_genreBox->itemData(m_genreBox->currentIndex()).toString();
+    m_settings.setGenreId(genreId);
 }
 
 QWidget* AEBN::settingsWidget()

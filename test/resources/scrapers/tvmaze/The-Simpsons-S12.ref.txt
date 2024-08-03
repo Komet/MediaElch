@@ -638,7 +638,7 @@ tvmazeId: 5262
 title: Simpsons Safari
 showTitle: 
 ratings (N=1)
-  source=tvmaze | rating=8.2 | votes=0 | min=0 | max=10
+  source=tvmaze | rating=8.4 | votes=0 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -677,7 +677,7 @@ tvmazeId: 5263
 title: Trilogy of Error
 showTitle: 
 ratings (N=1)
-  source=tvmaze | rating=8.6 | votes=0 | min=0 | max=10
+  source=tvmaze | rating=8.8 | votes=0 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12

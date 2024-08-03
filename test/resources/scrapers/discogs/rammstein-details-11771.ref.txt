@@ -225,9 +225,9 @@ discography: (N>90)
     year: 2022
   - title: Adieu
     year: 2022
+  - title: Made In Germany
+    year: 2024
   - title: MTV / VOX
-    year: 
-  - title: Zeig Dich
     year: 
 genres: (N=0)
 styles: (N=0)

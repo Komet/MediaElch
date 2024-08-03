@@ -190,6 +190,7 @@ genres: (N<6)
   - Adventure
   - Comedy
   - Family
+  - Fantasy
 tags: (N<6)
   - father-son-relationship
   - no-opening-credits

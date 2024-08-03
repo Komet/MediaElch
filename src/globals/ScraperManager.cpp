@@ -1,15 +1,18 @@
 #include "globals/ScraperManager.h"
 
 #include "log/Log.h"
+#include "scrapers/ScraperConfiguration.h"
 #include "scrapers/concert/ConcertScraper.h"
 #include "scrapers/concert/tmdb/TmdbConcert.h"
 #include "scrapers/movie/MovieScraper.h"
 #include "scrapers/movie/adultdvdempire/AdultDvdEmpire.h"
 #include "scrapers/movie/aebn/AEBN.h"
+#include "scrapers/movie/aebn/AebnConfiguration.h"
 #include "scrapers/movie/custom/CustomMovieScraper.h"
 #include "scrapers/movie/hotmovies/HotMovies.h"
 #include "scrapers/movie/imdb/ImdbMovie.h"
 #include "scrapers/movie/tmdb/TmdbMovie.h"
+#include "scrapers/movie/tmdb/TmdbMovieConfiguration.h"
 #include "scrapers/movie/videobuster/VideoBuster.h"
 #include "scrapers/music/MusicScraper.h"
 #include "scrapers/music/UniversalMusicScraper.h"
@@ -20,15 +23,21 @@
 #include "scrapers/tv_show/thetvdb/TheTvDb.h"
 #include "scrapers/tv_show/tmdb/TmdbTv.h"
 #include "scrapers/tv_show/tvmaze/TvMaze.h"
+#include "settings/Settings.h"
 
 namespace mediaelch {
 
-ScraperManager::ScraperManager(QObject* parent) : QObject(parent)
+ScraperManager::ScraperManager(Settings& settings, QObject* parent) : QObject(parent), m_settings{settings}
 {
     initMovieScrapers();
     initTvScrapers();
     initConcertScrapers();
     initMusicScrapers();
+}
+
+ScraperManager::~ScraperManager()
+{
+    qDeleteAll(m_configurations);
 }
 
 /**
@@ -102,11 +111,19 @@ void ScraperManager::initMovieScrapers()
 {
     using namespace mediaelch::scraper;
 
-    m_movieScrapers.append(new TmdbMovie(this));
+    auto* tmdbConfig = new TmdbMovieConfiguration(m_settings);
+    auto* aebnConfig = new AebnConfiguration(m_settings);
+    m_configurations.append(tmdbConfig);
+
+    for (auto* config : m_configurations) {
+        config->init();
+    }
+
+    m_movieScrapers.append(new TmdbMovie(*tmdbConfig, this));
     m_movieScrapers.append(new ImdbMovie(this));
     m_movieScrapers.append(new VideoBuster(this));
     // Adult Movie Scrapers
-    m_movieScrapers.append(new AEBN(this));
+    m_movieScrapers.append(new AEBN(*aebnConfig, this));
     m_movieScrapers.append(new HotMovies(this));
     m_movieScrapers.append(new AdultDvdEmpire(this));
 

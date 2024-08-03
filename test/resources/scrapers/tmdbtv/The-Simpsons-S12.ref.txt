@@ -260,7 +260,7 @@ actors: (N>10)
  - id: 12217
    name: Jay Mohr
    role: 
-   thumb: https://image.tmdb.org/t/p/original/yQZeVYyZ04fx4bXLHpigpGg9Wkf.jpg
+   thumb: https://image.tmdb.org/t/p/original/nk9q6JdcFQMLhaElN4lpUkxuqbd.jpg
    order: 4
    imageHasChanged: false
  - id: 69597
@@ -619,7 +619,7 @@ actors: (N>5)
  - id: 819
    name: Edward Norton
    role: 
-   thumb: https://image.tmdb.org/t/p/original/5XBzD5WuTyVQZeS4VI25z2moMeY.jpg
+   thumb: https://image.tmdb.org/t/p/original/8nytsqL59SFJTVYVrN72k6qkGgJ.jpg
    order: 0
    imageHasChanged: false
  - id: 198
@@ -697,7 +697,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
-thumbnail: https://image.tmdb.org/t/p/original/qkYS65fLQl7ViimNkGabSlCVlQu.jpg
+thumbnail: https://image.tmdb.org/t/p/original/2vWqXNMikshPX9dVqKAT3qupqup.jpg
 actors: (N>5)
  - id: 6035
    name: Russi Taylor
@@ -788,7 +788,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
-thumbnail: https://image.tmdb.org/t/p/original/5uTFgcEU2TkH4rTdgWE3tusXZs6.jpg
+thumbnail: https://image.tmdb.org/t/p/original/hTNbbl8uipbVoDIZ8OgtCkZnYAL.jpg
 actors: (N>5)
  - id: 198
    name: Dan Castellaneta
@@ -1191,7 +1191,7 @@ actors: (N>5)
  - id: 7090
    name: Kelsey Grammer
    role: Sideshow Bob (voice)
-   thumb: https://image.tmdb.org/t/p/original/9V7svcoA6w7OfZbA2EW6EIjetD0.jpg
+   thumb: https://image.tmdb.org/t/p/original/cjUCogoFRnFKAgeyRmGGpekz0TF.jpg
    order: 1
    imageHasChanged: false
  - id: 198
@@ -1651,7 +1651,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
-thumbnail: https://image.tmdb.org/t/p/original/2rRKXgrKzGJncVQkFtzQpvZ9RkU.jpg
+thumbnail: https://image.tmdb.org/t/p/original/kpim0dcnloaTJW5iAIdFVV9RyV3.jpg
 actors: (N>5)
  - id: 51391
    name: Frankie Muniz

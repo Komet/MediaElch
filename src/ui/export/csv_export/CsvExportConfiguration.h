@@ -1,8 +1,7 @@
 #pragma once
 
+#include "settings/Settings.h"
 #include "utils/Meta.h"
-
-class Settings;
 
 namespace mediaelch {
 namespace exporter {
@@ -30,13 +29,11 @@ QStringList serializeCsvExportTypes(QVector<CsvExportType> types);
 class CsvExportConfiguration
 {
 public:
-    CsvExportConfiguration(Settings& settings);
+    explicit CsvExportConfiguration(Settings& settings);
     virtual ~CsvExportConfiguration() = default;
 
     void init();
 
-public:
-private:
 public:
     ELCH_NODISCARD virtual QString csvExportSeparator();
     virtual void setCsvExportSeparator(QString separator);

@@ -1,7 +1,5 @@
 #include "CsvExportConfiguration.h"
 
-#include "settings/Settings.h"
-
 #include <QString>
 
 namespace {

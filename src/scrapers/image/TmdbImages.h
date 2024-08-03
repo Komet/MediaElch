@@ -3,6 +3,7 @@
 #include "data/movie/Movie.h"
 #include "scrapers/image/ImageProvider.h"
 #include "scrapers/movie/tmdb/TmdbMovie.h"
+#include "scrapers/movie/tmdb/TmdbMovieConfiguration.h"
 
 namespace mediaelch {
 namespace scraper {
@@ -79,6 +80,7 @@ private slots:
 
 private:
     ScraperMeta m_meta;
+    TmdbMovieConfiguration* m_tmdbConfig = nullptr;
 
     mediaelch::scraper::TmdbMovie* m_tmdb = nullptr;
 

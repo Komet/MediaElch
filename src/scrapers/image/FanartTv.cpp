@@ -123,7 +123,8 @@ FanartTv::FanartTv(QObject* parent) : ImageProvider(parent)
     m_widget->setLayout(layout);
 
     m_apiKey = "842f7a5d1cc7396f142b8dd47c4ba42b";
-    m_tmdb = new TmdbMovie(this);
+    m_tmdbConfig = std::make_unique<mediaelch::scraper::TmdbMovieConfiguration>(*Settings::instance());
+    m_tmdb = new TmdbMovie(*m_tmdbConfig, this);
 }
 
 const ImageProvider::ScraperMeta& FanartTv::meta() const

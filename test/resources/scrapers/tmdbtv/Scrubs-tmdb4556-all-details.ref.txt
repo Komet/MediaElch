@@ -36,7 +36,7 @@ actors: (N>800)
  - id: 5367
    name: Zach Braff
    role: John 'J.D.' Dorian
-   thumb: https://image.tmdb.org/t/p/original/2AAnPoazqQRzC9Xyq3QkbnOlrtV.jpg
+   thumb: https://image.tmdb.org/t/p/original/wUAj6juL6HErqEJ1GtuI63rbVea.jpg
    order: 0
    imageHasChanged: false
  - id: 49002
