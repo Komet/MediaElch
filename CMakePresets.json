@@ -1,139 +1,139 @@
 {
-    "version": 2,
-    "configurePresets": [
-        {
-            "name": "release",
-            "displayName": "release",
-            "generator": "Ninja",
-            "binaryDir": "${sourceDir}/build/${presetName}",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Release",
-                "ENABLE_COLOR_OUTPUT": "ON",
-                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
-                "ENABLE_LTO": "ON"
-            }
-        },
-        {
-            "name": "debug",
-            "displayName": "Debug",
-            "generator": "Ninja",
-            "binaryDir": "${sourceDir}/build/${presetName}",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Debug",
-                "ENABLE_TESTS": "ON",
-                "ENABLE_COLOR_OUTPUT": "ON",
-                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
-                "CMAKE_CXX_COMPILER_LAUNCHER": "ccache",
-                "SANITIZE_UNDEFINED": "ON"
-            },
-            "environment": {
-                "CXX": "clang++",
-                "CC":  "clang"
-            },
-            "warnings": {
-                "dev": true
-            }
-        },
-        {
-            "name": "debug-gcc",
-            "displayName": "debug-gcc",
-            "inherits": "debug",
-            "cacheVariables": {
-                "ENABLE_COVERAGE": "ON"
-            },
-            "environment": {
-                "CXX": "g++",
-                "CC":  "gcc"
-            }
-        },
-        {
-            "name": "asan",
-            "displayName": "asan",
-            "inherits": "debug",
-            "cacheVariables": {
-                "SANITIZE_UNDEFINED": "OFF",
-                "SANITIZE_ADDRESS": "ON"
-            }
-        },
-        {
-            "name": "asan-mold",
-            "displayName": "asan-mold",
-            "inherits": "asan",
-            "cacheVariables": {
-                "ENABLE_MOLD_LINKER": "ON"
-            }
-        },
-        {
-            "name": "ci",
-            "displayName": "Continuous Integration for Qt5",
-            "inherits": "asan",
-            "cacheVariables": {
-                "DISABLE_UPDATER": "ON",
-                "ENABLE_COVERAGE": "ON",
-                "ENABLE_MOLD_LINKER": "OFF",
-                "CMAKE_CXX_COMPILER_LAUNCHER": null,
-                "MEDIAELCH_FORCE_QT5": "ON",
-                "MEDIAELCH_FORCE_QT6": "OFF"
-            },
-            "environment": {
-                "CXX": "g++",
-                "CC":  "gcc"
-            }
-        },
-        {
-            "name": "ci-qt6",
-            "displayName": "Continuous Integration for Qt6",
-            "inherits": "ci",
-            "cacheVariables": {
-                "MEDIAELCH_FORCE_QT5": "OFF",
-                "MEDIAELCH_FORCE_QT6": "ON"
-            }
-        },
-        {
-            "name": "clazy",
-            "displayName": "clazy",
-            "inherits": "debug",
-            "cacheVariables": {
-                "USE_EXTERN_QUAZIP": "ON"
-            },
-            "environment": {
-                "CXX": "clazy",
-                "CC":  "clang"
-            }
-        }
-    ],
-    "buildPresets": [
-        {
-          "name": "release",
-          "configurePreset": "release"
-        },
-        {
-          "name": "asan",
-          "configurePreset": "asan"
-        },
-        {
-          "name": "asan-mold",
-          "configurePreset": "asan-mold"
-        },
-        {
-          "name": "debug",
-          "configurePreset": "debug"
-        },
-        {
-          "name": "debug-gcc",
-          "configurePreset": "debug-gcc"
-        },
-        {
-          "name": "clazy",
-          "configurePreset": "clazy"
-        },
-        {
-          "name": "ci",
-          "configurePreset": "ci"
-        },
-        {
-          "name": "ci-qt6",
-          "configurePreset": "ci-qt6"
-        }
-    ]
+  "version": 2,
+  "configurePresets": [
+    {
+      "name": "release",
+      "displayName": "release",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "ENABLE_COLOR_OUTPUT": "ON",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "ENABLE_LTO": "ON"
+      }
+    },
+    {
+      "name": "debug",
+      "displayName": "Debug",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "ENABLE_TESTS": "ON",
+        "ENABLE_COLOR_OUTPUT": "ON",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "CMAKE_CXX_COMPILER_LAUNCHER": "ccache",
+        "SANITIZE_UNDEFINED": "ON"
+      },
+      "environment": {
+        "CXX": "clang++",
+        "CC": "clang"
+      },
+      "warnings": {
+        "dev": true
+      }
+    },
+    {
+      "name": "debug-gcc",
+      "displayName": "debug-gcc",
+      "inherits": "debug",
+      "cacheVariables": {
+        "ENABLE_COVERAGE": "ON"
+      },
+      "environment": {
+        "CXX": "g++",
+        "CC": "gcc"
+      }
+    },
+    {
+      "name": "asan",
+      "displayName": "asan",
+      "inherits": "debug",
+      "cacheVariables": {
+        "SANITIZE_UNDEFINED": "OFF",
+        "SANITIZE_ADDRESS": "ON"
+      }
+    },
+    {
+      "name": "asan-mold",
+      "displayName": "asan-mold",
+      "inherits": "asan",
+      "cacheVariables": {
+        "ENABLE_MOLD_LINKER": "ON"
+      }
+    },
+    {
+      "name": "ci",
+      "displayName": "Continuous Integration for Qt5",
+      "inherits": "asan",
+      "cacheVariables": {
+        "DISABLE_UPDATER": "ON",
+        "ENABLE_COVERAGE": "ON",
+        "ENABLE_MOLD_LINKER": "OFF",
+        "CMAKE_CXX_COMPILER_LAUNCHER": null,
+        "MEDIAELCH_FORCE_QT5": "ON",
+        "MEDIAELCH_FORCE_QT6": "OFF"
+      },
+      "environment": {
+        "CXX": "g++",
+        "CC": "gcc"
+      }
+    },
+    {
+      "name": "ci-qt6",
+      "displayName": "Continuous Integration for Qt6",
+      "inherits": "ci",
+      "cacheVariables": {
+        "MEDIAELCH_FORCE_QT5": "OFF",
+        "MEDIAELCH_FORCE_QT6": "ON"
+      }
+    },
+    {
+      "name": "clazy",
+      "displayName": "clazy",
+      "inherits": "debug",
+      "cacheVariables": {
+        "USE_EXTERN_QUAZIP": "ON"
+      },
+      "environment": {
+        "CXX": "clazy",
+        "CC": "clang"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "release",
+      "configurePreset": "release"
+    },
+    {
+      "name": "asan",
+      "configurePreset": "asan"
+    },
+    {
+      "name": "asan-mold",
+      "configurePreset": "asan-mold"
+    },
+    {
+      "name": "debug",
+      "configurePreset": "debug"
+    },
+    {
+      "name": "debug-gcc",
+      "configurePreset": "debug-gcc"
+    },
+    {
+      "name": "clazy",
+      "configurePreset": "clazy"
+    },
+    {
+      "name": "ci",
+      "configurePreset": "ci"
+    },
+    {
+      "name": "ci-qt6",
+      "configurePreset": "ci-qt6"
+    }
+  ]
 }
