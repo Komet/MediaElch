@@ -96,6 +96,7 @@ void messageHandler(QtMsgType type, const QMessageLogContext& context, const QSt
     }
 
     if (type == QtFatalMsg) {
+        out.flush();
         abort();
     }
 }
