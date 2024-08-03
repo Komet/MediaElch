@@ -2,7 +2,6 @@
 Checks: '*, -altera-*, -fuchsia-*, -llvmlibc-*, -linuxkernel-*, -google-*, -misc-*, -zircon-*, -bugprone-narrowing-conversions, -bugprone-suspicious-enum-usage, -bugprone-suspicious-include, -readability-uppercase-literal-suffix, -readability-magic-numbers, -readability-identifier-naming, -readability-convert-member-functions-to-static, -readability-redundant-access-specifiers, -readability-function-cognitive-complexity, -readability-identifier-length, -readability-else-after-return, -readability-identifier-length, -performance-unnecessary-value-param, -performance-move-const-arg, -clang-analyzer-cplusplus.NewDeleteLeaks, -modernize-avoid-c-arrays, -modernize-use-trailing-return-type, -modernize-use-auto, -hicpp-no-array-decay, -hicpp-avoid-c-arrays, -hicpp-uppercase-literal-suffix, -hicpp-special-member-functions, -hicpp-move-const-arg, -hicpp-signed-bitwise, -hicpp-use-auto, -hicpp-function-size, -cert-err58-cpp, -clang-diagnostic-error, -cppcoreguidelines-pro-bounds-array-to-pointer-decay, -cppcoreguidelines-owning-memory, -cppcoreguidelines-pro-type-vararg, -cppcoreguidelines-avoid-magic-numbers, -cppcoreguidelines-avoid-c-arrays, -cppcoreguidelines-narrowing-conversions, -cppcoreguidelines-macro-usage, -cppcoreguidelines-special-member-functions, -llvm-namespace-comment, -llvm-else-after-return'
 WarningsAsErrors: ''
 HeaderFilterRegex: ''
-AnalyzeTemporaryDtors: false
 FormatStyle: file
 
 # Why are some warnings disabled?
