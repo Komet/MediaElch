@@ -32,9 +32,11 @@ Manager::Manager(QObject* parent) : QObject(parent)
     m_musicModel = new MusicModel(this);
     m_database = new Database(this);
 
-    m_mediaCenters.append(new KodiXml(this));
-    m_mediaCentersTvShow.append(new KodiXml(this));
-    m_mediaCentersConcert.append(new KodiXml(this));
+    m_kodiSettings = new mediaelch::KodiSettings(*m_settings, this);
+    m_kodiSettings->init();
+    m_mediaCenters.append(new KodiXml(*m_kodiSettings, this));
+    m_mediaCentersTvShow.append(new KodiXml(*m_kodiSettings, this));
+    m_mediaCentersConcert.append(new KodiXml(*m_kodiSettings, this));
 
     m_trailerProviders.append(new HdTrailers(this));
 
@@ -204,4 +206,9 @@ mediaelch::exporter::CsvExportModule& Manager::csvExportModule()
 {
     MediaElch_Ensures(m_csvExportModule != nullptr);
     return *m_csvExportModule;
+}
+
+mediaelch::KodiSettings* Manager::kodiSettings()
+{
+    return m_kodiSettings;
 }

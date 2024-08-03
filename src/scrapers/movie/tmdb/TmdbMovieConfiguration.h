@@ -21,7 +21,7 @@ public:
     ELCH_NODISCARD static QVector<Locale> supportedLanguages();
 
 signals:
-    void languageChanged(Locale language);
+    void languageChanged(mediaelch::Locale language);
 
 public:
     ELCH_NODISCARD Locale language() override;

@@ -3,8 +3,8 @@
 #include "data/concert/Concert.h"
 #include "data/music/Album.h"
 #include "data/music/Artist.h"
-#include "media_center/KodiVersion.h"
 #include "media_center/MediaCenterInterface.h"
+#include "settings/KodiSettings.h"
 
 #include <QByteArray>
 #include <QDomDocument>
@@ -22,10 +22,8 @@ class KodiXml : public MediaCenterInterface
 {
     Q_OBJECT
 public:
-    explicit KodiXml(QObject* parent = nullptr);
+    explicit KodiXml(mediaelch::KodiSettings& settings, QObject* parent = nullptr);
     ~KodiXml() override;
-
-    void setVersion(mediaelch::KodiVersion version);
 
     // movies
     bool saveMovie(Movie* movie) override;
@@ -120,5 +118,5 @@ private:
     QString movieSetFileName(QString setName, DataFile* dataFile);
 
 private:
-    mediaelch::KodiVersion m_version;
+    mediaelch::KodiSettings& m_settings;
 };

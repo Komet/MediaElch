@@ -1,9 +1,6 @@
 #include "ui/settings/KodiSettingsWidget.h"
 #include "ui_KodiSettingsWidget.h"
 
-#include "log/Log.h"
-#include "settings/Settings.h"
-
 #include <QIntValidator>
 
 using namespace mediaelch;
@@ -12,19 +9,72 @@ KodiSettingsWidget::KodiSettingsWidget(QWidget* parent) : QWidget(parent), ui(ne
 {
     ui->setupUi(this);
 
-#ifdef Q_OS_MAC
-    QFont smallFont = ui->lblWebserverDescription->font();
-    smallFont.setPointSize(smallFont.pointSize() - 1);
-    ui->lblWebserverDescription->setFont(smallFont);
-#endif
-
     ui->xbmcPort->setValidator(new QIntValidator(0, 99999, ui->xbmcPort));
+}
 
-    const auto& allVersions = KodiVersion::all();
+void KodiSettingsWidget::init(mediaelch::KodiSettings* settings)
+{
+    ui->xbmcHost->setText(settings->xbmcHost());
+    connect(ui->xbmcHost, &QLineEdit::textChanged, this, [settings](QString host) { settings->setXbmcHost(host); });
+    connect(settings, &mediaelch::KodiSettings::xbmcHostChanged, this, [this](QString host) {
+        const bool blocked = ui->xbmcHost->blockSignals(true); // avoid triggering save-logic
+        ui->xbmcHost->setText(host);
+        ui->xbmcHost->blockSignals(blocked);
+    });
+
+
+    ui->xbmcPort->setText(QString::number(settings->xbmcPort()));
+    connect(ui->xbmcPort, &QLineEdit::textChanged, this, [settings](QString portStr) {
+        bool ok = false;
+        int port = portStr.toInt(&ok);
+        if (ok) {
+            settings->setXbmcPort(port);
+        }
+        // TODO: handle error state
+    });
+    connect(settings, &mediaelch::KodiSettings::xbmcPortChanged, this, [this](int port) {
+        const bool blocked = ui->xbmcPort->blockSignals(true); // avoid triggering save-logic
+        ui->xbmcPort->setText(QString::number(port));
+        ui->xbmcPort->blockSignals(blocked);
+    });
+
+
+    ui->xbmcUser->setText(settings->xbmcUser());
+    connect(ui->xbmcUser, &QLineEdit::textChanged, this, [settings](QString user) { settings->setXbmcUser(user); });
+    connect(settings, &mediaelch::KodiSettings::xbmcUserChanged, this, [this](QString user) {
+        const bool blocked = ui->xbmcUser->blockSignals(true); // avoid triggering save-logic
+        ui->xbmcUser->setText(user);
+        ui->xbmcUser->blockSignals(blocked);
+    });
+
+
+    ui->xbmcPassword->setText(settings->xbmcPassword());
+    connect(ui->xbmcPassword, &QLineEdit::textChanged, this, [settings](QString password) {
+        settings->setXbmcPassword(password);
+    });
+    connect(settings, &mediaelch::KodiSettings::xbmcPasswordChanged, this, [this](QString password) {
+        const bool blocked = ui->xbmcPassword->blockSignals(true); // avoid triggering save-logic
+        ui->xbmcPassword->setText(password);
+        ui->xbmcPassword->blockSignals(blocked);
+    });
+
+
+    const auto& allVersions = mediaelch::KodiVersion::all();
     for (const auto& version : allVersions) {
         const int v = version.toInt();
         ui->kodiVersion->addItem(QString("v%1").arg(v), version.toInt());
     }
+
+    setKodiVersion(settings->kodiVersion());
+    connect(ui->kodiVersion, &QComboBox::activated, this, [this, settings]() {
+        const int version = ui->kodiVersion->currentData().toInt();
+        settings->setKodiVersion(KodiVersion(version));
+    });
+    connect(settings, &mediaelch::KodiSettings::kodiVersionChanged, this, [this](KodiVersion kodiVersion) {
+        const bool blocked = ui->kodiVersion->blockSignals(true); // avoid triggering save-logic or infinite loop
+        setKodiVersion(kodiVersion);
+        ui->kodiVersion->blockSignals(blocked);
+    });
 }
 
 KodiSettingsWidget::~KodiSettingsWidget()
@@ -32,46 +82,13 @@ KodiSettingsWidget::~KodiSettingsWidget()
     delete ui;
 }
 
-void KodiSettingsWidget::setSettings(Settings& settings)
+void KodiSettingsWidget::setKodiVersion(mediaelch::KodiVersion kodiVersion)
 {
-    m_settings = &settings;
-}
-
-void KodiSettingsWidget::loadSettings()
-{
-    ui->xbmcHost->setText(m_settings->kodiSettings().xbmcHost());
-    if (m_settings->kodiSettings().xbmcPort() > 0) {
-        ui->xbmcPort->setText(QString::number(m_settings->kodiSettings().xbmcPort()));
-    } else {
-        ui->xbmcPort->clear();
-    }
-    ui->xbmcUser->setText(m_settings->kodiSettings().xbmcUser());
-    ui->xbmcPassword->setText(m_settings->kodiSettings().xbmcPassword());
-
-    int version = m_settings->kodiSettings().kodiVersion().toInt();
-    if (!KodiVersion::isValid(version)) {
-        version = KodiVersion::latest().toInt();
-    }
-
-    const int index = ui->kodiVersion->findData(version);
-    if (index != -1) {
-        ui->kodiVersion->setCurrentIndex(index);
-    } else {
-        qCWarning(generic) << "[KodiSettings] The GUI doesn't provide an entry for" << version << "; this is a bug";
-    }
-}
-
-void KodiSettingsWidget::saveSettings()
-{
-    m_settings->kodiSettings().setXbmcHost(ui->xbmcHost->text());
-    m_settings->kodiSettings().setXbmcPort(ui->xbmcPort->text().toInt());
-    m_settings->kodiSettings().setXbmcUser(ui->xbmcUser->text());
-    m_settings->kodiSettings().setXbmcPassword(ui->xbmcPassword->text());
-
-    const int version = ui->kodiVersion->currentData().toInt();
+    const int version = kodiVersion.toInt();
     if (KodiVersion::isValid(version)) {
-        m_settings->kodiSettings().setKodiVersion(KodiVersion(version));
-    } else {
-        qCWarning(generic) << "[KodiSettings] Selected invalid Kodi version. The GUI shouldn't allow that.";
+        const int index = ui->kodiVersion->findData(version);
+        if (index != -1) {
+            ui->kodiVersion->setCurrentIndex(index);
+        }
     }
 }

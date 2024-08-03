@@ -14,18 +14,8 @@
 // KodiSync uses the Kodi JSON-RPC API
 // See: https://kodi.wiki/view/JSON-RPC_API
 
-KodiSync::KodiSync(Settings& settings, QWidget* parent) :
-    QDialog(parent),
-    ui(new Ui::KodiSync),
-    m_settings{settings},
-    m_allReady{false},
-    m_aborted{false},
-    m_syncType{SyncType::Clean},
-    m_cancelRenameArtwork{false},
-    m_renameArtworkInProgress{false},
-    m_artworkWasRenamed{false},
-    m_reloadTimeOut{1500},
-    m_requestId{0}
+KodiSync::KodiSync(mediaelch::KodiSettings& settings, QWidget* parent) :
+    QDialog(parent), ui(new Ui::KodiSync), m_settings{settings}
 {
     ui->setupUi(this);
 
@@ -56,7 +46,7 @@ int KodiSync::exec()
     ui->status->clear();
     ui->progressBar->setVisible(false);
 
-    if (!m_settings.networkSettings().useProxyForKodi()) {
+    if (!Settings::instance()->networkSettings().useProxyForKodi()) {
         qCDebug(generic) << "[KodiSync] Disabled Proxy";
         m_network.disableProxy();
     } else {
@@ -161,7 +151,7 @@ void KodiSync::startSync()
         }
     }
 
-    if (m_settings.kodiSettings().xbmcHost().isEmpty() || m_settings.kodiSettings().xbmcPort() == 0) {
+    if (m_settings.xbmcHost().isEmpty() || m_settings.xbmcPort() == 0) {
         ui->status->setText(tr("Please fill in your Kodi host and port."));
         return;
     }
@@ -812,21 +802,22 @@ void KodiSync::onAuthRequired(QNetworkReply* reply, QAuthenticator* authenticato
 {
     Q_UNUSED(reply)
 
-    authenticator->setUser(m_settings.kodiSettings().xbmcUser());
-    authenticator->setPassword(m_settings.kodiSettings().xbmcPassword());
+    authenticator->setUser(m_settings.xbmcUser());
+    authenticator->setPassword(m_settings.xbmcPassword());
 }
 
 QUrl KodiSync::xbmcUrl()
 {
-    const auto& kodiSettings = m_settings.kodiSettings();
     QString url = "http://";
-    if (!kodiSettings.xbmcUser().isEmpty()) {
-        url.append(kodiSettings.xbmcUser());
-        if (!kodiSettings.xbmcPassword().isEmpty()) {
-            url.append(":" + kodiSettings.xbmcPassword());
+    if (!m_settings.xbmcUser().isEmpty()) {
+        url.append(m_settings.xbmcUser());
+        if (!m_settings.xbmcPassword().isEmpty()) {
+            url.append(":" + m_settings.xbmcPassword());
         }
         url.append("@");
     }
-    url.append(QString("%1:%2/jsonrpc").arg(kodiSettings.xbmcHost()).arg(kodiSettings.xbmcPort()));
+    url.append(QString("%1:%2/jsonrpc") //
+                   .arg(m_settings.xbmcHost())
+                   .arg(m_settings.xbmcPort()));
     return QUrl{url};
 }

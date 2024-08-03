@@ -2,7 +2,7 @@
 
 #include "data/movie/Movie.h"
 #include "network/NetworkManager.h"
-#include "settings/Settings.h"
+#include "settings/KodiSettings.h"
 
 #include <QAuthenticator>
 #include <QDialog>
@@ -21,8 +21,9 @@ class KodiSync : public QDialog
     Q_OBJECT
 
 public:
-    explicit KodiSync(Settings& settings, QWidget* parent = nullptr);
+    explicit KodiSync(mediaelch::KodiSettings& settings, QWidget* parent = nullptr);
     ~KodiSync() override;
+
     enum class Element
     {
         Movies,
@@ -71,8 +72,24 @@ private slots:
     void onAuthRequired(QNetworkReply* reply, QAuthenticator* authenticator);
 
 private:
+    int findId(const QStringList& files, const QMap<int, XbmcData>& items);
+    bool compareFiles(const QStringList& files, const QStringList& xbmcFiles, const int& level);
+    QStringList splitFile(const QString& file);
+    void setupItemsToRemove();
+    void removeItems();
+    void updateWatched();
+    void checkIfListsReady(Element element);
+    KodiSync::XbmcData parseXbmcDataFromMap(QMap<QString, QVariant> map);
+    void updateFolderLastModified(const QDir& dir);
+    void updateFolderLastModified(Movie* movie);
+    void updateFolderLastModified(Concert* concert);
+    void updateFolderLastModified(TvShow* show);
+    void updateFolderLastModified(TvShowEpisode* episode);
+    QUrl xbmcUrl();
+
+private:
     Ui::KodiSync* ui;
-    Settings& m_settings;
+    mediaelch::KodiSettings& m_settings;
 
     mediaelch::network::NetworkManager m_network;
     QVector<Movie*> m_moviesToSync;
@@ -89,27 +106,13 @@ private:
     QVector<int> m_tvShowsToRemove;
     QVector<int> m_episodesToRemove;
     QMutex m_mutex;
-    bool m_allReady;
-    bool m_aborted;
-    SyncType m_syncType;
-    bool m_cancelRenameArtwork;
-    bool m_renameArtworkInProgress;
-    bool m_artworkWasRenamed;
-    int m_reloadTimeOut;
-    int m_requestId;
 
-    int findId(const QStringList& files, const QMap<int, XbmcData>& items);
-    bool compareFiles(const QStringList& files, const QStringList& xbmcFiles, const int& level);
-    QStringList splitFile(const QString& file);
-    void setupItemsToRemove();
-    void removeItems();
-    void updateWatched();
-    void checkIfListsReady(Element element);
-    KodiSync::XbmcData parseXbmcDataFromMap(QMap<QString, QVariant> map);
-    void updateFolderLastModified(const QDir& dir);
-    void updateFolderLastModified(Movie* movie);
-    void updateFolderLastModified(Concert* concert);
-    void updateFolderLastModified(TvShow* show);
-    void updateFolderLastModified(TvShowEpisode* episode);
-    QUrl xbmcUrl();
+    SyncType m_syncType{SyncType::Clean};
+    int m_reloadTimeOut{1500};
+    int m_requestId{0};
+    bool m_allReady{false};
+    bool m_aborted{false};
+    bool m_cancelRenameArtwork{false};
+    bool m_renameArtworkInProgress{false};
+    bool m_artworkWasRenamed{false};
 };

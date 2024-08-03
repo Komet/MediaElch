@@ -1,6 +1,8 @@
 #pragma once
 
 #include "globals/Globals.h"
+#include "media_center/KodiVersion.h"
+#include "settings/KodiSettings.h"
 
 #include <QWidget>
 
@@ -18,11 +20,11 @@ public:
     explicit KodiSettingsWidget(QWidget* parent = nullptr);
     ~KodiSettingsWidget() override;
 
-    void setSettings(Settings& settings);
-    void loadSettings();
-    void saveSettings();
+    void init(mediaelch::KodiSettings* settings);
 
 private:
-    Ui::KodiSettingsWidget* ui = nullptr;
-    Settings* m_settings = nullptr;
+    void setKodiVersion(mediaelch::KodiVersion kodiVersion);
+
+private:
+    Ui::KodiSettingsWidget* ui{nullptr};
 };

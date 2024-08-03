@@ -23,6 +23,8 @@ class MediaCenterInterface : public QObject
 {
     Q_OBJECT
 public:
+    explicit MediaCenterInterface(QObject* parent) : QObject(parent) {}
+
     // movies
     virtual bool saveMovie(Movie* movie) = 0;
     virtual bool loadMovie(Movie* movie, QString nfoContent = "") = 0;

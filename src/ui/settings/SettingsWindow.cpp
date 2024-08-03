@@ -79,9 +79,10 @@ SettingsWindow::SettingsWindow(Settings& settings, QWidget* parent) :
     ui->tvShowSettings->setSettings(m_settings);
     ui->movieSettings->setSettings(m_settings);
     ui->musicSettings->setSettings(m_settings);
-    ui->kodiSettings->setSettings(m_settings);
     ui->concertSettings->setSettings(m_settings);
     ui->networkSettings->setSettings(m_settings);
+
+    ui->kodiSettings->init(Manager::instance()->kodiSettings());
 
     // clang-format off
     connect(ui->btnCancel, &QAbstractButton::clicked, this, &SettingsWindow::onCancel);
@@ -182,7 +183,6 @@ void SettingsWindow::loadSettings()
     ui->tvShowSettings->loadSettings();
     ui->movieSettings->loadSettings();
     ui->musicSettings->loadSettings();
-    ui->kodiSettings->loadSettings();
     ui->concertSettings->loadSettings();
     ui->networkSettings->loadSettings();
 
@@ -236,7 +236,6 @@ void SettingsWindow::saveSettings()
     ui->tvShowSettings->saveSettings();
     ui->movieSettings->saveSettings();
     ui->musicSettings->saveSettings();
-    ui->kodiSettings->saveSettings();
     ui->concertSettings->saveSettings();
     ui->networkSettings->saveSettings();
 
