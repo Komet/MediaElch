@@ -1,36 +1,46 @@
 #pragma once
 
 #include "media_center/KodiVersion.h"
+#include "settings/Settings.h"
 
-#include <QSettings>
+#include <QObject>
 #include <QString>
 
-class KodiSettings
+namespace mediaelch {
+
+class KodiSettings : public QObject
 {
+    Q_OBJECT
 public:
-    void loadSettings();
-    void saveSettings();
-    void setQSettings(QSettings* settings) { m_settings = settings; }
+    explicit KodiSettings(Settings& settings, QObject* parent = nullptr);
+    ~KodiSettings() override = default;
 
-    QString xbmcHost() const;
-    int xbmcPort() const;
-    QString xbmcUser() const;
-    QString xbmcPassword() const;
-    const mediaelch::KodiVersion& kodiVersion() const;
+    void init();
 
+    ELCH_NODISCARD QString xbmcHost();
     void setXbmcHost(QString host);
+
+    ELCH_NODISCARD int xbmcPort();
     void setXbmcPort(int port);
-    void setXbmcUser(QString user);
+
+    ELCH_NODISCARD QString xbmcUser();
+    void setXbmcUser(QString xbmcUser);
+
+    ELCH_NODISCARD QString xbmcPassword();
     void setXbmcPassword(QString password);
 
+    ELCH_NODISCARD mediaelch::KodiVersion kodiVersion();
     void setKodiVersion(mediaelch::KodiVersion version);
 
-private:
-    QSettings* m_settings = nullptr;
+signals:
+    void xbmcHostChanged(QString host);
+    void xbmcPortChanged(int port);
+    void xbmcUserChanged(QString xbmcUser);
+    void xbmcPasswordChanged(QString password);
+    void kodiVersionChanged(mediaelch::KodiVersion version);
 
-    QString m_xbmcHost;
-    int m_xbmcPort = 0;
-    QString m_xbmcUser;
-    QString m_xbmcPassword;
-    mediaelch::KodiVersion m_version = mediaelch::KodiVersion::latest();
+private:
+    Settings& m_settings;
 };
+
+} // namespace mediaelch

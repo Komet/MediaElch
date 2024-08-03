@@ -82,7 +82,6 @@ Settings::Settings(QObject* parent) : QObject(parent)
     }
 
     m_directorySettings.setQSettings(m_settings);
-    m_kodiSettings.setQSettings(m_settings);
     m_networkSettings.setQSettings(m_settings);
 
     // Frodo
@@ -232,7 +231,6 @@ void Settings::loadSettings()
     m_dontShowDeleteImageConfirm = settings()->value(KEY_WARNINGS_DO_NOT_SHOW_DELETE_IMAGE_CONFIRM, false).toBool();
 
     m_directorySettings.loadSettings();
-    m_kodiSettings.loadSettings();
     m_networkSettings.loadSettings();
 
     m_excludeWords =
@@ -395,7 +393,6 @@ void Settings::saveSettings()
     settings()->setValue(KEY_WARNINGS_DO_NOT_SHOW_DELETE_IMAGE_CONFIRM, m_dontShowDeleteImageConfirm);
 
     m_directorySettings.saveSettings();
-    m_kodiSettings.saveSettings();
     m_networkSettings.saveSettings();
 
     settings()->setValue(KEY_EXCLUDE_WORDS, m_excludeWords.join(","));
@@ -504,10 +501,6 @@ DirectorySettings& Settings::directorySettings()
     return m_directorySettings;
 }
 
-KodiSettings& Settings::kodiSettings()
-{
-    return m_kodiSettings;
-}
 
 NetworkSettings& Settings::networkSettings()
 {

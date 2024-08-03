@@ -2,88 +2,98 @@
 
 #include "log/Log.h"
 
-using namespace mediaelch;
+namespace {
 
-void KodiSettings::loadSettings()
+static constexpr char moduleName[] = "import";
+static const Settings::Key KEY_SETTINGS_KODI_REMOTE_HOST(moduleName, "XBMC/RemoteHost");
+static const Settings::Key KEY_SETTINGS_KODI_REMOTE_PORT(moduleName, "XBMC/RemotePort");
+static const Settings::Key KEY_SETTINGS_KODI_REMOTE_USER(moduleName, "XBMC/RemoteUser");
+static const Settings::Key KEY_SETTINGS_KODI_REMOTE_PASSWORD(moduleName, "XBMC/RemotePassword");
+static const Settings::Key KEY_SETTINGS_KODI_VERSION(moduleName, "kodi/version");
+
+} // namespace
+
+namespace mediaelch {
+
+KodiSettings::KodiSettings(Settings& settings, QObject* parent) : QObject(parent), m_settings{settings}
 {
-    m_xbmcHost = m_settings->value("XBMC/RemoteHost").toString();
-    m_xbmcPort = m_settings->value("XBMC/RemotePort", 80).toInt();
-    if (m_xbmcPort > (2 << 16) || m_xbmcPort < 1) {
-        m_xbmcPort = 80;
-    }
-    m_xbmcUser = m_settings->value("XBMC/RemoteUser").toString();
-    m_xbmcPassword = m_settings->value("XBMC/RemotePassword").toString();
-
-    bool ok = false;
-    const int version = m_settings->value("kodi/version").toInt(&ok);
-    if (!ok || version == 0) {
-        setKodiVersion(KodiVersion::latest());
-
-    } else if (!KodiVersion::isValid(version)) {
-        qCWarning(generic) << "Unsupported Kodi version" << version
-                           << "in settings; default is:" << KodiVersion::latest().toInt();
-        setKodiVersion(KodiVersion::latest());
-
-    } else {
-        setKodiVersion(KodiVersion(version));
-    }
+    settings.onSettingChanged(KEY_SETTINGS_KODI_REMOTE_HOST, this, [this]() { emit xbmcHostChanged(xbmcHost()); });
+    settings.onSettingChanged(KEY_SETTINGS_KODI_REMOTE_PORT, this, [this]() { emit xbmcPortChanged(xbmcPort()); });
+    settings.onSettingChanged(KEY_SETTINGS_KODI_REMOTE_USER, this, [this]() { emit xbmcUserChanged(xbmcUser()); });
+    settings.onSettingChanged(
+        KEY_SETTINGS_KODI_REMOTE_PASSWORD, this, [this]() { emit xbmcPasswordChanged(xbmcPassword()); });
+    settings.onSettingChanged(KEY_SETTINGS_KODI_VERSION, this, [this]() { emit kodiVersionChanged(kodiVersion()); });
 }
 
-void KodiSettings::saveSettings()
+void KodiSettings::init()
 {
-    m_settings->setValue("XBMC/RemoteHost", m_xbmcHost);
-    m_settings->setValue("XBMC/RemotePort", m_xbmcPort);
-    m_settings->setValue("XBMC/RemoteUser", m_xbmcUser);
-    m_settings->setValue("XBMC/RemotePassword", m_xbmcPassword);
-    m_settings->setValue("kodi/version", m_version.toInt());
+    m_settings.setDefaultValue(KEY_SETTINGS_KODI_REMOTE_HOST, "127.0.0.1");
+    m_settings.setDefaultValue(KEY_SETTINGS_KODI_REMOTE_PORT, QVariant::fromValue(80));
+    m_settings.setDefaultValue(KEY_SETTINGS_KODI_REMOTE_USER, "kodi");
+    m_settings.setDefaultValue(KEY_SETTINGS_KODI_REMOTE_PASSWORD, "kodi");
+    m_settings.setDefaultValue(
+        KEY_SETTINGS_KODI_VERSION, QVariant::fromValue(mediaelch::KodiVersion::latest().toInt()));
 }
 
-void KodiSettings::setXbmcUser(QString user)
+void KodiSettings::setXbmcUser(QString xbmcUser)
 {
-    m_xbmcUser = user;
+    m_settings.setValue(KEY_SETTINGS_KODI_REMOTE_USER, xbmcUser);
 }
 
-QString KodiSettings::xbmcUser() const
+QString KodiSettings::xbmcUser()
 {
-    return m_xbmcUser;
+    return m_settings.value(KEY_SETTINGS_KODI_REMOTE_USER).toString();
 }
 
-QString KodiSettings::xbmcPassword() const
+QString KodiSettings::xbmcPassword()
 {
-    return m_xbmcPassword;
-}
-
-const KodiVersion& KodiSettings::kodiVersion() const
-{
-    return m_version;
-}
-
-QString KodiSettings::xbmcHost() const
-{
-    return m_xbmcHost;
-}
-
-int KodiSettings::xbmcPort() const
-{
-    return m_xbmcPort;
+    return m_settings.value(KEY_SETTINGS_KODI_REMOTE_PASSWORD).toString();
 }
 
 void KodiSettings::setXbmcPassword(QString password)
 {
-    m_xbmcPassword = password;
+    m_settings.setValue(KEY_SETTINGS_KODI_REMOTE_PASSWORD, password);
 }
 
-void KodiSettings::setKodiVersion(KodiVersion version)
+mediaelch::KodiVersion KodiSettings::kodiVersion()
 {
-    m_version = version;
+    bool ok = false;
+    const int version = m_settings.value(KEY_SETTINGS_KODI_VERSION).toInt(&ok);
+    if (!ok || version == 0 || !mediaelch::KodiVersion::isValid(version)) {
+        setKodiVersion(mediaelch::KodiVersion::latest());
+        return mediaelch::KodiVersion::latest();
+    }
+    return mediaelch::KodiVersion(version);
+}
+
+void KodiSettings::setKodiVersion(mediaelch::KodiVersion version)
+{
+    m_settings.setValue(KEY_SETTINGS_KODI_VERSION, version.toInt());
+}
+
+QString KodiSettings::xbmcHost()
+{
+    return m_settings.value(KEY_SETTINGS_KODI_REMOTE_HOST).toString();
 }
 
 void KodiSettings::setXbmcHost(QString host)
 {
-    m_xbmcHost = host;
+    m_settings.setValue(KEY_SETTINGS_KODI_REMOTE_HOST, host);
+}
+
+int KodiSettings::xbmcPort()
+{
+    int xbmcPort = m_settings.value(KEY_SETTINGS_KODI_REMOTE_PORT).toInt();
+    if (xbmcPort > (2 << 16) || xbmcPort < 1) {
+        setXbmcPort(80);
+        return 80;
+    }
+    return xbmcPort;
 }
 
 void KodiSettings::setXbmcPort(int port)
 {
-    m_xbmcPort = port;
+    m_settings.setValue(KEY_SETTINGS_KODI_REMOTE_PORT, port);
 }
+
+} // namespace mediaelch

@@ -14,6 +14,7 @@
 #include "scrapers/image/FanartTv.h"
 #include "scrapers/image/ImageProvider.h"
 #include "scrapers/trailer/TrailerProvider.h"
+#include "settings/KodiSettings.h"
 #include "settings/Settings.h"
 #include "ui/main/FileScannerDialog.h"
 #include "ui/main/MyIconFont.h"
@@ -65,9 +66,12 @@ public:
     void setMusicFilesWidget(MusicFilesWidget* widget);
     void setFileScannerDialog(FileScannerDialog* dialog);
 
+    ELCH_NODISCARD mediaelch::KodiSettings* kodiSettings();
+
     ELCH_NODISCARD mediaelch::exporter::CsvExportModule& csvExportModule();
 
 private:
+    mediaelch::KodiSettings* m_kodiSettings;
     QVector<MediaCenterInterface*> m_mediaCenters;
     QVector<MediaCenterInterface*> m_mediaCentersTvShow;
     QVector<MediaCenterInterface*> m_mediaCentersConcert;

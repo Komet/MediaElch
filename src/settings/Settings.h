@@ -6,7 +6,6 @@
 #include "settings/AdvancedSettings.h"
 #include "settings/DataFile.h"
 #include "settings/DirectorySettings.h"
-#include "settings/KodiSettings.h"
 #include "settings/NetworkSettings.h"
 #include "ui/renamer/RenamerDialog.h"
 
@@ -92,7 +91,6 @@ public:
     QByteArray movieDuplicatesSplitterState();
 
     DirectorySettings& directorySettings();
-    KodiSettings& kodiSettings();
     NetworkSettings& networkSettings();
 
     QStringList excludeWords();
@@ -213,7 +211,6 @@ private:
     AdvancedSettings m_advancedSettings;
 
     DirectorySettings m_directorySettings;
-    KodiSettings m_kodiSettings;
     NetworkSettings m_networkSettings;
 
     QStringList m_excludeWords;
