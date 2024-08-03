@@ -24,6 +24,12 @@
 #include <QString>
 #include <QVector>
 
+namespace mediaelch {
+namespace exporter {
+class CsvExportModule;
+}
+} // namespace mediaelch
+
 class MediaCenterInterface;
 
 /// \brief Central class for various instances, e.g. scrapers and database.
@@ -62,6 +68,8 @@ public:
     void setMusicFilesWidget(MusicFilesWidget* widget);
     void setFileScannerDialog(FileScannerDialog* dialog);
 
+    ELCH_NODISCARD mediaelch::exporter::CsvExportModule& csvExportModule();
+
 private:
     QVector<MediaCenterInterface*> m_mediaCenters;
     QVector<MediaCenterInterface*> m_mediaCentersTvShow;
@@ -83,4 +91,6 @@ private:
     FileScannerDialog* m_fileScannerDialog = nullptr;
     MusicFileSearcher* m_musicFileSearcher = nullptr;
     MyIconFont* m_iconFont = nullptr;
+
+    mediaelch::exporter::CsvExportModule* m_csvExportModule;
 };

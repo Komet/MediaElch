@@ -6,8 +6,9 @@
 #include "log/Log.h"
 #include "scrapers/TvShowUpdater.h"
 #include "settings/Settings.h"
-#include "ui/export/CsvExportDialog.h"
 #include "ui/export/ExportDialog.h"
+#include "ui/export/csv_export/CsvExportDialog.h"
+#include "ui/export/csv_export/CsvExportModule.h"
 #include "ui/main/AboutDialog.h"
 #include "ui/main/FileScannerDialog.h"
 #include "ui/main/QuickOpen.h"
@@ -307,7 +308,7 @@ void MainWindow::setupToolbar()
     });
 
     connect(ui->navbar, &Navbar::sigCsvExport, this, [this]() {
-        auto* csvExportDialog = new CsvExportDialog(*m_settings, this);
+        auto* csvExportDialog = Manager::instance()->csvExportModule().makeCsvExportDialog(this);
         csvExportDialog->exec();
         csvExportDialog->deleteLater();
     });

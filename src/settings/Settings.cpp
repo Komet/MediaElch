@@ -26,16 +26,6 @@ static constexpr char KEY_DEBUG_MODE_ACTIVATED[] = "DebugModeActivated";
 static constexpr char KEY_DONATED[] = "Donated";
 static constexpr char KEY_THEME[] = "Theme";
 
-static constexpr char KEY_CSV_EXPORT_SEPARATOR[] = "CsvExport/Separator";
-static constexpr char KEY_CSV_EXPORT_REPLACEMENT[] = "CsvExport/Replacement";
-static constexpr char KEY_CSV_EXPORT_TYPES[] = "CsvExport/Types";
-static constexpr char KEY_CSV_EXPORT_MOVIE_FIELDS[] = "CsvExport/MovieFields";
-static constexpr char KEY_CSV_EXPORT_TV_SHOW_FIELDS[] = "CsvExport/TvShowFields";
-static constexpr char KEY_CSV_EXPORT_TV_EPISODE_FIELDS[] = "CsvExport/TvEpisodeFields";
-static constexpr char KEY_CSV_EXPORT_CONCERT_FIELDS[] = "CsvExport/ConcertFields";
-static constexpr char KEY_CSV_EXPORT_MUSIC_ARTIST_FIELDS[] = "CsvExport/MusicArtistFields";
-static constexpr char KEY_CSV_EXPORT_MUSIC_ALBUM_FIELDS[] = "CsvExport/MusicAlbumFields";
-
 static constexpr char KEY_DOWNLOAD_ACTOR_IMAGES[] = "DownloadActorImages";
 static constexpr char KEY_DOWNLOADS_DELETE_ARCHIVES[] = "Downloads/DeleteArchives";
 static constexpr char KEY_DOWNLOADS_IMPORT_DIALOG_POSITION[] = "Downloads/ImportDialogPosition";
@@ -151,6 +141,23 @@ Settings* Settings::instance(QObject* parent)
 QSettings* Settings::settings()
 {
     return m_settings;
+}
+
+Settings::Value Settings::value(const Key& key)
+{
+    return settings()->value(key.key);
+}
+
+void Settings::setDefaultValue(const Settings::Key& key, const Settings::Value& value)
+{
+    if (!settings()->contains(key.key)) {
+        settings()->setValue(key.key, value);
+    }
+}
+
+void Settings::setValue(const Settings::Key& key, const Settings::Value& value)
+{
+    settings()->setValue(key.key, value);
 }
 
 ScraperSettings* Settings::scraperSettings(const QString& id)
@@ -350,22 +357,6 @@ void Settings::loadSettings()
     settings()->endArray();
 
     // ------------------------------------------------------------------------
-
-    m_csvExportSeparator = settings()->value(KEY_CSV_EXPORT_SEPARATOR).toString();
-    m_csvExportReplacement = settings()->value(KEY_CSV_EXPORT_REPLACEMENT).toString();
-    m_csvExportTypes = settings()->value(KEY_CSV_EXPORT_TYPES).toString().split(",", ElchSplitBehavior::SkipEmptyParts);
-    m_csvExportMovieFields =
-        settings()->value(KEY_CSV_EXPORT_MOVIE_FIELDS).toString().split(",", ElchSplitBehavior::SkipEmptyParts);
-    m_csvExportTvShowFields =
-        settings()->value(KEY_CSV_EXPORT_TV_SHOW_FIELDS).toString().split(",", ElchSplitBehavior::SkipEmptyParts);
-    m_csvExportTvEpisodeFields =
-        settings()->value(KEY_CSV_EXPORT_TV_EPISODE_FIELDS).toString().split(",", ElchSplitBehavior::SkipEmptyParts);
-    m_csvExportConcertFields =
-        settings()->value(KEY_CSV_EXPORT_CONCERT_FIELDS).toString().split(",", ElchSplitBehavior::SkipEmptyParts);
-    m_csvExportMusicArtistFields =
-        settings()->value(KEY_CSV_EXPORT_MUSIC_ARTIST_FIELDS).toString().split(",", ElchSplitBehavior::SkipEmptyParts);
-    m_csvExportMusicAlbumFields =
-        settings()->value(KEY_CSV_EXPORT_MUSIC_ALBUM_FIELDS).toString().split(",", ElchSplitBehavior::SkipEmptyParts);
 
     // Downloads
     m_deleteArchives = settings()->value(KEY_DOWNLOADS_DELETE_ARCHIVES, false).toBool();
@@ -595,51 +586,6 @@ NetworkSettings& Settings::networkSettings()
     return m_networkSettings;
 }
 
-QString Settings::csvExportSeparator()
-{
-    return m_csvExportSeparator;
-}
-
-QString Settings::csvExportReplacement()
-{
-    return m_csvExportReplacement;
-}
-
-QStringList Settings::csvExportTypes()
-{
-    return m_csvExportTypes;
-}
-
-QStringList Settings::csvExportMovieFields()
-{
-    return m_csvExportMovieFields;
-}
-
-QStringList Settings::csvExportTvShowFields()
-{
-    return m_csvExportTvShowFields;
-}
-
-QStringList Settings::csvExportTvEpisodeFields()
-{
-    return m_csvExportTvEpisodeFields;
-}
-
-QStringList Settings::csvExportConcertFields()
-{
-    return m_csvExportConcertFields;
-}
-
-QStringList Settings::csvExportMusicArtistFields()
-{
-    return m_csvExportMusicArtistFields;
-}
-
-QStringList Settings::csvExportMusicAlbumFields()
-{
-    return m_csvExportMusicAlbumFields;
-}
-
 /**
  * \brief Returns the words to exclude from media names,
  * seperated by commas
@@ -794,60 +740,6 @@ void Settings::setMovieDuplicatesSplitterState(QByteArray state)
 {
     m_movieDuplicatesSplitterState = state;
     settings()->setValue(KEY_MOVIE_DUPLICATES_SPLITTER_STATE, state);
-}
-
-void Settings::setCsvExportSeparator(QString separator)
-{
-    m_csvExportSeparator = separator;
-    settings()->setValue(KEY_CSV_EXPORT_SEPARATOR, separator);
-}
-
-void Settings::setCsvExportReplacement(QString replacement)
-{
-    m_csvExportReplacement = replacement;
-    settings()->setValue(KEY_CSV_EXPORT_REPLACEMENT, replacement);
-}
-
-void Settings::setCsvExportTypes(QStringList exportTypes)
-{
-    m_csvExportTypes = exportTypes;
-    settings()->setValue(KEY_CSV_EXPORT_TYPES, exportTypes.join(","));
-}
-
-void Settings::setCsvExportMovieFields(QStringList fields)
-{
-    m_csvExportMovieFields = fields;
-    settings()->setValue(KEY_CSV_EXPORT_MOVIE_FIELDS, fields.join(","));
-}
-
-void Settings::setCsvExportTvShowFields(QStringList fields)
-{
-    m_csvExportTvShowFields = fields;
-    settings()->setValue(KEY_CSV_EXPORT_TV_SHOW_FIELDS, fields.join(","));
-}
-
-void Settings::setCsvExportTvEpisodeFields(QStringList fields)
-{
-    m_csvExportTvEpisodeFields = fields;
-    settings()->setValue(KEY_CSV_EXPORT_TV_EPISODE_FIELDS, fields.join(","));
-}
-
-void Settings::setCsvExportConcertFields(QStringList fields)
-{
-    m_csvExportConcertFields = fields;
-    settings()->setValue(KEY_CSV_EXPORT_CONCERT_FIELDS, fields.join(","));
-}
-
-void Settings::setCsvExportMusicArtistFields(QStringList fields)
-{
-    m_csvExportMusicArtistFields = fields;
-    settings()->setValue(KEY_CSV_EXPORT_MUSIC_ARTIST_FIELDS, fields.join(","));
-}
-
-void Settings::setCsvExportMusicAlbumFields(QStringList fields)
-{
-    m_csvExportMusicAlbumFields = fields;
-    settings()->setValue(KEY_CSV_EXPORT_MUSIC_ALBUM_FIELDS, fields.join(","));
 }
 
 /**

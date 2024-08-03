@@ -1,9 +1,8 @@
-#include "ui/export/CsvExportDialog.h"
+#include "ui/export/csv_export/CsvExportDialog.h"
 #include "ui_CsvExportDialog.h"
 
 #include "globals/Manager.h"
 #include "log/Log.h"
-#include "settings/Settings.h"
 #include "utils/Meta.h"
 
 #include <QDateTime>
@@ -12,7 +11,9 @@
 #include <QFileDialog>
 #include <QRegularExpression>
 
-CsvExportDialog::CsvExportDialog(Settings& settings, QWidget* parent) :
+using namespace mediaelch::exporter;
+
+CsvExportDialog::CsvExportDialog(mediaelch::exporter::CsvExportConfiguration& settings, QWidget* parent) :
     QDialog(parent), ui(new Ui::CsvExportDialog), m_settings{settings}
 {
     ui->setupUi(this);
@@ -239,24 +240,24 @@ void CsvExportDialog::saveSettings()
     m_settings.setCsvExportSeparator(ui->separator->currentData().toString());
     m_settings.setCsvExportReplacement(ui->replacement->currentData().toString());
     {
-        QStringList mediaToExport;
+        QVector<CsvExportType> mediaToExport;
         if (ui->checkMovies->isChecked()) {
-            mediaToExport << "movies";
+            mediaToExport << CsvExportType::Movies;
         }
         if (ui->checkConcerts->isChecked()) {
-            mediaToExport << "concerts";
+            mediaToExport << CsvExportType::Concerts;
         }
         if (ui->checkTvShows->isChecked()) {
-            mediaToExport << "tv_shows";
+            mediaToExport << CsvExportType::TvShows;
         }
         if (ui->checkTvEpisodes->isChecked()) {
-            mediaToExport << "tv_episodes";
+            mediaToExport << CsvExportType::TvEpisodes;
         }
         if (ui->checkMusicArtists->isChecked()) {
-            mediaToExport << "music_artists";
+            mediaToExport << CsvExportType::MusicArtists;
         }
         if (ui->checkMusicAlbums->isChecked()) {
-            mediaToExport << "music_albums";
+            mediaToExport << CsvExportType::MusicAlbums;
         }
         m_settings.setCsvExportTypes(mediaToExport);
     }
@@ -526,14 +527,14 @@ void CsvExportDialog::loadSettings()
         index = index < 0 ? 0 : index;
         ui->separator->setCurrentIndex(index);
     }
-    const QStringList& mediaToExport = m_settings.csvExportTypes();
+    const auto& mediaToExport = m_settings.csvExportTypes();
     if (!mediaToExport.isEmpty()) {
-        ui->checkMovies->setChecked(mediaToExport.contains("movies"));
-        ui->checkConcerts->setChecked(mediaToExport.contains("concerts"));
-        ui->checkTvShows->setChecked(mediaToExport.contains("tv_shows"));
-        ui->checkTvEpisodes->setChecked(mediaToExport.contains("tv_episodes"));
-        ui->checkMusicArtists->setChecked(mediaToExport.contains("music_artists"));
-        ui->checkMusicAlbums->setChecked(mediaToExport.contains("music_albums"));
+        ui->checkMovies->setChecked(mediaToExport.contains(CsvExportType::Movies));
+        ui->checkConcerts->setChecked(mediaToExport.contains(CsvExportType::Concerts));
+        ui->checkTvShows->setChecked(mediaToExport.contains(CsvExportType::TvShows));
+        ui->checkTvEpisodes->setChecked(mediaToExport.contains(CsvExportType::TvEpisodes));
+        ui->checkMusicArtists->setChecked(mediaToExport.contains(CsvExportType::MusicArtists));
+        ui->checkMusicAlbums->setChecked(mediaToExport.contains(CsvExportType::MusicAlbums));
     }
 }
 

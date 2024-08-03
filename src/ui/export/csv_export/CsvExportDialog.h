@@ -1,6 +1,7 @@
 #pragma once
 
 #include "export/CsvExport.h"
+#include "ui/export/csv_export/CsvExportConfiguration.h"
 
 #include <QDialog>
 #include <QDir>
@@ -11,14 +12,12 @@ namespace Ui {
 class CsvExportDialog;
 }
 
-class Settings;
-
 class CsvExportDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit CsvExportDialog(Settings& settings, QWidget* parent = nullptr);
+    explicit CsvExportDialog(mediaelch::exporter::CsvExportConfiguration& settings, QWidget* parent = nullptr);
     ~CsvExportDialog();
 
 public slots:
@@ -92,6 +91,6 @@ private:
 
 private:
     Ui::CsvExportDialog* ui;
-    Settings& m_settings;
+    mediaelch::exporter::CsvExportConfiguration& m_settings;
     bool m_shouldAbort = false;
 };
