@@ -22,7 +22,7 @@ Manager::Manager(QObject* parent) : QObject(parent)
 {
     using namespace mediaelch::scraper;
 
-    m_scraperManager = new mediaelch::ScraperManager(this);
+    m_scraperManager = new mediaelch::ScraperManager(*Settings::instance(), this);
 
     m_movieFileSearcher = new mediaelch::MovieFileSearcher(this);
     m_tvShowFileSearcher = new TvShowFileSearcher(this);

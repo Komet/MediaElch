@@ -84,7 +84,7 @@ actors: (N>60)
  - id: 
    name: Dominic West
    role: Rudder (voice)
-   thumb: http://image.tmdb.org/t/p/original/iJIdrZrE57eWlXAtXbntzacW6B8.jpg
+   thumb: http://image.tmdb.org/t/p/original/eD43SR3d1AXsNRATWbeAJ5MWB2e.jpg
    order: 9
    imageHasChanged: false
  - id: 
@@ -214,7 +214,7 @@ posters: (N>30)
     hint: 
     aspect: 
     season: SeasonNumber=xx
-  - ... and >30 more
+  - ... and >20 more
 backdrops: (N>20)
   - id: 
     originalUrl: http://image.tmdb.org/t/p/original/o11rDwFa7nZMVI57Mm3C44YwmmF.jpg
@@ -233,6 +233,14 @@ backdrops: (N>20)
     aspect: 
     season: SeasonNumber=xx
   - id: 
+    originalUrl: http://image.tmdb.org/t/p/original/wijltj1toRcicHlCn8Cpsp4yPXe.jpg
+    thumbUrl: http://image.tmdb.org/t/p/w780/wijltj1toRcicHlCn8Cpsp4yPXe.jpg
+    originalSize: h=1080 w=1920
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
     originalUrl: http://image.tmdb.org/t/p/original/8yYuFjRsozwOckhAaTHRLTiDwml.jpg
     thumbUrl: http://image.tmdb.org/t/p/w780/8yYuFjRsozwOckhAaTHRLTiDwml.jpg
     originalSize: h=2160 w=3840
@@ -243,14 +251,6 @@ backdrops: (N>20)
   - id: 
     originalUrl: http://image.tmdb.org/t/p/original/1lqVrt3nEcAJV2GzKZfXvOsZcPQ.jpg
     thumbUrl: http://image.tmdb.org/t/p/w780/1lqVrt3nEcAJV2GzKZfXvOsZcPQ.jpg
-    originalSize: h=2160 w=3840
-    language: 
-    hint: 
-    aspect: 
-    season: SeasonNumber=xx
-  - id: 
-    originalUrl: http://image.tmdb.org/t/p/original/xqHWyWL2X7KiBvGLat9fw0SFm2U.jpg
-    thumbUrl: http://image.tmdb.org/t/p/w780/xqHWyWL2X7KiBvGLat9fw0SFm2U.jpg
     originalSize: h=2160 w=3840
     language: 
     hint: 

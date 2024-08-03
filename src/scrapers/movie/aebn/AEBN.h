@@ -13,11 +13,13 @@
 namespace mediaelch {
 namespace scraper {
 
+class AebnConfiguration;
+
 class AEBN : public MovieScraper
 {
     Q_OBJECT
 public:
-    explicit AEBN(QObject* parent = nullptr);
+    explicit AEBN(AebnConfiguration& settings, QObject* parent = nullptr);
     ~AEBN() override;
     static constexpr const char* ID = "aebn";
 
@@ -40,11 +42,10 @@ public:
     QWidget* settingsWidget() override;
 
 private:
+    AebnConfiguration& m_settings;
     ScraperMeta m_meta;
     AebnApi m_api;
 
-    mediaelch::Locale m_language;
-    QString m_genreId;
     QPointer<QWidget> m_widget;
     QComboBox* m_box;
     QComboBox* m_genreBox;

@@ -4,6 +4,7 @@
 #include "network/NetworkManager.h"
 #include "scrapers/image/ImageProvider.h"
 #include "scrapers/movie/MovieScraper.h"
+#include "scrapers/movie/tmdb/TmdbMovieConfiguration.h"
 #include "scrapers/tv_show/TvScraper.h"
 
 #include <QComboBox>
@@ -14,6 +15,7 @@
 #include <QString>
 #include <QUrl>
 #include <QVector>
+#include <memory>
 
 namespace mediaelch {
 namespace scraper {
@@ -106,6 +108,7 @@ private:
     int m_searchResultLimit = 0;
     mediaelch::scraper::TheTvDb* m_tvdb = nullptr;
     mediaelch::scraper::ShowSearchJob* m_currentSearchJob = nullptr;
+    std::unique_ptr<mediaelch::scraper::TmdbMovieConfiguration> m_tmdbConfig;
     mediaelch::scraper::TmdbMovie* m_tmdb;
     QString m_preferredDiscType;
     QWidget* m_widget;

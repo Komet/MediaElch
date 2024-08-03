@@ -32,6 +32,7 @@ add_library(
   ScraperInterface.cpp
   ScraperResult.cpp
   ScraperUtils.cpp
+  ScraperConfiguration.cpp
   trailer/HdTrailers.cpp
   trailer/TrailerProvider.cpp
   trailer/TrailerResult.cpp

@@ -25,7 +25,7 @@
 class Settings : public QObject
 {
     Q_OBJECT
-private:
+protected:
     explicit Settings(QObject* parent);
 
 public:

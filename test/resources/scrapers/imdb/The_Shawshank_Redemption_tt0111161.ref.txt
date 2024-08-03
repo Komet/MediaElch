@@ -15,8 +15,9 @@ overview:
     ife; along the way he befriends a number of fellow prisoners, most notably a wis
     e long-term inmate named Red.
 outline:
-    Over the course of several years, two convicts form a friendship, seeking consol
-    ation and, eventually, redemption through basic compassion.
+    A Maine banker convicted of the murder of his wife and her lover in 1947 gradual
+    ly forms a friendship over a quarter century with a hardened convict, while main
+    taining his innocence and trying to remain hopeful through simple compassion.
 movie set: tmdbid= | name=
 movie set overview: 
 tagline: Fear can hold you prisoner. Hope can set you free.
@@ -186,11 +187,11 @@ certification: R
 genres: (N=1)
   - Drama
 tags: (N<6)
-  - reading-lesson
-  - pinup
   - abuse-of-power
   - place-name-in-title
   - corruption
+  - metaphoric-title
+  - hypocrisy
 countries: (N=1)
   - United States
 studios: (N=1)

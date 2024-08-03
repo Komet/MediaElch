@@ -269,6 +269,8 @@ SOURCES += \
     src/scrapers/movie/aebn/AEBN.cpp \
     src/scrapers/movie/aebn/AebnScrapeJob.cpp \
     src/scrapers/movie/aebn/AebnSearchJob.cpp \
+    src/scrapers/movie/aebn/AebnConfiguration.cpp \
+    src/scrapers/movie/custom/CustomMovieScraper.cpp \
     src/scrapers/movie/custom/CustomMovieScrapeJob.cpp \
     src/scrapers/movie/custom/CustomMovieScraper.cpp \
     src/scrapers/movie/hotmovies/HotMoviesApi.cpp \
@@ -283,6 +285,7 @@ SOURCES += \
     src/scrapers/movie/MovieScrapeJob.cpp \
     src/scrapers/movie/MovieScraper.cpp \
     src/scrapers/movie/MovieSearchJob.cpp \
+    src/scrapers/movie/tmdb/TmdbMovieConfiguration.cpp \
     src/scrapers/movie/tmdb/TmdbMovie.cpp \
     src/scrapers/movie/tmdb/TmdbMovieScrapeJob.cpp \
     src/scrapers/movie/tmdb/TmdbMovieSearchJob.cpp \
@@ -298,6 +301,7 @@ SOURCES += \
     src/scrapers/music/TheAudioDb.cpp \
     src/scrapers/music/TvTunes.cpp \
     src/scrapers/music/UniversalMusicScraper.cpp \
+    src/scrapers/ScraperConfiguration.cpp \
     src/scrapers/ScraperError.cpp \
     src/scrapers/ScraperInfos.cpp \
     src/scrapers/ScraperInterface.cpp \
@@ -414,6 +418,7 @@ SOURCES += \
     src/ui/notifications/Notificator.cpp \
     src/ui/renamer/RenamerDialog.cpp \
     src/ui/renamer/RenamerPlaceholders.cpp \
+    src/ui/scrapers/movie/aebn/AebnConfigurationView.cpp \
     src/ui/settings/ConcertSettingsWidget.cpp \
     src/ui/settings/CustomTvScraperSettingsWidget.cpp \
     src/ui/settings/ExportSettingsWidget.cpp \
@@ -628,7 +633,8 @@ HEADERS += Version.h \
     src/scrapers/movie/aebn/AebnApi.h \
     src/scrapers/movie/aebn/AEBN.h \
     src/scrapers/movie/aebn/AebnScrapeJob.h \
-    src/scrapers/movie/aebn/AebnSearchJob.h \
+    src/scrapers/movie/aebn/AebnConfiguration.h \
+    src/scrapers/movie/custom/CustomMovieScraper.h \
     src/scrapers/movie/custom/CustomMovieScrapeJob.h \
     src/scrapers/movie/custom/CustomMovieScraper.h \
     src/scrapers/movie/hotmovies/HotMoviesApi.h \
@@ -643,6 +649,7 @@ HEADERS += Version.h \
     src/scrapers/movie/MovieScrapeJob.h \
     src/scrapers/movie/MovieScraper.h \
     src/scrapers/movie/MovieSearchJob.h \
+    src/scrapers/movie/tmdb/TmdbMovieConfiguration.h \
     src/scrapers/movie/tmdb/TmdbMovie.h \
     src/scrapers/movie/tmdb/TmdbMovieScrapeJob.h \
     src/scrapers/movie/tmdb/TmdbMovieSearchJob.h \
@@ -658,6 +665,7 @@ HEADERS += Version.h \
     src/scrapers/music/TheAudioDb.h \
     src/scrapers/music/TvTunes.h \
     src/scrapers/music/UniversalMusicScraper.h \
+    src/scrapers/ScraperConfiguration.h \
     src/scrapers/ScraperError.h \
     src/scrapers/ScraperInfos.h \
     src/scrapers/ScraperInterface.h \
@@ -777,6 +785,7 @@ HEADERS += Version.h \
     src/ui/notifications/Notificator.h \
     src/ui/renamer/RenamerDialog.h \
     src/ui/renamer/RenamerPlaceholders.h \
+    src/ui/scrapers/movie/aebn/AebnConfigurationView.h \
     src/ui/settings/ConcertSettingsWidget.h \
     src/ui/settings/CustomTvScraperSettingsWidget.h \
     src/ui/settings/ExportSettingsWidget.h \

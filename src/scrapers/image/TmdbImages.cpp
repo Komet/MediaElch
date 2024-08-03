@@ -102,10 +102,14 @@ TmdbImages::TmdbImages(QObject* parent) : ImageProvider(parent)
     m_meta.defaultLocale = Locale::English;
 
     m_searchResultLimit = 0;
-    m_tmdb = new mediaelch::scraper::TmdbMovie(this);
+    m_tmdbConfig = new mediaelch::scraper::TmdbMovieConfiguration(*Settings::instance());
+    m_tmdb = new mediaelch::scraper::TmdbMovie(*m_tmdbConfig, this);
 }
 
-TmdbImages::~TmdbImages() = default;
+TmdbImages::~TmdbImages()
+{
+    delete m_tmdbConfig;
+};
 
 const ImageProvider::ScraperMeta& TmdbImages::meta() const
 {

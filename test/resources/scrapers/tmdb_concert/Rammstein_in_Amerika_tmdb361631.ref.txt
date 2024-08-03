@@ -16,7 +16,7 @@ overview:
      various periods in the band’s history, the band members speak about their exper
     iences across the Atlantic.
 ratings (N=1)
-  source=themoviedb | rating=7.94 | votes=50 | min=0 | max=10
+  source=themoviedb | rating=7.98 | votes=51 | min=0 | max=10
 userRating: 0
 releaseDate: 2015-09-25
 tagline: 

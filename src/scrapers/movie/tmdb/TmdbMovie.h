@@ -11,6 +11,8 @@
 namespace mediaelch {
 namespace scraper {
 
+class TmdbMovieConfiguration;
+
 class TmdbMovie final : public MovieScraper
 {
     Q_OBJECT
@@ -20,7 +22,7 @@ public:
     static constexpr const char* ID = "TMDb";
 
 public:
-    explicit TmdbMovie(QObject* parent = nullptr);
+    explicit TmdbMovie(TmdbMovieConfiguration& settings, QObject* parent = nullptr);
     ~TmdbMovie() override;
 
     const ScraperMeta& meta() const override;
@@ -41,6 +43,7 @@ public:
 
 
 private:
+    TmdbMovieConfiguration& m_settings;
     TmdbApi m_api;
     ScraperMeta m_meta;
 

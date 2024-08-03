@@ -1,9 +1,11 @@
 #include "test/test_helpers.h"
 
 #include "scrapers/movie/aebn/AEBN.h"
+#include "scrapers/movie/aebn/AebnConfiguration.h"
 #include "scrapers/movie/aebn/AebnScrapeJob.h"
 #include "scrapers/movie/aebn/AebnSearchJob.h"
 #include "test/helpers/scraper_helpers.h"
+#include "test/mocks/settings/SettingsMock.h"
 
 #include <chrono>
 
@@ -18,7 +20,10 @@ static AebnApi& getAebnApi()
 
 static MovieScrapeJob::Config makeAebnConfig(QString id)
 {
-    static auto aebn = std::make_unique<AEBN>();
+    static auto settings = std::make_unique<SettingsMock>();
+    static auto aebnConfig = std::make_unique<AebnConfiguration>(*settings);
+    static auto aebn = std::make_unique<AEBN>(*aebnConfig);
+
     MovieScrapeJob::Config config;
     config.identifier = MovieIdentifier(id);
     config.details = aebn->meta().supportedDetails;

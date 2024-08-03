@@ -1,10 +1,12 @@
 #include "test/test_helpers.h"
 
 #include "scrapers/movie/tmdb/TmdbMovie.h"
+#include "scrapers/movie/tmdb/TmdbMovieConfiguration.h"
 #include "scrapers/movie/tmdb/TmdbMovieScrapeJob.h"
 #include "scrapers/movie/tmdb/TmdbMovieSearchJob.h"
 #include "settings/Settings.h"
 #include "test/helpers/scraper_helpers.h"
+#include "test/mocks/settings/SettingsMock.h"
 
 #include <chrono>
 
@@ -25,7 +27,10 @@ static TmdbApi& getTmdbApi()
 
 static MovieScrapeJob::Config makeTmdbConfig(const QString& id)
 {
-    static auto tmdb = std::make_unique<TmdbMovie>();
+    static auto settings = std::make_unique<SettingsMock>();
+    static auto tmdbConfig = std::make_unique<TmdbMovieConfiguration>(*settings);
+    static auto tmdb = std::make_unique<TmdbMovie>(*tmdbConfig);
+
     MovieScrapeJob::Config config;
     config.identifier = MovieIdentifier(id);
     config.details = tmdb->meta().supportedDetails;
