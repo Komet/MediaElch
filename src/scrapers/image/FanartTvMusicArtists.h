@@ -10,6 +10,8 @@
 namespace mediaelch {
 namespace scraper {
 
+class FanartTvConfiguration;
+
 class FanartTvMusicArtists : public ImageProvider
 {
     Q_OBJECT
@@ -17,7 +19,7 @@ public:
     static QString ID;
 
 public:
-    explicit FanartTvMusicArtists(QObject* parent = nullptr);
+    explicit FanartTvMusicArtists(FanartTvConfiguration& settings, QObject* parent = nullptr);
     ~FanartTvMusicArtists() override = default;
 
     const ScraperMeta& meta() const override;
@@ -64,11 +66,6 @@ public:
     void albumImages(Album* album, MusicBrainzId mbId, QSet<ImageType> types) override;
     void albumBooklets(MusicBrainzId mbId) override;
 
-    bool hasSettings() const override;
-    void loadSettings(ScraperSettings& settings) override;
-    void saveSettings(ScraperSettings& settings) override;
-    QWidget* settingsWidget() override;
-
 public slots:
     void searchMovie(QString searchStr, int limit = 0) override;
     void searchConcert(QString searchStr, int limit = 0) override;
@@ -82,13 +79,12 @@ private slots:
 
 private:
     ScraperMeta m_meta;
+    FanartTvConfiguration& m_settings;
 
     QSet<ImageType> m_provides;
     QString m_apiKey;
-    QString m_personalApiKey;
     mediaelch::network::NetworkManager m_network;
     int m_searchResultLimit;
-    QString m_preferredDiscType;
 
     mediaelch::network::NetworkManager* network();
     QVector<Poster> parseData(QString json, ImageType type);

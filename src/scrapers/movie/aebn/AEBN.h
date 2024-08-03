@@ -4,11 +4,8 @@
 #include "scrapers/movie/MovieScraper.h"
 #include "scrapers/movie/aebn/AebnApi.h"
 
-#include <QComboBox>
 #include <QMap>
 #include <QObject>
-#include <QPointer>
-#include <QWidget>
 
 namespace mediaelch {
 namespace scraper {
@@ -32,23 +29,14 @@ public:
     ELCH_NODISCARD MovieScrapeJob* loadMovie(MovieScrapeJob::Config config) override;
 
 public:
-    bool hasSettings() const override;
-    void loadSettings(ScraperSettings& settings) override;
-    void saveSettings(ScraperSettings& settings) override;
-
     QSet<MovieScraperInfo> scraperNativelySupports() override;
 
     void changeLanguage(mediaelch::Locale locale) override;
-    QWidget* settingsWidget() override;
 
 private:
     AebnConfiguration& m_settings;
     ScraperMeta m_meta;
     AebnApi m_api;
-
-    QPointer<QWidget> m_widget;
-    QComboBox* m_box;
-    QComboBox* m_genreBox;
 };
 
 } // namespace scraper

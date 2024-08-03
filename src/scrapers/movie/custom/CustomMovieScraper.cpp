@@ -1,12 +1,12 @@
 #include "CustomMovieScraper.h"
 
 #include "globals/Manager.h"
-#include "globals/ScraperManager.h"
 #include "log/Log.h"
 #include "scrapers/movie/custom/CustomMovieScrapeJob.h"
 #include "scrapers/movie/imdb/ImdbMovie.h"
 #include "scrapers/movie/tmdb/TmdbMovie.h"
 #include "settings/Settings.h"
+#include "ui/scrapers/ScraperManager.h"
 #include "utils/Containers.h"
 
 #include <QJsonDocument>
@@ -16,7 +16,8 @@
 namespace mediaelch {
 namespace scraper {
 
-CustomMovieScraper::CustomMovieScraper(QObject* parent) : MovieScraper(parent)
+CustomMovieScraper::CustomMovieScraper(CustomMovieScraperConfiguration& config, Settings& settings, QObject* parent) :
+    MovieScraper(parent), m_settings{config}
 {
     m_meta.identifier = ID;
     m_meta.name = tr("Custom Movie Scraper");
@@ -33,17 +34,12 @@ CustomMovieScraper::CustomMovieScraper(QObject* parent) : MovieScraper(parent)
     m_meta.supportedLanguages = {mediaelch::Locale::NoLocale};
     m_meta.defaultLocale = mediaelch::Locale::NoLocale;
     m_meta.isAdult = false;
+    connect(&settings, &Settings::sigSettingsSaved, this, &CustomMovieScraper::updateSupportedDetails);
 }
 
 mediaelch::network::NetworkManager* CustomMovieScraper::network()
 {
     return &m_network;
-}
-
-CustomMovieScraper* CustomMovieScraper::instance(QObject* parent)
-{
-    static auto* s_instance = new CustomMovieScraper(parent);
-    return s_instance;
 }
 
 const MovieScraper::ScraperMeta& CustomMovieScraper::meta() const
@@ -196,26 +192,6 @@ MovieScraper* CustomMovieScraper::scraperForInfo(MovieScraperInfo info)
     return scraper;
 }
 
-bool CustomMovieScraper::hasSettings() const
-{
-    return false;
-}
-
-void CustomMovieScraper::loadSettings(ScraperSettings& settings)
-{
-    Q_UNUSED(settings);
-    updateSupportedDetails();
-}
-
-void CustomMovieScraper::saveSettings(ScraperSettings& settings)
-{
-    Q_UNUSED(settings);
-}
-
-QWidget* CustomMovieScraper::settingsWidget()
-{
-    return nullptr;
-}
 
 } // namespace scraper
 } // namespace mediaelch

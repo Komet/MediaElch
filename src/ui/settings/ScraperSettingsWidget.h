@@ -27,15 +27,16 @@ public:
 
     void setSettings(Settings& settings);
     void loadSettings();
+
+signals:
     void saveSettings();
 
 private slots:
-    void onShowAdultScrapers();
+    void onSaveSettings();
 
 private:
     Ui::ScraperSettingsWidget* ui = nullptr;
     Settings* m_settings = nullptr;
-    QMap<const mediaelch::scraper::MovieScraper*, int> m_scraperRows;
 
     QComboBox* comboForMovieScraperInfo(MovieScraperInfo info);
     QString titleForMovieScraperInfo(MovieScraperInfo info);

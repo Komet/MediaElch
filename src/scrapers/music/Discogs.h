@@ -139,13 +139,6 @@ public:
     ELCH_NODISCARD ArtistScrapeJob* loadArtist(ArtistScrapeJob::Config config) override;
     ELCH_NODISCARD AlbumScrapeJob* loadAlbum(AlbumScrapeJob::Config config) override;
 
-    // This scraper has no settings; it's all provided by the universal music scraper
-
-    bool hasSettings() const override { return false; }
-    void loadSettings(ScraperSettings& settings) override { Q_UNUSED(settings); }
-    void saveSettings(ScraperSettings& settings) override { Q_UNUSED(settings); }
-    QWidget* settingsWidget() override { return nullptr; }
-
 private:
     ScraperMeta m_meta;
     DiscogsApi m_api;

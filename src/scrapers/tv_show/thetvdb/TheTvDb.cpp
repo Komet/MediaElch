@@ -12,7 +12,7 @@ namespace scraper {
 
 QString TheTvDb::ID = "thetvdb";
 
-TheTvDb::TheTvDb(QObject* parent) : TvScraper(parent)
+TheTvDb::TheTvDb(TheTvDbConfiguration& settings, QObject* parent) : TvScraper(parent), m_settings{settings}
 {
     m_meta.identifier = TheTvDb::ID;
     m_meta.name = "TheTvDb";
@@ -44,7 +44,8 @@ TheTvDb::TheTvDb(QObject* parent) : TvScraper(parent)
         ShowScraperInfo::Thumb,
         ShowScraperInfo::Runtime,
         ShowScraperInfo::Status};
-    m_meta.supportedEpisodeDetails = {EpisodeScraperInfo::Actors,
+    m_meta.supportedEpisodeDetails = {
+        EpisodeScraperInfo::Actors,
         EpisodeScraperInfo::Certification,
         EpisodeScraperInfo::Director,
         EpisodeScraperInfo::FirstAired,
@@ -52,33 +53,11 @@ TheTvDb::TheTvDb(QObject* parent) : TvScraper(parent)
         EpisodeScraperInfo::Rating,
         EpisodeScraperInfo::Thumbnail,
         EpisodeScraperInfo::Title,
-        EpisodeScraperInfo::Writer};
+        EpisodeScraperInfo::Writer, //
+    };
     m_meta.supportedSeasonOrders = {SeasonOrder::Aired, SeasonOrder::Dvd};
-    m_meta.supportedLanguages = {"bg",
-        "zh",
-        "hr",
-        "cs",
-        "da",
-        "nl",
-        "en",
-        "fi",
-        "fr",
-        "de",
-        "el",
-        "he",
-        "hu",
-        "it",
-        "ja",
-        "ko",
-        "no",
-        "pl",
-        "pt",
-        "ru",
-        "sl",
-        "es",
-        "sv",
-        "tr"};
-    m_meta.defaultLocale = Locale("en");
+    m_meta.supportedLanguages = TheTvDbConfiguration::supportedLanguages();
+    m_meta.defaultLocale = TheTvDbConfiguration::defaultLocale();
 
     connect(&m_api, &TheTvDbApi::initialized, this, [this](bool wasSuccessful) {
         m_isInitialized = wasSuccessful;

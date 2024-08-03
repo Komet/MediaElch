@@ -22,6 +22,12 @@ MovieFileSearcher::MovieFileSearcher(QObject* parent) : QObject(parent), m_store
     });
 }
 
+MovieFileSearcher::~MovieFileSearcher()
+{
+    // FIXME: For CLI, we must ensure that no thread is still running!
+    m_aborted = true;
+}
+
 void MovieFileSearcher::setMovieDirectories(const QVector<mediaelch::MediaDirectory>& directories)
 {
     abort(true);

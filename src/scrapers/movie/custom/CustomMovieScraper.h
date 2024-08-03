@@ -3,6 +3,8 @@
 #include "network/NetworkManager.h"
 #include "scrapers/image/ImageProvider.h"
 #include "scrapers/movie/MovieScraper.h"
+#include "scrapers/movie/custom/CustomMovieScraperConfiguration.h"
+#include "settings/Settings.h"
 
 #include <QObject>
 
@@ -14,9 +16,8 @@ class CustomMovieScraper : public MovieScraper
 {
     Q_OBJECT
 public:
-    explicit CustomMovieScraper(QObject* parent = nullptr);
+    explicit CustomMovieScraper(CustomMovieScraperConfiguration& config, Settings& settings, QObject* parent = nullptr);
     static constexpr const char* ID = "custom-movie";
-    static CustomMovieScraper* instance(QObject* parent = nullptr);
 
     const ScraperMeta& meta() const override;
 
@@ -33,10 +34,6 @@ public:
     void setScraperMovieIds(QHash<MovieScraper*, MovieIdentifier> ids);
 
 public:
-    bool hasSettings() const override;
-    void loadSettings(ScraperSettings& settings) override;
-    void saveSettings(ScraperSettings& settings) override;
-
     QSet<MovieScraperInfo> scraperNativelySupports() override;
 
     void changeLanguage(mediaelch::Locale locale) override;
@@ -47,8 +44,6 @@ public:
     // TODO: Maybe use some custom loadMovie() function? This seems hacky.
     QVector<MovieScraper*> scrapersNeedSearch(const QSet<MovieScraperInfo>& infos);
 
-    QWidget* settingsWidget() override;
-
 private:
     ImageProvider* imageProviderForInfo(int info);
     QVector<ImageProvider*> imageProvidersForInfos(QSet<MovieScraperInfo> infos);
@@ -56,6 +51,7 @@ private:
     void updateSupportedDetails();
 
 private:
+    CustomMovieScraperConfiguration& m_settings;
     ScraperMeta m_meta;
     network::NetworkManager m_network;
     QHash<MovieScraper*, MovieIdentifier> m_scraperMovieIds;

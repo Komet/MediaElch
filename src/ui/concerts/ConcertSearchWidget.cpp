@@ -249,12 +249,10 @@ void ConcertSearchWidget::onLanguageChanged()
     m_currentLanguage = ui->comboLanguage->currentLocale();
 
     // Save immediately.
-    ScraperSettings* scraperSettings = Settings::instance()->scraperSettings(meta.identifier);
+    mediaelch::ScraperConfiguration* scraperSettings =
+        Manager::instance()->scrapers().concertScraperConfig(meta.identifier);
+    MediaElch_Assert(scraperSettings != nullptr);
     scraperSettings->setLanguage(m_currentLanguage);
-    scraperSettings->save();
-
-    // TODO: Remove this when it is no longer necessary, i.e. when concerts loading is done job based as well.
-    m_currentScraper->loadSettings(*scraperSettings);
 
     initializeAndStartSearch();
 }
@@ -309,8 +307,22 @@ void ConcertSearchWidget::setupScraperDropdown()
 
 void ConcertSearchWidget::setupLanguageDropdown()
 {
+    using namespace mediaelch::scraper;
+
+    if (m_currentScraper == nullptr) {
+        ui->comboLanguage->setInvalid();
+        qCCritical(generic) << "[ConcertSearchWidget] Cannot set language dropdown in concert search widget";
+        showError(tr("Internal inconsistency: Cannot set language dropdown in concert search widget!"));
+        // In debug mode, be strict!
+        MediaElch_Debug_Assert(m_currentScraper != nullptr);
+        return;
+    }
+
     const auto& meta = m_currentScraper->meta();
-    m_currentLanguage = Settings::instance()->scraperSettings(meta.identifier)->language(meta.defaultLocale);
+    mediaelch::ScraperConfiguration* scraperSettings =
+        Manager::instance()->scrapers().concertScraperConfig(meta.identifier);
+    MediaElch_Assert(scraperSettings != nullptr);
+    m_currentLanguage = scraperSettings->language();
     ui->comboLanguage->setupLanguages(meta.supportedLanguages, m_currentLanguage);
 }
 

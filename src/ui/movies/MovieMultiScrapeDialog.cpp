@@ -171,7 +171,7 @@ void MovieMultiScrapeDialog::onStartScraping()
     ui->chkAutoSave->setEnabled(false);
     ui->chkOnlyImdb->setEnabled(false);
 
-    customScrapersToUse = CustomMovieScraper::instance()->scrapersNeedSearch(m_infosToLoad);
+    customScrapersToUse = Manager::instance()->scrapers().customMovieScraper().scrapersNeedSearch(m_infosToLoad);
 
     m_queue.append(m_movies.toList());
 
@@ -502,11 +502,6 @@ void MovieMultiScrapeDialog::onScraperChanged(int index)
     m_currentScraper = scraper;
     MediaElch_Assert(m_currentScraper != nullptr);
 
-    const auto& meta = m_currentScraper->meta();
-    ScraperSettings* settings = Settings::instance()->scraperSettings(meta.identifier);
-    MediaElch_Debug_Assert(settings != nullptr);
-    m_currentScraper->loadSettings(*settings);
-
     // Save currently used scraper.
     Settings::instance()->setCurrentMovieScraper(index);
 
@@ -517,12 +512,6 @@ void MovieMultiScrapeDialog::onScraperChanged(int index)
 void MovieMultiScrapeDialog::onLanguageChanged()
 {
     m_currentLanguage = ui->comboLanguage->currentLocale();
-
-    // Save immediately.
-    ScraperSettings* scraperSettings = Settings::instance()->scraperSettings(m_currentScraper->meta().identifier);
-    MediaElch_Debug_Assert(scraperSettings != nullptr);
-    m_currentScraper->changeLanguage(m_currentLanguage); // store the language in case it was changed before
-    m_currentScraper->saveSettings(*scraperSettings);
 }
 
 void MovieMultiScrapeDialog::showError(const QString& message)

@@ -1,6 +1,7 @@
 add_library(
-  mediaelch_scraper_movie_custom OBJECT CustomMovieScraper.cpp
-                                        CustomMovieScrapeJob.cpp
+  mediaelch_scraper_movie_custom OBJECT
+  CustomMovieScraper.cpp CustomMovieScrapeJob.cpp
+  CustomMovieScraperConfiguration.cpp
 )
 
 target_link_libraries(

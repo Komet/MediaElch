@@ -1,7 +1,7 @@
 #pragma once
 
 #include "scrapers/tv_show/TvScraper.h"
-#include "scrapers/tv_show/custom/CustomTvScraperConfig.h"
+#include "scrapers/tv_show/custom/CustomTvScraperConfiguration.h"
 
 #include <QString>
 
@@ -13,7 +13,7 @@ class CustomEpisodeScrapeJob : public EpisodeScrapeJob
     Q_OBJECT
 
 public:
-    CustomEpisodeScrapeJob(CustomTvScraperConfig customConfig, Config config, QObject* parent = nullptr);
+    CustomEpisodeScrapeJob(CustomTvScraperConfiguration& customConfig, Config config, QObject* parent = nullptr);
     ~CustomEpisodeScrapeJob() override = default;
     void doStart() override;
 
@@ -36,7 +36,7 @@ private:
     mediaelch::Locale localeFor(const QString& scraperId) const;
 
 private:
-    CustomTvScraperConfig m_customConfig;
+    CustomTvScraperConfiguration& m_customConfig;
     int m_loadCounter = 0;
 };
 

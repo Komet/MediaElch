@@ -193,14 +193,8 @@ void ArtistController::scraperLoadDone(mediaelch::scraper::ArtistScrapeJob* scra
     }
 
     if (!images.isEmpty() && m_artist->mbId().isValid()) {
-        mediaelch::scraper::ImageProvider* imageProvider = nullptr;
-        const auto& imageProviders = Manager::instance()->imageProviders();
-        for (auto* interface : imageProviders) {
-            if (interface->meta().identifier == mediaelch::scraper::FanartTvMusic::ID) {
-                imageProvider = interface;
-                break;
-            }
-        }
+        mediaelch::scraper::ImageProvider* imageProvider =
+            Manager::instance()->scrapers().imageProvider(mediaelch::scraper::FanartTvMusic::ID);
         if (imageProvider == nullptr) {
             onFanartLoadDone(m_artist, QMap<ImageType, QVector<Poster>>());
             return;

@@ -3,23 +3,23 @@
 #include "globals/Manager.h"
 #include "log/Log.h"
 #include "network/NetworkRequest.h"
+#include "scrapers/image/FanartTvConfiguration.h"
 #include "scrapers/movie/tmdb/TmdbMovie.h"
 #include "scrapers/tv_show/thetvdb/TheTvDb.h"
 #include "ui/main/MainWindow.h"
 
-#include <QGridLayout>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonValue>
-#include <QLabel>
+#include <QVariant>
 
 namespace mediaelch {
 namespace scraper {
 
 QString FanartTv::ID = "images.fanarttv";
 
-FanartTv::FanartTv(QObject* parent) : ImageProvider(parent)
+FanartTv::FanartTv(FanartTvConfiguration& settings, QObject* parent) : ImageProvider(parent), m_settings{settings}
 {
     m_meta.identifier = ID;
     m_meta.name = "Fanart.tv";
@@ -49,78 +49,8 @@ FanartTv::FanartTv(QObject* parent) : ImageProvider(parent)
         ImageType::ConcertClearArt,
         ImageType::ConcertCdArt};
     // Multiple languages, but no way to query for it and also no official list of languages.
-    m_meta.supportedLanguages = {
-        "bg",
-        "zh",
-        "hr",
-        "cs",
-        "da",
-        "nl",
-        "en",
-        "fi",
-        "fr",
-        "de",
-        "el",
-        "he",
-        "hu",
-        "it",
-        "ja",
-        "ko",
-        "no",
-        "pl",
-        "pt",
-        "ru",
-        "sl",
-        "es",
-        "sv",
-        "tr",
-    };
-    m_meta.defaultLocale = "en";
-
-    m_preferredDiscType = "BluRay";
-
-    m_widget = new QWidget(MainWindow::instance());
-    m_box = new QComboBox(m_widget);
-    m_box->addItem(tr("Bulgarian"), "bg");
-    m_box->addItem(tr("Chinese"), "zh");
-    m_box->addItem(tr("Croatian"), "hr");
-    m_box->addItem(tr("Czech"), "cs");
-    m_box->addItem(tr("Danish"), "da");
-    m_box->addItem(tr("Dutch"), "nl");
-    m_box->addItem(tr("English"), "en");
-    m_box->addItem(tr("Finnish"), "fi");
-    m_box->addItem(tr("French"), "fr");
-    m_box->addItem(tr("German"), "de");
-    m_box->addItem(tr("Greek"), "el");
-    m_box->addItem(tr("Hebrew"), "he");
-    m_box->addItem(tr("Hungarian"), "hu");
-    m_box->addItem(tr("Italian"), "it");
-    m_box->addItem(tr("Japanese"), "ja");
-    m_box->addItem(tr("Korean"), "ko");
-    m_box->addItem(tr("Norwegian"), "no");
-    m_box->addItem(tr("Polish"), "pl");
-    m_box->addItem(tr("Portuguese"), "pt");
-    m_box->addItem(tr("Russian"), "ru");
-    m_box->addItem(tr("Slovene"), "sl");
-    m_box->addItem(tr("Spanish"), "es");
-    m_box->addItem(tr("Swedish"), "sv");
-    m_box->addItem(tr("Turkish"), "tr");
-
-    m_discBox = new QComboBox(m_widget);
-    m_discBox->addItem("3D", "3D");
-    m_discBox->addItem(tr("Blu-ray"), "BluRay");
-    m_discBox->addItem(tr("DVD"), "DVD");
-    m_personalApiKeyEdit = new QLineEdit(m_widget);
-    auto* layout = new QGridLayout(m_widget);
-    layout->addWidget(new QLabel(tr("Language")), 0, 0);
-    layout->addWidget(m_box, 0, 1);
-    layout->addWidget(new QLabel(tr("Preferred Disc Type")), 1, 0);
-    layout->addWidget(m_discBox, 1, 1);
-    layout->addWidget(new QLabel(tr("Personal API key")), 2, 0);
-    layout->addWidget(m_personalApiKeyEdit, 2, 1);
-    layout->setColumnStretch(2, 1);
-    layout->setContentsMargins(12, 0, 12, 12);
-    m_widget->setLayout(layout);
+    m_meta.supportedLanguages = FanartTvConfiguration::supportedLanguages();
+    m_meta.defaultLocale = FanartTvConfiguration::defaultLocale();
 
     m_apiKey = "842f7a5d1cc7396f142b8dd47c4ba42b";
     m_tmdbConfig = std::make_unique<mediaelch::scraper::TmdbMovieConfiguration>(*Settings::instance());
@@ -153,7 +83,7 @@ void FanartTv::searchMovie(QString searchStr, int limit)
 
     mediaelch::scraper::MovieSearchJob::Config config;
     config.query = searchStr;
-    config.locale = m_tmdb->meta().defaultLocale; // FIXME: Language dropdown
+    config.locale = m_tmdbConfig->language();
     config.includeAdult = Settings::instance()->showAdultScrapers();
 
     auto* searchJob = m_tmdb->search(config);
@@ -478,7 +408,7 @@ QVector<Poster> FanartTv::parseMovieData(QString json, ImageType type)
             }();
 
             b.language = poster.value("lang").toString();
-            insertPoster(posters, b, m_meta.defaultLocale.toString(), m_preferredDiscType);
+            insertPoster(posters, b, m_meta.defaultLocale.toString(), m_settings.preferredDiscType());
         }
     }
 
@@ -780,49 +710,11 @@ QVector<Poster> FanartTv::parseTvShowData(QString json, ImageType type, SeasonNu
                 return QStringLiteral("");
             }();
             b.language = poster.value("lang").toString();
-            insertPoster(posters, b, m_meta.defaultLocale.toString(), m_preferredDiscType);
+            insertPoster(posters, b, m_meta.defaultLocale.toString(), m_settings.preferredDiscType());
         }
     }
 
     return posters;
-}
-
-bool FanartTv::hasSettings() const
-{
-    return true;
-}
-
-void FanartTv::loadSettings(ScraperSettings& settings)
-{
-    m_meta.defaultLocale = settings.language(m_meta.defaultLocale);
-    m_preferredDiscType = settings.valueString("DiscType", "BluRay");
-    m_personalApiKey = settings.valueString("PersonalApiKey", "");
-    for (int i = 0, n = m_box->count(); i < n; ++i) {
-        if (m_box->itemData(i).toString() == m_meta.defaultLocale) {
-            m_box->setCurrentIndex(i);
-        }
-    }
-    for (int i = 0, n = m_discBox->count(); i < n; ++i) {
-        if (m_discBox->itemData(i).toString() == m_preferredDiscType) {
-            m_discBox->setCurrentIndex(i);
-        }
-    }
-    m_personalApiKeyEdit->setText(m_personalApiKey);
-}
-
-void FanartTv::saveSettings(ScraperSettings& settings)
-{
-    m_meta.defaultLocale = m_box->itemData(m_box->currentIndex()).toString();
-    m_preferredDiscType = m_discBox->itemData(m_discBox->currentIndex()).toString();
-    m_personalApiKey = m_personalApiKeyEdit->text();
-    settings.setLanguage(m_meta.defaultLocale.toString());
-    settings.setString("DiscType", m_preferredDiscType);
-    settings.setString("PersonalApiKey", m_personalApiKey);
-}
-
-QWidget* FanartTv::settingsWidget()
-{
-    return m_widget;
 }
 
 void FanartTv::insertPoster(QVector<Poster>& posters, Poster b, QString language, QString preferredDiscType)
@@ -859,8 +751,9 @@ void FanartTv::insertPoster(QVector<Poster>& posters, Poster b, QString language
 
 QString FanartTv::keyParameter()
 {
-    return (!m_personalApiKey.isEmpty()) ? QString("api_key=%1&client_key=%2").arg(m_apiKey).arg(m_personalApiKey)
-                                         : QString("api_key=%1").arg(m_apiKey);
+    QString personalKey = m_settings.personalApiKey();
+    return (!personalKey.isEmpty()) ? QString("api_key=%1&client_key=%2").arg(m_apiKey).arg(personalKey)
+                                    : QString("api_key=%1").arg(m_apiKey);
 }
 
 void FanartTv::searchAlbum(QString artistName, QString searchStr, int limit)

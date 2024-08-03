@@ -193,18 +193,14 @@ void MovieSearchWidget::setupLanguageDropdown()
 
     const auto& meta = m_currentScraper->meta();
     if (meta.identifier != CustomMovieScraper::ID) {
-        m_currentLanguage = meta.defaultLocale;
+        mediaelch::ScraperConfiguration* scraperSettings =
+            Manager::instance()->scrapers().movieScraperConfig(meta.identifier);
+        MediaElch_Assert(scraperSettings != nullptr);
+        m_currentLanguage = scraperSettings->language();
         ui->comboLanguage->setupLanguages(meta.supportedLanguages, m_currentLanguage);
 
     } else {
-        MovieScraper* scraper = CustomMovieScraper::instance()->titleScraper();
-        const mediaelch::Locale defaultLanguage = scraper->meta().defaultLocale;
-
-        scraper->changeLanguage(defaultLanguage); // store the language in case it was changed before
-        ScraperSettings* settings = Settings::instance()->scraperSettings(scraper->meta().identifier);
-        MediaElch_Assert(settings != nullptr);
-        scraper->saveSettings(*settings);
-        ui->comboLanguage->setupLanguages({defaultLanguage}, defaultLanguage);
+        ui->comboLanguage->setInvalid();
     }
 }
 
@@ -265,7 +261,7 @@ void MovieSearchWidget::onSelectedResultChanged(QTableWidgetItem* current, QTabl
         scraper = Manager::instance()->scrapers().movieScraper(m_customScrapersLeft.first());
     } else if (m_currentScraper->meta().identifier == CustomMovieScraper::ID) {
         // Keep in sync with onResultDoubleClicked()
-        scraper = CustomMovieScraper::instance()->titleScraper();
+        scraper = Manager::instance()->scrapers().customMovieScraper().titleScraper();
     }
     MediaElch_Ensures(scraper != nullptr);
 
@@ -293,6 +289,8 @@ void MovieSearchWidget::onResultDoubleClicked(QTableWidgetItem* item)
         return;
     }
 
+    CustomMovieScraper& custom = Manager::instance()->scrapers().customMovieScraper();
+
     if (!isCustomScrapingInProgress()) {
         // Current scraper is custom movie scraper (title scraper)
 
@@ -302,10 +300,10 @@ void MovieSearchWidget::onResultDoubleClicked(QTableWidgetItem* item)
         ui->detailsGroupBox->setEnabled(false);
 
         // TODO: Don't use titleScraper(), because it's possible it's not set. Use scrapersNeedSearch().first().
-        MovieScraper* titleScraper = CustomMovieScraper::instance()->titleScraper();
+        MovieScraper* titleScraper = custom.titleScraper();
         m_customScraperIds.insert(titleScraper, currentIdentifier);
 
-        const auto scrapers = CustomMovieScraper::instance()->scrapersNeedSearch(infosToLoad());
+        const auto scrapers = custom.scrapersNeedSearch(infosToLoad());
 
         for (const MovieScraper* scraper : scrapers) {
             if (scraper != titleScraper) {
@@ -319,7 +317,7 @@ void MovieSearchWidget::onResultDoubleClicked(QTableWidgetItem* item)
     }
 
     if (m_customScrapersLeft.isEmpty()) {
-        m_currentScraper = CustomMovieScraper::instance();
+        m_currentScraper = &custom;
         emit sigResultClicked();
 
     } else {
@@ -423,11 +421,6 @@ void MovieSearchWidget::onScraperChanged(int index)
     m_currentScraper = scraper;
     MediaElch_Assert(m_currentScraper != nullptr);
 
-    const auto& meta = m_currentScraper->meta();
-    ScraperSettings* settings = Settings::instance()->scraperSettings(meta.identifier);
-    MediaElch_Debug_Assert(settings != nullptr);
-    m_currentScraper->loadSettings(*settings);
-
     if (!isCustomScrapingInProgress()) {
         setCheckBoxesForCurrentScraper();
         // Save currently used scraper.  If the custom movie scraper is in process, don't save it.
@@ -447,13 +440,15 @@ void MovieSearchWidget::onScraperChanged(int index)
 
 void MovieSearchWidget::onLanguageChanged()
 {
+    const auto& meta = m_currentScraper->meta();
     m_currentLanguage = ui->comboLanguage->currentLocale();
 
     // Save immediately.
-    ScraperSettings* scraperSettings = Settings::instance()->scraperSettings(m_currentScraper->meta().identifier);
-    MediaElch_Debug_Assert(scraperSettings != nullptr);
-    m_currentScraper->changeLanguage(m_currentLanguage); // store the language in case it was changed before
-    m_currentScraper->saveSettings(*scraperSettings);
+    mediaelch::ScraperConfiguration* scraperSettings =
+        Manager::instance()->scrapers().movieScraperConfig(meta.identifier);
+    MediaElch_Assert(scraperSettings != nullptr);
+    scraperSettings->setLanguage(m_currentLanguage);
+
     startSearch();
 }
 
@@ -471,7 +466,10 @@ void MovieSearchWidget::onCustomMovieScraperSelected()
 void MovieSearchWidget::createCustomScraperListLabel()
 {
     using namespace mediaelch::scraper;
-    MovieScraper* titleScraper = CustomMovieScraper::instance()->titleScraper();
+
+    CustomMovieScraper& custom = Manager::instance()->scrapers().customMovieScraper();
+
+    MovieScraper* titleScraper = custom.titleScraper();
     QString currentScraper = m_customScrapersLeft.isEmpty() //
                                  ? titleScraper->meta().identifier
                                  : m_customScrapersLeft.first();
@@ -489,7 +487,7 @@ void MovieSearchWidget::createCustomScraperListLabel()
 
     // Get all scrapers that need searching
     QStringList scraperNames;
-    const auto scrapers = CustomMovieScraper::instance()->scrapersNeedSearch(infosToLoad());
+    const auto scrapers = custom.scrapersNeedSearch(infosToLoad());
     for (const MovieScraper* movieScraper : scrapers) {
         QString name = formatScraperName(movieScraper);
         if (movieScraper == titleScraper) {

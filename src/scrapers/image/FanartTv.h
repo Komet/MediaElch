@@ -7,8 +7,6 @@
 #include "scrapers/movie/tmdb/TmdbMovieConfiguration.h"
 #include "scrapers/tv_show/TvScraper.h"
 
-#include <QComboBox>
-#include <QLineEdit>
 #include <QMap>
 #include <QNetworkReply>
 #include <QObject>
@@ -22,6 +20,7 @@ namespace scraper {
 
 class TheTvDb;
 class TmdbMovie;
+class FanartTvConfiguration;
 
 class FanartTv : public ImageProvider
 {
@@ -30,7 +29,7 @@ public:
     static QString ID;
 
 public:
-    explicit FanartTv(QObject* parent = nullptr);
+    explicit FanartTv(FanartTvConfiguration& settings, QObject* parent = nullptr);
     ~FanartTv() override = default;
 
     const ScraperMeta& meta() const override;
@@ -77,10 +76,6 @@ public:
     void albumImages(Album* album, MusicBrainzId mbId, QSet<ImageType> types) override;
     void albumBooklets(MusicBrainzId mbId) override;
 
-    bool hasSettings() const override;
-    void loadSettings(ScraperSettings& settings) override;
-    void saveSettings(ScraperSettings& settings) override;
-    QWidget* settingsWidget() override;
     static void insertPoster(QVector<Poster>& posters, Poster b, QString language, QString preferredDiscType);
 
 public slots:
@@ -101,20 +96,16 @@ private slots:
 
 private:
     ScraperMeta m_meta;
+    FanartTvConfiguration& m_settings;
 
     QString m_apiKey;
-    QString m_personalApiKey;
     mediaelch::network::NetworkManager m_network;
     int m_searchResultLimit = 0;
     mediaelch::scraper::TheTvDb* m_tvdb = nullptr;
     mediaelch::scraper::ShowSearchJob* m_currentSearchJob = nullptr;
     std::unique_ptr<mediaelch::scraper::TmdbMovieConfiguration> m_tmdbConfig;
     mediaelch::scraper::TmdbMovie* m_tmdb;
-    QString m_preferredDiscType;
-    QWidget* m_widget;
-    QComboBox* m_box;
-    QComboBox* m_discBox;
-    QLineEdit* m_personalApiKeyEdit;
+
 
     mediaelch::network::NetworkManager* network();
     QVector<Poster> parseMovieData(QString json, ImageType type);

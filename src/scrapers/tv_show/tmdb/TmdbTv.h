@@ -2,6 +2,7 @@
 
 #include "scrapers/tmdb/TmdbApi.h"
 #include "scrapers/tv_show/TvScraper.h"
+#include "scrapers/tv_show/tmdb/TmdbTvConfiguration.h"
 #include "utils/Meta.h"
 
 namespace mediaelch {
@@ -15,7 +16,7 @@ public:
     static QString ID;
 
 public:
-    explicit TmdbTv(QObject* parent = nullptr);
+    explicit TmdbTv(TmdbTvConfiguration& settings, QObject* parent = nullptr);
     ~TmdbTv() override = default;
 
     const ScraperMeta& meta() const override;
@@ -29,6 +30,7 @@ public:
     EpisodeScrapeJob* loadEpisode(EpisodeScrapeJob::Config config) override;
 
 private:
+    TmdbTvConfiguration& m_settings;
     ScraperMeta m_meta;
     TmdbApi m_api;
 };

@@ -9,7 +9,6 @@
 #include "globals/Globals.h"
 #include "scrapers/ScraperInterface.h"
 #include "scrapers/ScraperResult.h"
-#include "settings/ScraperSettings.h"
 
 #include <QMap>
 #include <QSet>
@@ -107,11 +106,6 @@ public:
     virtual void albumBooklets(MusicBrainzId mbId) = 0;
     virtual void artistImages(Artist* artist, MusicBrainzId mbId, QSet<ImageType> types) = 0;
     virtual void albumImages(Album* album, MusicBrainzId mbId, QSet<ImageType> types) = 0;
-
-    bool hasSettings() const override = 0;
-    void loadSettings(ScraperSettings& settings) override = 0;
-    void saveSettings(ScraperSettings& settings) override = 0;
-    virtual QWidget* settingsWidget() = 0;
 
 public slots:
     virtual void searchMovie(QString searchStr, int limit) = 0;

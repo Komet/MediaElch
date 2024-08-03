@@ -371,7 +371,7 @@ void TvShowMultiScrapeDialog::scrapeNext()
             searchQuery = ShowSearchJob::extractTitleAndYear(searchQuery).first;
 
             logToUser(tr("Search for TV show \"%1\" because no valid ID was found.").arg(searchQuery));
-            ShowSearchJob::Config config{searchQuery, m_locale, Settings::instance()->showAdultScrapers()};
+            ShowSearchJob::Config config{searchQuery, m_currentLanguage, Settings::instance()->showAdultScrapers()};
             auto* searchJob = m_currentScraper->search(config);
             connect(searchJob, &ShowSearchJob::searchFinished, this, &TvShowMultiScrapeDialog::onSearchFinished);
             searchJob->start();
@@ -385,7 +385,7 @@ void TvShowMultiScrapeDialog::scrapeNext()
                 Qt::UniqueConnection);
             m_currentShow->scrapeData(m_currentScraper,
                 id,
-                m_locale,
+                m_currentLanguage,
                 m_seasonOrder,
                 TvShowUpdateType::Show,
                 m_showDetailsToLoad,
@@ -410,7 +410,7 @@ void TvShowMultiScrapeDialog::scrapeNext()
             logToUser(tr("Search for TV show \"%1\" because no valid show ID was found for the episode.")
                           .arg(m_currentEpisode->tvShow()->title()));
             ShowSearchJob::Config config{
-                m_currentEpisode->tvShow()->title(), m_locale, Settings::instance()->showAdultScrapers()};
+                m_currentEpisode->tvShow()->title(), m_currentLanguage, Settings::instance()->showAdultScrapers()};
             auto* searchJob = m_currentScraper->search(config);
             connect(searchJob, &ShowSearchJob::searchFinished, this, &TvShowMultiScrapeDialog::onSearchFinished);
             searchJob->start();
@@ -420,7 +420,8 @@ void TvShowMultiScrapeDialog::scrapeNext()
                           .arg(m_currentEpisode->seasonNumber().toPaddedString(),
                               m_currentEpisode->episodeNumber().toPaddedString(),
                               id.str()));
-            m_currentEpisode->scrapeData(m_currentScraper, m_locale, id, m_seasonOrder, m_episodeDetailsToLoad);
+            m_currentEpisode->scrapeData(
+                m_currentScraper, m_currentLanguage, id, m_seasonOrder, m_episodeDetailsToLoad);
         }
 
     } else {
@@ -485,7 +486,7 @@ void TvShowMultiScrapeDialog::onSearchFinished(scraper::ShowSearchJob* searchJob
             Qt::UniqueConnection);
         m_currentShow->scrapeData(m_currentScraper,
             id,
-            m_locale,
+            m_currentLanguage,
             m_seasonOrder,
             TvShowUpdateType::Show,
             m_showDetailsToLoad,
@@ -504,7 +505,7 @@ void TvShowMultiScrapeDialog::onSearchFinished(scraper::ShowSearchJob* searchJob
             this,
             &TvShowMultiScrapeDialog::onEpisodeLoadDone,
             Qt::UniqueConnection);
-        m_currentEpisode->scrapeData(m_currentScraper, m_locale, id, m_seasonOrder, m_episodeDetailsToLoad);
+        m_currentEpisode->scrapeData(m_currentScraper, m_currentLanguage, id, m_seasonOrder, m_episodeDetailsToLoad);
     }
 }
 
@@ -576,7 +577,7 @@ void TvShowMultiScrapeDialog::onInfoLoadDone(TvShow* show, QSet<ShowScraperInfo>
             this,
             &TvShowMultiScrapeDialog::onLoadDone,
             Qt::UniqueConnection);
-        Manager::instance()->fanartTv()->tvShowImages(show, show->tvdbId(), types, m_locale);
+        Manager::instance()->fanartTv()->tvShowImages(show, show->tvdbId(), types, m_currentLanguage);
 
     } else {
         onLoadDone(show, {});
@@ -775,12 +776,12 @@ void TvShowMultiScrapeDialog::onScraperChanged(int index)
 void TvShowMultiScrapeDialog::onLanguageChanged()
 {
     const auto& meta = m_currentScraper->meta();
-    m_locale = ui->comboLanguage->currentLocale();
+    m_currentLanguage = ui->comboLanguage->currentLocale();
 
     // Save immediately.
-    ScraperSettings* scraperSettings = Settings::instance()->scraperSettings(meta.identifier);
-    scraperSettings->setLanguage(m_locale);
-    scraperSettings->save();
+    mediaelch::ScraperConfiguration* scraperSettings = Manager::instance()->scrapers().tvScraperConfig(meta.identifier);
+    MediaElch_Assert(scraperSettings != nullptr);
+    scraperSettings->setLanguage(m_currentLanguage);
 }
 
 void TvShowMultiScrapeDialog::onSeasonOrderChanged(int index)
@@ -839,8 +840,11 @@ void TvShowMultiScrapeDialog::setupLanguageDropdown()
     }
 
     const auto& meta = m_currentScraper->meta();
-    m_locale = Settings::instance()->scraperSettings(meta.identifier)->language(meta.defaultLocale);
-    ui->comboLanguage->setupLanguages(meta.supportedLanguages, m_locale);
+
+    mediaelch::ScraperConfiguration* scraperSettings = Manager::instance()->scrapers().tvScraperConfig(meta.identifier);
+    MediaElch_Assert(scraperSettings != nullptr);
+    m_currentLanguage = scraperSettings->language();
+    ui->comboLanguage->setupLanguages(meta.supportedLanguages, m_currentLanguage);
 }
 
 void TvShowMultiScrapeDialog::onEpisodeLoadDone()

@@ -13,7 +13,7 @@ namespace scraper {
 
 QString ImdbTv::ID = "imdbtv";
 
-ImdbTv::ImdbTv(QObject* parent) : TvScraper(parent)
+ImdbTv::ImdbTv(ImdbTvConfiguration& settings, QObject* parent) : TvScraper(parent), m_settings{settings}
 {
     m_meta.identifier = ImdbTv::ID;
     m_meta.name = "IMDb TV";
@@ -46,8 +46,8 @@ ImdbTv::ImdbTv(QObject* parent) : TvScraper(parent)
 
     m_meta.supportedSeasonOrders = {SeasonOrder::Aired};
     // The returned language is always based on the user's IP address.
-    m_meta.supportedLanguages = {Locale::NoLocale};
-    m_meta.defaultLocale = Locale::NoLocale;
+    m_meta.supportedLanguages = ImdbTvConfiguration::supportedLanguages();
+    m_meta.defaultLocale = ImdbTvConfiguration::defaultLocale();
 }
 
 const TvScraper::ScraperMeta& ImdbTv::meta() const

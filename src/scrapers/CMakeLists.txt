@@ -14,6 +14,7 @@ add_library(
   concert/ConcertSearchJob.cpp
   concert/tmdb/TmdbConcert.cpp
   concert/tmdb/TmdbConcertSearchJob.cpp
+  concert/tmdb/TmdbConcertConfiguration.cpp
   movie/MovieIdentifier.cpp
   movie/MovieMerger.cpp
   movie/MovieScraper.cpp
@@ -27,6 +28,7 @@ add_library(
   music/TheAudioDb.cpp
   music/TvTunes.cpp
   music/UniversalMusicScraper.cpp
+  music/UniversalMusicConfiguration.cpp
   ScraperError.cpp
   ScraperInfos.cpp
   ScraperInterface.cpp

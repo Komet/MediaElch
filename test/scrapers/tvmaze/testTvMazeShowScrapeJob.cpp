@@ -4,6 +4,7 @@
 #include "scrapers/tv_show/tvmaze/TvMaze.h"
 #include "scrapers/tv_show/tvmaze/TvMazeShowScrapeJob.h"
 #include "test/helpers/scraper_helpers.h"
+#include "test/mocks/settings/SettingsMock.h"
 #include "test/scrapers/tvmaze/testTvMazeHelper.h"
 
 #include <chrono>
@@ -29,7 +30,10 @@ TEST_CASE("TvMaze scrapes show details", "[show][TvMaze][load_data]")
 
     SECTION("Loads all details for The Simpsons")
     {
-        TvMaze tvdb;
+        SettingsMock mockSettings;
+        TvMazeConfiguration scraperConfig(mockSettings);
+        TvMaze tvdb(scraperConfig);
+
         ShowScrapeJob::Config config{ShowIdentifier("83"), Locale::English, tvdb.meta().supportedShowDetails};
 
         auto scrapeJob = std::make_unique<TvMazeShowScrapeJob>(getTvMazeApi(), config);
@@ -44,7 +48,10 @@ TEST_CASE("TvMaze scrapes show details", "[show][TvMaze][load_data]")
 
     SECTION("Loads all details for The Three Stooges")
     {
-        TvMaze tvdb;
+        SettingsMock mockSettings;
+        TvMazeConfiguration scraperConfig(mockSettings);
+        TvMaze tvdb(scraperConfig);
+
         ShowScrapeJob::Config config{ShowIdentifier("1751"), Locale::English, tvdb.meta().supportedShowDetails};
 
         auto scrapeJob = std::make_unique<TvMazeShowScrapeJob>(getTvMazeApi(), config);

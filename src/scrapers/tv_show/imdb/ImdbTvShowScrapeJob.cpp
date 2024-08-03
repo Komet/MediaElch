@@ -78,13 +78,11 @@ void ImdbTvShowScrapeJob::loadTvShow()
 
 bool ImdbTvShowScrapeJob::shouldLoad(ShowScraperInfo info)
 {
-    QMutexLocker locker(&m_networkMutex);
     return m_notLoaded.contains(info);
 }
 
 void ImdbTvShowScrapeJob::setIsLoaded(ShowScraperInfo info)
 {
-    QMutexLocker locker(&m_networkMutex);
     if (m_notLoaded.contains(info)) {
         m_notLoaded.remove(info);
     } else {
@@ -95,9 +93,7 @@ void ImdbTvShowScrapeJob::setIsLoaded(ShowScraperInfo info)
 
 void ImdbTvShowScrapeJob::checkIfDone()
 {
-    QMutexLocker locker(&m_networkMutex);
     if (m_notLoaded.isEmpty()) {
-        locker.unlock();
         emitFinished();
     }
 }

@@ -15,8 +15,11 @@ namespace mediaelch {
 namespace scraper {
 
 
-AebnConfiguration::AebnConfiguration(Settings& settings) : ScraperConfiguration(QString(AEBN::ID), settings)
+AebnConfiguration::AebnConfiguration(Settings& settings, QObject* parent) :
+    QObject(parent), ScraperConfiguration(QString(AEBN::ID), settings)
 {
+    settings.onSettingChanged(KEY_SCRAPERS_LANGUAGE, this, [this]() { emit languageChanged(language()); });
+    settings.onSettingChanged(KEY_SCRAPERS_GENRE, this, [this]() { emit genreIdChanged(genreId()); });
 }
 
 void AebnConfiguration::init()

@@ -3,7 +3,9 @@
 #include "data/tv_show/TvShowEpisode.h"
 #include "scrapers/movie/imdb/ImdbMovie.h"
 #include "scrapers/tv_show/tmdb/TmdbTv.h"
+#include "scrapers/tv_show/tmdb/TmdbTvConfiguration.h"
 #include "scrapers/tv_show/tmdb/TmdbTvEpisodeScrapeJob.h"
+#include "test/mocks/settings/SettingsMock.h"
 
 #include "test/helpers/scraper_helpers.h"
 #include "test/scrapers/tmdbtv/testTmdbTvHelper.h"
@@ -57,7 +59,9 @@ TEST_CASE("TmdbTv scrapes episode details for The Simpsons S12E19", "[episode][T
 
     SECTION("Loads all details for The Simpsons S12E19")
     {
-        TmdbTv tmdb;
+        SettingsMock mockedSettings;
+        TmdbTvConfiguration scraperConfig(mockedSettings);
+        TmdbTv tmdb(scraperConfig);
         EpisodeIdentifier id(showId.toString(), season, episodeNumber, SeasonOrder::Aired);
         EpisodeScrapeJob::Config config{id, Locale("en-US"), tmdb.meta().supportedEpisodeDetails};
 
@@ -72,7 +76,9 @@ TEST_CASE("TmdbTv scrapes episode details for The Simpsons S12E19", "[episode][T
 
     SECTION("Loads all details for The Simpsons S12E19 in another Language")
     {
-        TmdbTv tmdb;
+        SettingsMock mockedSettings;
+        TmdbTvConfiguration scraperConfig(mockedSettings);
+        TmdbTv tmdb(scraperConfig);
         EpisodeIdentifier id(showId.toString(), season, episodeNumber, SeasonOrder::Aired);
         EpisodeScrapeJob::Config config{id, Locale("de-DE"), tmdb.meta().supportedEpisodeDetails};
 

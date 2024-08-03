@@ -1,7 +1,4 @@
-add_library(
-  libmediaelch_mocks STATIC settings/MockScraperSettings.cpp
-                            settings/SettingsMock.cpp
-)
+add_library(libmediaelch_mocks STATIC settings/SettingsMock.cpp)
 
 target_link_libraries(
   libmediaelch_mocks

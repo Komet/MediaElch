@@ -12,6 +12,7 @@
 #include "ui/small_widgets/PlaceholderLineEdit.h"
 
 #include <QAction>
+#include <QLineEdit>
 
 SettingsWindow::SettingsWindow(QWidget* parent) :
     QMainWindow(parent),
@@ -55,8 +56,6 @@ SettingsWindow::SettingsWindow(QWidget* parent) :
     }
     ui->actionGlobal->setIcon(
         Manager::instance()->iconFont()->icon(ui->actionGlobal->property("iconName").toString(), m_buttonActiveColor));
-
-    loadSettings();
 }
 
 SettingsWindow::~SettingsWindow()
@@ -66,39 +65,54 @@ SettingsWindow::~SettingsWindow()
 
 void SettingsWindow::show()
 {
-    ui->exportSettings->show();
-    loadSettings();
-    if (Settings::instance()->settingsWindowSize().isValid()
-        && !Settings::instance()->settingsWindowPosition().isNull()) {
-        move(Settings::instance()->settingsWindowPosition());
-        resize(Settings::instance()->settingsWindowSize());
+    if (!isVisible()) {
+        loadSettings();
+        m_settings->beginTransaction();
+
+        ui->exportSettings->show();
+
+        if (Settings::instance()->settingsWindowSize().isValid()
+            && !Settings::instance()->settingsWindowPosition().isNull()) {
+            move(Settings::instance()->settingsWindowPosition());
+            resize(Settings::instance()->settingsWindowSize());
+        }
     }
     QMainWindow::show();
+    activateWindow();
+    raise();
 }
 
 void SettingsWindow::closeEvent(QCloseEvent* event)
 {
-    Q_UNUSED(event);
+    Settings::instance()->setSettingsWindowSize(size());
+    Settings::instance()->setSettingsWindowPosition(pos());
 
 #ifdef Q_OS_MAC
     saveSettings();
     emit sigSaved();
+#else
+    if (!m_saveCloseHandled) {
+        m_settings->abortTransaction();
+        m_settings->loadSettings();
+    }
 #endif
 
-    Settings::instance()->setSettingsWindowSize(size());
-    Settings::instance()->setSettingsWindowPosition(pos());
+    QMainWindow::closeEvent(event);
 }
 
 void SettingsWindow::onSave()
 {
     saveSettings();
+    m_saveCloseHandled = true;
     close();
     emit sigSaved();
 }
 
 void SettingsWindow::onCancel()
 {
+    m_settings->abortTransaction();
     m_settings->loadSettings();
+    m_saveCloseHandled = true;
     close();
 }
 
@@ -115,7 +129,6 @@ void SettingsWindow::onAction()
 
 void SettingsWindow::loadSettings()
 {
-    m_settings->loadSettings();
     ui->globalSettings->loadSettings();
     ui->exportSettings->loadSettings();
     ui->importSettings->loadSettings();
@@ -182,6 +195,7 @@ void SettingsWindow::saveSettings()
     ui->networkSettings->saveSettings();
 
     m_settings->saveSettings();
+    m_settings->commitTransaction();
 
     auto* manager = Manager::instance();
     auto& dirs = m_settings->directorySettings();

@@ -4,6 +4,7 @@
 #include "scrapers/tv_show/imdb/ImdbTv.h"
 #include "scrapers/tv_show/imdb/ImdbTvEpisodeScrapeJob.h"
 #include "test/helpers/scraper_helpers.h"
+#include "test/mocks/settings/SettingsMock.h"
 #include "test/scrapers/imdbtv/testImdbTvHelper.h"
 
 using namespace mediaelch;
@@ -52,7 +53,10 @@ TEST_CASE("ImdbTv scrapes episode details for The Simpsons S12E19", "[episode][I
 
     SECTION("Loads all details for The Simpsons S12E19")
     {
-        ImdbTv imdbTv;
+        SettingsMock mockSettings;
+        ImdbTvConfiguration scraperConfig(mockSettings);
+        ImdbTv imdbTv(scraperConfig);
+
         EpisodeIdentifier id(episodeId);
         EpisodeScrapeJob::Config config{id, Locale::English, imdbTv.meta().supportedEpisodeDetails};
 

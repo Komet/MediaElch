@@ -3,7 +3,6 @@
 #include "scrapers/movie/hotmovies/HotMoviesScrapeJob.h"
 #include "scrapers/movie/hotmovies/HotMoviesSearchJob.h"
 
-#include <QGridLayout>
 #include <QRegularExpression>
 #include <QTextDocumentFragment>
 
@@ -16,9 +15,9 @@ HotMovies::HotMovies(QObject* parent) : MovieScraper(parent)
     m_meta.name = "HotMovies";
     m_meta.description = tr("HotMovies is a video database for adult content.");
     m_meta.website = "https://www.hotmovies.com";
-    m_meta.termsOfService = "https://www.hotmovies.com";
-    m_meta.privacyPolicy = "https://www.hotmovies.com";
-    m_meta.help = "https://www.hotmovies.com";
+    m_meta.termsOfService = "https://help.hotmovies.com/help/about/terms-and-conditions/";
+    m_meta.privacyPolicy = "https://help.hotmovies.com/help/about/privacy-policy/";
+    m_meta.help = "https://help.hotmovies.com/";
     m_meta.supportedDetails = {MovieScraperInfo::Title,
         MovieScraperInfo::Rating,
         MovieScraperInfo::Released,
@@ -74,26 +73,6 @@ QSet<MovieScraperInfo> HotMovies::scraperNativelySupports()
 void HotMovies::changeLanguage(mediaelch::Locale /*locale*/)
 {
     // no-op: Only one language is supported and it is hard-coded.
-}
-
-bool HotMovies::hasSettings() const
-{
-    return false;
-}
-
-void HotMovies::loadSettings(ScraperSettings& settings)
-{
-    Q_UNUSED(settings);
-}
-
-void HotMovies::saveSettings(ScraperSettings& settings)
-{
-    Q_UNUSED(settings);
-}
-
-QWidget* HotMovies::settingsWidget()
-{
-    return nullptr;
 }
 
 QString HotMovies::decodeAndTrim(const QString& htmlEncodedString)

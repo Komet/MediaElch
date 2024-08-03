@@ -23,14 +23,9 @@ public:
     ELCH_NODISCARD mediaelch::scraper::MovieScrapeJob* loadMovie(
         mediaelch::scraper::MovieScrapeJob::Config config) override;
 
-    bool hasSettings() const override { return false; };
-    void loadSettings(ScraperSettings& settings) override { Q_UNUSED(settings) };
-    void saveSettings(ScraperSettings& settings) override { Q_UNUSED(settings) };
-
 public:
     QSet<MovieScraperInfo> scraperNativelySupports() override { return {}; }
     void changeLanguage(mediaelch::Locale locale) override { Q_UNUSED(locale) }
-    QWidget* settingsWidget() override { return nullptr; }
 
 public:
     Movie stub_movie;

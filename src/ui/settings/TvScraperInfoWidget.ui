@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TvScraperInfoWidget</class>
+ <widget class="QWidget" name="TvScraperInfoWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>612</width>
+    <height>439</height>
+   </rect>
+  </property>
+  <layout class="QFormLayout" name="formLayout">
+   <item row="0" column="0">
+    <widget class="QLabel" name="lblName">
+     <property name="text">
+      <string>Name</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QLabel" name="txtName">
+     <property name="font">
+      <font>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string notr="true">Scraper Name</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="lblId">
+     <property name="text">
+      <string>ID</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QLabel" name="txtId">
+     <property name="toolTip">
+      <string>Internal TV scraper ID. Used as key in MediaElch's settings.</string>
+     </property>
+     <property name="text">
+      <string notr="true">example-identifier</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="lblDescription">
+     <property name="text">
+      <string>Description</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QPlainTextEdit" name="txtDescription">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>180</width>
+       <height>120</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>600</width>
+       <height>360</height>
+      </size>
+     </property>
+     <property name="tabChangesFocus">
+      <bool>true</bool>
+     </property>
+     <property name="undoRedoEnabled">
+      <bool>false</bool>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+     <property name="plainText">
+      <string notr="true">This is the scraper
+description which may span
+multiple lines.
+</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="lblWebsite">
+     <property name="text">
+      <string>Website</string>
+     </property>
+     <property name="textFormat">
+      <enum>Qt::PlainText</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <widget class="QLabel" name="txtWebsite">
+     <property name="toolTip">
+      <string>The scraper's main website.</string>
+     </property>
+     <property name="text">
+      <string notr="true">&lt;a href=&quot;https://example.com&quot;&gt;https://example.com&lt;/a&gt;</string>
+     </property>
+     <property name="openExternalLinks">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0">
+    <widget class="QLabel" name="lblTOS">
+     <property name="text">
+      <string>Terms of Service</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="1">
+    <widget class="QLabel" name="txtTOS">
+     <property name="toolTip">
+      <string>Terms of service of the TV scraper.</string>
+     </property>
+     <property name="text">
+      <string notr="true">&lt;a href=&quot;https://example.com&quot;&gt;https://example.com&lt;/a&gt;</string>
+     </property>
+     <property name="openExternalLinks">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0">
+    <widget class="QLabel" name="lblPrivacyPolicy">
+     <property name="text">
+      <string>Privacy Policy</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="1">
+    <widget class="QLabel" name="txtPrivacyPolicy">
+     <property name="toolTip">
+      <string>Privacy Policy of the scraper.</string>
+     </property>
+     <property name="text">
+      <string notr="true">&lt;a href=&quot;https://example.com&quot;&gt;https://example.com&lt;/a&gt;</string>
+     </property>
+     <property name="openExternalLinks">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="0">
+    <widget class="QLabel" name="lblHelpUrl">
+     <property name="text">
+      <string>Help</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="1">
+    <widget class="QLabel" name="txtHelp">
+     <property name="toolTip">
+      <string>Where to get help for the TV scraper.</string>
+     </property>
+     <property name="text">
+      <string notr="true">&lt;a href=&quot;https://example.com&quot;&gt;https://example.com&lt;/a&gt;</string>
+     </property>
+     <property name="openExternalLinks">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

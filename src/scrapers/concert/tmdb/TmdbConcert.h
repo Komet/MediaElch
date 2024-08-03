@@ -3,14 +3,11 @@
 #include "network/NetworkManager.h"
 #include "scrapers/concert/ConcertScraper.h"
 #include "scrapers/tmdb/TmdbApi.h"
-#include "settings/ScraperSettings.h"
 
-#include <QComboBox>
 #include <QLocale>
 #include <QNetworkReply>
 #include <QObject>
 #include <QPointer>
-#include <QWidget>
 
 namespace mediaelch {
 namespace scraper {
@@ -32,11 +29,7 @@ public:
     ELCH_NODISCARD ConcertSearchJob* search(ConcertSearchJob::Config config) override;
 
     void loadData(TmdbId id, Concert* concert, QSet<ConcertScraperInfo> infos) override;
-    bool hasSettings() const override;
-    void loadSettings(ScraperSettings& settings) override;
-    void saveSettings(ScraperSettings& settings) override;
-    QSet<ConcertScraperInfo> scraperSupports() override;
-    QWidget* settingsWidget() override;
+
 
 private slots:
     void loadFinished();
@@ -54,8 +47,6 @@ private:
     QLocale m_locale;
     QString m_language2;
     QString m_baseUrl;
-    QPointer<QWidget> m_widget;
-    QComboBox* m_box;
 
     void setup();
     QString localeForTmdb() const;

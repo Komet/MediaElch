@@ -33,7 +33,7 @@ class MovieFileSearcher : public QObject
     Q_OBJECT
 public:
     explicit MovieFileSearcher(QObject* parent = nullptr);
-    ~MovieFileSearcher() override = default;
+    ~MovieFileSearcher() override;
 
     /// \brief Sets the directories to scan for movies. Not readable directories are skipped.
     void setMovieDirectories(const QVector<mediaelch::MediaDirectory>& directories);

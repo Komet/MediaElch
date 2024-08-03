@@ -62,11 +62,6 @@ public:
     void albumImages(Album* album, MusicBrainzId mbId, QSet<ImageType> types) override;
     void albumBooklets(MusicBrainzId mbId) override;
 
-    bool hasSettings() const override;
-    void loadSettings(ScraperSettings& settings) override;
-    void saveSettings(ScraperSettings& settings) override;
-    QWidget* settingsWidget() override;
-
 public slots:
     void searchMovie(QString searchStr, int limit = 0) override;
     void searchConcert(QString searchStr, int limit = 0) override;

@@ -12,8 +12,13 @@ add_library(
   ScraperSettingsWidget.cpp
   SettingsWindow.cpp
   TvShowSettingsWidget.cpp
-  TvScraperSettingsWidget.cpp
+  ScraperSettingsTable.cpp
+  TvScraperInfoWidget.cpp
+  MovieScraperInfoWidget.cpp
   CustomTvScraperSettingsWidget.cpp
+  ConcertScraperInfoWidget.cpp
+  MusicScraperInfoWidget.cpp
+  ImageProviderInfoWidget.cpp
 )
 
 target_link_libraries(

@@ -431,27 +431,6 @@ void TheTvDbImages::tvShowSeasonBackdrops(TvDbId tvdbId, SeasonNumber season, co
     loadTvShowData(tvdbId, ImageType::TvShowSeasonBackdrop, locale);
 }
 
-bool TheTvDbImages::hasSettings() const
-{
-    return false;
-}
-
-void TheTvDbImages::loadSettings(ScraperSettings& settings)
-{
-    Q_UNUSED(settings);
-    // no-op, settings loaded on-demand.
-}
-
-void TheTvDbImages::saveSettings(ScraperSettings& settings)
-{
-    Q_UNUSED(settings);
-}
-
-QWidget* TheTvDbImages::settingsWidget()
-{
-    return nullptr;
-}
-
 void TheTvDbImages::searchAlbum(QString artistName, QString searchStr, int limit)
 {
     Q_UNUSED(artistName);

@@ -5,6 +5,7 @@
 #include "log/Log.h"
 #include "network/NetworkRequest.h"
 #include "scrapers/image/FanartTv.h"
+#include "scrapers/image/FanartTvConfiguration.h"
 
 #include <QApplication>
 #include <QDomDocument>
@@ -18,7 +19,8 @@ namespace scraper {
 
 QString FanartTvMusic::ID = "images.fanarttv-music_lib";
 
-FanartTvMusic::FanartTvMusic(QObject* parent) : ImageProvider(parent)
+FanartTvMusic::FanartTvMusic(FanartTvConfiguration& settings, QObject* parent) :
+    ImageProvider(parent), m_settings{settings}
 {
     m_meta.identifier = ID;
     m_meta.name = "Fanart.tv Music";
@@ -33,34 +35,9 @@ FanartTvMusic::FanartTvMusic(QObject* parent) : ImageProvider(parent)
         ImageType::ArtistLogo,
         ImageType::ArtistThumb,
         ImageType::ArtistExtraFanart};
-    // Multiple languages, but no way to query for it and also no official list of languages.
-    m_meta.supportedLanguages = {
-        "bg",
-        "zh",
-        "hr",
-        "cs",
-        "da",
-        "nl",
-        "en",
-        "fi",
-        "fr",
-        "de",
-        "el",
-        "he",
-        "hu",
-        "it",
-        "ja",
-        "ko",
-        "no",
-        "pl",
-        "pt",
-        "ru",
-        "sl",
-        "es",
-        "sv",
-        "tr",
-    };
-    m_meta.defaultLocale = "en";
+
+    m_meta.supportedLanguages = FanartTvConfiguration::supportedLanguages();
+    m_meta.defaultLocale = FanartTvConfiguration::defaultLocale();
 
     m_apiKey = "842f7a5d1cc7396f142b8dd47c4ba42b";
 }
@@ -518,31 +495,11 @@ void FanartTvMusic::concertCdArts(TmdbId tmdbId)
     Q_UNUSED(tmdbId);
 }
 
-bool FanartTvMusic::hasSettings() const
-{
-    return false;
-}
-
-void FanartTvMusic::loadSettings(ScraperSettings& settings)
-{
-    m_meta.defaultLocale = settings.language(m_meta.defaultLocale);
-    m_personalApiKey = settings.valueString("PersonalApiKey", "");
-}
-
-void FanartTvMusic::saveSettings(ScraperSettings& settings)
-{
-    Q_UNUSED(settings);
-}
-
-QWidget* FanartTvMusic::settingsWidget()
-{
-    return nullptr;
-}
-
 QString FanartTvMusic::keyParameter()
 {
-    return (!m_personalApiKey.isEmpty()) ? QString("api_key=%1&client_key=%2").arg(m_apiKey).arg(m_personalApiKey)
-                                         : QString("api_key=%1").arg(m_apiKey);
+    QString personalKey = m_settings.personalApiKey();
+    return (!personalKey.isEmpty()) ? QStringLiteral("api_key=%1&client_key=%2").arg(m_apiKey).arg(personalKey)
+                                    : QStringLiteral("api_key=%1").arg(m_apiKey);
 }
 
 void FanartTvMusic::searchConcert(QString searchStr, int limit)

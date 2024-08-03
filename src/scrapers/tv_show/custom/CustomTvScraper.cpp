@@ -22,8 +22,8 @@ QVector<QString> CustomTvScraper::supportedScraperIds()
     return {TmdbTv::ID, ImdbTv::ID};
 }
 
-CustomTvScraper::CustomTvScraper(CustomTvScraperConfig config, QObject* parent) :
-    TvScraper(parent), m_customConfig{std::move(config)}
+CustomTvScraper::CustomTvScraper(CustomTvScraperConfiguration& config, QObject* parent) :
+    TvScraper(parent), m_customConfig{config}
 {
     m_meta.name = tr("Custom TV scraper");
     m_meta.identifier = "custom_tv_scraper";

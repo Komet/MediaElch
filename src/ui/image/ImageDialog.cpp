@@ -80,7 +80,7 @@ ImageDialog::ImageDialog(QWidget* parent) : QDialog(parent), ui(new Ui::ImageDia
     ui->buttonZoomOut->setIcon(QIcon(zoomOut));
     ui->buttonZoomIn->setIcon(QIcon(zoomIn));
 
-    const auto& imageProviders = Manager::instance()->imageProviders();
+    const auto& imageProviders = Manager::instance()->scrapers().imageProviders();
     for (ImageProvider* provider : imageProviders) {
         connect(provider, &ImageProvider::sigSearchDone, this, &ImageDialog::onSearchFinished);
         connect(provider, &ImageProvider::sigImagesLoaded, this, &ImageDialog::onProviderImagesLoaded);
@@ -112,7 +112,7 @@ int ImageDialog::execWithType(ImageType type)
             ->value(QStringLiteral("ImageDialog/PreviewSize_%1").arg(static_cast<int>(m_type)), 8)
             .toInt());
 
-    m_providers = Manager::instance()->imageProviders(type);
+    m_providers = Manager::instance()->scrapers().imageProviders(type);
     // show image widget
     ui->stackedWidget->setCurrentIndex(1);
 
@@ -667,12 +667,12 @@ void ImageDialog::onProviderChanged(int index)
     if (isDefaultProvider || provider == nullptr || provider->meta().supportedLanguages.isEmpty()) {
         ui->comboLanguage->setInvalid();
         ui->comboLanguage->setEnabled(false);
+
     } else {
-        auto* scraperSettings = Settings::instance()->scraperSettings(provider->meta().identifier);
-        mediaelch::Locale selectedLocale = scraperSettings != nullptr
-                                               ? scraperSettings->language(provider->meta().defaultLocale)
-                                               : provider->meta().defaultLocale;
-        ui->comboLanguage->setupLanguages(provider->meta().supportedLanguages, selectedLocale);
+        mediaelch::ScraperConfiguration* providerSettings =
+            Manager::instance()->scrapers().imageProviderConfig(provider->meta().identifier);
+        MediaElch_Assert(providerSettings != nullptr);
+        ui->comboLanguage->setupLanguages(provider->meta().supportedLanguages, providerSettings->language());
         ui->comboLanguage->setEnabled(true);
     }
 
@@ -693,10 +693,16 @@ void ImageDialog::onLanguageChanged(int index)
     if (index < 0 || index >= ui->comboLanguage->count()) {
         return;
     }
-
     const bool isDefaultProvider = ui->imageProvider->itemData(index, DataRole::isDefaultProvider).toBool();
-
     if (!isDefaultProvider) {
+        const auto& meta = m_currentProvider->meta();
+        mediaelch::Locale lang = ui->comboLanguage->currentLocale();
+        // Save immediately.
+        mediaelch::ScraperConfiguration* scraperSettings =
+            Manager::instance()->scrapers().imageProviderConfig(meta.identifier);
+        MediaElch_Assert(scraperSettings != nullptr);
+        scraperSettings->setLanguage(lang);
+
         ui->searchTerm->setFocus();
         onSearch();
     }

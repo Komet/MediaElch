@@ -6,7 +6,6 @@ add_library(
   DirectorySettings.cpp
   KodiSettings.cpp
   Settings.cpp
-  ScraperSettings.cpp
   AdvancedSettingsXmlReader.cpp
   NetworkSettings.cpp
 )

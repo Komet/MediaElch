@@ -1,7 +1,7 @@
 #pragma once
 
 #include "scrapers/tv_show/TvScraper.h"
-#include "scrapers/tv_show/custom/CustomTvScraperConfig.h"
+#include "scrapers/tv_show/custom/CustomTvScraperConfiguration.h"
 
 namespace mediaelch {
 namespace scraper {
@@ -20,7 +20,7 @@ public:
     static QVector<QString> supportedScraperIds();
 
 public:
-    CustomTvScraper(CustomTvScraperConfig config, QObject* parent = nullptr);
+    CustomTvScraper(CustomTvScraperConfiguration& config, QObject* parent = nullptr);
     ~CustomTvScraper() override = default;
 
     const ScraperMeta& meta() const override;
@@ -41,7 +41,7 @@ private:
 
 private:
     ScraperMeta m_meta;
-    CustomTvScraperConfig m_customConfig;
+    CustomTvScraperConfiguration& m_customConfig;
 };
 
 

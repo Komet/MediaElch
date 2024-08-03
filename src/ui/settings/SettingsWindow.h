@@ -35,10 +35,11 @@ private slots:
     void onCancel();
 
 private:
-    Ui::SettingsWindow* ui = nullptr;
-    Settings* m_settings = nullptr;
+    Ui::SettingsWindow* ui{nullptr};
+    Settings* m_settings{nullptr};
     QColor m_buttonColor;
     QColor m_buttonActiveColor;
+    bool m_saveCloseHandled{false};
 
     void loadSettings();
     void saveSettings();

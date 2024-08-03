@@ -4,7 +4,6 @@
 #include "scrapers/movie/videobuster/VideoBusterApi.h"
 
 #include <QObject>
-#include <QWidget>
 
 namespace mediaelch {
 namespace scraper {
@@ -25,14 +24,9 @@ public:
     ELCH_NODISCARD MovieScrapeJob* loadMovie(MovieScrapeJob::Config config) override;
 
 public:
-    bool hasSettings() const override;
-    void loadSettings(ScraperSettings& settings) override;
-    void saveSettings(ScraperSettings& settings) override;
-
     QSet<MovieScraperInfo> scraperNativelySupports() override;
 
     void changeLanguage(mediaelch::Locale locale) override;
-    QWidget* settingsWidget() override;
 
 private:
     ScraperMeta m_meta;

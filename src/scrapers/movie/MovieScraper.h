@@ -8,7 +8,6 @@
 #include "scrapers/movie/MovieIdentifier.h"
 #include "scrapers/movie/MovieScrapeJob.h"
 #include "scrapers/movie/MovieSearchJob.h"
-#include "settings/ScraperSettings.h"
 
 #include <QMap>
 #include <QString>
@@ -89,13 +88,14 @@ public:
     /// \param config Configuration for the scrape job, e.g. language and movie ID.
     ELCH_NODISCARD virtual MovieScrapeJob* loadMovie(MovieScrapeJob::Config config) = 0;
 
+signals:
+    void initialized(bool isInitialized); // TODO: Implement in scrapers
+
 public:
     /// \todo Remove
     virtual QSet<MovieScraperInfo> scraperNativelySupports() = 0;
     /// \todo Remove
     virtual void changeLanguage(mediaelch::Locale locale) = 0;
-    /// \todo Remove and move into own settings classes.
-    virtual QWidget* settingsWidget() = 0;
 };
 
 } // namespace scraper

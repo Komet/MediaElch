@@ -9,10 +9,10 @@
 #include "settings/ImportSettings.h"
 #include "settings/KodiSettings.h"
 #include "settings/NetworkSettings.h"
-#include "settings/ScraperSettings.h"
 #include "ui/renamer/RenamerDialog.h"
 
 #include <QHash>
+#include <QMap>
 #include <QObject>
 #include <QPoint>
 #include <QSettings>
@@ -61,6 +61,7 @@ public:
     };
 
     using Items = QMap<Key, Item>;
+    using Actions = QMap<Key, QVector<QPair<QObject*, std::function<void()>>>>;
 
     /// Get the value under the given key.
     /// Use in type-safe interfaces built on top of Settings.
@@ -68,9 +69,23 @@ public:
     virtual void setValue(const Key& key, const Value& value);
     virtual void setDefaultValue(const Key& key, const Value& value);
 
-public:
-    ScraperSettings* scraperSettings(const QString& id);
+    const Items& items() const;
 
+    void onSettingChanged(Key key, QObject* context, std::function<void()> callback);
+
+    void beginTransaction();
+    void commitTransaction();
+    void abortTransaction();
+
+private:
+    ELCH_NODISCARD Item& findItem(const Key& key);
+    void addItem(Item item);
+    void emitChangeFor(const Settings::Key& key) const;
+    void writeValueToDisk(const Key& key, const Value& value);
+    void readAllItemsFromDisk();
+
+    // TODO: Move these settings into custom ones
+public:
     QSize mainWindowSize();
     QPoint mainWindowPosition();
     QSize settingsWindowSize();
@@ -252,7 +267,6 @@ private:
     QMap<MovieScraperInfo, QString> m_customMovieScraper;
     QMap<ShowScraperInfo, QString> m_customTvScraperShow;
     QMap<EpisodeScraperInfo, QString> m_customTvScraperEpisode;
-    std::unordered_map<std::string, std::unique_ptr<ScraperSettings>> m_scraperSettings;
     int m_currentMovieScraper = 0;
     QString m_currentTvShowScraper;
     QString m_currentConcertScraper;
@@ -271,5 +285,8 @@ private:
     QPoint fixWindowPosition(QPoint p);
 
 private:
-    Items m_items; // TODO: Actually use as cache
+    Items m_items;
+    Items m_localItems;
+    Actions m_callbacks;
+    bool m_isTransactionInProgress{false};
 };

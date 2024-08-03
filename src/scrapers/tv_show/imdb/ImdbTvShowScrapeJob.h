@@ -29,8 +29,6 @@ private:
     QSet<ShowScraperInfo> m_notLoaded;
     QSet<ShowScraperInfo> m_supports;
     ImdbId m_id;
-    /// \brief Lock for the list of loaded details.
-    QMutex m_networkMutex;
 };
 
 } // namespace scraper

@@ -8,11 +8,9 @@
 #include "scrapers/music/MusicBrainz.h"
 #include "scrapers/music/MusicScraper.h"
 #include "scrapers/music/TheAudioDb.h"
+#include "scrapers/music/UniversalMusicConfiguration.h"
 
-#include <QComboBox>
 #include <QObject>
-#include <QPointer>
-#include <QWidget>
 
 class LanguageCombo;
 
@@ -57,7 +55,10 @@ class UniversalArtistScrapeJob final : public ArtistScrapeJob
     Q_OBJECT
 public:
     // TODO: get rid of scraper parameter
-    explicit UniversalArtistScrapeJob(UniversalMusicScraper* scraper, Config config, QObject* parent = nullptr);
+    explicit UniversalArtistScrapeJob(UniversalMusicScraper& scraper,
+        UniversalMusicConfiguration& settings,
+        Config config,
+        QObject* parent = nullptr);
 
 private:
     void doStart() override;
@@ -80,7 +81,8 @@ private slots:
     void onArtistLoadFinished();
 
 private:
-    UniversalMusicScraper* m_scraper;
+    UniversalMusicScraper& m_scraper;
+    UniversalMusicConfiguration& m_settings;
     QVector<DownloadElement> m_artistDownloads;
     bool m_discogsFinished{false}; // TODO: Remove
     Artist m_discogsArtist;        // TODO: Remove
@@ -91,7 +93,10 @@ class UniversalAlbumScrapeJob final : public AlbumScrapeJob
     Q_OBJECT
 public:
     // TODO: get rid of scraper parameter
-    explicit UniversalAlbumScrapeJob(UniversalMusicScraper* scraper, Config config, QObject* parent = nullptr);
+    explicit UniversalAlbumScrapeJob(UniversalMusicScraper& scraper,
+        UniversalMusicConfiguration& settings,
+        Config config,
+        QObject* parent = nullptr);
 
 private:
     void doStart() override;
@@ -114,7 +119,8 @@ private slots:
     void onAlbumLoadFinished();
 
 private:
-    UniversalMusicScraper* m_scraper;
+    UniversalMusicScraper& m_scraper;
+    UniversalMusicConfiguration& m_settings;
     QVector<DownloadElement> m_albumDownloads;
     bool m_discogsFinished{false}; // TODO: Remove
     Album m_discogsAlbum;          // TODO: Remove
@@ -127,7 +133,7 @@ public:
     static constexpr const char* ID = "UniversalMusicScraper";
 
 public:
-    explicit UniversalMusicScraper(QObject* parent = nullptr);
+    explicit UniversalMusicScraper(UniversalMusicConfiguration& settings, QObject* parent = nullptr);
     ~UniversalMusicScraper() override;
 
     ELCH_NODISCARD const ScraperMeta& meta() const override;
@@ -140,11 +146,6 @@ public:
 
     ELCH_NODISCARD ArtistScrapeJob* loadArtist(ArtistScrapeJob::Config config) override;
     ELCH_NODISCARD AlbumScrapeJob* loadAlbum(AlbumScrapeJob::Config config) override;
-
-    ELCH_NODISCARD bool hasSettings() const override;
-    void loadSettings(ScraperSettings& settings) override;
-    void saveSettings(ScraperSettings& settings) override;
-    QWidget* settingsWidget() override;
 
 public:
     /// \todo Remove
@@ -165,10 +166,7 @@ public:
 
 private:
     ScraperMeta m_meta;
-    QPointer<QWidget> m_widget;
-    QString m_prefer;
-    LanguageCombo* m_box{nullptr};
-    QComboBox* m_preferBox{nullptr};
+    UniversalMusicConfiguration& m_settings;
 
     mediaelch::scraper::MusicBrainzApi m_musicBrainzApi;
     mediaelch::scraper::MusicBrainz m_musicBrainz;
