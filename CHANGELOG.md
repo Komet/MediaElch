@@ -26,7 +26,9 @@
 - Possible crash when clicking on empty episode thumbnails.
 - ADE: Search works again (#1737)
 - ADE/HM: Back cover is also downloaded (#1743)
-- UI: Show movies' full release-date, not just the year (#1749)
+- UI:
+  - Show movies' full release-date, not just the year (#1749)
+  - The language dropdown box was not sorted alphabetically.
 
 ### Changed
 

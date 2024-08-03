@@ -19,7 +19,8 @@ void LanguageCombo::setupLanguages(const QVector<mediaelch::Locale>& locales, co
     blockSignals(true);
     clear(); // Clear old entries (if there are any)
 
-    std::vector<std::pair<QString, QString>> entries(locales.size());
+    std::vector<std::pair<QString, QString>> entries;
+    entries.reserve(static_cast<std::size_t>(locales.size()));
     for (const mediaelch::Locale& lang : locales) {
         entries.emplace_back(lang.languageTranslated(), lang.toString());
     }
@@ -31,8 +32,8 @@ void LanguageCombo::setupLanguages(const QVector<mediaelch::Locale>& locales, co
             return QString::localeAwareCompare(lhs.first, rhs.first) < 0;
         });
 
-    for (const mediaelch::Locale& lang : locales) {
-        addItem(lang.languageTranslated(), lang.toString());
+    for (const std::pair<QString, QString>& pair : entries) {
+        addItem(pair.first, pair.second);
     }
 
     const int index = findData(selected.toString(), Qt::UserRole);

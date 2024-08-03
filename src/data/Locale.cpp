@@ -127,7 +127,7 @@ QString Locale::languageTranslated() const
     }
     if (localeTextMap.contains(m_lang)) {
         if (hasCountry()) {
-            return QStringLiteral("%1 (%2)").arg(localeTextMap[language()], m_country);
+            return QStringLiteral("%1 (%2)").arg(localeTextMap[m_lang], m_country);
         }
         return localeTextMap[m_lang];
     }
