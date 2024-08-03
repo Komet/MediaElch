@@ -44,10 +44,12 @@ DownloadsWidget::DownloadsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::
     ui->labelImportable->setFont(titleFont);
 #endif
 
-    m_extractor = new Extractor(this);
+    m_importSettings = new ImportSettings(*Settings::instance(), this);
+    m_importSettings->init();
+    m_extractor = new Extractor(*m_importSettings, this);
     // TODO: Don't use "this", because we don't want to inherit the stylesheet,
     // but we can't pass "nullptr", because otherwise there won't be a modal.
-    m_makeMkvDialog = new MakeMkvDialog(MainWindow::instance());
+    m_makeMkvDialog = new MakeMkvDialog(*m_importSettings, MainWindow::instance());
 
     connect(m_extractor, &Extractor::sigError, this, &DownloadsWidget::onExtractorError);
     connect(m_extractor, &Extractor::sigFinished, this, &DownloadsWidget::onExtractorFinished);
@@ -224,7 +226,7 @@ void DownloadsWidget::onExtractorFinished(QString baseName, bool success)
             ui->tablePackages->setCellWidget(row, 4, label);
         }
     }
-    if (success && Settings::instance()->deleteArchives()) {
+    if (success && m_importSettings->deleteArchives()) {
         onDelete(baseName);
     }
 
@@ -459,7 +461,7 @@ int DownloadsWidget::hasNewItems()
 
 void DownloadsWidget::onImportWithMakeMkv()
 {
-    if (!QFileInfo(Settings::instance()->importSettings().makeMkvCon()).isExecutable()) {
+    if (!QFileInfo(m_importSettings->makeMkvCon()).isExecutable()) {
         QMessageBox::warning(this,
             tr("makemkvcon missing"),
             tr("Please set the correct path to makemkvcon in MediaElch's settings."),

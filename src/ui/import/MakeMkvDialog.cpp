@@ -9,7 +9,8 @@
 #include <QMessageBox>
 #include <QTimer>
 
-MakeMkvDialog::MakeMkvDialog(QWidget* parent) : QDialog(parent), ui(new Ui::MakeMkvDialog)
+MakeMkvDialog::MakeMkvDialog(ImportSettings& settings, QWidget* parent) :
+    QDialog(parent), ui(new Ui::MakeMkvDialog), m_settings{settings}
 {
     ui->setupUi(this);
     ui->stackedWidget->setAnimation(QEasingCurve::Linear);
@@ -23,7 +24,7 @@ MakeMkvDialog::MakeMkvDialog(QWidget* parent) : QDialog(parent), ui(new Ui::Make
     loadingMovie->start();
     ui->loading->setMovie(loadingMovie);
 
-    m_makeMkvCon = new MakeMkvCon(Settings::instance()->importSettings(), this);
+    m_makeMkvCon = new MakeMkvCon(m_settings, this);
 
     // clang-format off
     connect(m_makeMkvCon, &MakeMkvCon::sigMessage, ui->messages, &QPlainTextEdit::appendPlainText);

@@ -1,24 +1,28 @@
 #pragma once
 
-#include <QSettings>
+#include "settings/Settings.h"
+
+#include <QObject>
 #include <QString>
 
-class ImportSettings
+class ImportSettings : public QObject
 {
+    Q_OBJECT
 public:
-    void loadSettings();
-    void saveSettings();
-    void setQSettings(QSettings* settings) { m_settings = settings; }
+    explicit ImportSettings(Settings& settings, QObject* parent = nullptr);
+    ~ImportSettings() override;
 
-    QString unrar() const;
-    QString makeMkvCon() const;
+    void init();
 
+    ELCH_NODISCARD QString unrar() const;
     void setUnrar(QString unrar);
+
+    ELCH_NODISCARD QString makeMkvCon() const;
     void setMakeMkvCon(QString makeMkvCon);
 
-private:
-    QSettings* m_settings = nullptr;
+    ELCH_NODISCARD bool deleteArchives() const;
+    void setDeleteArchives(bool deleteArchives);
 
-    QString m_unrar;
-    QString m_makeMkvCon;
+private:
+    Settings& m_settings;
 };
