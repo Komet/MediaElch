@@ -32,7 +32,6 @@ TvScraper* CustomTvScraperConfiguration::scraperForId(const QString& id) const
     }
     return nullptr;
 }
-
 void CustomTvScraperConfiguration::init()
 {
     // TODO

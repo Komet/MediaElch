@@ -12,8 +12,6 @@
 
 #include <QApplication>
 #include <QDesktopServices>
-#include <QMutex>
-#include <QMutexLocker>
 #include <QStandardPaths>
 
 static constexpr char KEY_ALL_DATA_FILES[] = "AllDataFiles";
@@ -22,7 +20,6 @@ static constexpr char KEY_CHECK_FOR_UPDATES[] = "CheckForUpdates";
 static constexpr char KEY_CUSTOM_MOVIE_SCRAPER[] = "CustomMovieScraper";
 static constexpr char KEY_CUSTOM_TV_SCRAPER_SHOW[] = "CustomTvScraperShow";
 static constexpr char KEY_CUSTOM_TV_SCRAPER_EPISODE[] = "CustomTvScraperEpisode";
-static constexpr char KEY_DEBUG_MODE_ACTIVATED[] = "DebugModeActivated";
 static constexpr char KEY_DONATED[] = "Donated";
 static constexpr char KEY_THEME[] = "Theme";
 
@@ -35,11 +32,7 @@ static constexpr char KEY_DOWNLOADS_MAKE_MKV_DIALOG_POSITION[] = "Downloads/Make
 static constexpr char KEY_DOWNLOADS_MAKE_MKV_DIALOG_SIZE[] = "Downloads/MakeMkvDialogSize";
 static constexpr char KEY_EXCLUDE_WORDS[] = "excludeWords";
 static constexpr char KEY_IGNORE_ARTICLES_WHEN_SORTING[] = "IgnoreArticlesWhenSorting";
-static constexpr char KEY_IS_MAIN_WINDOW_MAXIMIZED[] = "MainWindowMaximized";
 static constexpr char KEY_LAST_IMAGE_PATH[] = "LastImagePath";
-static constexpr char KEY_MAIN_SPLITTER_STATE[] = "MainSplitterState";
-static constexpr char KEY_MAIN_WINDOW_POSITION[] = "MainWindowPosition";
-static constexpr char KEY_MAIN_WINDOW_SIZE[] = "MainWindowSize";
 static constexpr char KEY_MEDIA_STATUS_COLUMN[] = "MediaStatusColumn";
 static constexpr char KEY_MOVIE_DUPLICATES_SPLITTER_STATE[] = "MovieDuplicatesSplitterState";
 static constexpr char KEY_MOVIE_IGNORE_DUPLICATE_ORIGINAL_TITLE[] = "Movies/IgnoreDuplicateOriginalTitle";
@@ -202,12 +195,8 @@ void Settings::loadSettings()
     readAllItemsFromDisk();
 
     // Globals
-    m_mainWindowSize = settings()->value(KEY_MAIN_WINDOW_SIZE).toSize();
     m_settingsWindowSize = settings()->value(KEY_SETTINGS_WINDOW_SIZE).toSize();
-    m_mainWindowMaximized = settings()->value(KEY_IS_MAIN_WINDOW_MAXIMIZED).toBool();
-    m_mainSplitterState = settings()->value(KEY_MAIN_SPLITTER_STATE).toByteArray();
     m_movieDuplicatesSplitterState = settings()->value(KEY_MOVIE_DUPLICATES_SPLITTER_STATE).toByteArray();
-    m_debugModeActivated = settings()->value(KEY_DEBUG_MODE_ACTIVATED, false).toBool();
     m_autoLoadStreamDetails = settings()->value(KEY_AUTO_LOAD_STREAM_DETAILS, true).toBool();
     m_usePlotForOutline = settings()->value(KEY_USE_PLOT_FOR_OUTLINE, true).toBool();
     m_ignoreDuplicateOriginalTitle = settings()->value(KEY_MOVIE_IGNORE_DUPLICATE_ORIGINAL_TITLE, true).toBool();
@@ -227,7 +216,6 @@ void Settings::loadSettings()
     m_lastImagePath = mediaelch::DirectoryPath(settings()->value(KEY_LAST_IMAGE_PATH, QDir::homePath()).toString());
 
     // Window positions
-    m_mainWindowPosition = fixWindowPosition(settings()->value(KEY_MAIN_WINDOW_POSITION).toPoint());
     m_settingsWindowPosition = fixWindowPosition(settings()->value(KEY_SETTINGS_WINDOW_POSITION).toPoint());
     m_importDialogPosition = fixWindowPosition(settings()->value(KEY_DOWNLOADS_IMPORT_DIALOG_POSITION).toPoint());
     m_makeMkvDialogPosition = fixWindowPosition(settings()->value(KEY_DOWNLOADS_MAKE_MKV_DIALOG_POSITION).toPoint());
@@ -382,7 +370,6 @@ void Settings::loadSettings()
 
 void Settings::saveSettings()
 {
-    settings()->setValue(KEY_DEBUG_MODE_ACTIVATED, m_debugModeActivated);
     settings()->setValue(KEY_AUTO_LOAD_STREAM_DETAILS, m_autoLoadStreamDetails);
 
     settings()->setValue(KEY_USE_YOUTUBE_PLUGIN_URL, m_youtubePluginUrls);
@@ -486,24 +473,6 @@ void Settings::saveSettings()
 
 /*** GETTER ***/
 
-/**
- * \brief Returns the stored size of the main window
- * \return Size of the main window
- */
-QSize Settings::mainWindowSize()
-{
-    return m_mainWindowSize;
-}
-
-/**
- * \brief Returns the stored position of the main window
- * \return Position of the main window
- */
-QPoint Settings::mainWindowPosition()
-{
-    return m_mainWindowPosition;
-}
-
 QSize Settings::settingsWindowSize()
 {
     return m_settingsWindowSize;
@@ -532,20 +501,6 @@ QSize Settings::makeMkvDialogSize()
 QPoint Settings::makeMkvDialogPosition()
 {
     return m_makeMkvDialogPosition;
-}
-
-bool Settings::mainWindowMaximized() const
-{
-    return m_mainWindowMaximized;
-}
-
-/**
- * \brief Returns the state of the main splitter
- * \return State of the main splitter
- */
-QByteArray Settings::mainSplitterState()
-{
-    return m_mainSplitterState;
 }
 
 QByteArray Settings::movieDuplicatesSplitterState()
@@ -583,14 +538,6 @@ QStringList Settings::excludeWords()
     return m_excludeWords;
 }
 
-/**
- * \brief Returns the state of the debug mode
- * \return Debug mode active or not
- */
-bool Settings::debugModeActivated() const
-{
-    return m_debugModeActivated;
-}
 
 /**
  * \brief Returns true if urls youtube trailers should be converted
@@ -651,26 +598,6 @@ bool Settings::ignoreDuplicateOriginalTitle() const
 
 /*** SETTER ***/
 
-/**
- * \brief Sets the size of the main window
- * \param mainWindowSize Size of the main window
- */
-void Settings::setMainWindowSize(QSize mainWindowSize)
-{
-    m_mainWindowSize = mainWindowSize;
-    settings()->setValue(KEY_MAIN_WINDOW_SIZE, mainWindowSize);
-}
-
-/**
- * \brief Sets the position of the main window
- * \param mainWindowPosition Position of the main window
- */
-void Settings::setMainWindowPosition(QPoint mainWindowPosition)
-{
-    m_mainWindowPosition = mainWindowPosition;
-    settings()->setValue(KEY_MAIN_WINDOW_POSITION, mainWindowPosition);
-}
-
 void Settings::setSettingsWindowSize(QSize settingsWindowSize)
 {
     m_settingsWindowSize = settingsWindowSize;
@@ -707,21 +634,6 @@ void Settings::setMakeMkvDialogPosition(QPoint position)
     settings()->setValue(KEY_DOWNLOADS_MAKE_MKV_DIALOG_POSITION, position);
 }
 
-void Settings::setMainWindowMaximized(bool max)
-{
-    m_mainWindowMaximized = max;
-    settings()->setValue(KEY_IS_MAIN_WINDOW_MAXIMIZED, max);
-}
-
-/**
- * \brief Sets the state of the main splitter
- * \param state State of the splitter
- */
-void Settings::setMainSplitterState(QByteArray state)
-{
-    m_mainSplitterState = state;
-    settings()->setValue(KEY_MAIN_SPLITTER_STATE, state);
-}
 
 void Settings::setMovieDuplicatesSplitterState(QByteArray state)
 {
@@ -737,11 +649,6 @@ void Settings::setMovieDuplicatesSplitterState(QByteArray state)
 void Settings::setExcludeWords(QString words)
 {
     m_excludeWords = words.remove(" ").split(",", ElchSplitBehavior::SkipEmptyParts);
-}
-
-void Settings::setDebugModeActivated(bool enabled)
-{
-    m_debugModeActivated = enabled;
 }
 
 /**

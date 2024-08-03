@@ -42,7 +42,6 @@ TmdbTv::TmdbTv(TmdbTvConfiguration& settings, QObject* parent) : TvScraper(paren
         ShowScraperInfo::Network,
         ShowScraperInfo::SeasonPoster};
     m_meta.supportedEpisodeDetails = {
-        //
         EpisodeScraperInfo::Actors,
         // EpisodeScraperInfo::Certification,
         EpisodeScraperInfo::Director,

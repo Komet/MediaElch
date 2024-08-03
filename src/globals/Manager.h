@@ -73,6 +73,7 @@ private:
     QVector<MediaCenterInterface*> m_mediaCentersConcert;
     QVector<mediaelch::scraper::TrailerProvider*> m_trailerProviders;
 
+    Settings* m_settings = nullptr;
     mediaelch::ScraperManager* m_scraperManager = nullptr;
     mediaelch::MovieFileSearcher* m_movieFileSearcher = nullptr;
     TvShowFileSearcher* m_tvShowFileSearcher = nullptr;

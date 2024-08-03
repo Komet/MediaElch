@@ -86,16 +86,12 @@ private:
 
     // TODO: Move these settings into custom ones
 public:
-    QSize mainWindowSize();
-    QPoint mainWindowPosition();
     QSize settingsWindowSize();
     QPoint settingsWindowPosition();
     QSize importDialogSize();
     QPoint importDialogPosition();
     QSize makeMkvDialogSize();
     QPoint makeMkvDialogPosition();
-    bool mainWindowMaximized() const;
-    QByteArray mainSplitterState();
     QByteArray movieDuplicatesSplitterState();
 
     DirectorySettings& directorySettings();
@@ -105,7 +101,6 @@ public:
 
     bool deleteArchives() const;
     QStringList excludeWords();
-    bool debugModeActivated() const;
     bool useYoutubePluginUrls() const;
     bool downloadActorImages() const;
     QVector<DataFile> dataFiles(DataFileType dataType);
@@ -158,24 +153,18 @@ public:
 
     bool autoLoadStreamDetails() const;
 
-    void setMainWindowSize(QSize mainWindowSize);
-    void setMainWindowPosition(QPoint mainWindowPosition);
     void setSettingsWindowSize(QSize settingsWindowSize);
     void setSettingsWindowPosition(QPoint settingsWindowPosition);
     void setImportDialogSize(QSize size);
     void setImportDialogPosition(QPoint position);
     void setMakeMkvDialogSize(QSize size);
     void setMakeMkvDialogPosition(QPoint position);
-    void setMainWindowMaximized(bool max);
-    void setMainSplitterState(QByteArray state);
     void setMovieDuplicatesSplitterState(QByteArray state);
 
     void setDeleteArchives(bool deleteArchives);
     void setExcludeWords(QString words);
     void setUseYoutubePluginUrls(bool use);
     void setDownloadActorImages(bool download);
-    void setDebugModeActivated(bool enabled);
-    void setDebugLogPath(mediaelch::FilePath path);
     void setAutoLoadStreamDetails(bool autoLoad);
     void setDataFiles(QVector<DataFile> files);
     void setUsePlotForOutline(bool use);
@@ -238,18 +227,13 @@ private:
 
     bool m_deleteArchives = false;
     QStringList m_excludeWords;
-    QSize m_mainWindowSize;
-    QPoint m_mainWindowPosition;
     QSize m_settingsWindowSize;
     QPoint m_settingsWindowPosition;
     QSize m_importDialogSize;
     QPoint m_importDialogPosition;
     QSize m_makeMkvDialogSize;
     QPoint m_makeMkvDialogPosition;
-    bool m_mainWindowMaximized = false;
-    QByteArray m_mainSplitterState;
     QByteArray m_movieDuplicatesSplitterState;
-    bool m_debugModeActivated = false;
     bool m_youtubePluginUrls = false;
     bool m_downloadActorImages = false;
     bool m_autoLoadStreamDetails = false;

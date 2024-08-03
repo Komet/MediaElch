@@ -45,7 +45,6 @@ QVector<Locale> TmdbConcertConfiguration::supportedLanguages()
     // For officially supported languages, see:
     // https://developers.themoviedb.org/3/configuration/get-primary-translations
     return QVector<Locale>({
-        //
         "ar-AE",
         "ar-SA",
         "be-BY",

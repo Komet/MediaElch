@@ -20,10 +20,7 @@
 #include "ui/settings/SettingsWindow.h"
 #include "ui/support/SupportDialog.h"
 
-#include <QCheckBox>
 #include <QDesktopServices>
-#include <QDir>
-#include <QMessageBox>
 #include <QPainter>
 #include <QShortcut>
 #include <QTimer>
@@ -33,9 +30,80 @@
 #    include <QMenuBar>
 #endif
 
+namespace {
+
+static constexpr char moduleName[] = "ui";
+static const Settings::Key KEY_MAIN_SPLITTER_STATE(moduleName, "MainSplitterState");
+static const Settings::Key KEY_MAIN_WINDOW_POSITION(moduleName, "MainWindowPosition");
+static const Settings::Key KEY_MAIN_WINDOW_SIZE(moduleName, "MainWindowSize");
+static const Settings::Key KEY_IS_MAIN_WINDOW_MAXIMIZED(moduleName, "MainWindowMaximized");
+
+QPoint fixWindowPosition(QPoint p)
+{
+    p.setX(qMax(0, p.x()));
+    p.setY(qMax(0, p.y()));
+    return p;
+}
+
+} // namespace
+
 MainWindow* MainWindow::m_instance = nullptr;
 
-MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWindow)
+
+MainWindowConfiguration::MainWindowConfiguration(Settings& settings) : m_settings{settings}
+{
+}
+
+void MainWindowConfiguration::init()
+{
+    m_settings.setDefaultValue(KEY_MAIN_SPLITTER_STATE, QVariant{});
+    m_settings.setDefaultValue(KEY_MAIN_WINDOW_POSITION, QVariant{});
+    m_settings.setDefaultValue(KEY_MAIN_WINDOW_SIZE, QVariant{});
+    m_settings.setDefaultValue(KEY_IS_MAIN_WINDOW_MAXIMIZED, QVariant::fromValue(false));
+}
+
+QSize MainWindowConfiguration::mainWindowSize()
+{
+    return m_settings.value(KEY_MAIN_WINDOW_SIZE).toSize();
+}
+
+void MainWindowConfiguration::setMainWindowSize(QSize mainWindowSize)
+{
+    m_settings.setValue(KEY_MAIN_WINDOW_SIZE, mainWindowSize);
+}
+
+QPoint MainWindowConfiguration::mainWindowPosition()
+{
+    return fixWindowPosition(m_settings.value(KEY_MAIN_WINDOW_POSITION).toPoint());
+}
+
+void MainWindowConfiguration::setMainWindowPosition(QPoint mainWindowPosition)
+{
+    m_settings.setValue(KEY_MAIN_WINDOW_POSITION, mainWindowPosition);
+}
+
+bool MainWindowConfiguration::mainWindowMaximized() const
+{
+    return m_settings.value(KEY_IS_MAIN_WINDOW_MAXIMIZED).toBool();
+}
+
+void MainWindowConfiguration::setMainWindowMaximized(bool max)
+{
+    m_settings.setValue(KEY_IS_MAIN_WINDOW_MAXIMIZED, max);
+}
+
+QByteArray MainWindowConfiguration::mainSplitterState()
+{
+    return m_settings.value(KEY_MAIN_SPLITTER_STATE).toByteArray();
+}
+
+void MainWindowConfiguration::setMainSplitterState(QByteArray state)
+{
+    m_settings.setValue(KEY_MAIN_SPLITTER_STATE, state);
+}
+
+MainWindow::MainWindow(MainWindowConfiguration& settings, QWidget* parent) :
+    QMainWindow(parent), ui(new Ui::MainWindow), m_settings{settings}
 {
 #ifdef Q_OS_MACOS
     auto* macMenuBar = new QMenuBar();
@@ -94,26 +162,24 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
     m_actions[MainWidgets::Concerts][MainActions::FilterWidget] = true;
     m_actions[MainWidgets::Music][MainActions::FilterWidget] = true;
 
-    m_settings = Settings::instance(this);
     m_supportDialog = new SupportDialog(this);
-    m_settingsWindow = new SettingsWindow(this);
+    m_settingsWindow = new SettingsWindow(*Settings::instance(), this);
     m_fileScannerDialog = new FileScannerDialog(this);
     m_xbmcSync = new KodiSync(*Settings::instance(), this);
     m_renamer = new RenamerDialog(this);
     setupToolbar();
 
     NotificationBox::instance(this)->reposition(this->size());
-    Manager::instance();
     Notificator::instance(nullptr, ui->centralWidget);
 
-    if (!m_settings->mainSplitterState().isNull()) {
-        ui->movieSplitter->restoreState(m_settings->mainSplitterState());
-        ui->tvShowSplitter->restoreState(m_settings->mainSplitterState());
-        ui->setsWidget->splitter()->restoreState(m_settings->mainSplitterState());
-        ui->concertSplitter->restoreState(m_settings->mainSplitterState());
-        ui->genreWidget->splitter()->restoreState(m_settings->mainSplitterState());
-        ui->certificationWidget->splitter()->restoreState(m_settings->mainSplitterState());
-        ui->musicSplitter->restoreState(m_settings->mainSplitterState());
+    if (!m_settings.mainSplitterState().isNull()) {
+        ui->movieSplitter->restoreState(m_settings.mainSplitterState());
+        ui->tvShowSplitter->restoreState(m_settings.mainSplitterState());
+        ui->setsWidget->splitter()->restoreState(m_settings.mainSplitterState());
+        ui->concertSplitter->restoreState(m_settings.mainSplitterState());
+        ui->genreWidget->splitter()->restoreState(m_settings.mainSplitterState());
+        ui->certificationWidget->splitter()->restoreState(m_settings.mainSplitterState());
+        ui->musicSplitter->restoreState(m_settings.mainSplitterState());
     } else {
         QList<int> size{200, 600};
         ui->movieSplitter->setSizes(size);
@@ -125,14 +191,12 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
         ui->musicSplitter->setSizes(size);
     }
 
-    if (m_settings->mainWindowSize().isValid() && !m_settings->mainWindowPosition().isNull()) {
-        resize(m_settings->mainWindowSize());
-        move(m_settings->mainWindowPosition());
-#ifdef Q_OS_WIN
-        if (m_settings->mainWindowMaximized()) {
-            showMaximized();
-        }
-#endif
+    if (m_settings.mainWindowSize().isValid() && !m_settings.mainWindowPosition().isNull()) {
+        resize(m_settings.mainWindowSize());
+        move(m_settings.mainWindowPosition());
+    }
+    if (m_settings.mainWindowMaximized()) {
+        showMaximized();
     }
 
     const auto onMenuFromSender = [this]() {
@@ -281,10 +345,10 @@ void MainWindow::resizeEvent(QResizeEvent* event)
 
 void MainWindow::closeEvent(QCloseEvent* /*event*/)
 {
-    m_settings->setMainWindowSize(size());
-    m_settings->setMainWindowPosition(pos());
-    m_settings->setMainSplitterState(ui->movieSplitter->saveState());
-    m_settings->setMainWindowMaximized(isMaximized());
+    m_settings.setMainWindowSize(size());
+    m_settings.setMainWindowPosition(pos());
+    m_settings.setMainSplitterState(ui->movieSplitter->saveState());
+    m_settings.setMainWindowMaximized(isMaximized());
 }
 
 void MainWindow::setupToolbar()

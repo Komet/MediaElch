@@ -21,12 +21,35 @@ class SupportDialog;
 class Settings;
 class SettingsWindow;
 
+class MainWindowConfiguration
+{
+public:
+    explicit MainWindowConfiguration(Settings& settings);
+
+    void init();
+
+    ELCH_NODISCARD QSize mainWindowSize();
+    void setMainWindowSize(QSize mainWindowSize);
+
+    ELCH_NODISCARD QPoint mainWindowPosition();
+    void setMainWindowPosition(QPoint mainWindowPosition);
+
+    ELCH_NODISCARD bool mainWindowMaximized() const;
+    void setMainWindowMaximized(bool max);
+
+    ELCH_NODISCARD QByteArray mainSplitterState();
+    void setMainSplitterState(QByteArray state);
+
+private:
+    Settings& m_settings;
+};
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget* parent = nullptr);
+    explicit MainWindow(MainWindowConfiguration& settings, QWidget* parent = nullptr);
     ~MainWindow() override;
 
     static MainWindow* instance();
@@ -76,23 +99,12 @@ private:
 
 private:
     Ui::MainWindow* ui = nullptr;
-    Settings* m_settings = nullptr;
+    MainWindowConfiguration& m_settings;
     SettingsWindow* m_settingsWindow = nullptr;
     SupportDialog* m_supportDialog = nullptr;
     FileScannerDialog* m_fileScannerDialog = nullptr;
     KodiSync* m_xbmcSync = nullptr;
     RenamerDialog* m_renamer = nullptr;
-    QAction* m_actionSearch = nullptr;
-    QAction* m_actionSave = nullptr;
-    QAction* m_actionXbmc = nullptr;
-    QAction* m_actionAbout = nullptr;
-    QAction* m_actionQuit = nullptr;
-    QAction* m_actionSaveAll = nullptr;
-    QAction* m_actionSettings = nullptr;
-    QAction* m_actionLike = nullptr;
-    QAction* m_actionReload = nullptr;
-    QAction* m_actionRename = nullptr;
-    QAction* m_actionExport = nullptr;
     QMap<MainWidgets, QMap<MainActions, bool>> m_actions;
     QMap<MainWidgets, QIcon> m_icons;
     static MainWindow* m_instance;
