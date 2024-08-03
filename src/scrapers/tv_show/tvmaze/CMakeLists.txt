@@ -8,6 +8,7 @@ add_library(
   TvMazeEpisodeScrapeJob.cpp
   TvMazeShowScrapeJob.cpp
   TvMazeSeasonScrapeJob.cpp
+  TvMazeConfiguration.cpp
 )
 
 target_link_libraries(

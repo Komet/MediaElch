@@ -1,17 +1,16 @@
 #pragma once
 
+#include "data/Locale.h"
 #include "data/MusicBrainzId.h"
 #include "globals/Globals.h"
 #include "scrapers/ScraperInfos.h"
 #include "scrapers/ScraperInterface.h"
 #include "scrapers/ScraperResult.h"
-#include "settings/ScraperSettings.h"
 #include "workers/Job.h"
 
 #include <QSet>
 #include <QString>
 #include <QVector>
-#include <QWidget>
 
 class Album;
 class Artist;
@@ -317,8 +316,8 @@ public:
     /// \param config Configuration for the scrape job, e.g. language and artist ID.
     ELCH_NODISCARD virtual AlbumScrapeJob* loadAlbum(AlbumScrapeJob::Config config) = 0;
 
-public:
-    virtual QWidget* settingsWidget() = 0;
+signals:
+    void initialized(bool isInitialized); // TODO: Implement in scrapers
 };
 
 QVector<ScraperSearchResult> toOldScraperSearchResult(const QVector<ArtistSearchJob::Result>& searchResults);

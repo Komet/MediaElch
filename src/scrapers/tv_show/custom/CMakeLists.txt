@@ -1,6 +1,6 @@
 add_library(
   mediaelch_scraper_tv_custom OBJECT
-  CustomTvScraperConfig.cpp CustomTvScraper.cpp CustomShowScrapeJob.cpp
+  CustomTvScraperConfiguration.cpp CustomTvScraper.cpp CustomShowScrapeJob.cpp
   CustomEpisodeScrapeJob.cpp CustomSeasonScrapeJob.cpp
 )
 

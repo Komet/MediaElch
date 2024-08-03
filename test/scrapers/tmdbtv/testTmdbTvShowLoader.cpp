@@ -2,8 +2,10 @@
 
 #include "data/tv_show/TvShow.h"
 #include "scrapers/tv_show/tmdb/TmdbTv.h"
+#include "scrapers/tv_show/tmdb/TmdbTvConfiguration.h"
 #include "scrapers/tv_show/tmdb/TmdbTvShowScrapeJob.h"
 #include "test/helpers/scraper_helpers.h"
+#include "test/mocks/settings/SettingsMock.h"
 #include "test/scrapers/tmdbtv/testTmdbTvHelper.h"
 
 #include <chrono>
@@ -43,8 +45,10 @@ TEST_CASE("TmdbTv scrapes show details", "[show][TmdbTv][load_data]")
 
     SECTION("Loads all details for Scrubs")
     {
-        TmdbTv tvdb;
-        ShowScrapeJob::Config config{ShowIdentifier("4556"), Locale("en-US"), tvdb.meta().supportedShowDetails};
+        SettingsMock mockedSettings;
+        TmdbTvConfiguration scraperConfig(mockedSettings);
+        TmdbTv tmdb(scraperConfig);
+        ShowScrapeJob::Config config{ShowIdentifier("4556"), Locale("en-US"), tmdb.meta().supportedShowDetails};
 
         auto scrapeJob = std::make_unique<TmdbTvShowScrapeJob>(getTmdbApi(), config);
         test::scrapeTvScraperSync(scrapeJob.get());
@@ -56,8 +60,10 @@ TEST_CASE("TmdbTv scrapes show details", "[show][TmdbTv][load_data]")
 
     SECTION("Loads all details for Scrubs in another Language")
     {
-        TmdbTv tvdb;
-        ShowScrapeJob::Config config{ShowIdentifier("4556"), Locale("de-DE"), tvdb.meta().supportedShowDetails};
+        SettingsMock mockedSettings;
+        TmdbTvConfiguration scraperConfig(mockedSettings);
+        TmdbTv tmdb(scraperConfig);
+        ShowScrapeJob::Config config{ShowIdentifier("4556"), Locale("de-DE"), tmdb.meta().supportedShowDetails};
 
         auto scrapeJob = std::make_unique<TmdbTvShowScrapeJob>(getTmdbApi(), config);
         test::scrapeTvScraperSync(scrapeJob.get());
@@ -70,8 +76,10 @@ TEST_CASE("TmdbTv scrapes show details", "[show][TmdbTv][load_data]")
     SECTION("Loads the full cast for Stargate SG-1")
     {
         // Test everything, including cast.
-        TmdbTv tvdb;
-        ShowScrapeJob::Config config{ShowIdentifier("4629"), Locale("en-US"), tvdb.meta().supportedShowDetails};
+        SettingsMock mockedSettings;
+        TmdbTvConfiguration scraperConfig(mockedSettings);
+        TmdbTv tmdb(scraperConfig);
+        ShowScrapeJob::Config config{ShowIdentifier("4629"), Locale("en-US"), tmdb.meta().supportedShowDetails};
 
         auto scrapeJob = std::make_unique<TmdbTvShowScrapeJob>(getTmdbApi(), config);
         test::scrapeTvScraperSync(scrapeJob.get());

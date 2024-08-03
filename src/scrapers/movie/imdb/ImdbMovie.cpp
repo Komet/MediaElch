@@ -1,21 +1,16 @@
 #include "scrapers/movie/imdb/ImdbMovie.h"
 
 #include "scrapers/imdb/ImdbReferencePage.h"
+#include "scrapers/movie/imdb/ImdbMovieConfiguration.h"
 #include "scrapers/movie/imdb/ImdbMovieScrapeJob.h"
 #include "scrapers/movie/imdb/ImdbMovieSearchJob.h"
-#include "settings/Settings.h"
 #include "ui/main/MainWindow.h"
-
-#include <QCheckBox>
-#include <QGridLayout>
-#include <QTextDocument>
-#include <QWidget>
 
 
 namespace mediaelch {
 namespace scraper {
 
-ImdbMovie::ImdbMovie(QObject* parent) : MovieScraper(parent)
+ImdbMovie::ImdbMovie(ImdbMovieConfiguration& settings, QObject* parent) : MovieScraper(parent), m_settings{settings}
 {
     m_meta.identifier = ID;
     m_meta.name = "IMDb";
@@ -41,26 +36,13 @@ ImdbMovie::ImdbMovie(QObject* parent) : MovieScraper(parent)
         MovieScraperInfo::Countries,
         MovieScraperInfo::Actors,
         MovieScraperInfo::Poster};
-    m_meta.supportedLanguages = {"en"};
-    m_meta.defaultLocale = "en";
+    m_meta.supportedLanguages = ImdbMovieConfiguration::supportedLanguages();
+    m_meta.defaultLocale = ImdbMovieConfiguration::defaultLocale();
     m_meta.isAdult = false;
-
-    m_settingsWidget = new QWidget;
-    m_loadAllTagsWidget = new QCheckBox(tr("Load all tags"), m_settingsWidget);
-    auto* layout = new QGridLayout(m_settingsWidget);
-    layout->addWidget(m_loadAllTagsWidget, 0, 0);
-    layout->setContentsMargins(12, 0, 12, 12);
-    m_settingsWidget->setLayout(layout);
 }
 
 ImdbMovie::~ImdbMovie()
 {
-    if (m_settingsWidget != nullptr && m_settingsWidget->parent() == nullptr) {
-        // We set MainWindow::instance() as this Widget's parent.
-        // But at construction time, the instance is not setup, yet.
-        // See settingsWidget()
-        delete m_settingsWidget;
-    }
 }
 
 const MovieScraper::ScraperMeta& ImdbMovie::meta() const
@@ -80,11 +62,6 @@ bool ImdbMovie::isInitialized() const
     return true;
 }
 
-bool ImdbMovie::hasSettings() const
-{
-    return true;
-}
-
 MovieSearchJob* ImdbMovie::search(MovieSearchJob::Config config)
 {
     return new ImdbMovieSearchJob(m_api, std::move(config), this);
@@ -95,27 +72,7 @@ MovieScrapeJob* ImdbMovie::loadMovie(MovieScrapeJob::Config config)
     if (config.locale == Locale::NoLocale) {
         config.locale = meta().defaultLocale;
     }
-    return new ImdbMovieScrapeJob(m_api, std::move(config), m_loadAllTags, this);
-}
-
-QWidget* ImdbMovie::settingsWidget()
-{
-    if (m_settingsWidget->parent() == nullptr) {
-        m_settingsWidget->setParent(MainWindow::instance());
-    }
-    return m_settingsWidget;
-}
-
-void ImdbMovie::loadSettings(ScraperSettings& settings)
-{
-    m_loadAllTags = settings.valueBool("LoadAllTags", false);
-    m_loadAllTagsWidget->setChecked(m_loadAllTags);
-}
-
-void ImdbMovie::saveSettings(ScraperSettings& settings)
-{
-    m_loadAllTags = m_loadAllTagsWidget->isChecked();
-    settings.setBool("LoadAllTags", m_loadAllTags);
+    return new ImdbMovieScrapeJob(m_api, std::move(config), m_settings.shouldLoadAllTags(), this);
 }
 
 QSet<MovieScraperInfo> ImdbMovie::scraperNativelySupports()

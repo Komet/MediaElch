@@ -9,6 +9,7 @@ add_library(
   TheTvDbEpisodeScrapeJob.cpp
   TheTvDbShowScrapeJob.cpp
   TheTvDbSeasonScrapeJob.cpp
+  TheTvDbConfiguration.cpp
 )
 
 target_link_libraries(

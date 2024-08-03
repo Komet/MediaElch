@@ -80,25 +80,5 @@ void VideoBuster::changeLanguage(mediaelch::Locale /*locale*/)
     // no-op: Only one language is supported and it is hard-coded.
 }
 
-bool VideoBuster::hasSettings() const
-{
-    return false;
-}
-
-void VideoBuster::loadSettings(ScraperSettings& settings)
-{
-    Q_UNUSED(settings);
-}
-
-void VideoBuster::saveSettings(ScraperSettings& settings)
-{
-    Q_UNUSED(settings);
-}
-
-QWidget* VideoBuster::settingsWidget()
-{
-    return nullptr;
-}
-
 } // namespace scraper
 } // namespace mediaelch

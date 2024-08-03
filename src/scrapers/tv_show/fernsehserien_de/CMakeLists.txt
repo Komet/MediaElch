@@ -1,4 +1,7 @@
-add_library(mediaelch_scraper_tv_fernsehserien OBJECT FernsehserienDe.cpp)
+add_library(
+  mediaelch_scraper_tv_fernsehserien OBJECT FernsehserienDe.cpp
+                                            FernsehserienDeConfiguration.cpp
+)
 
 target_link_libraries(
   mediaelch_scraper_tv_fernsehserien

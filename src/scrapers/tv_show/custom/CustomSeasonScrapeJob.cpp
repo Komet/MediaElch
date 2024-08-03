@@ -16,10 +16,10 @@
 namespace mediaelch {
 namespace scraper {
 
-CustomSeasonScrapeJob::CustomSeasonScrapeJob(CustomTvScraperConfig customConfig,
+CustomSeasonScrapeJob::CustomSeasonScrapeJob(CustomTvScraperConfiguration& customConfig,
     SeasonScrapeJob::Config config,
     QObject* parent) :
-    SeasonScrapeJob(config, parent), m_customConfig{std::move(customConfig)}
+    SeasonScrapeJob(config, parent), m_customConfig{customConfig}
 {
 }
 
@@ -118,18 +118,7 @@ SeasonScrapeJob::Config CustomSeasonScrapeJob::configFor(const QString& scraperI
 
 Locale CustomSeasonScrapeJob::localeFor(const QString& scraperId) const
 {
-    TvScraper* scraper = m_customConfig.scraperForId(scraperId);
-    ScraperSettings* settings = Settings::instance()->scraperSettings(scraperId);
-
-    if (scraper == nullptr) {
-        qCCritical(generic) << "[CustomSeasonScrapeJob] Scraper not supported:" << scraperId;
-        return mediaelch::Locale::English;
-    }
-    if (settings == nullptr) {
-        return mediaelch::Locale::English;
-    }
-
-    return settings->language(scraper->meta().defaultLocale);
+    return Settings::instance()->value({"scrapers", QStringLiteral("Scrapers/%1/Language").arg(scraperId)}).toString();
 }
 
 } // namespace scraper

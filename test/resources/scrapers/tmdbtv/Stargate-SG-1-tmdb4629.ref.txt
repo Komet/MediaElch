@@ -120,9 +120,9 @@ actors: (N>800)
  - id: 118463
    name: Peter DeLuise
    role:
-    Director / Peter DeLuise, Airman, SF Guard (Uncredited), Free Jaffa (Voice only)
-     (Uncredited), Machine Gun Guard, Young Urgo in Uniform, Tok'ra Guard, Interview
-    er, Screaming Villager, Man Leaving Cafe, Lieutenant
+    Director / Peter DeLuise, Airman, SF Guard (Uncredited), Tok'ra Guard, Screaming
+     Villager, Man Leaving Cafe, Machine Gun Guard, Young Urgo in Uniform, Lieutenan
+    t, Free Jaffa (Voice only) (Uncredited), Interviewer
    thumb: https://image.tmdb.org/t/p/original/sLkSOm6HBLB4VCfshQLdSEq63tr.jpg
    order: 13
    imageHasChanged: false
@@ -146,17 +146,17 @@ actors: (N>800)
    imageHasChanged: false
  - id: 59245
    name: Laara Sadiq
-   role: Technician #2, Technician, Technican, Technician Davis
+   role: Technician #2, Technican, Technician, Technician Davis
    thumb: https://image.tmdb.org/t/p/original/l7MkydwslaXo1EmYrRpJARnaFKs.jpg
    order: 17
    imageHasChanged: false
  - id: 1366510
    name: Fraser Aitcheson
    role:
-    Hathor's Jaffa, Free Jaffa 2 (Uncredited), Jaffa Guard, Apophis' Red Jaffa, Tagr
-    ean Worker, Jaffa Warrior, Jaffa, Ares' Jaffa commander (Uncredited), Free Jaffa
-     (Uncredited), Jaffa Commander, Dakara Jaffa 3 (Uncredited), Anubis' Jaffa, Orde
-    rly
+    Hathor's Jaffa, Apophis' Red Jaffa, Free Jaffa 2 (Uncredited), Dakara Jaffa 3 (U
+    ncredited), Jaffa Guard, Free Jaffa (Uncredited), Jaffa Commander, Ares' Jaffa c
+    ommander (Uncredited), Anubis' Jaffa, Orderly, Jaffa, Jaffa Warrior, Tagrean Wor
+    ker
    thumb: https://image.tmdb.org/t/p/original/j0fou5tZvXHe3GcVr24UnYQLg6S.jpg
    order: 18
    imageHasChanged: false

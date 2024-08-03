@@ -71,8 +71,6 @@ public:
     ELCH_NODISCARD virtual ConcertSearchJob* search(ConcertSearchJob::Config config) = 0;
 
     virtual void loadData(TmdbId id, Concert* concert, QSet<ConcertScraperInfo> infos) = 0;
-    virtual QSet<ConcertScraperInfo> scraperSupports() = 0;
-    virtual QWidget* settingsWidget() = 0;
 
 signals:
     void initialized(bool wasSuccessful, mediaelch::scraper::ConcertScraper* scraper);

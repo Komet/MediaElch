@@ -14,9 +14,12 @@ namespace mediaelch {
 namespace scraper {
 
 
-TmdbMovieConfiguration::TmdbMovieConfiguration(Settings& settings) :
-    ScraperConfiguration(QString(TmdbMovie::ID), settings)
+TmdbMovieConfiguration::TmdbMovieConfiguration(Settings& settings, QObject* parent) :
+    QObject(parent), ScraperConfiguration(QString(TmdbMovie::ID), settings)
 {
+    settings.onSettingChanged(KEY_SCRAPERS_LANGUAGE, this, [this]() { //
+        emit languageChanged(language());
+    });
 }
 
 void TmdbMovieConfiguration::init()
@@ -41,7 +44,8 @@ mediaelch::Locale TmdbMovieConfiguration::defaultLocale()
 
 QVector<Locale> TmdbMovieConfiguration::supportedLanguages()
 {
-    return QVector<Locale>({//
+    return QVector<Locale>({
+        //
         "ar-AE",
         "ar-SA",
         "be-BY",
@@ -110,7 +114,8 @@ QVector<Locale> TmdbMovieConfiguration::supportedLanguages()
         "zh-CN",
         "zh-HK",
         "zh-TW",
-        "zu-ZA"});
+        "zu-ZA", //
+    });
 }
 
 

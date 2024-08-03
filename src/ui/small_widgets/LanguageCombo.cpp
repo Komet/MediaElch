@@ -74,3 +74,15 @@ void LanguageCombo::onIndexChanged(int index)
     Q_UNUSED(index)
     emit languageChanged();
 }
+
+void LanguageCombo::setLanguage(const mediaelch::Locale& selected)
+{
+    if (currentLocale() != selected) {
+        const int index = findData(selected.toString(), Qt::UserRole);
+        if (index >= 0) {
+            setCurrentIndex(index > 0 ? index : 0);
+        } else {
+            qCWarning(generic) << "[LanguageCombo] Selected language not found in provided languages:" << selected;
+        }
+    }
+}

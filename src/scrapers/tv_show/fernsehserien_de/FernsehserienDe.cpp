@@ -124,7 +124,8 @@ QUrl FernsehserienDeApi::seasonsOverviewUrl(const ShowIdentifier& id)
 
 QString FernsehserienDe::ID = "fernsehserien.de";
 
-FernsehserienDe::FernsehserienDe(QObject* parent) : TvScraper(parent)
+FernsehserienDe::FernsehserienDe(FernsehserienDeConfiguration& settings, QObject* parent) :
+    TvScraper(parent), m_settings{settings}
 {
     m_meta.identifier = FernsehserienDe::ID;
     m_meta.name = "Fernsehserien TV";

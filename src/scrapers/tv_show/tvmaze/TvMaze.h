@@ -2,6 +2,7 @@
 
 #include "scrapers/tv_show/TvScraper.h"
 #include "scrapers/tv_show/tvmaze/TvMazeApi.h"
+#include "scrapers/tv_show/tvmaze/TvMazeConfiguration.h"
 #include "utils/Meta.h"
 
 namespace mediaelch {
@@ -15,7 +16,7 @@ public:
     static QString ID;
 
 public:
-    explicit TvMaze(QObject* parent = nullptr);
+    explicit TvMaze(TvMazeConfiguration& settings, QObject* parent = nullptr);
     ~TvMaze() override = default;
 
     const ScraperMeta& meta() const override;
@@ -29,6 +30,7 @@ public:
     EpisodeScrapeJob* loadEpisode(EpisodeScrapeJob::Config config) override;
 
 private:
+    TvMazeConfiguration& m_settings;
     ScraperMeta m_meta;
     TvMazeApi m_api;
 };

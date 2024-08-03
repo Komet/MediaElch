@@ -8,9 +8,6 @@
 #include "media_center/KodiXml.h"
 #include "media_center/MediaCenterInterface.h"
 #include "scrapers/image/FanartTv.h"
-#include "scrapers/image/FanartTvMusic.h"
-#include "scrapers/image/FanartTvMusicArtists.h"
-#include "scrapers/image/TheTvDbImages.h"
 #include "scrapers/image/TmdbImages.h"
 #include "scrapers/music/UniversalMusicScraper.h"
 #include "scrapers/trailer/HdTrailers.h"
@@ -37,12 +34,6 @@ Manager::Manager(QObject* parent) : QObject(parent)
     m_mediaCenters.append(new KodiXml(this));
     m_mediaCentersTvShow.append(new KodiXml(this));
     m_mediaCentersConcert.append(new KodiXml(this));
-
-    m_imageProviders.append(new FanartTv(this));
-    m_imageProviders.append(new FanartTvMusic(this));
-    m_imageProviders.append(new FanartTvMusicArtists(this));
-    m_imageProviders.append(new TmdbImages(this));
-    m_imageProviders.append(new TheTvDbImages(this));
 
     m_trailerProviders.append(new HdTrailers(this));
 
@@ -75,7 +66,7 @@ MediaCenterInterface* Manager::mediaCenterInterface()
 
 /**
  * \brief Returns the active MediaCenterInterface for TV Shows
- * \return Instance of a MediaCenterinterface
+ * \return Instance of a MediaCenterInterface
  */
 MediaCenterInterface* Manager::mediaCenterInterfaceTvShow()
 {
@@ -155,30 +146,12 @@ MusicModel* Manager::musicModel()
     return m_musicModel;
 }
 
-/**
- * \brief Returns a list of all image providers available for type
- * \param type Type of image
- * \return List of pointers of image providers
- */
-QVector<mediaelch::scraper::ImageProvider*> Manager::imageProviders(ImageType type)
-{
-    QVector<mediaelch::scraper::ImageProvider*> providers;
-    for (auto* provider : asConst(m_imageProviders)) {
-        if (provider->meta().supportedImageTypes.contains(type)) {
-            providers.append(provider);
-        }
-    }
-    return providers;
-}
-
-QVector<mediaelch::scraper::ImageProvider*> Manager::imageProviders()
-{
-    return m_imageProviders;
-}
-
 mediaelch::scraper::FanartTv* Manager::fanartTv()
 {
-    return dynamic_cast<mediaelch::scraper::FanartTv*>(m_imageProviders.at(0));
+    using namespace mediaelch::scraper;
+    auto* scraper = dynamic_cast<FanartTv*>(m_scraperManager->imageProvider(FanartTv::ID));
+    MediaElch_Ensures(scraper != nullptr);
+    return scraper;
 }
 
 Database* Manager::database()

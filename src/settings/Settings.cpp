@@ -145,34 +145,62 @@ QSettings* Settings::settings()
 
 Settings::Value Settings::value(const Key& key)
 {
-    return settings()->value(key.key);
+    Item& item = findItem(key);
+    if (item.isNull()) {
+        return QVariant{};
+    } else {
+        return item.value;
+    }
 }
 
 void Settings::setDefaultValue(const Settings::Key& key, const Settings::Value& value)
 {
-    if (!settings()->contains(key.key)) {
-        settings()->setValue(key.key, value);
+    Item& item = findItem(key);
+    if (item.isNull()) {
+        Item newItem;
+        newItem.key = key;
+        newItem.value = settings()->value(key.key, value);
+        newItem.defaultValue = value;
+        newItem.description = ""; // TODO
+
+        addItem(newItem);
+
+    } else {
+        item.key = key; // may override key's module
+        item.defaultValue = value;
     }
 }
 
 void Settings::setValue(const Settings::Key& key, const Settings::Value& value)
 {
-    settings()->setValue(key.key, value);
-}
+    Item& item = findItem(key);
 
-ScraperSettings* Settings::scraperSettings(const QString& id)
-{
-    std::string idStd = id.toStdString();
-    if (m_scraperSettings.find(idStd) == m_scraperSettings.cend()) {
-        qCCritical(generic) << "[ScraperSettings] Missing settings entry in settings map! Key:" << id;
-        m_scraperSettings[idStd] = std::make_unique<ScraperSettingsQt>(id, *m_settings);
-        MediaElch_Debug_Assert(false); // should not happen
+    if (!item.isNull() && item.value == value) {
+        return;
     }
-    return m_scraperSettings[idStd].get();
+
+    if (!m_isTransactionInProgress) {
+        writeValueToDisk(key, value);
+    }
+
+    if (item.isNull()) {
+        qCDebug(generic) << "[Settings] setValue(): Found item without default entry:" << key.key;
+        Item newItem;
+        newItem.key = key;
+        newItem.value = value;
+        addItem(newItem);
+
+    } else {
+        item.value = value;
+    }
+
+    emitChangeFor(key);
 }
 
 void Settings::loadSettings()
 {
+    readAllItemsFromDisk();
+
     // Globals
     m_mainWindowSize = settings()->value(KEY_MAIN_WINDOW_SIZE).toSize();
     m_settingsWindowSize = settings()->value(KEY_SETTINGS_WINDOW_SIZE).toSize();
@@ -233,27 +261,6 @@ void Settings::loadSettings()
             "x264,h264,h.264,h.265,h265,hevc,web-dl,"
             "xvid,xvidvd,xxx,www,mkv")
                              .split(",", ElchSplitBehavior::SkipEmptyParts);
-    }
-
-    const auto loadSettings = [&](auto scrapers) {
-        for (auto* scraper : scrapers) {
-            // Always have settings entry, even if scraper does not have any.
-            std::string id = scraper->meta().identifier.toStdString();
-            // may replace existing settings
-            m_scraperSettings[id] = std::make_unique<ScraperSettingsQt>(scraper->meta().identifier, *m_settings);
-            scraper->loadSettings(*m_scraperSettings[id]);
-        }
-    };
-    loadSettings(Manager::instance()->scrapers().musicScrapers());
-    loadSettings(Manager::instance()->scrapers().movieScrapers());
-    loadSettings(Manager::instance()->scrapers().concertScrapers());
-    loadSettings(Manager::instance()->imageProviders());
-
-    // TV scraper settings
-    for (auto* scraper : Manager::instance()->scrapers().tvScrapers()) {
-        const QString id = scraper->meta().identifier;
-        m_scraperSettings[id.toStdString()] = std::make_unique<ScraperSettingsQt>(id, *m_settings);
-        // Not loaded on initial start up but per request.
     }
 
     m_currentMovieScraper = settings()->value(KEY_SCRAPER_CURRENT_MOVIE_SCRAPER, 0).toInt();
@@ -403,26 +410,6 @@ void Settings::saveSettings()
     m_networkSettings.saveSettings();
 
     settings()->setValue(KEY_EXCLUDE_WORDS, m_excludeWords.join(","));
-
-    const auto saveSettings = [&](auto scrapers) {
-        for (auto* scraper : scrapers) {
-            if (scraper->hasSettings()) {
-                std::string id = scraper->meta().identifier.toStdString();
-                scraper->saveSettings(*m_scraperSettings[id]);
-                m_scraperSettings[id]->save();
-            }
-        }
-    };
-    saveSettings(Manager::instance()->scrapers().musicScrapers());
-    saveSettings(Manager::instance()->scrapers().movieScrapers());
-    saveSettings(Manager::instance()->scrapers().concertScrapers());
-    saveSettings(Manager::instance()->imageProviders());
-
-    // TV scraper settings
-    for (auto* scraper : Manager::instance()->scrapers().tvScrapers()) {
-        // Settings may have been changed somewhere else.
-        m_scraperSettings[scraper->meta().identifier.toStdString()]->save();
-    }
 
     settings()->setValue(KEY_SCRAPER_CURRENT_MOVIE_SCRAPER, m_currentMovieScraper);
     settings()->setValue(KEY_SCRAPER_CURRENT_TV_SHOW_SCRAPER, m_currentTvShowScraper);
@@ -1304,4 +1291,150 @@ int Settings::extraFanartsMusicArtists() const
 void Settings::setExtraFanartsMusicArtists(int extraFanartsMusicArtists)
 {
     m_extraFanartsMusicArtists = extraFanartsMusicArtists;
+}
+
+void Settings::onSettingChanged(Settings::Key key, QObject* context, std::function<void()> callback)
+{
+    MediaElch_Expects(context != nullptr);
+
+    if (!m_callbacks.contains(key)) {
+        m_callbacks.insert(key, {});
+    }
+    m_callbacks[key].push_back({context, std::move(callback)});
+
+    // To avoid use-after-free, delete the callbacks if the context was destroyed.
+    connect(context, &QObject::destroyed, this, [key, context, this]() {
+        if (m_callbacks.contains(key)) {
+            auto& c = m_callbacks[key];
+            auto contextsMatch = [context](const auto& x) { //
+                return x.first == context;
+            };
+            c.erase(std::remove_if(c.begin(), c.end(), contextsMatch), c.end());
+        }
+    });
+}
+
+void Settings::beginTransaction()
+{
+    if (m_isTransactionInProgress) {
+        qCWarning(generic) << "[Settings] beginTransaction(): already in progress!";
+        MediaElch_Debug_Expects(!m_isTransactionInProgress);
+        return;
+    }
+
+    m_localItems = m_items;
+    m_isTransactionInProgress = true;
+}
+
+void Settings::commitTransaction()
+{
+    if (!m_isTransactionInProgress) {
+        qCWarning(generic) << "[Settings] commitTransaction(): was not in progress!";
+        MediaElch_Debug_Expects(m_isTransactionInProgress);
+        return;
+    }
+
+    m_isTransactionInProgress = false;
+
+    for (auto& localItem : m_localItems) {
+        Item& item = findItem(localItem.key);
+        if (item.value == localItem.value) {
+            // nothing has changed -> no need to write anything
+            continue;
+        }
+
+        if (item.isNull()) {
+            addItem(localItem);
+        } else {
+            item.value = localItem.value;
+        }
+
+        writeValueToDisk(localItem.key, localItem.value);
+    }
+
+    m_localItems.clear();
+}
+
+void Settings::abortTransaction()
+{
+    if (!m_isTransactionInProgress) {
+        qCWarning(generic) << "[Settings] abortTransaction(): was not in progress!";
+        MediaElch_Debug_Expects(m_isTransactionInProgress);
+        return;
+    }
+    m_isTransactionInProgress = false;
+
+    for (auto& localItem : m_localItems) {
+        Item item = findItem(localItem.key);
+        if (!item.isNull() && item.value == localItem.value) {
+            continue;
+        }
+        // reset means we need to notify subscribers
+        emitChangeFor(localItem.key);
+    }
+
+    m_localItems.clear();
+}
+
+void Settings::emitChangeFor(const Settings::Key& key) const
+{
+    auto iter = m_callbacks.find(key);
+    if (iter != m_callbacks.end()) {
+        auto& callbacks = iter.value();
+        for (auto& callback : callbacks) {
+            callback.second();
+        }
+    }
+}
+
+Settings::Item& Settings::findItem(const Settings::Key& key)
+{
+    Items& items = m_isTransactionInProgress ? m_localItems : m_items;
+
+    auto it = items.find(key);
+    if (it == items.end()) {
+        static Item nullItem;
+        return nullItem;
+    }
+
+    return it.value();
+}
+
+void Settings::writeValueToDisk(const Settings::Key& key, const Settings::Value& value)
+{
+    settings()->setValue(key.key, value);
+}
+
+void Settings::readAllItemsFromDisk()
+{
+    for (const QString& settingsKey : m_settings->allKeys()) {
+        Key key = Key({}, settingsKey);
+        Value value = settings()->value(settingsKey);
+
+        Item& item = findItem(key);
+        if (item.isNull()) {
+            Item newItem;
+            newItem.key = key;
+            newItem.value = std::move(value);
+
+            m_items[key] = newItem;
+        } else {
+            item.value = value;
+        }
+    }
+}
+
+void Settings::addItem(Settings::Item item)
+{
+    MediaElch_Debug_Expects(!item.isNull());
+    if (m_isTransactionInProgress) {
+        m_localItems[item.key] = item;
+    } else {
+        m_items[item.key] = item;
+    }
+}
+
+const Settings::Items& Settings::items() const
+{
+    return m_isTransactionInProgress ? m_localItems : m_items;
 }

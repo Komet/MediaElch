@@ -28,9 +28,9 @@ imdbTop250: 0
 released: 1977-06-22
 runtime: 78min
 writer:
-    David Michener, Ted Berman, Ken Anderson, Dick Sebast, Larry Clemmons, Margery S
-    harp, Fred Lucky, Frank Thomas, Vance Gerry, Burny Mattinson
-director: Wolfgang Reitherman
+    Burny Mattinson, David Michener, Larry Clemmons, Ken Anderson, Frank Thomas, Ted
+     Berman, Fred Lucky, Margery Sharp, Dick Sebast, Vance Gerry
+director: Art Stevens
 actors: (N>10)
  - id: 
    name: Bob Newhart

@@ -6,6 +6,7 @@
 #include "scrapers/tv_show/tvmaze/TvMazeEpisodeScrapeJob.h"
 
 #include "test/helpers/scraper_helpers.h"
+#include "test/mocks/settings/SettingsMock.h"
 #include "test/scrapers/tvmaze/testTvMazeHelper.h"
 
 #include <chrono>
@@ -38,7 +39,9 @@ TEST_CASE("TvMaze scrapes episode details for The Simpsons S12E19", "[episode][T
 
     SECTION("Loads all details for The Simpsons S12E19 with season and episode number")
     {
-        TvMaze tvmaze;
+        SettingsMock mockSettings;
+        TvMazeConfiguration scraperConfig(mockSettings);
+        TvMaze tvmaze(scraperConfig);
         EpisodeIdentifier id(showId.toString(), season, episodeNumber, SeasonOrder::Aired);
         EpisodeScrapeJob::Config config{id, Locale::English, tvmaze.meta().supportedEpisodeDetails};
 
@@ -52,7 +55,9 @@ TEST_CASE("TvMaze scrapes episode details for The Simpsons S12E19", "[episode][T
 
     SECTION("Loads all details for The Simpsons S12E19 with its ID")
     {
-        TvMaze tvmaze;
+        SettingsMock mockSettings;
+        TvMazeConfiguration scraperConfig(mockSettings);
+        TvMaze tvmaze(scraperConfig);
         EpisodeIdentifier id(episodeId.toString());
         EpisodeScrapeJob::Config config{id, Locale::English, tvmaze.meta().supportedEpisodeDetails};
 

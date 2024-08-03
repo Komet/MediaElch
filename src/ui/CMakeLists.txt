@@ -10,6 +10,7 @@ add_subdirectory(music)
 add_subdirectory(notifications)
 add_subdirectory(renamer)
 add_subdirectory(settings)
+add_subdirectory(scrapers)
 
 add_library(
   mediaelch_ui OBJECT

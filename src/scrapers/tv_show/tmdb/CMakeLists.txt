@@ -8,6 +8,7 @@ add_library(
   TmdbTvShowScrapeJob.cpp
   TmdbTvShowSearchJob.cpp
   TmdbTvShowParser.cpp
+  TmdbTvConfiguration.cpp
 )
 
 target_link_libraries(

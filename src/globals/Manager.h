@@ -5,7 +5,6 @@
 #include "file_search/MusicFileSearcher.h"
 #include "file_search/TvShowFileSearcher.h"
 #include "file_search/movie/MovieFileSearcher.h"
-#include "globals/ScraperManager.h"
 #include "media_center/MediaCenterInterface.h"
 #include "model/ConcertModel.h"
 #include "model/MovieModel.h"
@@ -19,6 +18,7 @@
 #include "ui/main/FileScannerDialog.h"
 #include "ui/main/MyIconFont.h"
 #include "ui/music/MusicFilesWidget.h"
+#include "ui/scrapers/ScraperManager.h"
 #include "ui/tv_show/TvShowFilesWidget.h"
 
 #include <QString>
@@ -42,10 +42,7 @@ public:
     ~Manager() override = default;
 
     static Manager* instance();
-    ELCH_NODISCARD QVector<MediaCenterInterface*> mediaCenters();
     ELCH_NODISCARD mediaelch::ScraperManager& scrapers();
-    ELCH_NODISCARD QVector<mediaelch::scraper::ImageProvider*> imageProviders();
-    ELCH_NODISCARD QVector<mediaelch::scraper::ImageProvider*> imageProviders(ImageType type);
     ELCH_NODISCARD QVector<mediaelch::scraper::TrailerProvider*> trailerProviders();
     ELCH_NODISCARD MediaCenterInterface* mediaCenterInterface();
     ELCH_NODISCARD MediaCenterInterface* mediaCenterInterfaceTvShow();
@@ -74,7 +71,6 @@ private:
     QVector<MediaCenterInterface*> m_mediaCenters;
     QVector<MediaCenterInterface*> m_mediaCentersTvShow;
     QVector<MediaCenterInterface*> m_mediaCentersConcert;
-    QVector<mediaelch::scraper::ImageProvider*> m_imageProviders;
     QVector<mediaelch::scraper::TrailerProvider*> m_trailerProviders;
 
     mediaelch::ScraperManager* m_scraperManager = nullptr;

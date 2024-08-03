@@ -29,87 +29,16 @@ TmdbImages::TmdbImages(QObject* parent) : ImageProvider(parent)
         ImageType::ConcertPoster};
     // For officially supported languages, see:
     // https://developers.themoviedb.org/3/configuration/get-primary-translations
-    m_meta.supportedLanguages = {"ar-AE",
-        "ar-SA",
-        "be-BY",
-        "bg-BG",
-        "bn-BD",
-        "ca-ES",
-        "ch-GU",
-        "cn-CN",
-        "cs-CZ",
-        "da-DK",
-        "de-DE",
-        "de-AT",
-        "de-CH",
-        "el-GR",
-        "en-AU",
-        "en-CA",
-        "en-GB",
-        "en-NZ",
-        "en-US",
-        "eo-EO",
-        "es-ES",
-        "es-MX",
-        "et-EE",
-        "eu-ES",
-        "fa-IR",
-        "fi-FI",
-        "fr-CA",
-        "fr-FR",
-        "gl-ES",
-        "he-IL",
-        "hi-IN",
-        "hu-HU",
-        "hr-HR",
-        "id-ID",
-        "it-IT",
-        "ja-JP",
-        "ka-GE",
-        "kk-KZ",
-        "kn-IN",
-        "ko-KR",
-        "lt-LT",
-        "lv-LV",
-        "ml-IN",
-        "ms-MY",
-        "ms-SG",
-        "nb-NO",
-        "nl-NL",
-        "no-NO",
-        "pl-PL",
-        "pt-BR",
-        "pt-PT",
-        "ro-RO",
-        "ru-RU",
-        "si-LK",
-        "sk-SK",
-        "sl-SI",
-        "sq-AL",
-        "sr-RS",
-        "sv-SE",
-        "ta-IN",
-        "te-IN",
-        "th-TH",
-        "tl-PH",
-        "tr-TR",
-        "uk-UA",
-        "vi-VN",
-        "zh-CN",
-        "zh-HK",
-        "zh-TW",
-        "zu-ZA"};
-    m_meta.defaultLocale = Locale::English;
+    m_meta.supportedLanguages = TmdbMovieConfiguration::supportedLanguages();
+    m_meta.defaultLocale = TmdbMovieConfiguration::defaultLocale();
 
     m_searchResultLimit = 0;
-    m_tmdbConfig = new mediaelch::scraper::TmdbMovieConfiguration(*Settings::instance());
+
+    m_tmdbConfig = new mediaelch::scraper::TmdbMovieConfiguration(*Settings::instance(), this);
     m_tmdb = new mediaelch::scraper::TmdbMovie(*m_tmdbConfig, this);
 }
 
-TmdbImages::~TmdbImages()
-{
-    delete m_tmdbConfig;
-};
+TmdbImages::~TmdbImages() = default;
 
 const ImageProvider::ScraperMeta& TmdbImages::meta() const
 {
@@ -128,8 +57,7 @@ void TmdbImages::searchMovie(QString searchStr, int limit)
     m_searchResultLimit = limit;
 
     MovieSearchJob::Config config;
-    // FIXME: Language selection? Or use m_meta.defaultLocale?
-    config.locale = m_tmdb->meta().defaultLocale;
+    config.locale = m_tmdbConfig->language();
     config.includeAdult = Settings::instance()->showAdultScrapers();
     config.query = searchStr.trimmed();
     auto* searchJob = m_tmdb->search(config);
@@ -138,12 +66,6 @@ void TmdbImages::searchMovie(QString searchStr, int limit)
     searchJob->start();
 }
 
-/**
- * \brief Searches for a concert
- * \param searchStr The concert name/search string
- * \param limit Number of results, if zero, all results are returned
- * \see TmdbImages::searchMovie
- */
 void TmdbImages::searchConcert(QString searchStr, int limit)
 {
     searchMovie(searchStr, limit);
@@ -433,26 +355,6 @@ void TmdbImages::tvShowSeasonBackdrops(TvDbId tvdbId, SeasonNumber season, const
     Q_UNUSED(tvdbId);
     Q_UNUSED(season);
     Q_UNUSED(locale)
-}
-
-bool TmdbImages::hasSettings() const
-{
-    return false;
-}
-
-void TmdbImages::saveSettings(ScraperSettings& settings)
-{
-    Q_UNUSED(settings);
-}
-
-void TmdbImages::loadSettings(ScraperSettings& settings)
-{
-    m_tmdb->loadSettings(settings);
-}
-
-QWidget* TmdbImages::settingsWidget()
-{
-    return nullptr;
 }
 
 void TmdbImages::searchAlbum(QString artistName, QString searchStr, int limit)

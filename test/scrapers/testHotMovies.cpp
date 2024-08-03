@@ -33,12 +33,20 @@ static auto makeScrapeJob(QString id)
 
 static void cleanupMovie(Movie& movie)
 {
-    QString overview = movie.overview();
-    overview.truncate(100);
-    overview.replace("fuck", "…", Qt::CaseSensitivity::CaseInsensitive);
-    overview.replace("porn", "…", Qt::CaseSensitivity::CaseInsensitive);
-    overview += "…";
-    movie.setOverview(overview);
+    {
+        QString overview = movie.overview();
+        overview.truncate(100);
+        overview.replace("fuck", "…", Qt::CaseSensitivity::CaseInsensitive);
+        overview.replace("porn", "…", Qt::CaseSensitivity::CaseInsensitive);
+        overview += "…";
+        movie.setOverview(overview);
+    }
+    {
+        QString title = movie.name();
+        title.replace(" - On Sale! Dive Into Summer Sale", "", Qt::CaseSensitivity::CaseInsensitive);
+        title.replace(" - On Sale!", "", Qt::CaseSensitivity::CaseInsensitive);
+        movie.setName(title);
+    }
 }
 
 TEST_CASE("HotMovies returns valid search results", "[movie][HotMovies][search]")

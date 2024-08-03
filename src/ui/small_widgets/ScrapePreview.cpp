@@ -4,7 +4,7 @@
 #include "data/Poster.h"
 
 namespace {
-static const char* WAS_ABORTED = "WAS_ABORTED";
+static const char* const WAS_ABORTED = "WAS_ABORTED";
 }
 
 ScrapePreview::ScrapePreview(QWidget* parent) : QWidget{parent}, ui(new Ui::ScrapePreview)

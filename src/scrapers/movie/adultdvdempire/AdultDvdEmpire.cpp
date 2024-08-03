@@ -18,9 +18,9 @@ AdultDvdEmpire::AdultDvdEmpire(QObject* parent) : MovieScraper(parent)
     m_meta.name = "Adult DVD Empire";
     m_meta.description = tr("Adult DVD Empire is a video database for adult content.");
     m_meta.website = "https://www.adultempire.com/";
-    m_meta.termsOfService = "https://www.adultempire.com/";
-    m_meta.privacyPolicy = "https://www.adultempire.com/";
-    m_meta.help = "https://www.adultempire.com/";
+    m_meta.termsOfService = "https://www.adultempire.com/help/cs_termsofuse.html";
+    m_meta.privacyPolicy = "https://www.adultempire.com/help/cs_privacypolicy.html";
+    m_meta.help = "https://www.adultempire.com/help/home.html";
     m_meta.supportedDetails = {MovieScraperInfo::Title,
         MovieScraperInfo::Released,
         MovieScraperInfo::Runtime,
@@ -74,26 +74,6 @@ QSet<MovieScraperInfo> AdultDvdEmpire::scraperNativelySupports()
 void AdultDvdEmpire::changeLanguage(mediaelch::Locale /*locale*/)
 {
     // no-op: only one language is supported and hard-coded.
-}
-
-bool AdultDvdEmpire::hasSettings() const
-{
-    return false;
-}
-
-void AdultDvdEmpire::loadSettings(ScraperSettings& settings)
-{
-    Q_UNUSED(settings);
-}
-
-void AdultDvdEmpire::saveSettings(ScraperSettings& settings)
-{
-    Q_UNUSED(settings);
-}
-
-QWidget* AdultDvdEmpire::settingsWidget()
-{
-    return nullptr;
 }
 
 } // namespace scraper

@@ -12,7 +12,7 @@ namespace scraper {
 
 QString TvMaze::ID = "tvmaze";
 
-TvMaze::TvMaze(QObject* parent) : TvScraper(parent)
+TvMaze::TvMaze(TvMazeConfiguration& settings, QObject* parent) : TvScraper(parent), m_settings{settings}
 {
     m_meta.identifier = TvMaze::ID;
     m_meta.name = "TVmaze";

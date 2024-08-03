@@ -83,9 +83,14 @@ TEST_CASE("FernsehserienDe returns valid search results", "[FernsehserienDe][sea
             // The search on Fernsehserien.de is not... great.
             // We don't find "G&G" as of 2024-06-22 anymore.
             if (result.title.contains("Navy")) {
-                CHECK(result.title == "Navy CIS");
-                CHECK(result.released == QDate(2003, 1, 1));
-                CHECK(result.identifier.str() == "navy-cis");
+                CHECK_THAT(result.title, StartsWith("Navy CIS"));
+                if (result.title.contains("L.A.")) {
+                    CHECK(result.released == QDate(2009, 1, 1));
+                    CHECK(result.identifier.str() == "navy-cis-la");
+                } else {
+                    CHECK(result.released == QDate(2003, 1, 1));
+                    CHECK(result.identifier.str() == "navy-cis");
+                }
                 return;
             }
             if (result.title.contains("Geschichten")) {

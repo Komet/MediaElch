@@ -5,6 +5,7 @@
 #include "scrapers/tv_show/thetvdb/TheTvDbEpisodeScrapeJob.h"
 
 #include "test/helpers/scraper_helpers.h"
+#include "test/mocks/settings/SettingsMock.h"
 #include "test/scrapers/thetvdb/testTheTvDbHelper.h"
 
 #include <chrono>
@@ -71,8 +72,10 @@ TEST_CASE("TheTvDb scrapes episode details for The Simpsons S12E19", "[episode][
 
     SECTION("Loads all details for The Simpsons S12E19")
     {
-        // TODO: Signal muss mit timer geschlossen werden , also sigFinished
-        TheTvDb tvdb;
+        SettingsMock mockSettings;
+        TheTvDbConfiguration scraperConfig(mockSettings);
+        TheTvDb tvdb(scraperConfig);
+
         EpisodeIdentifier id(tvdbId);
         EpisodeScrapeJob::Config config{id, Locale::English, tvdb.meta().supportedEpisodeDetails};
 
@@ -86,7 +89,10 @@ TEST_CASE("TheTvDb scrapes episode details for The Simpsons S12E19", "[episode][
 
     SECTION("Loads all details for The Simpsons S12E19 in another Language")
     {
-        TheTvDb tvdb;
+        SettingsMock mockSettings;
+        TheTvDbConfiguration scraperConfig(mockSettings);
+        TheTvDb tvdb(scraperConfig);
+
         EpisodeIdentifier id(tvdbId);
         EpisodeScrapeJob::Config config{id, Locale("de-DE"), tvdb.meta().supportedEpisodeDetails};
 

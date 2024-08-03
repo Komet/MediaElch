@@ -62,7 +62,7 @@ private:
     QPointer<TvShow> m_currentShow = nullptr;
     QPointer<TvShowEpisode> m_currentEpisode = nullptr;
     mediaelch::scraper::TvScraper* m_currentScraper = nullptr;
-    mediaelch::Locale m_locale = mediaelch::Locale::English;
+    mediaelch::Locale m_currentLanguage = mediaelch::Locale::English;
     DownloadManager* m_downloadManager;
     QMap<QString, mediaelch::scraper::ShowIdentifier> m_showIds;
 

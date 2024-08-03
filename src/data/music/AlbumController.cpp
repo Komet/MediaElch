@@ -187,13 +187,8 @@ void AlbumController::scraperLoadDone(mediaelch::scraper::AlbumScrapeJob* scrape
     }
 
     if (!images.isEmpty() && m_album->mbReleaseGroupId().isValid()) {
-        mediaelch::scraper::ImageProvider* imageProvider = nullptr;
-        for (auto* interface : Manager::instance()->imageProviders()) {
-            if (interface->meta().identifier == mediaelch::scraper::FanartTvMusic::ID) {
-                imageProvider = interface;
-                break;
-            }
-        }
+        mediaelch::scraper::ImageProvider* imageProvider =
+            Manager::instance()->scrapers().imageProvider(mediaelch::scraper::FanartTvMusic::ID);
         if (imageProvider == nullptr) {
             onFanartLoadDone(m_album, QMap<ImageType, QVector<Poster>>());
             return;

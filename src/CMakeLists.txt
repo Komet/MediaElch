@@ -76,6 +76,7 @@ target_link_libraries(
     mediaelch_ui_music
     mediaelch_ui_notifications
     mediaelch_ui_renamer
+    mediaelch_ui_scrapers
     mediaelch_ui_settings
     mediaelch_ui_small_widgets
     mediaelch_ui_tv_show

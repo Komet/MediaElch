@@ -1,5 +1,6 @@
 #pragma once
 
+#include "data/Locale.h"
 #include "globals/Globals.h"
 #include "scrapers/ScraperInfos.h"
 #include "scrapers/ScraperInterface.h"

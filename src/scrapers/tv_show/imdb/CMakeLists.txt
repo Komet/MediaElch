@@ -8,6 +8,7 @@ add_library(
   ImdbTvShowScrapeJob.cpp
   ImdbTvShowSearchJob.cpp
   ImdbTvShowParser.cpp
+  ImdbTvConfiguration.cpp
 )
 
 target_link_libraries(

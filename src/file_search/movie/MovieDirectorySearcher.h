@@ -98,7 +98,7 @@ private:
     QVector<Movie*> m_movies;
     std::atomic_bool m_aborted{false};
     std::atomic_int m_processed{0};
-    int m_approxTotal{0};
+    elch_ssize_t m_approxTotal{0};
 
     // TODO: Streamline, e.g. use one vector of directories with DiscType tags
     QHash<QString, QDateTime> m_lastModifications;

@@ -174,8 +174,9 @@ void MovieController::loadData(QHash<mediaelch::scraper::MovieScraper*, mediaelc
         // Requires custom movie scraper
         // TODO: Maybe use some custom loadMovie() function? This seems hacky.
         //       There could be only a single scraper being used.
-        CustomMovieScraper::instance()->setScraperMovieIds(std::move(ids));
-        scraper = CustomMovieScraper::instance();
+        mediaelch::scraper::CustomMovieScraper& custom = Manager::instance()->scrapers().customMovieScraper();
+        custom.setScraperMovieIds(std::move(ids));
+        scraper = &custom;
 
         // Currently hacky, see this issue for details:
         // https://github.com/Komet/MediaElch/issues/1598
@@ -287,9 +288,9 @@ void MovieController::scraperLoadDone(mediaelch::scraper::MovieScraper* scraper,
     QSet<ImageType> images;
     mediaelch::scraper::MovieScraper* sigScraper = scraper;
 
-    scraper = isCustomMovieScraper
-                  ? mediaelch::scraper::CustomMovieScraper::instance()->scraperForInfo(MovieScraperInfo::Backdrop)
-                  : sigScraper;
+    mediaelch::scraper::CustomMovieScraper& custom = Manager::instance()->scrapers().customMovieScraper();
+
+    scraper = isCustomMovieScraper ? custom.scraperForInfo(MovieScraperInfo::Backdrop) : sigScraper;
     if (infosToLoad().contains(MovieScraperInfo::Backdrop)
         && (m_forceFanartBackdrop
             || (scraper != nullptr && !scraper->scraperNativelySupports().contains(MovieScraperInfo::Backdrop)))) {
@@ -297,9 +298,7 @@ void MovieController::scraperLoadDone(mediaelch::scraper::MovieScraper* scraper,
         m_movie->clear({MovieScraperInfo::Backdrop});
     }
 
-    scraper = isCustomMovieScraper
-                  ? mediaelch::scraper::CustomMovieScraper::instance()->scraperForInfo(MovieScraperInfo::Poster)
-                  : sigScraper;
+    scraper = isCustomMovieScraper ? custom.scraperForInfo(MovieScraperInfo::Poster) : sigScraper;
     if (infosToLoad().contains(MovieScraperInfo::Poster)
         && (m_forceFanartPoster
             || (scraper != nullptr && !scraper->scraperNativelySupports().contains(MovieScraperInfo::Poster)))) {
@@ -307,9 +306,7 @@ void MovieController::scraperLoadDone(mediaelch::scraper::MovieScraper* scraper,
         m_movie->clear({MovieScraperInfo::Poster});
     }
 
-    scraper = isCustomMovieScraper
-                  ? mediaelch::scraper::CustomMovieScraper::instance()->scraperForInfo(MovieScraperInfo::ClearArt)
-                  : sigScraper;
+    scraper = isCustomMovieScraper ? custom.scraperForInfo(MovieScraperInfo::ClearArt) : sigScraper;
     if (infosToLoad().contains(MovieScraperInfo::ClearArt)
         && (m_forceFanartClearArt
             || (scraper != nullptr && !scraper->scraperNativelySupports().contains(MovieScraperInfo::ClearArt)))) {
@@ -317,9 +314,7 @@ void MovieController::scraperLoadDone(mediaelch::scraper::MovieScraper* scraper,
         m_movie->clear({MovieScraperInfo::ClearArt});
     }
 
-    scraper = isCustomMovieScraper
-                  ? mediaelch::scraper::CustomMovieScraper::instance()->scraperForInfo(MovieScraperInfo::CdArt)
-                  : sigScraper;
+    scraper = isCustomMovieScraper ? custom.scraperForInfo(MovieScraperInfo::CdArt) : sigScraper;
     if (infosToLoad().contains(MovieScraperInfo::CdArt)
         && (m_forceFanartCdArt
             || (scraper != nullptr && !scraper->scraperNativelySupports().contains(MovieScraperInfo::CdArt)))) {
@@ -327,9 +322,7 @@ void MovieController::scraperLoadDone(mediaelch::scraper::MovieScraper* scraper,
         m_movie->clear({MovieScraperInfo::CdArt});
     }
 
-    scraper = isCustomMovieScraper
-                  ? mediaelch::scraper::CustomMovieScraper::instance()->scraperForInfo(MovieScraperInfo::Logo)
-                  : sigScraper;
+    scraper = isCustomMovieScraper ? custom.scraperForInfo(MovieScraperInfo::Logo) : sigScraper;
     if (infosToLoad().contains(MovieScraperInfo::Logo)
         && (m_forceFanartLogo
             || (scraper != nullptr && !scraper->scraperNativelySupports().contains(MovieScraperInfo::Logo)))) {

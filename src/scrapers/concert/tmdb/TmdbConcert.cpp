@@ -4,15 +4,14 @@
 #include "globals/Helper.h"
 #include "log/Log.h"
 #include "network/NetworkRequest.h"
+#include "scrapers/concert/tmdb/TmdbConcertConfiguration.h"
 #include "scrapers/concert/tmdb/TmdbConcertSearchJob.h"
 #include "ui/main/MainWindow.h"
 
-#include <QGridLayout>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonValue>
-#include <QLabel>
 
 namespace mediaelch {
 namespace scraper {
@@ -47,108 +46,16 @@ TmdbConcert::TmdbConcert(QObject* parent) :
         ConcertScraperInfo::Backdrop,      //
         ConcertScraperInfo::Genres,        //
         ConcertScraperInfo::ExtraArts};
-    // For officially supported languages, see:
-    // https://developers.themoviedb.org/3/configuration/get-primary-translations
-    m_meta.supportedLanguages = {"ar-AE",
-        "ar-SA",
-        "be-BY",
-        "bg-BG",
-        "bn-BD",
-        "ca-ES",
-        "ch-GU",
-        "cn-CN",
-        "cs-CZ",
-        "da-DK",
-        "de-DE",
-        "de-AT",
-        "de-CH",
-        "el-GR",
-        "en-AU",
-        "en-CA",
-        "en-GB",
-        "en-NZ",
-        "en-US",
-        "eo-EO",
-        "es-ES",
-        "es-MX",
-        "et-EE",
-        "eu-ES",
-        "fa-IR",
-        "fi-FI",
-        "fr-CA",
-        "fr-FR",
-        "gl-ES",
-        "he-IL",
-        "hi-IN",
-        "hu-HU",
-        "hr-HR",
-        "id-ID",
-        "it-IT",
-        "ja-JP",
-        "ka-GE",
-        "kk-KZ",
-        "kn-IN",
-        "ko-KR",
-        "lt-LT",
-        "lv-LV",
-        "ml-IN",
-        "ms-MY",
-        "ms-SG",
-        "nb-NO",
-        "nl-NL",
-        "no-NO",
-        "pl-PL",
-        "pt-BR",
-        "pt-PT",
-        "ro-RO",
-        "ru-RU",
-        "si-LK",
-        "sk-SK",
-        "sl-SI",
-        "sq-AL",
-        "sr-RS",
-        "sv-SE",
-        "ta-IN",
-        "te-IN",
-        "th-TH",
-        "tl-PH",
-        "tr-TR",
-        "uk-UA",
-        "vi-VN",
-        "zh-CN",
-        "zh-HK",
-        "zh-TW",
-        "zu-ZA"};
-    m_meta.defaultLocale = "en-US";
 
-    m_widget = new QWidget(MainWindow::instance());
-    m_box = new QComboBox(m_widget);
-
-    for (const mediaelch::Locale& lang : asConst(m_meta.supportedLanguages)) {
-        m_box->addItem(lang.languageTranslated(), lang.toString());
-    }
-
-    auto* layout = new QGridLayout(m_widget);
-    layout->addWidget(new QLabel(tr("Language")), 0, 0);
-    layout->addWidget(m_box, 0, 1);
-    layout->setColumnStretch(2, 1);
-    layout->setContentsMargins(12, 0, 12, 12);
-    m_widget->setLayout(layout);
+    m_meta.supportedLanguages = TmdbConcertConfiguration::supportedLanguages();
+    m_meta.defaultLocale = TmdbConcertConfiguration::defaultLocale();
 
     connect(&m_api, &TmdbApi::initialized, this, [this](bool wasSuccessful) { emit initialized(wasSuccessful, this); });
 
     setup();
 }
 
-TmdbConcert::~TmdbConcert()
-{
-    if (!m_widget.isNull() && m_widget->parent() == nullptr) {
-        // We set MainWindow::instance() as this Widget's parent.
-        // But at construction time, the instance is not setup, yet.
-        // See settingsWidget()
-        m_widget->deleteLater();
-    }
-}
+TmdbConcert::~TmdbConcert() = default;
 
 const ConcertScraper::ScraperMeta& TmdbConcert::meta() const
 {
@@ -170,69 +77,11 @@ ConcertSearchJob* TmdbConcert::search(ConcertSearchJob::Config config)
     return new TmdbConcertSearchJob(m_api, config, this);
 }
 
-bool TmdbConcert::hasSettings() const
-{
-    return true;
-}
-
-QWidget* TmdbConcert::settingsWidget()
-{
-    if (m_widget->parent() == nullptr) {
-        m_widget->setParent(MainWindow::instance());
-    }
-    return m_widget;
-}
-
-void TmdbConcert::loadSettings(ScraperSettings& settings)
-{
-    m_locale = QLocale(settings.language(m_meta.defaultLocale).toString());
-    if (m_locale.name() == "C") {
-        m_locale = QLocale("en");
-    }
-
-    const QString locale = localeForTmdb();
-    const QString lang = language();
-
-    for (int i = 0, n = m_box->count(); i < n; ++i) {
-        if (m_box->itemData(i).toString() == lang || m_box->itemData(i).toString() == locale) {
-            m_box->setCurrentIndex(i);
-            break;
-        }
-    }
-}
-
-/**
- * \brief Saves scrapers settings
- */
-void TmdbConcert::saveSettings(ScraperSettings& settings)
-{
-    const QString language = m_box->itemData(m_box->currentIndex()).toString();
-    settings.setLanguage(language);
-    loadSettings(settings);
-}
-
-/**
- * \brief Just returns a pointer to the scrapers network access manager
- * \return Network Access Manager
- */
 mediaelch::network::NetworkManager* TmdbConcert::network()
 {
     return &m_network;
 }
 
-/**
- * \brief Returns a list of infos available from the scraper
- * \return List of supported infos
- */
-QSet<ConcertScraperInfo> TmdbConcert::scraperSupports()
-{
-    return m_meta.supportedDetails;
-}
-
-/**
- * \brief Loads the setup parameters from TMDB
- * \see TmdbConcert::setupFinished
- */
 void TmdbConcert::setup()
 {
     QUrl url(QString("https://api.themoviedb.org/3/configuration?api_key=%1").arg(m_apiKey));

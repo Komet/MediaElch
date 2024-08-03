@@ -5,6 +5,7 @@
 #include "scrapers/tv_show/thetvdb/TheTvDb.h"
 #include "scrapers/tv_show/thetvdb/TheTvDbShowScrapeJob.h"
 #include "test/helpers/scraper_helpers.h"
+#include "test/mocks/settings/SettingsMock.h"
 #include "test/scrapers/thetvdb/testTheTvDbHelper.h"
 
 #include <chrono>
@@ -48,7 +49,9 @@ TEST_CASE("TheTvDb scrapes show details", "[show][TheTvDb][load_data]")
 
     SECTION("Loads all details for Scrubs")
     {
-        TheTvDb tvdb;
+        SettingsMock mockSettings;
+        TheTvDbConfiguration scraperConfig(mockSettings);
+        TheTvDb tvdb(scraperConfig);
         ShowScrapeJob::Config config{ShowIdentifier("76156"), Locale("en-US"), tvdb.meta().supportedShowDetails};
 
         auto scrapeJob = std::make_unique<TheTvDbShowScrapeJob>(getTheTvDbApi(), config);

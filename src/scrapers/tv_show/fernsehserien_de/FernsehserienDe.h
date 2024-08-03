@@ -2,6 +2,7 @@
 
 #include "network/NetworkManager.h"
 #include "scrapers/tv_show/TvScraper.h"
+#include "scrapers/tv_show/fernsehserien_de/FernsehserienDeConfiguration.h"
 
 namespace mediaelch {
 namespace scraper {
@@ -29,7 +30,7 @@ public:
     static QString ID;
 
 public:
-    explicit FernsehserienDe(QObject* parent = nullptr);
+    explicit FernsehserienDe(FernsehserienDeConfiguration& settings, QObject* parent = nullptr);
     ~FernsehserienDe() override = default;
 
     const ScraperMeta& meta() const override;
@@ -43,6 +44,7 @@ public:
     EpisodeScrapeJob* loadEpisode(EpisodeScrapeJob::Config config) override;
 
 private:
+    FernsehserienDeConfiguration& m_settings;
     ScraperMeta m_meta;
     FernsehserienDeApi m_api;
 };

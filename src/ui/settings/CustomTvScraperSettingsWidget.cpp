@@ -55,7 +55,8 @@ void CustomTvScraperSettingsWidget::loadSettings()
         ShowScraperInfo::SeasonThumb,
         ShowScraperInfo::Runtime,
         ShowScraperInfo::Status};
-    QVector<EpisodeScraperInfo> episodeInfos = {EpisodeScraperInfo::Actors,
+    QVector<EpisodeScraperInfo> episodeInfos = {
+        EpisodeScraperInfo::Actors,
         EpisodeScraperInfo::Certification,
         EpisodeScraperInfo::Director,
         EpisodeScraperInfo::FirstAired,
@@ -65,7 +66,8 @@ void CustomTvScraperSettingsWidget::loadSettings()
         EpisodeScraperInfo::Tags,
         EpisodeScraperInfo::Thumbnail,
         EpisodeScraperInfo::Title,
-        EpisodeScraperInfo::Writer};
+        EpisodeScraperInfo::Writer, //
+    };
 
 #ifdef QT_DEBUG
     { // TODO: Maybe a simple macro?

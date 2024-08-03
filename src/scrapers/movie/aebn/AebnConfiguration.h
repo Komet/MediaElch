@@ -8,10 +8,11 @@
 namespace mediaelch {
 namespace scraper {
 
-class AebnConfiguration : public ScraperConfiguration
+class AebnConfiguration : public QObject, public ScraperConfiguration
 {
+    Q_OBJECT
 public:
-    explicit AebnConfiguration(Settings& settings);
+    explicit AebnConfiguration(Settings& settings, QObject* parent = nullptr);
     virtual ~AebnConfiguration() = default;
 
     void init() override;
@@ -20,12 +21,16 @@ public:
     ELCH_NODISCARD static QString defaultGenre();
 
 public:
-    ELCH_NODISCARD Locale language();
-    void setLanguage(const Locale& value);
+    ELCH_NODISCARD Locale language() override;
+    void setLanguage(const Locale& value) override;
     ELCH_NODISCARD static mediaelch::Locale defaultLocale();
 
     ELCH_NODISCARD QString genreId();
     void setGenreId(const QString& value);
+
+signals:
+    void languageChanged(Locale language);
+    void genreIdChanged(QString value);
 };
 
 } // namespace scraper

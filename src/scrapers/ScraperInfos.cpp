@@ -41,7 +41,8 @@ QSet<ShowScraperInfo> allShowScraperInfos()
 
 QSet<EpisodeScraperInfo> allEpisodeScraperInfos()
 {
-    return {EpisodeScraperInfo::Actors,
+    return {
+        EpisodeScraperInfo::Actors,
         EpisodeScraperInfo::Certification,
         EpisodeScraperInfo::Director,
         EpisodeScraperInfo::FirstAired,
@@ -51,7 +52,8 @@ QSet<EpisodeScraperInfo> allEpisodeScraperInfos()
         EpisodeScraperInfo::Thumbnail,
         EpisodeScraperInfo::Tags,
         EpisodeScraperInfo::Title,
-        EpisodeScraperInfo::Writer};
+        EpisodeScraperInfo::Writer, //
+    };
 }
 
 

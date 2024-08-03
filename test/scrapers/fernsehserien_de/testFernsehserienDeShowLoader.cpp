@@ -4,6 +4,7 @@
 #include "scrapers/tv_show/fernsehserien_de/FernsehserienDe.h"
 
 #include "test/helpers/scraper_helpers.h"
+#include "test/mocks/settings/SettingsMock.h"
 
 #include <chrono>
 
@@ -17,7 +18,9 @@ TEST_CASE("FernsehserienDe scrapes show details", "[show][FernsehserienDe][load_
 
     // Utility function to load data; since only German is supported, we can easily simplify scraping.
     auto loadAndCompareTvShow = [&api](const QString& id, const QString& filename) {
-        FernsehserienDe scraper;
+        SettingsMock settingsMock;
+        FernsehserienDeConfiguration scraperConfig(settingsMock);
+        FernsehserienDe scraper(scraperConfig);
 
         ShowScrapeJob::Config config{ShowIdentifier(id), Locale("de-DE"), scraper.meta().supportedShowDetails};
 

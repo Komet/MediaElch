@@ -12,6 +12,8 @@
 namespace mediaelch {
 namespace scraper {
 
+class FanartTvConfiguration;
+
 class FanartTvMusic : public ImageProvider
 {
     Q_OBJECT
@@ -19,7 +21,7 @@ public:
     static QString ID;
 
 public:
-    explicit FanartTvMusic(QObject* parent = nullptr);
+    explicit FanartTvMusic(FanartTvConfiguration& settings, QObject* parent = nullptr);
     ~FanartTvMusic() override = default;
 
     const ScraperMeta& meta() const override;
@@ -66,11 +68,6 @@ public:
     void albumImages(Album* album, MusicBrainzId mbId, QSet<ImageType> types) override;
     void albumBooklets(MusicBrainzId mbId) override;
 
-    bool hasSettings() const override;
-    void loadSettings(ScraperSettings& settings) override;
-    void saveSettings(ScraperSettings& settings) override;
-    QWidget* settingsWidget() override;
-
 public slots:
     void searchMovie(QString searchStr, int limit = 0) override;
     void searchConcert(QString searchStr, int limit = 0) override;
@@ -88,9 +85,9 @@ private slots:
 
 private:
     ScraperMeta m_meta;
+    FanartTvConfiguration& m_settings;
 
     QString m_apiKey;
-    QString m_personalApiKey;
     mediaelch::network::NetworkManager m_network;
     int m_searchResultLimit = 0;
 

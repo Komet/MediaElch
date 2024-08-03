@@ -4,6 +4,7 @@
 #include "scrapers/tv_show/imdb/ImdbTv.h"
 #include "scrapers/tv_show/imdb/ImdbTvShowScrapeJob.h"
 #include "test/helpers/scraper_helpers.h"
+#include "test/mocks/settings/SettingsMock.h"
 #include "test/scrapers/imdbtv/testImdbTvHelper.h"
 
 #include <chrono>
@@ -29,7 +30,9 @@ TEST_CASE("ImdbTv scrapes show details", "[show][ImdbTv][load_data]")
 
     SECTION("Loads all details for Scrubs")
     {
-        ImdbTv imdbTv;
+        SettingsMock mockSettings;
+        ImdbTvConfiguration scraperConfig(mockSettings);
+        ImdbTv imdbTv(scraperConfig);
         ShowScrapeJob::Config config{ShowIdentifier("tt0285403"), Locale("en-US"), imdbTv.meta().supportedShowDetails};
 
         auto scrapeJob = std::make_unique<ImdbTvShowScrapeJob>(getImdbApi(), config);
@@ -42,7 +45,9 @@ TEST_CASE("ImdbTv scrapes show details", "[show][ImdbTv][load_data]")
 
     SECTION("Loads all details for a TV series with HTML entities")
     {
-        ImdbTv imdbTv;
+        SettingsMock mockSettings;
+        ImdbTvConfiguration scraperConfig(mockSettings);
+        ImdbTv imdbTv(scraperConfig);
         ShowScrapeJob::Config config{ShowIdentifier("tt1384816"), Locale("en-US"), imdbTv.meta().supportedShowDetails};
 
         auto scrapeJob = std::make_unique<ImdbTvShowScrapeJob>(getImdbApi(), config);
@@ -59,7 +64,9 @@ TEST_CASE("ImdbTv scrapes show details", "[show][ImdbTv][load_data]")
         // Note: Sherlock runs longer than 1h
         //       This test ensures that the runtime is correctly scraped.
 
-        ImdbTv imdbTv;
+        SettingsMock mockSettings;
+        ImdbTvConfiguration scraperConfig(mockSettings);
+        ImdbTv imdbTv(scraperConfig);
         ShowScrapeJob::Config config{ShowIdentifier("tt1475582"), Locale("en-US"), imdbTv.meta().supportedShowDetails};
 
         auto scrapeJob = std::make_unique<ImdbTvShowScrapeJob>(getImdbApi(), config);
@@ -76,7 +83,9 @@ TEST_CASE("ImdbTv scrapes show details", "[show][ImdbTv][load_data]")
     //
     // SECTION("Loads all details for Scrubs in another Language")
     // {
-    //     ImdbTv imdbTv;
+    //     SettingsMock mockSettings;
+    //     ImdbTvConfiguration scraperConfig(mockSettings);
+    //     ImdbTv imdbTv(scraperConfig);
     //     ShowScrapeJob::Config config{ShowIdentifier("tt0285403"), Locale("de-DE"),
     //     imdbTv.meta().supportedShowDetails};
 

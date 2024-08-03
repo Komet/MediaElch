@@ -1,4 +1,9 @@
-#include "FanartTvMusicArtists.h"
+#include "scrapers/image/FanartTvMusicArtists.h"
+
+#include "log/Log.h"
+#include "network/NetworkRequest.h"
+#include "scrapers/image/FanartTv.h"
+#include "scrapers/image/FanartTvConfiguration.h"
 
 #include <QDomDocument>
 #include <QJsonArray>
@@ -6,16 +11,13 @@
 #include <QJsonObject>
 #include <QJsonValue>
 
-#include "log/Log.h"
-#include "network/NetworkRequest.h"
-#include "scrapers/image/FanartTv.h"
-
 namespace mediaelch {
 namespace scraper {
 
 QString FanartTvMusicArtists::ID = "images.fanarttv-music";
 
-FanartTvMusicArtists::FanartTvMusicArtists(QObject* parent) : ImageProvider(parent)
+FanartTvMusicArtists::FanartTvMusicArtists(FanartTvConfiguration& settings, QObject* parent) :
+    ImageProvider(parent), m_settings{settings}
 {
     m_meta.identifier = ID;
     m_meta.name = "Fanart.tv Music Artists";
@@ -25,38 +27,12 @@ FanartTvMusicArtists::FanartTvMusicArtists(QObject* parent) : ImageProvider(pare
     m_meta.privacyPolicy = "https://fanart.tv/privacy-policy/";
     m_meta.help = "https://forum.fanart.tv/";
     m_meta.supportedImageTypes = {ImageType::ConcertBackdrop, ImageType::ConcertLogo};
-    // Multiple languages, but no way to query for it and also no offical list of languages.
-    m_meta.supportedLanguages = {
-        "bg",
-        "zh",
-        "hr",
-        "cs",
-        "da",
-        "nl",
-        "en",
-        "fi",
-        "fr",
-        "de",
-        "el",
-        "he",
-        "hu",
-        "it",
-        "ja",
-        "ko",
-        "no",
-        "pl",
-        "pt",
-        "ru",
-        "sl",
-        "es",
-        "sv",
-        "tr",
-    };
-    m_meta.defaultLocale = "en";
+
+    m_meta.supportedLanguages = FanartTvConfiguration::supportedLanguages();
+    m_meta.defaultLocale = FanartTvConfiguration::defaultLocale();
 
     m_apiKey = "842f7a5d1cc7396f142b8dd47c4ba42b";
     m_searchResultLimit = 0;
-    m_preferredDiscType = "BluRay";
 }
 
 const ImageProvider::ScraperMeta& FanartTvMusicArtists::meta() const
@@ -206,7 +182,7 @@ QVector<Poster> FanartTvMusicArtists::parseData(QString json, ImageType type)
             }();
 
             b.language = poster.value("lang").toString();
-            FanartTv::insertPoster(posters, b, m_meta.defaultLocale.toString(), m_preferredDiscType);
+            FanartTv::insertPoster(posters, b, m_meta.defaultLocale.toString(), m_settings.preferredDiscType());
         }
     }
 
@@ -382,32 +358,11 @@ void FanartTvMusicArtists::concertCdArts(TmdbId tmdbId)
     Q_UNUSED(tmdbId);
 }
 
-bool FanartTvMusicArtists::hasSettings() const
-{
-    return false;
-}
-
-void FanartTvMusicArtists::loadSettings(ScraperSettings& settings)
-{
-    m_meta.defaultLocale = settings.language(m_meta.defaultLocale);
-    m_preferredDiscType = settings.valueString("DiscType", "BluRay");
-    m_personalApiKey = settings.valueString("PersonalApiKey", "");
-}
-
-void FanartTvMusicArtists::saveSettings(ScraperSettings& settings)
-{
-    Q_UNUSED(settings);
-}
-
-QWidget* FanartTvMusicArtists::settingsWidget()
-{
-    return nullptr;
-}
-
 QString FanartTvMusicArtists::keyParameter()
 {
-    return (!m_personalApiKey.isEmpty()) ? QString("api_key=%1&client_key=%2").arg(m_apiKey).arg(m_personalApiKey)
-                                         : QString("api_key=%1").arg(m_apiKey);
+    QString personalKey = m_settings.personalApiKey();
+    return (!personalKey.isEmpty()) ? QStringLiteral("api_key=%1&client_key=%2").arg(m_apiKey).arg(personalKey)
+                                    : QStringLiteral("api_key=%1").arg(m_apiKey);
 }
 
 void FanartTvMusicArtists::searchAlbum(QString artistName, QString searchStr, int limit)

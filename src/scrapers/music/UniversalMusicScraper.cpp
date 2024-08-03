@@ -1,18 +1,16 @@
 #include "UniversalMusicScraper.h"
 
-#include "MusicMerger.h"
 #include "data/music/Album.h"
 #include "data/music/Artist.h"
 #include "log/Log.h"
 #include "network/NetworkRequest.h"
+#include "scrapers/music/MusicMerger.h"
+#include "scrapers/music/UniversalMusicConfiguration.h"
 #include "ui/main/MainWindow.h"
-#include "ui/small_widgets/LanguageCombo.h"
 
 #include <QDomDocument>
-#include <QGridLayout>
 #include <QJsonArray>
 #include <QJsonDocument>
-#include <QLabel>
 #include <QRegularExpression>
 #include <algorithm>
 
@@ -107,8 +105,11 @@ void UniversalAlbumSearchJob::doStart()
     }
 }
 
-UniversalArtistScrapeJob::UniversalArtistScrapeJob(UniversalMusicScraper* scraper, Config config, QObject* parent) :
-    ArtistScrapeJob(std::move(config), parent), m_scraper{scraper}
+UniversalArtistScrapeJob::UniversalArtistScrapeJob(UniversalMusicScraper& scraper,
+    UniversalMusicConfiguration& settings,
+    Config config,
+    QObject* parent) :
+    ArtistScrapeJob(std::move(config), parent), m_scraper{scraper}, m_settings{settings}
 {
 }
 
@@ -125,7 +126,7 @@ void UniversalArtistScrapeJob::doStart()
     artist().setMbId(mbId);
     artist().setAllMusicId(AllMusicId::NoId);
 
-    m_scraper->m_musicBrainzApi.loadArtist(config().locale, mbId, [infos, this](QString html, ScraperError error) {
+    m_scraper.m_musicBrainzApi.loadArtist(config().locale, mbId, [infos, this](QString html, ScraperError error) {
         QString discogsId;
         if (!error.hasError()) {
             QDomDocument domDoc;
@@ -155,24 +156,24 @@ void UniversalArtistScrapeJob::doStart()
         const auto& artistMbId = artist().mbId();
 
         appendDownloadElement(
-            "musicbrainz", "musicbrainz_biography", m_scraper->m_musicBrainzApi.makeArtistBiographyUrl(artistMbId));
+            "musicbrainz", "musicbrainz_biography", m_scraper.m_musicBrainzApi.makeArtistBiographyUrl(artistMbId));
 
-        appendDownloadElement("theaudiodb", "tadb_data", m_scraper->m_theAudioDbApi.makeArtistUrl(artistMbId));
+        appendDownloadElement("theaudiodb", "tadb_data", m_scraper.m_theAudioDbApi.makeArtistUrl(artistMbId));
         appendDownloadElement(
-            "theaudiodb", "tadb_discography", m_scraper->m_theAudioDbApi.makeArtistDiscographyUrl(artistMbId));
+            "theaudiodb", "tadb_discography", m_scraper.m_theAudioDbApi.makeArtistDiscographyUrl(artistMbId));
 
         const auto& amId = artist().allMusicId();
         if (amId.isValid()) {
-            appendDownloadElement("allmusic", "am_data", m_scraper->m_allMusicApi.makeArtistUrl(amId));
-            appendDownloadElement("allmusic", "am_biography", m_scraper->m_allMusicApi.makeArtistBiographyUrl(amId));
-            appendDownloadElement("allmusic", "am_moods", m_scraper->m_allMusicApi.makeArtistMoodsUrl(amId));
+            appendDownloadElement("allmusic", "am_data", m_scraper.m_allMusicApi.makeArtistUrl(amId));
+            appendDownloadElement("allmusic", "am_biography", m_scraper.m_allMusicApi.makeArtistBiographyUrl(amId));
+            appendDownloadElement("allmusic", "am_moods", m_scraper.m_allMusicApi.makeArtistMoodsUrl(amId));
         }
         if (!discogsId.isEmpty()) {
             // TODO: This is currently a hack: The proper order in which fields are used is determined in
             // checkIfFinished(). We can't simply apply the artist's details here.
             DiscogsArtistScrapeJob::Config discogsConfig = config();
             discogsConfig.identifier = discogsId;
-            auto* discogsJob = m_scraper->m_discogs.loadArtist(discogsConfig);
+            auto* discogsJob = m_scraper.m_discogs.loadArtist(discogsConfig);
             connect(discogsJob, &DiscogsArtistScrapeJob::finished, this, [discogsJob, this]() {
                 auto dls = makeDeleteLaterScope(discogsJob);
                 copyDetailsToArtist(m_discogsArtist, discogsJob->artist(), allMusicScraperInfos());
@@ -191,11 +192,11 @@ void UniversalArtistScrapeJob::doStart()
                 request.setRawHeader("Accept-Language", config().locale.toString().toUtf8());
             } else if (elem.source == "allmusic") {
                 // TODO(refactor): For biography/moods we need a proper referrer header.
-                QUrl referrer = m_scraper->m_allMusicApi.makeArtistUrl(amId);
+                QUrl referrer = m_scraper.m_allMusicApi.makeArtistUrl(amId);
                 request.setRawHeader("Referer", referrer.toString().toUtf8());
             }
 
-            QNetworkReply* elemReply = m_scraper->m_network.getWithWatcher(request);
+            QNetworkReply* elemReply = m_scraper.m_network.getWithWatcher(request);
             connect(elemReply, &QNetworkReply::finished, this, &UniversalArtistScrapeJob::onArtistLoadFinished);
         }
     });
@@ -245,14 +246,15 @@ void UniversalArtistScrapeJob::checkIfFinished()
     }
 
     // First parse the preferred details
+    QString preferred = m_settings.preferredScraper();
     for (const DownloadElement& elem : asConst(m_artistDownloads)) {
-        if (elem.source == m_scraper->m_prefer) {
+        if (elem.source == preferred) {
             processDownloadElement(elem);
         }
     }
     // Then parse the rest. Details are only updated, if fields are empty.
     for (const DownloadElement& elem : asConst(m_artistDownloads)) {
-        if (elem.source != m_scraper->m_prefer) {
+        if (elem.source != preferred) {
             processDownloadElement(elem);
         }
     }
@@ -289,24 +291,27 @@ void UniversalArtistScrapeJob::processDownloadElement(DownloadElement elem)
         }
 
         if (elem.type == "tadb_data") {
-            m_scraper->m_theAudioDb.parseAndAssignArtist(
+            m_scraper.m_theAudioDb.parseAndAssignArtist(
                 parsedJson, artist(), config().details, config().locale.toString());
         } else if (elem.type == "tadb_discography") {
-            m_scraper->m_theAudioDb.parseAndAssignArtistDiscography(parsedJson, artist(), config().details);
+            m_scraper.m_theAudioDb.parseAndAssignArtistDiscography(parsedJson, artist(), config().details);
         }
     } else if (elem.type == "musicbrainz_biography") {
-        m_scraper->m_musicBrainz.parseAndAssignArtist(elem.contents, artist(), config().details);
+        m_scraper.m_musicBrainz.parseAndAssignArtist(elem.contents, artist(), config().details);
     } else if (elem.type == "am_data") {
-        m_scraper->m_allMusic.parseAndAssignArtist(elem.contents, artist(), config().details);
+        m_scraper.m_allMusic.parseAndAssignArtist(elem.contents, artist(), config().details);
     } else if (elem.type == "am_biography") {
-        m_scraper->m_allMusic.parseAndAssignArtistBiography(elem.contents, artist(), config().details);
+        m_scraper.m_allMusic.parseAndAssignArtistBiography(elem.contents, artist(), config().details);
     } else if (elem.type == "am_moods") {
-        m_scraper->m_allMusic.parseAndAssignArtistMoods(elem.contents, artist(), config().details);
+        m_scraper.m_allMusic.parseAndAssignArtistMoods(elem.contents, artist(), config().details);
     }
 }
 
-UniversalAlbumScrapeJob::UniversalAlbumScrapeJob(UniversalMusicScraper* scraper, Config config, QObject* parent) :
-    AlbumScrapeJob(std::move(config), parent), m_scraper{scraper}
+UniversalAlbumScrapeJob::UniversalAlbumScrapeJob(UniversalMusicScraper& scraper,
+    UniversalMusicConfiguration& settings,
+    Config config,
+    QObject* parent) :
+    AlbumScrapeJob(std::move(config), parent), m_scraper{scraper}, m_settings{settings}
 {
 }
 
@@ -322,7 +327,7 @@ void UniversalAlbumScrapeJob::doStart()
     auto onLoadFinished = [this](QString html, ScraperError error) {
         QString discogsId;
         if (!error.hasError()) {
-            m_scraper->m_musicBrainz.parseAndAssignAlbum(html, album(), config().details);
+            m_scraper.m_musicBrainz.parseAndAssignAlbum(html, album(), config().details);
             auto ids = MusicBrainz::extractAllMusicIdAndDiscogsUrl(html);
             if (ids.first.isValid()) {
                 album().setAllMusicId(ids.first);
@@ -339,13 +344,13 @@ void UniversalAlbumScrapeJob::doStart()
         appendDownloadElement("theaudiodb",
             "tadb_data",
             QUrl(QStringLiteral("https://www.theaudiodb.com/api/v1/json/%1/album-mb.php?i=%2")
-                     .arg(m_scraper->m_tadbApiKey, album().mbReleaseGroupId().toString())));
+                     .arg(m_scraper.m_tadbApiKey, album().mbReleaseGroupId().toString())));
 
         const auto& amId = album().allMusicId();
         if (amId.isValid()) {
-            appendDownloadElement("allmusic", "am_data", m_scraper->m_allMusicApi.makeAlbumUrl(amId));
-            appendDownloadElement("allmusic", "am_review", m_scraper->m_allMusicApi.makeAlbumReviewUrl(amId));
-            appendDownloadElement("allmusic", "am_moods", m_scraper->m_allMusicApi.makeAlbumMoodsUrl(amId));
+            appendDownloadElement("allmusic", "am_data", m_scraper.m_allMusicApi.makeAlbumUrl(amId));
+            appendDownloadElement("allmusic", "am_review", m_scraper.m_allMusicApi.makeAlbumReviewUrl(amId));
+            appendDownloadElement("allmusic", "am_moods", m_scraper.m_allMusicApi.makeAlbumMoodsUrl(amId));
         }
 
         if (!discogsId.isEmpty()) {
@@ -354,7 +359,7 @@ void UniversalAlbumScrapeJob::doStart()
             DiscogsAlbumScrapeJob::Config discogsConfig = config();
             discogsConfig.identifier = discogsId;
             discogsConfig.groupIdentifier.clear();
-            auto* discogsJob = m_scraper->m_discogs.loadAlbum(discogsConfig);
+            auto* discogsJob = m_scraper.m_discogs.loadAlbum(discogsConfig);
             connect(discogsJob, &DiscogsAlbumScrapeJob::finished, this, [discogsJob, this]() {
                 auto dls = makeDeleteLaterScope(discogsJob);
                 copyDetailsToAlbum(m_discogsAlbum, discogsJob->album(), allMusicScraperInfos());
@@ -374,16 +379,16 @@ void UniversalAlbumScrapeJob::doStart()
                 request.setRawHeader("Accept-Language", config().locale.toString().toUtf8());
             } else if (elem.source == "allmusic") {
                 // TODO(refactor): For review/moods we need a proper referrer header.
-                QUrl referrer = m_scraper->m_allMusicApi.makeAlbumUrl(amId);
+                QUrl referrer = m_scraper.m_allMusicApi.makeAlbumUrl(amId);
                 request.setRawHeader("Referer", referrer.toString().toUtf8());
             }
 
-            QNetworkReply* elemReply = m_scraper->m_network.getWithWatcher(request);
+            QNetworkReply* elemReply = m_scraper.m_network.getWithWatcher(request);
             connect(elemReply, &QNetworkReply::finished, this, &UniversalAlbumScrapeJob::onAlbumLoadFinished);
         }
     };
 
-    m_scraper->m_musicBrainzApi.loadAlbum(
+    m_scraper.m_musicBrainzApi.loadAlbum(
         config().locale, mbAlbumId, [onLoadFinished, this](QString html, ScraperError error) {
             // MusicBrainz only provides a direct AllMusicId ID for _very few_ albums.
             // But for the release group, it provides an ID.  The release group is good enough
@@ -392,7 +397,7 @@ void UniversalAlbumScrapeJob::doStart()
                 onLoadFinished(html, error);
                 return;
             }
-            m_scraper->m_musicBrainzApi.loadReleaseGroup(config().locale,
+            m_scraper.m_musicBrainzApi.loadReleaseGroup(config().locale,
                 album().mbReleaseGroupId(),
                 [this, onLoadFinished, html, error](QString releaseGroupHtml, ScraperError releaseGroupError) { //
                     if (!releaseGroupError.hasError()) {
@@ -451,11 +456,12 @@ void UniversalAlbumScrapeJob::checkIfFinished()
     }
 
     // First apply the values of the preferred scraper,…
-    if (m_scraper->m_prefer == "discogs") {
+    QString preferred = m_settings.preferredScraper();
+    if (preferred == "discogs") {
         copyDetailsToAlbumIfEmpty(album(), m_discogsAlbum, config().details);
     } else {
         for (const DownloadElement& elem : asConst(m_albumDownloads)) {
-            if (elem.source != m_scraper->m_prefer) {
+            if (elem.source != preferred) {
                 continue;
             }
             processDownloadElement(elem);
@@ -464,12 +470,12 @@ void UniversalAlbumScrapeJob::checkIfFinished()
 
     // …then the others.
     for (const DownloadElement& elem : asConst(m_albumDownloads)) {
-        if (elem.source == m_scraper->m_prefer) {
+        if (elem.source == preferred) {
             continue;
         }
         processDownloadElement(elem);
     }
-    if (m_scraper->m_prefer != "discogs") {
+    if (preferred != "discogs") {
         copyDetailsToAlbumIfEmpty(album(), m_discogsAlbum, config().details);
     }
 
@@ -489,14 +495,14 @@ void UniversalAlbumScrapeJob::processDownloadElement(DownloadElement elem)
             return;
         }
 
-        m_scraper->m_theAudioDb.parseAndAssignAlbum(parsedJson, album(), config().details, config().locale.toString());
+        m_scraper.m_theAudioDb.parseAndAssignAlbum(parsedJson, album(), config().details, config().locale.toString());
 
     } else if (elem.type == "am_data") {
-        m_scraper->m_allMusic.parseAndAssignAlbum(elem.contents, album(), config().details);
+        m_scraper.m_allMusic.parseAndAssignAlbum(elem.contents, album(), config().details);
     } else if (elem.type == "am_review") {
-        m_scraper->m_allMusic.parseAndAssignAlbumReview(elem.contents, album(), config().details);
+        m_scraper.m_allMusic.parseAndAssignAlbumReview(elem.contents, album(), config().details);
     } else if (elem.type == "am_moods") {
-        m_scraper->m_allMusic.parseAndAssignAlbumMoods(elem.contents, album(), config().details);
+        m_scraper.m_allMusic.parseAndAssignAlbumMoods(elem.contents, album(), config().details);
     }
 }
 
@@ -510,7 +516,8 @@ void UniversalAlbumScrapeJob::appendDownloadElement(QString source, QString type
     m_albumDownloads.append(std::move(elem));
 }
 
-UniversalMusicScraper::UniversalMusicScraper(QObject* parent) : MusicScraper(parent), m_prefer{"theaudiodb"}
+UniversalMusicScraper::UniversalMusicScraper(UniversalMusicConfiguration& settings, QObject* parent) :
+    MusicScraper(parent), m_settings{settings}
 {
     m_meta.identifier = ID;
     m_meta.name = "Universal Music Scraper";
@@ -521,30 +528,8 @@ UniversalMusicScraper::UniversalMusicScraper(QObject* parent) : MusicScraper(par
     m_meta.privacyPolicy = "";
     m_meta.help = "https://mediaelch.github.io/mediaelch-doc/movie/index.html";
     m_meta.supportedDetails = allMusicScraperInfos();
-    m_meta.supportedLanguages = {
-        "cn", "nl", "en", "fr", "de", "he", "hu", "it", "ja", "no", "pl", "pt", "ru", "es", "sv"};
-    m_meta.defaultLocale = "en";
-
-    m_widget = new QWidget(MainWindow::instance());
-
-
-    m_box = new LanguageCombo(m_widget);
-    m_box->setupLanguages(m_meta.supportedLanguages, m_meta.defaultLocale);
-
-    m_preferBox = new QComboBox(m_widget);
-    m_preferBox->addItem(tr("The Audio DB"), "theaudiodb");
-    m_preferBox->addItem(tr("MusicBrainz"), "musicbrainz");
-    m_preferBox->addItem(tr("AllMusic"), "allmusic");
-    m_preferBox->addItem(tr("Discogs"), "discogs");
-
-    auto* layout = new QGridLayout(m_widget);
-    layout->addWidget(new QLabel(tr("Language")), 0, 0);
-    layout->addWidget(m_box, 0, 1);
-    layout->addWidget(new QLabel(tr("Prefer")), 1, 0);
-    layout->addWidget(m_preferBox, 1, 1);
-    layout->setColumnStretch(2, 1);
-    layout->setContentsMargins(12, 0, 12, 12);
-    m_widget->setLayout(layout);
+    m_meta.supportedLanguages = UniversalMusicConfiguration::supportedLanguages();
+    m_meta.defaultLocale = UniversalMusicConfiguration::defaultLocale();
 }
 
 const UniversalMusicScraper::ScraperMeta& UniversalMusicScraper::meta() const
@@ -554,12 +539,6 @@ const UniversalMusicScraper::ScraperMeta& UniversalMusicScraper::meta() const
 
 UniversalMusicScraper::~UniversalMusicScraper()
 {
-    if (!m_widget.isNull() && m_widget->parent() == nullptr) {
-        // We set MainWindow::instance() as this Widget's parent.
-        // But at construction time, the instance is not setup, yet.
-        // See settingsWidget()
-        m_widget->deleteLater();
-    }
 }
 
 ArtistSearchJob* UniversalMusicScraper::searchArtist(ArtistSearchJob::Config config)
@@ -569,7 +548,7 @@ ArtistSearchJob* UniversalMusicScraper::searchArtist(ArtistSearchJob::Config con
 
 ArtistScrapeJob* UniversalMusicScraper::loadArtist(ArtistScrapeJob::Config config)
 {
-    return new UniversalArtistScrapeJob(this, std::move(config), this);
+    return new UniversalArtistScrapeJob(*this, m_settings, std::move(config), this);
 }
 
 AlbumSearchJob* UniversalMusicScraper::searchAlbum(AlbumSearchJob::Config config)
@@ -579,43 +558,7 @@ AlbumSearchJob* UniversalMusicScraper::searchAlbum(AlbumSearchJob::Config config
 
 AlbumScrapeJob* UniversalMusicScraper::loadAlbum(AlbumScrapeJob::Config config)
 {
-    return new UniversalAlbumScrapeJob(this, std::move(config), this);
-}
-
-
-bool UniversalMusicScraper::hasSettings() const
-{
-    return true;
-}
-
-void UniversalMusicScraper::loadSettings(ScraperSettings& settings)
-{
-    m_meta.defaultLocale = settings.language(m_meta.defaultLocale).toString();
-    m_box->setupLanguages(m_meta.supportedLanguages, m_meta.defaultLocale);
-
-    m_prefer = settings.valueString("Prefer", "theaudiodb");
-    for (int i = 0, n = m_preferBox->count(); i < n; ++i) {
-        if (m_preferBox->itemData(i).toString() == m_prefer) {
-            m_preferBox->setCurrentIndex(i);
-        }
-    }
-}
-
-void UniversalMusicScraper::saveSettings(ScraperSettings& settings)
-{
-    m_meta.defaultLocale = m_box->currentLocale();
-    settings.setLanguage(m_meta.defaultLocale);
-
-    m_prefer = m_preferBox->itemData(m_preferBox->currentIndex()).toString();
-    settings.setString("Prefer", m_prefer);
-}
-
-QWidget* UniversalMusicScraper::settingsWidget()
-{
-    if (m_widget->parent() == nullptr) {
-        m_widget->setParent(MainWindow::instance());
-    }
-    return m_widget;
+    return new UniversalAlbumScrapeJob(*this, m_settings, std::move(config), this);
 }
 
 bool UniversalMusicScraper::shouldLoad(MusicScraperInfo info, const QSet<MusicScraperInfo>& infos, const Album& album)
