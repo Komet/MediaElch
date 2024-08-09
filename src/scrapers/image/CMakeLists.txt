@@ -7,6 +7,7 @@ add_library(
   TheTvDbImages.cpp
   TmdbImages.cpp
   FanartTvConfiguration.cpp
+  TheTvDbImagesConfiguration.cpp
 )
 
 target_link_libraries(

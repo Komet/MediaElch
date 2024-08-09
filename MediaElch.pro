@@ -254,6 +254,7 @@ SOURCES += \
     src/scrapers/concert/tmdb/TmdbConcert.cpp \
     src/scrapers/concert/tmdb/TmdbConcertSearchJob.cpp \
     src/scrapers/image/FanartTvConfiguration.cpp \
+    src/scrapers/image/TheTvDbImagesConfiguration.cpp \
     src/scrapers/image/FanartTv.cpp \
     src/scrapers/image/FanartTvMusicArtists.cpp \
     src/scrapers/image/FanartTvMusic.cpp \
@@ -427,6 +428,7 @@ SOURCES += \
     src/ui/renamer/RenamerPlaceholders.cpp \
     src/ui/scrapers/concert/TmdbConcertConfigurationView.cpp \
     src/ui/scrapers/image/FanartTvConfigurationView.cpp \
+    src/ui/scrapers/image/TheTvDbImagesConfigurationView.cpp \
     src/ui/scrapers/movie/AebnConfigurationView.cpp \
     src/ui/scrapers/movie/ImdbMovieConfigurationView.cpp \
     src/ui/scrapers/movie/TmdbMovieConfigurationView.cpp \
@@ -642,6 +644,7 @@ HEADERS += Version.h \
     src/scrapers/concert/tmdb/TmdbConcert.h \
     src/scrapers/concert/tmdb/TmdbConcertSearchJob.h \
     src/scrapers/image/FanartTvConfiguration.h \
+    src/scrapers/image/TheTvDbImagesConfiguration.h \
     src/scrapers/image/FanartTv.h \
     src/scrapers/image/FanartTvMusicArtists.h \
     src/scrapers/image/FanartTvMusic.h \
@@ -817,6 +820,7 @@ HEADERS += Version.h \
     src/ui/renamer/RenamerPlaceholders.h \
     src/ui/scrapers/concert/TmdbConcertConfigurationView.h \
     src/ui/scrapers/image/FanartTvConfigurationView.h \
+    src/ui/scrapers/image/TheTvDbImagesConfigurationView.h \
     src/ui/scrapers/movie/AebnConfigurationView.h \
     src/ui/scrapers/movie/ImdbMovieConfigurationView.h \
     src/ui/scrapers/movie/TmdbMovieConfigurationView.h \

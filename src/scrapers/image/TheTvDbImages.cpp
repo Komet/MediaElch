@@ -1,11 +1,11 @@
 #include "TheTvDbImages.h"
 
+#include "TheTvDbImagesConfiguration.h"
 #include "data/tv_show/TvShow.h"
 #include "data/tv_show/TvShowEpisode.h"
 #include "globals/Manager.h"
 #include "scrapers/tv_show/ShowMerger.h"
 #include "scrapers/tv_show/thetvdb/TheTvDb.h"
-#include "settings/Settings.h"
 
 namespace mediaelch {
 namespace scraper {
@@ -32,31 +32,8 @@ TheTvDbImages::TheTvDbImages(QObject* parent) : ImageProvider(parent)
         ImageType::TvShowEpisodeThumb,
         ImageType::TvShowSeasonBanner,
         ImageType::TvShowSeasonBackdrop};
-    m_meta.supportedLanguages = {"bg",
-        "zh",
-        "hr",
-        "cs",
-        "da",
-        "nl",
-        "en",
-        "fi",
-        "fr",
-        "de",
-        "el",
-        "he",
-        "hu",
-        "it",
-        "ja",
-        "ko",
-        "no",
-        "pl",
-        "pt",
-        "ru",
-        "sl",
-        "es",
-        "sv",
-        "tr"};
-    m_meta.defaultLocale = Locale("en");
+    m_meta.supportedLanguages = TheTvDbImagesConfiguration::supportedLanguages();
+    m_meta.defaultLocale = TheTvDbImagesConfiguration::defaultLocale();
 
     m_dummyShow = new TvShow(mediaelch::DirectoryPath(), this);
     m_dummyEpisode = new TvShowEpisode(QStringList(), m_dummyShow);

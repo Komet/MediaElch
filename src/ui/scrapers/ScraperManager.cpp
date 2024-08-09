@@ -10,6 +10,7 @@
 #include "scrapers/image/FanartTvMusic.h"
 #include "scrapers/image/FanartTvMusicArtists.h"
 #include "scrapers/image/TheTvDbImages.h"
+#include "scrapers/image/TheTvDbImagesConfiguration.h"
 #include "scrapers/image/TmdbImages.h"
 #include "scrapers/movie/MovieScraper.h"
 #include "scrapers/movie/adultdvdempire/AdultDvdEmpire.h"
@@ -37,6 +38,7 @@
 #include "settings/Settings.h"
 #include "ui/scrapers/concert/TmdbConcertConfigurationView.h"
 #include "ui/scrapers/image/FanartTvConfigurationView.h"
+#include "ui/scrapers/image/TheTvDbImagesConfigurationView.h"
 #include "ui/scrapers/movie/AebnConfigurationView.h"
 #include "ui/scrapers/movie/ImdbMovieConfigurationView.h"
 #include "ui/scrapers/movie/TmdbMovieConfigurationView.h"
@@ -456,9 +458,12 @@ void ScraperManager::initImageProviders()
     }
     {
         ManagedImageProvider provider;
-        auto providerConfig = std::make_unique<ScraperConfigurationStub>(TheTvDbImages::ID, m_settings);
+        auto providerConfig = std::make_unique<TheTvDbImagesConfiguration>(m_settings);
         providerConfig->init();
         provider.m_scraper = std::make_unique<TheTvDbImages>(nullptr);
+        provider.m_viewFactory = [config = providerConfig.get()]() {
+            return new TheTvDbImagesConfigurationView(*config);
+        };
         provider.m_config = std::move(providerConfig);
 
         m_imageProviders.push_back(std::move(provider));
