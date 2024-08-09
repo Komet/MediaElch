@@ -7,7 +7,6 @@
 #include "data/music/Artist.h"
 #include "data/tv_show/TvShow.h"
 #include "data/tv_show/TvShowEpisode.h"
-#include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "log/Log.h"
 #include "media/NameFormatter.h"
@@ -18,7 +17,6 @@
 
 #include <QBuffer>
 #include <QFileDialog>
-#include <QLabel>
 #include <QMovie>
 #include <QPainter>
 #include <QSize>
@@ -672,8 +670,14 @@ void ImageDialog::onProviderChanged(int index)
         mediaelch::ScraperConfiguration* providerSettings =
             Manager::instance()->scrapers().imageProviderConfig(provider->meta().identifier);
         MediaElch_Assert(providerSettings != nullptr);
-        ui->comboLanguage->setupLanguages(provider->meta().supportedLanguages, providerSettings->language());
-        ui->comboLanguage->setEnabled(true);
+        if (providerSettings->language() == mediaelch::Locale::NoLocale) {
+            // can happen if there is a mismatch between configuration class and "supportedLanguages".
+            ui->comboLanguage->setInvalid();
+            ui->comboLanguage->setEnabled(false);
+        } else {
+            ui->comboLanguage->setupLanguages(provider->meta().supportedLanguages, providerSettings->language());
+            ui->comboLanguage->setEnabled(true);
+        }
     }
 
     if (isDefaultProvider) {

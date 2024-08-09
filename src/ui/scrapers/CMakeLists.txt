@@ -12,6 +12,7 @@ add_library(
   music/UniversalMusicConfigurationView.cpp
   concert/TmdbConcertConfigurationView.cpp
   image/FanartTvConfigurationView.cpp
+  image/TheTvDbImagesConfigurationView.cpp
 )
 
 target_link_libraries(
