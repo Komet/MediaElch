@@ -71,22 +71,22 @@ actors: (N>5)
    thumb: https://image.tmdb.org/t/p/original/7PnGZGVKJNDTUv3DkbaMEnCseT0.jpg
    order: 5
    imageHasChanged: false
- - id: 129662
-   name: Marcia Mitzman Gaven
-   role: 
-   thumb: https://image.tmdb.org/t/p/original/s76tf8OkMBk1yrDwWLKUI81m13N.jpg
-   order: 6
-   imageHasChanged: false
  - id: 6036
    name: Marcia Wallace
    role: Edna Krabappel (voice)
    thumb: https://image.tmdb.org/t/p/original/bDCnZlPdUOyeQN0ewvoEjadBr9V.jpg
-   order: 7
+   order: 6
    imageHasChanged: false
  - id: 158020
    name: Shawn Colvin
-   role: 
+   role: Rachel Jordan (voice)
    thumb: 
+   order: 7
+   imageHasChanged: false
+ - id: 129662
+   name: Marcia Mitzman Gaven
+   role: Helen Lovejoy (voice)
+   thumb: https://image.tmdb.org/t/p/original/s76tf8OkMBk1yrDwWLKUI81m13N.jpg
    order: 8
    imageHasChanged: false
 streamDetails: <not loaded>

@@ -15,9 +15,9 @@ overview:
     ife; along the way he befriends a number of fellow prisoners, most notably a wis
     e long-term inmate named Red.
 outline:
-    A Maine banker convicted of the murder of his wife and her lover in 1947 gradual
-    ly forms a friendship over a quarter century with a hardened convict, while main
-    taining his innocence and trying to remain hopeful through simple compassion.
+    A banker convicted of uxoricide forms a friendship over a quarter century with a
+     hardened convict, while maintaining his innocence and trying to remain hopeful 
+    through simple compassion.
 movie set: tmdbid= | name=
 movie set overview: 
 tagline: Fear can hold you prisoner. Hope can set you free.

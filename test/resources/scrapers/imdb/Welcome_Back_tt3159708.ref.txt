@@ -68,8 +68,8 @@ actors: (N>30)
    name: Shruti Haasan
    role: Ranjana Shetty (as Shruti K. Haasan)
    thumb:
-    https://m.media-amazon.com/images/M/MV5BNTg5MjM0YWUtZGU3Yy00MDM2LThjYmEtYzAzMmM1
-    MzhhNDdkXkEyXkFqcGdeQXVyMzQ0NTk5NzU@.jpg
+    https://m.media-amazon.com/images/M/MV5BMmVmYmY5OWMtZjAwZC00N2ZhLWFjMzMtNzkwMGY5
+    ZmJjOWJlXkEyXkFqcGc@.jpg
    order: 4
    imageHasChanged: false
  - id: 
@@ -114,8 +114,8 @@ actors: (N>30)
    name: Supriya Karnik
    role: Payal Ghungroo
    thumb:
-    https://m.media-amazon.com/images/M/MV5BZjFlNDQzZDMtMjI0Mi00ZTk4LWFmNmYtN2E5M2Iz
-    NjRjNDU4XkEyXkFqcGdeQXVyMTExNDQ2MTI@.jpg
+    https://m.media-amazon.com/images/M/MV5BOGViYjJmNzctOGJkMy00Nzg0LWI3NGItMWRlNjU3
+    YjJkZjk3XkEyXkFqcGc@.jpg
    order: 10
    imageHasChanged: false
  - id: 
@@ -154,24 +154,24 @@ actors: (N>30)
    name: Snehal Dabi
    role: Kakhil
    thumb:
-    https://m.media-amazon.com/images/M/MV5BNWZhMzRmNzUtOTc3ZC00MmEyLWI0NjQtODU2OTg0
-    MzM5YmMxXkEyXkFqcGdeQXVyMTExNDQ2MTI@.jpg
+    https://m.media-amazon.com/images/M/MV5BMmM5MmI0NzMtMjkzMC00ZWM1LWE5MGEtMjQzNTY5
+    MDQ2NGIyXkEyXkFqcGc@.jpg
    order: 15
    imageHasChanged: false
  - id: 
    name: Amjad Qureshi
    role: Ajju bhai friend
    thumb:
-    https://m.media-amazon.com/images/M/MV5BYzA0OGZlMDctMTUzNi00NWNmLWJlMDYtYzcyMmVk
-    OTY4OTQ1XkEyXkFqcGdeQXVyNDUzOTQ5MjY@.jpg
+    https://m.media-amazon.com/images/M/MV5BMGVlYWEyNTMtMDQ3ZC00M2YyLWFjYTAtZDU0YzVi
+    N2EwMmQ1XkEyXkFqcGc@.jpg
    order: 16
    imageHasChanged: false
  - id: 
    name: Javed Rizvi
    role: Ajju's dumb and deaf friend (as Javed Rizvi Jarehavi)
    thumb:
-    https://m.media-amazon.com/images/M/MV5BYTJjNTRlMTAtYmJjOC00MjkwLTkyNTUtZGRlODg1
-    MjFlMDg2XkEyXkFqcGdeQXVyMjQ2MDI5ODE@.jpg
+    https://m.media-amazon.com/images/M/MV5BZmZmOWIyYjUtYmY5ZC00Yjc3LWE4NmItYTUxMzEw
+    OTI2ZTI0XkEyXkFqcGc@.jpg
    order: 17
    imageHasChanged: false
  - id: 
@@ -186,8 +186,8 @@ actors: (N>30)
    name: Reema Debnath
    role: Special appearance in song '20-20'
    thumb:
-    https://m.media-amazon.com/images/M/MV5BMTdhM2ZiMTQtM2Y5Yy00ZjhjLThhYjctMTRhNzNh
-    MWI3YWJjXkEyXkFqcGdeQXVyMjQ2MDI5ODE@.jpg
+    https://m.media-amazon.com/images/M/MV5BMDNkMGQ0Y2UtYTBjZi00MDRkLThlMjAtOGJlNjFm
+    NGQ4NjRmXkEyXkFqcGc@.jpg
    order: 19
    imageHasChanged: false
   - ... and >10 more

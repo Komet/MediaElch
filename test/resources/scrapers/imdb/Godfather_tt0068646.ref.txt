@@ -20,9 +20,8 @@ overview:
      the thing he was most reluctant in doing and wage a mob war against all the oth
     er mafia families which could tear the Corleone family apart.
 outline:
-    Don Vito Corleone, head of a mafia family, decides to hand over his empire to hi
-    s youngest son, Michael. However, his decision unintentionally puts the lives of
-     his loved ones in grave danger.
+    The aging patriarch of an organized crime dynasty transfers control of his cland
+    estine empire to his reluctant son.
 movie set: tmdbid= | name=
 movie set overview: 
 tagline: An offer you can't refuse.
@@ -103,8 +102,8 @@ actors: (N>80)
    name: Al Lettieri
    role: Sollozzo
    thumb:
-    https://m.media-amazon.com/images/M/MV5BOWUxYTJkY2MtYmZmZi00ZjBmLWJmM2ItMmU3YWI2
-    YzBhZDUwXkEyXkFqcGdeQXVyNjUxMjc1OTM@.jpg
+    https://m.media-amazon.com/images/M/MV5BY2NlYTUzNWItOWRiNy00YTk0LTgxNTktYTcwODhj
+    ODdhNjQ1XkEyXkFqcGc@.jpg
    order: 8
    imageHasChanged: false
  - id: 

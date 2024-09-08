@@ -28,20 +28,20 @@ imdbTop250: 0
 released: 1977-06-22
 runtime: 78min
 writer:
-    Burny Mattinson, David Michener, Larry Clemmons, Ken Anderson, Frank Thomas, Ted
-     Berman, Fred Lucky, Margery Sharp, Dick Sebast, Vance Gerry
-director: Art Stevens
+    Larry Clemmons, Ken Anderson, Margery Sharp, Frank Thomas, Vance Gerry, Dick Seb
+    ast, David Michener, Burny Mattinson, Fred Lucky, Ted Berman
+director: John Lounsbery
 actors: (N>10)
  - id: 
    name: Bob Newhart
    role: Bernard (voice)
-   thumb: http://image.tmdb.org/t/p/original/kj9lWESb2cC3beTypLKTCH0HipH.jpg
+   thumb: http://image.tmdb.org/t/p/original/tJUSKC5991cOgk6K7OTLJCzxHni.jpg
    order: 0
    imageHasChanged: false
  - id: 
    name: Eva Gabor
    role: Miss Bianca (voice)
-   thumb: http://image.tmdb.org/t/p/original/eCmr6otRLtOPDA6VwEN2KYaALjg.jpg
+   thumb: http://image.tmdb.org/t/p/original/gApDSJixCnXin3LYmAbMx7Ly4VV.jpg
    order: 1
    imageHasChanged: false
  - id: 
@@ -222,33 +222,33 @@ backdrops: (N>10)
     aspect: 
     season: SeasonNumber=xx
   - id: 
-    originalUrl: http://image.tmdb.org/t/p/original/87F4k8S5Q5U6INzytrERgJJ5Q56.jpg
-    thumbUrl: http://image.tmdb.org/t/p/w780/87F4k8S5Q5U6INzytrERgJJ5Q56.jpg
-    originalSize: h=1080 w=1920
-    language: 
-    hint: 
-    aspect: 
-    season: SeasonNumber=xx
-  - id: 
-    originalUrl: http://image.tmdb.org/t/p/original/bOash26erxuv6EqA1ZQ6ZytpHca.jpg
-    thumbUrl: http://image.tmdb.org/t/p/w780/bOash26erxuv6EqA1ZQ6ZytpHca.jpg
-    originalSize: h=1080 w=1920
-    language: 
-    hint: 
-    aspect: 
-    season: SeasonNumber=xx
-  - id: 
-    originalUrl: http://image.tmdb.org/t/p/original/jToyymxSX9YU1iIabEa22XQucob.jpg
-    thumbUrl: http://image.tmdb.org/t/p/w780/jToyymxSX9YU1iIabEa22XQucob.jpg
-    originalSize: h=1080 w=1920
-    language: 
-    hint: 
-    aspect: 
-    season: SeasonNumber=xx
-  - id: 
     originalUrl: http://image.tmdb.org/t/p/original/kRbXMT2ysEJ84Tr2Nk9c88w3mv.jpg
     thumbUrl: http://image.tmdb.org/t/p/w780/kRbXMT2ysEJ84Tr2Nk9c88w3mv.jpg
     originalSize: h=2160 w=3840
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: http://image.tmdb.org/t/p/original/tIhdMcCs6OOyg27knpzKSGj7CWJ.jpg
+    thumbUrl: http://image.tmdb.org/t/p/w780/tIhdMcCs6OOyg27knpzKSGj7CWJ.jpg
+    originalSize: h=1080 w=1920
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: http://image.tmdb.org/t/p/original/qQfBMX0Fu9tRz5M1nphEH0p7Rnq.jpg
+    thumbUrl: http://image.tmdb.org/t/p/w780/qQfBMX0Fu9tRz5M1nphEH0p7Rnq.jpg
+    originalSize: h=1080 w=1920
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: http://image.tmdb.org/t/p/original/2rJ1LDxVS2EofZmRT7YiCgIFSq3.jpg
+    thumbUrl: http://image.tmdb.org/t/p/w780/2rJ1LDxVS2EofZmRT7YiCgIFSq3.jpg
+    originalSize: h=1440 w=2560
     language: 
     hint: 
     aspect: 

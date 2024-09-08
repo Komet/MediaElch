@@ -165,16 +165,16 @@ actors: (N>60)
    name: Andrew Stanton
    role: Crush / Additional Voices
    thumb:
-    https://m.media-amazon.com/images/M/MV5BMTQ3NGE0ZjctNGUwMC00ODMyLTg5ZDktY2IxOTIw
-    NmM3Nzg4XkEyXkFqcGdeQXVyMTEzNTE2NzQx.jpg
+    https://m.media-amazon.com/images/M/MV5BMmZiOTE4NDktMmZjNi00MzcwLWJjMzAtYWVlZDUw
+    NjhiMGIwXkEyXkFqcGc@.jpg
    order: 17
    imageHasChanged: false
  - id: 
    name: Katherine Ringgold
    role: Chickenfish
    thumb:
-    https://m.media-amazon.com/images/M/MV5BMTUwNDFiNDQtZGQzYy00OTAxLWE0YzEtYjZjODNj
-    NzYxNGM1XkEyXkFqcGdeQXVyMTgwNTgyNDk3.jpg
+    https://m.media-amazon.com/images/M/MV5BOGU1NTY1N2ItOWVhYS00NWRjLWJmYWMtNWY5MzFh
+    MDUzMGE2XkEyXkFqcGc@.jpg
    order: 18
    imageHasChanged: false
  - id: 

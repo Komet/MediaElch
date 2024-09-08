@@ -56,7 +56,7 @@ actors: (N>800)
    imageHasChanged: false
  - id: 38570
    name: Ken Jenkins
-   role: Bob Kelso, Dr. Kelso
+   role: Bob Kelso
    thumb: https://image.tmdb.org/t/p/original/basRrWk50y03ydjm0DW8A6AxH1o.jpg
    order: 3
    imageHasChanged: false
@@ -116,7 +116,7 @@ actors: (N>800)
    imageHasChanged: false
  - id: 210050
    name: Eliza Coupe
-   role: Denise Mahoney, Dr. Denise Mahoney
+   role: Denise Mahoney
    thumb: https://image.tmdb.org/t/p/original/uscVJ5XW8pA74wPaT29OlIx1Fy5.jpg
    order: 13
    imageHasChanged: false
@@ -129,7 +129,7 @@ actors: (N>800)
  - id: 62833
    name: Charles Rahi Chun
    role: Dr. Wen
-   thumb: https://image.tmdb.org/t/p/original/1HcF2X7u6RJlaxt6SNDbjjOzXuY.jpg
+   thumb: https://image.tmdb.org/t/p/original/bZI7VhpWzPJ0h7KtofthvDVORqd.jpg
    order: 15
    imageHasChanged: false
  - id: 1228157
@@ -150,10 +150,10 @@ actors: (N>800)
    thumb: https://image.tmdb.org/t/p/original/jLwZwqh1oGjxCnYXBrdIsrYpSVh.jpg
    order: 18
    imageHasChanged: false
- - id: 2227127
-   name: Paul F. Perry
-   role: Randall, Randy
-   thumb: https://image.tmdb.org/t/p/original/xNr1BR6lVLLd7RrkagdHOSI7P6Y.jpg
+ - id: 1237161
+   name: George Miserlis
+   role: Crispin
+   thumb: https://image.tmdb.org/t/p/original/d0I9fXvNliNc7fHiXCvJLTzJWJ.jpg
    order: 19
    imageHasChanged: false
   - ... and >800 more

@@ -27,8 +27,8 @@ overview:
     "Scary Tales Can Come True," and Lisa inadvertently dooming mankind by rescuing 
     a dolphin in "Night of the Dolphin."
 writers: (N<6)
-  - Don Payne
   - Carolyn Omine
+  - Don Payne
   - John Frink
   - Rob LaZebnik
 directors: (N=1)
@@ -133,19 +133,19 @@ actors: (N>10)
    imageHasChanged: false
  - id: 47096
    name: Roger Daltrey
-   role: 
+   role: Roger Daltrey (voice)
    thumb: https://image.tmdb.org/t/p/original/wQUIoUytxAoqaMpq2jW51v4CLhJ.jpg
    order: 1
    imageHasChanged: false
  - id: 47098
    name: Pete Townshend
-   role: 
+   role: Pete Townshend (voice)
    thumb: https://image.tmdb.org/t/p/original/juqxP6G6O7i4bOHuIwdyVHNyHME.jpg
    order: 2
    imageHasChanged: false
  - id: 89656
    name: John Entwistle
-   role: 
+   role: John Entwistle (voice)
    thumb: https://image.tmdb.org/t/p/original/imepW0WY82SgtnL2mkddd0Q5b8U.jpg
    order: 3
    imageHasChanged: false
@@ -233,83 +233,77 @@ certification:
 networks: (N=0)
 thumbnail: https://image.tmdb.org/t/p/original/eVB8FoLCUQOJXPl9uIrSwILUH3.jpg
 actors: (N>10)
- - id: 4690
-   name: Christopher Walken
-   role: 
-   thumb: https://image.tmdb.org/t/p/original/ApgDL7nudR9T2GpjCG4vESgymO2.jpg
-   order: 0
-   imageHasChanged: false
  - id: 49819
    name: John Updike
-   role: 
+   role: John Updike (voice)
    thumb: https://image.tmdb.org/t/p/original/icjw4pgAvtGuKt5NF0jYCU6TS8.jpg
-   order: 1
+   order: 0
    imageHasChanged: false
  - id: 3027
    name: Stephen King
-   role: 
+   role: Stephen King (voice)
    thumb: https://image.tmdb.org/t/p/original/7r5nEzNanuEhmxtpsKE1uCBU5Jd.jpg
-   order: 2
+   order: 1
    imageHasChanged: false
  - id: 95973
    name: Amy Tan
-   role: 
-   thumb: 
-   order: 3
+   role: Amy Tan (voice)
+   thumb: https://image.tmdb.org/t/p/original/6JBVKtT6cby2O80wIeVYSxti1L9.jpg
+   order: 2
    imageHasChanged: false
  - id: 12217
    name: Jay Mohr
-   role: 
+   role: Christopher Walken (voice)
    thumb: https://image.tmdb.org/t/p/original/nk9q6JdcFQMLhaElN4lpUkxuqbd.jpg
-   order: 4
-   imageHasChanged: false
- - id: 69597
-   name: Drew Barrymore
-   role: 
-   thumb: https://image.tmdb.org/t/p/original/9xMu2GLC5otUcC11sEWC5aEAERQ.jpg
-   order: 5
+   order: 3
    imageHasChanged: false
  - id: 3266
    name: Joe Mantegna
    role: Fat Tony (voice)
    thumb: https://image.tmdb.org/t/p/original/4jzvAE6B1eoiZDUnDUuMazirCPP.jpg
-   order: 6
+   order: 4
+   imageHasChanged: false
+ - id: 69597
+   name: Drew Barrymore
+   role: Sophie (voice)
+   thumb: https://image.tmdb.org/t/p/original/9xMu2GLC5otUcC11sEWC5aEAERQ.jpg
+   order: 5
    imageHasChanged: false
  - id: 198
    name: Dan Castellaneta
    role: Homer Simpson / Abe Simpson / Barney Gumble / Krusty (voice)
    thumb: https://image.tmdb.org/t/p/original/AmeqWhP4A46AWkM4kVphg6jOTQX.jpg
-   order: 7
+   order: 6
    imageHasChanged: false
  - id: 199
    name: Julie Kavner
    role: Marge Simpson / Patty Bouvier / Selma Bouvier (voice)
    thumb: https://image.tmdb.org/t/p/original/xxiu7PC7RDOJmCuB6i81gEVrDQW.jpg
-   order: 8
+   order: 7
    imageHasChanged: false
  - id: 200
    name: Nancy Cartwright
    role: Bart Simpson / Nelson Muntz / Ralph Wiggum (voice)
    thumb: https://image.tmdb.org/t/p/original/40qNhyYJhSE2Yiy4pnXSZhdufO6.jpg
-   order: 9
+   order: 8
    imageHasChanged: false
  - id: 5586
    name: Yeardley Smith
    role: Lisa Simpson (voice)
    thumb: https://image.tmdb.org/t/p/original/9AjPwbb3uz4GfgOPBYsy2ILvwkB.jpg
-   order: 10
+   order: 9
    imageHasChanged: false
  - id: 5587
    name: Hank Azaria
    role: Moe Szyslak / Chief Wiggum / Apu / Comic Book Guy / Carl (voice)
    thumb: https://image.tmdb.org/t/p/original/yFDw4b0jucuFWNnGcBPfpYUtn16.jpg
-   order: 11
+   order: 10
    imageHasChanged: false
  - id: 6008
    name: Harry Shearer
    role: Ned Flanders / Mr. Burns / Smithers / Skinner / Lenny (voice)
    thumb: https://image.tmdb.org/t/p/original/7PnGZGVKJNDTUv3DkbaMEnCseT0.jpg
-   order: 12
+   order: 11
    imageHasChanged: false
 streamDetails: <not loaded>
 files: (N=0)
@@ -354,45 +348,63 @@ thumbnail: https://image.tmdb.org/t/p/original/fHmxaDYvXCmsZqs6WulMamdu9Wi.jpg
 actors: (N>5)
  - id: 11866
    name: Joshua Jackson
-   role: 
+   role: Jesse Grass (voice)
    thumb: https://image.tmdb.org/t/p/original/mH2a5YFd8J7upjjWwEzM75vitA2.jpg
    order: 0
+   imageHasChanged: false
+ - id: 6009
+   name: Pamela Hayden
+   role: Milhouse Van Houten (voice)
+   thumb: https://image.tmdb.org/t/p/original/mPMtuVB6AEulRhlfn69y5RvgmNT.jpg
+   order: 1
+   imageHasChanged: false
+ - id: 34983
+   name: Tress MacNeille
+   role: GameStation 252 / Female Activists (voice)
+   thumb: https://image.tmdb.org/t/p/original/gI2LsgByvSffQY34vabVnPmrHzw.jpg
+   order: 2
+   imageHasChanged: false
+ - id: 156910
+   name: Karl Wiedergott
+   role: Caleb (voice)
+   thumb: https://image.tmdb.org/t/p/original/r5alSYfltRGa6m8eUT1CuGur2YE.jpg
+   order: 3
    imageHasChanged: false
  - id: 198
    name: Dan Castellaneta
    role: Homer Simpson / Abe Simpson / Barney Gumble / Krusty (voice)
    thumb: https://image.tmdb.org/t/p/original/AmeqWhP4A46AWkM4kVphg6jOTQX.jpg
-   order: 1
+   order: 4
    imageHasChanged: false
  - id: 199
    name: Julie Kavner
    role: Marge Simpson / Patty Bouvier / Selma Bouvier (voice)
    thumb: https://image.tmdb.org/t/p/original/xxiu7PC7RDOJmCuB6i81gEVrDQW.jpg
-   order: 2
+   order: 5
    imageHasChanged: false
  - id: 200
    name: Nancy Cartwright
    role: Bart Simpson / Nelson Muntz / Ralph Wiggum (voice)
    thumb: https://image.tmdb.org/t/p/original/40qNhyYJhSE2Yiy4pnXSZhdufO6.jpg
-   order: 3
+   order: 6
    imageHasChanged: false
  - id: 5586
    name: Yeardley Smith
    role: Lisa Simpson (voice)
    thumb: https://image.tmdb.org/t/p/original/9AjPwbb3uz4GfgOPBYsy2ILvwkB.jpg
-   order: 4
+   order: 7
    imageHasChanged: false
  - id: 5587
    name: Hank Azaria
    role: Moe Szyslak / Chief Wiggum / Apu / Comic Book Guy / Carl (voice)
    thumb: https://image.tmdb.org/t/p/original/yFDw4b0jucuFWNnGcBPfpYUtn16.jpg
-   order: 5
+   order: 8
    imageHasChanged: false
  - id: 6008
    name: Harry Shearer
    role: Ned Flanders / Mr. Burns / Smithers / Skinner / Lenny (voice)
    thumb: https://image.tmdb.org/t/p/original/7PnGZGVKJNDTUv3DkbaMEnCseT0.jpg
-   order: 6
+   order: 9
    imageHasChanged: false
 streamDetails: <not loaded>
 files: (N=0)
@@ -437,7 +449,7 @@ thumbnail: https://image.tmdb.org/t/p/original/lAOtgJtTADRrr5gxNdh4kEuepD5.jpg
 actors: (N>5)
  - id: 44051
    name: Leeza Gibbons
-   role: 
+   role: Leeza Gibbons (voice)
    thumb: https://image.tmdb.org/t/p/original/wgpJqlQ4Ex0lAT91jrAWEYfqVI2.jpg
    order: 0
    imageHasChanged: false
@@ -592,7 +604,7 @@ tvmazeId:
 title: The Great Money Caper
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=7 | votes=20 | min=0 | max=10
+  source=tmdb | rating=6.8 | votes=20 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -618,7 +630,7 @@ thumbnail: https://image.tmdb.org/t/p/original/7BGkc4yGkjdTxo4L3d4JvqotGcQ.jpg
 actors: (N>5)
  - id: 819
    name: Edward Norton
-   role: 
+   role: Devon Bradley (voice)
    thumb: https://image.tmdb.org/t/p/original/8nytsqL59SFJTVYVrN72k6qkGgJ.jpg
    order: 0
    imageHasChanged: false
@@ -698,54 +710,72 @@ epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
 thumbnail: https://image.tmdb.org/t/p/original/2vWqXNMikshPX9dVqKAT3qupqup.jpg
-actors: (N>5)
- - id: 6035
-   name: Russi Taylor
-   role: 
-   thumb: https://image.tmdb.org/t/p/original/r79GVF7LyBExJP7cRMob8QQZ6IU.jpg
-   order: 0
-   imageHasChanged: false
+actors: (N>10)
  - id: 6036
    name: Marcia Wallace
    role: Edna Krabappel (voice)
    thumb: https://image.tmdb.org/t/p/original/bDCnZlPdUOyeQN0ewvoEjadBr9V.jpg
+   order: 0
+   imageHasChanged: false
+ - id: 6009
+   name: Pamela Hayden
+   role: Milhouse Van Houten (voice)
+   thumb: https://image.tmdb.org/t/p/original/mPMtuVB6AEulRhlfn69y5RvgmNT.jpg
    order: 1
+   imageHasChanged: false
+ - id: 6035
+   name: Russi Taylor
+   role: Martin Prince / Sherri / Terri / Uter (voice)
+   thumb: https://image.tmdb.org/t/p/original/r79GVF7LyBExJP7cRMob8QQZ6IU.jpg
+   order: 2
+   imageHasChanged: false
+ - id: 156910
+   name: Karl Wiedergott
+   role: Wolf 1 (voice)
+   thumb: https://image.tmdb.org/t/p/original/r5alSYfltRGa6m8eUT1CuGur2YE.jpg
+   order: 3
+   imageHasChanged: false
+ - id: 34983
+   name: Tress MacNeille
+   role: Little Bo Peep (voice)
+   thumb: https://image.tmdb.org/t/p/original/gI2LsgByvSffQY34vabVnPmrHzw.jpg
+   order: 4
    imageHasChanged: false
  - id: 198
    name: Dan Castellaneta
    role: Homer Simpson / Abe Simpson / Barney Gumble / Krusty (voice)
    thumb: https://image.tmdb.org/t/p/original/AmeqWhP4A46AWkM4kVphg6jOTQX.jpg
-   order: 2
+   order: 5
    imageHasChanged: false
  - id: 199
    name: Julie Kavner
    role: Marge Simpson / Patty Bouvier / Selma Bouvier (voice)
    thumb: https://image.tmdb.org/t/p/original/xxiu7PC7RDOJmCuB6i81gEVrDQW.jpg
-   order: 3
+   order: 6
    imageHasChanged: false
  - id: 200
    name: Nancy Cartwright
    role: Bart Simpson / Nelson Muntz / Ralph Wiggum (voice)
    thumb: https://image.tmdb.org/t/p/original/40qNhyYJhSE2Yiy4pnXSZhdufO6.jpg
-   order: 4
+   order: 7
    imageHasChanged: false
  - id: 5586
    name: Yeardley Smith
    role: Lisa Simpson (voice)
    thumb: https://image.tmdb.org/t/p/original/9AjPwbb3uz4GfgOPBYsy2ILvwkB.jpg
-   order: 5
+   order: 8
    imageHasChanged: false
  - id: 5587
    name: Hank Azaria
    role: Moe Szyslak / Chief Wiggum / Apu / Comic Book Guy / Carl (voice)
    thumb: https://image.tmdb.org/t/p/original/yFDw4b0jucuFWNnGcBPfpYUtn16.jpg
-   order: 6
+   order: 9
    imageHasChanged: false
  - id: 6008
    name: Harry Shearer
    role: Ned Flanders / Mr. Burns / Smithers / Skinner / Lenny (voice)
    thumb: https://image.tmdb.org/t/p/original/7PnGZGVKJNDTUv3DkbaMEnCseT0.jpg
-   order: 7
+   order: 10
    imageHasChanged: false
 streamDetails: <not loaded>
 files: (N=0)
@@ -1069,38 +1099,38 @@ thumbnail: https://image.tmdb.org/t/p/original/zPO8DEthCIGNpWErs3bvRuT4emQ.jpg
 actors: (N>10)
  - id: 1214573
    name: Serena Williams
-   role: 
+   role: Serena Williams (voice)
    thumb: https://image.tmdb.org/t/p/original/qMoRnzYuUkqb8VZjbX4XWZeQZzY.jpg
    order: 0
    imageHasChanged: false
  - id: 1223645
    name: Andre Agassi
-   role: 
+   role: Andre Agassi (voice)
    thumb: https://image.tmdb.org/t/p/original/7kBqtd1vKfNsQFDyqHQ8MsPNrFt.jpg
    order: 1
    imageHasChanged: false
  - id: 165877
    name: Venus Williams
-   role: 
+   role: Venus Williams (voice)
    thumb: https://image.tmdb.org/t/p/original/53c0bwF2zTZef8guKOudbDOJg1k.jpg
    order: 2
    imageHasChanged: false
  - id: 1214270
    name: Pete Sampras
-   role: 
-   thumb: 
+   role: Pete Sampras (voice)
+   thumb: https://image.tmdb.org/t/p/original/8apeQzxAcpPyXGyK92YaIcKH2bK.jpg
    order: 3
-   imageHasChanged: false
- - id: 129662
-   name: Marcia Mitzman Gaven
-   role: 
-   thumb: https://image.tmdb.org/t/p/original/s76tf8OkMBk1yrDwWLKUI81m13N.jpg
-   order: 4
    imageHasChanged: false
  - id: 6036
    name: Marcia Wallace
    role: Edna Krabappel (voice)
    thumb: https://image.tmdb.org/t/p/original/bDCnZlPdUOyeQN0ewvoEjadBr9V.jpg
+   order: 4
+   imageHasChanged: false
+ - id: 129662
+   name: Marcia Mitzman Gaven
+   role: Helen Lovejoy (voice)
+   thumb: https://image.tmdb.org/t/p/original/s76tf8OkMBk1yrDwWLKUI81m13N.jpg
    order: 5
    imageHasChanged: false
  - id: 198
@@ -1247,7 +1277,7 @@ tvmazeId:
 title: New Kids on the Blecch
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=6.4 | votes=10 | min=0 | max=10
+  source=tmdb | rating=6.6 | votes=20 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -1291,7 +1321,7 @@ actors: (N>10)
  - id: 54651
    name: Joey Fatone
    role: Joey Fatone (voice)
-   thumb: https://image.tmdb.org/t/p/original/5C2Kk4TMsx4DGotqLXKmt87Tj3g.jpg
+   thumb: https://image.tmdb.org/t/p/original/1VZTrzdu5xczHV6H0PuI5slyYXE.jpg
    order: 3
    imageHasChanged: false
  - id: 591531
@@ -1377,60 +1407,72 @@ epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
 thumbnail: https://image.tmdb.org/t/p/original/qWzLc6ln1aGwtPGu6NcUpQwYkx0.jpg
-actors: (N>5)
- - id: 6035
-   name: Russi Taylor
-   role: 
-   thumb: https://image.tmdb.org/t/p/original/r79GVF7LyBExJP7cRMob8QQZ6IU.jpg
-   order: 0
-   imageHasChanged: false
+actors: (N>10)
  - id: 6036
    name: Marcia Wallace
    role: Edna Krabappel (voice)
    thumb: https://image.tmdb.org/t/p/original/bDCnZlPdUOyeQN0ewvoEjadBr9V.jpg
-   order: 1
+   order: 0
    imageHasChanged: false
  - id: 825
    name: Stacy Keach
    role: Howard Duff (voice)
    thumb: https://image.tmdb.org/t/p/original/pxD1jmx9oAaV2lCLr87G3zRGv6i.jpg
+   order: 1
+   imageHasChanged: false
+ - id: 6009
+   name: Pamela Hayden
+   role: Milhouse Van Houten (voice)
+   thumb: https://image.tmdb.org/t/p/original/mPMtuVB6AEulRhlfn69y5RvgmNT.jpg
    order: 2
+   imageHasChanged: false
+ - id: 6035
+   name: Russi Taylor
+   role: Sherri (voice)
+   thumb: https://image.tmdb.org/t/p/original/r79GVF7LyBExJP7cRMob8QQZ6IU.jpg
+   order: 3
+   imageHasChanged: false
+ - id: 34983
+   name: Tress MacNeille
+   role: Boy in Blockoland Commercial / Aide (voice)
+   thumb: https://image.tmdb.org/t/p/original/gI2LsgByvSffQY34vabVnPmrHzw.jpg
+   order: 4
    imageHasChanged: false
  - id: 198
    name: Dan Castellaneta
    role: Homer Simpson / Abe Simpson / Barney Gumble / Krusty (voice)
    thumb: https://image.tmdb.org/t/p/original/AmeqWhP4A46AWkM4kVphg6jOTQX.jpg
-   order: 3
+   order: 5
    imageHasChanged: false
  - id: 199
    name: Julie Kavner
    role: Marge Simpson / Patty Bouvier / Selma Bouvier (voice)
    thumb: https://image.tmdb.org/t/p/original/xxiu7PC7RDOJmCuB6i81gEVrDQW.jpg
-   order: 4
+   order: 6
    imageHasChanged: false
  - id: 200
    name: Nancy Cartwright
    role: Bart Simpson / Nelson Muntz / Ralph Wiggum (voice)
    thumb: https://image.tmdb.org/t/p/original/40qNhyYJhSE2Yiy4pnXSZhdufO6.jpg
-   order: 5
+   order: 7
    imageHasChanged: false
  - id: 5586
    name: Yeardley Smith
    role: Lisa Simpson (voice)
    thumb: https://image.tmdb.org/t/p/original/9AjPwbb3uz4GfgOPBYsy2ILvwkB.jpg
-   order: 6
+   order: 8
    imageHasChanged: false
  - id: 5587
    name: Hank Azaria
    role: Moe Szyslak / Chief Wiggum / Apu / Comic Book Guy / Carl (voice)
    thumb: https://image.tmdb.org/t/p/original/yFDw4b0jucuFWNnGcBPfpYUtn16.jpg
-   order: 7
+   order: 9
    imageHasChanged: false
  - id: 6008
    name: Harry Shearer
    role: Ned Flanders / Mr. Burns / Smithers / Skinner / Lenny (voice)
    thumb: https://image.tmdb.org/t/p/original/7PnGZGVKJNDTUv3DkbaMEnCseT0.jpg
-   order: 8
+   order: 10
    imageHasChanged: false
 streamDetails: <not loaded>
 files: (N=0)
@@ -1474,7 +1516,7 @@ epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
 thumbnail: https://image.tmdb.org/t/p/original/9jlTs2EYzfgGG86kzO82jLnk9Qu.jpg
-actors: (N>5)
+actors: (N>10)
  - id: 129332
    name: Jan Hooks
    role: Manjula (voice)
@@ -1483,57 +1525,75 @@ actors: (N>5)
    imageHasChanged: false
  - id: 3138
    name: Kathy Griffin
-   role: 
+   role: Francine (voice)
    thumb: https://image.tmdb.org/t/p/original/khhZT54SfcKIZuPwTH55CB1I0Gf.jpg
    order: 1
-   imageHasChanged: false
- - id: 6035
-   name: Russi Taylor
-   role: 
-   thumb: https://image.tmdb.org/t/p/original/r79GVF7LyBExJP7cRMob8QQZ6IU.jpg
-   order: 2
    imageHasChanged: false
  - id: 6036
    name: Marcia Wallace
    role: Edna Krabappel (voice)
    thumb: https://image.tmdb.org/t/p/original/bDCnZlPdUOyeQN0ewvoEjadBr9V.jpg
+   order: 2
+   imageHasChanged: false
+ - id: 34983
+   name: Tress MacNeille
+   role: Dolph (voice)
+   thumb: https://image.tmdb.org/t/p/original/gI2LsgByvSffQY34vabVnPmrHzw.jpg
    order: 3
+   imageHasChanged: false
+ - id: 6035
+   name: Russi Taylor
+   role: Martin Prince / Wendell / Sherri / Terri (voice)
+   thumb: https://image.tmdb.org/t/p/original/r79GVF7LyBExJP7cRMob8QQZ6IU.jpg
+   order: 4
+   imageHasChanged: false
+ - id: 156910
+   name: Karl Wiedergott
+   role: I'm afraid (voice)
+   thumb: https://image.tmdb.org/t/p/original/r5alSYfltRGa6m8eUT1CuGur2YE.jpg
+   order: 5
+   imageHasChanged: false
+ - id: 6009
+   name: Pamela Hayden
+   role: Milhouse Van Houten / Jimbo Jones / Janey Powell (voice)
+   thumb: https://image.tmdb.org/t/p/original/mPMtuVB6AEulRhlfn69y5RvgmNT.jpg
+   order: 6
    imageHasChanged: false
  - id: 198
    name: Dan Castellaneta
    role: Homer Simpson / Abe Simpson / Barney Gumble / Krusty (voice)
    thumb: https://image.tmdb.org/t/p/original/AmeqWhP4A46AWkM4kVphg6jOTQX.jpg
-   order: 4
+   order: 7
    imageHasChanged: false
  - id: 199
    name: Julie Kavner
    role: Marge Simpson / Patty Bouvier / Selma Bouvier (voice)
    thumb: https://image.tmdb.org/t/p/original/xxiu7PC7RDOJmCuB6i81gEVrDQW.jpg
-   order: 5
+   order: 8
    imageHasChanged: false
  - id: 200
    name: Nancy Cartwright
    role: Bart Simpson / Nelson Muntz / Ralph Wiggum (voice)
    thumb: https://image.tmdb.org/t/p/original/40qNhyYJhSE2Yiy4pnXSZhdufO6.jpg
-   order: 6
+   order: 9
    imageHasChanged: false
  - id: 5586
    name: Yeardley Smith
    role: Lisa Simpson (voice)
    thumb: https://image.tmdb.org/t/p/original/9AjPwbb3uz4GfgOPBYsy2ILvwkB.jpg
-   order: 7
+   order: 10
    imageHasChanged: false
  - id: 5587
    name: Hank Azaria
    role: Moe Szyslak / Chief Wiggum / Apu / Comic Book Guy / Carl (voice)
    thumb: https://image.tmdb.org/t/p/original/yFDw4b0jucuFWNnGcBPfpYUtn16.jpg
-   order: 8
+   order: 11
    imageHasChanged: false
  - id: 6008
    name: Harry Shearer
    role: Ned Flanders / Mr. Burns / Smithers / Skinner / Lenny (voice)
    thumb: https://image.tmdb.org/t/p/original/7PnGZGVKJNDTUv3DkbaMEnCseT0.jpg
-   order: 9
+   order: 12
    imageHasChanged: false
 streamDetails: <not loaded>
 files: (N=0)
@@ -1652,66 +1712,84 @@ epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
 thumbnail: https://image.tmdb.org/t/p/original/kpim0dcnloaTJW5iAIdFVV9RyV3.jpg
-actors: (N>5)
+actors: (N>10)
  - id: 51391
    name: Frankie Muniz
-   role: 
+   role: Thelonious (voice)
    thumb: https://image.tmdb.org/t/p/original/tBckW8eJHv4vz8B3DJYH1rLAtyN.jpg
    order: 0
    imageHasChanged: false
- - id: 129662
-   name: Marcia Mitzman Gaven
-   role: 
-   thumb: https://image.tmdb.org/t/p/original/s76tf8OkMBk1yrDwWLKUI81m13N.jpg
-   order: 1
-   imageHasChanged: false
  - id: 6035
    name: Russi Taylor
-   role: 
+   role: Martin Prince (voice)
    thumb: https://image.tmdb.org/t/p/original/r79GVF7LyBExJP7cRMob8QQZ6IU.jpg
-   order: 2
+   order: 1
    imageHasChanged: false
  - id: 3266
    name: Joe Mantegna
    role: Fat Tony (voice)
    thumb: https://image.tmdb.org/t/p/original/4jzvAE6B1eoiZDUnDUuMazirCPP.jpg
+   order: 2
+   imageHasChanged: false
+ - id: 34983
+   name: Tress MacNeille
+   role: Agnes Skinner (voice)
+   thumb: https://image.tmdb.org/t/p/original/gI2LsgByvSffQY34vabVnPmrHzw.jpg
    order: 3
+   imageHasChanged: false
+ - id: 129662
+   name: Marcia Mitzman Gaven
+   role: Miss Hoover (voice)
+   thumb: https://image.tmdb.org/t/p/original/s76tf8OkMBk1yrDwWLKUI81m13N.jpg
+   order: 4
+   imageHasChanged: false
+ - id: 156910
+   name: Karl Wiedergott
+   role: Spooked Soldier / Legs (voice)
+   thumb: https://image.tmdb.org/t/p/original/r5alSYfltRGa6m8eUT1CuGur2YE.jpg
+   order: 5
+   imageHasChanged: false
+ - id: 6009
+   name: Pamela Hayden
+   role: Milhouse Van Houten / Rod Flanders (voice)
+   thumb: https://image.tmdb.org/t/p/original/mPMtuVB6AEulRhlfn69y5RvgmNT.jpg
+   order: 6
    imageHasChanged: false
  - id: 198
    name: Dan Castellaneta
    role: Homer Simpson / Abe Simpson / Barney Gumble / Krusty (voice)
    thumb: https://image.tmdb.org/t/p/original/AmeqWhP4A46AWkM4kVphg6jOTQX.jpg
-   order: 4
+   order: 7
    imageHasChanged: false
  - id: 199
    name: Julie Kavner
    role: Marge Simpson / Patty Bouvier / Selma Bouvier (voice)
    thumb: https://image.tmdb.org/t/p/original/xxiu7PC7RDOJmCuB6i81gEVrDQW.jpg
-   order: 5
+   order: 8
    imageHasChanged: false
  - id: 200
    name: Nancy Cartwright
    role: Bart Simpson / Nelson Muntz / Ralph Wiggum (voice)
    thumb: https://image.tmdb.org/t/p/original/40qNhyYJhSE2Yiy4pnXSZhdufO6.jpg
-   order: 6
+   order: 9
    imageHasChanged: false
  - id: 5586
    name: Yeardley Smith
    role: Lisa Simpson (voice)
    thumb: https://image.tmdb.org/t/p/original/9AjPwbb3uz4GfgOPBYsy2ILvwkB.jpg
-   order: 7
+   order: 10
    imageHasChanged: false
  - id: 5587
    name: Hank Azaria
    role: Moe Szyslak / Chief Wiggum / Apu / Comic Book Guy / Carl (voice)
    thumb: https://image.tmdb.org/t/p/original/yFDw4b0jucuFWNnGcBPfpYUtn16.jpg
-   order: 8
+   order: 11
    imageHasChanged: false
  - id: 6008
    name: Harry Shearer
    role: Ned Flanders / Mr. Burns / Smithers / Skinner / Lenny (voice)
    thumb: https://image.tmdb.org/t/p/original/7PnGZGVKJNDTUv3DkbaMEnCseT0.jpg
-   order: 9
+   order: 12
    imageHasChanged: false
 streamDetails: <not loaded>
 files: (N=0)
@@ -1753,22 +1831,22 @@ certification:
 networks: (N=0)
 thumbnail: https://image.tmdb.org/t/p/original/2Bay9dWHz1uW3gE2hwZsjeQQ6bl.jpg
 actors: (N>5)
- - id: 129662
-   name: Marcia Mitzman Gaven
-   role: 
-   thumb: https://image.tmdb.org/t/p/original/s76tf8OkMBk1yrDwWLKUI81m13N.jpg
-   order: 0
-   imageHasChanged: false
  - id: 6036
    name: Marcia Wallace
    role: Edna Krabappel (voice)
    thumb: https://image.tmdb.org/t/p/original/bDCnZlPdUOyeQN0ewvoEjadBr9V.jpg
-   order: 1
+   order: 0
    imageHasChanged: false
  - id: 158020
    name: Shawn Colvin
-   role: 
+   role: Rachel Jordan (voice)
    thumb: 
+   order: 1
+   imageHasChanged: false
+ - id: 129662
+   name: Marcia Mitzman Gaven
+   role: Helen Lovejoy (voice)
+   thumb: https://image.tmdb.org/t/p/original/s76tf8OkMBk1yrDwWLKUI81m13N.jpg
    order: 2
    imageHasChanged: false
  - id: 198
@@ -1917,8 +1995,8 @@ overview:
 writers: (N<6)
   - Bob Bendetson
   - Don Payne
-  - Matt Selman
   - John Frink
+  - Matt Selman
 directors: (N=1)
   - Bob Anderson
 playCount: 0

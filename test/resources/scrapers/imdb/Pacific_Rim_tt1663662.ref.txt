@@ -12,13 +12,11 @@ overview:
     When monstrous creatures, known as Kaiju, started rising from the sea, a war beg
     an that would take millions of lives and consume humanity's resources for years 
     on end. To combat the giant Kaiju, a special type of weapon was devised: massive
-     robots, called Jaegers, which are controlled simultaneously by two pilots whose
-     minds are locked in a neural bridge. But even the Jaegers are proving nearly de
-    fenseless in the face of the relentless Kaiju. On the verge of defeat, the force
-    s defending mankind have no choice but to turn to two unlikely heroes - a washed
-     up former pilot (Charlie Hunnam) and an untested trainee (Rinko Kikuchi) - who 
-    are teamed to drive a legendary but seemingly obsolete Jaeger from the past. Tog
-    ether, they stand as mankind's last hope against the mounting apocalypse.
+     robots, called Jaegers, which are controlled simultaneously by two pilots. But 
+    even the Jaegers are proving nearly defenseless in the face of the relentless Ka
+    iju. On the verge of defeat, the forces defending mankind have no choice but to 
+    turn to two unlikely heroes, a washed-up former pilot and an untested trainee. T
+    ogether, they stand as mankind's last hope against the mounting Armageddon.
 outline:
     As a war between humankind and monstrous sea creatures wages on, a former pilot 
     and a trainee are paired up to drive a seemingly obsolete special weapon in a de
@@ -79,8 +77,8 @@ actors: (N>80)
    name: Burn Gorman
    role: Gottlieb
    thumb:
-    https://m.media-amazon.com/images/M/MV5BZmRjYmU0NDgtNTdiNS00N2Y4LTg5MzctNTU3NGNk
-    OTgxYWE2XkEyXkFqcGdeQXVyMTA2MDIzMDE5.jpg
+    https://m.media-amazon.com/images/M/MV5BNzU4ZTJmZGUtMDAxZS00Y2FkLWFkYTQtZjZhY2Uz
+    MzgyZTMwXkEyXkFqcGc@.jpg
    order: 5
    imageHasChanged: false
  - id: 
@@ -159,16 +157,16 @@ actors: (N>80)
    name: Milton Barnes
    role: McTighe
    thumb:
-    https://m.media-amazon.com/images/M/MV5BMzkwNDZmYTQtMzU2MC00OWQ2LTg1YmItNzFkNmFl
-    MmIzNGNhXkEyXkFqcGdeQXVyMjI5Njk2MjE@.jpg
+    https://m.media-amazon.com/images/M/MV5BM2MwZThhM2UtMWFhYy00ZTRhLTljYWItNjc3OTMw
+    ZjMyNmRhXkEyXkFqcGc@.jpg
    order: 15
    imageHasChanged: false
  - id: 
    name: Brian Frank
    role: 1st Officer
    thumb:
-    https://m.media-amazon.com/images/M/MV5BOWI0YjE5NjgtMWFjNy00MDVmLWExYjMtOGMyYWU2
-    NDUzMDNjXkEyXkFqcGdeQXVyMjQwMDg0Ng@@.jpg
+    https://m.media-amazon.com/images/M/MV5BZmUxZTBhYjgtZTI0ZS00OTg4LWIwMmUtMGE3Y2Nl
+    ZWYxOGM5XkEyXkFqcGc@.jpg
    order: 16
    imageHasChanged: false
  - id: 
