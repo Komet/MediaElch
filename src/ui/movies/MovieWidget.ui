@@ -28,10 +28,10 @@
      <item>
       <spacer name="horizontalSpacer_4">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
        <property name="sizeType">
-        <enum>QSizePolicy::Fixed</enum>
+        <enum>QSizePolicy::Policy::Fixed</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -85,7 +85,7 @@
      <item>
       <spacer name="titleSpacer">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -118,10 +118,10 @@
      <item>
       <spacer name="hSpacerRight">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
        <property name="sizeType">
-        <enum>QSizePolicy::Fixed</enum>
+        <enum>QSizePolicy::Policy::Fixed</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -157,13 +157,13 @@
             <item>
              <layout class="QFormLayout" name="formLayout">
               <property name="fieldGrowthPolicy">
-               <enum>QFormLayout::ExpandingFieldsGrow</enum>
+               <enum>QFormLayout::FieldGrowthPolicy::ExpandingFieldsGrow</enum>
               </property>
               <property name="rowWrapPolicy">
-               <enum>QFormLayout::DontWrapRows</enum>
+               <enum>QFormLayout::RowWrapPolicy::DontWrapRows</enum>
               </property>
               <property name="labelAlignment">
-               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
               </property>
               <property name="horizontalSpacing">
                <number>20</number>
@@ -231,7 +231,7 @@
                  <bool>true</bool>
                 </property>
                 <property name="sizeAdjustPolicy">
-                 <enum>QComboBox::AdjustToContents</enum>
+                 <enum>QComboBox::SizeAdjustPolicy::AdjustToContents</enum>
                 </property>
                 <property name="minimumContentsLength">
                  <number>20</number>
@@ -295,7 +295,7 @@
                  <bool>true</bool>
                 </property>
                 <property name="sizeAdjustPolicy">
-                 <enum>QComboBox::AdjustToContents</enum>
+                 <enum>QComboBox::SizeAdjustPolicy::AdjustToContents</enum>
                 </property>
                 <property name="minimumContentsLength">
                  <number>10</number>
@@ -321,7 +321,7 @@
                 <item>
                  <widget class="QSpinBox" name="playcount">
                   <property name="buttonSymbols">
-                   <enum>QAbstractSpinBox::NoButtons</enum>
+                   <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
                   </property>
                   <property name="maximum">
                    <number>99</number>
@@ -331,10 +331,10 @@
                 <item>
                  <spacer name="horizontalSpacer_5">
                   <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
+                   <enum>Qt::Orientation::Horizontal</enum>
                   </property>
                   <property name="sizeType">
-                   <enum>QSizePolicy::Fixed</enum>
+                   <enum>QSizePolicy::Policy::Fixed</enum>
                   </property>
                   <property name="sizeHint" stdset="0">
                    <size>
@@ -354,17 +354,17 @@
                 <item>
                  <widget class="QDateTimeEdit" name="lastPlayed">
                   <property name="buttonSymbols">
-                   <enum>QAbstractSpinBox::NoButtons</enum>
+                   <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
                   </property>
                  </widget>
                 </item>
                 <item>
                  <spacer name="horizontalSpacer_6">
                   <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
+                   <enum>Qt::Orientation::Horizontal</enum>
                   </property>
                   <property name="sizeType">
-                   <enum>QSizePolicy::Fixed</enum>
+                   <enum>QSizePolicy::Policy::Fixed</enum>
                   </property>
                   <property name="sizeHint" stdset="0">
                    <size>
@@ -395,9 +395,6 @@
                  <string>Plot</string>
                 </property>
                </widget>
-              </item>
-              <item row="16" column="1">
-               <widget class="QTextEdit" name="overview"/>
               </item>
               <item row="13" column="1">
                <layout class="QHBoxLayout" name="horizontalLayout_18">
@@ -484,7 +481,7 @@
                   <item>
                    <widget class="QSpinBox" name="top250">
                     <property name="buttonSymbols">
-                     <enum>QAbstractSpinBox::NoButtons</enum>
+                     <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
                     </property>
                     <property name="maximum">
                      <number>250</number>
@@ -494,10 +491,10 @@
                   <item>
                    <spacer name="horizontalSpacer_userRating">
                     <property name="orientation">
-                     <enum>Qt::Horizontal</enum>
+                     <enum>Qt::Orientation::Horizontal</enum>
                     </property>
                     <property name="sizeType">
-                     <enum>QSizePolicy::Fixed</enum>
+                     <enum>QSizePolicy::Policy::Fixed</enum>
                     </property>
                     <property name="sizeHint" stdset="0">
                      <size>
@@ -517,7 +514,7 @@
                   <item>
                    <widget class="QDoubleSpinBox" name="userRating">
                     <property name="buttonSymbols">
-                     <enum>QAbstractSpinBox::NoButtons</enum>
+                     <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
                     </property>
                     <property name="decimals">
                      <number>2</number>
@@ -530,7 +527,7 @@
                   <item>
                    <spacer name="horizontalSpacer_12">
                     <property name="orientation">
-                     <enum>Qt::Horizontal</enum>
+                     <enum>Qt::Orientation::Horizontal</enum>
                     </property>
                     <property name="sizeHint" stdset="0">
                      <size>
@@ -552,7 +549,7 @@
                 <item>
                  <widget class="QDateEdit" name="releaseDate">
                   <property name="buttonSymbols">
-                   <enum>QAbstractSpinBox::NoButtons</enum>
+                   <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
                   </property>
                   <property name="displayFormat">
                    <string extracomment="Date Format">yyyy-MM-dd</string>
@@ -562,10 +559,10 @@
                 <item>
                  <spacer name="horizontalSpacer_2">
                   <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
+                   <enum>Qt::Orientation::Horizontal</enum>
                   </property>
                   <property name="sizeType">
-                   <enum>QSizePolicy::Fixed</enum>
+                   <enum>QSizePolicy::Policy::Fixed</enum>
                   </property>
                   <property name="sizeHint" stdset="0">
                    <size>
@@ -585,7 +582,7 @@
                 <item>
                  <widget class="QSpinBox" name="runtime">
                   <property name="buttonSymbols">
-                   <enum>QAbstractSpinBox::NoButtons</enum>
+                   <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
                   </property>
                   <property name="suffix">
                    <string> Minutes</string>
@@ -603,9 +600,6 @@
                  <string>Outline</string>
                 </property>
                </widget>
-              </item>
-              <item row="17" column="1">
-               <widget class="QTextEdit" name="outline"/>
               </item>
               <item row="1" column="1">
                <layout class="QHBoxLayout" name="horizontalLayout">
@@ -632,10 +626,10 @@
                 <item>
                  <spacer name="horizontalSpacer_14">
                   <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
+                   <enum>Qt::Orientation::Horizontal</enum>
                   </property>
                   <property name="sizeType">
-                   <enum>QSizePolicy::Fixed</enum>
+                   <enum>QSizePolicy::Policy::Fixed</enum>
                   </property>
                   <property name="sizeHint" stdset="0">
                    <size>
@@ -668,7 +662,7 @@
                 <item>
                  <spacer name="horizontalSpacer_15">
                   <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
+                   <enum>Qt::Orientation::Horizontal</enum>
                   </property>
                   <property name="sizeHint" stdset="0">
                    <size>
@@ -686,6 +680,12 @@
                  <string>IMDb ID</string>
                 </property>
                </widget>
+              </item>
+              <item row="16" column="1">
+               <widget class="QPlainTextEdit" name="overview"/>
+              </item>
+              <item row="17" column="1">
+               <widget class="QPlainTextEdit" name="outline"/>
               </item>
              </layout>
             </item>
@@ -714,7 +714,7 @@
             <item>
              <spacer name="verticalSpacer_3">
               <property name="orientation">
-               <enum>Qt::Vertical</enum>
+               <enum>Qt::Orientation::Vertical</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
@@ -778,7 +778,7 @@
               <item>
                <spacer name="horizontalSpacer_3">
                 <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
+                 <enum>Qt::Orientation::Horizontal</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -822,7 +822,7 @@
                  <string>Resolution</string>
                 </property>
                 <property name="alignment">
-                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
                 </property>
                </widget>
               </item>
@@ -832,7 +832,7 @@
                  <string>Scantype</string>
                 </property>
                 <property name="alignment">
-                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
                 </property>
                </widget>
               </item>
@@ -842,7 +842,7 @@
                  <string>Aspect Ratio</string>
                 </property>
                 <property name="alignment">
-                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
                 </property>
                </widget>
               </item>
@@ -865,7 +865,7 @@
                  </size>
                 </property>
                 <property name="buttonSymbols">
-                 <enum>QAbstractSpinBox::NoButtons</enum>
+                 <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
                 </property>
                 <property name="decimals">
                  <number>3</number>
@@ -883,7 +883,7 @@
                  <string>Audio</string>
                 </property>
                 <property name="alignment">
-                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
                 </property>
                </widget>
               </item>
@@ -898,7 +898,7 @@
                  <string>Video</string>
                 </property>
                 <property name="alignment">
-                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
                 </property>
                </widget>
               </item>
@@ -911,7 +911,7 @@
                  </size>
                 </property>
                 <property name="buttonSymbols">
-                 <enum>QAbstractSpinBox::NoButtons</enum>
+                 <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
                 </property>
                 <property name="displayFormat">
                  <string>HH:mm:ss</string>
@@ -924,7 +924,7 @@
                  <string>Duration</string>
                 </property>
                 <property name="alignment">
-                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
                 </property>
                </widget>
               </item>
@@ -933,7 +933,7 @@
                 <item>
                  <widget class="QSpinBox" name="videoWidth">
                   <property name="buttonSymbols">
-                   <enum>QAbstractSpinBox::NoButtons</enum>
+                   <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
                   </property>
                   <property name="maximum">
                    <number>9999</number>
@@ -950,7 +950,7 @@
                 <item>
                  <widget class="QSpinBox" name="videoHeight">
                   <property name="buttonSymbols">
-                   <enum>QAbstractSpinBox::NoButtons</enum>
+                   <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
                   </property>
                   <property name="maximum">
                    <number>99999</number>
@@ -960,7 +960,7 @@
                 <item>
                  <spacer name="horizontalSpacer_10">
                   <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
+                   <enum>Qt::Orientation::Horizontal</enum>
                   </property>
                   <property name="sizeHint" stdset="0">
                    <size>
@@ -978,7 +978,7 @@
                  <string>Codec</string>
                 </property>
                 <property name="alignment">
-                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
                 </property>
                </widget>
               </item>
@@ -988,14 +988,14 @@
                  <string>Stereo Mode</string>
                 </property>
                 <property name="alignment">
-                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
                 </property>
                </widget>
               </item>
               <item row="5" column="1">
                <widget class="StereoModeComboBox" name="stereoMode">
                 <property name="sizeAdjustPolicy">
-                 <enum>QComboBox::AdjustToContents</enum>
+                 <enum>QComboBox::SizeAdjustPolicy::AdjustToContents</enum>
                 </property>
                </widget>
               </item>
@@ -1020,14 +1020,14 @@
                  <string notr="true">Error</string>
                 </property>
                 <property name="textFormat">
-                 <enum>Qt::PlainText</enum>
+                 <enum>Qt::TextFormat::PlainText</enum>
                 </property>
                </widget>
               </item>
               <item>
                <spacer name="horizontalSpacer_9">
                 <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
+                 <enum>Qt::Orientation::Horizontal</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -1042,10 +1042,10 @@
             <item>
              <spacer name="verticalSpacer_4">
               <property name="orientation">
-               <enum>Qt::Vertical</enum>
+               <enum>Qt::Orientation::Vertical</enum>
               </property>
               <property name="sizeType">
-               <enum>QSizePolicy::Fixed</enum>
+               <enum>QSizePolicy::Policy::Fixed</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
@@ -1070,10 +1070,10 @@
             <item>
              <widget class="QTableWidget" name="subtitles">
               <property name="selectionMode">
-               <enum>QAbstractItemView::NoSelection</enum>
+               <enum>QAbstractItemView::SelectionMode::NoSelection</enum>
               </property>
               <property name="selectionBehavior">
-               <enum>QAbstractItemView::SelectRows</enum>
+               <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
               </property>
               <property name="showGrid">
                <bool>false</bool>
@@ -1101,7 +1101,7 @@
             <item>
              <spacer name="verticalSpacer_8">
               <property name="orientation">
-               <enum>Qt::Vertical</enum>
+               <enum>Qt::Orientation::Vertical</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
@@ -1118,7 +1118,7 @@
         <item>
          <widget class="Line" name="line">
           <property name="frameShadow">
-           <enum>QFrame::Plain</enum>
+           <enum>QFrame::Shadow::Plain</enum>
           </property>
           <property name="lineWidth">
            <number>1</number>
@@ -1127,7 +1127,7 @@
            <number>0</number>
           </property>
           <property name="orientation">
-           <enum>Qt::Vertical</enum>
+           <enum>Qt::Orientation::Vertical</enum>
           </property>
          </widget>
         </item>
@@ -1160,7 +1160,7 @@
              <item>
               <spacer name="horizontalSpacer_7">
                <property name="orientation">
-                <enum>Qt::Horizontal</enum>
+                <enum>Qt::Orientation::Horizontal</enum>
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
@@ -1202,7 +1202,7 @@
              <item>
               <spacer name="horizontalSpacer_8">
                <property name="orientation">
-                <enum>Qt::Horizontal</enum>
+                <enum>Qt::Orientation::Horizontal</enum>
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
@@ -1280,7 +1280,7 @@
                  <pixmap resource="../../../data/MediaElch.qrc">:/img/placeholders/poster.png</pixmap>
                 </property>
                 <property name="alignment">
-                 <set>Qt::AlignCenter</set>
+                 <set>Qt::AlignmentFlag::AlignCenter</set>
                 </property>
                 <property name="clickable" stdset="0">
                  <bool>true</bool>
@@ -1327,7 +1327,7 @@
                  <pixmap resource="../../../data/MediaElch.qrc">:/img/placeholders/fanart.png</pixmap>
                 </property>
                 <property name="alignment">
-                 <set>Qt::AlignCenter</set>
+                 <set>Qt::AlignmentFlag::AlignCenter</set>
                 </property>
                 <property name="clickable" stdset="0">
                  <bool>true</bool>
@@ -1374,7 +1374,7 @@
                  <pixmap resource="../../../data/MediaElch.qrc">:/img/placeholders/thumb.png</pixmap>
                 </property>
                 <property name="alignment">
-                 <set>Qt::AlignCenter</set>
+                 <set>Qt::AlignmentFlag::AlignCenter</set>
                 </property>
                 <property name="clickable" stdset="0">
                  <bool>true</bool>
@@ -1390,7 +1390,7 @@
               <item>
                <spacer name="verticalSpacer">
                 <property name="orientation">
-                 <enum>Qt::Vertical</enum>
+                 <enum>Qt::Orientation::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -1450,7 +1450,7 @@
                  <pixmap resource="../../../data/MediaElch.qrc">:/img/placeholders/logo.png</pixmap>
                 </property>
                 <property name="alignment">
-                 <set>Qt::AlignCenter</set>
+                 <set>Qt::AlignmentFlag::AlignCenter</set>
                 </property>
                 <property name="clickable" stdset="0">
                  <bool>true</bool>
@@ -1497,7 +1497,7 @@
                  <pixmap resource="../../../data/MediaElch.qrc">:/img/placeholders/clear_art.png</pixmap>
                 </property>
                 <property name="alignment">
-                 <set>Qt::AlignCenter</set>
+                 <set>Qt::AlignmentFlag::AlignCenter</set>
                 </property>
                 <property name="clickable" stdset="0">
                  <bool>true</bool>
@@ -1544,7 +1544,7 @@
                  <pixmap resource="../../../data/MediaElch.qrc">:/img/placeholders/cd_art.png</pixmap>
                 </property>
                 <property name="alignment">
-                 <set>Qt::AlignCenter</set>
+                 <set>Qt::AlignmentFlag::AlignCenter</set>
                 </property>
                 <property name="clickable" stdset="0">
                  <bool>true</bool>
@@ -1591,7 +1591,7 @@
                  <pixmap resource="../../../data/MediaElch.qrc">:/img/placeholders/banner.png</pixmap>
                 </property>
                 <property name="alignment">
-                 <set>Qt::AlignCenter</set>
+                 <set>Qt::AlignmentFlag::AlignCenter</set>
                 </property>
                 <property name="myFixedHeight" stdset="0">
                  <number>53</number>
@@ -1607,7 +1607,7 @@
               <item>
                <spacer name="verticalSpacer_7">
                 <property name="orientation">
-                 <enum>Qt::Vertical</enum>
+                 <enum>Qt::Orientation::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>

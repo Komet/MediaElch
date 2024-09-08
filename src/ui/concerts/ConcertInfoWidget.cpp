@@ -43,7 +43,7 @@ ConcertInfoWidget::ConcertInfoWidget(QWidget* parent) : QWidget(parent), ui(std:
     connect(ui->badgeWatched,  &Badge::clicked,                 this, &ConcertInfoWidget::onWatchedClicked);
     connect(ui->released,      &QDateTimeEdit::dateChanged,     this, &ConcertInfoWidget::onReleasedChange);
     connect(ui->lastPlayed,    &QDateTimeEdit::dateTimeChanged, this, &ConcertInfoWidget::onLastWatchedChange);
-    connect(ui->overview,      &QTextEdit::textChanged,         this, &ConcertInfoWidget::onOverviewChange);
+    connect(ui->overview,      &QPlainTextEdit::textChanged,    this, &ConcertInfoWidget::onOverviewChange);
     // clang-format on
 
     ui->userRating->setSingleStep(0.1);

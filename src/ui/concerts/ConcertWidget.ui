@@ -28,10 +28,10 @@
      <item>
       <spacer name="horizontalSpacer">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
        <property name="sizeType">
-        <enum>QSizePolicy::Fixed</enum>
+        <enum>QSizePolicy::Policy::Fixed</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -86,7 +86,7 @@
      <item>
       <spacer name="horizontalSpacer_2">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -119,10 +119,10 @@
      <item>
       <spacer name="hSpacerRight">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
        <property name="sizeType">
-        <enum>QSizePolicy::Fixed</enum>
+        <enum>QSizePolicy::Policy::Fixed</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -169,7 +169,7 @@
           <item>
            <spacer name="verticalSpacer_2">
             <property name="orientation">
-             <enum>Qt::Vertical</enum>
+             <enum>Qt::Orientation::Vertical</enum>
             </property>
             <property name="sizeHint" stdset="0">
              <size>
@@ -215,7 +215,7 @@
             <item>
              <spacer name="horizontalSpacer_3">
               <property name="orientation">
-               <enum>Qt::Horizontal</enum>
+               <enum>Qt::Orientation::Horizontal</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
@@ -251,7 +251,7 @@
       <item>
        <widget class="Line" name="line">
         <property name="frameShadow">
-         <enum>QFrame::Plain</enum>
+         <enum>QFrame::Shadow::Plain</enum>
         </property>
         <property name="lineWidth">
          <number>1</number>
@@ -260,7 +260,7 @@
          <number>0</number>
         </property>
         <property name="orientation">
-         <enum>Qt::Vertical</enum>
+         <enum>Qt::Orientation::Vertical</enum>
         </property>
        </widget>
       </item>
@@ -293,7 +293,7 @@
            <item>
             <spacer name="horizontalSpacer_7">
              <property name="orientation">
-              <enum>Qt::Horizontal</enum>
+              <enum>Qt::Orientation::Horizontal</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -335,7 +335,7 @@
            <item>
             <spacer name="horizontalSpacer_8">
              <property name="orientation">
-              <enum>Qt::Horizontal</enum>
+              <enum>Qt::Orientation::Horizontal</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -415,7 +415,7 @@
                <pixmap resource="../../../data/MediaElch.qrc">:/img/placeholders/poster.png</pixmap>
               </property>
               <property name="alignment">
-               <set>Qt::AlignCenter</set>
+               <set>Qt::AlignmentFlag::AlignCenter</set>
               </property>
               <property name="clickable" stdset="0">
                <bool>true</bool>
@@ -459,7 +459,7 @@
                <pixmap resource="../../../data/MediaElch.qrc">:/img/placeholders/fanart.png</pixmap>
               </property>
               <property name="alignment">
-               <set>Qt::AlignCenter</set>
+               <set>Qt::AlignmentFlag::AlignCenter</set>
               </property>
               <property name="clickable" stdset="0">
                <bool>true</bool>
@@ -472,7 +472,7 @@
             <item>
              <spacer name="verticalSpacer">
               <property name="orientation">
-               <enum>Qt::Vertical</enum>
+               <enum>Qt::Orientation::Vertical</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
@@ -532,7 +532,7 @@
                <pixmap resource="../../../data/MediaElch.qrc">:/img/placeholders/logo.png</pixmap>
               </property>
               <property name="alignment">
-               <set>Qt::AlignCenter</set>
+               <set>Qt::AlignmentFlag::AlignCenter</set>
               </property>
               <property name="clickable" stdset="0">
                <bool>true</bool>
@@ -576,7 +576,7 @@
                <pixmap resource="../../../data/MediaElch.qrc">:/img/placeholders/clear_art.png</pixmap>
               </property>
               <property name="alignment">
-               <set>Qt::AlignCenter</set>
+               <set>Qt::AlignmentFlag::AlignCenter</set>
               </property>
               <property name="clickable" stdset="0">
                <bool>true</bool>
@@ -620,7 +620,7 @@
                <pixmap resource="../../../data/MediaElch.qrc">:/img/placeholders/cd_art.png</pixmap>
               </property>
               <property name="alignment">
-               <set>Qt::AlignCenter</set>
+               <set>Qt::AlignmentFlag::AlignCenter</set>
               </property>
               <property name="clickable" stdset="0">
                <bool>true</bool>
@@ -633,7 +633,7 @@
             <item>
              <spacer name="verticalSpacer_7">
               <property name="orientation">
-               <enum>Qt::Vertical</enum>
+               <enum>Qt::Orientation::Vertical</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
@@ -656,15 +656,15 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>TagCloud</class>
-   <extends>QWidget</extends>
-   <header>ui/small_widgets/TagCloud.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
    <class>ImageGallery</class>
    <extends>QWidget</extends>
    <header>ui/small_widgets/ImageGallery.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TagCloud</class>
+   <extends>QWidget</extends>
+   <header>ui/small_widgets/TagCloud.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>

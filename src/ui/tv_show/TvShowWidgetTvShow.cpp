@@ -167,7 +167,7 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget* parent) :
     connect(ui->top250,        elchOverload<int>(&QSpinBox::valueChanged),          this, &TvShowWidgetTvShow::onTop250Change);
     connect(ui->firstAired,    &QDateTimeEdit::dateChanged,      this, &TvShowWidgetTvShow::onFirstAiredChange);
     connect(ui->studio,        &QLineEdit::textEdited,           this, &TvShowWidgetTvShow::onStudioChange);
-    connect(ui->overview,      &QTextEdit::textChanged,          this, &TvShowWidgetTvShow::onOverviewChange);
+    connect(ui->overview,      &QPlainTextEdit::textChanged,     this, &TvShowWidgetTvShow::onOverviewChange);
     connect(ui->actors,        &QTableWidget::itemChanged,       this, &TvShowWidgetTvShow::onActorEdited);
     connect(ui->runtime,       elchOverload<int>(&QSpinBox::valueChanged),         this, &TvShowWidgetTvShow::onRuntimeChange);
     connect(ui->comboStatus,   elchOverload<int>(&QComboBox::currentIndexChanged), this, &TvShowWidgetTvShow::onStatusChange);

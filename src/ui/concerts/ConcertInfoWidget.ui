@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>715</width>
-    <height>570</height>
+    <height>601</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -18,7 +18,7 @@
   </property>
   <layout class="QFormLayout" name="formLayout">
    <property name="fieldGrowthPolicy">
-    <enum>QFormLayout::ExpandingFieldsGrow</enum>
+    <enum>QFormLayout::FieldGrowthPolicy::ExpandingFieldsGrow</enum>
    </property>
    <property name="leftMargin">
     <number>0</number>
@@ -174,7 +174,7 @@
        <item>
         <widget class="QDoubleSpinBox" name="userRating">
          <property name="buttonSymbols">
-          <enum>QAbstractSpinBox::NoButtons</enum>
+          <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
          </property>
          <property name="decimals">
           <number>2</number>
@@ -187,7 +187,7 @@
        <item>
         <spacer name="horizontalSpacer">
          <property name="orientation">
-          <enum>Qt::Horizontal</enum>
+          <enum>Qt::Orientation::Horizontal</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
@@ -214,7 +214,7 @@
    <item row="8" column="1">
     <widget class="QDateEdit" name="released">
      <property name="buttonSymbols">
-      <enum>QAbstractSpinBox::NoButtons</enum>
+      <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
      </property>
      <property name="displayFormat">
       <string notr="true">yyyy</string>
@@ -231,7 +231,7 @@
    <item row="9" column="1">
     <widget class="QSpinBox" name="runtime">
      <property name="buttonSymbols">
-      <enum>QAbstractSpinBox::NoButtons</enum>
+      <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
      </property>
      <property name="suffix">
       <string> Minutes</string>
@@ -254,7 +254,7 @@
       <bool>true</bool>
      </property>
      <property name="sizeAdjustPolicy">
-      <enum>QComboBox::AdjustToContents</enum>
+      <enum>QComboBox::SizeAdjustPolicy::AdjustToContents</enum>
      </property>
     </widget>
    </item>
@@ -280,7 +280,7 @@
      <item>
       <widget class="QSpinBox" name="playcount">
        <property name="buttonSymbols">
-        <enum>QAbstractSpinBox::NoButtons</enum>
+        <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
        </property>
        <property name="maximum">
         <number>99</number>
@@ -290,10 +290,10 @@
      <item>
       <spacer name="horizontalSpacer_4">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
        <property name="sizeType">
-        <enum>QSizePolicy::Fixed</enum>
+        <enum>QSizePolicy::Policy::Fixed</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -313,17 +313,17 @@
      <item>
       <widget class="QDateTimeEdit" name="lastPlayed">
        <property name="buttonSymbols">
-        <enum>QAbstractSpinBox::NoButtons</enum>
+        <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
        </property>
       </widget>
      </item>
      <item>
       <spacer name="horizontalSpacer_5">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
        <property name="sizeType">
-        <enum>QSizePolicy::Fixed</enum>
+        <enum>QSizePolicy::Policy::Fixed</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -356,7 +356,7 @@
     </widget>
    </item>
    <item row="13" column="1">
-    <widget class="QTextEdit" name="overview"/>
+    <widget class="QPlainTextEdit" name="overview"/>
    </item>
   </layout>
  </widget>

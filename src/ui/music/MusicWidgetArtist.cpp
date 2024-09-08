@@ -83,8 +83,9 @@ MusicWidgetArtist::MusicWidgetArtist(QWidget* parent) : QWidget(parent), ui(new 
     connect(ui->yearsActive,   &QLineEdit::textEdited,  this, &MusicWidgetArtist::onItemChanged);
     connect(ui->disbanded,     &QLineEdit::textEdited,  this, &MusicWidgetArtist::onItemChanged);
     connect(ui->died,          &QLineEdit::textEdited,  this, &MusicWidgetArtist::onItemChanged);
-    connect(ui->biography,     &QTextEdit::textChanged, this, &MusicWidgetArtist::onBiographyChanged);
     connect(ui->musicBrainzId, &QLineEdit::textEdited,  this, &MusicWidgetArtist::onItemChanged);
+
+    connect(ui->biography,     &QPlainTextEdit::textChanged, this, &MusicWidgetArtist::onBiographyChanged);
 
     connect(ui->fanarts, elchOverload<QByteArray>(&ImageGallery::sigRemoveImage),
             this, elchOverload<QByteArray>(&MusicWidgetArtist::onRemoveExtraFanart));

@@ -31,10 +31,10 @@
      <item>
       <spacer name="horizontalSpacer_4">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
        <property name="sizeType">
-        <enum>QSizePolicy::Fixed</enum>
+        <enum>QSizePolicy::Policy::Fixed</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -89,7 +89,7 @@
      <item>
       <spacer name="horizontalSpacer_11">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -120,13 +120,13 @@
           <item>
            <layout class="QFormLayout" name="formLayout">
             <property name="fieldGrowthPolicy">
-             <enum>QFormLayout::ExpandingFieldsGrow</enum>
+             <enum>QFormLayout::FieldGrowthPolicy::ExpandingFieldsGrow</enum>
             </property>
             <property name="rowWrapPolicy">
-             <enum>QFormLayout::DontWrapRows</enum>
+             <enum>QFormLayout::RowWrapPolicy::DontWrapRows</enum>
             </property>
             <property name="labelAlignment">
-             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
             </property>
             <property name="horizontalSpacing">
              <number>20</number>
@@ -236,9 +236,6 @@
               </property>
              </widget>
             </item>
-            <item row="8" column="1">
-             <widget class="QTextEdit" name="biography"/>
-            </item>
             <item row="1" column="0">
              <widget class="QLabel" name="label_4">
               <property name="text">
@@ -252,6 +249,9 @@
                <string notr="true">mbid</string>
               </property>
              </widget>
+            </item>
+            <item row="8" column="1">
+             <widget class="QPlainTextEdit" name="biography"/>
             </item>
            </layout>
           </item>
@@ -286,7 +286,7 @@
           <item>
            <spacer name="verticalSpacer_3">
             <property name="orientation">
-             <enum>Qt::Vertical</enum>
+             <enum>Qt::Orientation::Vertical</enum>
             </property>
             <property name="sizeHint" stdset="0">
              <size>
@@ -306,10 +306,10 @@
           <item>
            <widget class="QTableWidget" name="discography">
             <property name="editTriggers">
-             <set>QAbstractItemView::DoubleClicked</set>
+             <set>QAbstractItemView::EditTrigger::DoubleClicked</set>
             </property>
             <property name="selectionBehavior">
-             <enum>QAbstractItemView::SelectRows</enum>
+             <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
             </property>
             <property name="showGrid">
              <bool>false</bool>
@@ -351,7 +351,7 @@
             <item>
              <spacer name="verticalSpacer_5">
               <property name="orientation">
-               <enum>Qt::Vertical</enum>
+               <enum>Qt::Orientation::Vertical</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
@@ -399,7 +399,7 @@
             <item>
              <spacer name="horizontalSpacer_3">
               <property name="orientation">
-               <enum>Qt::Horizontal</enum>
+               <enum>Qt::Orientation::Horizontal</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
@@ -425,7 +425,7 @@
       <item>
        <widget class="Line" name="line">
         <property name="frameShadow">
-         <enum>QFrame::Plain</enum>
+         <enum>QFrame::Shadow::Plain</enum>
         </property>
         <property name="lineWidth">
          <number>1</number>
@@ -434,7 +434,7 @@
          <number>0</number>
         </property>
         <property name="orientation">
-         <enum>Qt::Vertical</enum>
+         <enum>Qt::Orientation::Vertical</enum>
         </property>
        </widget>
       </item>
@@ -495,7 +495,7 @@
               <pixmap resource="../../../data/MediaElch.qrc">:/img/placeholders/thumb.png</pixmap>
              </property>
              <property name="alignment">
-              <set>Qt::AlignCenter</set>
+              <set>Qt::AlignmentFlag::AlignCenter</set>
              </property>
              <property name="clickable" stdset="0">
               <bool>true</bool>
@@ -511,10 +511,10 @@
            <item>
             <spacer name="verticalSpacer_2">
              <property name="orientation">
-              <enum>Qt::Vertical</enum>
+              <enum>Qt::Orientation::Vertical</enum>
              </property>
              <property name="sizeType">
-              <enum>QSizePolicy::Fixed</enum>
+              <enum>QSizePolicy::Policy::Fixed</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -558,7 +558,7 @@
               <pixmap resource="../../../data/MediaElch.qrc">:/img/placeholders/fanart.png</pixmap>
              </property>
              <property name="alignment">
-              <set>Qt::AlignCenter</set>
+              <set>Qt::AlignmentFlag::AlignCenter</set>
              </property>
              <property name="clickable" stdset="0">
               <bool>true</bool>
@@ -574,10 +574,10 @@
            <item>
             <spacer name="verticalSpacer_4">
              <property name="orientation">
-              <enum>Qt::Vertical</enum>
+              <enum>Qt::Orientation::Vertical</enum>
              </property>
              <property name="sizeType">
-              <enum>QSizePolicy::Fixed</enum>
+              <enum>QSizePolicy::Policy::Fixed</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -621,7 +621,7 @@
               <pixmap resource="../../../data/MediaElch.qrc">:/img/placeholders/logo.png</pixmap>
              </property>
              <property name="alignment">
-              <set>Qt::AlignCenter</set>
+              <set>Qt::AlignmentFlag::AlignCenter</set>
              </property>
              <property name="clickable" stdset="0">
               <bool>true</bool>
@@ -637,7 +637,7 @@
            <item>
             <spacer name="verticalSpacer">
              <property name="orientation">
-              <enum>Qt::Vertical</enum>
+              <enum>Qt::Orientation::Vertical</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -659,15 +659,15 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>TagCloud</class>
-   <extends>QWidget</extends>
-   <header>ui/small_widgets/TagCloud.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
    <class>ImageGallery</class>
    <extends>QWidget</extends>
    <header>ui/small_widgets/ImageGallery.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TagCloud</class>
+   <extends>QWidget</extends>
+   <header>ui/small_widgets/TagCloud.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>

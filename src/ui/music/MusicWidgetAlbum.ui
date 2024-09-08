@@ -31,10 +31,10 @@
      <item>
       <spacer name="horizontalSpacer_4">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
        <property name="sizeType">
-        <enum>QSizePolicy::Fixed</enum>
+        <enum>QSizePolicy::Policy::Fixed</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -89,7 +89,7 @@
      <item>
       <spacer name="horizontalSpacer_11">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -120,13 +120,13 @@
           <item>
            <layout class="QFormLayout" name="formLayout">
             <property name="fieldGrowthPolicy">
-             <enum>QFormLayout::ExpandingFieldsGrow</enum>
+             <enum>QFormLayout::FieldGrowthPolicy::ExpandingFieldsGrow</enum>
             </property>
             <property name="rowWrapPolicy">
-             <enum>QFormLayout::DontWrapRows</enum>
+             <enum>QFormLayout::RowWrapPolicy::DontWrapRows</enum>
             </property>
             <property name="labelAlignment">
-             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
             </property>
             <property name="horizontalSpacing">
              <number>20</number>
@@ -215,13 +215,10 @@
               </property>
              </widget>
             </item>
-            <item row="9" column="1">
-             <widget class="QTextEdit" name="review"/>
-            </item>
             <item row="7" column="1">
              <widget class="QSpinBox" name="year">
               <property name="buttonSymbols">
-               <enum>QAbstractSpinBox::NoButtons</enum>
+               <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
               </property>
               <property name="maximum">
                <number>2050</number>
@@ -238,7 +235,7 @@
             <item row="6" column="1">
              <widget class="QDoubleSpinBox" name="rating">
               <property name="buttonSymbols">
-               <enum>QAbstractSpinBox::NoButtons</enum>
+               <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
               </property>
               <property name="decimals">
                <number>1</number>
@@ -276,6 +273,9 @@
               </property>
              </widget>
             </item>
+            <item row="9" column="1">
+             <widget class="QPlainTextEdit" name="review"/>
+            </item>
            </layout>
           </item>
          </layout>
@@ -309,7 +309,7 @@
           <item>
            <spacer name="verticalSpacer_3">
             <property name="orientation">
-             <enum>Qt::Vertical</enum>
+             <enum>Qt::Orientation::Vertical</enum>
             </property>
             <property name="sizeHint" stdset="0">
              <size>
@@ -355,7 +355,7 @@
             <item>
              <spacer name="horizontalSpacer_3">
               <property name="orientation">
-               <enum>Qt::Horizontal</enum>
+               <enum>Qt::Orientation::Horizontal</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
@@ -381,7 +381,7 @@
       <item>
        <widget class="Line" name="line">
         <property name="frameShadow">
-         <enum>QFrame::Plain</enum>
+         <enum>QFrame::Shadow::Plain</enum>
         </property>
         <property name="lineWidth">
          <number>1</number>
@@ -390,7 +390,7 @@
          <number>0</number>
         </property>
         <property name="orientation">
-         <enum>Qt::Vertical</enum>
+         <enum>Qt::Orientation::Vertical</enum>
         </property>
        </widget>
       </item>
@@ -451,7 +451,7 @@
               <pixmap resource="../../../data/MediaElch.qrc">:/img/placeholders/poster.png</pixmap>
              </property>
              <property name="alignment">
-              <set>Qt::AlignCenter</set>
+              <set>Qt::AlignmentFlag::AlignCenter</set>
              </property>
              <property name="clickable" stdset="0">
               <bool>true</bool>
@@ -467,10 +467,10 @@
            <item>
             <spacer name="verticalSpacer_2">
              <property name="orientation">
-              <enum>Qt::Vertical</enum>
+              <enum>Qt::Orientation::Vertical</enum>
              </property>
              <property name="sizeType">
-              <enum>QSizePolicy::Fixed</enum>
+              <enum>QSizePolicy::Policy::Fixed</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -514,7 +514,7 @@
               <pixmap resource="../../../data/MediaElch.qrc">:/img/placeholders/cd_art.png</pixmap>
              </property>
              <property name="alignment">
-              <set>Qt::AlignCenter</set>
+              <set>Qt::AlignmentFlag::AlignCenter</set>
              </property>
              <property name="clickable" stdset="0">
               <bool>true</bool>
@@ -530,7 +530,7 @@
            <item>
             <spacer name="verticalSpacer">
              <property name="orientation">
-              <enum>Qt::Vertical</enum>
+              <enum>Qt::Orientation::Vertical</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -552,6 +552,12 @@
  </widget>
  <customwidgets>
   <customwidget>
+   <class>ImageGallery</class>
+   <extends>QWidget</extends>
+   <header>ui/small_widgets/ImageGallery.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
    <class>TagCloud</class>
    <extends>QWidget</extends>
    <header>ui/small_widgets/TagCloud.h</header>
@@ -561,12 +567,6 @@
    <class>ClosableImage</class>
    <extends>QLabel</extends>
    <header>ui/small_widgets/ClosableImage.h</header>
-  </customwidget>
-  <customwidget>
-   <class>ImageGallery</class>
-   <extends>QWidget</extends>
-   <header>ui/small_widgets/ImageGallery.h</header>
-   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources>
