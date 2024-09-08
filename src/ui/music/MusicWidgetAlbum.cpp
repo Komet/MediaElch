@@ -85,7 +85,7 @@ MusicWidgetAlbum::MusicWidgetAlbum(QWidget* parent) : QWidget(parent), ui(new Ui
     connect(ui->artist,                    &QLineEdit::textEdited,       this, &MusicWidgetAlbum::onItemChanged);
     connect(ui->label,                     &QLineEdit::textEdited,       this, &MusicWidgetAlbum::onItemChanged);
     connect(ui->releaseDate,               &QLineEdit::textEdited,       this, &MusicWidgetAlbum::onItemChanged);
-    connect(ui->review,                    &QTextEdit::textChanged,      this, &MusicWidgetAlbum::onReviewChanged);
+    connect(ui->review,                    &QPlainTextEdit::textChanged, this, &MusicWidgetAlbum::onReviewChanged);
     connect(ui->musicBrainzAlbumId,        &QLineEdit::textEdited,       this, &MusicWidgetAlbum::onItemChanged);
     connect(ui->musicBrainzReleaseGroupId, &QLineEdit::textEdited,       this, &MusicWidgetAlbum::onItemChanged);
     connect(ui->year,   elchOverload<int>(&QSpinBox::valueChanged),          this, &MusicWidgetAlbum::onYearChanged);

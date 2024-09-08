@@ -136,7 +136,7 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget* parent) :
     connect(ui->playCount, elchOverload<int>(&QSpinBox::valueChanged), this, &TvShowWidgetEpisode::onPlayCountChange);
     connect(ui->lastPlayed, &QDateTimeEdit::dateTimeChanged, this, &TvShowWidgetEpisode::onLastPlayedChange);
     connect(ui->studio, &QLineEdit::textEdited, this, &TvShowWidgetEpisode::onStudioChange);
-    connect(ui->overview, &QTextEdit::textChanged, this, &TvShowWidgetEpisode::onOverviewChange);
+    connect(ui->overview, &QPlainTextEdit::textChanged, this, &TvShowWidgetEpisode::onOverviewChange);
     connect(ui->videoAspectRatio, elchOverload<double>(&QDoubleSpinBox::valueChanged), this, [this](double /*unused*/) {
         onStreamDetailsEdited();
     });

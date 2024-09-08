@@ -194,8 +194,8 @@ MovieWidget::MovieWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieWid
     connect(ui->badgeWatched,     &Badge::clicked,                  this, &MovieWidget::onWatchedClicked);
     connect(ui->releaseDate,      &QDateTimeEdit::dateChanged,      this, &MovieWidget::onReleasedChange);
     connect(ui->lastPlayed,       &QDateTimeEdit::dateTimeChanged,  this, &MovieWidget::onLastWatchedChange);
-    connect(ui->overview,         &QTextEdit::textChanged,          this, &MovieWidget::onOverviewChange);
-    connect(ui->outline,          &QTextEdit::textChanged,          this, &MovieWidget::onOutlineChange);
+    connect(ui->overview,         &QPlainTextEdit::textChanged,     this, &MovieWidget::onOverviewChange);
+    connect(ui->outline,          &QPlainTextEdit::textChanged,     this, &MovieWidget::onOutlineChange);
     connect(ui->director,         &QLineEdit::textEdited,           this, &MovieWidget::onDirectorChange);
     connect(ui->writer,           &QLineEdit::textEdited,           this, &MovieWidget::onWriterChange);
 
