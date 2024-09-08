@@ -10,7 +10,7 @@ using namespace mediaelch::scraper;
 
 TEST_CASE("UniversalMusicScraper returns correct search results", "[music][UniversalMusicScraper][search]")
 {
-    UniversalMusicScraper scraper;
+    UniversalMusicScraper& scraper = getUniversalMusicScraper();
 
     SECTION("Search for Artist Rammstein")
     {
@@ -82,7 +82,7 @@ TEST_CASE("UniversalMusicScraper loads correct details", "[music][UniversalMusic
     {
         QEventLoop loop;
         Artist artist;
-        UniversalMusicScraper scraper;
+        UniversalMusicScraper& scraper = getUniversalMusicScraper();
         QEventLoop::connect(artist.controller(), &ArtistController::sigLoadDone, &loop, &QEventLoop::quit);
         MusicBrainzId metallica("65f4f0c5-ef9e-490c-aee3-909e7ae6b2ab");
         artist.controller()->loadData(metallica, &scraper, noImages);
@@ -96,7 +96,7 @@ TEST_CASE("UniversalMusicScraper loads correct details", "[music][UniversalMusic
     {
         QEventLoop loop;
         Album album;
-        UniversalMusicScraper scraper;
+        UniversalMusicScraper& scraper = getUniversalMusicScraper();
         QEventLoop::connect(album.controller(), &AlbumController::sigLoadDone, &loop, &QEventLoop::quit);
         // Website: https://musicbrainz.org/release-group/3d00fb45-f8ab-3436-a8e1-b4bfc4d66913
         // API:
@@ -117,7 +117,7 @@ TEST_CASE("UniversalMusicScraper loads correct details", "[music][UniversalMusic
     {
         QEventLoop loop;
         Artist artist;
-        UniversalMusicScraper scraper;
+        UniversalMusicScraper& scraper = getUniversalMusicScraper();
         QEventLoop::connect(artist.controller(), &ArtistController::sigLoadDone, &loop, &QEventLoop::quit);
         MusicBrainzId badHabit("fe2897f1-a391-41d6-b0e2-f15261be0c69");
         artist.controller()->loadData(badHabit, &scraper, noImages);

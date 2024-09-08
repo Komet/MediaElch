@@ -1043,30 +1043,13 @@ QDebug operator<<(QDebug dbg, const TvShowEpisode& episode)
     for (const QString& director : episode.directors()) {
         out.append(QString("  Director:      ").append(director)).append(nl);
     }
-    /*
-    for (const QString &studio: movie.studios())
-        out.append(QString("  Studio:         ").append(studio)).append(nl);
-    for (const QString &country: movie.countries())
-        out.append(QString("  Country:       ").append(country)).append(nl);
-    for (const Actor &actor: movie.actors()) {
+
+    for (const Actor* actor : episode.actors()) {
         out.append(QString("  Actor:         ").append(nl));
-        out.append(QString("    Name:  ").append(actor.name)).append(nl);
-        out.append(QString("    Role:  ").append(actor.role)).append(nl);
-        out.append(QString("    Thumb: ").append(actor.thumb)).append(nl);
+        out.append(QString("    Name:  ").append(actor->name)).append(nl);
+        out.append(QString("    Role:  ").append(actor->role)).append(nl);
+        out.append(QString("    Thumb: ").append(actor->thumb)).append(nl);
     }
-    for (const Poster &poster: movie.posters()) {
-        out.append(QString("  Poster:       ")).append(nl);
-        out.append(QString("    ID:       ").append(poster.id)).append(nl);
-        out.append(QString("    Original: ").append(poster.originalUrl.toString())).append(nl);
-        out.append(QString("    Thumb:    ").append(poster.thumbUrl.toString())).append(nl);
-    }
-    for (const Poster &backdrop: movie.backdrops()) {
-        out.append(QString("  Backdrop:       ")).append(nl);
-        out.append(QString("    ID:       ").append(backdrop.id)).append(nl);
-        out.append(QString("    Original: ").append(backdrop.originalUrl.toString())).append(nl);
-        out.append(QString("    Thumb:    ").append(backdrop.thumbUrl.toString())).append(nl);
-    }
-    */
     dbg.nospace() << out;
     return dbg.maybeSpace();
 }
