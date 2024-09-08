@@ -40,8 +40,8 @@ FanartTvConfigurationView::FanartTvConfigurationView(FanartTvConfiguration& sett
         m_languageBox->blockSignals(blocked);
     });
 
-    connect(m_discBox, &QComboBox::activated, this, [this]() {
-        QString discType = m_discBox->itemData(m_discBox->currentIndex()).toString();
+    connect(m_discBox, elchOverload<int>(&QComboBox::activated), this, [this](int index) {
+        QString discType = m_discBox->itemData(index).toString();
         m_settings.setPreferredDiscType(discType);
     });
     connect(&m_settings, &FanartTvConfiguration::preferredDiscTypeChanged, this, [this](QString discType) {

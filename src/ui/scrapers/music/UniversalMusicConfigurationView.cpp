@@ -38,8 +38,8 @@ UniversalMusicConfigurationView::UniversalMusicConfigurationView(UniversalMusicC
     });
 
 
-    connect(m_preferredBox, &QComboBox::activated, this, [this]() {
-        QString language = m_preferredBox->itemData(m_preferredBox->currentIndex()).toString();
+    connect(m_preferredBox, elchOverload<int>(&QComboBox::activated), this, [this](int index) {
+        QString language = m_preferredBox->itemData(index).toString();
         m_settings.setPreferredScraper(language);
     });
     connect(&m_settings, &UniversalMusicConfiguration::preferredScraperChanged, this, [this](QString preferredScraper) {

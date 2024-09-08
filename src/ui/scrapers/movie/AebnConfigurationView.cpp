@@ -40,8 +40,8 @@ AebnConfigurationView::AebnConfigurationView(AebnConfiguration& settings, QWidge
     });
 
 
-    connect(m_genreBox, &QComboBox::activated, this, [this]() {
-        QString genreId = m_genreBox->itemData(m_genreBox->currentIndex()).toString();
+    connect(m_genreBox, elchOverload<int>(&QComboBox::activated), this, [this](int index) {
+        QString genreId = m_genreBox->itemData(index).toString();
         m_settings.setGenreId(genreId);
     });
     connect(&m_settings, &AebnConfiguration::genreIdChanged, this, [this](QString genreId) {

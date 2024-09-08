@@ -66,8 +66,8 @@ void KodiSettingsWidget::init(mediaelch::KodiSettings* settings)
     }
 
     setKodiVersion(settings->kodiVersion());
-    connect(ui->kodiVersion, &QComboBox::activated, this, [this, settings]() {
-        const int version = ui->kodiVersion->currentData().toInt();
+    connect(ui->kodiVersion, elchOverload<int>(&QComboBox::activated), this, [this, settings](int index) {
+        const int version = ui->kodiVersion->itemData(index).toInt();
         settings->setKodiVersion(KodiVersion(version));
     });
     connect(settings, &mediaelch::KodiSettings::kodiVersionChanged, this, [this](KodiVersion kodiVersion) {

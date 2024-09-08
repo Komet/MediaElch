@@ -100,7 +100,7 @@ void asConst(const T&&) = delete;
 
 
 // Partially copied from Qt: qtbase/src/corelib/global/qglobal.h
-// Qt 5.5 does not support Overload so we have to provide it ourselves.
+// Qt 5.6 does not support QOverload, so we have to provide it ourselves.
 // This code can be removed when Qt 5.7 is required.
 //
 // Copyright (C) 2019 The Qt Company Ltd.
