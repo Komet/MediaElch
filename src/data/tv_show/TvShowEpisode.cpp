@@ -906,16 +906,6 @@ bool TvShowEpisode::isDummy() const
     return m_isDummy;
 }
 
-void TvShowEpisode::setWantThumbnailDownload(bool wantThumbnail)
-{
-    m_wantThumbnailDownload = wantThumbnail;
-}
-
-bool TvShowEpisode::wantThumbnailDownload() const
-{
-    return m_wantThumbnailDownload;
-}
-
 const Actors& TvShowEpisode::actors() const
 {
     return m_actors;

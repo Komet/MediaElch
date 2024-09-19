@@ -97,6 +97,6 @@ private:
     QPointer<TvShow> m_show;
     QLabel* m_savingWidget;
     QMovie* m_loadingMovie;
-    DownloadManager* m_posterDownloadManager;
+    DownloadManager* m_imageDownloadManager;
     void updateImages(QSet<ImageType> images);
 };

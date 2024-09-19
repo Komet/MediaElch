@@ -103,7 +103,7 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget* parent) :
     ui->btnTmdb->setText(QLatin1String(""));
     ui->btnTvmaze->setText(QLatin1String(""));
 
-    m_posterDownloadManager = new DownloadManager(this);
+    m_imageDownloadManager = new DownloadManager(this);
 
     ui->poster->setImageType(ImageType::TvShowPoster);
     ui->backdrop->setImageType(ImageType::TvShowBackdrop);
@@ -125,12 +125,12 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget* parent) :
     connect(ui->title, &QLineEdit::textChanged, ui->showTitle, &QLabel::setText);
     connect(ui->buttonAddActor, &QAbstractButton::clicked, this, &TvShowWidgetTvShow::onAddActor);
     connect(ui->buttonRemoveActor, &QAbstractButton::clicked, this, &TvShowWidgetTvShow::onRemoveActor);
-    connect(m_posterDownloadManager,
+    connect(m_imageDownloadManager,
         &DownloadManager::sigDownloadFinished,
         this,
         &TvShowWidgetTvShow::onPosterDownloadFinished,
         static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
-    connect(m_posterDownloadManager, &DownloadManager::showDownloadsLeft, this, &TvShowWidgetTvShow::onDownloadsLeft);
+    connect(m_imageDownloadManager, &DownloadManager::showDownloadsLeft, this, &TvShowWidgetTvShow::onDownloadsLeft);
     connect(ui->actors, &QTableWidget::itemSelectionChanged, this, &TvShowWidgetTvShow::onActorChanged);
     connect(ui->actor, &MyLabel::clicked, this, &TvShowWidgetTvShow::onChangeActorImage);
     connect(ui->buttonRevert, &QAbstractButton::clicked, this, &TvShowWidgetTvShow::onRevertChanges);
@@ -581,7 +581,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster
         d.imageType = ImageType::TvShowPoster;
         d.url = show->posters().at(0).originalUrl;
         d.show = show;
-        m_posterDownloadManager->addDownload(d);
+        m_imageDownloadManager->addDownload(d);
         downloadsSize++;
         if (m_show == show) {
             ui->poster->setLoading(true);
@@ -594,7 +594,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster
         d.imageType = ImageType::TvShowBackdrop;
         d.url = show->backdrops().at(0).originalUrl;
         d.show = show;
-        m_posterDownloadManager->addDownload(d);
+        m_imageDownloadManager->addDownload(d);
         downloadsSize++;
         if (m_show == show) {
             ui->backdrop->setLoading(true);
@@ -607,7 +607,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster
         d.imageType = ImageType::TvShowBanner;
         d.url = show->banners().at(0).originalUrl;
         d.show = show;
-        m_posterDownloadManager->addDownload(d);
+        m_imageDownloadManager->addDownload(d);
         downloadsSize++;
         if (m_show == show) {
             ui->banner->setLoading(true);
@@ -623,7 +623,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster
             d.imageType = ImageType::TvShowClearArt;
             d.url = it.value().at(0).originalUrl;
             d.show = show;
-            m_posterDownloadManager->addDownload(d);
+            m_imageDownloadManager->addDownload(d);
             if (m_show == show) {
                 ui->clearArt->setLoading(true);
             }
@@ -633,7 +633,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster
             d.imageType = ImageType::TvShowCharacterArt;
             d.url = it.value().at(0).originalUrl;
             d.show = show;
-            m_posterDownloadManager->addDownload(d);
+            m_imageDownloadManager->addDownload(d);
             if (m_show == show) {
                 ui->characterArt->setLoading(true);
             }
@@ -643,7 +643,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster
             d.imageType = ImageType::TvShowLogos;
             d.url = it.value().at(0).originalUrl;
             d.show = show;
-            m_posterDownloadManager->addDownload(d);
+            m_imageDownloadManager->addDownload(d);
             if (m_show == show) {
                 ui->logo->setLoading(true);
             }
@@ -653,7 +653,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster
             d.imageType = ImageType::TvShowThumb;
             d.url = it.value().at(0).originalUrl;
             d.show = show;
-            m_posterDownloadManager->addDownload(d);
+            m_imageDownloadManager->addDownload(d);
             if (m_show == show) {
                 ui->thumb->setLoading(true);
             }
@@ -672,7 +672,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster
                 d.url = p.originalUrl;
                 d.show = show;
                 d.season = p.season;
-                m_posterDownloadManager->addDownload(d);
+                m_imageDownloadManager->addDownload(d);
                 downloadsSize++;
                 thumbsForSeasons.append(p.season);
             }
@@ -689,7 +689,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster
             d.url = QUrl(actor->thumb);
             d.actor = actor;
             d.show = show;
-            m_posterDownloadManager->addDownload(d);
+            m_imageDownloadManager->addDownload(d);
             downloadsSize++;
         }
     }
@@ -702,7 +702,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster
             d.url = show->seasonPosters(season).at(0).originalUrl;
             d.season = season;
             d.show = show;
-            m_posterDownloadManager->addDownload(d);
+            m_imageDownloadManager->addDownload(d);
             downloadsSize++;
         }
         if (!show->seasonBackdrops(season).isEmpty() && show->infosToLoad().contains(ShowScraperInfo::SeasonBackdrop)) {
@@ -712,7 +712,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster
             d.url = show->seasonBackdrops(season).at(0).originalUrl;
             d.season = season;
             d.show = show;
-            m_posterDownloadManager->addDownload(d);
+            m_imageDownloadManager->addDownload(d);
             downloadsSize++;
         }
         if (!show->seasonBanners(season).isEmpty() && show->infosToLoad().contains(ShowScraperInfo::SeasonBanner)) {
@@ -722,7 +722,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster
             d.url = show->seasonBanners(season).at(0).originalUrl;
             d.season = season;
             d.show = show;
-            m_posterDownloadManager->addDownload(d);
+            m_imageDownloadManager->addDownload(d);
             downloadsSize++;
         }
     }
@@ -737,8 +737,29 @@ void TvShowWidgetTvShow::onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster
             d.url = episode->thumbnail();
             d.episode = episode;
             d.show = show;
-            m_posterDownloadManager->addDownload(d);
+            m_imageDownloadManager->addDownload(d);
             downloadsSize++;
+        }
+    }
+
+    if (show->episodeInfosToLoad().contains(EpisodeScraperInfo::Actors)
+        && Settings::instance()->downloadActorImages()) {
+        for (TvShowEpisode* episode : show->episodes()) {
+            if (!episode->hasChanged()) {
+                continue;
+            }
+            for (Actor* actor : episode->actors()) {
+                if (actor->thumb.isEmpty()) {
+                    continue;
+                }
+                DownloadManagerElement d;
+                d.imageType = ImageType::Actor;
+                d.url = QUrl(actor->thumb);
+                d.actor = actor;
+                d.episode = episode;
+                m_imageDownloadManager->addDownload(d);
+                downloadsSize++;
+            }
         }
     }
 
@@ -746,7 +767,7 @@ void TvShowWidgetTvShow::onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster
 
     if (downloadsSize > 0) {
         emit sigDownloadsStarted(tr("Downloading images..."), Constants::TvShowProgressMessageId + show->showId());
-        connect(m_posterDownloadManager,
+        connect(m_imageDownloadManager,
             &DownloadManager::allTvShowDownloadsFinished,
             this,
             &TvShowWidgetTvShow::onDownloadsFinished,
@@ -795,7 +816,7 @@ void TvShowWidgetTvShow::onPosterDownloadFinished(DownloadManagerElement elem)
         }
     }
 
-    if (m_posterDownloadManager->downloadsLeftForShow(m_show) == 0) {
+    if (m_imageDownloadManager->downloadsLeftForShow(m_show) == 0) {
         ui->fanarts->setLoading(false);
         emit sigSetActionSaveEnabled(true, MainWidgets::TvShows);
     }
@@ -1172,7 +1193,7 @@ void TvShowWidgetTvShow::onAddExtraFanart()
             d.imageType = ImageType::TvShowExtraFanart;
             d.url = url;
             d.show = m_show;
-            m_posterDownloadManager->addDownload(d);
+            m_imageDownloadManager->addDownload(d);
         }
         ui->buttonRevert->setVisible(true);
     }
@@ -1189,7 +1210,7 @@ void TvShowWidgetTvShow::onExtraFanartDropped(QVector<QUrl> imageUrls)
         d.imageType = ImageType::TvShowExtraFanart;
         d.url = url;
         d.show = m_show;
-        m_posterDownloadManager->addDownload(d);
+        m_imageDownloadManager->addDownload(d);
     }
 
     ui->buttonRevert->setVisible(true);
@@ -1248,7 +1269,7 @@ void TvShowWidgetTvShow::onChooseImage()
         d.imageType = image->imageType();
         d.url = imageUrl;
         d.show = m_show;
-        m_posterDownloadManager->addDownload(d);
+        m_imageDownloadManager->addDownload(d);
         image->setLoading(true);
         ui->buttonRevert->setVisible(true);
     }
@@ -1285,7 +1306,7 @@ void TvShowWidgetTvShow::onImageDropped(ImageType imageType, QUrl imageUrl)
     d.imageType = imageType;
     d.url = std::move(imageUrl);
     d.show = m_show;
-    m_posterDownloadManager->addDownload(d);
+    m_imageDownloadManager->addDownload(d);
     image->setLoading(true);
     ui->buttonRevert->setVisible(true);
 }

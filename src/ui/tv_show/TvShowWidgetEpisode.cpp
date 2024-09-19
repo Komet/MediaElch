@@ -64,14 +64,14 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget* parent) :
     ui->thumbnail->setDefaultPixmap(QPixmap(":/img/placeholders/thumb.png"));
     ui->thumbnail->setShowCapture(true);
 
-    m_posterDownloadManager = new DownloadManager(this);
+    m_imageDownloadManager = new DownloadManager(this);
 
     connect(ui->name, &QLineEdit::textChanged, ui->episodeName, &QLabel::setText);
     connect(ui->buttonAddDirector, &QAbstractButton::clicked, this, &TvShowWidgetEpisode::onAddDirector);
     connect(ui->buttonRemoveDirector, &QAbstractButton::clicked, this, &TvShowWidgetEpisode::onRemoveDirector);
     connect(ui->buttonAddWriter, &QAbstractButton::clicked, this, &TvShowWidgetEpisode::onAddWriter);
     connect(ui->buttonRemoveWriter, &QAbstractButton::clicked, this, &TvShowWidgetEpisode::onRemoveWriter);
-    connect(m_posterDownloadManager,
+    connect(m_imageDownloadManager,
         &DownloadManager::sigDownloadFinished,
         this,
         &TvShowWidgetEpisode::onPosterDownloadFinished,
@@ -689,8 +689,8 @@ void TvShowWidgetEpisode::onStartScraperSearch()
 
     if (searchWidget->result() == QDialog::Accepted) {
         onSetEnabled(false);
-        connect(
-            m_episode.data(), &TvShowEpisode::sigLoaded, this, &TvShowWidgetEpisode::onLoadDone, Qt::UniqueConnection);
+        QSet<EpisodeScraperInfo> details = searchWidget->episodeDetailsToLoad();
+        connect(m_episode.data(), &TvShowEpisode::sigLoaded, this, [details, this]() { onLoadDone(details); });
 
         NotificationBox::instance()->showProgressBar(
             tr("Scraping episode..."), Constants::TvShowScrapeProgressMessageId);
@@ -699,7 +699,7 @@ void TvShowWidgetEpisode::onStartScraperSearch()
             searchWidget->scraperLocale(),
             mediaelch::scraper::ShowIdentifier(searchWidget->showIdentifier()),
             searchWidget->seasonOrder(),
-            searchWidget->episodeDetailsToLoad());
+            details);
     } else {
         emit sigSetActionSearchEnabled(true, MainWidgets::TvShows);
         emit sigSetActionSaveEnabled(true, MainWidgets::TvShows);
@@ -712,26 +712,45 @@ void TvShowWidgetEpisode::onStartScraperSearch()
  * \brief Called when the search widget finishes
  * Updates infos and starts downloads
  */
-void TvShowWidgetEpisode::onLoadDone()
+void TvShowWidgetEpisode::onLoadDone(QSet<EpisodeScraperInfo> details)
 {
     NotificationBox::instance()->hideProgressBar(Constants::TvShowScrapeProgressMessageId);
 
     if (m_episode == nullptr) {
-        qCWarning(generic) << "My episode is invalid";
         return;
     }
 
     updateEpisodeInfo();
     onSetEnabled(true);
 
-    if (!m_episode->thumbnail().isEmpty() && m_episode->wantThumbnailDownload()) {
-        DownloadManagerElement d;
-        d.imageType = ImageType::TvShowEpisodeThumb;
-        d.url = m_episode->thumbnail();
-        d.episode = m_episode;
-        d.directDownload = true;
-        m_posterDownloadManager->addDownload(d);
+    QVector<DownloadManagerElement> downloads;
+    if (!m_episode->thumbnail().isEmpty() && details.contains(EpisodeScraperInfo::Thumbnail)) {
+        DownloadManagerElement thumbnailDownload;
+        thumbnailDownload.imageType = ImageType::TvShowEpisodeThumb;
+        thumbnailDownload.url = m_episode->thumbnail();
+        thumbnailDownload.episode = m_episode;
+        thumbnailDownload.directDownload = true;
+        downloads.append(thumbnailDownload);
         ui->thumbnail->setLoading(true);
+    }
+
+    if (details.contains(EpisodeScraperInfo::Actors) && Settings::instance()->downloadActorImages()) {
+        for (Actor* actor : m_episode->actors()) {
+            if (actor->thumb.isEmpty()) {
+                continue;
+            }
+            DownloadManagerElement d;
+            d.imageType = ImageType::Actor;
+            d.url = QUrl(actor->thumb);
+            d.actor = actor;
+            d.episode = m_episode;
+            downloads.append(d);
+        }
+    }
+
+    if (!downloads.isEmpty()) {
+        m_imageDownloadManager->setDownloads(downloads);
+
     } else {
         emit sigSetActionSearchEnabled(true, MainWidgets::TvShows);
         emit sigSetActionSaveEnabled(true, MainWidgets::TvShows);
@@ -774,7 +793,7 @@ void TvShowWidgetEpisode::onChooseThumbnail()
         d.url = imageUrl;
         d.episode = m_episode;
         d.directDownload = true;
-        m_posterDownloadManager->addDownload(d);
+        m_imageDownloadManager->addDownload(d);
         ui->thumbnail->setLoading(true);
         ui->buttonRevert->setVisible(true);
     }
@@ -793,7 +812,7 @@ void TvShowWidgetEpisode::onImageDropped(ImageType imageType, QUrl imageUrl)
     d.url = imageUrl;
     d.episode = m_episode;
     d.directDownload = true;
-    m_posterDownloadManager->addDownload(d);
+    m_imageDownloadManager->addDownload(d);
     ui->thumbnail->setLoading(true);
     ui->buttonRevert->setVisible(true);
 }
@@ -813,7 +832,7 @@ void TvShowWidgetEpisode::onPosterDownloadFinished(DownloadManagerElement elem)
             Manager::instance()->mediaCenterInterface()->imageFileName(elem.episode, ImageType::TvShowEpisodeThumb)));
         elem.episode->setThumbnailImage(elem.data);
     }
-    if (m_posterDownloadManager->downloadQueueSize() == 0) {
+    if (m_imageDownloadManager->downloadQueueSize() == 0) {
         emit sigSetActionSaveEnabled(true, MainWidgets::TvShows);
         emit sigSetActionSearchEnabled(true, MainWidgets::TvShows);
     }

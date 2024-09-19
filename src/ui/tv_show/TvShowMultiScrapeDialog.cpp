@@ -854,6 +854,8 @@ void TvShowMultiScrapeDialog::onEpisodeLoadDone()
         return;
     }
 
+    bool addedNewDownload = false;
+
     logToUser(tr("S%2E%3: Finished scraping episode details. Title is: \"%1\".")
                   .arg(episode->title(),
                       m_currentEpisode->seasonNumber().toPaddedString(),
@@ -861,7 +863,25 @@ void TvShowMultiScrapeDialog::onEpisodeLoadDone()
 
     if (m_episodeDetailsToLoad.contains(EpisodeScraperInfo::Thumbnail) && !episode->thumbnail().isEmpty()) {
         addDownload(ImageType::TvShowEpisodeThumb, episode->thumbnail(), episode);
-    } else {
+        addedNewDownload = true;
+    }
+
+    if (m_episodeDetailsToLoad.contains(EpisodeScraperInfo::Actors) && Settings::instance()->downloadActorImages()) {
+        for (Actor* actor : episode->actors()) {
+            if (actor->thumb.isEmpty()) {
+                continue;
+            }
+            DownloadManagerElement d;
+            d.imageType = ImageType::Actor;
+            d.url = QUrl(actor->thumb);
+            d.actor = actor;
+            d.episode = episode;
+            m_downloadManager->addDownload(d);
+            addedNewDownload = true;
+        }
+    }
+
+    if (!addedNewDownload) {
         scrapeNext();
     }
 }

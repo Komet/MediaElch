@@ -45,7 +45,7 @@ private slots:
     void onDeleteThumbnail();
     void onImageDropped(ImageType imageType, QUrl imageUrl);
     void onPosterDownloadFinished(DownloadManagerElement elem);
-    void onLoadDone();
+    void onLoadDone(QSet<EpisodeScraperInfo> details);
     void onRevertChanges();
     void onCaptureImage(ImageType type);
 
@@ -94,7 +94,7 @@ private:
     QPointer<TvShowEpisode> m_episode;
     QLabel* m_savingWidget;
     QMovie* m_loadingMovie;
-    DownloadManager* m_posterDownloadManager;
+    DownloadManager* m_imageDownloadManager;
     QVector<QWidget*> m_streamDetailsWidgets;
     QVector<QVector<QLineEdit*>> m_streamDetailsAudio;
     QVector<QVector<QLineEdit*>> m_streamDetailsSubtitles;

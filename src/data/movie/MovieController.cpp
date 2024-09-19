@@ -278,7 +278,7 @@ void MovieController::scraperLoadDone(mediaelch::scraper::MovieScraper* scraper,
     emit sigInfoLoadDone(m_movie);
 
     if (scraper == nullptr) {
-        onFanartLoadDone(m_movie, QMap<ImageType, QVector<Poster>>());
+        onFanartLoadDone(m_movie, {});
         return;
     }
 
