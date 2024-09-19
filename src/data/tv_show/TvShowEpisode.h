@@ -100,7 +100,6 @@ public:
     mediaelch::DatabaseId databaseId() const;
     bool syncNeeded() const;
     bool isDummy() const;
-    bool wantThumbnailDownload() const;
 
     void setShow(TvShow* show);
     void setTitle(QString title);
@@ -133,7 +132,6 @@ public:
     void setDatabaseId(mediaelch::DatabaseId id);
     void setSyncNeeded(bool syncNeeded);
     void setIsDummy(bool dummy);
-    void setWantThumbnailDownload(bool wantThumbnail);
 
     void removeWriter(QString* writer);
     void removeDirector(QString* director);
@@ -269,7 +267,6 @@ private:
     QSet<ImageType> m_imagesToRemove;
     bool m_isDummy = false;
     Actors m_actors;
-    bool m_wantThumbnailDownload = false;
 };
 
 QDebug operator<<(QDebug dbg, const TvShowEpisode& episode);
