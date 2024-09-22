@@ -15,7 +15,7 @@ namespace scraper {
 
 
 FernsehserienDeConfiguration::FernsehserienDeConfiguration(Settings& settings) :
-    ScraperConfiguration(QString(FernsehserienDe::ID), settings)
+    ScraperConfiguration(FernsehserienDe::ID, settings)
 {
     settings.onSettingChanged(KEY_SCRAPERS_LANGUAGE, this, [this]() { emit languageChanged(language()); });
 }

@@ -14,7 +14,7 @@ namespace mediaelch {
 namespace scraper {
 
 
-TvMazeConfiguration::TvMazeConfiguration(Settings& settings) : ScraperConfiguration(QString(TvMaze::ID), settings)
+TvMazeConfiguration::TvMazeConfiguration(Settings& settings) : ScraperConfiguration(TvMaze::ID, settings)
 {
     settings.onSettingChanged(KEY_SCRAPERS_LANGUAGE, this, [this]() { emit languageChanged(language()); });
 }

@@ -9,6 +9,8 @@
 namespace mediaelch {
 namespace scraper {
 
+const char* const HotMovies::ID = "hotmovies";
+
 HotMovies::HotMovies(QObject* parent) : MovieScraper(parent)
 {
     m_meta.identifier = ID;

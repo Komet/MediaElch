@@ -107,7 +107,7 @@ class Discogs final : public MusicScraper
 {
     Q_OBJECT
 public:
-    static constexpr const char* ID = "Discogs";
+    static const char* const ID;
 
 public:
     explicit Discogs(QObject* parent = nullptr);

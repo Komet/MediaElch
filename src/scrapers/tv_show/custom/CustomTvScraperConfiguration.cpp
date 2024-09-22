@@ -12,7 +12,7 @@ CustomTvScraperConfiguration::CustomTvScraperConfiguration(Settings& settings,
     ImdbTv& _imdbTv,
     CustomTvScraperConfiguration::ScraperForShowDetails _scraperForShowDetails,
     CustomTvScraperConfiguration::ScraperForEpisodeDetails _scraperForEpisodeDetails) :
-    ScraperConfiguration(QString(CustomTvScraper::ID), settings),
+    ScraperConfiguration(CustomTvScraper::ID, settings),
     m_settings{settings},
     tmdbTv{&_tmdbTv},
     imdbTv{&_imdbTv},

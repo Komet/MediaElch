@@ -16,7 +16,7 @@ namespace mediaelch {
 namespace scraper {
 
 
-FanartTvConfiguration::FanartTvConfiguration(Settings& settings) : ScraperConfiguration(QString(FanartTv::ID), settings)
+FanartTvConfiguration::FanartTvConfiguration(Settings& settings) : ScraperConfiguration(FanartTv::ID, settings)
 {
     settings.onSettingChanged(KEY_SCRAPERS_LANGUAGE, this, [this]() { emit languageChanged(language()); });
     settings.onSettingChanged(

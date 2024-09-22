@@ -14,7 +14,7 @@ namespace mediaelch {
 namespace scraper {
 
 
-ImdbTvConfiguration::ImdbTvConfiguration(Settings& settings) : ScraperConfiguration(QString(ImdbTv::ID), settings)
+ImdbTvConfiguration::ImdbTvConfiguration(Settings& settings) : ScraperConfiguration(ImdbTv::ID, settings)
 {
     settings.onSettingChanged(KEY_SCRAPERS_LANGUAGE, this, [this]() { emit languageChanged(language()); });
 }

@@ -7,10 +7,10 @@
 #include "scrapers/movie/adultdvdempire/AdultDvdEmpireSearchJob.h"
 #include "settings/Settings.h"
 
-#include <QTextDocument>
-
 namespace mediaelch {
 namespace scraper {
+
+const char* const AdultDvdEmpire::ID = "adult-dvd-empire";
 
 AdultDvdEmpire::AdultDvdEmpire(QObject* parent) : MovieScraper(parent)
 {

@@ -14,7 +14,7 @@ class HotMovies : public MovieScraper
     Q_OBJECT
 public:
     explicit HotMovies(QObject* parent = nullptr);
-    static constexpr const char* ID = "hotmovies";
+    static const char* const ID;
 
     const ScraperMeta& meta() const override;
 

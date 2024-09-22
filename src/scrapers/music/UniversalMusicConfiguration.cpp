@@ -16,7 +16,7 @@ namespace scraper {
 
 
 UniversalMusicConfiguration::UniversalMusicConfiguration(Settings& settings) :
-    ScraperConfiguration(QString(TmdbTv::ID), settings)
+    ScraperConfiguration(TmdbTv::ID, settings)
 {
     settings.onSettingChanged(KEY_SCRAPERS_LANGUAGE, this, [this]() { emit languageChanged(language()); });
     settings.onSettingChanged(

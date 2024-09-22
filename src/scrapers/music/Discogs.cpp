@@ -14,6 +14,8 @@
 namespace mediaelch {
 namespace scraper {
 
+const char* const Discogs::ID = "Discogs";
+
 void DiscogsApi::loadArtist(const QString& artistId, ApiCallback callback)
 {
     sendGetRequest(makeArtistUrl(artistId), callback);

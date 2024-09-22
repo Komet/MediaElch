@@ -12,6 +12,8 @@
 namespace mediaelch {
 namespace scraper {
 
+const char* const VideoBuster::ID = "videobuster";
+
 VideoBuster::VideoBuster(QObject* parent) : MovieScraper(parent)
 {
     m_meta.identifier = ID;

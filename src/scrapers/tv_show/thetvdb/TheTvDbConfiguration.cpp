@@ -14,7 +14,7 @@ namespace mediaelch {
 namespace scraper {
 
 
-TheTvDbConfiguration::TheTvDbConfiguration(Settings& settings) : ScraperConfiguration(QString(TheTvDb::ID), settings)
+TheTvDbConfiguration::TheTvDbConfiguration(Settings& settings) : ScraperConfiguration(TheTvDb::ID, settings)
 {
     settings.onSettingChanged(KEY_SCRAPERS_LANGUAGE, this, [this]() { emit languageChanged(language()); });
 }
