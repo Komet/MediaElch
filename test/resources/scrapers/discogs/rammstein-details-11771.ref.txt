@@ -139,8 +139,6 @@ discography: (N>90)
     year: 2004
   - title: Reise,Reise Interview
     year: 2004
-  - title: Platinum Collection '2003 - "Links" Greatest Hits 
-    year: 2004
   - title: Ohne Dich
     year: 2004
   - title: Amerika
@@ -152,8 +150,6 @@ discography: (N>90)
   - title: Keine Lust
     year: 2004
   - title: Te Quiero Puta!
-    year: 2005
-  - title: Золотые Хиты 2005 (Golden Hits 2005)
     year: 2005
   - title: Rosenrot (Snippets)
     year: 2005
@@ -225,9 +221,13 @@ discography: (N>90)
     year: 2022
   - title: Adieu
     year: 2022
-  - title: Made In Germany
-    year: 2024
   - title: MTV / VOX
+    year: 
+  - title: Zeig Dich
+    year: 
+  - title: Rammstein Tipo - Duplicamos La Imagen
+    year: 
+  - title: Seemann
     year: 
 genres: (N=0)
 styles: (N=0)

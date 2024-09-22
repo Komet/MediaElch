@@ -50,8 +50,8 @@ actors: (N>70)
    name: Bob Gunton
    role: Warden Norton
    thumb:
-    https://m.media-amazon.com/images/M/MV5BMjUyZDQ0NjktZmM5ZS00NzcxLTliMWYtNWUxNDcy
-    MmExZjU0XkEyXkFqcGdeQXVyMTE1MjA4NzM@.jpg
+    https://m.media-amazon.com/images/M/MV5BOWQ1ZTI1ZDgtMjhmZC00OWExLTliNWQtNzgxNTEx
+    ZWIwMDJkXkEyXkFqcGc@.jpg
    order: 2
    imageHasChanged: false
  - id: 
@@ -82,8 +82,8 @@ actors: (N>70)
    name: Mark Rolston
    role: Bogs Diamond
    thumb:
-    https://m.media-amazon.com/images/M/MV5BODE5NDRlZTctMjkzNC00NGY3LThhYTItNzUxZjgz
-    YzFmMjQxXkEyXkFqcGdeQXVyNjUxMjc1OTM@.jpg
+    https://m.media-amazon.com/images/M/MV5BYmUzNTBkNzgtNTE4NS00ZDAzLWI2MWYtYjM4NjA1
+    ZmMyZGRmXkEyXkFqcGc@.jpg
    order: 6
    imageHasChanged: false
  - id: 
@@ -106,8 +106,8 @@ actors: (N>70)
    name: Larry Brandenburg
    role: Skeet
    thumb:
-    https://m.media-amazon.com/images/M/MV5BNDczZGZiZjMtZGRmMC00Y2I5LThiNzAtZGQzZWYz
-    ZWFiNzM0XkEyXkFqcGdeQXVyMjQwMDg0Ng@@.jpg
+    https://m.media-amazon.com/images/M/MV5BNTJjZGIyN2YtZjk5OC00MGY3LWE0ZmItNTY0YTgy
+    ZmFlMDg5XkEyXkFqcGc@.jpg
    order: 9
    imageHasChanged: false
  - id: 
@@ -146,8 +146,8 @@ actors: (N>70)
    name: Jude Ciccolella
    role: Guard Mert
    thumb:
-    https://m.media-amazon.com/images/M/MV5BMjZmOTU1ZDktNDdkZi00YjkxLWFiODYtMjUzZWVh
-    YmFiYjIxXkEyXkFqcGdeQXVyMTI3MzAzOTM@.jpg
+    https://m.media-amazon.com/images/M/MV5BYTFkYzlhMGQtZjYzYy00YmY0LTg3N2MtMDcwMTU0
+    MzFjYjA0XkEyXkFqcGc@.jpg
    order: 14
    imageHasChanged: false
  - id: 

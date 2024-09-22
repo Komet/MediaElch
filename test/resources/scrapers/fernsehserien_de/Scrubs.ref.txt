@@ -56,15 +56,15 @@ actors: (N>5)
    order: 2
    imageHasChanged: false
  - id: 
-   name: Zach Braff
-   role: Dr. John „J.D.“ Dorian (178 Folgen, 2001–2010)
-   thumb: https://bilder.fernsehserien.de/gfx/person_1000/z/zach-braff.jpg
-   order: 3
-   imageHasChanged: false
- - id: 
    name: Ken Jenkins
    role: Dr. Bob Kelso (179 Folgen, 2001–2010)
    thumb: https://bilder.fernsehserien.de/gfx/person_1000/k/ken-jenkins.jpg
+   order: 3
+   imageHasChanged: false
+ - id: 
+   name: Zach Braff
+   role: Dr. John „J.D.“ Dorian (178 Folgen, 2001–2010)
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/z/zach-braff.jpg
    order: 4
    imageHasChanged: false
  - id: 

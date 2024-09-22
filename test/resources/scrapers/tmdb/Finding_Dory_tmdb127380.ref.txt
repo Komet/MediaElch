@@ -24,7 +24,7 @@ userRating: 0
 imdbTop250: 0
 released: 2016-06-16
 runtime: 97min
-writer: Andrew Stanton, Bob Peterson, Victoria Strouse, Matt Jones
+writer: Andrew Stanton, Victoria Strouse, Bob Peterson, Matt Jones
 director: Andrew Stanton
 actors: (N>60)
  - id: 
@@ -84,7 +84,7 @@ actors: (N>60)
  - id: 
    name: Dominic West
    role: Rudder (voice)
-   thumb: http://image.tmdb.org/t/p/original/eD43SR3d1AXsNRATWbeAJ5MWB2e.jpg
+   thumb: http://image.tmdb.org/t/p/original/eMxNZZtVTjIvypWAYqahvVtZuhZ.jpg
    order: 9
    imageHasChanged: false
  - id: 
@@ -214,7 +214,7 @@ posters: (N>30)
     hint: 
     aspect: 
     season: SeasonNumber=xx
-  - ... and >20 more
+  - ... and >30 more
 backdrops: (N>20)
   - id: 
     originalUrl: http://image.tmdb.org/t/p/original/wijltj1toRcicHlCn8Cpsp4yPXe.jpg

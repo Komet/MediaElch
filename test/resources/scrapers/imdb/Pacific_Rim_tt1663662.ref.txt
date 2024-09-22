@@ -69,8 +69,8 @@ actors: (N>80)
    name: Charlie Day
    role: Dr. Newton Geiszler
    thumb:
-    https://m.media-amazon.com/images/M/MV5BYjI2YWE1ODUtNTFjNy00MDgyLWJmNzgtNjBiZWE1
-    NDY1YzFhXkEyXkFqcGdeQXVyODgwOTcwMDY@.jpg
+    https://m.media-amazon.com/images/M/MV5BODk3ZDEwMjMtNjBlMS00ZjRkLWJiMjYtZDMwYTEy
+    MzgyY2NiXkEyXkFqcGc@.jpg
    order: 4
    imageHasChanged: false
  - id: 
@@ -85,8 +85,8 @@ actors: (N>80)
    name: Max Martini
    role: Herc Hansen
    thumb:
-    https://m.media-amazon.com/images/M/MV5BNWE5NzUzYWItMWU0ZC00YjZjLTk5ZTYtNGFlMzJk
-    NWI4OGU2XkEyXkFqcGdeQXVyMjQwMDg0Ng@@.jpg
+    https://m.media-amazon.com/images/M/MV5BZmM5M2I2YTUtNGY5ZS00ZjA1LWEyODYtYjViY2Uz
+    ZTMyMjAzXkEyXkFqcGc@.jpg
    order: 6
    imageHasChanged: false
  - id: 
@@ -125,32 +125,32 @@ actors: (N>80)
    name: Larry Joe Campbell
    role: Construction Worker
    thumb:
-    https://m.media-amazon.com/images/M/MV5BNjUyODRhYmUtZDQ1MS00MDAxLWJhZTAtOGNkMjA1
-    NDYwZDBmXkEyXkFqcGdeQXVyMjQzMjQwNjg@.jpg
+    https://m.media-amazon.com/images/M/MV5BNWE4MjI1YzgtMmUzZC00MTM2LWEwN2YtZTI4ZDU3
+    ODEwNWMwXkEyXkFqcGc@.jpg
    order: 11
    imageHasChanged: false
  - id: 
    name: Mana Ashida
    role: Young Mako
    thumb:
-    https://m.media-amazon.com/images/M/MV5BOWM3NDczZWEtMjE2Ny00ZDhkLWFiMmMtZWNhMjUw
-    ZDgxZjM5XkEyXkFqcGdeQXVyNDQxNjcxNQ@@.jpg
+    https://m.media-amazon.com/images/M/MV5BYTBhMmM1Y2ItODdjMy00NWFkLWI2ODUtM2ExY2Fl
+    ODhiMzNmXkEyXkFqcGc@.jpg
    order: 12
    imageHasChanged: false
  - id: 
    name: Santiago Segura
    role: Wizened Man
    thumb:
-    https://m.media-amazon.com/images/M/MV5BNTdlOGQzZGUtNDQxMS00ODg3LTlhYTktOWM4MjJk
-    MGE0YzZjXkEyXkFqcGdeQXVyMTA0MjU0Ng@@.jpg
+    https://m.media-amazon.com/images/M/MV5BMmUwZThhMDgtNWZlOS00OGM3LTlhYWMtYzM2ZTk3
+    ODQ3OTZmXkEyXkFqcGc@.jpg
    order: 13
    imageHasChanged: false
  - id: 
    name: Joe Pingue
    role: Captain Merrit
    thumb:
-    https://m.media-amazon.com/images/M/MV5BOTIzYTc2OGEtYTViZi00MjI3LThiYmItYzYyZTI4
-    MjEwMTVjXkEyXkFqcGdeQXVyMTI1MzY2MTQ1.jpg
+    https://m.media-amazon.com/images/M/MV5BODk0MDI3ODItMjBkMS00NTA1LTlkMGUtNjlhMWIy
+    NjRjZGY1XkEyXkFqcGc@.jpg
    order: 14
    imageHasChanged: false
  - id: 

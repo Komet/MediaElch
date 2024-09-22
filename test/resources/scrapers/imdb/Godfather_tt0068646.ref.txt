@@ -150,8 +150,8 @@ actors: (N>80)
    name: Rudy Bond
    role: Cuneo
    thumb:
-    https://m.media-amazon.com/images/M/MV5BNWY2ZGQxMDctNWUyYS00NzYyLTk0MjMtZWY4MWY2
-    YzQ1ZGRiXkEyXkFqcGdeQXVyNjUwNzk3NDc@.jpg
+    https://m.media-amazon.com/images/M/MV5BZDNlZWQzOTQtZTAxNy00NjUxLWIzN2MtMDVlN2Rl
+    MzNlYzY0XkEyXkFqcGc@.jpg
    order: 14
    imageHasChanged: false
  - id: 
@@ -174,8 +174,8 @@ actors: (N>80)
    name: Lenny Montana
    role: Luca Brasi
    thumb:
-    https://m.media-amazon.com/images/M/MV5BMjFmMjQ4ODMtNDZmZC00NzQ3LTlmODEtOTBlMGIz
-    MzUxY2Q4XkEyXkFqcGdeQXVyNjUxMjc1OTM@.jpg
+    https://m.media-amazon.com/images/M/MV5BZWVkODE4NjktMDQ2NS00NGRlLTg4ZGUtOGFmNTJl
+    YWMxZmQ2XkEyXkFqcGc@.jpg
    order: 17
    imageHasChanged: false
  - id: 

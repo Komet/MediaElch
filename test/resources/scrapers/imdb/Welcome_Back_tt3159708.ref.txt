@@ -84,8 +84,8 @@ actors: (N>30)
    name: Ranjeet Bedi
    role: Kapoor, 'the criminal' (as Ranjeet)
    thumb:
-    https://m.media-amazon.com/images/M/MV5BZjU3OTI0OGYtMDRjNi00YzdkLWIzMGQtNDg0NmVl
-    NGE4ZTQwXkEyXkFqcGdeQXVyMTExNDQ2MTI@.jpg
+    https://m.media-amazon.com/images/M/MV5BNDdlYTUwMDUtOTRmMS00NGQ1LThjZTQtZDBlZjVl
+    NjM4MDMyXkEyXkFqcGc@.jpg
    order: 6
    imageHasChanged: false
  - id: 
@@ -138,16 +138,16 @@ actors: (N>30)
    name: Mushtaq Khan
    role: Balu
    thumb:
-    https://m.media-amazon.com/images/M/MV5BYmFmZTQ4MjgtYmM0YS00ZGNiLTllM2MtNWRiZDlk
-    MDVmMGE0XkEyXkFqcGdeQXVyMTExNDQ2MTI@.jpg
+    https://m.media-amazon.com/images/M/MV5BYzNiODA3OTktMjA2Ni00MGI4LThlMDAtOGNhNGFh
+    NzA0YTUyXkEyXkFqcGc@.jpg
    order: 13
    imageHasChanged: false
  - id: 
    name: Adi Irani
    role: Advocate Harkesh Sahni
    thumb:
-    https://m.media-amazon.com/images/M/MV5BNTRjZWZkYmEtNzc1YS00MTNlLThjZWItNjUwMGRj
-    MTQ4MjAzXkEyXkFqcGdeQXVyMTExNDQ2MTI@.jpg
+    https://m.media-amazon.com/images/M/MV5BY2MxODlhOTMtOGM1NC00MWIzLTllNWYtYjQ2ZmQ5
+    YzBlOTQxXkEyXkFqcGc@.jpg
    order: 14
    imageHasChanged: false
  - id: 
@@ -178,8 +178,8 @@ actors: (N>30)
    name: Lauren Gottlieb
    role: Special appearance in song '20-20'
    thumb:
-    https://m.media-amazon.com/images/M/MV5BNzEwM2EwYmItZWY2Zi00YWM2LWJlNWYtYmVkMDlk
-    MDM2NTMxXkEyXkFqcGdeQXVyMTg3MTU5NzQ@.jpg
+    https://m.media-amazon.com/images/M/MV5BNGM0MmE1ZTAtNjY5YS00OTc5LTlkZDctZWUyYjIy
+    NDFjNDE2XkEyXkFqcGc@.jpg
    order: 18
    imageHasChanged: false
  - id: 
