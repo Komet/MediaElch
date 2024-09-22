@@ -1,7 +1,7 @@
 # Changelog
 
 
-## Upcoming
+## 2.12.0 - 2024-10-13
 
 ### Notes
 
@@ -11,6 +11,7 @@
 
 ### Fixed
 
+- AppImage: A performance bug was fixed, leading to the movie widget being very slow (#1788)
 - IMDb: 
   - Episode's overviews are scraped again (#1724, #1751)
   - TV show titles did not properly decode HTML entities (#1754)

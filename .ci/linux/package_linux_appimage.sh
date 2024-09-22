@@ -101,10 +101,10 @@ unset QT_PLUGIN_PATH
 unset LD_LIBRARY_PATH
 # linuxdeployqt uses $VERSION this for naming the file
 VERSION="${ME_VERSION}"
-EXTRA_QT_PLUGINS="qt5dxcb-plugin;svg"
+EXTRA_QT_MODULES="qt5dxcb-plugin;svg"
 
 export VERSION
-export EXTRA_QT_PLUGINS
+export EXTRA_QT_MODULES
 
 if [[ ! "$PATH" = *"qt"* ]] && [[ ! "$PATH" = *"Qt"* ]]; then
 	print_fatal "/path/to/qt/bin must be in your \$PATH, e.g. \nexport PATH=\"\$PATH:/usr/lib/x86_64-linux-gnu/qt5/bin\""
