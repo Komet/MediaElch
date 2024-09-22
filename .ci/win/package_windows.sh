@@ -40,12 +40,12 @@ cd "${PROJECT_DIR}/third_party/packaging_win"
 # Download and extract ffmpeg
 
 if [[ ! -f ${WIN_FFMPEG_FOLDER_NAME}/bin/ffmpeg.exe ]]; then
-	print_info "Downloading and copying ffmpeg.exe from ${WIN_FFMPEG_URL}"
-	wget --no-verbose --output-document "${WIN_FFMPEG_ARCHIVE_NAME}" "${WIN_FFMPEG_URL}"
+	print_info "Downloading and copying ffmpeg.exe from ${WIN_FFMPEG_URL:?}"
+	wget --no-verbose --output-document "${WIN_FFMPEG_ARCHIVE_NAME:?}" "${WIN_FFMPEG_URL:?}"
 
-	validate_sha512 "${WIN_FFMPEG_ARCHIVE_NAME}" "${WIN_FFMPEG_SHA512}"
+	validate_sha512 "${WIN_FFMPEG_ARCHIVE_NAME:?}" "${WIN_FFMPEG_SHA512:?}"
 
-	unzip -o "${WIN_FFMPEG_ARCHIVE_NAME}" "${WIN_FFMPEG_FOLDER_NAME}/bin/ffmpeg.exe"
+	unzip -o "${WIN_FFMPEG_ARCHIVE_NAME:?}" "${WIN_FFMPEG_FOLDER_NAME:?}/bin/ffmpeg.exe"
 fi
 
 if [[ ! -f opengl32sw.dll ]]; then
@@ -55,7 +55,7 @@ fi
 #######################################################
 # Copy Dependencies
 
-cd "${PROJECT_DIR}/build/win-qt${QT_MAJOR_VERSION}"
+cd "${PROJECT_DIR}/build/win-qt${QT_MAJOR_VERSION:?}"
 
 print_info "Assembling package - Copying DLLs"
 rm -rf pkg-zip
@@ -64,9 +64,9 @@ cp release/MediaElch.exe pkg-zip/MediaElch/
 
 while IFS= read -r file; do
 	if [[ ${file:0:1} != \# ]] ; then
-		cp ${MXE_LIB}/${file} pkg-zip/MediaElch/
+		cp "${MXE_LIB}/${file:?}" pkg-zip/MediaElch/
 	fi
-done < "${PROJECT_DIR}/.ci/win/dll_list_qt${QT_MAJOR_VERSION}.txt"
+done < "${PROJECT_DIR}/.ci/win/dll_list_qt${QT_MAJOR_VERSION:?}.txt"
 
 mkdir -p pkg-zip/MediaElch/sqldrivers
 cp "${MXE_LIB}/qt${QT_MAJOR_VERSION}/plugins/sqldrivers/qsqlite.dll" pkg-zip/MediaElch/sqldrivers

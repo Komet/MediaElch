@@ -16,6 +16,12 @@ ME_DOCKER_IMAGE_MXE="mediaelch/mediaelch-ci-win:qt6"
 
 # Note: Running "ls -la" on the volume avoids some strange
 # permission bug, where /src/mediaelch is owned by root otherwise.
-docker run --rm --user "${ME_UID}:${ME_GUID}" \
-	-v "${PROJECT_DIR}:/src/mediaelch" "${ME_DOCKER_IMAGE_MXE}" \
-	/bin/bash -xc "ls -la /src/mediaelch && cd /src/mediaelch && QT_MAJOR_VERSION=6 ./.ci/win/build_windows_release.sh --no-confirm"
+if docker version |& grep podman >/dev/null; then
+  docker run --rm --user ":" \
+    -v "${PROJECT_DIR}:/src/mediaelch" "${ME_DOCKER_IMAGE_MXE:?}" \
+    /bin/bash -xc "git config --global --add safe.directory '/src/' && ls -la /src/mediaelch && cd /src/mediaelch && QT_MAJOR_VERSION=6 ./.ci/win/build_windows_release.sh --no-confirm"
+else
+  docker run --rm --user "${ME_UID:?}:${ME_GUID:?}" \
+    -v "${PROJECT_DIR}:/src/mediaelch" "${ME_DOCKER_IMAGE_MXE:?}" \
+    /bin/bash -xc "git config --global --add safe.directory '/src/' && ls -la /src/mediaelch && cd /src/mediaelch && QT_MAJOR_VERSION=6 ./.ci/win/build_windows_release.sh --no-confirm"
+fi

@@ -6,8 +6,7 @@
 ### Notes
 
 - ffmpeg was updated on all platforms to v7.0.2
-- macOS 11 and later:
-  - Qt was updated to v6.7.2.
+- Qt was updated to v6.7.2 for macOS 11 and later, as well as Windows 10 and later.
 
 ### Fixed
 

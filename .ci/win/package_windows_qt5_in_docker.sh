@@ -11,6 +11,12 @@ ME_DOCKER_IMAGE_MXE="mediaelch/mediaelch-ci-win:qt5"
 ME_UID=$(id -u "$(whoami)")
 ME_GUID="$(id -g "$(whoami)")"
 
-docker run --rm --user "${ME_UID}:${ME_GUID}" \
-	-v "${PROJECT_DIR}:/src/mediaelch" "${ME_DOCKER_IMAGE_MXE}" \
-	/bin/bash -xc "ls -la /src/mediaelch && cd /src/mediaelch && QT_MAJOR_VERSION=5 ./.ci/win/package_windows.sh"
+if docker version |& grep podman >/dev/null; then
+  docker run --rm --user ":" \
+    -v "${PROJECT_DIR:?}:/src/mediaelch" "${ME_DOCKER_IMAGE_MXE:?}" \
+    /bin/bash -xc "git config --global --add safe.directory '/src/' && ls -la /src/mediaelch && cd /src/mediaelch && QT_MAJOR_VERSION=5 ./.ci/win/package_windows.sh"
+else
+  docker run --rm --user "${ME_UID:?}:${ME_GUID:?}" \
+    -v "${PROJECT_DIR:?}:/src/mediaelch" "${ME_DOCKER_IMAGE_MXE:?}" \
+    /bin/bash -xc "git config --global --add safe.directory '/src/' && ls -la /src/mediaelch && cd /src/mediaelch && QT_MAJOR_VERSION=5 ./.ci/win/package_windows.sh"
+fi
