@@ -111,14 +111,13 @@ RUN cd /opt && git clone https://github.com/rui314/mold.git && \
     cmake --build . -j $(nproc) && \
     cmake --install .
 
-# FIXME: Does not build with Clang 18
-# RUN cd /opt && git clone --depth=1 https://invent.kde.org/sdk/clazy.git && \
-#     cd /opt/clazy && \
-#     cmake -S . -B build -DCMAKE_BUILD_TYPE=Release \
-#         -DCMAKE_CXX_COMPILER=g++ -DCMAKE_C_COMPILER=gcc -GNinja && \
-#     cmake --build build && \
-#     cmake --build build --target install && \
-#     cd /opt && rm -rf clazy
+RUN cd /opt && git clone --depth=1 https://invent.kde.org/sdk/clazy.git && \
+    cd /opt/clazy && \
+    cmake -S . -B build -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_CXX_COMPILER=g++ -DCMAKE_C_COMPILER=gcc -GNinja && \
+    cmake --build build && \
+    cmake --build build --target install && \
+    cd /opt && rm -rf clazy
 
 RUN mkdir /opt/src
 VOLUME ["/opt/src"]
