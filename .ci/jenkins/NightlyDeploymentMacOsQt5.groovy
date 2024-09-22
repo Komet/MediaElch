@@ -18,6 +18,11 @@ pipeline {
     pollSCM 'H H(0-6) * * *'
   }
 
+  environment {
+     PATH='/opt/Qt/5.15.2/clang_64/bin/:/opt/Qt/5.15.2/clang_64/:$PATH'
+     CMAKE_PREFIX_PATH='/opt/Qt/5.15.2/clang_64/'
+  }
+
   stages {
     stage('Checkout') {
       steps {
