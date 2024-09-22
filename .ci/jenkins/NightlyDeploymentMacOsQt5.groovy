@@ -19,8 +19,8 @@ pipeline {
   }
 
   environment {
-     PATH='/opt/Qt/5.15.2/clang_64/bin/:/opt/Qt/5.15.2/clang_64/:$PATH'
-     CMAKE_PREFIX_PATH='/opt/Qt/5.15.2/clang_64/'
+     PATH = "/opt/Qt/5.15.2/clang_64/bin/:/opt/Qt/5.15.2/clang_64/:${env.PATH}"
+     CMAKE_PREFIX_PATH = '/opt/Qt/5.15.2/clang_64/'
   }
 
   stages {
