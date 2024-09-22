@@ -20,7 +20,7 @@ bin/libintl-8.dll
 # If missing: No error, but some images don't load.
 bin/libjpeg-9.dll
 bin/libpcre2-16-0.dll
-bin/libpcre-1.dll
+bin/libpcre2-8-0.dll
 bin/libpng16-16.dll
 # If missing: No error, but no database connection can be made.
 bin/libsqlite3-0.dll

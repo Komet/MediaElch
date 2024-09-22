@@ -18,7 +18,7 @@ bin/libiconv-2.dll
 bin/libintl-8.dll
 bin/libjpeg-9.dll
 bin/libpcre2-16-0.dll
-bin/libpcre-1.dll
+bin/libpcre2-8-0.dll
 bin/libcrypto-3-x64.dll
 bin/libssl-3-x64.dll
 bin/libpng16-16.dll
