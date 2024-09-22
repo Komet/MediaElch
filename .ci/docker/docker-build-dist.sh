@@ -21,7 +21,7 @@ DISTROS=(
 	"ubuntu-18.04"
 	"ubuntu-20.04"
 	"ubuntu-22.04"
-	"ubuntu-23.04"
+	"ubuntu-24.04"
 	"opensuse-leap-15"
 	"opensuse-tumbleweed"
 )
@@ -67,5 +67,10 @@ BUILD_SCRIPT="./.ci/docker/build-${OS:?}.sh"
 print_important "Now building MediaElch using ${BUILD_SCRIPT}"
 print_info "Using user:group id: $(id -u "$(whoami)"):$(id -g "$(whoami)")"
 
-docker run --rm --user "$(id -u "$(whoami)"):$(id -g "$(whoami)")" -it -v "${PROJECT_PATH}":/opt/src "${IMAGE}" \
-	bash -xc "cd /opt/src && ${BUILD_SCRIPT} ${DIST}"
+if docker version |& grep podman >/dev/null; then
+  docker run --rm -it -v "${PROJECT_PATH}":/opt/src "${IMAGE}" \
+  	bash -xc "cd /opt/src && ${BUILD_SCRIPT} ${DIST}"
+else
+  docker run --rm --user "$(id -u "$(whoami)"):$(id -g "$(whoami)")" -it -v "${PROJECT_PATH}":/opt/src "${IMAGE}" \
+  	bash -xc "cd /opt/src && ${BUILD_SCRIPT} ${DIST}"
+fi

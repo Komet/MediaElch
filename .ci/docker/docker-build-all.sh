@@ -13,6 +13,6 @@ cd "$(dirname "$0")"
 ./docker-build-dist.sh ubuntu-18.04        | tee -a docker-build.log
 ./docker-build-dist.sh ubuntu-20.04        | tee -a docker-build.log
 ./docker-build-dist.sh ubuntu-22.04        | tee -a docker-build.log
-./docker-build-dist.sh ubuntu-23.04        | tee -a docker-build.log
+./docker-build-dist.sh ubuntu-24.04        | tee -a docker-build.log
 ./docker-build-dist.sh opensuse-leap-15    | tee -a docker-build.log
 ./docker-build-dist.sh opensuse-tumbleweed | tee -a docker-build.log
