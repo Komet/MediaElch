@@ -30,7 +30,7 @@ usage() {
 	cat << EOF
 Usage: $(basename "$0") [--no-confirm]
 
-This script checks neccessary dependencies
+This script checks necessary dependencies
 and builds a release binary of MediaElch for macOS for Qt5.
 Uses hard-coded paths of the current maintainer.
 
