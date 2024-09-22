@@ -127,37 +127,40 @@ QString CsvExportConfiguration::csvExportReplacement()
 
 QVector<CsvExportType> CsvExportConfiguration::csvExportTypes()
 {
-    return deserializeCsvExportTypes(m_settings.value(KEY_CSV_EXPORT_TYPES).toString().split(",", Qt::SkipEmptyParts));
+    return deserializeCsvExportTypes(
+        m_settings.value(KEY_CSV_EXPORT_TYPES).toString().split(",", ElchSplitBehavior::SkipEmptyParts));
 }
 
 QStringList CsvExportConfiguration::csvExportMovieFields()
 {
-    return m_settings.value(KEY_CSV_EXPORT_MOVIE_FIELDS).toString().split(",", Qt::SkipEmptyParts);
+    return m_settings.value(KEY_CSV_EXPORT_MOVIE_FIELDS).toString().split(",", ElchSplitBehavior::SkipEmptyParts);
 }
 
 QStringList CsvExportConfiguration::csvExportTvShowFields()
 {
-    return m_settings.value(KEY_CSV_EXPORT_TV_SHOW_FIELDS).toString().split(",", Qt::SkipEmptyParts);
+    return m_settings.value(KEY_CSV_EXPORT_TV_SHOW_FIELDS).toString().split(",", ElchSplitBehavior::SkipEmptyParts);
 }
 
 QStringList CsvExportConfiguration::csvExportTvEpisodeFields()
 {
-    return m_settings.value(KEY_CSV_EXPORT_TV_EPISODE_FIELDS).toString().split(",", Qt::SkipEmptyParts);
+    return m_settings.value(KEY_CSV_EXPORT_TV_EPISODE_FIELDS).toString().split(",", ElchSplitBehavior::SkipEmptyParts);
 }
 
 QStringList CsvExportConfiguration::csvExportConcertFields()
 {
-    return m_settings.value(KEY_CSV_EXPORT_CONCERT_FIELDS).toString().split(",", Qt::SkipEmptyParts);
+    return m_settings.value(KEY_CSV_EXPORT_CONCERT_FIELDS).toString().split(",", ElchSplitBehavior::SkipEmptyParts);
 }
 
 QStringList CsvExportConfiguration::csvExportMusicArtistFields()
 {
-    return m_settings.value(KEY_CSV_EXPORT_MUSIC_ARTIST_FIELDS).toString().split(",", Qt::SkipEmptyParts);
+    return m_settings.value(KEY_CSV_EXPORT_MUSIC_ARTIST_FIELDS)
+        .toString()
+        .split(",", ElchSplitBehavior::SkipEmptyParts);
 }
 
 QStringList CsvExportConfiguration::csvExportMusicAlbumFields()
 {
-    return m_settings.value(KEY_CSV_EXPORT_MUSIC_ALBUM_FIELDS).toString().split(",", Qt::SkipEmptyParts);
+    return m_settings.value(KEY_CSV_EXPORT_MUSIC_ALBUM_FIELDS).toString().split(",", ElchSplitBehavior::SkipEmptyParts);
 }
 
 void CsvExportConfiguration::setCsvExportSeparator(QString separator)
