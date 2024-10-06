@@ -49,10 +49,17 @@ void MovieModel::addMovies(const QVector<Movie*>& movies)
  */
 void MovieModel::onMovieChanged(Movie* movie)
 {
+    // TODO: Remove linear search
     auto movieIndex = qsizetype_to_int(m_movies.indexOf(movie));
-    const QModelIndex indexTopLeft = createIndex(movieIndex, 0);
-    const QModelIndex indexBottomRight = createIndex(movieIndex, columnCount({}));
-    emit dataChanged(indexTopLeft, indexBottomRight);
+    // Due to a performance "bug" in Qt 5, we must not emit dataChanged()
+    // signals for multiple columns at once. Both arguments must be the same index!
+    // See https://stackoverflow.com/q/53139727/1603627 and
+    // https://github.com/Komet/MediaElch/issues/1788
+    const int N = columnCount({});
+    for (int i = 0; i < N; ++i) {
+        const QModelIndex index = createIndex(movieIndex, i);
+        emit dataChanged(index, index);
+    }
 }
 
 void MovieModel::update()
