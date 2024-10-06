@@ -155,10 +155,10 @@ void TvMazeShowParser::parseInfos(const QJsonDocument& json)
             actor.name = person["name"].toString();
             actor.role = character["name"].toString();
             actor.id = QString::number(person["id"].toInt());
-            if (character.contains("image")) {
-                actor.thumb = character["image"].toObject()["original"].toString();
-            } else {
+            if (person.contains("image")) {
                 actor.thumb = person["image"].toObject()["original"].toString();
+            } else {
+                actor.thumb = character["image"].toObject()["original"].toString();
             }
             m_show.addActor(actor);
         }
