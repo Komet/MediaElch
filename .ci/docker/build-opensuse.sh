@@ -63,5 +63,5 @@ print_important "Building MediaElch (only warnings and errors shown)"
 make -j "$(nproc)" 1> /dev/null
 
 echo ""
-print_success "Successfuly built MediaElch on ${DIST}!"
+print_success "Successfully built MediaElch on ${DIST}!"
 echo ""

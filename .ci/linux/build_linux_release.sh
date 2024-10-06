@@ -86,7 +86,7 @@ print_system_info_unix
 if [[ "${NO_CONFIRM}" != "1" ]]; then
 	echo ""
 	print_important "Do you want to build MediaElch for Linux with these settings?"
-	print_important "The build will take between 5 and 20 minutes dependending on your machine."
+	print_important "The build will take between 5 and 20 minutes depending on your machine."
 	read -r -s -p "Press enter to continue"
 	echo ""
 fi
@@ -105,6 +105,6 @@ print_important "Building MediaElch"
 make -j "${JOBS}"
 
 echo ""
-print_success "Successfuly built MediaElch! Release binary in"
+print_success "Successfully built MediaElch! Release binary in"
 print_success "  ${PROJECT_DIR}/build/linux"
 echo ""

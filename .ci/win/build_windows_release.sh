@@ -61,6 +61,6 @@ qmake ../../MediaElch.pro \
 make -j "${JOBS}"
 
 echo ""
-print_success "Successfuly built MediaElch! Release binary in"
+print_success "Successfully built MediaElch! Release binary in"
 print_success "  ${PROJECT_DIR}/build/win-qt${QT_MAJOR_VERSION}"
 echo ""
