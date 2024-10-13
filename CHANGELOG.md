@@ -6,7 +6,8 @@
 ### Notes
 
 - ffmpeg was updated on all platforms to v7.0.2
-- Qt was updated to v6.7.2 for macOS 11 and later, as well as Windows 10 and later.
+- Qt was updated to v6.8.0 for macOS 11 and later.
+- Qt was updated for Windows 10 and later.
 
 ### Fixed
 
@@ -35,10 +36,6 @@
 - macOS: The Qt5 build for macOS X no longer supports automatic dark mode
   detection.  Reason being that it doesn't work on macOS 10.13 (#1742)
 
-### Removed
-
-- tbd
-
 ### Added
 
 - TV shows and episodes: If there is more than one network (separated by `,`),
@@ -50,6 +47,7 @@
 - Concerts (i.e. music videos in Kodi) can now have multiple artists, each stored
   as an `<artist>` tag in NFO files.  In the UI, it's a comma-separated list (#1709).
 - UI: The movie, concert and episode pages now have a "play movie" button in the top right corner (#1727, #1764).
+
 
 ## 2.10.6 - 2023-12-03
 
@@ -268,13 +266,15 @@ If you package MediaElch, e.g. for some Linux distributions, these notes may be 
    regressions aren't unnoticed for so long anymore.
 
 
-## 2.8.18 - Coridian (2022-10-28)
+## Older Releases
 
-### Notes
+### 2.8.18 - Coridian (2022-10-28)
+
+#### Notes
 
  - MediaElch now fully supports Qt6!
 
-### Bugfixes
+#### Bugfixes
 
  - Multi-Episode numbers such as `S01E01E02E03.mov` are now correctly identified (#1429)
  - UI: The "subtitle" column of movies is now also green if there are external subtitles (#1435)
@@ -290,13 +290,13 @@ If you package MediaElch, e.g. for some Linux distributions, these notes may be 
  - TMDb TV now scrapes the full cast of a TV show instead of only the last season's (#1454)
  - A crash in the image dialog was fixed.
 
-### Changes
+#### Changes
 
  - Network proxy is disabled (per default) for Kodi Synchronisation (#1430)  
    This can be re-enabled in MediaElch's network settings. 
  - Windows: Bundled Qt version was updated to 5.15.5
 
-### Added
+#### Added
 
  - Renamer: Placeholder input fields now provide examples through a drop-down menu (#657)  
    Only few are shown by default.  If you want more, let us know by opening an issue on GitHub.
@@ -307,42 +307,42 @@ If you package MediaElch, e.g. for some Linux distributions, these notes may be 
    - load original title (#1468)
  - TvMaze now loads an episode's rating (#1471)
 
-### Removed
+#### Removed
 
  - OFDb scraper was removed.  
    The OFDb gateway ceased to exist, i.e. the website we used to scrape movies from OFDb
    was removed.
 
-### Internal Improvements and Changes
+#### Internal Improvements and Changes
 
  - Git: We started to use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
  - CI: We now test against Qt6.2 to ensure that we don't rely on Qt5-only coding.
 
 
-## 2.8.16 - Coridian (2022-03-13)
+### 2.8.16 - Coridian (2022-03-13)
 
-### Bugfixes
+#### Bugfixes
 
  - Movies: Downloading multiple movies (and their fanart) crashed MediaElch or could lead to mixed up fanart/images (#1408, #1409)
  - TV Shows: When selecting TV shows/seasons/episodes on Linux, the background
    was just white (#1412)
  - UI: Fix spacing for checkboxes in movie search window
 
-### Added
+#### Added
 
  - If streamdetails can't be loaded (e.g. because libmediainfo is missing), a click on the button
    "Reload Streamdetails" will now tell your (#1414)
  - More default sort tokens for other languages were added (#1421)
 
 
-## 2.8.14 - Coridian (2022-02-06)
+### 2.8.14 - Coridian (2022-02-06)
 
-### Notes
+#### Notes
 
  - You will have to re-enable "show missing episodes" for your TV shows.
    MediaElch now uses TMDb to get the list of missing episodes.
 
-### Bugfixes
+#### Bugfixes
 
  - IMDb now works again (#1088, #1355)  
    Due to changes to IMDb's website, MediaElch no longer scraped movie and TV show details.
@@ -356,23 +356,23 @@ If you package MediaElch, e.g. for some Linux distributions, these notes may be 
  - Discogs scrapes years correctly again for Non-English users (#1379)
  - A crash when concerts were reloaded was fixed (#1335)
 
-### Changes
+#### Changes
 
  - To avoid the possibility of CSV injection, prepend certain fields with an apostrophe according
    to [OWASP recommendations](https://owasp.org/www-community/attacks/CSV_Injection) (#1338)
 
-### Added
+#### Added
 
  - Advanced Settings: More default video file extensions were added (#1383)
  - Renamer: You can now use `<seasonName>` and `{seasonName}` (#1378)
 
-### Removed
+#### Removed
 
  - TheTvDb was removed.  Note that not all features are supported by TMDb and IMDb, yet.
    We will update MediaElch step by step.
    The "show all TV show episodes" feature now requires a TMDb ID instead of a TheTvDb ID.
 
-### Internal Improvements and Changes
+#### Internal Improvements and Changes
 
  - The movie file searcher has been reworked again.  
    It now runs in another thread so that MediaElch now longer "freezes".
@@ -388,7 +388,7 @@ If you package MediaElch, e.g. for some Linux distributions, these notes may be 
    This step was necessary for Qt6 support.
  - MediaElch now supports Qt6!
 
-### Changes for Package Maintainers
+#### Changes for Package Maintainers
 
 If you package MediaElch, e.g. for some Linux distributions, these notes may be important for you:
 
@@ -397,9 +397,9 @@ If you package MediaElch, e.g. for some Linux distributions, these notes may be 
    without `USE_EXTERN_QUAZIP`!
 
 
-## 2.8.12 - Coridian (2021-05-10)
+### 2.8.12 - Coridian (2021-05-10)
 
-### Bugfixes
+#### Bugfixes
 
  - The movie file searcher could crash if you have more than two movie directories (#1315, #1316, #1318)  
    v2.8.8 introduced a bug where MediaElch could crash when movies were reloaded.
@@ -407,8 +407,6 @@ If you package MediaElch, e.g. for some Linux distributions, these notes may be 
    We were only able to fix all of these issues thanks to Alexander Weber who helped to debug the crashes.
  - The UniversalMusicScraper now scrapes AllMusic reviews again (#1313)
 
-
-## Older Releases
 
 ### 2.8.10 - Coridian (2021-05-03)
 
