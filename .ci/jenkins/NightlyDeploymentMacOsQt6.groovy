@@ -19,7 +19,6 @@ pipeline {
   }
 
   environment {
-     PATH="/opt/Qt/6.7.2/macos/bin/:/opt/Qt/6.7.2/macos/:${env.PATH}"
      CMAKE_PREFIX_PATH='/opt/Qt/6.7.2/macos/'
   }
 
