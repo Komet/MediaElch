@@ -141,7 +141,7 @@ actors: (N>800)
  - id: 9281
    name: Elizabeth Banks
    role: Dr. Kim Briggs
-   thumb: https://image.tmdb.org/t/p/original/szqEXmC0oAqRnN7zt1XAsbHpJfW.jpg
+   thumb: https://image.tmdb.org/t/p/original/q0wvK0Nr6FCpvx9UCMTqTby6kNW.jpg
    order: 17
    imageHasChanged: false
  - id: 1231142

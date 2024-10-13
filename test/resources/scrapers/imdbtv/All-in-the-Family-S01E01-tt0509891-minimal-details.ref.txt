@@ -28,7 +28,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
-thumbnail: https://m.media-amazon.com/images/M/MV5BMDE0MmU0ODMtNGQ1YS00NGNiLWExODMtMzNiODM3NzA0MDQ5XkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_UX400_CR0,0,400,225_AL_.jpg
+thumbnail: https://m.media-amazon.com/images/M/MV5BY2E5MDNhZmEtZmU4OS00ZGE1LTg5M2MtODg2MjJmMDU2MzliXkEyXkFqcGc@._V1_UX400_CR0,0,400,225_AL_.jpg
 actors: (N=0)
 streamDetails: <not loaded>
 files: (N=0)

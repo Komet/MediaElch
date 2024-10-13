@@ -44,7 +44,7 @@ actors: (N>80)
    imageHasChanged: false
  - id: 
    name: Al Pacino
-   role: Michael Corleone
+   role: Michael
    thumb:
     https://m.media-amazon.com/images/M/MV5BMTQzMzg1ODAyNl5BMl5BanBnXkFtZTYwMjAxODQ1
     .jpg
@@ -52,7 +52,7 @@ actors: (N>80)
    imageHasChanged: false
  - id: 
    name: James Caan
-   role: Sonny Corleone
+   role: Sonny
    thumb:
     https://m.media-amazon.com/images/M/MV5BMTI5NjkyNDQ3NV5BMl5BanBnXkFtZTcwNjY5NTQ0
     Mw@@.jpg
@@ -116,7 +116,7 @@ actors: (N>80)
    imageHasChanged: false
  - id: 
    name: Abe Vigoda
-   role: Sal Tessio
+   role: Tessio
    thumb:
     https://m.media-amazon.com/images/M/MV5BMjE1MDk5NzMyN15BMl5BanBnXkFtZTYwMjA4Mjg1
     .jpg
@@ -124,7 +124,7 @@ actors: (N>80)
    imageHasChanged: false
  - id: 
    name: Talia Shire
-   role: Connie Corleone Rizzi
+   role: Connie
    thumb:
     https://m.media-amazon.com/images/M/MV5BMTkwMzc0NjQzNV5BMl5BanBnXkFtZTYwNzM0NTk3
     .jpg
@@ -132,7 +132,7 @@ actors: (N>80)
    imageHasChanged: false
  - id: 
    name: Gianni Russo
-   role: Carlo Rizzi
+   role: Carlo
    thumb:
     https://m.media-amazon.com/images/M/MV5BNTgyMTgxODM4MV5BMl5BanBnXkFtZTcwNDg5NDYw
     OA@@.jpg
@@ -140,7 +140,7 @@ actors: (N>80)
    imageHasChanged: false
  - id: 
    name: John Cazale
-   role: Fredo Corleone
+   role: Fredo
    thumb:
     https://m.media-amazon.com/images/M/MV5BMTUzMTM1MjI5NV5BMl5BanBnXkFtZTcwMTM5NTM1
     Mw@@.jpg
@@ -224,8 +224,8 @@ files: (N=0)
 folderName: 
 posters: (N=1)
   - id: 
-    originalUrl: https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@.jpg
-    thumbUrl: https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@.jpg
+    originalUrl: https://m.media-amazon.com/images/M/MV5BYTJkNGQyZDgtZDQ0NC00MDM0LWEzZWQtYzUzZDEwMDljZWNjXkEyXkFqcGc@.jpg
+    thumbUrl: https://m.media-amazon.com/images/M/MV5BYTJkNGQyZDgtZDQ0NC00MDM0LWEzZWQtYzUzZDEwMDljZWNjXkEyXkFqcGc@.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 

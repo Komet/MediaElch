@@ -44,8 +44,8 @@ actors: (N>30)
    name: Anil Kapoor
    role: Sagar 'Majnu' Pandey
    thumb:
-    https://m.media-amazon.com/images/M/MV5BMjUyMWE5MjUtMDlkMC00ODc0LThkOTgtNjZhNDgy
-    MTU5ZDhlXkEyXkFqcGdeQXVyMTExNDQ2MTI@.jpg
+    https://m.media-amazon.com/images/M/MV5BYWI0MDBiN2ItNGY2NC00OTlmLTliYmItZjIzMDNi
+    MWFjZTAwXkEyXkFqcGc@.jpg
    order: 1
    imageHasChanged: false
  - id: 
@@ -219,8 +219,8 @@ files: (N=0)
 folderName: 
 posters: (N=1)
   - id: 
-    originalUrl: https://m.media-amazon.com/images/M/MV5BYjJmOTlhNGItNWUyNC00YzA1LWI2NzktMDU4ZjE1ZTcwOTE3XkEyXkFqcGdeQXVyODE5NzE3OTE@.jpg
-    thumbUrl: https://m.media-amazon.com/images/M/MV5BYjJmOTlhNGItNWUyNC00YzA1LWI2NzktMDU4ZjE1ZTcwOTE3XkEyXkFqcGdeQXVyODE5NzE3OTE@.jpg
+    originalUrl: https://m.media-amazon.com/images/M/MV5BY2MwMzJmMTYtYTU1YS00ZDQwLWFjNGItMTYyODVjMjE2YjhkXkEyXkFqcGc@.jpg
+    thumbUrl: https://m.media-amazon.com/images/M/MV5BY2MwMzJmMTYtYTU1YS00ZDQwLWFjNGItMTYyODVjMjE2YjhkXkEyXkFqcGc@.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 

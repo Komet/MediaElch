@@ -32,7 +32,7 @@ released: 2013-07-18
 runtime: 131min
 writer: Travis Beacham, Guillermo del Toro, Travis Beacham
 director: Guillermo del Toro
-actors: (N>80)
+actors: (N>90)
  - id: 
    name: Charlie Hunnam
    role: Raleigh Becket
@@ -193,7 +193,7 @@ actors: (N>80)
     MzE@.jpg
    order: 19
    imageHasChanged: false
-  - ... and >60 more
+  - ... and >70 more
 certification: PG-13
 genres: (N<6)
   - Action

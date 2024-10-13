@@ -16,7 +16,7 @@ overview:
      various periods in the band’s history, the band members speak about their exper
     iences across the Atlantic.
 ratings (N=1)
-  source=themoviedb | rating=7.98 | votes=51 | min=0 | max=10
+  source=themoviedb | rating=8 | votes=51 | min=0 | max=10
 userRating: 0
 releaseDate: 2015-09-25
 tagline: 
@@ -30,12 +30,28 @@ trailer: https://www.youtube.com/watch?v=G2ZCHc4gzDc
 playcount: 0
 lastPlayed: <not set or invalid>
 lastModified: <not set or invalid>
-posters: (N=1)
+posters: (N<6)
   - id: 
     originalUrl: http://image.tmdb.org/t/p/original/3jQELB04oNbWQvirKoq2p6a0uqX.jpg
     thumbUrl: http://image.tmdb.org/t/p/w342/3jQELB04oNbWQvirKoq2p6a0uqX.jpg
     originalSize: h=2092 w=1395
     language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: http://image.tmdb.org/t/p/original/2OkkU9tTylJ8KASzNVlO5ALPF2N.jpg
+    thumbUrl: http://image.tmdb.org/t/p/w342/2OkkU9tTylJ8KASzNVlO5ALPF2N.jpg
+    originalSize: h=1500 w=1000
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: http://image.tmdb.org/t/p/original/vVmbEH2VDJZMsgPnER78UsM9WQ.jpg
+    thumbUrl: http://image.tmdb.org/t/p/w342/vVmbEH2VDJZMsgPnER78UsM9WQ.jpg
+    originalSize: h=1500 w=1000
+    language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
@@ -52,6 +68,14 @@ backdrops: (N<6)
     originalUrl: http://image.tmdb.org/t/p/original/5f36A76jVZQMH7mm0xjX0tUyeWl.jpg
     thumbUrl: http://image.tmdb.org/t/p/w780/5f36A76jVZQMH7mm0xjX0tUyeWl.jpg
     originalSize: h=720 w=1280
+    language: 
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: http://image.tmdb.org/t/p/original/mIJDxK7fEiqbLrHhDqIKZPp7Q5O.jpg
+    thumbUrl: http://image.tmdb.org/t/p/w780/mIJDxK7fEiqbLrHhDqIKZPp7Q5O.jpg
+    originalSize: h=1080 w=1920
     language: 
     hint: 
     aspect: 

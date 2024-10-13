@@ -31,121 +31,121 @@ actors: (N>1000)
  - id: 14854
    name: Dan Castellaneta
    role: Homer Simpson
-   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/2107.jpg
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/963.jpg
    order: 0
    imageHasChanged: false
  - id: 14855
    name: Julie Kavner
    role: Marge Simpson
-   thumb: https://static.tvmaze.com/uploads/images/original_untouched/497/1243770.jpg
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/967.jpg
    order: 1
    imageHasChanged: false
  - id: 14857
    name: Yeardley Smith
    role: Lisa Simpson
-   thumb: https://static.tvmaze.com/uploads/images/original_untouched/497/1243772.jpg
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/2/7324.jpg
    order: 2
    imageHasChanged: false
  - id: 14856
    name: Nancy Cartwright
    role: Bart Simpson
-   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/2193.jpg
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/968.jpg
    order: 3
    imageHasChanged: false
  - id: 14858
    name: Hank Azaria
    role: Moe Szyslak
-   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/2118.jpg
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/964.jpg
    order: 4
    imageHasChanged: false
  - id: 14859
    name: Harry Shearer
    role: Charles Montgomery Burns
-   thumb: https://static.tvmaze.com/uploads/images/original_untouched/497/1243773.jpg
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/966.jpg
    order: 5
    imageHasChanged: false
  - id: 14859
    name: Harry Shearer
    role: Lenny Leonard
-   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/2176.jpg
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/966.jpg
    order: 6
    imageHasChanged: false
  - id: 14858
    name: Hank Azaria
    role: Chief Clancy Wiggum
-   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/2200.jpg
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/964.jpg
    order: 7
    imageHasChanged: false
  - id: 14859
    name: Harry Shearer
    role: Seymour Skinner
-   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/2194.jpg
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/966.jpg
    order: 8
    imageHasChanged: false
  - id: 14858
    name: Hank Azaria
    role: Carl Carlson
-   thumb: https://static.tvmaze.com/uploads/images/original_untouched/497/1243774.jpg
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/964.jpg
    order: 9
    imageHasChanged: false
  - id: 14859
    name: Harry Shearer
    role: Carl Carlson
-   thumb: https://static.tvmaze.com/uploads/images/original_untouched/497/1243774.jpg
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/966.jpg
    order: 10
    imageHasChanged: false
  - id: 14858
    name: Hank Azaria
    role: Apu Nahasapeemapetilon
-   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/2186.jpg
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/964.jpg
    order: 11
    imageHasChanged: false
  - id: 14854
    name: Dan Castellaneta
    role: Abraham Simpson
-   thumb: https://static.tvmaze.com/uploads/images/original_untouched/497/1243779.jpg
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/963.jpg
    order: 12
    imageHasChanged: false
  - id: 14856
    name: Nancy Cartwright
    role: Nelson Muntz
-   thumb: https://static.tvmaze.com/uploads/images/original_untouched/497/1243777.jpg
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/968.jpg
    order: 13
    imageHasChanged: false
  - id: 14859
    name: Harry Shearer
    role: Ned Flanders
-   thumb: https://static.tvmaze.com/uploads/images/original_untouched/497/1243778.jpg
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/966.jpg
    order: 14
    imageHasChanged: false
  - id: 14859
    name: Harry Shearer
    role: Kent Brockman
-   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/2183.jpg
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/966.jpg
    order: 15
    imageHasChanged: false
  - id: 14854
    name: Dan Castellaneta
    role: Krusty the Klown
-   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/2201.jpg
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/963.jpg
    order: 16
    imageHasChanged: false
  - id: 14856
    name: Nancy Cartwright
    role: Maggie Simpson
-   thumb: https://static.tvmaze.com/uploads/images/original_untouched/497/1243780.jpg
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/968.jpg
    order: 17
    imageHasChanged: false
  - id: 14857
    name: Yeardley Smith
    role: Maggie Simpson
-   thumb: https://static.tvmaze.com/uploads/images/original_untouched/497/1243780.jpg
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/2/7324.jpg
    order: 18
    imageHasChanged: false
  - id: 14854
    name: Dan Castellaneta
    role: Barney Gumble
-   thumb: https://static.tvmaze.com/uploads/images/original_untouched/497/1243782.jpg
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/963.jpg
    order: 19
    imageHasChanged: false
   - ... and >1000 more

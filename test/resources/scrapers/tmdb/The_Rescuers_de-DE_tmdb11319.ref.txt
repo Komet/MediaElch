@@ -22,15 +22,15 @@ tagline:
     Zwei kleine Agenten gegen die böseste Frau der Welt in einem umwerfenden Animati
     onsabenteuer!
 ratings (N=1)
-  source=themoviedb | rating=6.8 | votes=2000 | min=0 | max=10
+  source=themoviedb | rating=6.6 | votes=2000 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 released: 1977-06-22
 runtime: 78min
 writer:
-    Larry Clemmons, Ken Anderson, Margery Sharp, Frank Thomas, Vance Gerry, Dick Seb
-    ast, David Michener, Burny Mattinson, Fred Lucky, Ted Berman
-director: John Lounsbery
+    Margery Sharp, Larry Clemmons, Ken Anderson, Frank Thomas, Vance Gerry, David Mi
+    chener, Fred Lucky, Burny Mattinson, Dick Sebast, Ted Berman
+director: Art Stevens
 actors: (N>10)
  - id: 
    name: Bob Newhart

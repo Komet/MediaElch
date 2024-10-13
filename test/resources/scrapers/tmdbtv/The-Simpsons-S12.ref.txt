@@ -1012,7 +1012,7 @@ actors: (N>5)
    imageHasChanged: false
  - id: 27765
    name: Richard Nixon
-   role: Self (Archive Footage)
+   role: Self (voice) (archive footage)
    thumb: https://image.tmdb.org/t/p/original/uCJeC6LXnv3KVA1YUNTpBh8uAhC.jpg
    order: 1
    imageHasChanged: false
