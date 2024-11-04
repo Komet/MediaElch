@@ -21,7 +21,7 @@
 
 ### Added
 
-- tbd
+- Renamer: Placeholder `<tmdbId>` is now also available for TV shows and episodes (#1814)
 
 ## 2.12.0 - 2024-10-13
 
