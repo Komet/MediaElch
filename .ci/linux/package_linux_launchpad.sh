@@ -79,19 +79,19 @@ prepare_deb() {
 	ME_VERSION="${ME_VERSION}.${GIT_REVISION}"
 
 	# Create target directory
-	TARGET_DIR=mediaelch-${ME_VERSION}
-	rm -rf ${TARGET_DIR} && mkdir ${TARGET_DIR}
+	TARGET_DIR="mediaelch-${ME_VERSION}"
+	rm -rf "${TARGET_DIR}" && mkdir "${TARGET_DIR}"
 
 	print_info "Copying sources to ./${TARGET_DIR}"
 	(
-		cd $PROJECT_DIR_NAME
+		cd "${PROJECT_DIR_NAME}"
 		tar cf - .
 	) | (
-		cd ${TARGET_DIR}
+		cd "${TARGET_DIR}"
 		tar xf -
 	)
 
-	pushd ${TARGET_DIR} > /dev/null
+	pushd "${TARGET_DIR}" > /dev/null
 
 	# Remove untracked files but keep changes
 	git clean -fdx
