@@ -1,7 +1,5 @@
 #include "Renamer.h"
 
-#include "data/movie/Movie.h"
-#include "globals/Helper.h"
 #include "log/Log.h"
 #include "settings/Settings.h"
 #include "utils/Meta.h"

@@ -818,6 +818,7 @@
             <property name="itemTypes" stdset="0">
              <stringlist notr="true">
               <string>movie</string>
+              <string>tvshow</string>
              </stringlist>
             </property>
            </widget>
@@ -830,6 +831,7 @@
             <property name="itemTypes" stdset="0">
              <stringlist notr="true">
               <string>movie</string>
+              <string>tvshow</string>
              </stringlist>
             </property>
            </widget>

@@ -65,6 +65,7 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode& episode
             Renamer::replace(newFileName, "year", episode.firstAired().toString("yyyy"));
             Renamer::replace(newFileName, "extension", episodeFileInfo.suffix());
             Renamer::replace(newFileName, "season", episode.seasonString());
+            Renamer::replaceCondition(newFileName, "tmdbId", episode.tmdbId().toString());
             Renamer::replace(newFileName, "partNo", QString::number(++partNo));
             Renamer::replace(newFileName, "videoCodec", episode.streamDetails()->videoCodec());
             Renamer::replace(newFileName, "audioCodec", episode.streamDetails()->audioCodec());

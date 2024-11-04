@@ -340,6 +340,7 @@ void RenamerDialog::renameTvShows(const QVector<TvShow*>& shows, const QString& 
         QString newFolderName = directoryPattern;
         Renamer::replace(newFolderName, "title", show->title());
         Renamer::replace(newFolderName, "showTitle", show->title());
+        Renamer::replaceCondition(newFolderName, "tmdbId", show->tmdbId().toString());
         Renamer::replace(newFolderName, "year", show->firstAired().toString("yyyy"));
         helper::sanitizeFolderName(newFolderName);
         if (newFolderName != dir.dirName()) {
