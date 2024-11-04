@@ -169,6 +169,8 @@ void MovieSearchWidget::showError(const QString& message)
     ui->lblSuccessMessage->hide();
     ui->lblErrorMessage->setText(message);
     ui->lblErrorMessage->show();
+
+    enableSearch();
 }
 
 void MovieSearchWidget::showSuccess(const QString& message)
@@ -176,6 +178,16 @@ void MovieSearchWidget::showSuccess(const QString& message)
     ui->lblErrorMessage->hide();
     ui->lblSuccessMessage->setText(message);
     ui->lblSuccessMessage->show();
+    enableSearch();
+}
+
+void MovieSearchWidget::enableSearch()
+{
+    ui->comboScraper->setEnabled(m_customScraperIds.isEmpty());
+    ui->comboLanguage->setEnabled(m_customScraperIds.isEmpty() && m_currentScraper != nullptr
+                                  && m_currentScraper->meta().supportedLanguages.size() > 1);
+    ui->searchString->setLoading(false);
+    ui->searchString->setFocus();
 }
 
 void MovieSearchWidget::setupLanguageDropdown()
@@ -222,12 +234,6 @@ void MovieSearchWidget::onShowResults(mediaelch::scraper::MovieSearchJob* search
     qCDebug(generic) << "[Search Results] Count: " << searchJob->results().size();
     showSuccess(tr("Found %n results", "", qsizetype_to_int(searchJob->results().size())));
 
-
-    ui->comboScraper->setEnabled(m_customScraperIds.isEmpty());
-    ui->comboLanguage->setEnabled(m_customScraperIds.isEmpty() && m_currentScraper != nullptr
-                                  && m_currentScraper->meta().supportedLanguages.size() > 1);
-    ui->searchString->setLoading(false);
-    ui->searchString->setFocus();
 
     for (const MovieSearchJob::Result& result : asConst(searchJob->results())) {
         const QString resultName = result.released.isNull()

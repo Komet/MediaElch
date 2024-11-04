@@ -9,7 +9,7 @@
 
 ### Fixed
 
-- tbd
+- UI: The movie search widget is no longer stuck in case of network errors.
 
 ### Changed
 

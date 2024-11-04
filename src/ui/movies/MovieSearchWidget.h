@@ -87,6 +87,8 @@ private:
 
     void showError(const QString& message);
     void showSuccess(const QString& message);
+    /// \brief Re-enable the search boxes; stop loading animation
+    void enableSearch();
 
 private:
     Ui::MovieSearchWidget* ui{nullptr};
