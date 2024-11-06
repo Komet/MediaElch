@@ -9,10 +9,11 @@ title: Magic Mike XXXL
 sortTitle: 
 originalTitle: 
 overview:
-    2016 XRCO Award Winner for Best Pardoy (Drama) 
-2016 AVN Nominee for Best Parody
-     
-Wicked Pictures an…
+    **2016 XRCO Award Winner for Best Pardoy (Drama) 
+** 
+2016 AVN Nominee for Best 
+    Parody 
+Wicked Pictu…
 outline: 
 movie set: tmdbid= | name=
 movie set overview: 

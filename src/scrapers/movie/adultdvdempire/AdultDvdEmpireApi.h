@@ -3,8 +3,10 @@
 #include "network/NetworkManager.h"
 #include "scrapers/ScraperError.h"
 
+#include <QByteArray>
 #include <QObject>
 #include <QString>
+#include <QTimer>
 #include <QUrl>
 #include <QUrlQuery>
 #include <functional>
@@ -37,8 +39,12 @@ private:
     QUrl makeMovieSearchUrl(const QString& searchStr) const;
     QUrl makeMovieUrl(const QString& id) const;
 
+    void confirmAge(std::function<void()> callback);
+
 private:
     mediaelch::network::NetworkManager m_network;
+    QByteArray m_eToken;
+    QTimer m_tokenResetTimer;
 };
 
 } // namespace scraper

@@ -10,6 +10,7 @@
 ### Fixed
 
 - UI: The movie search widget is no longer stuck in case of network errors.
+- HotMovies/AdultDvdEmpire: Search works again (#1811)
 
 ### Changed
 
