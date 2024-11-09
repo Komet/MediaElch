@@ -32,6 +32,7 @@ add_library(
   SlidingStackedWidget.cpp
   SpinBoxDelegate.cpp
   StereoModeComboBox.cpp
+  HdrTypeComboBox.cpp
   TagCloud.cpp
   TvShowTreeView.cpp
   WebImageLabel.cpp

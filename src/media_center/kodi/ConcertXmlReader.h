@@ -21,11 +21,6 @@ private:
     void parseFanart(QXmlStreamReader& reader);
     void parsePoster(QXmlStreamReader& reader);
 
-    void parseStreamDetails(QXmlStreamReader& reader);
-    void parseVideoStreamDetails(QXmlStreamReader& reader, StreamDetails* streamDetails);
-    void parseAudioStreamDetails(QXmlStreamReader& reader, int streamNumber, StreamDetails* streamDetails);
-    void parseSubtitleStreamDetails(QXmlStreamReader& reader, int streamNumber, StreamDetails* streamDetails);
-
 private:
     Concert& m_concert;
 };

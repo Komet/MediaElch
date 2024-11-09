@@ -111,18 +111,37 @@ QString MediaInfoFile::scanType(int streamIndex) const
     if (getVideo(streamIndex, "CodecID") == "V_MPEGH/ISO/HEVC") {
         return "progressive";
     }
-    QString scanType = getVideo(streamIndex, "ScanType");
+    const QString scanType = getVideo(streamIndex, "ScanType");
     if (scanType == "MBAFF") {
         return "interlaced";
     }
     return scanType.toLower();
 }
 
+QString MediaInfoFile::hdrType(int streamIndex) const
+{
+    // See https://en.wikipedia.org/wiki/High-dynamic-range_television for values.
+    // We map them to https://kodi.wiki/view/NFO_files/Movies -> `<hdrtype>`
+    const QString scanType = getVideo(streamIndex, "HDR_Format_Compatibility").toLower();
+
+    if (scanType.contains("hdr10")) {
+        return "hdr10";
+    }
+    if (scanType.contains("dolby")) {
+        return "dolbyvision";
+    }
+    if (scanType.contains("hlg")) {
+        return "hlg";
+    }
+
+    return scanType.toLower();
+}
+
 QString MediaInfoFile::stereoFormat(int streamIndex) const
 {
-    QString multiView = getVideo(streamIndex, "MultiView_Layout").toLower();
-    if (helper::stereoModes().values().contains(multiView)) {
-        return helper::stereoModes().key(multiView);
+    const QString multiView = getVideo(streamIndex, "MultiView_Layout").toLower();
+    if (StreamDetails::stereoModes().values().contains(multiView)) {
+        return StreamDetails::stereoModes().key(multiView);
     }
     return "";
 }

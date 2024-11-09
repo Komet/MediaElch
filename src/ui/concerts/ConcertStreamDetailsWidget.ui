@@ -7,19 +7,24 @@
     <x>0</x>
     <y>0</y>
     <width>675</width>
-    <height>400</height>
+    <height>401</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
     <layout class="QGridLayout" name="streamDetails">
-     <item row="1" column="0">
-      <widget class="QLabel" name="lblCodec">
+     <item row="0" column="0">
+      <widget class="QLabel" name="lblVideo">
+       <property name="font">
+        <font>
+         <bold>true</bold>
+        </font>
+       </property>
        <property name="text">
-        <string>Codec</string>
+        <string>Video</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
        </property>
       </widget>
      </item>
@@ -32,66 +37,10 @@
         </size>
        </property>
        <property name="buttonSymbols">
-        <enum>QAbstractSpinBox::NoButtons</enum>
+        <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
        </property>
        <property name="decimals">
         <number>3</number>
-       </property>
-      </widget>
-     </item>
-     <item row="6" column="1">
-      <widget class="QTimeEdit" name="videoDuration">
-       <property name="maximumSize">
-        <size>
-         <width>200</width>
-         <height>16777215</height>
-        </size>
-       </property>
-       <property name="buttonSymbols">
-        <enum>QAbstractSpinBox::NoButtons</enum>
-       </property>
-       <property name="displayFormat">
-        <string>HH:mm:ss</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="1">
-      <widget class="QLineEdit" name="videoScantype">
-       <property name="maximumSize">
-        <size>
-         <width>200</width>
-         <height>16777215</height>
-        </size>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="0">
-      <widget class="QLabel" name="lblVideo">
-       <property name="font">
-        <font>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>Video</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="7" column="0">
-      <widget class="QLabel" name="labelStreamDetailsAudio">
-       <property name="font">
-        <font>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>Audio</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
       </widget>
      </item>
@@ -101,17 +50,53 @@
         <string>Scantype</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
        </property>
       </widget>
      </item>
      <item row="6" column="0">
-      <widget class="QLabel" name="lblDuration">
+      <widget class="QLabel" name="lblHdrType">
        <property name="text">
-        <string>Duration</string>
+        <string>HDR Type</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="1">
+      <widget class="QTimeEdit" name="videoDuration">
+       <property name="maximumSize">
+        <size>
+         <width>200</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="buttonSymbols">
+        <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
+       </property>
+       <property name="displayFormat">
+        <string>HH:mm:ss</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="lblResolution">
+       <property name="text">
+        <string>Resolution</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="videoCodec">
+       <property name="maximumSize">
+        <size>
+         <width>100</width>
+         <height>16777215</height>
+        </size>
        </property>
       </widget>
      </item>
@@ -120,7 +105,7 @@
        <item>
         <widget class="QSpinBox" name="videoWidth">
          <property name="buttonSymbols">
-          <enum>QAbstractSpinBox::NoButtons</enum>
+          <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
          </property>
          <property name="maximum">
           <number>9999</number>
@@ -137,7 +122,7 @@
        <item>
         <widget class="QSpinBox" name="videoHeight">
          <property name="buttonSymbols">
-          <enum>QAbstractSpinBox::NoButtons</enum>
+          <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
          </property>
          <property name="maximum">
           <number>99999</number>
@@ -147,7 +132,7 @@
        <item>
         <spacer name="horizontalSpacer_10">
          <property name="orientation">
-          <enum>Qt::Horizontal</enum>
+          <enum>Qt::Orientation::Horizontal</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
@@ -159,33 +144,58 @@
        </item>
       </layout>
      </item>
+     <item row="4" column="1">
+      <widget class="QLineEdit" name="videoScantype">
+       <property name="maximumSize">
+        <size>
+         <width>200</width>
+         <height>16777215</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="0">
+      <widget class="QLabel" name="labelStreamDetailsAudio">
+       <property name="font">
+        <font>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Audio</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
      <item row="3" column="0">
       <widget class="QLabel" name="lblAspectRatio">
        <property name="text">
         <string>Aspect Ratio</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
        </property>
       </widget>
      </item>
-     <item row="1" column="1">
-      <widget class="QLineEdit" name="videoCodec">
-       <property name="maximumSize">
-        <size>
-         <width>100</width>
-         <height>16777215</height>
-        </size>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="lblResolution">
+     <item row="1" column="0">
+      <widget class="QLabel" name="lblCodec">
        <property name="text">
-        <string>Resolution</string>
+        <string>Codec</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="0">
+      <widget class="QLabel" name="lblDuration">
+       <property name="text">
+        <string>Duration</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
        </property>
       </widget>
      </item>
@@ -195,12 +205,29 @@
         <string>Stereo Mode</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
        </property>
       </widget>
      </item>
      <item row="5" column="1">
       <widget class="StereoModeComboBox" name="stereoMode"/>
+     </item>
+     <item row="6" column="1">
+      <widget class="HdrTypeComboBox" name="hdrType"/>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLabel" name="lblVideoEmpty">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="1">
+      <widget class="QLabel" name="lblAudioEmpty">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
@@ -227,7 +254,7 @@
      <item>
       <spacer name="horizontalSpacer_9">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -242,7 +269,7 @@
    <item>
     <spacer name="verticalSpacer_8">
      <property name="orientation">
-      <enum>Qt::Vertical</enum>
+      <enum>Qt::Orientation::Vertical</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
@@ -259,6 +286,11 @@
    <class>StereoModeComboBox</class>
    <extends>QComboBox</extends>
    <header>ui/small_widgets/StereoModeComboBox.h</header>
+  </customwidget>
+  <customwidget>
+   <class>HdrTypeComboBox</class>
+   <extends>QComboBox</extends>
+   <header>ui/small_widgets/HdrTypeComboBox.h</header>
   </customwidget>
  </customwidgets>
  <resources>

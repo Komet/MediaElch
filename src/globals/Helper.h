@@ -49,7 +49,6 @@ qreal similarity(const QString& s1, const QString& s2);
 QMap<ColorLabel, QString> labels();
 QColor colorForLabel(ColorLabel label, QString theme);
 QIcon iconForLabel(ColorLabel label);
-QMap<QString, QString> stereoModes();
 QString matchResolution(int width, int height, const QString& scanType);
 
 /// \brief Take the given URL and make an HTML link tag.

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "media/Path.h"
+#include "utils/Meta.h"
 
 #include <QMap>
 #include <QObject>
@@ -22,22 +23,36 @@ public:
         Width,
         Height,
         ScanType,
-        StereoMode
+        StereoMode,
+        HdrType, // added in v2.12.1
+        Unknown, // added in v2.12.1
     };
     enum class AudioDetails
     {
         Language,
         Codec,
-        Channels
+        Channels,
+        Unknown, // added in v2.12.1
     };
     enum class SubtitleDetails
     {
-        Language
+        Language,
+        Unknown, // added in v2.12.1
     };
 
-    static QString detailToString(VideoDetails details);
-    static QString detailToString(AudioDetails details);
-    static QString detailToString(SubtitleDetails details);
+    ELCH_NODISCARD static QVector<VideoDetails> allVideoDetailsAsList();
+    ELCH_NODISCARD static QVector<AudioDetails> allAudioDetailsAsList();
+    ELCH_NODISCARD static QVector<SubtitleDetails> allSubtitleDetailsAsList();
+
+    ELCH_NODISCARD static QString detailToString(VideoDetails details);
+    ELCH_NODISCARD static QString detailToString(AudioDetails details);
+    ELCH_NODISCARD static QString detailToString(SubtitleDetails details);
+    ELCH_NODISCARD static VideoDetails stringToVideoDetail(QString detail);
+    ELCH_NODISCARD static AudioDetails stringToAudioDetail(QString detail);
+    ELCH_NODISCARD static SubtitleDetails stringToSubtitleDetail(QString detail);
+
+    ELCH_NODISCARD static QMap<QString, QString> stereoModes();
+    ELCH_NODISCARD static QVector<QString> hdrTypes();
 
     /// \brief Loads stream details from the file. Returns true if successful.
     ELCH_NODISCARD bool loadStreamDetails();

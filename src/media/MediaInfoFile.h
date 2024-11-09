@@ -1,5 +1,7 @@
 #pragma once
 
+#include "media/Path.h"
+
 #include <QString>
 #include <chrono>
 #include <memory>
@@ -52,36 +54,37 @@ public:
 
     static bool hasMediaInfo();
 
-    bool isReady() const;
+    ELCH_NODISCARD bool isReady() const;
 
-    int subtitleCount() const;
-    int videoStreamCount() const;
-    int audioStreamCount() const;
+    ELCH_NODISCARD int subtitleCount() const;
+    ELCH_NODISCARD int videoStreamCount() const;
+    ELCH_NODISCARD int audioStreamCount() const;
 
     std::chrono::milliseconds duration(int streamIndex) const;
     std::size_t videoWidth(int streamIndex) const;
     std::size_t videoHeight(int streamIndex) const;
     double aspectRatio(int streamIndex) const;
-    QString codec(int streamIndex) const;
-    QString mpegVersion(int streamIndex) const;
-    QString scanType(int streamIndex) const;
-    QString stereoFormat(int streamIndex) const;
-    QString format(int streamIndex) const;
+    ELCH_NODISCARD QString codec(int streamIndex) const;
+    ELCH_NODISCARD QString mpegVersion(int streamIndex) const;
+    ELCH_NODISCARD QString scanType(int streamIndex) const;
+    ELCH_NODISCARD QString stereoFormat(int streamIndex) const;
+    ELCH_NODISCARD QString format(int streamIndex) const;
+    ELCH_NODISCARD QString hdrType(int streamIndex) const;
 
-    QString audioLanguage(int streamIndex) const;
-    QString audioCodec(int streamIndex) const;
-    QString audioChannels(int streamIndex) const;
+    ELCH_NODISCARD QString audioLanguage(int streamIndex) const;
+    ELCH_NODISCARD QString audioCodec(int streamIndex) const;
+    ELCH_NODISCARD QString audioChannels(int streamIndex) const;
 
-    QString subtitleLang(int streamIndex) const;
+    ELCH_NODISCARD QString subtitleLang(int streamIndex) const;
 
 private:
-    QString parseVideoFormat(QString format, QString version) const;
+    ELCH_NODISCARD QString parseVideoFormat(QString format, QString version) const;
 
-    QString getGeneral(int streamIndex, const char* parameter) const;
-    QString getVideo(int streamIndex, const char* parameter) const;
-    QString getAudio(int streamIndex, const char* parameter) const;
-    QStringList getAudio(int streamIndex, QStringList parameters) const;
-    QString getText(int streamIndex, const char* parameter) const;
+    ELCH_NODISCARD QString getGeneral(int streamIndex, const char* parameter) const;
+    ELCH_NODISCARD QString getVideo(int streamIndex, const char* parameter) const;
+    ELCH_NODISCARD QString getAudio(int streamIndex, const char* parameter) const;
+    ELCH_NODISCARD QStringList getAudio(int streamIndex, QStringList parameters) const;
+    ELCH_NODISCARD QString getText(int streamIndex, const char* parameter) const;
 
 private:
     // We don't want the MediaInfoLib include here so we avoid it by

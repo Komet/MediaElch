@@ -1,13 +1,13 @@
 #include "ui/small_widgets/StereoModeComboBox.h"
 
-#include "globals/Helper.h"
+#include "media/StreamDetails.h"
 
 StereoModeComboBox::StereoModeComboBox(QWidget* parent) : QComboBox(parent)
 {
     blockSignals(true);
 
     addItem("", "");
-    QMap<QString, QString> modes = helper::stereoModes();
+    QMap<QString, QString> modes = StreamDetails::stereoModes();
     QMapIterator<QString, QString> it(modes);
     while (it.hasNext()) {
         it.next();

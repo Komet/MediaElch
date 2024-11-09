@@ -485,26 +485,6 @@ QIcon iconForLabel(ColorLabel label)
     return QIcon(pixmap);
 }
 
-QMap<QString, QString> stereoModes()
-{
-    QMap<QString, QString> modes;
-    modes.insert("left_right", "side by side (left eye first)");
-    modes.insert("bottom_top", "top-bottom (right eye first)");
-    modes.insert("bottom_top", "top-bottom (left eye first)");
-    modes.insert("checkerboard_rl", "checkboard (right eye first)");
-    modes.insert("checkerboard_lr", "checkboard (left eye first)");
-    modes.insert("row_interleaved_rl", "row interleaved (right eye first)");
-    modes.insert("row_interleaved_lr", "row interleaved (left eye first)");
-    modes.insert("col_interleaved_rl", "column interleaved (right eye first)");
-    modes.insert("col_interleaved_lr", "column interleaved (left eye first)");
-    modes.insert("anaglyph_cyan_red", "anaglyph (cyan/red)");
-    modes.insert("right_left", "side by side (right eye first)");
-    modes.insert("anaglyph_green_magenta", "anaglyph (green/magenta)");
-    modes.insert("block_lr", "both eyes laced in one block (left eye first)");
-    modes.insert("block_rl", "both eyes laced in one block (right eye first)");
-    return modes;
-}
-
 QString matchResolution(int width, int height, const QString& scanType)
 {
     QString res;

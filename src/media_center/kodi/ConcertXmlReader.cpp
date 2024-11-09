@@ -2,6 +2,7 @@
 
 #include "data/concert/Concert.h"
 #include "media/StreamDetails.h"
+#include "media_center/KodiXml.h"
 
 #include <QDate>
 #include <QDomDocument>
@@ -123,7 +124,7 @@ void ConcertXmlReader::parseConcert(QXmlStreamReader& reader)
         } else if (reader.name() == QLatin1String("fileinfo")) {
             while (reader.readNextStartElement()) {
                 if (reader.name() == QLatin1String("streamdetails")) {
-                    parseStreamDetails(reader);
+                    KodiXml::parseStreamDetails(reader, m_concert.streamDetails());
 
                 } else {
                     reader.skipCurrentElement();
@@ -252,115 +253,6 @@ void ConcertXmlReader::parsePoster(QXmlStreamReader& reader)
     }
 }
 
-void ConcertXmlReader::parseStreamDetails(QXmlStreamReader& reader)
-{
-    auto* streamDetails = m_concert.streamDetails();
-
-    int audioStreamNumber = 0;
-    int subtitleStreamNumber = 0;
-
-    while (reader.readNextStartElement()) {
-        if (reader.name() == QLatin1String("video")) {
-            parseVideoStreamDetails(reader, streamDetails);
-
-        } else if (reader.name() == QLatin1String("audio")) {
-            parseAudioStreamDetails(reader, audioStreamNumber, streamDetails);
-            ++audioStreamNumber;
-
-        } else if (reader.name() == QLatin1String("subtitle")) {
-            parseSubtitleStreamDetails(reader, subtitleStreamNumber, streamDetails);
-            ++subtitleStreamNumber;
-
-        } else {
-            reader.skipCurrentElement();
-        }
-    }
-
-    m_concert.streamDetails()->setLoaded(true);
-}
-
-void ConcertXmlReader::parseVideoStreamDetails(QXmlStreamReader& reader, StreamDetails* streamDetails)
-{
-    const auto readAndStore = [&reader, &streamDetails](StreamDetails::VideoDetails detail) {
-        const QString value = reader.readElementText();
-        if (!value.isEmpty()) {
-            streamDetails->setVideoDetail(detail, value);
-        }
-    };
-
-    while (reader.readNextStartElement()) {
-        if (reader.name() == StreamDetails::detailToString(StreamDetails::VideoDetails::Codec)) {
-            readAndStore(StreamDetails::VideoDetails::Codec);
-
-        } else if (reader.name() == StreamDetails::detailToString(StreamDetails::VideoDetails::Aspect)) {
-            readAndStore(StreamDetails::VideoDetails::Aspect);
-
-        } else if (reader.name() == StreamDetails::detailToString(StreamDetails::VideoDetails::Width)) {
-            readAndStore(StreamDetails::VideoDetails::Width);
-
-        } else if (reader.name() == StreamDetails::detailToString(StreamDetails::VideoDetails::Height)) {
-            readAndStore(StreamDetails::VideoDetails::Height);
-
-        } else if (reader.name() == StreamDetails::detailToString(StreamDetails::VideoDetails::DurationInSeconds)) {
-            readAndStore(StreamDetails::VideoDetails::DurationInSeconds);
-
-        } else if (reader.name() == StreamDetails::detailToString(StreamDetails::VideoDetails::ScanType)) {
-            readAndStore(StreamDetails::VideoDetails::ScanType);
-
-        } else if (reader.name() == StreamDetails::detailToString(StreamDetails::VideoDetails::StereoMode)) {
-            readAndStore(StreamDetails::VideoDetails::StereoMode);
-
-        } else {
-            reader.skipCurrentElement();
-        }
-    }
-}
-
-void ConcertXmlReader::parseAudioStreamDetails(QXmlStreamReader& reader, int streamNumber, StreamDetails* streamDetails)
-{
-    const auto readAndStore = [&](StreamDetails::AudioDetails detail) {
-        const QString value = reader.readElementText();
-        if (!value.isEmpty()) {
-            streamDetails->setAudioDetail(streamNumber, detail, value);
-        }
-    };
-
-    while (reader.readNextStartElement()) {
-        if (reader.name() == StreamDetails::detailToString(StreamDetails::AudioDetails::Codec)) {
-            readAndStore(StreamDetails::AudioDetails::Codec);
-
-        } else if (reader.name() == StreamDetails::detailToString(StreamDetails::AudioDetails::Language)) {
-            readAndStore(StreamDetails::AudioDetails::Language);
-
-        } else if (reader.name() == StreamDetails::detailToString(StreamDetails::AudioDetails::Channels)) {
-            readAndStore(StreamDetails::AudioDetails::Channels);
-
-        } else {
-            reader.skipCurrentElement();
-        }
-    }
-}
-
-void ConcertXmlReader::parseSubtitleStreamDetails(QXmlStreamReader& reader,
-    int streamNumber,
-    StreamDetails* streamDetails)
-{
-    const auto readAndStore = [&](StreamDetails::SubtitleDetails detail) {
-        const QString value = reader.readElementText();
-        if (!value.isEmpty()) {
-            streamDetails->setSubtitleDetail(streamNumber, detail, value);
-        }
-    };
-
-    while (reader.readNextStartElement()) {
-        if (reader.name() == StreamDetails::detailToString(StreamDetails::SubtitleDetails::Language)) {
-            readAndStore(StreamDetails::SubtitleDetails::Language);
-
-        } else {
-            reader.skipCurrentElement();
-        }
-    }
-}
 
 } // namespace kodi
 } // namespace mediaelch

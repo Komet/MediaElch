@@ -490,6 +490,7 @@ SOURCES += \
     src/ui/small_widgets/SlidingStackedWidget.cpp \
     src/ui/small_widgets/SpinBoxDelegate.cpp \
     src/ui/small_widgets/StereoModeComboBox.cpp \
+    src/ui/small_widgets/HdrTypeComboBox.cpp \
     src/ui/small_widgets/TagCloud.cpp \
     src/ui/small_widgets/TvShowTreeView.cpp \
     src/ui/small_widgets/WebImageLabel.cpp \
@@ -882,6 +883,7 @@ HEADERS += Version.h \
     src/ui/small_widgets/SlidingStackedWidget.h \
     src/ui/small_widgets/SpinBoxDelegate.h \
     src/ui/small_widgets/StereoModeComboBox.h \
+    src/ui/small_widgets/HdrTypeComboBox.h \
     src/ui/small_widgets/TagCloud.h \
     src/ui/small_widgets/TvShowTreeView.h \
     src/ui/small_widgets/WebImageLabel.h \

@@ -103,6 +103,11 @@ public:
 
     void loadBooklets(Album* album) override;
 
+    static void parseStreamDetails(QXmlStreamReader& reader, StreamDetails* streamDetails);
+    static void parseVideoStreamDetails(QXmlStreamReader& reader, StreamDetails* streamDetails);
+    static void parseAudioStreamDetails(QXmlStreamReader& reader, int streamNumber, StreamDetails* streamDetails);
+    static void parseSubtitleStreamDetails(QXmlStreamReader& reader, int streamNumber, StreamDetails* streamDetails);
+
 private:
     QByteArray getMovieXml(Movie* movie);
     QByteArray getConcertXml(Concert* concert);
