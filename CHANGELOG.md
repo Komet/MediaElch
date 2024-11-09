@@ -23,6 +23,7 @@
 ### Added
 
 - Renamer: Placeholder `<tmdbId>` is now also available for TV shows and episodes (#1814)
+- NFO: `<hdrtype>` is now supported (#1810)
 
 ## 2.12.0 - 2024-10-13
 

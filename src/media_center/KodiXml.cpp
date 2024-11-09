@@ -360,17 +360,11 @@ bool KodiXml::loadStreamDetails(StreamDetails* streamDetails, QDomElement elem)
 {
     bool hasDetails = false;
     if (!elem.elementsByTagName("video").isEmpty()) {
+        // Only on `<video>` tag allowed by Kodi.
         hasDetails = true;
         QDomElement videoElem = elem.elementsByTagName("video").at(0).toElement();
 
-        std::array<StreamDetails::VideoDetails, 7> details{StreamDetails::VideoDetails::Codec,
-            StreamDetails::VideoDetails::Aspect,
-            StreamDetails::VideoDetails::Width,
-            StreamDetails::VideoDetails::Height,
-            StreamDetails::VideoDetails::DurationInSeconds,
-            StreamDetails::VideoDetails::ScanType,
-            StreamDetails::VideoDetails::StereoMode};
-
+        auto details = StreamDetails::allVideoDetailsAsList();
         for (const auto detail : details) {
             const QString detailStr = StreamDetails::detailToString(detail);
             QDomNodeList elements = videoElem.elementsByTagName(detailStr);
@@ -379,46 +373,119 @@ bool KodiXml::loadStreamDetails(StreamDetails* streamDetails, QDomElement elem)
             }
         }
     }
+    {
+        QDomNodeList audioElements = elem.elementsByTagName("audio");
+        auto audioDetails = StreamDetails::allAudioDetailsAsList();
+        for (int i = 0, n = audioElements.count(); i < n; ++i) {
+            hasDetails = true;
+            QDomElement audioElem = audioElements.at(i).toElement();
 
-    QDomNodeList audioElements = elem.elementsByTagName("audio");
-    std::array<StreamDetails::AudioDetails, 3> audioDetails{StreamDetails::AudioDetails::Codec,
-        StreamDetails::AudioDetails::Language,
-        StreamDetails::AudioDetails::Channels};
+            for (const auto detail : audioDetails) {
+                const QString detailStr = StreamDetails::detailToString(detail);
+                QDomNodeList detailElements = audioElem.elementsByTagName(detailStr);
 
-    hasDetails = hasDetails || !audioElements.isEmpty();
-    for (int i = 0, n = audioElements.count(); i < n; ++i) {
-        QDomElement audioElem = audioElements.at(i).toElement();
-
-        for (const auto detail : audioDetails) {
-            const QString detailStr = StreamDetails::detailToString(detail);
-            QDomNodeList detailElements = audioElem.elementsByTagName(detailStr);
-
-            if (!detailElements.isEmpty()) {
-                streamDetails->setAudioDetail(i, detail, detailElements.at(0).toElement().text());
+                if (!detailElements.isEmpty()) {
+                    streamDetails->setAudioDetail(i, detail, detailElements.at(0).toElement().text());
+                }
             }
         }
     }
-
-    QDomNodeList subtitleElements = elem.elementsByTagName("subtitle");
-    std::array<StreamDetails::SubtitleDetails, 1> subtitleDetails{StreamDetails::SubtitleDetails::Language};
-
-    hasDetails = hasDetails || !subtitleElements.isEmpty();
-    for (int i = 0, n = subtitleElements.count(); i < n; ++i) {
-        QDomElement subtitleElem = subtitleElements.at(i).toElement();
-        if (!subtitleElem.elementsByTagName("file").isEmpty()) {
-            continue;
-        }
-        for (const auto detail : subtitleDetails) {
-            const auto detailStr = StreamDetails::detailToString(detail);
-            if (!subtitleElem.elementsByTagName(detailStr).isEmpty()) {
-                streamDetails->setSubtitleDetail(
-                    i, detail, subtitleElem.elementsByTagName(detailStr).at(0).toElement().text());
+    {
+        QDomNodeList subtitleElements = elem.elementsByTagName("subtitle");
+        auto subtitleDetails = StreamDetails::allSubtitleDetailsAsList();
+        for (int i = 0, n = subtitleElements.count(); i < n; ++i) {
+            hasDetails = true;
+            QDomElement subtitleElem = subtitleElements.at(i).toElement();
+            if (!subtitleElem.elementsByTagName("file").isEmpty()) {
+                continue;
+            }
+            for (const auto detail : subtitleDetails) {
+                const auto detailStr = StreamDetails::detailToString(detail);
+                if (!subtitleElem.elementsByTagName(detailStr).isEmpty()) {
+                    streamDetails->setSubtitleDetail(
+                        i, detail, subtitleElem.elementsByTagName(detailStr).at(0).toElement().text());
+                }
             }
         }
     }
     streamDetails->setLoaded(hasDetails);
     return hasDetails;
 }
+
+void KodiXml::parseStreamDetails(QXmlStreamReader& reader, StreamDetails* streamDetails)
+{
+    int audioStreamNumber = 0;
+    int subtitleStreamNumber = 0;
+    bool hasDetails = false;
+
+    while (reader.readNextStartElement()) {
+        if (reader.name() == QLatin1String("video")) {
+            hasDetails = true;
+            parseVideoStreamDetails(reader, streamDetails);
+
+        } else if (reader.name() == QLatin1String("audio")) {
+            hasDetails = true;
+            parseAudioStreamDetails(reader, audioStreamNumber, streamDetails);
+            ++audioStreamNumber;
+
+        } else if (reader.name() == QLatin1String("subtitle")) {
+            hasDetails = true;
+            parseSubtitleStreamDetails(reader, subtitleStreamNumber, streamDetails);
+            ++subtitleStreamNumber;
+
+        } else {
+            reader.skipCurrentElement();
+        }
+    }
+
+    streamDetails->setLoaded(hasDetails);
+}
+
+void KodiXml::parseVideoStreamDetails(QXmlStreamReader& reader, StreamDetails* streamDetails)
+{
+    while (reader.readNextStartElement()) {
+        StreamDetails::VideoDetails detail = StreamDetails::stringToVideoDetail(reader.name().toString());
+        if (detail != StreamDetails::VideoDetails::Unknown) {
+            const QString value = reader.readElementText();
+            if (!value.isEmpty()) {
+                streamDetails->setVideoDetail(detail, value);
+            }
+        } else {
+            reader.skipCurrentElement();
+        }
+    }
+}
+
+void KodiXml::parseAudioStreamDetails(QXmlStreamReader& reader, int streamNumber, StreamDetails* streamDetails)
+{
+    while (reader.readNextStartElement()) {
+        StreamDetails::AudioDetails detail = StreamDetails::stringToAudioDetail(reader.name().toString());
+        if (detail != StreamDetails::AudioDetails::Unknown) {
+            const QString value = reader.readElementText();
+            if (!value.isEmpty()) {
+                streamDetails->setAudioDetail(streamNumber, detail, value);
+            }
+        } else {
+            reader.skipCurrentElement();
+        }
+    }
+}
+
+void KodiXml::parseSubtitleStreamDetails(QXmlStreamReader& reader, int streamNumber, StreamDetails* streamDetails)
+{
+    while (reader.readNextStartElement()) {
+        StreamDetails::SubtitleDetails detail = StreamDetails::stringToSubtitleDetail(reader.name().toString());
+        if (detail != StreamDetails::SubtitleDetails::Unknown) {
+            const QString value = reader.readElementText();
+            if (!value.isEmpty()) {
+                streamDetails->setSubtitleDetail(streamNumber, detail, value);
+            }
+        } else {
+            reader.skipCurrentElement();
+        }
+    }
+}
+
 
 /// \brief Writes streamdetails to xml stream
 /// \param xml XML Stream

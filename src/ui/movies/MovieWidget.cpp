@@ -207,6 +207,7 @@ MovieWidget::MovieWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieWid
     connect(ui->videoHeight,      elchOverload<int>(&QSpinBox::valueChanged),          this, &MovieWidget::onStreamDetailsEdited);
     connect(ui->videoWidth,       elchOverload<int>(&QSpinBox::valueChanged),          this, &MovieWidget::onStreamDetailsEdited);
     connect(ui->stereoMode,       elchOverload<int>(&QComboBox::currentIndexChanged),  this, &MovieWidget::onStreamDetailsEdited);
+    connect(ui->hdrType,          elchOverload<int>(&QComboBox::currentIndexChanged),  this, &MovieWidget::onStreamDetailsEdited);
     // clang-format on
 
     ui->userRating->setSingleStep(0.1);
@@ -319,6 +320,10 @@ void MovieWidget::clear()
     blocked = ui->stereoMode->blockSignals(true);
     ui->stereoMode->setCurrentIndex(0);
     ui->stereoMode->blockSignals(blocked);
+
+    blocked = ui->hdrType->blockSignals(true);
+    ui->hdrType->setCurrentIndex(0);
+    ui->hdrType->blockSignals(blocked);
 
     ui->buttonRevert->setVisible(false);
     ui->localTrailer->setVisible(false);
@@ -681,6 +686,7 @@ void MovieWidget::updateMovieInfo()
     ui->videoWidth->setEnabled(m_movie->streamDetailsLoaded());
     ui->videoScantype->setEnabled(m_movie->streamDetailsLoaded());
     ui->stereoMode->setEnabled(m_movie->streamDetailsLoaded());
+    ui->hdrType->setEnabled(m_movie->streamDetailsLoaded());
 
     updateImages({ImageType::MoviePoster,
         ImageType::MovieBackdrop,
@@ -742,6 +748,7 @@ void MovieWidget::updateStreamDetails(bool reloadedFromFile)
     ui->videoWidth->blockSignals(true);
     ui->videoHeight->blockSignals(true);
     ui->stereoMode->blockSignals(true);
+    ui->hdrType->blockSignals(true);
 
     StreamDetails* streamDetails = m_movie->streamDetails();
     const auto videoDetails = streamDetails->videoDetails();
@@ -755,6 +762,12 @@ void MovieWidget::updateStreamDetails(bool reloadedFromFile)
     for (int i = 0, n = ui->stereoMode->count(); i < n; ++i) {
         if (ui->stereoMode->itemData(i).toString() == videoDetails.value(StreamDetails::VideoDetails::StereoMode)) {
             ui->stereoMode->setCurrentIndex(i);
+        }
+    }
+    ui->hdrType->setCurrentIndex(0);
+    for (int i = 0, n = ui->hdrType->count(); i < n; ++i) {
+        if (ui->hdrType->itemData(i).toString() == videoDetails.value(StreamDetails::VideoDetails::HdrType)) {
+            ui->hdrType->setCurrentIndex(i);
         }
     }
     QTime time(0, 0, 0, 0);
@@ -775,12 +788,14 @@ void MovieWidget::updateStreamDetails(bool reloadedFromFile)
     m_streamDetailsAudio.clear();
     m_streamDetailsSubtitles.clear();
 
+    // TODO: Refactor. Why the heck do we have hard-coded row numbers?
+
     int audioTracks = qsizetype_to_int(streamDetails->audioDetails().count());
     const auto audioDetails = streamDetails->audioDetails();
     for (int i = 0; i < audioTracks; ++i) {
         auto* label = new QLabel(tr("Track %1").arg(i + 1));
         label->setAlignment(Qt::AlignVCenter | Qt::AlignRight);
-        ui->streamDetails->addWidget(label, 8 + i, 0);
+        ui->streamDetails->addWidget(label, 9 + i, 0);
         auto* edit1 = new QLineEdit(audioDetails.at(i).value(StreamDetails::AudioDetails::Language));
         auto* edit2 = new QLineEdit(audioDetails.at(i).value(StreamDetails::AudioDetails::Codec));
         auto* edit3 = new QLineEdit(audioDetails.at(i).value(StreamDetails::AudioDetails::Channels));
@@ -796,7 +811,7 @@ void MovieWidget::updateStreamDetails(bool reloadedFromFile)
         layout->addWidget(edit2);
         layout->addWidget(edit3);
         layout->addStretch(10);
-        ui->streamDetails->addLayout(layout, 8 + i, 1);
+        ui->streamDetails->addLayout(layout, 9 + i, 1);
         m_streamDetailsWidgets << label << edit1 << edit2 << edit3;
         m_streamDetailsAudio << (QVector<QLineEdit*>() << edit1 << edit2 << edit3);
         connect(edit1, &QLineEdit::textEdited, this, &MovieWidget::onStreamDetailsEdited);
@@ -807,16 +822,16 @@ void MovieWidget::updateStreamDetails(bool reloadedFromFile)
     if (!streamDetails->subtitleDetails().isEmpty()) {
         auto* subtitleLabel = new QLabel(tr("Subtitles"));
         subtitleLabel->setAlignment(Qt::AlignVCenter | Qt::AlignRight);
-        QFont f = ui->labelStreamDetailsAudio->font();
+        QFont f = ui->lblStreamDetailsAudio->font();
         f.setBold(true);
         subtitleLabel->setFont(f);
-        ui->streamDetails->addWidget(subtitleLabel, 8 + audioTracks, 0);
+        ui->streamDetails->addWidget(subtitleLabel, 9 + audioTracks, 0);
         m_streamDetailsWidgets << subtitleLabel;
 
         for (int i = 0, n = qsizetype_to_int(streamDetails->subtitleDetails().count()); i < n; ++i) {
             auto* trackLabel = new QLabel(tr("Track %1").arg(i + 1));
             trackLabel->setAlignment(Qt::AlignVCenter | Qt::AlignRight);
-            ui->streamDetails->addWidget(trackLabel, 9 + audioTracks + i, 0);
+            ui->streamDetails->addWidget(trackLabel, 10 + audioTracks + i, 0);
             auto* edit1 =
                 new QLineEdit(streamDetails->subtitleDetails().at(i).value(StreamDetails::SubtitleDetails::Language));
             edit1->setToolTip(tr("Language"));
@@ -824,7 +839,7 @@ void MovieWidget::updateStreamDetails(bool reloadedFromFile)
             auto* layout = new QHBoxLayout();
             layout->addWidget(edit1);
             layout->addStretch(10);
-            ui->streamDetails->addLayout(layout, 9 + audioTracks + i, 1);
+            ui->streamDetails->addLayout(layout, 10 + audioTracks + i, 1);
             m_streamDetailsWidgets << trackLabel << edit1;
             m_streamDetailsSubtitles << (QVector<QLineEdit*>() << edit1);
             connect(edit1, &QLineEdit::textEdited, this, &MovieWidget::onStreamDetailsEdited);
@@ -839,6 +854,7 @@ void MovieWidget::updateStreamDetails(bool reloadedFromFile)
     ui->videoWidth->blockSignals(false);
     ui->videoHeight->blockSignals(false);
     ui->stereoMode->blockSignals(false);
+    ui->hdrType->blockSignals(false);
 }
 
 void MovieWidget::onClickReloadStreamDetails()
@@ -860,6 +876,7 @@ void MovieWidget::onClickReloadStreamDetails()
     ui->videoWidth->setEnabled(true);
     ui->videoScantype->setEnabled(true);
     ui->stereoMode->setEnabled(true);
+    ui->hdrType->setEnabled(true);
 }
 
 void MovieWidget::onDownloadTrailer()
@@ -1394,6 +1411,7 @@ void MovieWidget::onStreamDetailsEdited()
     details->setVideoDetail(StreamDetails::VideoDetails::DurationInSeconds,
         QString("%1").arg(-ui->videoDuration->time().secsTo(QTime(0, 0))));
     details->setVideoDetail(StreamDetails::VideoDetails::StereoMode, ui->stereoMode->currentData().toString());
+    details->setVideoDetail(StreamDetails::VideoDetails::HdrType, ui->hdrType->currentData().toString());
 
     for (int i = 0, n = qsizetype_to_int(m_streamDetailsAudio.count()); i < n; ++i) {
         details->setAudioDetail(i, StreamDetails::AudioDetails::Language, m_streamDetailsAudio[i][0]->text());

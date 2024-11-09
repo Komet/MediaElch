@@ -21,6 +21,7 @@ StreamDetails::StreamDetails(QObject* parent, mediaelch::FileList files) :
 QString StreamDetails::detailToString(VideoDetails details)
 {
     switch (details) {
+    case VideoDetails::Unknown: return "undefined";
     case VideoDetails::Codec: return "codec";
     case VideoDetails::Aspect: return "aspect";
     case VideoDetails::Width: return "width";
@@ -28,6 +29,7 @@ QString StreamDetails::detailToString(VideoDetails details)
     case VideoDetails::DurationInSeconds: return "durationinseconds";
     case VideoDetails::ScanType: return "scantype";
     case VideoDetails::StereoMode: return "stereomode";
+    case VideoDetails::HdrType: return "hdrtype";
     }
     qCWarning(generic) << "Undefined video detail: no string representation";
     return "undefined";
@@ -36,9 +38,10 @@ QString StreamDetails::detailToString(VideoDetails details)
 QString StreamDetails::detailToString(AudioDetails details)
 {
     switch (details) {
-    case StreamDetails::AudioDetails::Codec: return "codec";
-    case StreamDetails::AudioDetails::Language: return "language";
-    case StreamDetails::AudioDetails::Channels: return "channels";
+    case AudioDetails::Unknown: return "undefined";
+    case AudioDetails::Codec: return "codec";
+    case AudioDetails::Language: return "language";
+    case AudioDetails::Channels: return "channels";
     }
     qCWarning(generic) << "Undefined audio detail: no string representation";
     return "undefined";
@@ -47,15 +50,58 @@ QString StreamDetails::detailToString(AudioDetails details)
 QString StreamDetails::detailToString(SubtitleDetails details)
 {
     switch (details) {
-    case StreamDetails::SubtitleDetails::Language: return "language";
+    case SubtitleDetails::Unknown: return "undefined";
+    case SubtitleDetails::Language: return "language";
     }
     qCWarning(generic) << "Undefined subtitle detail: no string representation";
     return "undefined";
 }
 
-/**
- * \brief Clears all information
- */
+StreamDetails::VideoDetails StreamDetails::stringToVideoDetail(QString detail)
+{
+    static const QMap<QString, StreamDetails::VideoDetails> map = {
+        {"codec", StreamDetails::VideoDetails::Codec},
+        {"aspect", StreamDetails::VideoDetails::Aspect},
+        {"width", StreamDetails::VideoDetails::Width},
+        {"height", StreamDetails::VideoDetails::Height},
+        {"durationinseconds", StreamDetails::VideoDetails::DurationInSeconds},
+        {"scantype", StreamDetails::VideoDetails::ScanType},
+        {"stereomode", StreamDetails::VideoDetails::StereoMode},
+        {"hdrtype", StreamDetails::VideoDetails::HdrType},
+    };
+    if (map.contains(detail)) {
+        return map[detail];
+    }
+
+    return StreamDetails::VideoDetails::Unknown;
+}
+
+StreamDetails::AudioDetails StreamDetails::stringToAudioDetail(QString detail)
+{
+    static const QMap<QString, StreamDetails::AudioDetails> map = {
+        {"codec", StreamDetails::AudioDetails::Codec},
+        {"language", StreamDetails::AudioDetails::Language},
+        {"channels", StreamDetails::AudioDetails::Channels},
+    };
+    if (map.contains(detail)) {
+        return map[detail];
+    }
+
+    return StreamDetails::AudioDetails::Unknown;
+}
+
+StreamDetails::SubtitleDetails StreamDetails::stringToSubtitleDetail(QString detail)
+{
+    static const QMap<QString, StreamDetails::SubtitleDetails> map = {
+        {"language", StreamDetails::SubtitleDetails::Language},
+    };
+    if (map.contains(detail)) {
+        return map[detail];
+    }
+
+    return StreamDetails::SubtitleDetails::Unknown;
+}
+
 void StreamDetails::clear()
 {
     m_videoDetails.clear();
@@ -168,6 +214,7 @@ bool StreamDetails::loadWithLibrary()
         setVideoDetail(VideoDetails::Height, QString::number(mi.videoHeight(0)));
         setVideoDetail(VideoDetails::ScanType, mi.scanType(0));
         setVideoDetail(VideoDetails::StereoMode, mi.stereoFormat(0));
+        setVideoDetail(VideoDetails::HdrType, mi.hdrType(0));
     }
 
     const int audioCount = mi.audioStreamCount();
@@ -340,4 +387,64 @@ QString StreamDetails::audioCodec() const
 QString StreamDetails::videoCodec() const
 {
     return m_videoDetails.value(VideoDetails::Codec);
+}
+
+QVector<StreamDetails::VideoDetails> StreamDetails::allVideoDetailsAsList()
+{
+    return {
+        StreamDetails::VideoDetails::Codec,
+        StreamDetails::VideoDetails::Aspect,
+        StreamDetails::VideoDetails::Width,
+        StreamDetails::VideoDetails::Height,
+        StreamDetails::VideoDetails::DurationInSeconds,
+        StreamDetails::VideoDetails::ScanType,
+        StreamDetails::VideoDetails::StereoMode,
+        StreamDetails::VideoDetails::HdrType,
+    };
+}
+
+QVector<StreamDetails::AudioDetails> StreamDetails::allAudioDetailsAsList()
+{
+    return {
+        StreamDetails::AudioDetails::Codec,
+        StreamDetails::AudioDetails::Language,
+        StreamDetails::AudioDetails::Channels,
+    };
+}
+
+QVector<StreamDetails::SubtitleDetails> StreamDetails::allSubtitleDetailsAsList()
+{
+    return {
+        StreamDetails::SubtitleDetails::Language,
+    };
+}
+
+QMap<QString, QString> StreamDetails::stereoModes()
+{
+    QMap<QString, QString> modes;
+    modes.insert("left_right", "side by side (left eye first)");
+    modes.insert("bottom_top", "top-bottom (right eye first)");
+    modes.insert("bottom_top", "top-bottom (left eye first)");
+    modes.insert("checkerboard_rl", "checkboard (right eye first)");
+    modes.insert("checkerboard_lr", "checkboard (left eye first)");
+    modes.insert("row_interleaved_rl", "row interleaved (right eye first)");
+    modes.insert("row_interleaved_lr", "row interleaved (left eye first)");
+    modes.insert("col_interleaved_rl", "column interleaved (right eye first)");
+    modes.insert("col_interleaved_lr", "column interleaved (left eye first)");
+    modes.insert("anaglyph_cyan_red", "anaglyph (cyan/red)");
+    modes.insert("right_left", "side by side (right eye first)");
+    modes.insert("anaglyph_green_magenta", "anaglyph (green/magenta)");
+    modes.insert("block_lr", "both eyes laced in one block (left eye first)");
+    modes.insert("block_rl", "both eyes laced in one block (right eye first)");
+    return modes;
+}
+
+QVector<QString> StreamDetails::hdrTypes()
+{
+    QVector<QString> types{
+        "hdr10",
+        "dolbyvision",
+        "hlg",
+    };
+    return types;
 }
