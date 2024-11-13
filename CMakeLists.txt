@@ -18,7 +18,7 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 # -----------------------------------------------------------------------------
 # Project configuration options. Sanitizer options are defined in the
-# correspondig FindXX modules.
+# corresponding FindXX modules.
 # cmake-format: off
 option(ENABLE_CLANG_TIDY       "Analyze code with clang-tidy."                          OFF)
 option(ENABLE_CLANG_TIDY_FIX   "Analyze code with clang-tidy and fix errors."           OFF)

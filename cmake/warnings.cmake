@@ -12,6 +12,7 @@ function(enable_warnings warning_target)
       -Wextra
       -pedantic
       -pedantic-errors
+      -Wno-c++20-extensions
       # Warnings that are not enabled by -Wall/-Wextra See
       # https://kristerw.blogspot.com/2017/09/useful-gcc-warning- options-not-
       # enabled.html
@@ -44,6 +45,7 @@ function(enable_warnings warning_target)
       -Wextra
       -pedantic
       -pedantic-errors
+      -Wno-c++20-extensions
       -Wdocumentation # Warns about doxygen variable
       # name mismatches, etc.
       -Wno-gnu-zero-variadic-macro-arguments # false positive for qCDebug
