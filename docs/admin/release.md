@@ -184,6 +184,12 @@ cd MediaElch
 
 Your GPG key may be outdated. Please see: <https://help.ubuntu.com/community/GnuPrivacyGuardHowto>
 
+If you don't run on Ubuntu, use the Ubuntu Docker image.
+You need these packages (besides the build dependencies of MediaElch):
+
+```sh
+apt install tar gzip xz-utils devscripts debhelper dput cdbs gnupg2
+```
 
 ### openSUSE
 
