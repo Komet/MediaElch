@@ -1,6 +1,8 @@
 #include "TvShow.h"
 #include "globals/Globals.h"
 
+#include "database/ConcertPersistence.h"
+#include "database/TvShowPersistence.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
@@ -330,14 +332,14 @@ void TvShow::scrapeData(mediaelch::scraper::TvScraper* scraper,
             scraper::copyDetailsToShowEpisodes(*this, scrapedEpisodes, loadNew, job->config().details);
 
             // Update the TV show's episodes in the database after new details have been merged.
-            Database* const database = Manager::instance()->database();
-            const mediaelch::DatabaseId showsSettingsId = database->showsSettingsId(this);
-            database->clearEpisodeList(showsSettingsId);
+            mediaelch::TvShowPersistence persistence{*Manager::instance()->database()};
+            const mediaelch::DatabaseId showsSettingsId = persistence.showsSettingsId(this);
+            persistence.clearEpisodeList(showsSettingsId);
             for (TvShowEpisode* episode : asConst(m_episodes)) {
-                database->addEpisodeToShowList(episode, showsSettingsId, episode->tmdbId());
+                persistence.addEpisodeToShowList(episode, showsSettingsId, episode->tmdbId());
                 episode->setChanged(true);
             }
-            database->cleanUpEpisodeList(showsSettingsId);
+            persistence.cleanUpEpisodeList(showsSettingsId);
 
             setChanged(true);
             emit sigLoaded(this, showDetails, job->config().locale);
@@ -1437,7 +1439,8 @@ void TvShow::setShowMissingEpisodes(bool showMissing, bool updateDatabase)
 {
     m_showMissingEpisodes = showMissing;
     if (updateDatabase) {
-        Manager::instance()->database()->setShowMissingEpisodes(this, showMissing);
+        mediaelch::TvShowPersistence persistence{*Manager::instance()->database()};
+        persistence.setShowMissingEpisodes(this, showMissing);
     }
 }
 
@@ -1450,7 +1453,8 @@ void TvShow::setHideSpecialsInMissingEpisodes(bool hideSpecials, bool updateData
 {
     m_hideSpecialsInMissingEpisodes = hideSpecials;
     if (updateDatabase) {
-        Manager::instance()->database()->setHideSpecialsInMissingEpisodes(this, hideSpecials);
+        mediaelch::TvShowPersistence persistence{*Manager::instance()->database()};
+        persistence.setHideSpecialsInMissingEpisodes(this, hideSpecials);
     }
 }
 
@@ -1461,7 +1465,8 @@ bool TvShow::hideSpecialsInMissingEpisodes() const
 
 void TvShow::fillMissingEpisodes()
 {
-    QVector<TvShowEpisode*> episodes = Manager::instance()->database()->showsEpisodes(this);
+    mediaelch::TvShowPersistence persistence{*Manager::instance()->database()};
+    QVector<TvShowEpisode*> episodes = persistence.showsEpisodes(this);
     for (TvShowEpisode* episode : episodes) {
         if (episode == nullptr) {
             qCCritical(generic) << "[TvShow] Episode loaded from database is a nullptr";

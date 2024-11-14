@@ -8,6 +8,8 @@
 #include <QStringList>
 #include <QVector>
 
+class Concert;
+
 class ConcertFileSearcher : public QObject
 {
     Q_OBJECT
@@ -31,8 +33,6 @@ private:
     bool m_aborted = false;
 
 private:
-    Database& database();
-
     void clearOldConcerts(bool forceClear);
 
     QVector<QStringList> loadContentsFromDiskIfRequired(bool forceReload);

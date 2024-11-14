@@ -1,6 +1,7 @@
 #include "MakeMkvDialog.h"
 #include "ui_MakeMkvDialog.h"
 
+#include "database/MoviePersistence.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "scrapers/movie/custom/CustomMovieScraper.h"
@@ -376,8 +377,9 @@ void MakeMkvDialog::importFinished()
     Q_UNUSED(m_movie->controller()->loadStreamDetailsFromFile());
     m_movie->controller()->saveData(Manager::instance()->mediaCenterInterface());
     m_movie->controller()->loadData(Manager::instance()->mediaCenterInterface());
-    Manager::instance()->database()->addMovie(m_movie, mediaelch::DirectoryPath(ui->comboImportDir->currentText()));
-    Manager::instance()->database()->commit();
+    mediaelch::MoviePersistence persistence{*Manager::instance()->database()};
+    persistence.addMovie(m_movie, mediaelch::DirectoryPath(ui->comboImportDir->currentText()));
+    Manager::instance()->database()->db().commit();
     Manager::instance()->movieModel()->addMovie(m_movie);
     m_movie = nullptr;
 

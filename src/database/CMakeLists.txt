@@ -1,4 +1,8 @@
-add_library(mediaelch_database OBJECT Database.cpp DatabaseId.cpp)
+add_library(
+  mediaelch_database OBJECT
+  Database.cpp DatabaseId.cpp MoviePersistence.cpp ConcertPersistence.cpp
+  MusicPersistence.cpp TvShowPersistence.cpp
+)
 
 target_link_libraries(
   mediaelch_database

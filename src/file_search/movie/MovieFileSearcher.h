@@ -19,10 +19,11 @@ class Job;
 
 class MovieLoader;
 class MovieLoaderStore;
+class MoviePersistence;
 
 /// \brief Class responsible for (re-)loading all movies inside given directories.
 ///
-/// \par Example
+/// \details Example
 /// \code{cpp}
 ///   MovieFileSearcher searcher;
 ///   searcher.setMovieDirectories(directories);
@@ -66,8 +67,8 @@ private:
 
     /// \brief Directories that need to be scanned.
     QQueue<mediaelch::MediaDirectory> m_directoryQueue;
-    MovieLoaderStore* m_store = nullptr;
-    MovieLoader* m_currentJob = nullptr;
+    MovieLoaderStore* m_store{nullptr};
+    MovieLoader* m_currentJob{nullptr};
 
     bool m_running = false;
     bool m_aborted = false;

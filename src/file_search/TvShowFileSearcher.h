@@ -7,8 +7,6 @@
 #include <QDir>
 #include <QObject>
 
-class Database;
-
 class TvShowFileSearcher : public QObject
 {
     Q_OBJECT
@@ -42,8 +40,6 @@ private:
     bool m_aborted;
 
 private:
-    Database& database();
-
     void clearOldTvShows(bool forceClear);
     /// \brief Get a map of TV show paths and their respective files in the show folder.
     QMap<QString, QVector<QStringList>> readTvShowContent(bool forceReload);

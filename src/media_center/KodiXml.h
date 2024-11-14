@@ -37,7 +37,6 @@ public:
     // concerts
     bool saveConcert(Concert* concert) override;
     bool loadConcert(Concert* concert, QString initialNfoContent = "") override;
-    void loadConcertImages(Concert* concert);
 
     // TV shows
     bool loadTvShow(TvShow* show, QString initialNfoContent = "") override;

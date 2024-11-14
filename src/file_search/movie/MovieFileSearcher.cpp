@@ -1,5 +1,6 @@
 #include "MovieFileSearcher.h"
 
+#include "database/MoviePersistence.h"
 #include "globals/Manager.h"
 #include "globals/MessageIds.h"
 #include "log/Log.h"
@@ -68,8 +69,9 @@ void MovieFileSearcher::reload(bool reloadFromDisk)
         return;
     }
 
+    MoviePersistence persistence{*Manager::instance()->database()};
     if (reloadFromDisk) {
-        Manager::instance()->database()->clearAllMovies();
+        persistence.clearAllMovies();
     }
 
     Manager::instance()->movieModel()->clear();
@@ -87,7 +89,7 @@ void MovieFileSearcher::reload(bool reloadFromDisk)
         // was cleared above.  If the directory is disabled, we also clear the cache if
         // autoReload is on.
         if (movieDir.autoReload && !reloadFromDisk) {
-            Manager::instance()->database()->clearMoviesInDirectory(movieDir.path);
+            persistence.clearMoviesInDirectory(movieDir.path);
         }
         if (!movieDir.disabled) {
             movieDir.autoReload = movieDir.autoReload || reloadFromDisk;
