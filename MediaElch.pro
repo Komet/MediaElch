@@ -129,6 +129,10 @@ SOURCES += \
     src/data/AllMusicId.cpp \
     src/database/Database.cpp \
     src/database/DatabaseId.cpp \
+    src/database/ConcertPersistence.cpp \
+    src/database/MoviePersistence.cpp \
+    src/database/TvShowPersistence.cpp \
+    src/database/MusicPersistence.cpp \
     src/data/Certification.cpp \
     src/data/concert/ConcertController.cpp \
     src/data/concert/Concert.cpp \
@@ -520,6 +524,10 @@ HEADERS += Version.h \
     src/data/AllMusicId.h \
     src/database/Database.h \
     src/database/DatabaseId.h \
+    src/database/ConcertPersistence.h \
+    src/database/MoviePersistence.h \
+    src/database/TvShowPersistence.h \
+    src/database/MusicPersistence.h \
     src/data/Certification.h \
     src/data/concert/ConcertController.h \
     src/data/concert/Concert.h \

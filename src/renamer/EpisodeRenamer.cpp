@@ -1,6 +1,7 @@
 #include "renamer/EpisodeRenamer.h"
 
 #include "data/tv_show/TvShowEpisode.h"
+#include "database/TvShowPersistence.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "media_center/MediaCenterInterface.h"
@@ -15,6 +16,8 @@ EpisodeRenamer::EpisodeRenamer(RenamerConfig renamerConfig, RenamerDialog* dialo
 EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode& episode,
     QVector<TvShowEpisode*>& episodesRenamed)
 {
+    mediaelch::TvShowPersistence persistence{*Manager::instance()->database()};
+
     const QString& seasonPattern = m_config.directoryPattern;
     const bool useSeasonDirectories = m_config.renameDirectories;
 
@@ -178,7 +181,7 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode& episode
             files << episodeFileinfo.path() + "/" + file;
         }
         episode.setFiles(files);
-        Manager::instance()->database()->update(&episode);
+        persistence.update(&episode);
     }
 
     if (useSeasonDirectories) {
@@ -221,7 +224,7 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode& episode
                             newEpisodeFiles << newDir + file.toString().mid(oldDir.length());
                         }
                         episode.setFiles(newEpisodeFiles);
-                        Manager::instance()->database()->update(&episode);
+                        persistence.update(&episode);
                     }
                 }
             }
@@ -241,7 +244,7 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode& episode
             }
             if (!m_config.dryRun) {
                 episode.setFiles(newEpisodeFiles);
-                Manager::instance()->database()->update(&episode);
+                persistence.update(&episode);
             }
 
             if (!newNfoFileName.isEmpty() && !nfo.isEmpty()) {

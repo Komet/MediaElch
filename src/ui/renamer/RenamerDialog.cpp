@@ -1,6 +1,7 @@
 #include "ui/renamer/RenamerDialog.h"
 #include "ui_RenamerDialog.h"
 
+#include "database/TvShowPersistence.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "log/Log.h"
@@ -329,6 +330,7 @@ void RenamerDialog::renameTvShows(const QVector<TvShow*>& shows, const QString& 
         return;
     }
 
+    mediaelch::TvShowPersistence persistence{*Manager::instance()->database()};
     for (TvShow* show : shows) {
         if (show->hasChanged()) {
             ui->results->append(
@@ -358,14 +360,14 @@ void RenamerDialog::renameTvShows(const QVector<TvShow*>& shows, const QString& 
             const QString newShowDir = parentDir.absolutePath() + "/" + newFolderName;
             const QString oldShowDir = show->dir().toString();
             show->setDir(mediaelch::DirectoryPath(newShowDir));
-            Manager::instance()->database()->update(show);
+            persistence.update(show);
             for (TvShowEpisode* episode : show->episodes()) {
                 QStringList files;
                 for (const mediaelch::FilePath& file : episode->files()) {
                     files << newShowDir + file.toString().mid(oldShowDir.length());
                 }
                 episode->setFiles(files);
-                Manager::instance()->database()->update(episode);
+                persistence.update(episode);
             }
         }
     }

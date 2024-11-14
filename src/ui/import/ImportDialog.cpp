@@ -1,6 +1,9 @@
 #include "ImportDialog.h"
 #include "ui_ImportDialog.h"
 
+#include "database/ConcertPersistence.h"
+#include "database/MoviePersistence.h"
+#include "database/TvShowPersistence.h"
 #include "file_search/TvShowFileSearcher.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
@@ -664,8 +667,10 @@ void ImportDialog::onMovingFilesFinished()
         Q_UNUSED(m_movie->controller()->loadStreamDetailsFromFile());
         m_movie->controller()->saveData(Manager::instance()->mediaCenterInterface());
         m_movie->controller()->loadData(Manager::instance()->mediaCenterInterface());
-        Manager::instance()->database()->addMovie(m_movie, mediaelch::DirectoryPath(importDir()));
-        Manager::instance()->database()->commit();
+
+        mediaelch::MoviePersistence persistence{*Manager::instance()->database()};
+        persistence.addMovie(m_movie, mediaelch::DirectoryPath(importDir()));
+        Manager::instance()->database()->db().commit();
         Manager::instance()->movieModel()->addMovie(m_movie);
         m_movie = nullptr;
 
@@ -679,7 +684,8 @@ void ImportDialog::onMovingFilesFinished()
         m_show->addEpisode(m_episode);
         m_episode->saveData(Manager::instance()->mediaCenterInterfaceTvShow());
         m_episode->loadData(Manager::instance()->mediaCenterInterfaceTvShow(), true, false);
-        Manager::instance()->database()->add(m_episode, mediaelch::DirectoryPath(importDir()), m_show->databaseId());
+        mediaelch::TvShowPersistence persistence{*Manager::instance()->database()};
+        persistence.add(m_episode, mediaelch::DirectoryPath(importDir()), m_show->databaseId());
 
         if (m_show->showMissingEpisodes()) {
             m_show->fillMissingEpisodes();
@@ -700,8 +706,9 @@ void ImportDialog::onMovingFilesFinished()
         Q_UNUSED(m_concert->controller()->loadStreamDetailsFromFile());
         m_concert->controller()->saveData(Manager::instance()->mediaCenterInterface());
         m_concert->controller()->loadData(Manager::instance()->mediaCenterInterface());
-        Manager::instance()->database()->add(m_concert, mediaelch::DirectoryPath(importDir()));
-        Manager::instance()->database()->commit();
+        mediaelch::ConcertPersistence persistence{*Manager::instance()->database()};
+        persistence.add(m_concert, mediaelch::DirectoryPath(importDir()));
+        Manager::instance()->database()->db().commit();
         Manager::instance()->concertModel()->addConcert(m_concert);
         m_concert = nullptr;
     }

@@ -2,6 +2,7 @@
 
 #include "data/music/Album.h"
 #include "data/music/Artist.h"
+#include "database/MusicPersistence.h"
 #include "globals/Manager.h"
 #include "globals/MessageIds.h"
 #include "log/Log.h"
@@ -49,8 +50,10 @@ void MusicFileSearcher::reload(bool force)
     QVector<Album*> albums;
     QVector<Album*> albumsFromDb;
 
+    mediaelch::MusicPersistence persistence{*Manager::instance()->database()};
+
     if (force) {
-        Manager::instance()->database()->clearAllArtists();
+        persistence.clearAllArtists();
     }
 
     QMap<Artist*, mediaelch::DirectoryPath> artistPaths;
@@ -64,7 +67,7 @@ void MusicFileSearcher::reload(bool force)
         }
 
         if (dir.autoReload) {
-            Manager::instance()->database()->clearArtistsInDirectory(mediaelch::DirectoryPath(dir.path));
+            persistence.clearArtistsInDirectory(mediaelch::DirectoryPath(dir.path));
         }
 
         if (dir.autoReload || force) {
@@ -110,13 +113,12 @@ void MusicFileSearcher::reload(bool force)
                 }
             }
         } else {
-            QVector<Artist*> artistsInPath =
-                Manager::instance()->database()->artistsInDirectory(mediaelch::DirectoryPath(dir.path));
+            QVector<Artist*> artistsInPath = persistence.artistsInDirectory(mediaelch::DirectoryPath(dir.path));
             for (Artist* artist : artistsInPath) {
                 if (artistsFromDb.count() % 20 == 0) {
                     emit currentDir(artist->path().toString().mid(dir.path.path().length()));
                 }
-                QVector<Album*> albumsOfArtist = Manager::instance()->database()->albums(artist);
+                QVector<Album*> albumsOfArtist = persistence.albums(artist);
                 artistsFromDb.append(artist);
                 albumsFromDb.append(albumsOfArtist);
             }
@@ -129,10 +131,10 @@ void MusicFileSearcher::reload(bool force)
     int current = 0;
     int max = qsizetype_to_int(artists.length() + albums.length() + artistsFromDb.length() + albumsFromDb.length());
 
-    Manager::instance()->database()->transaction();
+    Manager::instance()->database()->db().transaction();
     for (Artist* artist : artists) {
         if (m_aborted) {
-            Manager::instance()->database()->commit();
+            Manager::instance()->database()->db().commit();
             return;
         }
         artist->controller()->loadData(Manager::instance()->mediaCenterInterface(), true);
@@ -140,11 +142,11 @@ void MusicFileSearcher::reload(bool force)
             emit currentDir(artist->name());
         }
         emit progress(++current, max, m_progressMessageId);
-        Manager::instance()->database()->add(artist, artistPaths.value(artist));
+        persistence.add(artist, artistPaths.value(artist));
     }
     for (Album* album : albums) {
         if (m_aborted) {
-            Manager::instance()->database()->commit();
+            Manager::instance()->database()->db().commit();
             return;
         }
         album->controller()->loadData(Manager::instance()->mediaCenterInterface(), true);
@@ -152,9 +154,9 @@ void MusicFileSearcher::reload(bool force)
             emit currentDir(album->artist() + "/" + album->title());
         }
         emit progress(++current, max, m_progressMessageId);
-        Manager::instance()->database()->add(album, albumPaths.value(album));
+        persistence.add(album, albumPaths.value(album));
     }
-    Manager::instance()->database()->commit();
+    Manager::instance()->database()->db().commit();
 
     QtConcurrent::blockingMapped(artistsFromDb, MusicFileSearcher::loadArtistData);
     QtConcurrent::blockingMapped(albumsFromDb, MusicFileSearcher::loadAlbumData);

@@ -1,6 +1,7 @@
 #include "ConcertRenamer.h"
 
 #include "data/concert/Concert.h"
+#include "database/ConcertPersistence.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "media_center/MediaCenterInterface.h"
@@ -207,7 +208,8 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert& concert)
             files << f;
         }
         concert.setFiles(files);
-        Manager::instance()->database()->update(&concert);
+        mediaelch::ConcertPersistence persistence{*Manager::instance()->database()};
+        persistence.update(&concert);
     }
 
 

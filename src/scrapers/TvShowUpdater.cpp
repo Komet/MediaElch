@@ -1,6 +1,7 @@
 #include "TvShowUpdater.h"
 
 #include "data/tv_show/TvShow.h"
+#include "database/TvShowPersistence.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "globals/MessageIds.h"
@@ -65,13 +66,13 @@ void TvShowUpdater::updateShow(TvShow* show, bool force)
         }
 
         // Store in database
-        Database* const database = Manager::instance()->database();
-        const DatabaseId showsSettingsId = database->showsSettingsId(show);
-        database->clearEpisodeList(showsSettingsId);
+        TvShowPersistence database{*Manager::instance()->database()};
+        const DatabaseId showsSettingsId = database.showsSettingsId(show);
+        database.clearEpisodeList(showsSettingsId);
         for (auto* episode : scrapedEpisodes) {
-            database->addEpisodeToShowList(episode, showsSettingsId, episode->tmdbId());
+            database.addEpisodeToShowList(episode, showsSettingsId, episode->tmdbId());
         }
-        database->cleanUpEpisodeList(showsSettingsId);
+        database.cleanUpEpisodeList(showsSettingsId);
 
         show->fillMissingEpisodes();
     });

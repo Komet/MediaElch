@@ -1,5 +1,6 @@
 #include "ConcertFileSearcher.h"
 
+#include "database/ConcertPersistence.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "globals/MessageIds.h"
@@ -186,8 +187,9 @@ void ConcertFileSearcher::scanDir(QString startPath,
 
 void ConcertFileSearcher::clearOldConcerts(bool forceClear)
 {
+    mediaelch::ConcertPersistence persistence{*Manager::instance()->database()};
     if (forceClear) {
-        database().clearAllConcerts();
+        persistence.clearAllConcerts();
     }
 
     // clear gui
@@ -195,13 +197,14 @@ void ConcertFileSearcher::clearOldConcerts(bool forceClear)
 
     for (const mediaelch::MediaDirectory& dir : asConst(m_directories)) {
         if (dir.autoReload || forceClear) {
-            database().clearConcertsInDirectory(mediaelch::DirectoryPath(dir.path));
+            persistence.clearConcertsInDirectory(mediaelch::DirectoryPath(dir.path));
         }
     }
 }
 
 QVector<QStringList> ConcertFileSearcher::loadContentsFromDiskIfRequired(bool forceReload)
 {
+    mediaelch::ConcertPersistence persistence{*Manager::instance()->database()};
     QVector<QStringList> contents;
 
     for (const mediaelch::MediaDirectory& dir : asConst(m_directories)) {
@@ -209,7 +212,7 @@ QVector<QStringList> ConcertFileSearcher::loadContentsFromDiskIfRequired(bool fo
             continue;
         }
         const QString path = dir.path.path();
-        QVector<Concert*> concertsFromDb = database().concertsInDirectory(mediaelch::DirectoryPath(dir.path));
+        QVector<Concert*> concertsFromDb = persistence.concertsInDirectory(mediaelch::DirectoryPath(dir.path));
         if (dir.autoReload || forceReload || concertsFromDb.isEmpty()) {
             scanDir(path, path, contents, dir.separateFolders, true);
         }
@@ -219,8 +222,9 @@ QVector<QStringList> ConcertFileSearcher::loadContentsFromDiskIfRequired(bool fo
 
 void ConcertFileSearcher::storeContentsInDatabase(const QVector<QStringList>& contents)
 {
+    mediaelch::ConcertPersistence persistence{*Manager::instance()->database()};
     // Setup concerts
-    database().transaction();
+    Manager::instance()->database()->db().transaction();
     for (const QStringList& files : contents) {
         if (m_aborted) {
             return;
@@ -253,9 +257,9 @@ void ConcertFileSearcher::storeContentsInDatabase(const QVector<QStringList>& co
         concert.setInSeparateFolder(inSeparateFolder);
         concert.controller()->loadData(Manager::instance()->mediaCenterInterface());
         emit currentDir(concert.title());
-        database().add(&concert, mediaelch::DirectoryPath(path));
+        persistence.add(&concert, mediaelch::DirectoryPath(path));
     }
-    database().commit();
+    Manager::instance()->database()->db().commit();
 }
 
 void ConcertFileSearcher::setupDatabaseConcerts(const QVector<Concert*>& dbConcerts)
@@ -273,12 +277,13 @@ void ConcertFileSearcher::setupDatabaseConcerts(const QVector<Concert*>& dbConce
 
 QVector<Concert*> ConcertFileSearcher::loadConcertsFromDatabase()
 {
+    mediaelch::ConcertPersistence persistence{*Manager::instance()->database()};
     QVector<Concert*> dbConcerts;
     for (const mediaelch::MediaDirectory& dir : asConst(m_directories)) {
         if (m_aborted) {
             break;
         }
-        dbConcerts.append(database().concertsInDirectory(mediaelch::DirectoryPath(dir.path)));
+        dbConcerts.append(persistence.concertsInDirectory(mediaelch::DirectoryPath(dir.path)));
     }
     setupDatabaseConcerts(dbConcerts);
     return dbConcerts;
@@ -303,9 +308,4 @@ QStringList ConcertFileSearcher::getFiles(mediaelch::DirectoryPath path)
 void ConcertFileSearcher::abort()
 {
     m_aborted = true;
-}
-
-Database& ConcertFileSearcher::database()
-{
-    return *Manager::instance()->database();
 }

@@ -1,6 +1,7 @@
 #include "MovieDirectorySearcher.h"
 
 #include "database/Database.h"
+#include "database/MoviePersistence.h"
 #include "globals/Manager.h"
 #include "globals/MediaDirectory.h"
 #include "log/Log.h"
@@ -385,15 +386,16 @@ void MovieDiskLoader::storeAndAddToDatabase()
     emitPercent(0, 0);
     emit progressText(this, tr("Storing movies in database..."));
 
-    m_db->transaction();
+    mediaelch::MoviePersistence persistence{*m_db};
+    m_db->db().transaction();
     for (Movie* movie : asConst(m_movies)) {
         // See also: Use https://stackoverflow.com/a/47473949/1603627
         // We do this in just one thread.
         movie->setLabel(m_db->getLabel(movie->files()));
-        m_db->addMovie(movie, m_dir.path);
+        persistence.addMovie(movie, m_dir.path);
         m_store->addMovie(movie);
     }
-    m_db->commit();
+    m_db->db().commit();
     m_movies.clear();
 }
 
@@ -408,7 +410,8 @@ void MovieDatabaseLoader::doStart()
     QVector<Movie*> movies;
     {
         std::unique_ptr<Database> db(Database::newConnection(this));
-        movies = db->moviesInDirectory(m_dir.path, this);
+        mediaelch::MoviePersistence persistence{*db};
+        movies = persistence.moviesInDirectory(m_dir.path, this);
     }
     if (isAborted()) {
         return;
@@ -448,7 +451,7 @@ QThread* createAutoDeleteThreadWithMovieLoader(MovieLoader* worker, QObject* thr
 {
     QThread* thread = new QThread(threadParent);
     MediaElch_Assert(thread != nullptr);
-    thread->setObjectName("movieloaderthread");
+    thread->setObjectName("movie-loader-thread");
     worker->moveToThread(thread);
 
     // Startup & delete setup

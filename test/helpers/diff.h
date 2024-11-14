@@ -42,7 +42,7 @@ namespace scraper {
 ///
 /// Uses XML as storage format, but that is an implementation detail.
 ///
-/// \par Exmaple
+/// Example
 /// \code{cpp} compareAgainstReference(myConcert, "scrapers/concert/my_tmdb_concert_12345"); \endcode
 void compareAgainstReference(Concert& concert, QString filename);
 void compareAgainstReference(Movie& movie, QString filename);

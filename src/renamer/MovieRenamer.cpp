@@ -1,6 +1,7 @@
 #include "MovieRenamer.h"
 
 #include "data/movie/Movie.h"
+#include "database/MoviePersistence.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "media_center/MediaCenterInterface.h"
@@ -195,7 +196,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
             }
         }
 
-        // Rename additional files (nfo, poster, etc)
+        // Rename additional files (nfo, poster, etc.)
         const auto renameFileType = [&](QString filePath, DataFileType dataFileType) -> void {
             if (filePath.isEmpty()) {
                 // File does not exist, e.g. there is no poster.
@@ -382,7 +383,8 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
             files << f;
         }
         movie.setFiles(files);
-        Manager::instance()->database()->update(&movie);
+        mediaelch::MoviePersistence persistence{*Manager::instance()->database()};
+        persistence.update(&movie);
     }
 
     if (errorOccurred) {

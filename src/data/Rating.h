@@ -23,7 +23,7 @@ public:
 public:
     /// \brief Returns a more readable representation of the source string.
     ///
-    /// \par Example
+    /// \details Example
     ///   \code{cpp}
     ///   QString name = Rating::sourceToName("themoviedb");
     ///   // name == "TMDB"
