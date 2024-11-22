@@ -66,7 +66,7 @@ win32 {
 }
 
 *-g++*|*-clang* {
-    # Include all Qt modules using isystem so that warnings reagarding Qt files are ignored
+    # Include all Qt modules using isystem so that warnings regarding Qt files are ignored
     QMAKE_CXXFLAGS += -isystem "$$[QT_INSTALL_HEADERS]"
     for (inc, QT) {
         QMAKE_CXXFLAGS += -isystem \"$$[QT_INSTALL_HEADERS]/Qt$$system("echo $$inc | sed 's/.*/\u&/'")\"
@@ -1006,7 +1006,7 @@ macx {
         src/ui/MacUiUtilities.mm
 }
 
-RESOURCES += data/MediaElch.qrc ui.qrc
+RESOURCES += data/MediaElch.qrc ui.qrc src/database/schema/sql.qrc
 
 TRANSLATIONS += \
     data/i18n/MediaElch_bg.ts \
