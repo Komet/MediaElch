@@ -3,8 +3,9 @@ add_executable(mediaelch_test_integration)
 target_sources(
   mediaelch_test_integration
   PRIVATE
-    export/testSimpleExport.cpp
     main.cpp
+    database/testSchema.cpp
+    export/testSimpleExport.cpp
     file/testPath.cpp
     media_center/testKodi_v18_concert.cpp
     media_center/testKodi_v18_episode.cpp

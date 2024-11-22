@@ -112,6 +112,8 @@ endif()
 
 # ------------------------------------------------------------------------------
 # Sources
-target_sources(libmediaelch PUBLIC ../ui.qrc ../data/MediaElch.qrc)
+target_sources(
+  libmediaelch PUBLIC ../ui.qrc ../data/MediaElch.qrc ./database/schema/sql.qrc
+)
 
 mediaelch_post_target_defaults(libmediaelch)

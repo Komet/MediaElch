@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/sql">
+        <file>000_settings.sql</file>
+        <file>014_initial.sql</file>
+        <file>015_artists_albums.sql</file>
+        <file>016_movieSubtitles.sql</file>
+        <file>017_showEpisodes.sql</file>
+        <file>018_index_fix.sql</file>
+    </qresource>
+</RCC>

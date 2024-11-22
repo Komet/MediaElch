@@ -27,6 +27,9 @@ public:
     void setLabel(const mediaelch::FileList& fileNames, ColorLabel color);
     ColorLabel getLabel(const mediaelch::FileList& fileNames);
 
+    /// For testing.
+    QString getSchema();
+
 private:
     void setupDatabase();
 
