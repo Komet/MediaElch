@@ -65,7 +65,7 @@ QStringList getSqlStatementsFromFile(const QString& filePath)
     }
     QString fileContents(res.readAll());
     res.close();
-    return fileContents.split("-- next", Qt::SkipEmptyParts);
+    return fileContents.split("-- next", ElchSplitBehavior::SkipEmptyParts);
 }
 
 void executeSqlStatementsFromFile(const QString& filePath, QSqlQuery& query)
