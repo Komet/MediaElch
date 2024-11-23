@@ -61,7 +61,7 @@ QStringList getSqlStatementsFromFile(const QString& filePath)
     QFile res(filePath);
     const bool result = res.open(QIODevice::ReadOnly);
     if (!result) {
-        qCFatal(generic) << "[Database] Could not open SQL file:" << filePath;
+        qFatal((QStringLiteral("[Database] Could not open SQL file: ") + filePath).toUtf8());
     }
     QString fileContents(res.readAll());
     res.close();
@@ -75,11 +75,11 @@ void executeSqlStatementsFromFile(const QString& filePath, QSqlQuery& query)
         QString sql = statement.trimmed();
         bool success = query.prepare(sql.trimmed());
         if (!success) {
-            qCFatal(generic) << "[Database] Error preparing SQL:" << sql << "; ERROR:" << query.lastError().text();
+            qFatal((QStringLiteral("[Database] Error preparing SQL:") + sql +"; ERROR:" + query.lastError().text()).toUtf8());
         }
         success = query.exec();
         if (!success) {
-            qCFatal(generic) << "[Database] Error executing SQL:" << sql << "; ERROR:" << query.lastError().text();
+            qFatal((QStringLiteral("[Database] Error executing SQL:") + sql + "; ERROR:" + query.lastError().text()).toUtf8());
         }
     }
 }

@@ -7,7 +7,7 @@ HdrTypeComboBox::HdrTypeComboBox(QWidget* parent) : QComboBox(parent)
     blockSignals(true);
 
     addItem("", "");
-    QList<QString> types = StreamDetails::hdrTypes();
+    auto types = StreamDetails::hdrTypes();
     for (QString& type : types) {
         addItem(type, type);
     }
