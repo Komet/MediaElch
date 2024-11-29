@@ -72,11 +72,13 @@ int RenamerDialog::exec()
     QString fileNameMulti;
     QString directoryName;
     QString seasonName;
+    QString newDelimiter;
     bool renameFiles = false;
     bool renameFolders = false;
     bool useSeasonDirectories = false;
-    Settings::instance()->renamePatterns(m_renameType, fileName, fileNameMulti, directoryName, seasonName); //TODO: add old+new delimiter
-    Settings::instance()->renamings(m_renameType, renameFiles, renameFolders, useSeasonDirectories); //TODO: add checkbox delimiter state
+    bool replaceDelimiter = false;
+    Settings::instance()->renamePatterns(m_renameType, fileName, fileNameMulti, directoryName, seasonName, newDelimiter);
+    Settings::instance()->renamings(m_renameType, renameFiles, renameFolders, useSeasonDirectories, replaceDelimiter);
 
     // Default texts for combo box.
     QStringList fileNameDefaults;
@@ -132,10 +134,12 @@ int RenamerDialog::exec()
     ui->seasonNaming->setText(seasonName);
 
     ui->newDelimiterNaming->setItems(newDelimiterNamingDefaults);
+    ui->newDelimiterNaming->setText(newDelimiter);
 
     ui->chkFileNaming->setChecked(renameFiles);
     ui->chkDirectoryNaming->setChecked(renameFolders);
     ui->chkSeasonDirectories->setChecked(useSeasonDirectories);
+    ui->chkReplaceDelimiter->setChecked(replaceDelimiter);
 
     ui->chkSeasonDirectories->setVisible(m_renameType == RenameType::TvShows);
     ui->seasonNaming->setVisible(m_renameType == RenameType::TvShows);
@@ -164,11 +168,13 @@ void RenamerDialog::reject()
         ui->fileNaming->text(),
         ui->fileNamingMulti->text(),
         ui->directoryNaming->text(),
-        ui->seasonNaming->text());
+        ui->seasonNaming->text(),
+        ui->newDelimiterNaming->text());
     Settings::instance()->setRenamings(m_renameType,
         ui->chkFileNaming->isChecked(),
         ui->chkDirectoryNaming->isChecked(),
-        ui->chkSeasonDirectories->isChecked());
+        ui->chkSeasonDirectories->isChecked(),
+        ui->chkReplaceDelimiter->isChecked());
 
     QDialog::reject();
     if (m_filesRenamed) {

@@ -219,6 +219,8 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
             QString fileName = QFileInfo(filePath).fileName();
             QString newDataFileName =
                 dataFiles.first().saveFileName(newFileName, SeasonNumber::NoSeason, movie.files().count() > 1);
+            // Replace Delimiter with the one chosen by the user
+            Renamer::replaceDelimiter(newDataFileName, oldDelimiter, newDelimiter, replaceDelimiter);
             helper::sanitizeFileName(newDataFileName, newDelimiter);
 
             if (newDataFileName == fileName) {

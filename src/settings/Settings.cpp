@@ -817,6 +817,18 @@ void Settings::renamePatterns(RenameType renameType,
     seasonPattern =
         settings()->value(QString("RenamePattern/%1/SeasonPattern").arg(renameTypeStr), "Season <season>").toString();
 }
+void Settings::renamePatterns(RenameType renameType,
+    QString& fileNamePattern,
+    QString& fileNamePatternMulti,
+    QString& directoryPattern,
+    QString& seasonPattern,
+    QString& replaceDelimiterPattern)
+{
+    Settings::renamePatterns(renameType, fileNamePattern, fileNamePatternMulti, directoryPattern, seasonPattern);
+    const QString renameTypeStr = renamerTypeToString(renameType);
+    replaceDelimiterPattern =
+        settings()->value(QString("RenamePattern/%1/ReplaceDelimiterPattern").arg(renameTypeStr), "_").toString();
+}
 
 void Settings::setRenamePatterns(RenameType renameType,
     QString fileNamePattern,
@@ -830,6 +842,17 @@ void Settings::setRenamePatterns(RenameType renameType,
     settings()->setValue(QString("RenamePattern/%1/DirectoryPattern").arg(renameTypeStr), directoryPattern);
     settings()->setValue(QString("RenamePattern/%1/SeasonPattern").arg(renameTypeStr), seasonPattern);
 }
+void Settings::setRenamePatterns(RenameType renameType,
+    QString fileNamePattern,
+    QString fileNamePatternMulti,
+    QString directoryPattern,
+    QString seasonPattern,
+    QString replaceDelimiterPattern)
+{
+    Settings::setRenamePatterns(renameType, fileNamePattern, fileNamePatternMulti, directoryPattern, seasonPattern);
+    const QString renameTypeStr = renamerTypeToString(renameType);
+    settings()->setValue(QString("RenamePattern/%1/ReplaceDelimiterPattern").arg(renameTypeStr), replaceDelimiterPattern);
+}
 
 void Settings::setRenamings(RenameType renameType, bool files, bool folders, bool seasonDirectories)
 {
@@ -837,6 +860,12 @@ void Settings::setRenamings(RenameType renameType, bool files, bool folders, boo
     settings()->setValue(QString("RenamePattern/%1/RenameFiles").arg(renameTypeStr), files);
     settings()->setValue(QString("RenamePattern/%1/RenameFolders").arg(renameTypeStr), folders);
     settings()->setValue(QString("RenamePattern/%1/UseSeasonDirectories").arg(renameTypeStr), seasonDirectories);
+}
+void Settings::setRenamings(RenameType renameType, bool files, bool folders, bool seasonDirectories, bool replaceDelimiter)
+{
+    Settings::setRenamings(renameType, files, folders, seasonDirectories);
+    const QString renameTypeStr = renamerTypeToString(renameType);
+    settings()->setValue(QString("RenamePattern/%1/ReplaceDelimiter").arg(renameTypeStr), replaceDelimiter);
 }
 
 void Settings::renamings(RenameType renameType, bool& files, bool& folders, bool& seasonDirectories)
@@ -846,6 +875,13 @@ void Settings::renamings(RenameType renameType, bool& files, bool& folders, bool
     folders = settings()->value(QString("RenamePattern/%1/RenameFolders").arg(renameTypeStr), true).toBool();
     seasonDirectories =
         settings()->value(QString("RenamePattern/%1/UseSeasonDirectories").arg(renameTypeStr), true).toBool();
+}
+void Settings::renamings(RenameType renameType, bool& files, bool& folders, bool& seasonDirectories, bool& replaceDelimiter)
+{
+    Settings::renamings(renameType, files, folders, seasonDirectories);
+    const QString renameTypeStr = renamerTypeToString(renameType);
+    replaceDelimiter =
+        settings()->value(QString("RenamePattern/%1/ReplaceDelimiter").arg(renameTypeStr), true).toBool();
 }
 
 int Settings::tvShowUpdateOption()

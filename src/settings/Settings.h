@@ -106,7 +106,14 @@ public:
         QString& fileNamePatternMulti,
         QString& directoryPattern,
         QString& seasonPattern);
+    void renamePatterns(RenameType renameType,
+        QString& fileNamePattern,
+        QString& fileNamePatternMulti,
+        QString& directoryPattern,
+        QString& seasonPattern,
+        QString& replaceDelimiterPattern);
     void renamings(RenameType renameType, bool& files, bool& folders, bool& seasonDirectories);
+    void renamings(RenameType renameType, bool& files, bool& folders, bool& seasonDirectories, bool& replaceDelimiter);
 
     int tvShowUpdateOption();
     bool ignoreArticlesWhenSorting() const;
@@ -169,7 +176,14 @@ public:
         QString fileNamePatternMulti,
         QString directoryPattern,
         QString seasonPattern);
+    void setRenamePatterns(RenameType renameType,
+        QString fileNamePattern,
+        QString fileNamePatternMulti,
+        QString directoryPattern,
+        QString seasonPattern,
+        QString replaceDelimiterPattern);
     void setRenamings(RenameType renameType, bool files, bool folders, bool seasonDirectories);
+    void setRenamings(RenameType renameType, bool files, bool folders, bool seasonDirectories, bool replaceDelimiter);
     void setTvShowUpdateOption(int option);
     void setIgnoreArticlesWhenSorting(bool ignore);
     void setMovieSetArtworkType(MovieSetArtworkType type);

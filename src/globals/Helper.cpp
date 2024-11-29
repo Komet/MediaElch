@@ -209,13 +209,13 @@ void sanitizeFileName(QString& fileName, QString defaultValue)
 {
     // Just a few changes to avoid invalid filenames.
     // See https://docs.microsoft.com/en-us/windows/win32/fileio/naming-a-file
-    fileName.replace("<", defaultValue);
-    fileName.replace(">", defaultValue);
-    fileName.replace(":", defaultValue);
-    fileName.replace("\"", defaultValue);
-    fileName.replace("/", defaultValue);
-    fileName.replace("\\", defaultValue);
-    fileName.replace("|", defaultValue);
+    fileName.replace("<", " ");
+    fileName.replace(">", " ");
+    fileName.replace(":", " ");
+    fileName.replace("\"", " ");
+    fileName.replace("/", " ");
+    fileName.replace("\\", " ");
+    fileName.replace("|", " ");
     fileName.replace("?", "");
     fileName.replace("*", "");
 
@@ -228,6 +228,7 @@ void sanitizeFileName(QString& fileName, QString defaultValue)
     fileName.replace(QRegularExpression(R"(\s\s+)"), " ");
 
     fileName = fileName.trimmed();
+    Renamer::replaceDelimiter(fileName, " ", defaultValue, true);
 }
 
 void sanitizeFolderName(QString& fileName, QString defaultValue)

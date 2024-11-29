@@ -71,7 +71,7 @@ QString Renamer::replaceCondition(QString& text, const QString& condition, bool 
     return text;
 }
 
-bool Renamer::replaceDelimiter(QString& text, QString& oldDelimiter, QString& newDelimiter, bool execCondition)
+bool Renamer::replaceDelimiter(QString& text, QString oldDelimiter, QString newDelimiter, bool execCondition)
 {
     if (execCondition == true){
         text.replace(oldDelimiter, newDelimiter);

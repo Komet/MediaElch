@@ -19,6 +19,11 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert& concert)
     QString fiCanonicalPath = concertInfo.canonicalPath();
     QDir dir(concertInfo.canonicalPath());
     QString newFolderName = m_config.directoryPattern;
+
+    bool replaceDelimiter = m_config.replaceDelimiter;
+    QString oldDelimiter = " ";
+    QString newDelimiter = (replaceDelimiter) ? m_config.newDelimiterPattern : oldDelimiter;
+
     QString newFileName;
     QStringList newConcertFiles;
     QString parentDirName;
@@ -77,7 +82,11 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert& concert)
                     videoDetails.value(StreamDetails::VideoDetails::ScanType)));
             Renamer::replaceCondition(
                 newFileName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
-            helper::sanitizeFileName(newFileName);
+
+            // Replace Delimiter with the one chosen by the user
+            Renamer::replaceDelimiter(newFileName, oldDelimiter, newDelimiter, replaceDelimiter);
+            helper::sanitizeFileName(newFileName, newDelimiter);
+
             if (fi.fileName() != newFileName) {
                 if (!m_config.dryRun) {
                     const int row =
@@ -126,7 +135,11 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert& concert)
             QString fileName = QFileInfo(filePath).fileName();
             QString newDataFileName =
                 files.first().saveFileName(newFileName, SeasonNumber::NoSeason, concert.files().count() > 1);
-            helper::sanitizeFileName(newDataFileName);
+
+            // Replace Delimiter with the one chosen by the user
+            Renamer::replaceDelimiter(newDataFileName, oldDelimiter, newDelimiter, replaceDelimiter);
+            helper::sanitizeFileName(newDataFileName, newDelimiter);
+
             if (newDataFileName == fileName) {
                 // File already has correct name
                 return;
@@ -178,7 +191,11 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert& concert)
             helper::matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
                 videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
                 videoDetails.value(StreamDetails::VideoDetails::ScanType)));
-        helper::sanitizeFolderName(newFolderName);
+
+        // Replace Delimiter with the one chosen by the user
+        Renamer::replaceDelimiter(newFolderName, oldDelimiter, newDelimiter, replaceDelimiter);
+        helper::sanitizeFolderName(newFolderName, newDelimiter);
+
         if (dir.dirName() != newFolderName) {
             renameRow = m_dialog->addResultToTable(dir.dirName(), newFolderName, Renamer::RenameOperation::Rename);
         }
