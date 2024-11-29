@@ -262,7 +262,7 @@ void RenamerDialog::renameType(const bool isDryRun)
     config.filePatternMulti = ui->fileNamingMulti->text();
     config.renameFiles = ui->chkFileNaming->isChecked();
 
-    config.replaceDelimiters = ui->chkReplaceDelimiter->isChecked();
+    config.replaceDelimiter = ui->chkReplaceDelimiter->isChecked();
     config.oldDelimiterPattern = ui->oldDelimiterNaming->text();
     config.newDelimiterPattern = ui->newDelimiterNaming->text();
 

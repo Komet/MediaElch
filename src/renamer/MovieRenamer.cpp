@@ -20,6 +20,10 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
     QDir dir(movieInfo.canonicalPath());
     QString newFolderName = m_config.directoryPattern;
 
+    bool replaceDelimiter = m_config.replaceDelimiter;
+    QString oldDelimiter = (replaceDelimiter) ? m_config.oldDelimiterPattern : " ";
+    QString newDelimiter = m_config.newDelimiterPattern;
+
     MediaCenterInterface* mediaCenter = Manager::instance()->mediaCenterInterface();
     QString nfo = mediaCenter->nfoFilePath(&movie);
 
@@ -89,7 +93,11 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
             MovieRenamer::replaceCondition(newFileName, "movieset", movie.set().name);
             MovieRenamer::replaceCondition(
                 newFileName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
-            helper::sanitizeFileName(newFileName);
+
+            // Replace Delimiter with the one chosen by the user
+            Renamer::replaceDelimiter(newFileName, oldDelimiter, newDelimiter, replaceDelimiter);
+            helper::sanitizeFileName(newFileName, newDelimiter);
+
             if (fi.fileName() != newFileName) {
                 {
                     const int row = m_dialog->addResultToTable(fi.fileName(), newFileName, RenameOperation::Rename);
@@ -211,7 +219,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
             QString fileName = QFileInfo(filePath).fileName();
             QString newDataFileName =
                 dataFiles.first().saveFileName(newFileName, SeasonNumber::NoSeason, movie.files().count() > 1);
-            helper::sanitizeFileName(newDataFileName);
+            helper::sanitizeFileName(newDataFileName, newDelimiter);
 
             if (newDataFileName == fileName) {
                 // File already has correct name
@@ -285,7 +293,11 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
         Renamer::replaceCondition(newFolderName, "movieset", movie.set().name);
         Renamer::replaceCondition(newFolderName, "imdbId", movie.imdbId().toString());
         Renamer::replaceCondition(newFolderName, "tmdbId", movie.tmdbId().toString());
-        helper::sanitizeFolderName(newFolderName);
+
+        // Replace Delimiter with the one chosen by the user
+        Renamer::replaceDelimiter(newFolderName, oldDelimiter, newDelimiter, replaceDelimiter);
+        helper::sanitizeFolderName(newFolderName, newDelimiter);
+
         if (dir.dirName() != newFolderName) {
             renameRow = m_dialog->addResultToTable(dir.dirName(), newFolderName, RenameOperation::Rename);
         }
@@ -323,7 +335,10 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
         Renamer::replaceCondition(newFolderName, "movieset", movie.set().name);
         Renamer::replaceCondition(newFolderName, "imdbId", movie.imdbId().toString());
         Renamer::replaceCondition(newFolderName, "tmdbId", movie.tmdbId().toString());
-        helper::sanitizeFolderName(newFolderName);
+
+        // Replace Delimiter with the one chosen by the user
+        Renamer::replaceDelimiter(newFolderName, oldDelimiter, newDelimiter, replaceDelimiter);
+        helper::sanitizeFolderName(newFolderName, newDelimiter);
 
         if (dir.dirName() != newFolderName) { // check if movie is not already on good folder
             int i = 0;

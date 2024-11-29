@@ -71,6 +71,15 @@ QString Renamer::replaceCondition(QString& text, const QString& condition, bool 
     return text;
 }
 
+bool Renamer::replaceDelimiter(QString& text, QString& oldDelimiter, QString& newDelimiter, bool execCondition)
+{
+    if (execCondition == true){
+        text.replace(oldDelimiter, newDelimiter);
+        return true;
+    }
+    return false;
+}
+
 bool Renamer::rename(const QString& file, const QString& newName)
 {
     QFile f(file);

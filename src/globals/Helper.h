@@ -29,8 +29,8 @@ bool isBluRay(const mediaelch::DirectoryPath& path);
 bool isBluRay(const mediaelch::FilePath& path);
 bool isBluRay(QString path);
 
-void sanitizeFileName(QString& fileName);
-void sanitizeFolderName(QString& fileName);
+void sanitizeFileName(QString& fileName, QString defaultValue = " ");
+void sanitizeFolderName(QString& fileName, QString defaultValue = " ");
 QString appendArticle(const QString& text);
 
 QString mapGenre(const QString& text);
