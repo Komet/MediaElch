@@ -101,11 +101,8 @@ int RenamerDialog::exec()
             << "<title>{tmdbId} tmdbId-<tmdbId>{/tmdbId}{imdbId} imdbId-<imdbId>{/imdbId} (<year>).<extension>";
     }
 
-    QStringList oldDelimiterNamingDefaults{//
-        " "
-    };
     QStringList newDelimiterNamingDefaults{//
-        "_"
+        "_", "-"
     };
 
     QStringList directoryNameDefaults{//
@@ -134,7 +131,6 @@ int RenamerDialog::exec()
     ui->seasonNaming->setItems(seasonNameDefaults);
     ui->seasonNaming->setText(seasonName);
 
-    ui->oldDelimiterNaming->setItems(oldDelimiterNamingDefaults);
     ui->newDelimiterNaming->setItems(newDelimiterNamingDefaults);
 
     ui->chkFileNaming->setChecked(renameFiles);
@@ -228,7 +224,6 @@ void RenamerDialog::onChkRenameFiles()
 
 void RenamerDialog::onChkReplaceDelimiter()
 {
-    ui->oldDelimiterNaming->setEnabled(ui->chkReplaceDelimiter->isChecked());
     ui->newDelimiterNaming->setEnabled(ui->chkReplaceDelimiter->isChecked());
 }
 
@@ -263,7 +258,6 @@ void RenamerDialog::renameType(const bool isDryRun)
     config.renameFiles = ui->chkFileNaming->isChecked();
 
     config.replaceDelimiter = ui->chkReplaceDelimiter->isChecked();
-    config.oldDelimiterPattern = ui->oldDelimiterNaming->text();
     config.newDelimiterPattern = ui->newDelimiterNaming->text();
 
     if (m_renameType == RenameType::Movies) {

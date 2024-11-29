@@ -21,8 +21,8 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
     QString newFolderName = m_config.directoryPattern;
 
     bool replaceDelimiter = m_config.replaceDelimiter;
-    QString oldDelimiter = (replaceDelimiter) ? m_config.oldDelimiterPattern : " ";
-    QString newDelimiter = m_config.newDelimiterPattern;
+    QString oldDelimiter = " ";
+    QString newDelimiter = (replaceDelimiter) ? m_config.newDelimiterPattern : oldDelimiter;
 
     MediaCenterInterface* mediaCenter = Manager::instance()->mediaCenterInterface();
     QString nfo = mediaCenter->nfoFilePath(&movie);
