@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>864</width>
-    <height>666</height>
+    <height>685</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -107,7 +107,7 @@
          <item row="8" column="0">
           <widget class="QLabel" name="label_3">
            <property name="text">
-            <string>Text To Replace</string>
+            <string>Current Delimiter</string>
            </property>
           </widget>
          </item>
@@ -167,7 +167,7 @@
          <item row="9" column="0">
           <widget class="QLabel" name="label_4">
            <property name="text">
-            <string>Text To Replace With</string>
+            <string>New Delimiter</string>
            </property>
           </widget>
          </item>
@@ -242,17 +242,17 @@
           </widget>
          </item>
          <item row="7" column="0">
-          <widget class="QCheckBox" name="chkReplaceChars">
+          <widget class="QCheckBox" name="chkReplaceDelimiter">
            <property name="text">
-            <string>Replace Characters</string>
+            <string>Replace Delimiter</string>
            </property>
            <property name="checked">
-            <bool>true</bool>
+            <bool>false</bool>
            </property>
           </widget>
          </item>
          <item row="8" column="1">
-          <widget class="PlaceholderLineEdit" name="oldCharNaming">
+          <widget class="PlaceholderLineEdit" name="oldDelimiterNaming">
            <property name="sizePolicy">
             <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
              <horstretch>0</horstretch>
@@ -274,7 +274,7 @@
           </widget>
          </item>
          <item row="9" column="1">
-          <widget class="PlaceholderLineEdit" name="newCharNaming">
+          <widget class="PlaceholderLineEdit" name="newDelimiterNaming">
            <property name="sizePolicy">
             <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
              <horstretch>0</horstretch>
@@ -292,6 +292,9 @@
              <width>500</width>
              <height>16777215</height>
             </size>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
            </property>
           </widget>
          </item>

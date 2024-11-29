@@ -46,7 +46,7 @@ private slots:
     void onChkRenameDirectories();
     void onChkRenameFiles();
     void onChkUseSeasonDirectories();
-    void onChkReplaceChars();
+    void onChkReplaceDelimiter();
     void onRenamed();
 
 private:

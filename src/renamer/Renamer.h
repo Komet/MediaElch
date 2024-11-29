@@ -26,8 +26,11 @@ struct RenamerConfig
     QString filePattern;
     QString filePatternMulti;
     QString directoryPattern;
+    QString oldDelimiterPattern;
+    QString newDelimiterPattern;
     bool renameFiles = false;
     bool renameDirectories = false;
+    bool replaceDelimiters = false;
     bool dryRun = false;
 };
 
