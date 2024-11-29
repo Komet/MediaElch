@@ -29,6 +29,7 @@ RenamerDialog::RenamerDialog(QWidget* parent) : QDialog(parent), ui(new Ui::Rena
     connect(ui->chkDirectoryNaming, &QCheckBox::stateChanged, this, &RenamerDialog::onChkRenameDirectories);
     connect(ui->chkFileNaming, &QCheckBox::stateChanged, this, &RenamerDialog::onChkRenameFiles);
     connect(ui->chkSeasonDirectories, &QCheckBox::stateChanged, this, &RenamerDialog::onChkUseSeasonDirectories);
+    connect(ui->chkReplaceChars, &QCheckBox::stateChanged, this, &RenamerDialog::onChkReplaceChars);
     connect(ui->btnDryRun, &QAbstractButton::clicked, this, &RenamerDialog::onDryRun);
     connect(ui->btnRename, &QAbstractButton::clicked, this, &RenamerDialog::onRename);
 
@@ -212,6 +213,12 @@ void RenamerDialog::onChkRenameFiles()
 {
     ui->fileNaming->setEnabled(ui->chkFileNaming->isChecked());
     ui->fileNamingMulti->setEnabled(ui->chkFileNaming->isChecked());
+}
+
+void RenamerDialog::onChkReplaceChars()
+{
+    ui->oldCharNaming->setEnabled(ui->chkReplaceChars->isChecked());
+    ui->newCharNaming->setEnabled(ui->chkReplaceChars->isChecked());
 }
 
 void RenamerDialog::onChkUseSeasonDirectories()
