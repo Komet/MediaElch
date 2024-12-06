@@ -205,7 +205,7 @@ bool isBluRay(QString path)
     return false;
 }
 
-void sanitizeFileName(QString& fileName, QString defaultValue)
+void sanitizeFileName(QString& fileName, QString defaultDelimiter)
 {
     // Just a few changes to avoid invalid filenames.
     // See https://docs.microsoft.com/en-us/windows/win32/fileio/naming-a-file
@@ -228,12 +228,12 @@ void sanitizeFileName(QString& fileName, QString defaultValue)
     fileName.replace(QRegularExpression(R"(\s\s+)"), " ");
 
     fileName = fileName.trimmed();
-    Renamer::replaceDelimiter(fileName, " ", defaultValue, true);
+    Renamer::replaceDelimiter(fileName, " ", defaultDelimiter, true);
 }
 
-void sanitizeFolderName(QString& fileName, QString defaultValue)
+void sanitizeFolderName(QString& fileName, QString defaultDelimiter)
 {
-    return sanitizeFileName(fileName, defaultValue);
+    return sanitizeFileName(fileName, defaultDelimiter);
 }
 
 QString appendArticle(const QString& text)
