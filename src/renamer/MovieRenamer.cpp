@@ -94,8 +94,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
             MovieRenamer::replaceCondition(
                 newFileName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
 
-            // Replace Delimiter with the one chosen by the user
-            Renamer::replaceDelimiter(newFileName, oldDelimiter, newDelimiter, replaceDelimiter);
+            // Sanitize + Replace Delimiter with the one chosen by the user
             helper::sanitizeFileName(newFileName, newDelimiter);
 
             if (fi.fileName() != newFileName) {
@@ -219,8 +218,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
             QString fileName = QFileInfo(filePath).fileName();
             QString newDataFileName =
                 dataFiles.first().saveFileName(newFileName, SeasonNumber::NoSeason, movie.files().count() > 1);
-            // Replace Delimiter with the one chosen by the user
-            Renamer::replaceDelimiter(newDataFileName, oldDelimiter, newDelimiter, replaceDelimiter);
+            // Sanitize + Replace Delimiter with the one chosen by the user
             helper::sanitizeFileName(newDataFileName, newDelimiter);
 
             if (newDataFileName == fileName) {
@@ -296,8 +294,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
         Renamer::replaceCondition(newFolderName, "imdbId", movie.imdbId().toString());
         Renamer::replaceCondition(newFolderName, "tmdbId", movie.tmdbId().toString());
 
-        // Replace Delimiter with the one chosen by the user
-        Renamer::replaceDelimiter(newFolderName, oldDelimiter, newDelimiter, replaceDelimiter);
+        // Sanitize + Replace Delimiter with the one chosen by the user
         helper::sanitizeFolderName(newFolderName, newDelimiter);
 
         if (dir.dirName() != newFolderName) {
@@ -338,8 +335,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
         Renamer::replaceCondition(newFolderName, "imdbId", movie.imdbId().toString());
         Renamer::replaceCondition(newFolderName, "tmdbId", movie.tmdbId().toString());
 
-        // Replace Delimiter with the one chosen by the user
-        Renamer::replaceDelimiter(newFolderName, oldDelimiter, newDelimiter, replaceDelimiter);
+        // Sanitize + Replace Delimiter with the one chosen by the user
         helper::sanitizeFolderName(newFolderName, newDelimiter);
 
         if (dir.dirName() != newFolderName) { // check if movie is not already on good folder

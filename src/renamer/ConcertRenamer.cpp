@@ -83,8 +83,7 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert& concert)
             Renamer::replaceCondition(
                 newFileName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
 
-            // Replace Delimiter with the one chosen by the user
-            Renamer::replaceDelimiter(newFileName, oldDelimiter, newDelimiter, replaceDelimiter);
+            // Sanitize + Replace Delimiter with the one chosen by the user
             helper::sanitizeFileName(newFileName, newDelimiter);
 
             if (fi.fileName() != newFileName) {
@@ -136,8 +135,7 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert& concert)
             QString newDataFileName =
                 files.first().saveFileName(newFileName, SeasonNumber::NoSeason, concert.files().count() > 1);
 
-            // Replace Delimiter with the one chosen by the user
-            Renamer::replaceDelimiter(newDataFileName, oldDelimiter, newDelimiter, replaceDelimiter);
+            // Sanitize + Replace Delimiter with the one chosen by the user
             helper::sanitizeFileName(newDataFileName, newDelimiter);
 
             if (newDataFileName == fileName) {
@@ -192,8 +190,7 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert& concert)
                 videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
                 videoDetails.value(StreamDetails::VideoDetails::ScanType)));
 
-        // Replace Delimiter with the one chosen by the user
-        Renamer::replaceDelimiter(newFolderName, oldDelimiter, newDelimiter, replaceDelimiter);
+        // Sanitize + Replace Delimiter with the one chosen by the user
         helper::sanitizeFolderName(newFolderName, newDelimiter);
 
         if (dir.dirName() != newFolderName) {

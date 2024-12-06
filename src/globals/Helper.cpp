@@ -228,7 +228,7 @@ void sanitizeFileName(QString& fileName, QString defaultDelimiter)
     fileName.replace(QRegularExpression(R"(\s\s+)"), " ");
 
     fileName = fileName.trimmed();
-    Renamer::replaceDelimiter(fileName, " ", defaultDelimiter, true);
+    Renamer::replaceDelimiter(fileName, " ", defaultDelimiter);
 }
 
 void sanitizeFolderName(QString& fileName, QString defaultDelimiter)
