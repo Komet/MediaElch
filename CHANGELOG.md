@@ -24,6 +24,7 @@
 
 - Renamer: Placeholder `<tmdbId>` is now also available for TV shows and episodes (#1814)
 - NFO: `<hdrtype>` is now supported (#1810)
+- Renamer: Spaces in file names can be replaced by `_` or `-` (#1827)
 
 ## 2.12.0 - 2024-10-13
 
