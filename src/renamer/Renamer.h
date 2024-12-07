@@ -26,8 +26,7 @@ struct RenamerConfig
     QString filePattern;
     QString filePatternMulti;
     QString directoryPattern;
-    QString oldDelimiterPattern;
-    QString newDelimiterPattern;
+    QString delimiter;
     bool renameFiles = false;
     bool renameDirectories = false;
     bool replaceDelimiter = false;
@@ -59,10 +58,12 @@ public:
     static QString replace(QString& text, const QString& search, QString replacement);
     static QString replaceCondition(QString& text, const QString& condition, const QString& replace);
     static QString replaceCondition(QString& text, const QString& condition, bool hasCondition);
-    static void replaceDelimiter(QString& text, QString oldDelimiter, QString newDelimiter);
 
     static bool rename(QDir& dir, QString newName);
     static bool rename(const QString& file, const QString& newName);
+
+protected:
+    void replaceDelimiter(QString& text) const;
 
 protected:
     RenamerConfig m_config;

@@ -29,8 +29,16 @@ bool isBluRay(const mediaelch::DirectoryPath& path);
 bool isBluRay(const mediaelch::FilePath& path);
 bool isBluRay(QString path);
 
-void sanitizeFileName(QString& fileName, QString defaultDelimiter = " ");
-void sanitizeFolderName(QString& fileName, QString defaultDelimiter = " ");
+/**
+ * Sanitize the given file name by replacing characters commonly not supported by filesystems
+ * with a space or the given `defaultDelimiter`.
+ */
+void sanitizeFileName(QString& fileName, const QString& defaultDelimiter = " ");
+/**
+ * Sanitize the given folder name by replacing characters commonly not supported by filesystems
+ * with a space or the given `defaultDelimiter`.
+ */
+void sanitizeFolderName(QString& fileName, const QString& defaultDelimiter = " ");
 QString appendArticle(const QString& text);
 
 QString mapGenre(const QString& text);

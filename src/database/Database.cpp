@@ -202,12 +202,13 @@ ColorLabel Database::getLabel(const mediaelch::FileList& fileNames)
     return ColorLabel::NoLabel;
 }
 
-QString Database::getSchema() {
+QString Database::getSchema()
+{
     QSqlQuery query(*m_db);
     query.exec("select sql from sqlite_schema;");
     QStringList tables;
     while (query.next()) {
-         tables << query.value(0).toString();
+        tables << query.value(0).toString();
     }
     return tables.join(";\n\n");
 }

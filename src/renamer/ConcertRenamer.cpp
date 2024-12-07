@@ -20,9 +20,8 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert& concert)
     QDir dir(concertInfo.canonicalPath());
     QString newFolderName = m_config.directoryPattern;
 
-    bool replaceDelimiter = m_config.replaceDelimiter;
-    QString oldDelimiter = " ";
-    QString newDelimiter = (replaceDelimiter) ? m_config.newDelimiterPattern : oldDelimiter;
+    // " ", i.e. space, is the default for sanitizeFileName().
+    QString delimiter = (m_config.replaceDelimiter) ? m_config.delimiter : " ";
 
     QString newFileName;
     QStringList newConcertFiles;
@@ -84,7 +83,7 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert& concert)
                 newFileName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
 
             // Sanitize + Replace Delimiter with the one chosen by the user
-            helper::sanitizeFileName(newFileName, newDelimiter);
+            helper::sanitizeFileName(newFileName, delimiter);
 
             if (fi.fileName() != newFileName) {
                 if (!m_config.dryRun) {
@@ -134,9 +133,8 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert& concert)
             QString fileName = QFileInfo(filePath).fileName();
             QString newDataFileName =
                 files.first().saveFileName(newFileName, SeasonNumber::NoSeason, concert.files().count() > 1);
-
             // Sanitize + Replace Delimiter with the one chosen by the user
-            helper::sanitizeFileName(newDataFileName, newDelimiter);
+            helper::sanitizeFileName(newDataFileName, delimiter);
 
             if (newDataFileName == fileName) {
                 // File already has correct name
@@ -191,7 +189,7 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert& concert)
                 videoDetails.value(StreamDetails::VideoDetails::ScanType)));
 
         // Sanitize + Replace Delimiter with the one chosen by the user
-        helper::sanitizeFolderName(newFolderName, newDelimiter);
+        helper::sanitizeFolderName(newFolderName, delimiter);
 
         if (dir.dirName() != newFolderName) {
             renameRow = m_dialog->addResultToTable(dir.dirName(), newFolderName, Renamer::RenameOperation::Rename);

@@ -22,7 +22,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
 
     bool replaceDelimiter = m_config.replaceDelimiter;
     QString oldDelimiter = " ";
-    QString newDelimiter = (replaceDelimiter) ? m_config.newDelimiterPattern : oldDelimiter;
+    QString newDelimiter = (replaceDelimiter) ? m_config.delimiter : oldDelimiter;
 
     MediaCenterInterface* mediaCenter = Manager::instance()->mediaCenterInterface();
     QString nfo = mediaCenter->nfoFilePath(&movie);

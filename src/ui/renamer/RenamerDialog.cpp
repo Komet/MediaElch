@@ -13,6 +13,7 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QTimer>
+#include <algorithm>
 
 RenamerDialog::RenamerDialog(QWidget* parent) : QDialog(parent), ui(new Ui::RenamerDialog)
 {
@@ -77,7 +78,8 @@ int RenamerDialog::exec()
     bool renameFolders = false;
     bool useSeasonDirectories = false;
     bool replaceDelimiter = false;
-    Settings::instance()->renamePatterns(m_renameType, fileName, fileNameMulti, directoryName, seasonName, newDelimiter);
+    Settings::instance()->renamePatterns(
+        m_renameType, fileName, fileNameMulti, directoryName, seasonName, newDelimiter);
     Settings::instance()->renamings(m_renameType, renameFiles, renameFolders, useSeasonDirectories, replaceDelimiter);
 
     // Default texts for combo box.
@@ -102,10 +104,6 @@ int RenamerDialog::exec()
         fileNameDefaults
             << "<title>{tmdbId} tmdbId-<tmdbId>{/tmdbId}{imdbId} imdbId-<imdbId>{/imdbId} (<year>).<extension>";
     }
-
-    QStringList newDelimiterNamingDefaults{//
-        "_", "-"
-    };
 
     QStringList directoryNameDefaults{//
         "<title> (<year>)",
@@ -133,8 +131,9 @@ int RenamerDialog::exec()
     ui->seasonNaming->setItems(seasonNameDefaults);
     ui->seasonNaming->setText(seasonName);
 
-    ui->newDelimiterNaming->setItems(newDelimiterNamingDefaults);
-    ui->newDelimiterNaming->setText(newDelimiter);
+    const QStringList delimiters{"_", "-"};
+    ui->newDelimiterNaming->addItems(delimiters);
+    ui->newDelimiterNaming->setCurrentIndex(std::max<elch_ssize_t>(delimiters.indexOf(newDelimiter), 0));
 
     ui->chkFileNaming->setChecked(renameFiles);
     ui->chkDirectoryNaming->setChecked(renameFolders);
@@ -169,7 +168,7 @@ void RenamerDialog::reject()
         ui->fileNamingMulti->text(),
         ui->directoryNaming->text(),
         ui->seasonNaming->text(),
-        ui->newDelimiterNaming->text());
+        ui->newDelimiterNaming->currentText());
     Settings::instance()->setRenamings(m_renameType,
         ui->chkFileNaming->isChecked(),
         ui->chkDirectoryNaming->isChecked(),
@@ -264,7 +263,7 @@ void RenamerDialog::renameType(const bool isDryRun)
     config.renameFiles = ui->chkFileNaming->isChecked();
 
     config.replaceDelimiter = ui->chkReplaceDelimiter->isChecked();
-    config.newDelimiterPattern = ui->newDelimiterNaming->text();
+    config.delimiter = ui->newDelimiterNaming->currentText();
 
     if (m_renameType == RenameType::Movies) {
         config.directoryPattern = ui->directoryNaming->text();

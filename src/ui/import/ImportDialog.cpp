@@ -210,11 +210,14 @@ void ImportDialog::setDefaults(RenameType renameType)
     QString fileNameMulti;
     QString directoryName;
     QString seasonName;
+    QString replacementDelimiter;
     bool renameFiles = false;
     bool renameFolders = false;
     bool useSeasonDirectories = false;
-    Settings::instance()->renamePatterns(renameType, fileName, fileNameMulti, directoryName, seasonName);
-    Settings::instance()->renamings(renameType, renameFiles, renameFolders, useSeasonDirectories);
+    bool replaceDelimiter = false;
+    Settings::instance()->renamePatterns(
+        renameType, fileName, fileNameMulti, directoryName, seasonName, replacementDelimiter);
+    Settings::instance()->renamings(renameType, renameFiles, renameFolders, useSeasonDirectories, replaceDelimiter);
 
     ui->fileNaming->setText(fileName);
     ui->directoryNaming->setText(directoryName);
@@ -239,26 +242,30 @@ void ImportDialog::storeDefaults()
     QString fileNameMulti;
     QString directoryName;
     QString seasonName;
+    QString replacementDelimiter;
     bool renameFiles = false;
     bool renameFolders = false;
     bool useSeasonDirectories = false;
-    Settings::instance()->renamePatterns(renameType, fileName, fileNameMulti, directoryName, seasonName);
-    Settings::instance()->renamings(renameType, renameFiles, renameFolders, useSeasonDirectories);
+    bool replaceDelimiter = false;
+    Settings::instance()->renamePatterns(
+        renameType, fileName, fileNameMulti, directoryName, seasonName, replacementDelimiter);
+    Settings::instance()->renamings(renameType, renameFiles, renameFolders, useSeasonDirectories, replaceDelimiter);
 
     fileName = ui->fileNaming->text();
     directoryName = ui->directoryNaming->text();
     seasonName = ui->seasonNaming->text();
     useSeasonDirectories = ui->chkSeasonDirectories->isChecked();
 
-    Settings::instance()->setRenamePatterns(renameType, fileName, fileNameMulti, directoryName, seasonName);
-    Settings::instance()->setRenamings(renameType, renameFiles, renameFolders, useSeasonDirectories);
+    Settings::instance()->setRenamePatterns(
+        renameType, fileName, fileNameMulti, directoryName, seasonName, replacementDelimiter);
+    Settings::instance()->setRenamings(renameType, renameFiles, renameFolders, useSeasonDirectories, replaceDelimiter);
 }
 
 void ImportDialog::onMovieChosen()
 {
     using namespace mediaelch::scraper;
 
-    mediaelch::scraper::MovieIdentifier id(ui->movieSearchWidget->scraperMovieId());
+    MovieIdentifier id(ui->movieSearchWidget->scraperMovieId());
     QSet<MovieScraperInfo> infosToLoad = ui->movieSearchWidget->infosToLoad();
     if (ui->movieSearchWidget->scraperId() == CustomMovieScraper::ID) {
         // TODO ANDRE: ids = ui->movieSearchWidget->customScraperIds();
