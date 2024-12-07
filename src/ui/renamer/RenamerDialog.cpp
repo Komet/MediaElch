@@ -13,6 +13,7 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QTimer>
+#include <algorithm>
 
 RenamerDialog::RenamerDialog(QWidget* parent) : QDialog(parent), ui(new Ui::RenamerDialog)
 {
@@ -29,11 +30,13 @@ RenamerDialog::RenamerDialog(QWidget* parent) : QDialog(parent), ui(new Ui::Rena
     connect(ui->chkDirectoryNaming, &QCheckBox::stateChanged, this, &RenamerDialog::onChkRenameDirectories);
     connect(ui->chkFileNaming, &QCheckBox::stateChanged, this, &RenamerDialog::onChkRenameFiles);
     connect(ui->chkSeasonDirectories, &QCheckBox::stateChanged, this, &RenamerDialog::onChkUseSeasonDirectories);
+    connect(ui->chkReplaceDelimiter, &QCheckBox::stateChanged, this, &RenamerDialog::onChkReplaceDelimiter);
     connect(ui->btnDryRun, &QAbstractButton::clicked, this, &RenamerDialog::onDryRun);
     connect(ui->btnRename, &QAbstractButton::clicked, this, &RenamerDialog::onRename);
 
     onChkRenameDirectories();
     onChkRenameFiles();
+    onChkReplaceDelimiter();
 
     m_extraFiles = Settings::instance()->advanced()->subtitleFilters();
     ui->helpLabel->setText(tr("Please see %1 for help and examples on how to use the renamer.")
@@ -70,11 +73,14 @@ int RenamerDialog::exec()
     QString fileNameMulti;
     QString directoryName;
     QString seasonName;
+    QString newDelimiter;
     bool renameFiles = false;
     bool renameFolders = false;
     bool useSeasonDirectories = false;
-    Settings::instance()->renamePatterns(m_renameType, fileName, fileNameMulti, directoryName, seasonName);
-    Settings::instance()->renamings(m_renameType, renameFiles, renameFolders, useSeasonDirectories);
+    bool replaceDelimiter = false;
+    Settings::instance()->renamePatterns(
+        m_renameType, fileName, fileNameMulti, directoryName, seasonName, newDelimiter);
+    Settings::instance()->renamings(m_renameType, renameFiles, renameFolders, useSeasonDirectories, replaceDelimiter);
 
     // Default texts for combo box.
     QStringList fileNameDefaults;
@@ -125,9 +131,14 @@ int RenamerDialog::exec()
     ui->seasonNaming->setItems(seasonNameDefaults);
     ui->seasonNaming->setText(seasonName);
 
+    const QStringList delimiters{"_", "-"};
+    ui->newDelimiterNaming->addItems(delimiters);
+    ui->newDelimiterNaming->setCurrentIndex(std::max<elch_ssize_t>(delimiters.indexOf(newDelimiter), 0));
+
     ui->chkFileNaming->setChecked(renameFiles);
     ui->chkDirectoryNaming->setChecked(renameFolders);
     ui->chkSeasonDirectories->setChecked(useSeasonDirectories);
+    ui->chkReplaceDelimiter->setChecked(replaceDelimiter);
 
     ui->chkSeasonDirectories->setVisible(m_renameType == RenameType::TvShows);
     ui->seasonNaming->setVisible(m_renameType == RenameType::TvShows);
@@ -156,11 +167,13 @@ void RenamerDialog::reject()
         ui->fileNaming->text(),
         ui->fileNamingMulti->text(),
         ui->directoryNaming->text(),
-        ui->seasonNaming->text());
+        ui->seasonNaming->text(),
+        ui->newDelimiterNaming->currentText());
     Settings::instance()->setRenamings(m_renameType,
         ui->chkFileNaming->isChecked(),
         ui->chkDirectoryNaming->isChecked(),
-        ui->chkSeasonDirectories->isChecked());
+        ui->chkSeasonDirectories->isChecked(),
+        ui->chkReplaceDelimiter->isChecked());
 
     QDialog::reject();
     if (m_filesRenamed) {
@@ -214,6 +227,11 @@ void RenamerDialog::onChkRenameFiles()
     ui->fileNamingMulti->setEnabled(ui->chkFileNaming->isChecked());
 }
 
+void RenamerDialog::onChkReplaceDelimiter()
+{
+    ui->newDelimiterNaming->setEnabled(ui->chkReplaceDelimiter->isChecked());
+}
+
 void RenamerDialog::onChkUseSeasonDirectories()
 {
     ui->seasonNaming->setEnabled(ui->chkSeasonDirectories->isChecked());
@@ -243,6 +261,9 @@ void RenamerDialog::renameType(const bool isDryRun)
     config.filePattern = ui->fileNaming->text();
     config.filePatternMulti = ui->fileNamingMulti->text();
     config.renameFiles = ui->chkFileNaming->isChecked();
+
+    config.replaceDelimiter = ui->chkReplaceDelimiter->isChecked();
+    config.delimiter = ui->newDelimiterNaming->currentText();
 
     if (m_renameType == RenameType::Movies) {
         config.directoryPattern = ui->directoryNaming->text();

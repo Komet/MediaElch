@@ -3,14 +3,14 @@
  <class>RenamerDialog</class>
  <widget class="QDialog" name="RenamerDialog">
   <property name="windowModality">
-   <enum>Qt::WindowModal</enum>
+   <enum>Qt::WindowModality::WindowModal</enum>
   </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>700</width>
-    <height>600</height>
+    <height>742</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -69,28 +69,8 @@
        </item>
        <item>
         <layout class="QGridLayout" name="gridLayout">
-         <item row="5" column="0">
-          <widget class="QCheckBox" name="chkSeasonDirectories">
-           <property name="text">
-            <string>Use Season Directories</string>
-           </property>
-           <property name="checked">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="label_15">
-           <property name="text">
-            <string>Multi-File Naming</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="1">
-          <widget class="PlaceholderLineEdit" name="directoryNaming">
-           <property name="currentText">
-            <string notr="true">&lt;title&gt; (&lt;year&gt;)</string>
-           </property>
+         <item row="2" column="1">
+          <widget class="PlaceholderLineEdit" name="fileNamingMulti">
            <property name="sizePolicy">
             <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
              <horstretch>0</horstretch>
@@ -108,6 +88,108 @@
              <width>500</width>
              <height>16777215</height>
             </size>
+           </property>
+           <property name="currentText">
+            <string notr="true"/>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string>Directory Naming</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="1">
+          <widget class="PlaceholderLineEdit" name="seasonNaming">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>200</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>500</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="currentText">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="1">
+          <widget class="QComboBox" name="newDelimiterNaming"/>
+         </item>
+         <item row="1" column="1">
+          <widget class="PlaceholderLineEdit" name="fileNaming">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>200</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>500</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="currentText">
+            <string notr="true"/>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>File Naming</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="PlaceholderLineEdit" name="directoryNaming">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>200</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>500</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="currentText">
+            <string notr="true"/>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="0">
+          <widget class="QLabel" name="labelReplaceSpaces">
+           <property name="text">
+            <string>Replace Spaces with</string>
            </property>
           </widget>
          </item>
@@ -131,70 +213,6 @@
            </property>
           </widget>
          </item>
-         <item row="2" column="1">
-          <widget class="PlaceholderLineEdit" name="fileNamingMulti">
-           <property name="currentText">
-            <string notr="true">&lt;title&gt;-part&lt;partNo&gt;.&lt;extension&gt;</string>
-           </property>
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>200</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>500</width>
-             <height>16777215</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="0">
-          <widget class="QLabel" name="label">
-           <property name="text">
-            <string>Directory Naming</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="PlaceholderLineEdit" name="fileNaming">
-           <property name="currentText">
-            <string notr="true">&lt;title&gt;.&lt;extension&gt;</string>
-           </property>
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>200</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>500</width>
-             <height>16777215</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="label_2">
-           <property name="text">
-            <string>File Naming</string>
-           </property>
-          </widget>
-         </item>
          <item row="6" column="0">
           <widget class="QLabel" name="labelSeasonDirectory">
            <property name="text">
@@ -202,28 +220,27 @@
            </property>
           </widget>
          </item>
-         <item row="6" column="1">
-          <widget class="PlaceholderLineEdit" name="seasonNaming">
-           <property name="currentText">
-            <string>Season &lt;season&gt;</string>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_15">
+           <property name="text">
+            <string>Multi-File Naming</string>
            </property>
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
+          </widget>
+         </item>
+         <item row="5" column="0">
+          <widget class="QCheckBox" name="chkSeasonDirectories">
+           <property name="text">
+            <string>Use Season Directories</string>
            </property>
-           <property name="minimumSize">
-            <size>
-             <width>200</width>
-             <height>0</height>
-            </size>
+           <property name="checked">
+            <bool>true</bool>
            </property>
-           <property name="maximumSize">
-            <size>
-             <width>500</width>
-             <height>16777215</height>
-            </size>
+          </widget>
+         </item>
+         <item row="7" column="0">
+          <widget class="QCheckBox" name="chkReplaceDelimiter">
+           <property name="text">
+            <string>Replace Space Delimiter</string>
            </property>
           </widget>
          </item>
@@ -232,7 +249,7 @@
        <item>
         <spacer name="verticalSpacer">
          <property name="orientation">
-          <enum>Qt::Vertical</enum>
+          <enum>Qt::Orientation::Vertical</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
@@ -264,13 +281,13 @@
        <item>
         <widget class="QTableWidget" name="resultsTable">
          <property name="frameShape">
-          <enum>QFrame::NoFrame</enum>
+          <enum>QFrame::Shape::NoFrame</enum>
          </property>
          <property name="frameShadow">
-          <enum>QFrame::Plain</enum>
+          <enum>QFrame::Shadow::Plain</enum>
          </property>
          <property name="editTriggers">
-          <set>QAbstractItemView::NoEditTriggers</set>
+          <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
          </property>
          <attribute name="horizontalHeaderVisible">
           <bool>false</bool>
@@ -313,18 +330,21 @@
           </size>
          </property>
          <property name="frameShape">
-          <enum>QFrame::NoFrame</enum>
+          <enum>QFrame::Shape::NoFrame</enum>
          </property>
          <property name="frameShadow">
-          <enum>QFrame::Plain</enum>
+          <enum>QFrame::Shadow::Plain</enum>
          </property>
          <property name="readOnly">
           <bool>true</bool>
          </property>
          <property name="html">
           <string notr="true">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'.SF NS Text'; font-size:13pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
@@ -349,7 +369,7 @@ p, li { white-space: pre-wrap; }
      <item>
       <spacer name="horizontalSpacer">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>

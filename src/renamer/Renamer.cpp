@@ -66,9 +66,16 @@ QString Renamer::replaceCondition(QString& text, const QString& condition, bool 
         return text;
     }
 
-    QString search = QStringLiteral("{%1}%2{/%1}").arg(condition).arg(match.captured(1));
+    const QString search = QStringLiteral("{%1}%2{/%1}").arg(condition, match.captured(1));
     text.replace(search, hasCondition ? match.captured(1) : "");
     return text;
+}
+
+void Renamer::replaceDelimiter(QString& text) const
+{
+    if (m_config.replaceDelimiter) {
+        text.replace(" ", m_config.delimiter);
+    }
 }
 
 bool Renamer::rename(const QString& file, const QString& newName)

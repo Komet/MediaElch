@@ -21,6 +21,9 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode& episode
     const QString& seasonPattern = m_config.directoryPattern;
     const bool useSeasonDirectories = m_config.renameDirectories;
 
+    // " ", i.e. space, is the default for sanitizeFileName().
+    QString delimiter = (m_config.replaceDelimiter) ? m_config.delimiter : " ";
+
     bool errorOccured = false;
 
     QVector<TvShowEpisode*> multiEpisodes;
@@ -99,7 +102,9 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode& episode
                 Renamer::replace(newFileName, "episode", episode.episodeString());
             }
 
-            helper::sanitizeFileName(newFileName);
+            // Sanitize + Replace Delimiter with the one chosen by the user
+            helper::sanitizeFileName(newFileName, delimiter);
+
             if (episodeFileInfo.fileName() != newFileName) {
                 const int episodeRow = m_dialog->addResultToTable(
                     episodeFileInfo.fileName(), newFileName, Renamer::RenameOperation::Rename);
@@ -120,6 +125,8 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode& episode
                     QString subSuffix = subFileName.mid(baseName.length());
                     QString newBaseName = newFileName.left(newFileName.lastIndexOf("."));
                     QString newSubName = newBaseName + subSuffix;
+                    // Replace Delimiter with the one chosen by the user
+                    replaceDelimiter(newSubName);
                     const int row =
                         m_dialog->addResultToTable(subFileName, newSubName, Renamer::RenameOperation::Rename);
                     if (!m_config.dryRun) {
@@ -142,7 +149,8 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode& episode
             QVector<DataFile> nfoFiles = Settings::instance()->dataFiles(DataFileType::TvShowEpisodeNfo);
             if (!nfoFiles.isEmpty()) {
                 newNfoFileName = nfoFiles.first().saveFileName(newFileName);
-                helper::sanitizeFileName(newNfoFileName);
+                // Sanitize + Replace Delimiter with the one chosen by the user
+                helper::sanitizeFileName(newNfoFileName, delimiter);
                 if (newNfoFileName != nfoFileName) {
                     int row = m_dialog->addResultToTable(nfoFileName, newNfoFileName, Renamer::RenameOperation::Rename);
                     if (!m_config.dryRun) {
@@ -161,7 +169,8 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode& episode
             if (!thumbnailFiles.isEmpty()) {
                 newThumbnailFileName = thumbnailFiles.first().saveFileName(
                     newFileName, SeasonNumber::NoSeason, episode.files().count() > 1);
-                helper::sanitizeFileName(newThumbnailFileName);
+                // Sanitize + Replace Delimiter with the one chosen by the user
+                helper::sanitizeFileName(newThumbnailFileName, delimiter);
                 if (newThumbnailFileName != thumbnailFileName) {
                     int row = m_dialog->addResultToTable(
                         thumbnailFileName, newThumbnailFileName, Renamer::RenameOperation::Rename);
@@ -191,7 +200,10 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode& episode
         Renamer::replace(seasonDirName, "seasonName", episode.seasonName());
         Renamer::replace(seasonDirName, "showTitle", episode.showTitle());
         Renamer::replaceCondition(seasonDirName, "seasonName", !episode.seasonName().isEmpty());
-        helper::sanitizeFolderName(seasonDirName);
+
+        // Sanitize + Replace Delimiter with the one chosen by the user
+        helper::sanitizeFolderName(seasonDirName, delimiter);
+
         QDir seasonDir(showDir.path() + "/" + seasonDirName);
         if (!seasonDir.exists()) {
             int row = m_dialog->addResultToTable(seasonDirName, "", Renamer::RenameOperation::CreateDir);

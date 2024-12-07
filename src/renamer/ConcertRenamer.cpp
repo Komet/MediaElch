@@ -19,6 +19,10 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert& concert)
     QString fiCanonicalPath = concertInfo.canonicalPath();
     QDir dir(concertInfo.canonicalPath());
     QString newFolderName = m_config.directoryPattern;
+
+    // " ", i.e. space, is the default for sanitizeFileName().
+    QString delimiter = (m_config.replaceDelimiter) ? m_config.delimiter : " ";
+
     QString newFileName;
     QStringList newConcertFiles;
     QString parentDirName;
@@ -77,7 +81,10 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert& concert)
                     videoDetails.value(StreamDetails::VideoDetails::ScanType)));
             Renamer::replaceCondition(
                 newFileName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
-            helper::sanitizeFileName(newFileName);
+
+            // Sanitize + Replace Delimiter with the one chosen by the user
+            helper::sanitizeFileName(newFileName, delimiter);
+
             if (fi.fileName() != newFileName) {
                 if (!m_config.dryRun) {
                     const int row =
@@ -126,7 +133,9 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert& concert)
             QString fileName = QFileInfo(filePath).fileName();
             QString newDataFileName =
                 files.first().saveFileName(newFileName, SeasonNumber::NoSeason, concert.files().count() > 1);
-            helper::sanitizeFileName(newDataFileName);
+            // Sanitize + Replace Delimiter with the one chosen by the user
+            helper::sanitizeFileName(newDataFileName, delimiter);
+
             if (newDataFileName == fileName) {
                 // File already has correct name
                 return;
@@ -178,7 +187,10 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert& concert)
             helper::matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
                 videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
                 videoDetails.value(StreamDetails::VideoDetails::ScanType)));
-        helper::sanitizeFolderName(newFolderName);
+
+        // Sanitize + Replace Delimiter with the one chosen by the user
+        helper::sanitizeFolderName(newFolderName, delimiter);
+
         if (dir.dirName() != newFolderName) {
             renameRow = m_dialog->addResultToTable(dir.dirName(), newFolderName, Renamer::RenameOperation::Rename);
         }
