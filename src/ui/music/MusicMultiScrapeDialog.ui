@@ -3,14 +3,14 @@
  <class>MusicMultiScrapeDialog</class>
  <widget class="QDialog" name="MusicMultiScrapeDialog">
   <property name="windowModality">
-   <enum>Qt::WindowModal</enum>
+   <enum>Qt::WindowModality::WindowModal</enum>
   </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>545</width>
-    <height>492</height>
+    <width>584</width>
+    <height>654</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -31,7 +31,6 @@
        <widget class="QLabel" name="label_2">
         <property name="font">
          <font>
-          <weight>75</weight>
           <bold>true</bold>
          </font>
         </property>
@@ -359,7 +358,7 @@
       <item>
        <widget class="Line" name="line">
         <property name="orientation">
-         <enum>Qt::Horizontal</enum>
+         <enum>Qt::Orientation::Horizontal</enum>
         </property>
        </widget>
       </item>
@@ -379,7 +378,7 @@
    <item>
     <spacer name="verticalSpacer">
      <property name="orientation">
-      <enum>Qt::Vertical</enum>
+      <enum>Qt::Orientation::Vertical</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
@@ -414,7 +413,7 @@
         </size>
        </property>
        <property name="text">
-        <string notr="true">1/20</string>
+        <string notr="true">1/25</string>
        </property>
       </widget>
      </item>
@@ -456,7 +455,7 @@
      <item>
       <spacer name="horizontalSpacer">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>

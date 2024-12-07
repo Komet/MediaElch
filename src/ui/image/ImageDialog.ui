@@ -3,7 +3,7 @@
  <class>ImageDialog</class>
  <widget class="QDialog" name="ImageDialog">
   <property name="windowModality">
-   <enum>Qt::WindowModal</enum>
+   <enum>Qt::WindowModality::WindowModal</enum>
   </property>
   <property name="geometry">
    <rect>
@@ -102,16 +102,16 @@
        <item>
         <widget class="QTableWidget" name="results">
          <property name="editTriggers">
-          <set>QAbstractItemView::NoEditTriggers</set>
+          <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
          </property>
          <property name="alternatingRowColors">
           <bool>true</bool>
          </property>
          <property name="selectionMode">
-          <enum>QAbstractItemView::SingleSelection</enum>
+          <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
          </property>
          <property name="selectionBehavior">
-          <enum>QAbstractItemView::SelectRows</enum>
+          <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
          </property>
          <property name="showGrid">
           <bool>false</bool>
@@ -160,13 +160,13 @@
           <bool>true</bool>
          </property>
          <property name="editTriggers">
-          <set>QAbstractItemView::NoEditTriggers</set>
+          <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
          </property>
          <property name="selectionMode">
-          <enum>QAbstractItemView::SingleSelection</enum>
+          <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
          </property>
          <property name="verticalScrollMode">
-          <enum>QAbstractItemView::ScrollPerPixel</enum>
+          <enum>QAbstractItemView::ScrollMode::ScrollPerPixel</enum>
          </property>
          <property name="showGrid">
           <bool>false</bool>
@@ -214,10 +214,10 @@
           <string notr="true">No images found</string>
          </property>
          <property name="textFormat">
-          <enum>Qt::RichText</enum>
+          <enum>Qt::TextFormat::RichText</enum>
          </property>
          <property name="alignment">
-          <set>Qt::AlignCenter</set>
+          <set>Qt::AlignmentFlag::AlignCenter</set>
          </property>
          <property name="openExternalLinks">
           <bool>true</bool>
@@ -296,7 +296,7 @@
         <number>8</number>
        </property>
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
       </widget>
      </item>
@@ -334,7 +334,7 @@
      <item>
       <spacer name="horizontalSpacer">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -347,7 +347,7 @@
      <item>
       <widget class="QPushButton" name="buttonChoose">
        <property name="focusPolicy">
-        <enum>Qt::NoFocus</enum>
+        <enum>Qt::FocusPolicy::NoFocus</enum>
        </property>
        <property name="text">
         <string>Choose Local Image</string>
@@ -360,7 +360,7 @@
      <item>
       <widget class="QPushButton" name="buttonClose">
        <property name="focusPolicy">
-        <enum>Qt::NoFocus</enum>
+        <enum>Qt::FocusPolicy::NoFocus</enum>
        </property>
        <property name="text">
         <string>Close</string>
@@ -383,6 +383,16 @@
  </widget>
  <customwidgets>
   <customwidget>
+   <class>MyLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>ui/small_widgets/MyLineEdit.h</header>
+  </customwidget>
+  <customwidget>
+   <class>LanguageCombo</class>
+   <extends>QComboBox</extends>
+   <header location="global">ui/small_widgets/LanguageCombo.h</header>
+  </customwidget>
+  <customwidget>
    <class>ImageGallery</class>
    <extends>QWidget</extends>
    <header>ui/small_widgets/ImageGallery.h</header>
@@ -392,16 +402,6 @@
    <class>MyTableWidget</class>
    <extends>QTableWidget</extends>
    <header>ui/small_widgets/MyTableWidget.h</header>
-  </customwidget>
-  <customwidget>
-   <class>MyLineEdit</class>
-   <extends>QLineEdit</extends>
-   <header>ui/small_widgets/MyLineEdit.h</header>
-  </customwidget>
-  <customwidget>
-   <class>LanguageCombo</class>
-   <extends>QComboBox</extends>
-   <header>ui/small_widgets/LanguageCombo.h</header>
   </customwidget>
  </customwidgets>
  <resources>

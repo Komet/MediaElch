@@ -40,7 +40,7 @@
    <item>
     <widget class="QScrollArea" name="tagScrollArea">
      <property name="frameShape">
-      <enum>QFrame::NoFrame</enum>
+      <enum>QFrame::Shape::NoFrame</enum>
      </property>
      <property name="widgetResizable">
       <bool>true</bool>
@@ -51,7 +51,7 @@
         <x>0</x>
         <y>0</y>
         <width>400</width>
-        <height>248</height>
+        <height>240</height>
        </rect>
       </property>
      </widget>

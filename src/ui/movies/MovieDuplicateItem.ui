@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>731</width>
-    <height>151</height>
+    <height>183</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -47,7 +47,7 @@
          <string notr="true">Files</string>
         </property>
         <property name="alignment">
-         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
         </property>
        </widget>
       </item>
@@ -84,7 +84,7 @@
             <string notr="true">TextLabel</string>
            </property>
            <property name="alignment">
-            <set>Qt::AlignCenter</set>
+            <set>Qt::AlignmentFlag::AlignCenter</set>
            </property>
           </widget>
          </item>
@@ -106,12 +106,12 @@
             <string notr="true">TextLabel</string>
            </property>
            <property name="alignment">
-            <set>Qt::AlignCenter</set>
+            <set>Qt::AlignmentFlag::AlignCenter</set>
            </property>
           </widget>
          </item>
          <item row="2" column="1">
-          <widget class="QLabel" name="label_6">
+          <widget class="QLabel" name="labelMovieTitle_2">
            <property name="text">
             <string>Movie title</string>
            </property>
@@ -135,19 +135,19 @@
             <string notr="true">TextLabel</string>
            </property>
            <property name="alignment">
-            <set>Qt::AlignCenter</set>
+            <set>Qt::AlignmentFlag::AlignCenter</set>
            </property>
           </widget>
          </item>
          <item row="1" column="1">
-          <widget class="QLabel" name="label">
+          <widget class="QLabel" name="labelTmdbId">
            <property name="text">
             <string>TMDb ID</string>
            </property>
           </widget>
          </item>
          <item row="0" column="1">
-          <widget class="QLabel" name="label_3">
+          <widget class="QLabel" name="labelImdbId">
            <property name="text">
             <string>IMDb ID</string>
            </property>

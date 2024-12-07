@@ -38,22 +38,22 @@
       </size>
      </property>
      <property name="horizontalScrollBarPolicy">
-      <enum>Qt::ScrollBarAlwaysOff</enum>
+      <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
      </property>
      <property name="sizeAdjustPolicy">
-      <enum>QAbstractScrollArea::AdjustToContents</enum>
+      <enum>QAbstractScrollArea::SizeAdjustPolicy::AdjustToContents</enum>
      </property>
      <property name="editTriggers">
-      <set>QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed</set>
+      <set>QAbstractItemView::EditTrigger::DoubleClicked|QAbstractItemView::EditTrigger::EditKeyPressed</set>
      </property>
      <property name="dragEnabled">
       <bool>true</bool>
      </property>
      <property name="selectionMode">
-      <enum>QAbstractItemView::SingleSelection</enum>
+      <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
      </property>
      <property name="selectionBehavior">
-      <enum>QAbstractItemView::SelectRows</enum>
+      <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
      </property>
      <property name="showGrid">
       <bool>false</bool>
@@ -83,7 +83,7 @@
         <string notr="true"/>
        </property>
        <property name="icon">
-        <iconset>
+        <iconset resource="../../../data/MediaElch.qrc">
          <normaloff>:/img/plus_white.png</normaloff>:/img/plus_white.png</iconset>
        </property>
       </widget>
@@ -97,7 +97,7 @@
         <string notr="true"/>
        </property>
        <property name="icon">
-        <iconset>
+        <iconset resource="../../../data/MediaElch.qrc">
          <normaloff>:/img/minus_white.png</normaloff>:/img/minus_white.png</iconset>
        </property>
       </widget>
@@ -106,6 +106,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../../data/MediaElch.qrc"/>
+ </resources>
  <connections/>
 </ui>

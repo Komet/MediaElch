@@ -63,7 +63,7 @@
      <item>
       <spacer name="spacerPoster">
        <property name="orientation">
-        <enum>Qt::Vertical</enum>
+        <enum>Qt::Orientation::Vertical</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -83,7 +83,7 @@
         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Description&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="textFormat">
-        <enum>Qt::RichText</enum>
+        <enum>Qt::TextFormat::RichText</enum>
        </property>
       </widget>
      </item>
@@ -103,7 +103,7 @@
      <item>
       <spacer name="spacerOverview">
        <property name="orientation">
-        <enum>Qt::Vertical</enum>
+        <enum>Qt::Orientation::Vertical</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>

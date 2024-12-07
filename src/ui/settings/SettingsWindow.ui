@@ -46,7 +46,7 @@
       <item>
        <spacer name="horizontalSpacerButtons">
         <property name="orientation">
-         <enum>Qt::Horizontal</enum>
+         <enum>Qt::Orientation::Horizontal</enum>
         </property>
         <property name="sizeHint" stdset="0">
          <size>
@@ -82,7 +82,7 @@
     <bool>false</bool>
    </property>
    <property name="allowedAreas">
-    <set>Qt::NoToolBarArea</set>
+    <set>Qt::ToolBarArea::NoToolBarArea</set>
    </property>
    <property name="iconSize">
     <size>
@@ -91,7 +91,7 @@
     </size>
    </property>
    <property name="toolButtonStyle">
-    <enum>Qt::ToolButtonTextUnderIcon</enum>
+    <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
    </property>
    <property name="floatable">
     <bool>false</bool>

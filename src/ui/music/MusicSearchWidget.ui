@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>680</width>
-    <height>640</height>
+    <height>1095</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -41,7 +41,7 @@
      <item>
       <spacer name="horizontalSpacer_2">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -61,16 +61,16 @@
      <item>
       <widget class="QTableWidget" name="results">
        <property name="editTriggers">
-        <set>QAbstractItemView::NoEditTriggers</set>
+        <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
        </property>
        <property name="alternatingRowColors">
         <bool>true</bool>
        </property>
        <property name="selectionMode">
-        <enum>QAbstractItemView::SingleSelection</enum>
+        <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
        </property>
        <property name="selectionBehavior">
-        <enum>QAbstractItemView::SelectRows</enum>
+        <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
        </property>
        <property name="showGrid">
         <bool>false</bool>
@@ -109,22 +109,21 @@
            <widget class="QLabel" name="label_2">
             <property name="font">
              <font>
-              <weight>75</weight>
               <bold>true</bold>
              </font>
             </property>
             <property name="text">
-             <string>Infos to load</string>
+             <string>Details to load</string>
             </property>
            </widget>
           </item>
           <item>
            <spacer name="verticalSpacer_2">
             <property name="orientation">
-             <enum>Qt::Vertical</enum>
+             <enum>Qt::Orientation::Vertical</enum>
             </property>
             <property name="sizeType">
-             <enum>QSizePolicy::Fixed</enum>
+             <enum>QSizePolicy::Policy::Fixed</enum>
             </property>
             <property name="sizeHint" stdset="0">
              <size>
@@ -377,7 +376,7 @@
           <item>
            <widget class="Line" name="line">
             <property name="orientation">
-             <enum>Qt::Horizontal</enum>
+             <enum>Qt::Orientation::Horizontal</enum>
             </property>
            </widget>
           </item>
@@ -394,7 +393,7 @@
        <item>
         <spacer name="verticalSpacer">
          <property name="orientation">
-          <enum>Qt::Vertical</enum>
+          <enum>Qt::Orientation::Vertical</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>

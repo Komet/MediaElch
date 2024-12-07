@@ -52,10 +52,10 @@
          <string notr="true">0 movies</string>
         </property>
         <property name="textFormat">
-         <enum>Qt::PlainText</enum>
+         <enum>Qt::TextFormat::PlainText</enum>
         </property>
         <property name="alignment">
-         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
         </property>
        </widget>
       </item>
@@ -74,22 +74,22 @@
       <bool>true</bool>
      </property>
      <property name="contextMenuPolicy">
-      <enum>Qt::CustomContextMenu</enum>
+      <enum>Qt::ContextMenuPolicy::CustomContextMenu</enum>
      </property>
      <property name="frameShape">
-      <enum>QFrame::NoFrame</enum>
+      <enum>QFrame::Shape::NoFrame</enum>
      </property>
      <property name="editTriggers">
-      <set>QAbstractItemView::NoEditTriggers</set>
+      <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
      </property>
      <property name="alternatingRowColors">
       <bool>true</bool>
      </property>
      <property name="selectionMode">
-      <enum>QAbstractItemView::ExtendedSelection</enum>
+      <enum>QAbstractItemView::SelectionMode::ExtendedSelection</enum>
      </property>
      <property name="selectionBehavior">
-      <enum>QAbstractItemView::SelectRows</enum>
+      <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
      </property>
      <property name="showGrid">
       <bool>false</bool>
@@ -144,7 +144,7 @@
          <string>New</string>
         </property>
         <property name="alignment">
-         <set>Qt::AlignCenter</set>
+         <set>Qt::AlignmentFlag::AlignCenter</set>
         </property>
         <property name="active" stdset="0">
          <bool>true</bool>
@@ -160,7 +160,7 @@
          <string>Name</string>
         </property>
         <property name="alignment">
-         <set>Qt::AlignCenter</set>
+         <set>Qt::AlignmentFlag::AlignCenter</set>
         </property>
         <property name="active" stdset="0">
          <bool>false</bool>
@@ -176,7 +176,7 @@
          <string>Date Added</string>
         </property>
         <property name="alignment">
-         <set>Qt::AlignCenter</set>
+         <set>Qt::AlignmentFlag::AlignCenter</set>
         </property>
         <property name="active" stdset="0">
          <bool>false</bool>
@@ -192,7 +192,7 @@
          <string>Seen</string>
         </property>
         <property name="alignment">
-         <set>Qt::AlignCenter</set>
+         <set>Qt::AlignmentFlag::AlignCenter</set>
         </property>
         <property name="active" stdset="0">
          <bool>false</bool>
@@ -208,7 +208,7 @@
          <string>Year</string>
         </property>
         <property name="alignment">
-         <set>Qt::AlignCenter</set>
+         <set>Qt::AlignmentFlag::AlignCenter</set>
         </property>
         <property name="active" stdset="0">
          <bool>false</bool>
@@ -222,14 +222,14 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>MyLabel</class>
-   <extends>QLabel</extends>
-   <header>ui/small_widgets/MyLabel.h</header>
-  </customwidget>
-  <customwidget>
    <class>MyTableView</class>
    <extends>QTableView</extends>
    <header>ui/small_widgets/MyTableView.h</header>
+  </customwidget>
+  <customwidget>
+   <class>MyLabel</class>
+   <extends>QLabel</extends>
+   <header>ui/small_widgets/MyLabel.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

@@ -338,7 +338,7 @@
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="1,0,0">
             <item>
-             <widget class="QLabel" name="label_16">
+             <widget class="QLabel" name="lblBookletHint">
               <property name="font">
                <font>
                 <family>Helvetica Neue</family>

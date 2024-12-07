@@ -3,7 +3,7 @@
  <class>ImportDialog</class>
  <widget class="QDialog" name="ImportDialog">
   <property name="windowModality">
-   <enum>Qt::WindowModal</enum>
+   <enum>Qt::WindowModality::WindowModal</enum>
   </property>
   <property name="geometry">
    <rect>
@@ -27,10 +27,10 @@
    <item>
     <widget class="SlidingStackedWidget" name="stackedWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="MovieSearchWidget" name="movieSearchWidget"/>
-     <widget class="QWidget" name="importPage2">
+     <widget class="QWidget" name="importPage">
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,0,1,0">
@@ -58,7 +58,7 @@
          <item>
           <spacer name="horizontalSpacer_2">
            <property name="orientation">
-            <enum>Qt::Horizontal</enum>
+            <enum>Qt::Orientation::Horizontal</enum>
            </property>
            <property name="sizeHint" stdset="0">
             <size>
@@ -138,7 +138,7 @@
        <item>
         <spacer name="verticalSpacer">
          <property name="orientation">
-          <enum>Qt::Vertical</enum>
+          <enum>Qt::Orientation::Vertical</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
@@ -168,7 +168,7 @@
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
+    <layout class="QHBoxLayout" name="horizontalLayout2">
      <item>
       <widget class="QPushButton" name="btnReject">
        <property name="text">
@@ -189,7 +189,7 @@
      <item>
       <spacer name="horizontalSpacer">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -212,9 +212,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>SlidingStackedWidget</class>
-   <extends>QStackedWidget</extends>
-   <header>ui/small_widgets/SlidingStackedWidget.h</header>
+   <class>RenamerPlaceholders</class>
+   <extends>QWidget</extends>
+   <header>ui/renamer/RenamerPlaceholders.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
@@ -223,27 +223,27 @@
    <header>ui/small_widgets/Badge.h</header>
   </customwidget>
   <customwidget>
-   <class>MovieSearchWidget</class>
-   <extends>QWidget</extends>
-   <header>ui/movies/MovieSearchWidget.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
    <class>ConcertSearchWidget</class>
    <extends>QWidget</extends>
    <header>ui/concerts/ConcertSearchWidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>TvShowSearchWidget</class>
-   <extends>QWidget</extends>
-   <header>ui/tv_show/TvShowSearchWidget.h</header>
+   <class>SlidingStackedWidget</class>
+   <extends>QStackedWidget</extends>
+   <header>ui/small_widgets/SlidingStackedWidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>RenamerPlaceholders</class>
+   <class>MovieSearchWidget</class>
    <extends>QWidget</extends>
-   <header>ui/renamer/RenamerPlaceholders.h</header>
+   <header>ui/movies/MovieSearchWidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TvShowSearchWidget</class>
+   <extends>QWidget</extends>
+   <header>ui/tv_show/TvShowSearchWidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

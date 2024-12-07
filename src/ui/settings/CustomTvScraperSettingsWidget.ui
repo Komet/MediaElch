@@ -46,13 +46,13 @@
        <item>
         <widget class="QTableWidget" name="customTvScraperShowDetails">
          <property name="editTriggers">
-          <set>QAbstractItemView::NoEditTriggers</set>
+          <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
          </property>
          <property name="alternatingRowColors">
           <bool>true</bool>
          </property>
          <property name="selectionMode">
-          <enum>QAbstractItemView::NoSelection</enum>
+          <enum>QAbstractItemView::SelectionMode::NoSelection</enum>
          </property>
          <property name="showGrid">
           <bool>false</bool>
@@ -82,13 +82,13 @@
        <item>
         <widget class="QTableWidget" name="customTvScraperEpisodeDetails">
          <property name="editTriggers">
-          <set>QAbstractItemView::NoEditTriggers</set>
+          <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
          </property>
          <property name="alternatingRowColors">
           <bool>true</bool>
          </property>
          <property name="selectionMode">
-          <enum>QAbstractItemView::NoSelection</enum>
+          <enum>QAbstractItemView::SelectionMode::NoSelection</enum>
          </property>
          <property name="showGrid">
           <bool>false</bool>

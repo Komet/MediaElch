@@ -3,14 +3,14 @@
  <class>MakeMkvDialog</class>
  <widget class="QDialog" name="MakeMkvDialog">
   <property name="windowModality">
-   <enum>Qt::WindowModal</enum>
+   <enum>Qt::WindowModality::WindowModal</enum>
   </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>741</width>
-    <height>466</height>
+    <height>554</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -102,7 +102,7 @@
                </size>
               </property>
               <property name="toolButtonStyle">
-               <enum>Qt::ToolButtonTextUnderIcon</enum>
+               <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
               </property>
              </widget>
             </item>
@@ -128,14 +128,14 @@
                </size>
               </property>
               <property name="toolButtonStyle">
-               <enum>Qt::ToolButtonTextUnderIcon</enum>
+               <enum>Qt::ToolButtonStyle::ToolButtonTextUnderIcon</enum>
               </property>
              </widget>
             </item>
             <item>
              <spacer name="verticalSpacer">
               <property name="orientation">
-               <enum>Qt::Vertical</enum>
+               <enum>Qt::Orientation::Vertical</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
@@ -181,7 +181,7 @@
          <item>
           <spacer name="horizontalSpacer_2">
            <property name="orientation">
-            <enum>Qt::Horizontal</enum>
+            <enum>Qt::Orientation::Horizontal</enum>
            </property>
            <property name="sizeHint" stdset="0">
             <size>
@@ -207,7 +207,7 @@
                <string>Original Title</string>
               </property>
               <property name="alignment">
-               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+               <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
               </property>
              </widget>
             </item>
@@ -217,10 +217,10 @@
                <string notr="true">&lt;originalTitle&gt;</string>
               </property>
               <property name="textFormat">
-               <enum>Qt::PlainText</enum>
+               <enum>Qt::TextFormat::PlainText</enum>
               </property>
               <property name="alignment">
-               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+               <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
               </property>
              </widget>
             </item>
@@ -228,7 +228,6 @@
              <widget class="QLabel" name="label_32">
               <property name="font">
                <font>
-                <weight>75</weight>
                 <bold>true</bold>
                </font>
               </property>
@@ -236,7 +235,7 @@
                <string>Description</string>
               </property>
               <property name="alignment">
-               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+               <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
               </property>
              </widget>
             </item>
@@ -246,10 +245,10 @@
                <string notr="true">&lt;title&gt;</string>
               </property>
               <property name="textFormat">
-               <enum>Qt::PlainText</enum>
+               <enum>Qt::TextFormat::PlainText</enum>
               </property>
               <property name="alignment">
-               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+               <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
               </property>
              </widget>
             </item>
@@ -259,7 +258,7 @@
                <string>Title</string>
               </property>
               <property name="alignment">
-               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+               <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
               </property>
              </widget>
             </item>
@@ -269,10 +268,10 @@
                <string notr="true">&lt;extension&gt;</string>
               </property>
               <property name="textFormat">
-               <enum>Qt::PlainText</enum>
+               <enum>Qt::TextFormat::PlainText</enum>
               </property>
               <property name="alignment">
-               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+               <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
               </property>
              </widget>
             </item>
@@ -282,7 +281,7 @@
                <string>File extension</string>
               </property>
               <property name="alignment">
-               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+               <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
               </property>
              </widget>
             </item>
@@ -290,7 +289,6 @@
              <widget class="QLabel" name="label_31">
               <property name="font">
                <font>
-                <weight>75</weight>
                 <bold>true</bold>
                </font>
               </property>
@@ -298,7 +296,7 @@
                <string>Placeholder</string>
               </property>
               <property name="alignment">
-               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+               <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
               </property>
              </widget>
             </item>
@@ -308,10 +306,10 @@
                <string notr="true">&lt;year&gt;</string>
               </property>
               <property name="textFormat">
-               <enum>Qt::PlainText</enum>
+               <enum>Qt::TextFormat::PlainText</enum>
               </property>
               <property name="alignment">
-               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+               <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
               </property>
              </widget>
             </item>
@@ -321,7 +319,7 @@
                <string>Year</string>
               </property>
               <property name="alignment">
-               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+               <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
               </property>
              </widget>
             </item>
@@ -347,7 +345,7 @@
        <item>
         <layout class="QFormLayout" name="formLayout">
          <property name="fieldGrowthPolicy">
-          <enum>QFormLayout::FieldsStayAtSizeHint</enum>
+          <enum>QFormLayout::FieldGrowthPolicy::FieldsStayAtSizeHint</enum>
          </property>
          <item row="0" column="0">
           <widget class="QLabel" name="labelDirectoryNaming">
@@ -394,7 +392,7 @@
        <item>
         <spacer name="verticalSpacer_2">
          <property name="orientation">
-          <enum>Qt::Vertical</enum>
+          <enum>Qt::Orientation::Vertical</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
@@ -436,7 +434,7 @@
      <item>
       <spacer name="horizontalSpacer">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -459,15 +457,15 @@
  </widget>
  <customwidgets>
   <customwidget>
+   <class>Badge</class>
+   <extends>QLabel</extends>
+   <header>ui/small_widgets/Badge.h</header>
+  </customwidget>
+  <customwidget>
    <class>SlidingStackedWidget</class>
    <extends>QStackedWidget</extends>
    <header>ui/small_widgets/SlidingStackedWidget.h</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>Badge</class>
-   <extends>QLabel</extends>
-   <header>ui/small_widgets/Badge.h</header>
   </customwidget>
   <customwidget>
    <class>MovieSearchWidget</class>

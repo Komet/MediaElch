@@ -21,10 +21,10 @@
    <item>
     <widget class="QTableWidget" name="exportTemplates">
      <property name="editTriggers">
-      <set>QAbstractItemView::NoEditTriggers</set>
+      <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
      </property>
      <property name="selectionMode">
-      <enum>QAbstractItemView::NoSelection</enum>
+      <enum>QAbstractItemView::SelectionMode::NoSelection</enum>
      </property>
      <property name="showGrid">
       <bool>false</bool>
@@ -48,7 +48,7 @@
    <item>
     <spacer name="verticalSpacer">
      <property name="orientation">
-      <enum>Qt::Vertical</enum>
+      <enum>Qt::Orientation::Vertical</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>

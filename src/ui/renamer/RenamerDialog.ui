@@ -95,7 +95,7 @@
           </widget>
          </item>
          <item row="4" column="0">
-          <widget class="QLabel" name="label">
+          <widget class="QLabel" name="labelDirectoryNaming">
            <property name="text">
             <string>Directory Naming</string>
            </property>
@@ -155,7 +155,7 @@
           </widget>
          </item>
          <item row="1" column="0">
-          <widget class="QLabel" name="label_2">
+          <widget class="QLabel" name="labelFileNaming">
            <property name="text">
             <string>File Naming</string>
            </property>
@@ -221,7 +221,7 @@
           </widget>
          </item>
          <item row="2" column="0">
-          <widget class="QLabel" name="label_15">
+          <widget class="QLabel" name="labelMultiFileNaming">
            <property name="text">
             <string>Multi-File Naming</string>
            </property>

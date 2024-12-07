@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>670</width>
-    <height>94</height>
+    <height>112</height>
    </rect>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,0,0">
@@ -15,7 +15,7 @@
     <number>4</number>
    </property>
    <property name="sizeConstraint">
-    <enum>QLayout::SetMinimumSize</enum>
+    <enum>QLayout::SizeConstraint::SetMinimumSize</enum>
    </property>
    <property name="leftMargin">
     <number>0</number>
@@ -45,7 +45,7 @@
           <string notr="true">Version</string>
          </property>
          <property name="alignment">
-          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+          <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
          </property>
         </widget>
        </item>
@@ -71,7 +71,7 @@
         <string notr="true">Description</string>
        </property>
        <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
        </property>
        <property name="wordWrap">
         <bool>true</bool>
@@ -83,10 +83,10 @@
    <item>
     <spacer name="horizontalSpacer">
      <property name="orientation">
-      <enum>Qt::Horizontal</enum>
+      <enum>Qt::Orientation::Horizontal</enum>
      </property>
      <property name="sizeType">
-      <enum>QSizePolicy::Fixed</enum>
+      <enum>QSizePolicy::Policy::Fixed</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
