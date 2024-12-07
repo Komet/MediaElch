@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>500</width>
-    <height>450</height>
+    <height>555</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -81,13 +81,13 @@
                </size>
               </property>
               <property name="dragDropMode">
-               <enum>QAbstractItemView::InternalMove</enum>
+               <enum>QAbstractItemView::DragDropMode::InternalMove</enum>
               </property>
               <property name="alternatingRowColors">
                <bool>true</bool>
               </property>
               <property name="selectionBehavior">
-               <enum>QAbstractItemView::SelectRows</enum>
+               <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
               </property>
               <property name="wordWrap">
                <bool>true</bool>
@@ -118,13 +118,13 @@
                </size>
               </property>
               <property name="dragDropMode">
-               <enum>QAbstractItemView::InternalMove</enum>
+               <enum>QAbstractItemView::DragDropMode::InternalMove</enum>
               </property>
               <property name="alternatingRowColors">
                <bool>true</bool>
               </property>
               <property name="selectionBehavior">
-               <enum>QAbstractItemView::SelectRows</enum>
+               <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
               </property>
               <property name="wordWrap">
                <bool>true</bool>
@@ -155,13 +155,13 @@
                </size>
               </property>
               <property name="dragDropMode">
-               <enum>QAbstractItemView::InternalMove</enum>
+               <enum>QAbstractItemView::DragDropMode::InternalMove</enum>
               </property>
               <property name="alternatingRowColors">
                <bool>true</bool>
               </property>
               <property name="selectionBehavior">
-               <enum>QAbstractItemView::SelectRows</enum>
+               <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
               </property>
               <property name="wordWrap">
                <bool>true</bool>
@@ -357,7 +357,7 @@
         <item>
          <spacer name="verticalSpacer">
           <property name="orientation">
-           <enum>Qt::Vertical</enum>
+           <enum>Qt::Orientation::Vertical</enum>
           </property>
           <property name="sizeHint" stdset="0">
            <size>
@@ -422,10 +422,10 @@
    <item>
     <widget class="QDialogButtonBox" name="btnClose">
      <property name="orientation">
-      <enum>Qt::Horizontal</enum>
+      <enum>Qt::Orientation::Horizontal</enum>
      </property>
      <property name="standardButtons">
-      <set>QDialogButtonBox::Close</set>
+      <set>QDialogButtonBox::StandardButton::Close</set>
      </property>
     </widget>
    </item>

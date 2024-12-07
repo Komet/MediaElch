@@ -1659,6 +1659,17 @@
  </widget>
  <customwidgets>
   <customwidget>
+   <class>Badge</class>
+   <extends>QLabel</extends>
+   <header>ui/small_widgets/Badge.h</header>
+  </customwidget>
+  <customwidget>
+   <class>RatingsWidget</class>
+   <extends>QWidget</extends>
+   <header>ui/small_widgets/RatingsWidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
    <class>StereoModeComboBox</class>
    <extends>QComboBox</extends>
    <header>ui/small_widgets/StereoModeComboBox.h</header>
@@ -1689,17 +1700,6 @@
    <class>SlidingStackedWidget</class>
    <extends>QStackedWidget</extends>
    <header>ui/small_widgets/SlidingStackedWidget.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>Badge</class>
-   <extends>QLabel</extends>
-   <header>ui/small_widgets/Badge.h</header>
-  </customwidget>
-  <customwidget>
-   <class>RatingsWidget</class>
-   <extends>QWidget</extends>
-   <header>ui/small_widgets/RatingsWidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>

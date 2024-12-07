@@ -132,7 +132,7 @@
              <number>20</number>
             </property>
             <item row="0" column="0">
-             <widget class="QLabel" name="label">
+             <widget class="QLabel" name="labelPath">
               <property name="text">
                <string>Path</string>
               </property>
@@ -153,7 +153,7 @@
              </widget>
             </item>
             <item row="2" column="0">
-             <widget class="QLabel" name="label_2">
+             <widget class="QLabel" name="labelName">
               <property name="text">
                <string>Name</string>
               </property>
@@ -181,35 +181,35 @@
              </widget>
             </item>
             <item row="3" column="0">
-             <widget class="QLabel" name="label_3">
+             <widget class="QLabel" name="labelBorn">
               <property name="text">
                <string>Born</string>
               </property>
              </widget>
             </item>
             <item row="4" column="0">
-             <widget class="QLabel" name="label_21">
+             <widget class="QLabel" name="labelFormed">
               <property name="text">
                <string>Formed</string>
               </property>
              </widget>
             </item>
             <item row="5" column="0">
-             <widget class="QLabel" name="label_6">
+             <widget class="QLabel" name="labelYears">
               <property name="text">
                <string>Years active</string>
               </property>
              </widget>
             </item>
             <item row="6" column="0">
-             <widget class="QLabel" name="label_22">
+             <widget class="QLabel" name="labelDisbanded">
               <property name="text">
                <string>Disbanded</string>
               </property>
              </widget>
             </item>
             <item row="7" column="0">
-             <widget class="QLabel" name="label_23">
+             <widget class="QLabel" name="labelDied">
               <property name="text">
                <string>Died</string>
               </property>
@@ -230,14 +230,14 @@
              </widget>
             </item>
             <item row="8" column="0">
-             <widget class="QLabel" name="label_15">
+             <widget class="QLabel" name="labelBiography">
               <property name="text">
                <string>Biography</string>
               </property>
              </widget>
             </item>
             <item row="1" column="0">
-             <widget class="QLabel" name="label_4">
+             <widget class="QLabel" name="labelId">
               <property name="text">
                <string>MusicBrainz ID</string>
               </property>
@@ -382,7 +382,7 @@
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="1,0,0">
             <item>
-             <widget class="QLabel" name="label_16">
+             <widget class="QLabel" name="labelFanartHint">
               <property name="font">
                <font>
                 <family>Helvetica Neue</family>

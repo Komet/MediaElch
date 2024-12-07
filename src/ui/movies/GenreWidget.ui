@@ -26,7 +26,7 @@
    <item>
     <widget class="MySplitter" name="splitter">
      <property name="orientation">
-      <enum>Qt::Horizontal</enum>
+      <enum>Qt::Orientation::Horizontal</enum>
      </property>
      <property name="handleWidth">
       <number>1</number>
@@ -97,7 +97,7 @@
             <item>
              <widget class="QTableWidget" name="movies">
               <property name="editTriggers">
-               <set>QAbstractItemView::NoEditTriggers</set>
+               <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
               </property>
               <property name="alternatingRowColors">
                <bool>true</bool>
@@ -123,7 +123,7 @@
               <item>
                <spacer name="horizontalSpacer_2">
                 <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
+                 <enum>Qt::Orientation::Horizontal</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -160,7 +160,7 @@
           <item>
            <layout class="QVBoxLayout" name="verticalLayout">
             <item>
-             <widget class="QLabel" name="label_3">
+             <widget class="QLabel" name="labelInfo1">
               <property name="text">
                <string>Double click a genre to rename it, right click to delete. If you want to merge two genres just give them the same name.</string>
               </property>
@@ -170,7 +170,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="label_2">
+             <widget class="QLabel" name="labelInfo2">
               <property name="text">
                <string>Please keep in mind that the changes you make here (renaming or deleting genres) will be made for every movie.</string>
               </property>
@@ -182,7 +182,7 @@
             <item>
              <spacer name="verticalSpacer">
               <property name="orientation">
-               <enum>Qt::Vertical</enum>
+               <enum>Qt::Orientation::Vertical</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
@@ -197,7 +197,7 @@
           <item>
            <spacer name="horizontalSpacer">
             <property name="orientation">
-             <enum>Qt::Horizontal</enum>
+             <enum>Qt::Orientation::Horizontal</enum>
             </property>
             <property name="sizeHint" stdset="0">
              <size>

@@ -97,7 +97,7 @@ multiple lines.
       <string>Website</string>
      </property>
      <property name="textFormat">
-      <enum>Qt::PlainText</enum>
+      <enum>Qt::TextFormat::PlainText</enum>
      </property>
     </widget>
    </item>
@@ -115,7 +115,7 @@ multiple lines.
     </widget>
    </item>
    <item row="4" column="0">
-    <widget class="QLabel" name="lblTOS">
+    <widget class="QLabel" name="lblTos">
      <property name="text">
       <string>Terms of Service</string>
      </property>

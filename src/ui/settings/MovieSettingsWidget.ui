@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>970</width>
-    <height>626</height>
+    <height>633</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_6" stretch="0,0,1,0,0">
@@ -34,7 +34,7 @@
    <item>
     <layout class="QFormLayout" name="formMovieFilenames">
      <property name="fieldGrowthPolicy">
-      <enum>QFormLayout::ExpandingFieldsGrow</enum>
+      <enum>QFormLayout::FieldGrowthPolicy::ExpandingFieldsGrow</enum>
      </property>
      <item row="0" column="0">
       <widget class="QLabel" name="lblNfo">
@@ -273,7 +273,7 @@
    <item>
     <layout class="QFormLayout" name="formMovieSettings">
      <property name="fieldGrowthPolicy">
-      <enum>QFormLayout::FieldsStayAtSizeHint</enum>
+      <enum>QFormLayout::FieldGrowthPolicy::FieldsStayAtSizeHint</enum>
      </property>
      <item row="0" column="0">
       <widget class="QLabel" name="lblMovieOutline">
@@ -413,7 +413,7 @@
    <item>
     <spacer name="verticalSpacer">
      <property name="orientation">
-      <enum>Qt::Vertical</enum>
+      <enum>Qt::Orientation::Vertical</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>

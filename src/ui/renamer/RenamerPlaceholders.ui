@@ -56,9 +56,9 @@
          <property name="geometry">
           <rect>
            <x>0</x>
-           <y>-530</y>
-           <width>524</width>
-           <height>688</height>
+           <y>0</y>
+           <width>674</width>
+           <height>883</height>
           </rect>
          </property>
          <layout class="QGridLayout" name="placeholderLayout" columnstretch="0,1">
@@ -138,7 +138,7 @@
              <string>Description</string>
             </property>
             <property name="alignment">
-             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+             <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
             </property>
            </widget>
           </item>
@@ -148,7 +148,7 @@
              <string notr="true">&lt;season&gt;</string>
             </property>
             <property name="textFormat">
-             <enum>Qt::PlainText</enum>
+             <enum>Qt::TextFormat::PlainText</enum>
             </property>
             <property name="itemTypes" stdset="0">
              <stringlist notr="true">
@@ -177,7 +177,7 @@
              <string notr="true">&lt;album&gt;</string>
             </property>
             <property name="textFormat">
-             <enum>Qt::PlainText</enum>
+             <enum>Qt::TextFormat::PlainText</enum>
             </property>
             <property name="itemTypes" stdset="0">
              <stringlist notr="true">
@@ -216,7 +216,7 @@
              <string notr="true">&lt;sortTitle&gt;</string>
             </property>
             <property name="textFormat">
-             <enum>Qt::PlainText</enum>
+             <enum>Qt::TextFormat::PlainText</enum>
             </property>
             <property name="itemTypes" stdset="0">
              <stringlist notr="true">
@@ -244,7 +244,7 @@
              <string notr="true">{imdbId}...&lt;imdbId&gt;...{/imdbId}</string>
             </property>
             <property name="textFormat">
-             <enum>Qt::PlainText</enum>
+             <enum>Qt::TextFormat::PlainText</enum>
             </property>
             <property name="itemTypes" stdset="0">
              <stringlist notr="true">
@@ -259,7 +259,7 @@
              <string notr="true">&lt;partNo&gt;</string>
             </property>
             <property name="textFormat">
-             <enum>Qt::PlainText</enum>
+             <enum>Qt::TextFormat::PlainText</enum>
             </property>
             <property name="itemTypes" stdset="0">
              <stringlist notr="true">
@@ -281,7 +281,7 @@
              <string>Placeholder</string>
             </property>
             <property name="alignment">
-             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+             <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
             </property>
            </widget>
           </item>
@@ -291,7 +291,7 @@
              <string notr="true">&lt;extension&gt;</string>
             </property>
             <property name="textFormat">
-             <enum>Qt::PlainText</enum>
+             <enum>Qt::TextFormat::PlainText</enum>
             </property>
             <property name="itemTypes" stdset="0">
              <stringlist notr="true">
@@ -308,7 +308,7 @@
              <string notr="true">&lt;year&gt;</string>
             </property>
             <property name="textFormat">
-             <enum>Qt::PlainText</enum>
+             <enum>Qt::TextFormat::PlainText</enum>
             </property>
             <property name="itemTypes" stdset="0">
              <stringlist notr="true">
@@ -325,7 +325,7 @@
              <string notr="true">{3D}...{/3D}</string>
             </property>
             <property name="textFormat">
-             <enum>Qt::PlainText</enum>
+             <enum>Qt::TextFormat::PlainText</enum>
             </property>
             <property name="itemTypes" stdset="0">
              <stringlist notr="true">
@@ -370,7 +370,7 @@
              <string notr="true">&lt;director&gt;</string>
             </property>
             <property name="textFormat">
-             <enum>Qt::PlainText</enum>
+             <enum>Qt::TextFormat::PlainText</enum>
             </property>
             <property name="itemTypes" stdset="0">
              <stringlist notr="true">
@@ -399,7 +399,7 @@
              <string notr="true">&lt;showTitle&gt;</string>
             </property>
             <property name="textFormat">
-             <enum>Qt::PlainText</enum>
+             <enum>Qt::TextFormat::PlainText</enum>
             </property>
             <property name="itemTypes" stdset="0">
              <stringlist notr="true">
@@ -433,7 +433,7 @@
              <string notr="true">&lt;artist&gt;</string>
             </property>
             <property name="textFormat">
-             <enum>Qt::PlainText</enum>
+             <enum>Qt::TextFormat::PlainText</enum>
             </property>
             <property name="itemTypes" stdset="0">
              <stringlist notr="true">
@@ -448,7 +448,7 @@
              <string notr="true">&lt;originalTitle&gt;</string>
             </property>
             <property name="textFormat">
-             <enum>Qt::PlainText</enum>
+             <enum>Qt::TextFormat::PlainText</enum>
             </property>
             <property name="itemTypes" stdset="0">
              <stringlist notr="true">
@@ -513,7 +513,7 @@
              <string notr="true">&lt;resolution&gt;</string>
             </property>
             <property name="textFormat">
-             <enum>Qt::PlainText</enum>
+             <enum>Qt::TextFormat::PlainText</enum>
             </property>
             <property name="itemTypes" stdset="0">
              <stringlist notr="true">
@@ -580,7 +580,7 @@
              <string notr="true">{movieset}...&lt;movieset&gt;...{/movieset}</string>
             </property>
             <property name="textFormat">
-             <enum>Qt::PlainText</enum>
+             <enum>Qt::TextFormat::PlainText</enum>
             </property>
             <property name="itemTypes" stdset="0">
              <stringlist notr="true">
@@ -607,7 +607,7 @@
              <string notr="true">{dvd}...{/dvd}</string>
             </property>
             <property name="textFormat">
-             <enum>Qt::PlainText</enum>
+             <enum>Qt::TextFormat::PlainText</enum>
             </property>
             <property name="itemTypes" stdset="0">
              <stringlist notr="true">
@@ -656,7 +656,7 @@
              <string notr="true">&lt;title&gt;</string>
             </property>
             <property name="textFormat">
-             <enum>Qt::PlainText</enum>
+             <enum>Qt::TextFormat::PlainText</enum>
             </property>
             <property name="itemTypes" stdset="0">
              <stringlist notr="true">
@@ -728,7 +728,7 @@
              <string notr="true">&lt;episode&gt;</string>
             </property>
             <property name="textFormat">
-             <enum>Qt::PlainText</enum>
+             <enum>Qt::TextFormat::PlainText</enum>
             </property>
             <property name="itemTypes" stdset="0">
              <stringlist notr="true">
@@ -757,7 +757,7 @@
              <string notr="true">{bluray}...{/bluray}</string>
             </property>
             <property name="textFormat">
-             <enum>Qt::PlainText</enum>
+             <enum>Qt::TextFormat::PlainText</enum>
             </property>
             <property name="itemTypes" stdset="0">
              <stringlist notr="true">
@@ -813,7 +813,7 @@
              <string notr="true">{tmdbId}...&lt;tmdbId&gt;...{/tmdbId}</string>
             </property>
             <property name="textFormat">
-             <enum>Qt::PlainText</enum>
+             <enum>Qt::TextFormat::PlainText</enum>
             </property>
             <property name="itemTypes" stdset="0">
              <stringlist notr="true">

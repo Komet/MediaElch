@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>970</width>
-    <height>625</height>
+    <height>632</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_7" stretch="0,0,1,0">
@@ -34,87 +34,87 @@
    <item>
     <layout class="QFormLayout" name="formLayout_6">
      <property name="fieldGrowthPolicy">
-      <enum>QFormLayout::ExpandingFieldsGrow</enum>
+      <enum>QFormLayout::FieldGrowthPolicy::ExpandingFieldsGrow</enum>
      </property>
      <item row="0" column="0">
-      <widget class="QLabel" name="label_26">
+      <widget class="QLabel" name="labelShowNfo">
        <property name="text">
         <string>Show nfo</string>
        </property>
       </widget>
      </item>
      <item row="2" column="0">
-      <widget class="QLabel" name="label_27">
+      <widget class="QLabel" name="labelPoster">
        <property name="text">
         <string>Poster</string>
        </property>
       </widget>
      </item>
      <item row="3" column="0">
-      <widget class="QLabel" name="label_28">
+      <widget class="QLabel" name="labelBackdrop">
        <property name="text">
         <string>Backdrop</string>
        </property>
       </widget>
      </item>
      <item row="4" column="0">
-      <widget class="QLabel" name="label_29">
+      <widget class="QLabel" name="labelBanner">
        <property name="text">
         <string>Banner</string>
        </property>
       </widget>
      </item>
      <item row="5" column="0">
-      <widget class="QLabel" name="label_32">
+      <widget class="QLabel" name="labelLogo">
        <property name="text">
         <string>Logo</string>
        </property>
       </widget>
      </item>
      <item row="7" column="0">
-      <widget class="QLabel" name="label_34">
+      <widget class="QLabel" name="labelClearArt">
        <property name="text">
         <string>Clear Art</string>
        </property>
       </widget>
      </item>
      <item row="8" column="0">
-      <widget class="QLabel" name="label_30">
+      <widget class="QLabel" name="labelCharacterArt">
        <property name="text">
         <string>Character Art</string>
        </property>
       </widget>
      </item>
      <item row="10" column="0">
-      <widget class="QLabel" name="label_31">
+      <widget class="QLabel" name="labelSeasonPoster">
        <property name="text">
         <string>Season Poster</string>
        </property>
       </widget>
      </item>
      <item row="11" column="0">
-      <widget class="QLabel" name="label_35">
+      <widget class="QLabel" name="labelSeasonBackdrop">
        <property name="text">
         <string>Season Backdrop</string>
        </property>
       </widget>
      </item>
      <item row="1" column="0">
-      <widget class="QLabel" name="label_33">
+      <widget class="QLabel" name="labelEpisodeNfo">
        <property name="text">
         <string>Episode nfo</string>
        </property>
       </widget>
      </item>
      <item row="9" column="0">
-      <widget class="QLabel" name="label_36">
+      <widget class="QLabel" name="labelEpisodeThumbnail">
        <property name="text">
         <string>Episode thumbnail</string>
        </property>
       </widget>
      </item>
      <item row="12" column="0">
-      <widget class="QLabel" name="label_37">
+      <widget class="QLabel" name="labelSeasonBanner">
        <property name="text">
         <string>Season Banner</string>
        </property>
@@ -385,14 +385,14 @@
       </widget>
      </item>
      <item row="13" column="0">
-      <widget class="QLabel" name="label_51">
+      <widget class="QLabel" name="labelSeasonThumb">
        <property name="text">
         <string>Season Thumb</string>
        </property>
       </widget>
      </item>
      <item row="6" column="0">
-      <widget class="QLabel" name="label_52">
+      <widget class="QLabel" name="labelThumb">
        <property name="text">
         <string>Thumb</string>
        </property>
@@ -447,7 +447,7 @@
    <item>
     <spacer name="verticalSpacer">
      <property name="orientation">
-      <enum>Qt::Vertical</enum>
+      <enum>Qt::Orientation::Vertical</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
