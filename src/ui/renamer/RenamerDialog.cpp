@@ -183,7 +183,7 @@ void RenamerDialog::reject()
 
 void RenamerDialog::onRenamed()
 {
-    emit sigFilesRenamed(m_renameType);
+    emit sigFilesRenamed(m_renameType, renameErrorOccurred());
 }
 
 bool RenamerDialog::renameErrorOccurred() const
@@ -209,11 +209,6 @@ void RenamerDialog::setShows(QVector<TvShow*> shows)
 void RenamerDialog::setEpisodes(QVector<TvShowEpisode*> episodes)
 {
     m_episodes = episodes;
-}
-
-void RenamerDialog::setRenameType(RenameType type)
-{
-    m_renameType = type;
 }
 
 void RenamerDialog::onChkRenameDirectories()

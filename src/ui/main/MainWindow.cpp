@@ -16,11 +16,16 @@
 #include "ui/media_center/KodiSync.h"
 #include "ui/notifications/NotificationBox.h"
 #include "ui/notifications/Notificator.h"
-#include "ui/renamer/RenamerDialog.h"
+#include "ui/renamer/ConcertRenamerDialog.h"
+#include "ui/renamer/MovieRenamerDialog.h"
+#include "ui/renamer/TvShowRenamerDialog.h"
 #include "ui/settings/SettingsWindow.h"
 #include "ui/support/SupportDialog.h"
 
-#include <QDesktopServices>
+#ifdef Q_OS_MACOS
+#    include <QDesktopServices>
+#endif
+
 #include <QPainter>
 #include <QShortcut>
 #include <QTimer>
@@ -166,7 +171,9 @@ MainWindow::MainWindow(MainWindowConfiguration& settings, QWidget* parent) :
     m_settingsWindow = new SettingsWindow(*Settings::instance(), this);
     m_fileScannerDialog = new FileScannerDialog(this);
     m_xbmcSync = new KodiSync(*Manager::instance()->kodiSettings(), this);
-    m_renamer = new RenamerDialog(this);
+    m_movieRenamer = new MovieRenamerDialog(this);
+    m_concertRenamer = new ConcertRenamerDialog(this);
+    m_tvShowRenamer = new TvShowRenamerDialog(this);
     setupToolbar();
 
     NotificationBox::instance(this)->reposition(this->size());
@@ -277,7 +284,9 @@ MainWindow::MainWindow(MainWindowConfiguration& settings, QWidget* parent) :
     connect(m_xbmcSync, &KodiSync::sigTriggerReload, this, &MainWindow::onTriggerReloadAll);
     connect(m_xbmcSync, &KodiSync::sigFinished,      this, &MainWindow::onKodiSyncFinished);
 
-    connect(m_renamer, &RenamerDialog::sigFilesRenamed, this, &MainWindow::onFilesRenamed);
+    connect(m_concertRenamer, &ConcertRenamerDialog::sigFilesRenamed, this, &MainWindow::onFilesRenamed);
+    connect(m_movieRenamer, &MovieRenamerDialog::sigFilesRenamed, this, &MainWindow::onFilesRenamed);
+    connect(m_tvShowRenamer, &TvShowRenamerDialog::sigFilesRenamed, this, &MainWindow::onFilesRenamed);
 
     connect(m_settingsWindow, &SettingsWindow::sigSaved, this, &MainWindow::onRenewModels, Qt::QueuedConnection);
 
@@ -536,30 +545,28 @@ void MainWindow::onActionRename()
 {
     switch (currentTab()) {
     case MainWidgets::Movies: {
-        m_renamer->setRenameType(RenameType::Movies);
-        m_renamer->setMovies(ui->movieFilesWidget->selectedMovies());
+        m_movieRenamer->setMovies(ui->movieFilesWidget->selectedMovies());
+        m_movieRenamer->exec();
         break;
     }
     case MainWidgets::TvShows: {
-        m_renamer->setRenameType(RenameType::TvShows);
-        m_renamer->setShows(ui->tvShowFilesWidget->selectedShows());
-        m_renamer->setEpisodes(ui->tvShowFilesWidget->selectedEpisodes());
+        m_tvShowRenamer->setShows(ui->tvShowFilesWidget->selectedShows());
+        m_tvShowRenamer->setEpisodes(ui->tvShowFilesWidget->selectedEpisodes());
+        m_tvShowRenamer->exec();
         break;
     }
     case MainWidgets::Concerts: {
-        m_renamer->setRenameType(RenameType::Concerts);
-        m_renamer->setConcerts(ui->concertFilesWidget->selectedConcerts());
+        m_concertRenamer->setConcerts(ui->concertFilesWidget->selectedConcerts());
+        m_concertRenamer->exec();
         break;
     }
-    case MainWidgets::Music:             // not supported, yet
-    case MainWidgets::MovieSets:         // not supported, yet
-    case MainWidgets::Genres:            // not supported, yet
-    case MainWidgets::Certifications:    // not supported, yet
-    case MainWidgets::Duplicates:        // not supported
-    case MainWidgets::Downloads: return; // not supported -> return
+    case MainWidgets::Music:            // not supported, yet
+    case MainWidgets::MovieSets:        // not supported, yet
+    case MainWidgets::Genres:           // not supported, yet
+    case MainWidgets::Certifications:   // not supported, yet
+    case MainWidgets::Duplicates:       // not supported
+    case MainWidgets::Downloads: break; // not supported
     }
-
-    m_renamer->exec();
 }
 
 /**
@@ -730,9 +737,9 @@ void MainWindow::onKodiSyncFinished()
     ui->concertFilesWidget->concertSelectedEmitter();
 }
 
-void MainWindow::onFilesRenamed(RenameType type)
+void MainWindow::onFilesRenamed(RenameType type, bool hasError)
 {
-    if (m_renamer->renameErrorOccurred()) {
+    if (hasError) {
         m_fileScannerDialog->setForceReload(true);
         if (type == RenameType::Movies) {
             m_fileScannerDialog->setReloadType(FileScannerDialog::ReloadType::Movies);
