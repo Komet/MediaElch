@@ -21,10 +21,6 @@ class RenamerDialog : public QDialog
 public:
     explicit RenamerDialog(QWidget* parent = nullptr);
     ~RenamerDialog() override;
-    void setMovies(QVector<Movie*> movies);
-    void setConcerts(QVector<Concert*> concerts);
-    void setShows(QVector<TvShow*> shows);
-    void setEpisodes(QVector<TvShowEpisode*> episodes);
 
     bool renameErrorOccurred() const;
 
@@ -48,20 +44,14 @@ private slots:
     void onChkReplaceDelimiter();
     void onRenamed();
 
-private:
-    void renameType(const bool isDryRun);
-    void renameMovies(QVector<Movie*> movies, const RenamerConfig& config);
-    void renameConcerts(QVector<Concert*> concerts, const RenamerConfig& config);
-    void renameEpisodes(QVector<TvShowEpisode*> episodes, const RenamerConfig& config);
-    void renameTvShows(const QVector<TvShow*>& shows, const QString& directoryPattern, const bool& dryRun = false);
+protected:
+    virtual void renameType(bool isDryRun) = 0;
+    virtual void rejectImpl() = 0;
+    virtual QString dialogInfoLabel() = 0;
 
 protected:
     Ui::RenamerDialog* ui = nullptr;
 
-    QVector<Movie*> m_movies;
-    QVector<Concert*> m_concerts;
-    QVector<TvShow*> m_shows;
-    QVector<TvShowEpisode*> m_episodes;
     RenameType m_renameType = RenameType::All;
     bool m_filesRenamed = 0;
     mediaelch::FileFilter m_extraFiles;
