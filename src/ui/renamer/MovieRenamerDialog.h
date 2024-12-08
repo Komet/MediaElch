@@ -12,4 +12,15 @@ class MovieRenamerDialog : public RenamerDialog
 public:
     explicit MovieRenamerDialog(QWidget* parent = nullptr);
     ~MovieRenamerDialog() override;
+
+    void setMovies(QVector<Movie*> movies);
+
+private:
+    void renameType(bool isDryRun) override;
+    void rejectImpl() override;
+    QString dialogInfoLabel() override;
+    void renameMovies(QVector<Movie*> movies, const RenamerConfig& config);
+
+private:
+    QVector<Movie*> m_movies;
 };
