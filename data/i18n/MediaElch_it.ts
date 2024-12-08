@@ -455,6 +455,27 @@
     </message>
 </context>
 <context>
+    <name>ConcertRenamerDialog</name>
+    <message>
+        <location filename="../../src/ui/renamer/ConcertRenamerDialog.cpp" line="+43"/>
+        <source>Finished</source>
+        <translation type="unfinished">Finito</translation>
+    </message>
+    <message numerus="yes">
+        <location line="+10"/>
+        <source>%n concerts will be renamed</source>
+        <translation type="unfinished">
+            <numerusform>%n concerto verrà rinominato</numerusform>
+            <numerusform>%n concerti verranno rinominati</numerusform>
+        </translation>
+    </message>
+    <message>
+        <location line="+24"/>
+        <source>&lt;b&gt;Concert&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
+        <translation type="unfinished">&lt;b&gt;Concerto&lt;/b&gt; &quot;%1&quot; non rinominato: è stato modificato ma non è stato salvato</translation>
+    </message>
+</context>
+<context>
     <name>ConcertScraperInfoWidget</name>
     <message>
         <location filename="../../src/ui/settings/ConcertScraperInfoWidget.ui" line="+17"/>
@@ -3258,7 +3279,7 @@ Le cartelle che contengono la tua musica devono contenere sottocartelle per cias
         <translation>Importa</translation>
     </message>
     <message>
-        <location filename="../../src/ui/import/ImportDialog.cpp" line="+281"/>
+        <location filename="../../src/ui/import/ImportDialog.cpp" line="+290"/>
         <source>Loading movie information...</source>
         <translation>Caricamento delle informazioni del Film...</translation>
     </message>
@@ -3299,29 +3320,29 @@ Le cartelle che contengono la tua musica devono contenere sottocartelle per cias
         <translation>Per favore inserite tutti gli schemi di rinomina</translation>
     </message>
     <message>
-        <location line="+30"/>
-        <location line="+94"/>
+        <location line="+26"/>
+        <location line="+74"/>
         <source>Creating destination directory failed</source>
         <translation>La creazione della cartella di destinazione è fallita</translation>
     </message>
     <message>
-        <location line="-93"/>
-        <location line="+94"/>
+        <location line="-73"/>
+        <location line="+74"/>
         <source>The destination directory %1 could not be created</source>
         <translation>La cartella di destinazione %1 non può essere creata</translation>
     </message>
     <message>
-        <location line="-65"/>
+        <location line="-55"/>
         <source>Importing movie...</source>
         <translation>Importazione Film...</translation>
     </message>
     <message>
-        <location line="+39"/>
+        <location line="+32"/>
         <source>Importing episode...</source>
         <translation>Importazione Episodio...</translation>
     </message>
     <message>
-        <location line="+53"/>
+        <location line="+42"/>
         <source>Importing concert...</source>
         <translation>Importazione Concerto...</translation>
     </message>
@@ -4066,7 +4087,7 @@ Main menu entry (tooltip)</extracomment>
         <translation>Riguardo a</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="+121"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="+126"/>
         <source>FAQ</source>
         <translation>FAQ</translation>
     </message>
@@ -4106,12 +4127,12 @@ Main menu entry (tooltip)</extracomment>
         <translation>Vedi Licenza</translation>
     </message>
     <message>
-        <location line="+257"/>
+        <location line="+261"/>
         <source>&amp;Quick Open</source>
         <translation>&amp;Apertura Veloce</translation>
     </message>
     <message>
-        <location line="+467"/>
+        <location line="+465"/>
         <source>Reload all Movies (%1)</source>
         <translation>Ricarico tutti i Film (%1)</translation>
     </message>
@@ -4735,6 +4756,27 @@ Operazione cancellata</translation>
         <location line="+288"/>
         <source>Internal inconsistency: Selected an invalid scraper!</source>
         <translation>Errore interno: è stato selezionato uno scraper non valido!</translation>
+    </message>
+</context>
+<context>
+    <name>MovieRenamerDialog</name>
+    <message>
+        <location filename="../../src/ui/renamer/MovieRenamerDialog.cpp" line="+44"/>
+        <source>Finished</source>
+        <translation type="unfinished">Finito</translation>
+    </message>
+    <message numerus="yes">
+        <location line="+10"/>
+        <source>%n movies will be renamed</source>
+        <translation type="unfinished">
+            <numerusform>%n film verrà rinominato</numerusform>
+            <numerusform>%n film verranno rinominati</numerusform>
+        </translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>&lt;b&gt;Movie&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
+        <translation type="unfinished">&lt;b&gt;Film&lt;/b&gt; &quot;%1&quot; non rinominato: è stato modificato ma non è stato salvato</translation>
     </message>
 </context>
 <context>
@@ -6653,7 +6695,32 @@ Se vuoi cercare per un ID di TMDb inizia la stringa con &quot;id&quot;.</transla
         <translation>Valore non valido per il tag xml:</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/MovieRenamer.cpp" line="+362"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="+26"/>
+        <source>Original Title</source>
+        <translation type="unfinished">Titolo originale</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Sort Title</source>
+        <translation type="unfinished">Titolo per ordinamento</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Director(s)</source>
+        <translation type="unfinished">Regista(i)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Studio(s) (separated by a comma)</source>
+        <translation type="unfinished">Studio (separati da virgola)</translation>
+    </message>
+    <message>
+        <location line="+9"/>
+        <source>Movie set name</source>
+        <translation type="unfinished">Nome del Gruppo di Film</translation>
+    </message>
+    <message>
+        <location line="+335"/>
         <source>&lt;b&gt;Move File&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;Muovi il File&lt;/b&gt; da &quot;%1&quot; a &quot;%2&quot;</translation>
     </message>
@@ -6764,6 +6831,136 @@ Se vuoi cercare per un ID di TMDb inizia la stringa con &quot;id&quot;.</transla
         <location line="+2"/>
         <source>Genre</source>
         <translation>Genere</translation>
+    </message>
+    <message>
+        <location filename="../../src/renamer/ConcertRenamer.cpp" line="+21"/>
+        <location filename="../../src/renamer/EpisodeRenamer.cpp" line="+36"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="-352"/>
+        <source>File extension</source>
+        <translation type="unfinished">Estensione file</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location filename="../../src/renamer/EpisodeRenamer.cpp" line="+1"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="+3"/>
+        <source>Part number of the current file</source>
+        <translation type="unfinished">Numero parte del file corrente</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location filename="../../src/renamer/EpisodeRenamer.cpp" line="-16"/>
+        <location line="+17"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="+1"/>
+        <source>Title</source>
+        <translation type="unfinished">Titolo</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location filename="../../src/renamer/EpisodeRenamer.cpp" line="-14"/>
+        <location line="+19"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="+5"/>
+        <source>Year</source>
+        <translation type="unfinished">Anno</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location filename="../../src/renamer/EpisodeRenamer.cpp" line="+2"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="+4"/>
+        <source>Audio Codec</source>
+        <translation type="unfinished">Codec Audio</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Artist</source>
+        <translation type="unfinished">Artista</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location filename="../../src/renamer/EpisodeRenamer.cpp" line="+7"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="+2"/>
+        <source>Resolution (1080p, 720p, ...)</source>
+        <translation type="unfinished">Risoluzione (1080p, 720p, ...)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location filename="../../src/renamer/EpisodeRenamer.cpp" line="-3"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="-1"/>
+        <source>Number of audio channels</source>
+        <translation type="unfinished">Numero di canali audio</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location filename="../../src/renamer/EpisodeRenamer.cpp" line="-1"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="-2"/>
+        <source>Subtitle Language(s) (separated by a minus)</source>
+        <translation type="unfinished">Lingue sottotitoli (separate da trattino)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location filename="../../src/renamer/EpisodeRenamer.cpp" line="-2"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="-2"/>
+        <source>Video Codec</source>
+        <translation type="unfinished">Codec Video</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location filename="../../src/renamer/EpisodeRenamer.cpp" line="+1"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="+1"/>
+        <source>Audio Language(s) (separated by a minus)</source>
+        <translation type="unfinished">Lingue Audio (separate da trattino)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location filename="../../src/renamer/EpisodeRenamer.cpp" line="-3"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="+5"/>
+        <source>File is 3D</source>
+        <translation type="unfinished">File è in 3D</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="-15"/>
+        <source>File/directory is BluRay</source>
+        <translation type="unfinished">File/Cartella è un BluRay</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="+1"/>
+        <source>File/directory is DVD</source>
+        <translation type="unfinished">File/Cartella è un DVD</translation>
+    </message>
+    <message>
+        <location filename="../../src/renamer/EpisodeRenamer.cpp" line="-22"/>
+        <location line="+20"/>
+        <source>Show Title</source>
+        <translation type="unfinished">Titolo</translation>
+    </message>
+    <message>
+        <location line="-19"/>
+        <location line="+27"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="+17"/>
+        <source>TMDB ID</source>
+        <translation type="unfinished">TMDB ID</translation>
+    </message>
+    <message>
+        <location line="-11"/>
+        <source>Episode</source>
+        <translation type="unfinished">Episodio</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Season</source>
+        <translation type="unfinished">Stagione</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Season Name</source>
+        <translation type="unfinished">Nome Stagione</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="-1"/>
+        <source>IMDb ID</source>
+        <translation type="unfinished">IMDb ID</translation>
     </message>
 </context>
 <context>
@@ -6930,74 +7127,17 @@ Se vuoi cercare per un ID di TMDb inizia la stringa con &quot;id&quot;.</transla
     </message>
     <message>
         <location line="+10"/>
-        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="+433"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="+189"/>
         <source>Rename</source>
         <translation>Rinomina</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="-391"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="-153"/>
         <source>Please see %1 for help and examples on how to use the renamer.</source>
         <translation>Vedi %1 per aiuto ed esempi per come utilizzare la rinomina automatica.</translation>
     </message>
-    <message numerus="yes">
-        <location line="+19"/>
-        <source>%n concerts will be renamed</source>
-        <translation>
-            <numerusform>%n concerto verrà rinominato</numerusform>
-            <numerusform>%n concerti verranno rinominati</numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
-        <location line="+1"/>
-        <source>%n movies will be renamed</source>
-        <translation>
-            <numerusform>%n film verrà rinominato</numerusform>
-            <numerusform>%n film verranno rinominati</numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
-        <location line="+2"/>
-        <source>%n TV shows and %1</source>
-        <translation>
-            <numerusform>%n Serie TV e %1</numerusform>
-            <numerusform>%n Serie TV e %1</numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
-        <location line="+1"/>
-        <source>%n episodes will be renamed</source>
-        <translation>
-            <numerusform>%n episodio verrà rinominato</numerusform>
-            <numerusform>%n episodi verranno rinominati</numerusform>
-        </translation>
-    </message>
     <message>
-        <location line="+224"/>
-        <source>Finished</source>
-        <translation>Finito</translation>
-    </message>
-    <message>
-        <location line="+17"/>
-        <source>&lt;b&gt;Movie&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
-        <translation>&lt;b&gt;Film&lt;/b&gt; &quot;%1&quot; non rinominato: è stato modificato ma non è stato salvato</translation>
-    </message>
-    <message>
-        <location line="+29"/>
-        <source>&lt;b&gt;Episode&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
-        <translation>&lt;b&gt;Episodio&lt;/b&gt; &quot;%1&quot; non rinominato: è stato modificato ma non è stato salvato</translation>
-    </message>
-    <message>
-        <location line="+23"/>
-        <source>&lt;b&gt;TV Show&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
-        <translation>&lt;b&gt;Serie TV&lt;/b&gt; &quot;%1&quot; non rinominata: è stata modificata ma non è stata salvata</translation>
-    </message>
-    <message>
-        <location line="+54"/>
-        <source>&lt;b&gt;Concert&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
-        <translation>&lt;b&gt;Concerto&lt;/b&gt; &quot;%1&quot; non rinominato: è stato modificato ma non è stato salvato</translation>
-    </message>
-    <message>
-        <location line="+19"/>
+        <location line="+151"/>
         <source>Create dir</source>
         <translation>Crea cartella</translation>
     </message>
@@ -7008,156 +7148,11 @@ Se vuoi cercare per un ID di TMDb inizia la stringa con &quot;id&quot;.</transla
     </message>
 </context>
 <context>
-    <name>RenamerPlaceholders</name>
+    <name>RenamerPlaceholdersWidget</name>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="+35"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholdersWidget.ui" line="+35"/>
         <source>Placeholders</source>
-        <translation>Segnaposto</translation>
-    </message>
-    <message>
-        <location line="+246"/>
-        <source>Placeholder</source>
-        <translation>Segnaposto</translation>
-    </message>
-    <message>
-        <location line="+363"/>
-        <source>Artist</source>
-        <translation>Artista</translation>
-    </message>
-    <message>
-        <location line="-551"/>
-        <source>File extension</source>
-        <translation>Estensione file</translation>
-    </message>
-    <message>
-        <location line="+370"/>
-        <source>Original Title</source>
-        <translation>Titolo originale</translation>
-    </message>
-    <message>
-        <location line="+26"/>
-        <source>Season Name</source>
-        <translation>Nome Stagione</translation>
-    </message>
-    <message>
-        <location line="+208"/>
-        <source>Part number of the current file</source>
-        <translation>Numero parte del file corrente</translation>
-    </message>
-    <message>
-        <location line="+132"/>
-        <source>TMDb ID</source>
-        <translation>TMDb ID</translation>
-    </message>
-    <message>
-        <location line="-637"/>
-        <source>Album</source>
-        <translation>Album</translation>
-    </message>
-    <message>
-        <location line="-85"/>
-        <source>Title</source>
-        <translation>Titolo</translation>
-    </message>
-    <message>
-        <location line="+666"/>
-        <source>Season Number</source>
-        <translation>Numero stagione</translation>
-    </message>
-    <message>
-        <location line="-692"/>
-        <source>Title of the show</source>
-        <translation>Titolo</translation>
-    </message>
-    <message>
-        <location line="+718"/>
-        <source>Year</source>
-        <translation>Anno</translation>
-    </message>
-    <message>
-        <location line="-661"/>
-        <source>Description</source>
-        <translation>Descrizione</translation>
-    </message>
-    <message>
-        <location line="+535"/>
-        <source>Studio(s) (separated by a comma)</source>
-        <translation>Studio (separati da virgola)</translation>
-    </message>
-    <message>
-        <location line="-78"/>
-        <source>Sort Title</source>
-        <translation>Titolo per ordinamento</translation>
-    </message>
-    <message>
-        <location line="-94"/>
-        <source>Director(s)</source>
-        <translation>Regista(i)</translation>
-    </message>
-    <message>
-        <location line="+136"/>
-        <source>Audio Language(s) (separated by a minus)</source>
-        <translation>Lingue Audio (separate da trattino)</translation>
-    </message>
-    <message>
-        <location line="-107"/>
-        <source>Episode Number</source>
-        <translation>Numero episodio</translation>
-    </message>
-    <message>
-        <location line="-367"/>
-        <source>Resolution (1080p, 720p, ...)</source>
-        <translation>Risoluzione (1080p, 720p, ...)</translation>
-    </message>
-    <message>
-        <location line="+68"/>
-        <source>File/directory is BluRay</source>
-        <translation>File/Cartella è un BluRay</translation>
-    </message>
-    <message>
-        <location line="+195"/>
-        <source>Subtitle Language(s) (separated by a minus)</source>
-        <translation>Lingue sottotitoli (separate da trattino)</translation>
-    </message>
-    <message>
-        <location line="-358"/>
-        <source>File/directory is DVD</source>
-        <translation>File/Cartella è un DVD</translation>
-    </message>
-    <message>
-        <location line="+407"/>
-        <source>File is 3D</source>
-        <translation>File è in 3D</translation>
-    </message>
-    <message>
-        <location line="-354"/>
-        <source>Movie set name</source>
-        <translation>Nome del Gruppo di Film</translation>
-    </message>
-    <message>
-        <location line="+293"/>
-        <source>IMDb ID</source>
-        <translation>IMDb ID</translation>
-    </message>
-    <message>
-        <location line="-29"/>
-        <source>Video Codec</source>
-        <translation>Codec Video</translation>
-    </message>
-    <message>
-        <location line="-181"/>
-        <source>Episode has a season name</source>
-        <translation>L&apos;episodio ha un nome di stagione</translation>
-    </message>
-    <message>
-        <location line="+138"/>
-        <source>Audio Codec</source>
-        <translation>Codec Audio</translation>
-    </message>
-    <message>
-        <location line="+224"/>
-        <source>Number of audio channels</source>
-        <translation>Numero di canali audio</translation>
+        <translation type="unfinished">Segnaposto</translation>
     </message>
 </context>
 <context>
@@ -8424,6 +8419,40 @@ Episodio dopo lo scraping</translation>
         <location line="+21"/>
         <source>S%2E%3: Finished scraping episode details. Title is: &quot;%1&quot;.</source>
         <translation>S%2E%3: Completato il recupero dei dettagli dell&apos;episodio. Il titolo è: &quot;%1&quot;.</translation>
+    </message>
+</context>
+<context>
+    <name>TvShowRenamerDialog</name>
+    <message>
+        <location filename="../../src/ui/renamer/TvShowRenamerDialog.cpp" line="+56"/>
+        <source>Finished</source>
+        <translation type="unfinished">Finito</translation>
+    </message>
+    <message numerus="yes">
+        <location line="+11"/>
+        <source>%n TV shows and %1</source>
+        <translation type="unfinished">
+            <numerusform>%n Serie TV e %1</numerusform>
+            <numerusform>%n Serie TV e %1</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <location line="+1"/>
+        <source>%n episodes will be renamed</source>
+        <translation type="unfinished">
+            <numerusform>%n episodio verrà rinominato</numerusform>
+            <numerusform>%n episodi verranno rinominati</numerusform>
+        </translation>
+    </message>
+    <message>
+        <location line="+19"/>
+        <source>&lt;b&gt;Episode&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
+        <translation type="unfinished">&lt;b&gt;Episodio&lt;/b&gt; &quot;%1&quot; non rinominato: è stato modificato ma non è stato salvato</translation>
+    </message>
+    <message>
+        <location line="+24"/>
+        <source>&lt;b&gt;TV Show&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
+        <translation type="unfinished">&lt;b&gt;Serie TV&lt;/b&gt; &quot;%1&quot; non rinominata: è stata modificata ma non è stata salvata</translation>
     </message>
 </context>
 <context>
