@@ -6,7 +6,6 @@
 
 #include <QLabel>
 #include <QMainWindow>
-#include <QProgressBar>
 #include <QToolButton>
 
 namespace Ui {
@@ -16,7 +15,9 @@ class MainWindow;
 class Movie;
 class FileScannerDialog;
 class KodiSync;
-class RenamerDialog;
+class ConcertRenamerDialog;
+class MovieRenamerDialog;
+class TvShowRenamerDialog;
 class SupportDialog;
 class Settings;
 class SettingsWindow;
@@ -87,7 +88,7 @@ private slots:
     void moveSplitter(int pos, int index);
     void onTriggerReloadAll();
     void onKodiSyncFinished();
-    void onFilesRenamed(RenameType type = RenameType::All);
+    void onFilesRenamed(RenameType type, bool hasError);
     void onRenewModels();
     void onJumpToMovie(Movie* movie);
     void updateTvShows();
@@ -98,13 +99,15 @@ private:
     void setupToolbar();
 
 private:
-    Ui::MainWindow* ui = nullptr;
+    Ui::MainWindow* ui{nullptr};
     MainWindowConfiguration& m_settings;
-    SettingsWindow* m_settingsWindow = nullptr;
-    SupportDialog* m_supportDialog = nullptr;
-    FileScannerDialog* m_fileScannerDialog = nullptr;
+    SettingsWindow* m_settingsWindow{nullptr};
+    SupportDialog* m_supportDialog{nullptr};
+    FileScannerDialog* m_fileScannerDialog{nullptr};
     KodiSync* m_xbmcSync = nullptr;
-    RenamerDialog* m_renamer = nullptr;
+    MovieRenamerDialog* m_movieRenamer{nullptr};
+    ConcertRenamerDialog* m_concertRenamer{nullptr};
+    TvShowRenamerDialog* m_tvShowRenamer{nullptr};
     QMap<MainWidgets, QMap<MainActions, bool>> m_actions;
     QMap<MainWidgets, QIcon> m_icons;
     static MainWindow* m_instance;

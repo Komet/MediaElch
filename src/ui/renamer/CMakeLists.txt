@@ -1,5 +1,7 @@
 add_library(
-  mediaelch_ui_renamer OBJECT RenamerDialog.cpp RenamerPlaceholdersWidget.cpp
+  mediaelch_ui_renamer OBJECT
+  RenamerDialog.cpp MovieRenamerDialog.cpp ConcertRenamerDialog.cpp
+  TvShowRenamerDialog.cpp RenamerPlaceholdersWidget.cpp
 )
 
 target_link_libraries(

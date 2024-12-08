@@ -429,6 +429,9 @@ SOURCES += \
     src/ui/notifications/NotificationBox.cpp \
     src/ui/notifications/Notificator.cpp \
     src/ui/renamer/RenamerDialog.cpp \
+    src/ui/renamer/ConcertRenamerDialog.cpp \
+    src/ui/renamer/MovieRenamerDialog.cpp \
+    src/ui/renamer/TvShowRenamerDialog.cpp \
     src/ui/renamer/RenamerPlaceholdersWidget.cpp \
     src/ui/scrapers/concert/TmdbConcertConfigurationView.cpp \
     src/ui/scrapers/image/FanartTvConfigurationView.cpp \
@@ -826,6 +829,9 @@ HEADERS += Version.h \
     src/ui/notifications/NotificationBox.h \
     src/ui/notifications/Notificator.h \
     src/ui/renamer/RenamerDialog.h \
+    src/ui/renamer/ConcertRenamerDialog.h \
+    src/ui/renamer/MovieRenamerDialog.h \
+    src/ui/renamer/TvShowRenamerDialog.h \
     src/ui/renamer/RenamerPlaceholdersWidget.h \
     src/ui/scrapers/concert/TmdbConcertConfigurationView.h \
     src/ui/scrapers/image/FanartTvConfigurationView.h \

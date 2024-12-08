@@ -25,7 +25,6 @@ public:
     void setConcerts(QVector<Concert*> concerts);
     void setShows(QVector<TvShow*> shows);
     void setEpisodes(QVector<TvShowEpisode*> episodes);
-    void setRenameType(RenameType type);
 
     bool renameErrorOccurred() const;
 
@@ -38,7 +37,7 @@ public slots:
     void reject() override;
 
 signals:
-    void sigFilesRenamed(RenameType);
+    void sigFilesRenamed(RenameType type, bool hasErrors);
 
 private slots:
     void onRename();
@@ -56,7 +55,7 @@ private:
     void renameEpisodes(QVector<TvShowEpisode*> episodes, const RenamerConfig& config);
     void renameTvShows(const QVector<TvShow*>& shows, const QString& directoryPattern, const bool& dryRun = false);
 
-private:
+protected:
     Ui::RenamerDialog* ui = nullptr;
 
     QVector<Movie*> m_movies;
