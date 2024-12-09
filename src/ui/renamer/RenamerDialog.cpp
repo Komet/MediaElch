@@ -65,37 +65,10 @@ int RenamerDialog::exec()
     Settings::instance()->renamings(m_renameType, renameFiles, renameFolders, useSeasonDirectories, replaceDelimiter);
 
     // Default texts for combo box.
-    QStringList fileNameDefaults;
-    QStringList fileNameMultiDefaults;
-    if (m_renameType == RenameType::TvShows) {
-        fileNameDefaults = QStringList{//
-            "S<season>E<episode> - <title>.<extension>",
-            "Season <season> Episode <episode> - <title>.<extension>"};
-        fileNameMultiDefaults = QStringList{//
-            "S<season>E<episode> - <title>-part<partNo>.<extension>"};
-    } else {
-        fileNameDefaults = QStringList{//
-            "<title>.<extension>",
-            "<originalTitle>.<extension>"};
-        fileNameMultiDefaults = QStringList{//
-            "<title>-part<partNo>.<extension>",
-            "<originalTitle>-part<partNo>.<extension>"};
-    }
-
-    if (m_renameType == RenameType::Movies) {
-        fileNameDefaults
-            << "<title>{tmdbId} tmdbId-<tmdbId>{/tmdbId}{imdbId} imdbId-<imdbId>{/imdbId} (<year>).<extension>";
-    }
-
-    QStringList directoryNameDefaults{//
-        "<title> (<year>)",
-        "{movieset}<movieset> - {/movieset}<title> (<year>)",
-        "<originalTitle> (<year>)",
-        "<sortTitle>{imdbId} [<imdbId>]{/imdbId} (<year>)"};
-
-    if (m_renameType == RenameType::Movies) {
-        directoryNameDefaults << "<sortTitle>{tmdbId} tmdbId-<tmdbId>{/tmdbId} (<year>)";
-    }
+    QStringList fileNameDefaults = this->fileNameDefaults();
+    ;
+    QStringList fileNameMultiDefaults = this->fileNameMultiDefaults();
+    QStringList dirNameDefaults = directoryNameDefaults();
 
     QStringList seasonNameDefaults = QStringList{//
         "Season <season>",
@@ -107,7 +80,7 @@ int RenamerDialog::exec()
     ui->fileNamingMulti->setItems(fileNameMultiDefaults);
     ui->fileNamingMulti->setText(fileNameMulti);
 
-    ui->directoryNaming->setItems(directoryNameDefaults);
+    ui->directoryNaming->setItems(dirNameDefaults);
     ui->directoryNaming->setText(directoryName);
 
     ui->seasonNaming->setItems(seasonNameDefaults);

@@ -5,7 +5,7 @@
 
 #include <QDialog>
 
-class ConcertRenamerDialog : public RenamerDialog
+class ConcertRenamerDialog final : public RenamerDialog
 {
     Q_OBJECT
 
@@ -20,6 +20,10 @@ private:
     void rejectImpl() override;
     QString dialogInfoLabel() override;
     void renameConcerts(QVector<Concert*> concerts, const RenamerConfig& config);
+
+    QStringList fileNameDefaults() override;
+    QStringList fileNameMultiDefaults() override;
+    QStringList directoryNameDefaults() override;
 
 private:
     QVector<Concert*> m_concerts;
