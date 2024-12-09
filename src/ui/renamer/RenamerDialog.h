@@ -22,7 +22,7 @@ public:
     explicit RenamerDialog(QWidget* parent = nullptr);
     ~RenamerDialog() override;
 
-    bool renameErrorOccurred() const;
+    ELCH_NODISCARD bool renameErrorOccurred() const;
 
     int addResultToTable(const QString& oldFileName, const QString& newFileName, Renamer::RenameOperation operation);
     void setResultStatus(int row, Renamer::RenameResult result);
@@ -48,6 +48,9 @@ protected:
     virtual void renameType(bool isDryRun) = 0;
     virtual void rejectImpl() = 0;
     virtual QString dialogInfoLabel() = 0;
+    virtual QStringList fileNameDefaults() = 0;
+    virtual QStringList fileNameMultiDefaults() = 0;
+    virtual QStringList directoryNameDefaults() = 0;
 
 protected:
     Ui::RenamerDialog* ui = nullptr;

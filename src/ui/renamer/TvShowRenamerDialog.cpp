@@ -1,9 +1,9 @@
 #include "ui/renamer/TvShowRenamerDialog.h"
 
+#include "database/TvShowPersistence.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "renamer/EpisodeRenamer.h"
-#include "database/TvShowPersistence.h"
 
 #include "ui_RenamerDialog.h"
 
@@ -145,4 +145,31 @@ void TvShowRenamerDialog::renameTvShows(const QVector<TvShow*>& shows,
             }
         }
     }
+}
+
+
+QStringList TvShowRenamerDialog::fileNameDefaults()
+{
+    return {
+        "S<season>E<episode> - <title>.<extension>",
+        "Season <season> Episode <episode> - <title>.<extension>",
+    };
+}
+
+QStringList TvShowRenamerDialog::fileNameMultiDefaults()
+{
+    return {
+        "S<season>E<episode> - <title>-part<partNo>.<extension>",
+    };
+}
+
+QStringList TvShowRenamerDialog::directoryNameDefaults()
+{
+    return {
+        "<title> (<year>)",
+        "{movieset}<movieset> - {/movieset}<title> (<year>)",
+        "<originalTitle> (<year>)",
+        "<sortTitle>{imdbId} [<imdbId>]{/imdbId} (<year>)",
+        "<sortTitle>{tmdbId} tmdbId-<tmdbId>{/tmdbId} (<year>)",
+    };
 }

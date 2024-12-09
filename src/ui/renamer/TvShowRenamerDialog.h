@@ -6,7 +6,7 @@
 
 #include <QDialog>
 
-class TvShowRenamerDialog : public RenamerDialog
+class TvShowRenamerDialog final : public RenamerDialog
 {
     Q_OBJECT
 
@@ -23,6 +23,10 @@ private:
     QString dialogInfoLabel() override;
     void renameEpisodes(QVector<TvShowEpisode*> episodes, const RenamerConfig& config);
     void renameTvShows(const QVector<TvShow*>& shows, const QString& directoryPattern, const bool& dryRun = false);
+
+    QStringList fileNameDefaults() override;
+    QStringList fileNameMultiDefaults() override;
+    QStringList directoryNameDefaults() override;
 
 private:
     QVector<TvShow*> m_shows;

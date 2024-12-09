@@ -81,3 +81,31 @@ void MovieRenamerDialog::renameMovies(QVector<Movie*> movies, const RenamerConfi
         }
     }
 }
+
+QStringList MovieRenamerDialog::fileNameDefaults()
+{
+    return {
+        "<title>.<extension>",
+        "<originalTitle>.<extension>",
+        "<title>{tmdbId} tmdbId-<tmdbId>{/tmdbId}{imdbId} imdbId-<imdbId>{/imdbId} (<year>).<extension>",
+    };
+}
+
+QStringList MovieRenamerDialog::fileNameMultiDefaults()
+{
+    return {
+        "<title>-part<partNo>.<extension>",
+        "<originalTitle>-part<partNo>.<extension>",
+    };
+}
+
+QStringList MovieRenamerDialog::directoryNameDefaults()
+{
+    return {
+        "<title> (<year>)",
+        "{movieset}<movieset> - {/movieset}<title> (<year>)",
+        "<originalTitle> (<year>)",
+        "<sortTitle>{imdbId} [<imdbId>]{/imdbId} (<year>)",
+        "<sortTitle>{tmdbId} tmdbId-<tmdbId>{/tmdbId} (<year>)",
+    };
+}

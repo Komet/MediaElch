@@ -80,3 +80,28 @@ void ConcertRenamerDialog::renameConcerts(QVector<Concert*> concerts, const Rena
         }
     }
 }
+
+QStringList ConcertRenamerDialog::fileNameDefaults()
+{
+    return {
+        "<title>.<extension>", "<originalTitle>.<extension>",
+    };
+}
+
+QStringList ConcertRenamerDialog::fileNameMultiDefaults()
+{
+    return {
+        "<title>-part<partNo>.<extension>",
+        "<originalTitle>-part<partNo>.<extension>",
+    };
+}
+
+QStringList ConcertRenamerDialog::directoryNameDefaults()
+{
+    return {
+        "<title> (<year>)",
+        "{movieset}<movieset> - {/movieset}<title> (<year>)",
+        "<originalTitle> (<year>)",
+        "<sortTitle>{imdbId} [<imdbId>]{/imdbId} (<year>)",
+    };
+}
