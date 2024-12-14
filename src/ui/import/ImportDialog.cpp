@@ -10,6 +10,9 @@
 #include "log/Log.h"
 #include "media/ImageCache.h"
 #include "media/NameFormatter.h"
+#include "renamer/ConcertRenamer.h"
+#include "renamer/EpisodeRenamer.h"
+#include "renamer/MovieRenamer.h"
 #include "scrapers/movie/custom/CustomMovieScraper.h"
 #include "settings/Settings.h"
 #include "ui/notifications/Notificator.h"
@@ -127,7 +130,9 @@ int ImportDialog::execMovie(QString searchString)
     NameFormatter::setExcludeWords(Settings::instance()->excludeWords());
     ui->movieSearchWidget->openAndSearch(NameFormatter::formatName(searchString), id, TmdbId::NoId);
 
-    ui->placeholders->setType(RenameType::Movies);
+    mediaelch::MovieRenamerPlaceholders placeholders;
+    ui->placeholders->setPlaceholders(placeholders);
+
     ui->chkSeasonDirectories->setVisible(false);
     ui->labelUseSeasonDirectories->setVisible(false);
     ui->seasonNaming->setVisible(false);
@@ -165,7 +170,9 @@ int ImportDialog::execTvShow(QString searchString, TvShow* tvShow)
 
     m_filesToMove.clear();
 
-    ui->placeholders->setType(RenameType::TvShows);
+    mediaelch::EpisodeRenamerPlaceholders placeholders;
+    ui->placeholders->setPlaceholders(placeholders);
+
     ui->chkSeasonDirectories->setVisible(true);
     ui->labelUseSeasonDirectories->setVisible(true);
     ui->seasonNaming->setVisible(true);
@@ -191,7 +198,9 @@ int ImportDialog::execConcert(QString searchString)
     NameFormatter::setExcludeWords(Settings::instance()->excludeWords());
     ui->concertSearchWidget->search(NameFormatter::formatName(searchString));
 
-    ui->placeholders->setType(RenameType::Concerts);
+    mediaelch::ConcertRenamerPlaceholders placeholders;
+    ui->placeholders->setPlaceholders(placeholders);
+
     ui->chkSeasonDirectories->setVisible(false);
     ui->labelUseSeasonDirectories->setVisible(false);
     ui->seasonNaming->setVisible(false);
@@ -470,24 +479,20 @@ void ImportDialog::onImport()
     m_filesToMove.clear();
 
     if (m_type == "movie") {
+        mediaelch::MovieRenamerPlaceholders renamerPlaceholder;
+        mediaelch::MovieRenamerData renamerData{*m_movie};
+        renamerData.setIsBluRay(m_movie->discType() == DiscType::BluRay);
+        renamerData.setIsDvd(m_movie->discType() == DiscType::Dvd);
+
         QDir dir(importDir());
         const auto videoDetails = m_movie->streamDetails()->videoDetails();
+        renamerData.setVideoDetails(videoDetails);
         if (m_separateFolders) {
             QString newFolderName = ui->directoryNaming->text();
-            Renamer::replace(newFolderName, "title", m_movie->name());
-            Renamer::replace(newFolderName, "originalTitle", m_movie->originalName());
-            Renamer::replace(newFolderName, "sortTitle", m_movie->sortTitle());
-            Renamer::replace(newFolderName, "year", m_movie->released().toString("yyyy"));
-            Renamer::replace(newFolderName,
-                "resolution",
-                helper::matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
-                    videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
-                    videoDetails.value(StreamDetails::VideoDetails::ScanType)));
-            Renamer::replaceCondition(newFolderName, "bluray", m_movie->discType() == DiscType::BluRay);
-            Renamer::replaceCondition(newFolderName, "dvd", m_movie->discType() == DiscType::Dvd);
-            Renamer::replaceCondition(
-                newFolderName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
-            Renamer::replaceCondition(newFolderName, "movieset", m_movie->set().name);
+
+            renamerData.setExtension("");
+            newFolderName = renamerPlaceholder.replace(newFolderName, renamerData);
+
             helper::sanitizeFolderName(newFolderName);
             /// \todo Should also check whether the directory exists.
             if (!dir.mkdir(newFolderName)) {
@@ -502,20 +507,10 @@ void ImportDialog::onImport()
         for (const QString& file : importFiles) {
             QFileInfo fi(file);
             QString newFileName = ui->fileNaming->text();
-            Renamer::replace(newFileName, "title", m_movie->name());
-            Renamer::replace(newFileName, "originalTitle", m_movie->originalName());
-            Renamer::replace(newFileName, "sortTitle", m_movie->sortTitle());
-            Renamer::replace(newFileName, "year", m_movie->released().toString("yyyy"));
-            Renamer::replace(newFileName, "extension", fi.suffix());
-            Renamer::replace(newFileName,
-                "resolution",
-                helper::matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
-                    videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
-                    videoDetails.value(StreamDetails::VideoDetails::ScanType)));
-            Renamer::replaceCondition(newFileName, "imdbId", m_movie->imdbId().toString());
-            Renamer::replaceCondition(newFileName, "movieset", m_movie->set().name);
-            Renamer::replaceCondition(
-                newFileName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
+
+            renamerData.setExtension(fi.suffix());
+            newFileName = renamerPlaceholder.replace(newFileName, renamerData);
+
             helper::sanitizeFileName(newFileName);
             m_filesToMove.insert(file, dir.absolutePath() + QDir::separator() + newFileName);
             if (files().contains(file)) {
@@ -525,7 +520,11 @@ void ImportDialog::onImport()
         ui->labelLoading->setText(tr("Importing movie..."));
 
     } else if (m_type == "tvshow") {
+        mediaelch::EpisodeRenamerPlaceholders renamerPlaceholder;
+        mediaelch::EpisodeRenamerData renamerData{*m_episode};
+
         const auto videoDetails = m_episode->streamDetails()->videoDetails();
+        renamerData.setVideoDetails(videoDetails);
         QDir dir(m_show->dir().toString());
         if (ui->chkSeasonDirectories->isChecked()) {
             QString newFolderName = ui->seasonNaming->text();
@@ -540,20 +539,9 @@ void ImportDialog::onImport()
             QFileInfo fi(file);
             QString newFileName = ui->fileNaming->text();
 
-            Renamer::replace(newFileName, "title", m_episode->title());
-            Renamer::replace(newFileName, "showTitle", m_episode->showTitle());
-            Renamer::replace(newFileName, "year", m_episode->firstAired().toString("yyyy"));
-            Renamer::replace(newFileName, "extension", fi.suffix());
-            Renamer::replace(newFileName, "episode", m_episode->episodeString());
-            Renamer::replace(newFileName, "season", m_episode->seasonString());
-            Renamer::replace(newFileName,
-                "resolution",
-                helper::matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
-                    videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
-                    videoDetails.value(StreamDetails::VideoDetails::ScanType)));
-            Renamer::replaceCondition(newFileName,
-                "3D",
-                m_episode->streamDetails()->videoDetails().value(StreamDetails::VideoDetails::StereoMode) != "");
+            renamerData.setExtension(fi.suffix());
+            newFileName = renamerPlaceholder.replace(newFileName, renamerData);
+
             helper::sanitizeFileName(newFileName);
             m_filesToMove.insert(file, dir.absolutePath() + QDir::separator() + newFileName);
             if (files().contains(file)) {
@@ -564,24 +552,21 @@ void ImportDialog::onImport()
         ui->labelLoading->setText(tr("Importing episode..."));
 
     } else if (m_type == "concert") {
+        mediaelch::ConcertRenamerPlaceholders renamerPlaceholder;
+        mediaelch::ConcertRenamerData renamerData{*m_concert};
+
+        renamerData.setIsDvd(m_concert->discType() == DiscType::Dvd);
+        renamerData.setIsBluRay(m_concert->discType() == DiscType::BluRay);
+
         const auto videoDetails = m_concert->streamDetails()->videoDetails();
+        renamerData.setVideoDetails(videoDetails);
         QDir dir(importDir());
         if (m_separateFolders) {
             QString newFolderName = ui->directoryNaming->text();
-            Renamer::replace(newFolderName, "title", m_concert->title());
-            Renamer::replace(
-                newFolderName, "artist", m_concert->artists().isEmpty() ? "" : m_concert->artists().first());
-            Renamer::replace(newFolderName, "album", m_concert->album());
-            Renamer::replace(newFolderName, "year", m_concert->released().toString("yyyy"));
-            Renamer::replace(newFolderName,
-                "resolution",
-                helper::matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
-                    videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
-                    videoDetails.value(StreamDetails::VideoDetails::ScanType)));
-            Renamer::replaceCondition(newFolderName, "bluray", m_concert->discType() == DiscType::BluRay);
-            Renamer::replaceCondition(newFolderName, "dvd", m_concert->discType() == DiscType::Dvd);
-            Renamer::replaceCondition(
-                newFolderName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
+
+            renamerData.setExtension("");
+            newFolderName = renamerPlaceholder.replace(newFolderName, renamerData);
+
             helper::sanitizeFolderName(newFolderName);
             /// \todo Should also check whether the directory exists.
             if (!dir.mkdir(newFolderName)) {
@@ -596,18 +581,10 @@ void ImportDialog::onImport()
         for (const QString& file : importFiles) {
             QFileInfo fi(file);
             QString newFileName = ui->fileNaming->text();
-            Renamer::replace(newFileName, "title", m_concert->title());
-            Renamer::replace(newFileName, "artist", m_concert->artists().isEmpty() ? "" : m_concert->artists().first());
-            Renamer::replace(newFileName, "album", m_concert->album());
-            Renamer::replace(newFileName, "year", m_concert->released().toString("yyyy"));
-            Renamer::replace(newFileName, "extension", fi.suffix());
-            Renamer::replace(newFileName,
-                "resolution",
-                helper::matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
-                    videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
-                    videoDetails.value(StreamDetails::VideoDetails::ScanType)));
-            Renamer::replaceCondition(
-                newFileName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
+
+            renamerData.setExtension(fi.suffix());
+            newFileName = renamerPlaceholder.replace(newFileName, renamerData);
+
             helper::sanitizeFileName(newFileName);
             m_filesToMove.insert(file, dir.absolutePath() + QDir::separator() + newFileName);
             if (files().contains(file)) {

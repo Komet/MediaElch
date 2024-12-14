@@ -1,10 +1,7 @@
 #pragma once
 
-#include "data/concert/Concert.h"
-#include "data/movie/Movie.h"
-#include "data/tv_show/TvShow.h"
-#include "data/tv_show/TvShowEpisode.h"
 #include "renamer/Renamer.h"
+#include "utils/Meta.h"
 
 #include <QDialog>
 #include <QDir>
@@ -51,6 +48,7 @@ protected:
     virtual QStringList fileNameDefaults() = 0;
     virtual QStringList fileNameMultiDefaults() = 0;
     virtual QStringList directoryNameDefaults() = 0;
+    virtual void initPlaceholders() = 0;
 
 protected:
     Ui::RenamerDialog* ui = nullptr;
