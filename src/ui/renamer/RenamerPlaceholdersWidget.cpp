@@ -1,18 +1,19 @@
-#include "RenamerPlaceholders.h"
-#include "ui_RenamerPlaceholders.h"
+#include "RenamerPlaceholdersWidget.h"
+#include "ui_RenamerPlaceholdersWidget.h"
 
-RenamerPlaceholders::RenamerPlaceholders(QWidget* parent) : QWidget(parent), ui(new Ui::RenamerPlaceholders)
+RenamerPlaceholdersWidget::RenamerPlaceholdersWidget(QWidget* parent) :
+    QWidget(parent), ui(new Ui::RenamerPlaceholdersWidget)
 {
     ui->setupUi(this);
     setType(RenameType::Movies);
 }
 
-RenamerPlaceholders::~RenamerPlaceholders()
+RenamerPlaceholdersWidget::~RenamerPlaceholdersWidget()
 {
     delete ui;
 }
 
-void RenamerPlaceholders::setType(RenameType renameType)
+void RenamerPlaceholdersWidget::setType(RenameType renameType)
 {
     using Type = RenameType;
 

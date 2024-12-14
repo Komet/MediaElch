@@ -58,7 +58,7 @@
         </widget>
        </item>
        <item>
-        <widget class="RenamerPlaceholders" name="placeholders" native="true">
+        <widget class="RenamerPlaceholdersWidget" name="placeholders" native="true">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -410,9 +410,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <header location="global">ui/small_widgets/PlaceholderLineEdit.h</header>
   </customwidget>
   <customwidget>
-   <class>RenamerPlaceholders</class>
+   <class>RenamerPlaceholdersWidget</class>
    <extends>QWidget</extends>
-   <header>ui/renamer/RenamerPlaceholders.h</header>
+   <header>ui/renamer/RenamerPlaceholdersWidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

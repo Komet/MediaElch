@@ -429,7 +429,7 @@ SOURCES += \
     src/ui/notifications/NotificationBox.cpp \
     src/ui/notifications/Notificator.cpp \
     src/ui/renamer/RenamerDialog.cpp \
-    src/ui/renamer/RenamerPlaceholders.cpp \
+    src/ui/renamer/RenamerPlaceholdersWidget.cpp \
     src/ui/scrapers/concert/TmdbConcertConfigurationView.cpp \
     src/ui/scrapers/image/FanartTvConfigurationView.cpp \
     src/ui/scrapers/image/TheTvDbImagesConfigurationView.cpp \
@@ -826,7 +826,7 @@ HEADERS += Version.h \
     src/ui/notifications/NotificationBox.h \
     src/ui/notifications/Notificator.h \
     src/ui/renamer/RenamerDialog.h \
-    src/ui/renamer/RenamerPlaceholders.h \
+    src/ui/renamer/RenamerPlaceholdersWidget.h \
     src/ui/scrapers/concert/TmdbConcertConfigurationView.h \
     src/ui/scrapers/image/FanartTvConfigurationView.h \
     src/ui/scrapers/image/TheTvDbImagesConfigurationView.h \
@@ -958,7 +958,7 @@ FORMS += \
     src/ui/music/MusicWidget.ui \
     src/ui/notifications/NotificationBox.ui \
     src/ui/renamer/RenamerDialog.ui \
-    src/ui/renamer/RenamerPlaceholders.ui \
+    src/ui/renamer/RenamerPlaceholdersWidget.ui \
     src/ui/settings/ConcertScraperInfoWidget.ui \
     src/ui/settings/ConcertSettingsWidget.ui \
     src/ui/settings/CustomTvScraperSettingsWidget.ui \
