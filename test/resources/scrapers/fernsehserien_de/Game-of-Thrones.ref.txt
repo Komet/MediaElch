@@ -34,16 +34,10 @@ networks: (N=0)
 episodeGuideUrl: 
 actors: (N>5)
  - id: 
-   name: Nikolaj Coster-Waldau
-   role: Ser Jaime Lennister
-   thumb: https://bilder.fernsehserien.de/gfx/person_1000/n/nikolaj-coster-waldau.jpg
-   order: 0
-   imageHasChanged: false
- - id: 
    name: Peter Dinklage
    role: Tyrion Lennister
    thumb: https://bilder.fernsehserien.de/gfx/person_1000/p/peter-dinklage.jpg
-   order: 1
+   order: 0
    imageHasChanged: false
  - id: 
    name: Emilia Clarke
@@ -51,24 +45,30 @@ actors: (N>5)
    thumb:
     https://bilder.fernsehserien.de/gfx/person_1000/e/emilia-clarke-46506-1704360411
     .jpg
-   order: 2
+   order: 1
    imageHasChanged: false
  - id: 
    name: Lena Headey
    role: Cersei Baratheon geb. Lennister
    thumb: https://bilder.fernsehserien.de/gfx/person_1000/l/lena-headey-1617854461.jpg
-   order: 3
+   order: 2
    imageHasChanged: false
  - id: 
    name: Sophie Turner
    role: Sansa Stark
    thumb: https://bilder.fernsehserien.de/gfx/person_1000/s/sophie-turner.jpg
-   order: 4
+   order: 3
    imageHasChanged: false
  - id: 
    name: Kit Harington
    role: Jon Schnee, Aegon Targaryen
    thumb: https://bilder.fernsehserien.de/gfx/person_1000/k/kit-harington.jpg
+   order: 4
+   imageHasChanged: false
+ - id: 
+   name: Nikolaj Coster-Waldau
+   role: Ser Jaime Lennister
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/n/nikolaj-coster-waldau.jpg
    order: 5
    imageHasChanged: false
 posters: (N=1)

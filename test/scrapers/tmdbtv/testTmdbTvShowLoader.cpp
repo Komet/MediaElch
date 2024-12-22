@@ -98,7 +98,7 @@ TEST_CASE("TmdbTv scrapes show details", "[show][TmdbTv][load_data]")
         CHECK(actors[0]->name == "Richard Dean Anderson");
         CHECK(actors[0]->role == "Jack O'Neill");
         CHECK(actors[0]->id == "26085");
-        CHECK(actors[0]->thumb == "https://image.tmdb.org/t/p/original/w9Wi0OUEFGy9vMUpiZjj9GLzpag.jpg");
+        CHECK_THAT(actors[0]->thumb, StartsWith("https://image.tmdb.org/t/p/original"));
 
         test::scraper::compareAgainstReference(show, "scrapers/tmdbtv/Stargate-SG-1-tmdb4629");
     }

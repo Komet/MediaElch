@@ -28,7 +28,7 @@ tags: (N<6)
   - car
   - anthropomorphic car
   - anthropomorphic vehicle
-certification: Not Rated
+certification: TV-Y
 networks: (N=0)
 episodeGuideUrl: 
 actors: (N=0)

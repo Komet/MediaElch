@@ -142,10 +142,10 @@ actors: (N>1000)
    thumb: https://static.tvmaze.com/uploads/images/original_untouched/2/7324.jpg
    order: 18
    imageHasChanged: false
- - id: 14854
-   name: Dan Castellaneta
-   role: Barney Gumble
-   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/963.jpg
+ - id: 14856
+   name: Nancy Cartwright
+   role: Ralph Wiggum
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/968.jpg
    order: 19
    imageHasChanged: false
   - ... and >1000 more

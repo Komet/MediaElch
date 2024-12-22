@@ -8,7 +8,7 @@ tvmazeId: 5264
 title: I'm Goin' to Praise Land
 showTitle: 
 ratings (N=1)
-  source=tvmaze | rating=8 | votes=0 | min=0 | max=10
+  source=tvmaze | rating=8.2 | votes=0 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12

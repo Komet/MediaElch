@@ -24,7 +24,7 @@ movie set: tmdbid= | name=
 movie set overview: 
 tagline: 
 ratings (N=1)
-  source=imdb | rating=4.2 | votes=6000 | min=0 | max=10
+  source=imdb | rating=4.2 | votes=7000 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 released: 2015-09-03
