@@ -42,7 +42,7 @@ actors: (N>800)
  - id: 26085
    name: Richard Dean Anderson
    role: Jack O'Neill
-   thumb: https://image.tmdb.org/t/p/original/w9Wi0OUEFGy9vMUpiZjj9GLzpag.jpg
+   thumb: https://image.tmdb.org/t/p/original/hHCSMRiI4OMT1AxgWQhugtipvy2.jpg
    order: 0
    imageHasChanged: false
  - id: 26087
@@ -120,9 +120,9 @@ actors: (N>800)
  - id: 118463
    name: Peter DeLuise
    role:
-    Director / Peter DeLuise, Airman, SF Guard (Uncredited), Interviewer, Tok'ra Gua
-    rd, Free Jaffa (Voice only) (Uncredited), Machine Gun Guard, Lieutenant, Man Lea
-    ving Cafe, Young Urgo in Uniform, Screaming Villager
+    Director / Peter DeLuise, Airman, SF Guard (Uncredited), Screaming Villager, Lie
+    utenant, Young Urgo in Uniform, Free Jaffa (Voice only) (Uncredited), Interviewe
+    r, Machine Gun Guard, Man Leaving Cafe, Tok'ra Guard
    thumb: https://image.tmdb.org/t/p/original/sLkSOm6HBLB4VCfshQLdSEq63tr.jpg
    order: 13
    imageHasChanged: false
@@ -146,17 +146,17 @@ actors: (N>800)
    imageHasChanged: false
  - id: 59245
    name: Laara Sadiq
-   role: Technician #2, Technician, Technican, Technician Davis
+   role: Technician #2, Technician, Technician Davis, Technican
    thumb: https://image.tmdb.org/t/p/original/l7MkydwslaXo1EmYrRpJARnaFKs.jpg
    order: 17
    imageHasChanged: false
  - id: 1366510
    name: Fraser Aitcheson
    role:
-    Hathor's Jaffa, Orderly, Jaffa, Jaffa Guard, Ares' Jaffa commander (Uncredited),
-     Dakara Jaffa 3 (Uncredited), Jaffa Commander, Apophis' Red Jaffa, Jaffa Warrior
-    , Free Jaffa (Uncredited), Free Jaffa 2 (Uncredited), Tagrean Worker, Anubis' Ja
-    ffa
+    Hathor's Jaffa, Anubis' Jaffa, Jaffa, Jaffa Guard, Jaffa Warrior, Tagrean Worker
+    , Apophis' Red Jaffa, Dakara Jaffa 3 (Uncredited), Orderly, Free Jaffa 2 (Uncred
+    ited), Free Jaffa (Uncredited), Ares' Jaffa commander (Uncredited), Jaffa Comman
+    der
    thumb: https://image.tmdb.org/t/p/original/j0fou5tZvXHe3GcVr24UnYQLg6S.jpg
    order: 18
    imageHasChanged: false
@@ -177,9 +177,9 @@ posters: (N=1)
     aspect: 
     season: SeasonNumber=xx
 backdrops: (N=1)
-  - id: https://image.tmdb.org/t/p/original/5mXZ0sdVPfj4bSkhPSWwTX2LcM5.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/5mXZ0sdVPfj4bSkhPSWwTX2LcM5.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/5mXZ0sdVPfj4bSkhPSWwTX2LcM5.jpg
+  - id: https://image.tmdb.org/t/p/original/mt3SRKq7uRBKVntaBg2ofsDfOdg.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/mt3SRKq7uRBKVntaBg2ofsDfOdg.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/mt3SRKq7uRBKVntaBg2ofsDfOdg.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
