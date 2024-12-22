@@ -42,19 +42,11 @@ void ImdbTvEpisodeParser::parseInfos(TvShowEpisode& episode, const QString& html
     // --------------------------------------
 
     rx.setPattern(
-        R"(<div class="txt-block" itemprop="director" itemscope itemtype="http://schema.org/Person">(.*)</div>)");
+        R"(Directed by.*<table class="simpleTable spFirst crew_list">(.*)</table>)");
     match = rx.match(html);
     QString directorsBlock;
     if (match.hasMatch()) {
         directorsBlock = match.captured(1);
-    } else {
-        // the ghost span may only exist if there are more than 2 directors
-        rx.setPattern(
-            R"(<div class="credit_summary_item">\n +<h4 class="inline">Directors?:</h4>(.*)(?:<span class="ghost">|</div>))");
-        match = rx.match(html);
-        if (match.hasMatch()) {
-            directorsBlock = match.captured(1);
-        }
     }
 
     if (!directorsBlock.isEmpty()) {
@@ -71,20 +63,11 @@ void ImdbTvEpisodeParser::parseInfos(TvShowEpisode& episode, const QString& html
     // --------------------------------------
 
     rx.setPattern(
-        R"(<div class="txt-block" itemprop="creator" itemscope itemtype="http://schema.org/Person">(.*)</div>)");
+        R"(Written by.*<table class="simpleTable spFirst writers_list">(.*)</table>)");
     match = rx.match(html);
     QString writersBlock;
     if (match.hasMatch()) {
         writersBlock = match.captured(1);
-
-    } else {
-        // the ghost span may only exist if there are more than 2 writers
-        rx.setPattern(
-            R"(<div class="credit_summary_item">\n +<h4 class="inline">Writers?:</h4>(.*)(?:<span class="ghost">|</div>))");
-        match = rx.match(html);
-        if (match.hasMatch()) {
-            writersBlock = match.captured(1);
-        }
     }
 
     if (!writersBlock.isEmpty()) {

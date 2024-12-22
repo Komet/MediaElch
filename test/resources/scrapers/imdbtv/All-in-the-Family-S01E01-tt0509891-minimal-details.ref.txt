@@ -19,8 +19,12 @@ overview:
     In the series' premiere, Mike and Gloria plan a surprise party to celebrate Arch
     ie and Edith's 22nd anniversary. But it quickly turns into a shouting match betw
     een conservative Archie and the liberal "Meathead" on virtually every topic.
-writers: (N=0)
-directors: (N=0)
+writers: (N<6)
+  - Norman Lear
+  - Norman Lear
+  - Johnny Speight
+directors: (N=1)
+  - John Rich
 playCount: 0
 lastPlayed: <not set or invalid>
 firstAired: 1971-01-12

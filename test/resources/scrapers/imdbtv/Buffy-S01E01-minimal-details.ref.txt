@@ -25,8 +25,16 @@ overview:
      her and keeps Giles, her watcher (trainer), at arms-length, but is stalked by A
     ngel who refers to the hell-mouth. Finally her destiny kicks in. Written by KGF 
     Vissers
-writers: (N=0)
-directors: (N=0)
+writers: (N>5)
+  - Joss Whedon
+  - Joss Whedon
+  - Matt Kiene
+  - Joe Reinkemeyer
+  - Rob DesHotel
+  - ... and =1 more
+directors: (N<6)
+  - Charles Martin Smith
+  - Joss Whedon
 playCount: 0
 lastPlayed: <not set or invalid>
 firstAired: 1998-10-09

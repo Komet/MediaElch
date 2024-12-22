@@ -21,8 +21,10 @@ overview:
      room, and, with the help of her new friends Willow and Xander, she fights a gan
     g of vampires. Also, she meets Cordelia and her friends, and Giles, her new Watc
     her, tells her more about her destiny. Written by page8701
-writers: (N=0)
-directors: (N=0)
+writers: (N=1)
+  - Joss Whedon
+directors: (N=1)
+  - Joss Whedon
 playCount: 0
 lastPlayed: <not set or invalid>
 firstAired: 2011-09-30

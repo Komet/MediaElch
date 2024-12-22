@@ -24,8 +24,16 @@ overview:
     a candle before the altar and are charged with assault.Ned does,however,enjoy th
     e further company of Rachel Jordan,despite his efforts to turn her into a clone 
     of Maude. Written by don @ minifie-1
-writers: (N=0)
-directors: (N=0)
+writers: (N>5)
+  - Matt Groening
+  - James L. Brooks
+  - Matt Groening
+  - Sam Simon
+  - Julie Thacker-Scully
+  - ... and =1 more
+directors: (N<6)
+  - Chuck Sheetz
+  - Jim Reardon
 playCount: 0
 lastPlayed: <not set or invalid>
 firstAired: 2002-02-04

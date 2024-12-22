@@ -11,6 +11,7 @@
 
 - UI: The movie search widget is no longer stuck in case of network errors.
 - HotMovies/AdultDvdEmpire: Search works again (#1811)
+- IMDb: Writers/Directors are scraped again for TV show episodes (#1832)
 
 ### Changed
 
