@@ -47,7 +47,7 @@ public:
     }
 
 private:
-    PlaceholderParser(const QString& input) : m_input{input} {}
+    PlaceholderParser(const QString& input) : m_input{input}, m_conditionStack{}, m_result{} {}
 
     void createPlaceholderTree();
     elch_ssize_t readOpeningCondition(elch_ssize_t i);

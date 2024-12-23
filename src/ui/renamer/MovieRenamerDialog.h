@@ -3,8 +3,6 @@
 #include "data/movie/Movie.h"
 #include "ui/renamer/RenamerDialog.h"
 
-#include <QDialog>
-
 class MovieRenamerDialog final : public RenamerDialog
 {
     Q_OBJECT
@@ -19,6 +17,8 @@ private:
     void renameType(bool isDryRun) override;
     void rejectImpl() override;
     QString dialogInfoLabel() override;
+    void initPlaceholders() override;
+
     void renameMovies(QVector<Movie*> movies, const RenamerConfig& config);
 
     QStringList fileNameDefaults() override;

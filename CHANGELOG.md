@@ -5,7 +5,8 @@
 
 ### Notes
 
-- tbd
+- The renamer has been worked internally (#1834)  
+  If you encounter issues, please let us know.
 
 ### Fixed
 
@@ -23,7 +24,7 @@
 
 ### Added
 
-- TVMaze can now load episodes' guest cast (actors) (#1801)
+- TVMaze can now load episodes' guest cast (actors) for single-episode scraping (#1801)
 - NFO: `<hdrtype>` is now supported (#1810)
 - Renamer:
   - Placeholder `<tmdbId>` is now also available for TV shows and episodes (#1814)

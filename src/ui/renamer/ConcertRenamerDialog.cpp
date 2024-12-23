@@ -53,6 +53,12 @@ QString ConcertRenamerDialog::dialogInfoLabel()
     return tr("%n concerts will be renamed", "", qsizetype_to_int(m_concerts.count()));
 }
 
+void ConcertRenamerDialog::initPlaceholders()
+{
+    mediaelch::ConcertRenamerPlaceholders placeholders;
+    ui->placeholders->setPlaceholders(placeholders);
+}
+
 void ConcertRenamerDialog::renameConcerts(QVector<Concert*> concerts, const RenamerConfig& config)
 {
     if ((config.renameFiles && config.filePattern.isEmpty())

@@ -3,8 +3,6 @@
 #include "data/concert/Concert.h"
 #include "ui/renamer/RenamerDialog.h"
 
-#include <QDialog>
-
 class ConcertRenamerDialog final : public RenamerDialog
 {
     Q_OBJECT
@@ -20,6 +18,7 @@ private:
     void rejectImpl() override;
     QString dialogInfoLabel() override;
     void renameConcerts(QVector<Concert*> concerts, const RenamerConfig& config);
+    void initPlaceholders() override;
 
     QStringList fileNameDefaults() override;
     QStringList fileNameMultiDefaults() override;

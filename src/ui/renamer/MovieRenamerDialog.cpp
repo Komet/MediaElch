@@ -54,6 +54,11 @@ QString MovieRenamerDialog::dialogInfoLabel()
     return tr("%n movies will be renamed", "", qsizetype_to_int(m_movies.count()));
 }
 
+void MovieRenamerDialog::initPlaceholders()
+{
+    mediaelch::MovieRenamerPlaceholders placeholders;
+    ui->placeholders->setPlaceholders(placeholders);
+}
 
 void MovieRenamerDialog::renameMovies(QVector<Movie*> movies, const RenamerConfig& config)
 {

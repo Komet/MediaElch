@@ -1,5 +1,6 @@
 #pragma once
 
+#include "renamer/RenamerPlaceholders.h"
 #include "ui/renamer/RenamerDialog.h"
 
 #include <QWidget>
@@ -15,7 +16,7 @@ class RenamerPlaceholdersWidget : public QWidget
 public:
     explicit RenamerPlaceholdersWidget(QWidget* parent = nullptr);
     ~RenamerPlaceholdersWidget() override;
-    void setType(RenameType renameType);
+    void setPlaceholders(mediaelch::RenamerPlaceholders& renamerPlaceholders);
 
 private:
     Ui::RenamerPlaceholdersWidget* ui;

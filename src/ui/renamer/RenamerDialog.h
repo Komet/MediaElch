@@ -2,6 +2,7 @@
 
 #include "renamer/PlaceholderParser.h"
 #include "renamer/Renamer.h"
+#include "utils/Meta.h"
 
 #include <QDialog>
 #include <QMap>
@@ -49,6 +50,7 @@ protected:
     virtual QStringList fileNameDefaults() = 0;
     virtual QStringList fileNameMultiDefaults() = 0;
     virtual QStringList directoryNameDefaults() = 0;
+    virtual void initPlaceholders() = 0;
 
 protected:
     Ui::RenamerDialog* ui = nullptr;

@@ -1,6 +1,12 @@
 add_library(
-  mediaelch_renamer OBJECT MovieRenamer.cpp ConcertRenamer.cpp
-                           EpisodeRenamer.cpp Renamer.cpp PlaceholderParser.cpp
+  mediaelch_renamer OBJECT
+  MovieRenamer.cpp
+  ConcertRenamer.cpp
+  EpisodeRenamer.cpp
+  Renamer.cpp
+  PlaceholderParser.cpp
+  RenamerPlaceholders.cpp
+  RenamerUtils.cpp
 )
 
 target_link_libraries(

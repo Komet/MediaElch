@@ -4,6 +4,7 @@
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "log/Log.h"
+#include "renamer/MovieRenamer.h"
 
 #include <QTimer>
 #include <algorithm>
@@ -66,7 +67,7 @@ int RenamerDialog::exec()
 
     // Default texts for combo box.
     QStringList fileNameDefaults = this->fileNameDefaults();
-    ;
+
     QStringList fileNameMultiDefaults = this->fileNameMultiDefaults();
     QStringList dirNameDefaults = directoryNameDefaults();
 
@@ -99,7 +100,7 @@ int RenamerDialog::exec()
     ui->seasonNaming->setVisible(m_renameType == RenameType::TvShows);
     ui->labelSeasonDirectory->setVisible(m_renameType == RenameType::TvShows);
 
-    ui->placeholders->setType(m_renameType);
+    initPlaceholders();
 
     ui->results->clear();
     ui->resultsTable->setRowCount(0);

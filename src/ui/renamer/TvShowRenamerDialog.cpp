@@ -46,7 +46,8 @@ void TvShowRenamerDialog::renameType(const bool isDryRun)
     config.renameDirectories = ui->chkSeasonDirectories->isChecked();
     renameEpisodes(m_episodes, config);
     if (config.renameDirectories) {
-        renameTvShows(m_shows, ui->directoryNaming->text(), isDryRun);
+        config.directoryPattern = ui->directoryNaming->text();
+        renameTvShows(m_shows, config);
     }
 
     if (isDryRun) {
@@ -69,7 +70,7 @@ QString TvShowRenamerDialog::dialogInfoLabel()
 
 void TvShowRenamerDialog::renameEpisodes(QVector<TvShowEpisode*> episodes, const RenamerConfig& config)
 {
-    if (config.renameFiles && config.filePattern.isEmpty()) {
+    if (!config.renameFiles || config.filePattern.isEmpty()) {
         return;
     }
 
@@ -96,15 +97,14 @@ void TvShowRenamerDialog::renameEpisodes(QVector<TvShowEpisode*> episodes, const
     }
 }
 
-void TvShowRenamerDialog::renameTvShows(const QVector<TvShow*>& shows,
-    const QString& directoryPattern,
-    const bool& dryRun)
+void TvShowRenamerDialog::renameTvShows(const QVector<TvShow*>& shows, const RenamerConfig& config)
 {
-    if (directoryPattern.isEmpty()) {
+    if (!config.renameDirectories || config.directoryPattern.isEmpty()) {
         return;
     }
 
-    mediaelch::TvShowPersistence persistence{*Manager::instance()->database()};
+    EpisodeRenamer renamer(config, this);
+
     for (TvShow* show : shows) {
         if (show->hasChanged()) {
             ui->results->append(
@@ -112,41 +112,20 @@ void TvShowRenamerDialog::renameTvShows(const QVector<TvShow*>& shows,
             continue;
         }
 
-        QDir dir(show->dir().toString());
-        QString newFolderName = directoryPattern;
-        Renamer::replace(newFolderName, "title", show->title());
-        Renamer::replace(newFolderName, "showTitle", show->title());
-        Renamer::replaceCondition(newFolderName, "tmdbId", show->tmdbId().toString());
-        Renamer::replace(newFolderName, "year", show->firstAired().toString("yyyy"));
-        helper::sanitizeFolderName(newFolderName);
-        if (newFolderName != dir.dirName()) {
-            const int row = addResultToTable(dir.dirName(), newFolderName, Renamer::RenameOperation::Rename);
-            QDir parentDir(dir.path());
-            parentDir.cdUp();
-            if (dryRun) {
-                continue;
-            }
-            if (!Renamer::rename(dir, parentDir.absolutePath() + "/" + newFolderName)) {
-                setResultStatus(row, Renamer::RenameResult::Failed);
-                m_renameErrorOccurred = true;
-                continue;
-            }
-            const QString newShowDir = parentDir.absolutePath() + "/" + newFolderName;
-            const QString oldShowDir = show->dir().toString();
-            show->setDir(mediaelch::DirectoryPath(newShowDir));
-            persistence.update(show);
-            for (TvShowEpisode* episode : show->episodes()) {
-                QStringList files;
-                for (const mediaelch::FilePath& file : episode->files()) {
-                    files << newShowDir + file.toString().mid(oldShowDir.length());
-                }
-                episode->setFiles(files);
-                persistence.update(episode);
-            }
+        QApplication::processEvents();
+
+        Renamer::RenameError err = renamer.renameTvShow(*show);
+        if (err != Renamer::RenameError::None) {
+            m_renameErrorOccurred = true;
         }
     }
 }
 
+void TvShowRenamerDialog::initPlaceholders()
+{
+    mediaelch::EpisodeRenamerPlaceholders placeholders;
+    ui->placeholders->setPlaceholders(placeholders);
+}
 
 QStringList TvShowRenamerDialog::fileNameDefaults()
 {

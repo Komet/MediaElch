@@ -1,13 +1,107 @@
 #include "MovieRenamer.h"
 
+#include "RenamerPlaceholders.h"
+#include "RenamerUtils.h"
 #include "data/movie/Movie.h"
 #include "database/MoviePersistence.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
+#include "log/Log.h"
 #include "media_center/MediaCenterInterface.h"
 
 #include <QDir>
 #include <QFileInfo>
+
+namespace mediaelch {
+
+MovieRenamerPlaceholders::~MovieRenamerPlaceholders() = default;
+
+QVector<Placeholder> MovieRenamerPlaceholders::placeholders()
+{
+    return {
+        // clang-format off
+        { "extension",        true,  false, QObject::tr("File extension") },
+        { "bluray",           false, true,  QObject::tr("File/directory is BluRay") },
+        { "dvd",              false, true,  QObject::tr("File/directory is DVD") },
+        { "partNo",           true,  false, QObject::tr("Part number of the current file") },
+        { "title",            true,  false, QObject::tr("Title") },
+        { "originalTitle",    true,  false, QObject::tr("Original Title") },
+        { "sortTitle",        true,  false, QObject::tr("Sort Title") },
+        { "director",         true,  false, QObject::tr("Director(s)") },
+        { "studio",           true,  false, QObject::tr("Studio(s) (separated by a comma)") },
+        { "year",             true,  false, QObject::tr("Year") },
+        { "videoCodec",       true,  false, QObject::tr("Video Codec") },
+        { "audioLanguage",    true,  false, QObject::tr("Audio Language(s) (separated by a minus)") },
+        { "subtitleLanguage", true,  false, QObject::tr("Subtitle Language(s) (separated by a minus)") },
+        { "audioCodec",       true,  false, QObject::tr("Audio Codec") },
+        { "channels",         true,  false, QObject::tr("Number of audio channels") },
+        { "resolution",       true,  false, QObject::tr("Resolution (1080p, 720p, ...)") },
+        { "3D",               false, true,  QObject::tr("File is 3D") },
+        { "movieset",         true,  true,  QObject::tr("Movie set name") },
+        { "imdbId",           true,  true,  QObject::tr("IMDb ID") },
+        { "tmdbId",           true,  true,  QObject::tr("TMDB ID") },
+        // clang-format on
+    };
+}
+
+MovieRenamerData::~MovieRenamerData() = default;
+
+ELCH_NODISCARD QString MovieRenamerData::value(const QString& name) const
+{
+    const QMap<QString, std::function<QString()>> map = {
+        // clang-format off
+        {"extension",        [this]() { return m_extension; }},
+        {"imdbId",           [this]() { return m_movie.imdbId().toString(); }},
+        {"tmdbId",           [this]() { return m_movie.tmdbId().toString(); }},
+        {"partNo",           [this]() { return QString::number(m_partNo); }},
+        {"title",            [this]() { return m_movie.name(); }},
+        {"originalTitle",    [this]() { return m_movie.originalName().isEmpty() ? m_movie.name() : m_movie.originalName(); }},
+        {"sortTitle",        [this]() { return m_movie.sortTitle(); }},
+        {"director",         [this]() { return m_movie.director(); }},
+        {"studio",           [this]() { return m_movie.studios().join(","); }},
+        {"year",             [this]() { return m_movie.released().toString("yyyy"); }},
+        {"videoCodec",       [this]() { return m_movie.streamDetails()->videoCodec(); }},
+        {"audioLanguage",    [this]() { return m_movie.streamDetails()->allAudioLanguages().join("-"); }},
+        {"subtitleLanguage", [this]() { return m_movie.streamDetails()->allSubtitleLanguages().join("-"); }},
+        {"audioCodec",       [this]() { return m_movie.streamDetails()->audioCodec(); }},
+        {"channels",         [this]() { return QString::number(m_movie.streamDetails()->audioChannels()); }},
+        {"movieset",         [this]() { return m_movie.set().name; }},
+        {"resolution",       [this]() {
+            return helper::matchResolution(m_videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
+                m_videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
+                m_videoDetails.value(StreamDetails::VideoDetails::ScanType));
+        }},
+        // clang-format on
+    };
+
+    MediaElch_Ensure_Data_Matches_Placeholders(MovieRenamerPlaceholders, map);
+
+    if (map.contains(name)) {
+        return map[name]();
+    }
+    qCCritical(generic) << "MovieRenamerData::value: Unknown tag:" << name;
+    MediaElch_Debug_Unreachable();
+    return "";
+}
+
+ELCH_NODISCARD bool MovieRenamerData::passesCondition(const QString& name) const
+{
+    const QMap<QString, std::function<bool()>> map = {
+        // clang-format off
+        {"bluray", [this]() { return m_isBluRay; }},
+        {"dvd",    [this]() { return m_isDvd; }},
+        {"3D",     [this]() { return m_videoDetails.value(StreamDetails::VideoDetails::StereoMode) != ""; }},
+        // clang-format on
+    };
+
+    MediaElch_Ensure_Condition_Matches_Placeholders(MovieRenamerPlaceholders, map);
+
+    return map.contains(name) //
+               ? map[name]()
+               : !value(name).isEmpty();
+};
+
+} // namespace mediaelch
 
 MovieRenamer::MovieRenamer(RenamerConfig renamerConfig, RenamerDialog* dialog) : Renamer(renamerConfig, dialog)
 {
@@ -15,6 +109,9 @@ MovieRenamer::MovieRenamer(RenamerConfig renamerConfig, RenamerDialog* dialog) :
 
 MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
 {
+    mediaelch::MovieRenamerPlaceholders renamerPlaceholder;
+    mediaelch::MovieRenamerData renamerData{movie};
+
     QFileInfo movieInfo(movie.files().first().toString());
     QString fiCanonicalPath = movieInfo.canonicalPath();
     QDir dir(movieInfo.canonicalPath());
@@ -47,6 +144,9 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
     const bool isBluRay = helper::isBluRay(baseDir);
     const bool isDvd = helper::isDvd(baseDir);
 
+    renamerData.setIsBluRay(isBluRay);
+    renamerData.setIsDvd(isDvd);
+
     // BluRay and DVD folder content must not be renamed.
     if (isBluRay || isDvd) {
         parentDirName = dir.dirName();
@@ -57,42 +157,17 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
         newMovieFiles.clear();
         int partNo = 0;
         const auto videoDetails = movie.streamDetails()->videoDetails();
+        renamerData.setVideoDetails(videoDetails);
         const auto& files = movie.files();
         for (const mediaelch::FilePath& file : files) {
             newFileName = (files.count() == 1) ? m_config.filePattern : m_config.filePatternMulti;
             QFileInfo fi(file.toString());
             QString baseName = fi.completeBaseName();
             QDir currentDir = fi.dir();
-            MovieRenamer::replace(newFileName, "title", movie.name());
-            MovieRenamer::replace(
-                newFileName, "originalTitle", movie.originalName().isEmpty() ? movie.name() : movie.originalName());
-            MovieRenamer::replace(newFileName, "sortTitle", movie.sortTitle());
-            MovieRenamer::replace(newFileName, "director", movie.director());
-            // TODO: Let the user decide whether only the first should be used or
-            //       if a space should be the separator.
-            MovieRenamer::replace(newFileName, "studio", movie.studios().join(","));
-            MovieRenamer::replace(newFileName, "year", movie.released().toString("yyyy"));
-            MovieRenamer::replace(newFileName, "extension", fi.suffix());
-            MovieRenamer::replace(newFileName, "partNo", QString::number(++partNo));
-            MovieRenamer::replace(newFileName, "videoCodec", movie.streamDetails()->videoCodec());
-            MovieRenamer::replace(newFileName, "audioCodec", movie.streamDetails()->audioCodec());
-            // TODO: Let the user decide whether only the first should be used or
-            //       if a space should be the separator.
-            MovieRenamer::replace(newFileName, "audioLanguage", movie.streamDetails()->allAudioLanguages().join("-"));
-            // TODO: Let the user decide whether only the first should be used or
-            //       if a space should be the separator.
-            Renamer::replace(newFileName, "subtitleLanguage", movie.streamDetails()->allSubtitleLanguages().join("-"));
-            MovieRenamer::replace(newFileName, "channels", QString::number(movie.streamDetails()->audioChannels()));
-            MovieRenamer::replace(newFileName,
-                "resolution",
-                helper::matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
-                    videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
-                    videoDetails.value(StreamDetails::VideoDetails::ScanType)));
-            MovieRenamer::replaceCondition(newFileName, "imdbId", movie.imdbId().toString());
-            MovieRenamer::replaceCondition(newFileName, "tmdbId", movie.tmdbId().toString());
-            MovieRenamer::replaceCondition(newFileName, "movieset", movie.set().name);
-            MovieRenamer::replaceCondition(
-                newFileName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
+
+            renamerData.setPartNo(++partNo);
+            renamerData.setExtension(fi.suffix());
+            newFileName = renamerPlaceholder.replace(newFileName, renamerData);
 
             // Sanitize + Replace Delimiter with the one chosen by the user
             helper::sanitizeFileName(newFileName, newDelimiter);
@@ -262,37 +337,9 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
     const auto videoDetails = movie.streamDetails()->videoDetails();
     // rename dir for already existing movie dir
     if (m_config.renameDirectories && movie.inSeparateFolder()) {
-        Renamer::replace(newFolderName, "title", movie.name());
-        Renamer::replace(newFolderName, "extension", extension);
-        Renamer::replace(
-            newFolderName, "originalTitle", movie.originalName().isEmpty() ? movie.name() : movie.originalName());
-        Renamer::replace(newFolderName, "sortTitle", movie.sortTitle());
-        Renamer::replace(newFolderName, "director", movie.director());
-        // TODO: Let the user decide whether only the first should be used or
-        //       if a space should be the separator.
-        Renamer::replace(newFolderName, "studio", movie.studios().join(","));
-        Renamer::replace(newFolderName, "year", movie.released().toString("yyyy"));
-        Renamer::replace(newFolderName, "videoCodec", movie.streamDetails()->videoCodec());
-        // TODO: Let the user decide whether only the first should be used or
-        //       if a space should be the separator.
-        Renamer::replace(newFolderName, "audioLanguage", movie.streamDetails()->allAudioLanguages().join("-"));
-        // TODO: Let the user decide whether only the first should be used or
-        //       if a space should be the separator.
-        Renamer::replace(newFolderName, "subtitleLanguage", movie.streamDetails()->allSubtitleLanguages().join("-"));
-        Renamer::replace(newFolderName, "audioCodec", movie.streamDetails()->audioCodec());
-        Renamer::replace(newFolderName, "channels", QString::number(movie.streamDetails()->audioChannels()));
-        Renamer::replace(newFolderName,
-            "resolution",
-            helper::matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
-                videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
-                videoDetails.value(StreamDetails::VideoDetails::ScanType)));
-        Renamer::replaceCondition(newFolderName, "bluray", isBluRay);
-        Renamer::replaceCondition(newFolderName, "dvd", isDvd);
-        Renamer::replaceCondition(
-            newFolderName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
-        Renamer::replaceCondition(newFolderName, "movieset", movie.set().name);
-        Renamer::replaceCondition(newFolderName, "imdbId", movie.imdbId().toString());
-        Renamer::replaceCondition(newFolderName, "tmdbId", movie.tmdbId().toString());
+        renamerData.setPartNo(0);
+        renamerData.setExtension("");
+        newFileName = renamerPlaceholder.replace(newFolderName, renamerData);
 
         // Sanitize + Replace Delimiter with the one chosen by the user
         helper::sanitizeFolderName(newFolderName, newDelimiter);
@@ -303,37 +350,9 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
     }
     // create dir for new dir structure
     else if (m_config.renameDirectories) {
-        Renamer::replace(newFolderName, "title", movie.name());
-        Renamer::replace(newFolderName, "extension", extension);
-        Renamer::replace(
-            newFolderName, "originalTitle", movie.originalName().isEmpty() ? movie.name() : movie.originalName());
-        Renamer::replace(newFolderName, "sortTitle", movie.sortTitle());
-        Renamer::replace(newFolderName, "director", movie.director());
-        // TODO: Let the user decide whether only the first should be used or
-        //       if a space should be the separator.
-        Renamer::replace(newFolderName, "studio", movie.studios().join(","));
-        Renamer::replace(newFolderName, "year", movie.released().toString("yyyy"));
-        Renamer::replace(newFolderName, "videoCodec", movie.streamDetails()->videoCodec());
-        Renamer::replace(newFolderName, "audioCodec", movie.streamDetails()->audioCodec());
-        // TODO: Let the user decide whether only the first should be used or
-        //       if a space should be the separator.
-        Renamer::replace(newFolderName, "audioLanguage", movie.streamDetails()->allAudioLanguages().join("-"));
-        // TODO: Let the user decide whether only the first should be used or
-        //       if a space should be the separator.
-        Renamer::replace(newFolderName, "subtitleLanguage", movie.streamDetails()->allSubtitleLanguages().join("-"));
-        Renamer::replace(newFolderName, "channels", QString::number(movie.streamDetails()->audioChannels()));
-        Renamer::replace(newFolderName,
-            "resolution",
-            helper::matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
-                videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
-                videoDetails.value(StreamDetails::VideoDetails::ScanType)));
-        Renamer::replaceCondition(newFolderName, "bluray", isBluRay);
-        Renamer::replaceCondition(newFolderName, "dvd", isDvd);
-        Renamer::replaceCondition(
-            newFolderName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
-        Renamer::replaceCondition(newFolderName, "movieset", movie.set().name);
-        Renamer::replaceCondition(newFolderName, "imdbId", movie.imdbId().toString());
-        Renamer::replaceCondition(newFolderName, "tmdbId", movie.tmdbId().toString());
+        renamerData.setPartNo(0);
+        renamerData.setExtension("");
+        newFileName = renamerPlaceholder.replace(newFolderName, renamerData);
 
         // Sanitize + Replace Delimiter with the one chosen by the user
         helper::sanitizeFolderName(newFolderName, newDelimiter);
