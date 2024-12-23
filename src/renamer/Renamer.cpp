@@ -4,7 +4,6 @@
 #include "settings/Settings.h"
 #include "utils/Meta.h"
 
-#include <QApplication>
 #include <QDir>
 #include <QFileInfo>
 #include <QRegularExpression>
@@ -40,34 +39,6 @@ Renamer::Renamer(RenamerConfig renamerConfig, RenamerDialog* dialog) :
 QString Renamer::replace(QString& text, const QString& search, QString replacement)
 {
     text.replace("<" + search + ">", replacement.trimmed());
-    return text;
-}
-
-QString Renamer::replaceCondition(QString& text, const QString& condition, const QString& replace)
-{
-    QRegularExpression rx("\\{" + condition + "\\}(.*)\\{/" + condition + "\\}",
-        QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
-    QRegularExpressionMatch match = rx.match(text);
-    if (!match.hasMatch()) {
-        return Renamer::replace(text, condition, replace);
-    }
-
-    QString search = QStringLiteral("{%1}%2{/%1}").arg(condition).arg(match.captured(1));
-    text.replace(search, !replace.isEmpty() ? match.captured(1) : "");
-    return Renamer::replace(text, condition, replace);
-}
-
-QString Renamer::replaceCondition(QString& text, const QString& condition, bool hasCondition)
-{
-    QRegularExpression rx("\\{" + condition + "\\}(.*)\\{/" + condition + "\\}",
-        QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
-    QRegularExpressionMatch match = rx.match(text);
-    if (!match.hasMatch()) {
-        return text;
-    }
-
-    const QString search = QStringLiteral("{%1}%2{/%1}").arg(condition, match.captured(1));
-    text.replace(search, hasCondition ? match.captured(1) : "");
     return text;
 }
 

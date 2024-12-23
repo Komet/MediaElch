@@ -29,9 +29,8 @@ Movie::Movie(QStringList files, QObject* parent) :
 {
     static std::atomic_int32_t m_idCounter{0};
     m_movieId = m_idCounter.fetch_add(1, std::memory_order_relaxed);
-    if (!files.isEmpty()) {
-        setFiles(files);
-    }
+
+    setFiles(files);
 }
 
 void Movie::setFiles(const mediaelch::FileList& files)

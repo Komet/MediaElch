@@ -375,7 +375,11 @@ QString TvShowEpisode::seasonString() const
  */
 QString TvShowEpisode::seasonName() const
 {
-    return m_show->seasonNameMappings().value(seasonNumber(), "");
+    if (m_show != nullptr) {
+        return m_show->seasonNameMappings().value(seasonNumber(), "");
+    } else {
+        return {};
+    }
 }
 
 /**
