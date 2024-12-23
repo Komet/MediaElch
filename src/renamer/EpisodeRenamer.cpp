@@ -1,13 +1,170 @@
 #include "renamer/EpisodeRenamer.h"
 
+#include "RenamerUtils.h"
 #include "data/tv_show/TvShowEpisode.h"
 #include "database/TvShowPersistence.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
+#include "log/Log.h"
 #include "media_center/MediaCenterInterface.h"
 
 #include <QDir>
 #include <QFileInfo>
+
+namespace mediaelch {
+
+TvShowRenamerPlaceholders::~TvShowRenamerPlaceholders() = default;
+
+QVector<Placeholder> TvShowRenamerPlaceholders::placeholders()
+{
+    return {
+        // clang-format off
+        { "title",            true,  false, QObject::tr("Title") },
+        { "showTitle",        true,  false, QObject::tr("Show Title") },
+        { "tmdbId",           true,  true,  QObject::tr("TMDB ID") },
+        { "year",             true,  false, QObject::tr("Year") },
+        // clang-format on
+    };
+}
+
+
+EpisodeRenamerPlaceholders::~EpisodeRenamerPlaceholders() = default;
+
+QVector<Placeholder> EpisodeRenamerPlaceholders::placeholders()
+{
+    return {
+        // clang-format off
+        { "extension",        true,  false, QObject::tr("File extension") },
+        { "partNo",           true,  false, QObject::tr("Part number of the current file") },
+        { "title",            true,  false, QObject::tr("Title") },
+        { "episode",          true,  false, QObject::tr("Episode") },
+        { "season",           true,  false, QObject::tr("Season") },
+        { "seasonName",       true,  true,  QObject::tr("Season Name") },
+        { "showTitle",        true,  false, QObject::tr("Show Title") },
+        { "year",             true,  false, QObject::tr("Year") },
+        { "3D",               false, true,  QObject::tr("File is 3D") },
+        { "bluray",           false, true,  QObject::tr("File is BluRay") },
+        { "dvd",              false, true,  QObject::tr("File is DVD") },
+        { "audioCodec",       true,  false, QObject::tr("Audio Codec") },
+        { "videoCodec",       true,  false, QObject::tr("Video Codec") },
+        { "audioLanguage",    true,  false, QObject::tr("Audio Language(s) (separated by a minus)") },
+        { "subtitleLanguage", true,  false, QObject::tr("Subtitle Language(s) (separated by a minus)") },
+        { "channels",         true,  false, QObject::tr("Number of audio channels") },
+        { "tmdbId",           true,  true,  QObject::tr("TMDB ID") },
+        { "imdbId",           true,  true,  QObject::tr("IMDb ID") },
+        { "resolution",       true,  false, QObject::tr("Resolution (1080p, 720p, ...)") },
+        // clang-format on
+    };
+}
+
+TvShowRenamerData::~TvShowRenamerData() = default;
+
+ELCH_NODISCARD QString TvShowRenamerData::value(const QString& name) const
+{
+    const QMap<QString, std::function<QString()>> map = {
+        // clang-format off
+        {"title",            [this]() { return m_tvShow.title(); }},
+        {"showTitle",        [this]() { return m_tvShow.title(); }},
+        {"tmdbId",           [this]() { return m_tvShow.tmdbId().toString(); }},
+        {"year",             [this]() { return m_tvShow.firstAired().toString("yyyy"); }},
+        // clang-format on
+    };
+
+    MediaElch_Ensure_Data_Matches_Placeholders(TvShowRenamerPlaceholders, map);
+
+    if (map.contains(name)) {
+        return map[name]();
+    }
+    qCCritical(generic) << "TvShowRenamerData::value: Unknown tag:" << name;
+    MediaElch_Debug_Unreachable();
+    return "";
+}
+
+ELCH_NODISCARD bool TvShowRenamerData::passesCondition(const QString& name) const
+{
+    const QMap<QString, std::function<bool()>> map = {
+        // no entry, yet
+    };
+
+    MediaElch_Ensure_Condition_Matches_Placeholders(TvShowRenamerPlaceholders, map);
+
+    return map.contains(name) //
+               ? map[name]()
+               : !value(name).isEmpty();
+};
+
+EpisodeRenamerData::~EpisodeRenamerData() = default;
+
+void EpisodeRenamerData::setMultiEpisodes(QVector<TvShowEpisode*> multiEpisodes)
+{
+    if (multiEpisodes.count() > 1) {
+        QStringList episodeStrings;
+        for (TvShowEpisode* subEpisode : multiEpisodes) {
+            episodeStrings.append(subEpisode->episodeString());
+        }
+        std::sort(episodeStrings.begin(), episodeStrings.end());
+        m_episodeString = episodeStrings.join("-");
+    } else {
+        m_episodeString = m_episode.episodeString();
+    }
+}
+
+ELCH_NODISCARD QString EpisodeRenamerData::value(const QString& name) const
+{
+    const QMap<QString, std::function<QString()>> map = {
+        // clang-format off
+        {"extension",        [this]() { return m_extension; }},
+        {"partNo",           [this]() { return QString::number(m_partNo); }},
+        {"title",            [this]() { return m_episode.title(); }},
+        {"episode",          [this]() { return m_episodeString; }},
+        {"season",           [this]() { return m_episode.seasonString(); }},
+        {"seasonName",       [this]() { return m_episode.seasonName(); }},
+        {"showTitle",        [this]() { return m_episode.showTitle(); }},
+        {"year",             [this]() { return m_episode.firstAired().toString("yyyy"); }},
+        {"audioCodec",       [this]() { return m_episode.streamDetails()->audioCodec(); }},
+        {"videoCodec",       [this]() { return m_episode.streamDetails()->videoCodec(); }},
+        {"audioLanguage",    [this]() { return m_episode.streamDetails()->allAudioLanguages().join("-"); }},
+        {"subtitleLanguage", [this]() { return m_episode.streamDetails()->allSubtitleLanguages().join("-"); }},
+        {"channels",         [this]() { return QString::number(m_episode.streamDetails()->audioChannels()); }},
+        {"imdbId",           [this]() { return m_episode.imdbId().toString(); }},
+        {"tmdbId",           [this]() { return m_episode.tmdbId().toString(); }},
+        {"resolution",       [this]() {
+            return helper::matchResolution(m_videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
+                m_videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
+                m_videoDetails.value(StreamDetails::VideoDetails::ScanType));
+        }},
+        // clang-format on
+    };
+
+    MediaElch_Ensure_Data_Matches_Placeholders(EpisodeRenamerPlaceholders, map);
+
+    if (map.contains(name)) {
+        return map[name]();
+    }
+    qCCritical(generic) << "TvShowRenamerData::value: Unknown tag:" << name;
+    MediaElch_Debug_Unreachable();
+    return "";
+}
+
+ELCH_NODISCARD bool EpisodeRenamerData::passesCondition(const QString& name) const
+{
+    const QMap<QString, std::function<bool()>> map = {
+        // clang-format off
+        {"bluray", [this]() { return m_isBluRay; }},
+        {"dvd",    [this]() { return m_isDvd; }},
+        {"3D",     [this]() { return m_videoDetails.value(StreamDetails::VideoDetails::StereoMode) != ""; }},
+        // clang-format on
+    };
+
+    MediaElch_Ensure_Condition_Matches_Placeholders(EpisodeRenamerPlaceholders, map);
+
+    return map.contains(name) //
+               ? map[name]()
+               : !value(name).isEmpty();
+};
+
+} // namespace mediaelch
+
 
 EpisodeRenamer::EpisodeRenamer(RenamerConfig renamerConfig, RenamerDialog* dialog) : Renamer(renamerConfig, dialog)
 {
@@ -16,6 +173,9 @@ EpisodeRenamer::EpisodeRenamer(RenamerConfig renamerConfig, RenamerDialog* dialo
 EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode& episode,
     QVector<TvShowEpisode*>& episodesRenamed)
 {
+    mediaelch::EpisodeRenamerPlaceholders renamerPlaceholder;
+    mediaelch::EpisodeRenamerData renamerData{episode};
+
     mediaelch::TvShowPersistence persistence{*Manager::instance()->database()};
 
     const QString& seasonPattern = m_config.directoryPattern;
@@ -33,11 +193,15 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode& episode
             episodesRenamed.append(subEpisode);
         }
     }
+    renamerData.setMultiEpisodes(multiEpisodes);
 
     const mediaelch::FilePath firstEpisode = episode.files().first();
     const bool isBluRay = helper::isBluRay(firstEpisode);
     const bool isDvd = helper::isDvd(firstEpisode);
     const bool isDvdWithoutSub = helper::isDvd(firstEpisode, true);
+
+    renamerData.setIsBluRay(isBluRay);
+    renamerData.setIsDvd(isDvd);
 
     QFileInfo episodeFileinfo(episode.files().first().toString());
     QString fiCanonicalPath = episodeFileinfo.canonicalPath();
@@ -61,46 +225,16 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode& episode
         newEpisodeFiles.clear();
         int partNo = 0;
         const auto videoDetails = episode.streamDetails()->videoDetails();
+        renamerData.setVideoDetails(videoDetails);
         for (const mediaelch::FilePath& file : episode.files()) {
             newFileName = (episode.files().count() == 1) ? m_config.filePattern : m_config.filePatternMulti;
             QFileInfo episodeFileInfo(file.toString());
             QString baseName = episodeFileInfo.completeBaseName();
             QDir currentDir = episodeFileInfo.dir();
-            Renamer::replace(newFileName, "title", episode.title());
-            Renamer::replace(newFileName, "showTitle", episode.showTitle());
-            Renamer::replace(newFileName, "year", episode.firstAired().toString("yyyy"));
-            Renamer::replace(newFileName, "extension", episodeFileInfo.suffix());
-            Renamer::replace(newFileName, "season", episode.seasonString());
-            Renamer::replaceCondition(newFileName, "tmdbId", episode.tmdbId().toString());
-            Renamer::replace(newFileName, "partNo", QString::number(++partNo));
-            Renamer::replace(newFileName, "videoCodec", episode.streamDetails()->videoCodec());
-            Renamer::replace(newFileName, "audioCodec", episode.streamDetails()->audioCodec());
-            // TODO: Let the user decide whether only the first should be used or
-            //       if a space should be the separator.
-            Renamer::replace(newFileName, "audioLanguage", episode.streamDetails()->allAudioLanguages().join("-"));
-            // TODO: Let the user decide whether only the first should be used or
-            //       if a space should be the separator.
-            Renamer::replace(
-                newFileName, "subtitleLanguage", episode.streamDetails()->allSubtitleLanguages().join("-"));
-            Renamer::replace(newFileName, "channels", QString::number(episode.streamDetails()->audioChannels()));
-            Renamer::replace(newFileName,
-                "resolution",
-                helper::matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
-                    videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
-                    videoDetails.value(StreamDetails::VideoDetails::ScanType)));
-            Renamer::replaceCondition(
-                newFileName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
 
-            if (multiEpisodes.count() > 1) {
-                QStringList episodeStrings;
-                for (TvShowEpisode* subEpisode : multiEpisodes) {
-                    episodeStrings.append(subEpisode->episodeString());
-                }
-                std::sort(episodeStrings.begin(), episodeStrings.end());
-                Renamer::replace(newFileName, "episode", episodeStrings.join("-"));
-            } else {
-                Renamer::replace(newFileName, "episode", episode.episodeString());
-            }
+            renamerData.setPartNo(++partNo);
+            renamerData.setExtension(episodeFileInfo.suffix());
+            newFileName = renamerPlaceholder.replace(newFileName, renamerData);
 
             // Sanitize + Replace Delimiter with the one chosen by the user
             helper::sanitizeFileName(newFileName, delimiter);
@@ -196,10 +330,10 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode& episode
     if (useSeasonDirectories) {
         QDir showDir(episode.tvShow()->dir().toString());
         QString seasonDirName = seasonPattern;
-        Renamer::replace(seasonDirName, "season", episode.seasonString());
-        Renamer::replace(seasonDirName, "seasonName", episode.seasonName());
-        Renamer::replace(seasonDirName, "showTitle", episode.showTitle());
-        Renamer::replaceCondition(seasonDirName, "seasonName", !episode.seasonName().isEmpty());
+
+        renamerData.setPartNo(0);
+        renamerData.setExtension("");
+        seasonDirName = renamerPlaceholder.replace(seasonDirName, renamerData);
 
         // Sanitize + Replace Delimiter with the one chosen by the user
         helper::sanitizeFolderName(seasonDirName, delimiter);
@@ -274,7 +408,7 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode& episode
                 if (!m_config.dryRun) {
                     if (!Renamer::rename(fiCanonicalPath + "/" + newThumbnailFileName,
                             seasonDir.path() + "/" + newThumbnailFileName)) {
-                        m_dialog->setResultStatus(row, Renamer::RenameResult::Failed);
+                        m_dialog->setResultStatus(row, RenameResult::Failed);
                     }
                 }
             }
@@ -284,5 +418,47 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode& episode
     if (errorOccured) {
         return RenameError::Error;
     }
+    return RenameError::None;
+}
+
+Renamer::RenameError EpisodeRenamer::renameTvShow(TvShow& tvShow)
+{
+    mediaelch::TvShowRenamerPlaceholders renamerPlaceholder;
+    mediaelch::TvShowRenamerData renamerData{tvShow};
+
+    mediaelch::TvShowPersistence persistence{*Manager::instance()->database()};
+
+    QDir dir(tvShow.dir().toString());
+    QString newFolderName = m_config.directoryPattern;
+
+    newFolderName = renamerPlaceholder.replace(newFolderName, renamerData);
+
+    helper::sanitizeFolderName(newFolderName);
+
+    if (newFolderName != dir.dirName()) {
+        const int row = m_dialog->addResultToTable(dir.dirName(), newFolderName, Renamer::RenameOperation::Rename);
+        QDir parentDir(dir.path());
+        parentDir.cdUp();
+        if (m_config.dryRun) {
+            return RenameError::None;
+        }
+        if (!Renamer::rename(dir, parentDir.absolutePath() + "/" + newFolderName)) {
+            m_dialog->setResultStatus(row, RenameResult::Failed);
+            return RenameError::Error;
+        }
+        const QString newShowDir = parentDir.absolutePath() + "/" + newFolderName;
+        const QString oldShowDir = tvShow.dir().toString();
+        tvShow.setDir(mediaelch::DirectoryPath(newShowDir));
+        persistence.update(&tvShow);
+        for (TvShowEpisode* episode : tvShow.episodes()) {
+            QStringList files;
+            for (const mediaelch::FilePath& file : episode->files()) {
+                files << newShowDir + file.toString().mid(oldShowDir.length());
+            }
+            episode->setFiles(files);
+            persistence.update(episode);
+        }
+    }
+
     return RenameError::None;
 }

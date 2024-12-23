@@ -56,8 +56,6 @@ public:
     Renamer(RenamerConfig config, RenamerDialog* dialog);
 
     static QString replace(QString& text, const QString& search, QString replacement);
-    static QString replaceCondition(QString& text, const QString& condition, const QString& replace);
-    static QString replaceCondition(QString& text, const QString& condition, bool hasCondition);
 
     static bool rename(QDir& dir, QString newName);
     static bool rename(const QString& file, const QString& newName);

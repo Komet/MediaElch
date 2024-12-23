@@ -4,8 +4,6 @@
 #include "data/tv_show/TvShowEpisode.h"
 #include "ui/renamer/RenamerDialog.h"
 
-#include <QDialog>
-
 class TvShowRenamerDialog final : public RenamerDialog
 {
     Q_OBJECT
@@ -21,8 +19,10 @@ private:
     void renameType(bool isDryRun) override;
     void rejectImpl() override;
     QString dialogInfoLabel() override;
+    void initPlaceholders() override;
+
     void renameEpisodes(QVector<TvShowEpisode*> episodes, const RenamerConfig& config);
-    void renameTvShows(const QVector<TvShow*>& shows, const QString& directoryPattern, const bool& dryRun = false);
+    void renameTvShows(const QVector<TvShow*>& shows, const RenamerConfig& config);
 
     QStringList fileNameDefaults() override;
     QStringList fileNameMultiDefaults() override;

@@ -56,7 +56,7 @@ void TvMazeEpisodeScrapeJob::loadAllEpisodes(const TvMazeId& showId)
             // The "all episodes" page only contains basic details.
             // To get all details we need, load details based on the episode's ID.
             if (episode().tvmazeId().isValid()) {
-               const TvMazeId id = episode().tvmazeId();
+                const TvMazeId id = episode().tvmazeId();
                 episode().clear(); // avoid re-loading ratings, etc.
                 loadEpisode(id);
             } else {

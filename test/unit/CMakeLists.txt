@@ -16,6 +16,7 @@ target_sources(
     globals/testTime.cpp
     movie/testMovieFileSearcher.cpp
     renamer/testPlaceholderParser.cpp
+    renamer/testRenamer.cpp
     scrapers/testImdbTvEpisodeParser.cpp
     scrapers/testImdbTvSeasonParser.cpp
     scrapers/custom_movie_scraper/StubMovieScraper.cpp

@@ -1,13 +1,97 @@
 #include "ConcertRenamer.h"
 
+#include "RenamerUtils.h"
 #include "data/concert/Concert.h"
 #include "database/ConcertPersistence.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
+#include "log/Log.h"
 #include "media_center/MediaCenterInterface.h"
 
 #include <QDir>
 #include <QFileInfo>
+
+namespace mediaelch {
+
+ConcertRenamerPlaceholders::~ConcertRenamerPlaceholders() = default;
+
+QVector<Placeholder> ConcertRenamerPlaceholders::placeholders()
+{
+    return {
+        // clang-format off
+        { "extension",        true,  false, QObject::tr("File extension") },
+        { "partNo",           true,  false, QObject::tr("Part number of the current file") },
+        { "title",            true,  false, QObject::tr("Title") },
+        { "year",             true,  false, QObject::tr("Year") },
+        { "audioCodec",       true,  false, QObject::tr("Audio Codec") },
+        { "artist",           true,  false, QObject::tr("Artist") },
+        { "album",           true,  false, QObject::tr("Album") },
+        { "resolution",       true,  false, QObject::tr("Resolution (1080p, 720p, ...)") },
+        { "channels",         true,  false, QObject::tr("Number of audio channels") },
+        { "subtitleLanguage", true,  false, QObject::tr("Subtitle Language(s) (separated by a minus)") },
+        { "videoCodec",       true,  false, QObject::tr("Video Codec") },
+        { "audioLanguage",    true,  false, QObject::tr("Audio Language(s) (separated by a minus)") },
+        { "3D",               false, true,  QObject::tr("File is 3D") },
+        { "bluray",           false, true,  QObject::tr("File/directory is BluRay") },
+        { "dvd",              false, true,  QObject::tr("File/directory is DVD") },
+        // clang-format on
+    };
+}
+
+ConcertRenamerData::~ConcertRenamerData() = default;
+
+ELCH_NODISCARD QString ConcertRenamerData::value(const QString& name) const
+{
+    const QMap<QString, std::function<QString()>> map = {
+        // clang-format off
+        {"extension",        [this]() { return m_extension; }},
+        {"artist",           [this]() { return m_concert.artists().isEmpty() ? "" : m_concert.artists().first(); }},
+        {"album",            [this]() { return m_concert.album(); }},
+        {"partNo",           [this]() { return QString::number(m_partNo); }},
+        {"title",            [this]() { return m_concert.title(); }},
+        {"year",             [this]() { return m_concert.released().toString("yyyy"); }},
+        {"videoCodec",       [this]() { return m_concert.streamDetails()->videoCodec(); }},
+        {"audioLanguage",    [this]() { return m_concert.streamDetails()->allAudioLanguages().join("-"); }},
+        {"subtitleLanguage", [this]() { return m_concert.streamDetails()->allSubtitleLanguages().join("-"); }},
+        {"audioCodec",       [this]() { return m_concert.streamDetails()->audioCodec(); }},
+        {"channels",         [this]() { return QString::number(m_concert.streamDetails()->audioChannels()); }},
+        {"resolution",       [this]() {
+            return helper::matchResolution(m_videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
+                m_videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
+                m_videoDetails.value(StreamDetails::VideoDetails::ScanType));
+        }},
+        // clang-format on
+    };
+
+    MediaElch_Ensure_Data_Matches_Placeholders(ConcertRenamerPlaceholders, map);
+
+    if (map.contains(name)) {
+        return map[name]();
+    }
+    qCCritical(generic) << "ConcertRenamerData::value: Unknown tag:" << name;
+    MediaElch_Debug_Unreachable();
+    return "";
+}
+
+ELCH_NODISCARD bool ConcertRenamerData::passesCondition(const QString& name) const
+{
+    const QMap<QString, std::function<bool()>> map = {
+        // clang-format off
+        {"bluray", [this]() { return m_isBluRay; }},
+        {"dvd",    [this]() { return m_isDvd; }},
+        {"3D",     [this]() { return m_videoDetails.value(StreamDetails::VideoDetails::StereoMode) != ""; }},
+        // clang-format on
+    };
+
+    MediaElch_Ensure_Condition_Matches_Placeholders(ConcertRenamerPlaceholders, map);
+
+    return map.contains(name) //
+               ? map[name]()
+               : !value(name).isEmpty();
+};
+
+} // namespace mediaelch
+
 
 ConcertRenamer::ConcertRenamer(RenamerConfig renamerConfig, RenamerDialog* dialog) : Renamer(renamerConfig, dialog)
 {
@@ -15,6 +99,9 @@ ConcertRenamer::ConcertRenamer(RenamerConfig renamerConfig, RenamerDialog* dialo
 
 ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert& concert)
 {
+    mediaelch::ConcertRenamerPlaceholders renamerPlaceholder;
+    mediaelch::ConcertRenamerData renamerData{concert};
+
     QFileInfo concertInfo(concert.files().first().toString());
     QString fiCanonicalPath = concertInfo.canonicalPath();
     QDir dir(concertInfo.canonicalPath());
@@ -40,8 +127,11 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert& concert)
     QDir chkDir(concertInfo.canonicalPath());
     chkDir.cdUp();
 
-    bool isBluRay = helper::isBluRay(chkDir.path());
-    bool isDvd = helper::isDvd(chkDir.path());
+    const bool isBluRay = helper::isBluRay(chkDir.path());
+    const bool isDvd = helper::isDvd(chkDir.path());
+
+    renamerData.setIsBluRay(isBluRay);
+    renamerData.setIsDvd(isDvd);
 
     if (isBluRay || isDvd) {
         parentDirName = dir.dirName();
@@ -58,29 +148,9 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert& concert)
             QString baseName = fi.completeBaseName();
             QDir currentDir = fi.dir();
 
-            Renamer::replace(newFileName, "title", concert.title());
-            Renamer::replace(newFileName, "artist", concert.artists().isEmpty() ? "" : concert.artists().first());
-            Renamer::replace(newFileName, "album", concert.album());
-            Renamer::replace(newFileName, "year", concert.released().toString("yyyy"));
-            Renamer::replace(newFileName, "extension", fi.suffix());
-            Renamer::replace(newFileName, "partNo", QString::number(++partNo));
-            Renamer::replace(newFileName, "videoCodec", concert.streamDetails()->videoCodec());
-            Renamer::replace(newFileName, "audioCodec", concert.streamDetails()->audioCodec());
-            // TODO: Let the user decide whether only the first should be used or
-            //       if a space should be the separator.
-            Renamer::replace(newFileName, "audioLanguage", concert.streamDetails()->allAudioLanguages().join("-"));
-            // TODO: Let the user decide whether only the first should be used or
-            //       if a space should be the separator.
-            Renamer::replace(
-                newFileName, "subtitleLanguage", concert.streamDetails()->allSubtitleLanguages().join("-"));
-            Renamer::replace(newFileName, "channels", QString::number(concert.streamDetails()->audioChannels()));
-            Renamer::replace(newFileName,
-                "resolution",
-                helper::matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
-                    videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
-                    videoDetails.value(StreamDetails::VideoDetails::ScanType)));
-            Renamer::replaceCondition(
-                newFileName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
+            renamerData.setPartNo(++partNo);
+            renamerData.setExtension(fi.suffix());
+            newFileName = renamerPlaceholder.replace(newFileName, renamerData);
 
             // Sanitize + Replace Delimiter with the one chosen by the user
             helper::sanitizeFileName(newFileName, delimiter);
@@ -162,31 +232,12 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert& concert)
         renameImageType(ImageType::ConcertBackdrop);
     }
 
+    const auto videoDetails = concert.streamDetails()->videoDetails();
     int renameRow = -1;
     if (m_config.renameDirectories && concert.inSeparateFolder()) {
-        const auto videoDetails = concert.streamDetails()->videoDetails();
-        Renamer::replace(newFolderName, "title", concert.title());
-        Renamer::replace(newFolderName, "artist", concert.artists().isEmpty() ? "" : concert.artists().first());
-        Renamer::replace(newFolderName, "album", concert.album());
-        Renamer::replace(newFolderName, "year", concert.released().toString("yyyy"));
-        Renamer::replaceCondition(newFolderName, "bluray", isBluRay);
-        Renamer::replaceCondition(newFolderName, "dvd", isDvd);
-        Renamer::replaceCondition(
-            newFolderName, "3D", videoDetails.value(StreamDetails::VideoDetails::StereoMode) != "");
-        Renamer::replace(newFolderName, "videoCodec", concert.streamDetails()->videoCodec());
-        Renamer::replace(newFolderName, "audioCodec", concert.streamDetails()->audioCodec());
-        // TODO: Let the user decide whether only the first should be used or
-        //       if a space should be the separator.
-        Renamer::replace(newFolderName, "audioLanguage", concert.streamDetails()->allAudioLanguages().join("-"));
-        // TODO: Let the user decide whether only the first should be used or
-        //       if a space should be the separator.
-        Renamer::replace(newFolderName, "subtitleLanguage", concert.streamDetails()->allSubtitleLanguages().join("-"));
-        Renamer::replace(newFolderName, "channels", QString::number(concert.streamDetails()->audioChannels()));
-        Renamer::replace(newFolderName,
-            "resolution",
-            helper::matchResolution(videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
-                videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
-                videoDetails.value(StreamDetails::VideoDetails::ScanType)));
+        renamerData.setPartNo(0);
+        renamerData.setExtension("");
+        newFileName = renamerPlaceholder.replace(newFolderName, renamerData);
 
         // Sanitize + Replace Delimiter with the one chosen by the user
         helper::sanitizeFolderName(newFolderName, delimiter);
