@@ -41,8 +41,7 @@ void ImdbTvEpisodeParser::parseInfos(TvShowEpisode& episode, const QString& html
 
     // --------------------------------------
 
-    rx.setPattern(
-        R"(Directed by.*<table class="simpleTable spFirst crew_list">(.*)</table>)");
+    rx.setPattern(R"(Directed by.*<table class="simpleTable spFirst crew_list">(.*)</table>)");
     match = rx.match(html);
     QString directorsBlock;
     if (match.hasMatch()) {
@@ -62,8 +61,7 @@ void ImdbTvEpisodeParser::parseInfos(TvShowEpisode& episode, const QString& html
 
     // --------------------------------------
 
-    rx.setPattern(
-        R"(Written by.*<table class="simpleTable spFirst writers_list">(.*)</table>)");
+    rx.setPattern(R"(Written by.*<table class="simpleTable spFirst writers_list">(.*)</table>)");
     match = rx.match(html);
     QString writersBlock;
     if (match.hasMatch()) {

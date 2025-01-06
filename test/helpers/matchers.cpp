@@ -36,6 +36,11 @@ bool ContainsMatcher::match(const QStringList& source) const
     return source.contains(m_comparator);
 }
 
+bool ContainsMatcher::match(const QSet<QString>& source) const
+{
+    return source.contains(m_comparator);
+}
+
 bool ContainsNotMatcher::match(const QString& source) const
 {
     return !source.contains(m_comparator);

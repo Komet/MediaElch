@@ -251,6 +251,7 @@ SOURCES += \
     src/renamer/EpisodeRenamer.cpp \
     src/renamer/MovieRenamer.cpp \
     src/renamer/Renamer.cpp \
+    src/renamer/PlaceholderParser.cpp \
     src/scrapers/concert/ConcertIdentifier.cpp \
     src/scrapers/concert/ConcertScraper.cpp \
     src/scrapers/concert/ConcertSearchJob.cpp \
@@ -649,6 +650,7 @@ HEADERS += Version.h \
     src/renamer/EpisodeRenamer.h \
     src/renamer/MovieRenamer.h \
     src/renamer/Renamer.h \
+    src/renamer/PlaceholderParser.h \
     src/scrapers/concert/ConcertIdentifier.h \
     src/scrapers/concert/ConcertScraper.h \
     src/scrapers/concert/ConcertSearchJob.h \
