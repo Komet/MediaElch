@@ -1,5 +1,7 @@
 #pragma once
 
+#include "renamer/PlaceholderParser.h"
+
 #include <QComboBox>
 
 /// \brief Combobox with comfort functions for custom placeholder strings.
@@ -27,12 +29,21 @@ public:
     /// \brief Clears all current items and adds the given ones.
     void setItems(const QStringList& items);
 
+signals:
+    /// \brief   Called when the input has been validated.
+    /// \details Whenever the user updates its input value, we validate the input.
+    void onValidated(mediaelch::PlaceholderParser::Result result);
+
 protected:
     void contextMenuEvent(QContextMenuEvent* event) override;
+
+private slots:
+    void onTextChanged(QString text);
 
 private:
     QString addDelimiters(const QString& placeholder);
 
 private:
     QStringList m_placeholders;
+    QColor m_defaultTextColor;
 };

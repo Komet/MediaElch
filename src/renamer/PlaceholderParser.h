@@ -2,6 +2,7 @@
 
 #include "utils/Meta.h"
 
+#include <QDebug>
 #include <QStack>
 #include <QString>
 #include <QVector>
@@ -60,3 +61,5 @@ private:
 };
 
 } // namespace mediaelch
+
+QDebug operator<<(QDebug dbg, const mediaelch::PlaceholderParser::Error& err);
