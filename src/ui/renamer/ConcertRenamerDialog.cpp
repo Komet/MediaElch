@@ -84,7 +84,8 @@ void ConcertRenamerDialog::renameConcerts(QVector<Concert*> concerts, const Rena
 QStringList ConcertRenamerDialog::fileNameDefaults()
 {
     return {
-        "<title>.<extension>", "<originalTitle>.<extension>",
+        "<title>.<extension>",
+        "<originalTitle>.<extension>",
     };
 }
 

@@ -5,6 +5,7 @@
 #include "data/Actor.h"
 
 #include <QRegularExpression>
+#include <QSet>
 #include <QString>
 #include <QStringList>
 #include <string>
@@ -29,6 +30,7 @@ struct ContainsMatcher : QStringMatcherBase
     ContainsMatcher(const QString& comparator) : QStringMatcherBase("contains", comparator) {}
     bool match(const QString& source) const override;
     bool match(const QStringList& source) const;
+    bool match(const QSet<QString>& source) const;
 };
 
 struct ContainsNotMatcher : QStringMatcherBase
