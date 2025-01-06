@@ -77,7 +77,7 @@ void MovieRenamerDialog::renameMovies(QVector<Movie*> movies, const RenamerConfi
 
         Renamer::RenameError err = renamer.renameMovie(*movie);
         if (err != Renamer::RenameError::None) {
-            m_renameErrorOccured = true;
+            m_renameErrorOccurred = true;
         }
     }
 }

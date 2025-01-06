@@ -146,3 +146,11 @@ elch_ssize_t PlaceholderParser::readValuePlaceholder(elch_ssize_t i)
 }
 
 } // namespace mediaelch
+
+QDebug operator<<(QDebug dbg, const mediaelch::PlaceholderParser::Error& err)
+{
+    QString out;
+    out.append("PlaceholderParser::Error(").append(err.code).append(")");
+    dbg.nospace() << out;
+    return dbg.maybeSpace();
+}

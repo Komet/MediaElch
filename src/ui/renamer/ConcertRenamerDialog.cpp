@@ -76,7 +76,7 @@ void ConcertRenamerDialog::renameConcerts(QVector<Concert*> concerts, const Rena
 
         Renamer::RenameError err = renamer.renameConcert(*concert);
         if (err != Renamer::RenameError::None) {
-            m_renameErrorOccured = true;
+            m_renameErrorOccurred = true;
         }
     }
 }

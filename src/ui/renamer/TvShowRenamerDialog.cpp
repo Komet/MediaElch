@@ -91,7 +91,7 @@ void TvShowRenamerDialog::renameEpisodes(QVector<TvShowEpisode*> episodes, const
 
         Renamer::RenameError err = renamer.renameEpisode(*episode, episodesRenamed);
         if (err != Renamer::RenameError::None) {
-            m_renameErrorOccured = true;
+            m_renameErrorOccurred = true;
         }
     }
 }
@@ -128,7 +128,7 @@ void TvShowRenamerDialog::renameTvShows(const QVector<TvShow*>& shows,
             }
             if (!Renamer::rename(dir, parentDir.absolutePath() + "/" + newFolderName)) {
                 setResultStatus(row, Renamer::RenameResult::Failed);
-                m_renameErrorOccured = true;
+                m_renameErrorOccurred = true;
                 continue;
             }
             const QString newShowDir = parentDir.absolutePath() + "/" + newFolderName;

@@ -46,7 +46,7 @@ RenamerDialog::~RenamerDialog()
 int RenamerDialog::exec()
 {
     m_filesRenamed = false;
-    m_renameErrorOccured = false;
+    m_renameErrorOccurred = false;
 
     const QString infoLabel = dialogInfoLabel();
     ui->infoLabel->setText(infoLabel);
@@ -140,7 +140,7 @@ void RenamerDialog::onRenamed()
 
 bool RenamerDialog::renameErrorOccurred() const
 {
-    return m_renameErrorOccured;
+    return m_renameErrorOccurred;
 }
 
 void RenamerDialog::onChkRenameDirectories()

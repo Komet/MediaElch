@@ -1,14 +1,12 @@
 #pragma once
 
-#include "data/concert/Concert.h"
-#include "data/movie/Movie.h"
-#include "data/tv_show/TvShow.h"
-#include "data/tv_show/TvShowEpisode.h"
+#include "renamer/PlaceholderParser.h"
 #include "renamer/Renamer.h"
 
 #include <QDialog>
-#include <QDir>
-#include <QFile>
+#include <QMap>
+#include <QString>
+#include <QStringList>
 
 namespace Ui {
 class RenamerDialog;
@@ -56,7 +54,7 @@ protected:
     Ui::RenamerDialog* ui = nullptr;
 
     RenameType m_renameType = RenameType::All;
-    bool m_filesRenamed = 0;
+    bool m_filesRenamed{false};
     mediaelch::FileFilter m_extraFiles;
-    bool m_renameErrorOccured = 0;
+    bool m_renameErrorOccurred{false};
 };

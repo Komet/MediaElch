@@ -1,5 +1,7 @@
 #include "ui/small_widgets/PlaceholderLineEdit.h"
 
+#include "log/Log.h"
+#include "renamer/PlaceholderParser.h"
 #include "utils/Meta.h"
 
 #include <QContextMenuEvent>
@@ -7,12 +9,33 @@
 #include <QLineEdit>
 #include <QMenu>
 #include <QPainter>
-#include <QStyle>
-#include <QStyleOptionFrame>
 
 PlaceholderLineEdit::PlaceholderLineEdit(QWidget* parent) : QComboBox(parent)
 {
     setEditable(true);
+
+    connect(this, &PlaceholderLineEdit::editTextChanged, this, &PlaceholderLineEdit::onTextChanged);
+
+    m_defaultTextColor = palette().color(QPalette::Text);
+}
+
+void PlaceholderLineEdit::onTextChanged(QString text)
+{
+    const mediaelch::PlaceholderParser::Result result = mediaelch::PlaceholderParser::parse(text);
+    emit onValidated(result);
+
+    if (result.hasError()) {
+        QPalette p = palette();
+        p.setColor(QPalette::Text, Qt::red);
+        setPalette(p);
+        setToolTip(tr("Errors in naming pattern: %1").arg(result.errorMessageList().join(", ")));
+
+    } else {
+        QPalette p = palette();
+        p.setColor(QPalette::Text, m_defaultTextColor);
+        setPalette(p);
+        setToolTip("");
+    }
 }
 
 void PlaceholderLineEdit::contextMenuEvent(QContextMenuEvent* event)
