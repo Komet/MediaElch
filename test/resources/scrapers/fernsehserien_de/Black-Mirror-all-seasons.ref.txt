@@ -730,7 +730,9 @@ actors: (N>20)
  - id: 
    name: Jason Flemyng
    role: Jack Napier
-   thumb: https://bilder.fernsehserien.de/gfx/person/j/jason-flemyng.jpg
+   thumb:
+    https://bilder.fernsehserien.de/gfx/person_1000/j/jason-flemyng-23904-1731427195
+    .jpg
    order: 2
    imageHasChanged: false
  - id: 

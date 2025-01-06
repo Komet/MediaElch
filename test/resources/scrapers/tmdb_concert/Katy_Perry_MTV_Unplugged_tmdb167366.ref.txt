@@ -18,7 +18,7 @@ overview:
 ratings (N=1)
   source=themoviedb | rating=8.6 | votes=17 | min=0 | max=10
 userRating: 0
-releaseDate: 2009-11-13
+releaseDate: 2009-11-12
 tagline: 
 runtime: 45min
 certification: NR
@@ -26,7 +26,7 @@ genres: (N<6)
   - Music
   - Documentary
 tags: (N=0)
-trailer: https://www.youtube.com/watch?v=rULEHEiOuco
+trailer: https://www.youtube.com/watch?v=Ee3x8W0CbqI
 playcount: 0
 lastPlayed: <not set or invalid>
 lastModified: <not set or invalid>

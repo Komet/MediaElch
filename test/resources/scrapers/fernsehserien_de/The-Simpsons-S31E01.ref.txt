@@ -32,7 +32,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
-thumbnail: https://bilder.fernsehserien.de/epg/4324/e37f6c595759a30283f2ddda0a47f4a05ec641a3_b-w-970.jpg.jpg
+thumbnail: https://bilder.fernsehserien.de/epg/epg-archiv/2024/12/30/dcfc9cb852ad470193b4e8f0a845aeb2_b-w-970.jpg.jpg
 actors: (N>10)
  - id: 
    name: Christoph Jablonka

@@ -40,7 +40,7 @@ actors: (N>5)
  - id: 199
    name: Julie Kavner
    role: Marge Simpson / Patty Bouvier / Selma Bouvier (voice)
-   thumb: https://image.tmdb.org/t/p/original/xxiu7PC7RDOJmCuB6i81gEVrDQW.jpg
+   thumb: https://image.tmdb.org/t/p/original/87kSPYlWcHvqOVEkhdqxysiAf6w.jpg
    order: 1
    imageHasChanged: false
  - id: 200

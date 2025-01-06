@@ -48,7 +48,7 @@ actors: (N>800)
  - id: 26087
    name: Amanda Tapping
    role: Samantha Carter
-   thumb: https://image.tmdb.org/t/p/original/8ZiETPxUFtgrtWL0LgMwPP8ytuK.jpg
+   thumb: https://image.tmdb.org/t/p/original/nywSL24aczcjI2CINyXGEY1Nn6D.jpg
    order: 1
    imageHasChanged: false
  - id: 26088
@@ -84,7 +84,7 @@ actors: (N>800)
  - id: 26054
    name: Claudia Black
    role: Vala Mal Doran
-   thumb: https://image.tmdb.org/t/p/original/eIYn2naiftYwPnclwcYgyWkEtuA.jpg
+   thumb: https://image.tmdb.org/t/p/original/mfjzbZy2eO11ZvCPFZhmZvLj4aY.jpg
    order: 7
    imageHasChanged: false
  - id: 26048
@@ -120,9 +120,9 @@ actors: (N>800)
  - id: 118463
    name: Peter DeLuise
    role:
-    Director / Peter DeLuise, Airman, SF Guard (Uncredited), Screaming Villager, Lie
-    utenant, Young Urgo in Uniform, Free Jaffa (Voice only) (Uncredited), Interviewe
-    r, Machine Gun Guard, Man Leaving Cafe, Tok'ra Guard
+    Director / Peter DeLuise, Airman, SF Guard (Uncredited), Young Urgo in Uniform, 
+    Machine Gun Guard, Free Jaffa (Voice only) (Uncredited), Screaming Villager, Tok
+    'ra Guard, Interviewer, Man Leaving Cafe, Lieutenant
    thumb: https://image.tmdb.org/t/p/original/sLkSOm6HBLB4VCfshQLdSEq63tr.jpg
    order: 13
    imageHasChanged: false
@@ -146,17 +146,17 @@ actors: (N>800)
    imageHasChanged: false
  - id: 59245
    name: Laara Sadiq
-   role: Technician #2, Technician, Technician Davis, Technican
+   role: Technician #2, Technican, Technician Davis, Technician
    thumb: https://image.tmdb.org/t/p/original/l7MkydwslaXo1EmYrRpJARnaFKs.jpg
    order: 17
    imageHasChanged: false
  - id: 1366510
    name: Fraser Aitcheson
    role:
-    Hathor's Jaffa, Anubis' Jaffa, Jaffa, Jaffa Guard, Jaffa Warrior, Tagrean Worker
-    , Apophis' Red Jaffa, Dakara Jaffa 3 (Uncredited), Orderly, Free Jaffa 2 (Uncred
-    ited), Free Jaffa (Uncredited), Ares' Jaffa commander (Uncredited), Jaffa Comman
-    der
+    Hathor's Jaffa, Free Jaffa 2 (Uncredited), Jaffa Commander, Free Jaffa (Uncredit
+    ed), Orderly, Tagrean Worker, Anubis' Jaffa, Jaffa Guard, Jaffa, Ares' Jaffa com
+    mander (Uncredited), Apophis' Red Jaffa, Jaffa Warrior, Dakara Jaffa 3 (Uncredit
+    ed)
    thumb: https://image.tmdb.org/t/p/original/j0fou5tZvXHe3GcVr24UnYQLg6S.jpg
    order: 18
    imageHasChanged: false

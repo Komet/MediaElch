@@ -58,7 +58,7 @@ actors: (N>5)
  - id: 199
    name: Julie Kavner
    role: Marge Simpson / Patty Bouvier / Selma Bouvier (voice)
-   thumb: https://image.tmdb.org/t/p/original/xxiu7PC7RDOJmCuB6i81gEVrDQW.jpg
+   thumb: https://image.tmdb.org/t/p/original/87kSPYlWcHvqOVEkhdqxysiAf6w.jpg
    order: 4
    imageHasChanged: false
  - id: 200
@@ -70,7 +70,7 @@ actors: (N>5)
  - id: 5586
    name: Yeardley Smith
    role: Lisa Simpson (voice)
-   thumb: https://image.tmdb.org/t/p/original/9AjPwbb3uz4GfgOPBYsy2ILvwkB.jpg
+   thumb: https://image.tmdb.org/t/p/original/oACYQyA8k8oDaMxsbMRHz8OP6u2.jpg
    order: 6
    imageHasChanged: false
  - id: 5587

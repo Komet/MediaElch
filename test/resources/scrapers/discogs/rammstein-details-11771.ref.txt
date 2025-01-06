@@ -107,6 +107,8 @@ discography: (N>90)
     year: 2001
   - title: Spanish Music Video Sampler "Mutter"
     year: 2001
+  - title: Sehnsucht
+    year: 2001
   - title: Mutter
     year: 2001
   - title:  4-Song Sampler From The Forthcoming Album "Mutter" 
@@ -126,6 +128,8 @@ discography: (N>90)
   - title: Video Clips
     year: 2003
   - title: Master Collection
+    year: 2003
+  - title: Das Modell
     year: 2003
   - title: Lichtspielhaus
     year: 2003
@@ -224,10 +228,6 @@ discography: (N>90)
   - title: MTV / VOX
     year: 
   - title: Zeig Dich
-    year: 
-  - title: Rammstein Tipo - Duplicamos La Imagen
-    year: 
-  - title: Seemann
     year: 
 genres: (N=0)
 styles: (N=0)

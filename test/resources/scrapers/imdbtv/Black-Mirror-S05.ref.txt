@@ -27,8 +27,11 @@ overview:
     eir old groove. The gift of a virtual reality game introduces new possibilities.
      While playing the nostalgic video game from their youth, both men discover a ne
     w form of satisfaction.
-writers: (N=0)
-directors: (N=0)
+writers: (N<6)
+  - Charlie Brooker
+  - Charlie Brooker
+directors: (N=1)
+  - Owen Harris
 playCount: 0
 lastPlayed: <not set or invalid>
 firstAired: 2019-06-05
@@ -68,8 +71,11 @@ overview:
      police and the kidnapper, who doesn't want money or to harm his victim, as his 
     true motive slowly becomes clearer the further that the situation spirals out of
      control.
-writers: (N=0)
-directors: (N=0)
+writers: (N<6)
+  - Charlie Brooker
+  - Charlie Brooker
+directors: (N=1)
+  - James Hawes
 playCount: 0
 lastPlayed: <not set or invalid>
 firstAired: 2019-06-05
@@ -106,8 +112,11 @@ displayEpisode: EpisodeNumber=xx
 overview:
     A lonely teenager yearns to connect with her favorite pop star - whose charmed e
     xistence isn't quite as rosy as it appears...
-writers: (N=0)
-directors: (N=0)
+writers: (N<6)
+  - Charlie Brooker
+  - Charlie Brooker
+directors: (N=1)
+  - Anne Sewitsky
 playCount: 0
 lastPlayed: <not set or invalid>
 firstAired: 2019-06-05

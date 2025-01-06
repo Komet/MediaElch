@@ -5,19 +5,20 @@ mbId:
 allMusicId: 
 name: 
 biography:
-    Metallica ist eine US-amerikanische Metal-Band. Sie wurde 1981 in Los Angeles ge
-    gründet und ist seit 1982 in San Francisco ansässig. Sie gehört zu den erfolgrei
+    Metallica ist eine US-amerikanische Metal-Band, die 1981 in Los Angeles gegründe
+    t wurde und seit 1982 in San Francisco ansässig ist. Sie gehört zu den erfolgrei
     chsten Metalbands der Welt und hat bislang über 110 Millionen Alben verkauft. Al
     lein in den USA verkaufte die Band über 62 Millionen Alben und ist damit die sie
     bterfolgreichste Künstlergruppe des Landes. Metallica wurde zehn Mal mit einem G
-    rammy Award ausgezeichnet. 
-Neben Slayer, Megadeth und Anthrax zählte Metallica 
-    in den 1980er Jahren zu den „großen Vier“ des Thrash Metal und gilt als die einf
-    lussreichste Metalband dieses Jahrzehnts. Während der 1990er-Jahre öffnete sich 
-    Metallica neuen musikalischen Einflüssen wie Bluesrock und anderen Rockstilen, w
-    omit sie ein breiteres Publikum ansprach und zugleich ihre bisherigen Fans irrit
-    ierte, bevor die Band ab 2002 wieder zu ihren musikalischen Wurzeln zurückkehrte
-    .
+    rammy Award ausgezeichnet. Zu den bekanntesten Songs der Band gehören Enter Sand
+    man, Nothing Else Matters, The Unforgiven und Whiskey in the Jar. 
+Neben Slayer,
+     Megadeth und Anthrax zählte Metallica in den 1980er Jahren zu den „großen Vier“
+     des Thrash Metal und gilt als die einflussreichste Metalband dieses Jahrzehnts.
+     Während der 1990er-Jahre öffnete sich Metallica neuen musikalischen Einflüssen 
+    wie Bluesrock und anderen Rockstilen, womit sie ein breiteres Publikum ansprach 
+    und zugleich ihre bisherigen Fans irritierte, bevor die Band ab 2002 wieder zu i
+    hren musikalischen Wurzeln zurückkehrte.
 discography: (N=0)
 genres: (N=0)
 styles: (N=0)

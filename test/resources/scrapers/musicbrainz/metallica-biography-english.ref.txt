@@ -5,7 +5,7 @@ mbId:
 allMusicId: 
 name: 
 biography:
-    Metallica is an American heavy metal band. It was formed in 1981 in Los Angeles 
+    Metallica is an American heavy metal band. It was formed in Los Angeles in 1981 
     by vocalist and guitarist James Hetfield and drummer Lars Ulrich, and has been b
     ased in San Francisco for most of its career. The band's fast tempos, instrument
     als and aggressive musicianship made them one of the founding "big four" bands o

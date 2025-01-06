@@ -40,7 +40,9 @@ void HotMoviesScrapeJob::parseAndAssignInfos(const QString& html)
     rx.setPattern(R"(<h1 class="[^"]+"(?: itemprop="name")?>(.*)</h1>)");
     match = rx.match(html);
     if (match.hasMatch()) {
-        m_movie->setName(decodeAndTrim(match.captured(1)));
+        QString name = decodeAndTrim(match.captured(1));
+        name.remove("Kick Off Sale");
+        m_movie->setName(name.trimmed());
     }
 
     // Rating currently not available; HotMovies has switched to likes

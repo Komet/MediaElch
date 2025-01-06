@@ -13,7 +13,7 @@ tvmazeId: 5246
 title: Treehouse of Horror XI
 showTitle: 
 ratings (N=1)
-  source=tvmaze | rating=8.4 | votes=0 | min=0 | max=10
+  source=tvmaze | rating=8.6 | votes=0 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -52,7 +52,7 @@ tvmazeId: 5247
 title: A Tale of Two Springfields
 showTitle: 
 ratings (N=1)
-  source=tvmaze | rating=8.2 | votes=0 | min=0 | max=10
+  source=tvmaze | rating=8.4 | votes=0 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -91,7 +91,7 @@ tvmazeId: 5248
 title: Insane Clown Poppy
 showTitle: 
 ratings (N=1)
-  source=tvmaze | rating=8.2 | votes=0 | min=0 | max=10
+  source=tvmaze | rating=8.4 | votes=0 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -132,7 +132,7 @@ tvmazeId: 5249
 title: Lisa the Treehugger
 showTitle: 
 ratings (N=1)
-  source=tvmaze | rating=8 | votes=0 | min=0 | max=10
+  source=tvmaze | rating=8.2 | votes=0 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -171,7 +171,7 @@ tvmazeId: 5250
 title: Homer vs. Dignity
 showTitle: 
 ratings (N=1)
-  source=tvmaze | rating=7.8 | votes=0 | min=0 | max=10
+  source=tvmaze | rating=8 | votes=0 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -210,7 +210,7 @@ tvmazeId: 5251
 title: The Computer Wore Menace Shoes
 showTitle: 
 ratings (N=1)
-  source=tvmaze | rating=8.4 | votes=0 | min=0 | max=10
+  source=tvmaze | rating=8.6 | votes=0 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -249,7 +249,7 @@ tvmazeId: 5252
 title: The Great Money Caper
 showTitle: 
 ratings (N=1)
-  source=tvmaze | rating=8 | votes=0 | min=0 | max=10
+  source=tvmaze | rating=8.2 | votes=0 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -287,7 +287,7 @@ tvmazeId: 5253
 title: Skinner's Sense of Snow
 showTitle: 
 ratings (N=1)
-  source=tvmaze | rating=8 | votes=0 | min=0 | max=10
+  source=tvmaze | rating=8.2 | votes=0 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -325,7 +325,7 @@ tvmazeId: 5254
 title: HOMR
 showTitle: 
 ratings (N=1)
-  source=tvmaze | rating=8 | votes=0 | min=0 | max=10
+  source=tvmaze | rating=8.2 | votes=0 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -364,7 +364,7 @@ tvmazeId: 5255
 title: Pokey Mom
 showTitle: 
 ratings (N=1)
-  source=tvmaze | rating=7 | votes=0 | min=0 | max=10
+  source=tvmaze | rating=7.2 | votes=0 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -402,7 +402,7 @@ tvmazeId: 5256
 title: Worst Episode Ever
 showTitle: 
 ratings (N=1)
-  source=tvmaze | rating=8.4 | votes=0 | min=0 | max=10
+  source=tvmaze | rating=8.6 | votes=0 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -481,7 +481,7 @@ tvmazeId: 5258
 title: Day of the Jackanapes
 showTitle: 
 ratings (N=1)
-  source=tvmaze | rating=8 | votes=0 | min=0 | max=10
+  source=tvmaze | rating=8.2 | votes=0 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -521,7 +521,7 @@ tvmazeId: 5259
 title: New Kids on the Blecch
 showTitle: 
 ratings (N=1)
-  source=tvmaze | rating=7.6 | votes=0 | min=0 | max=10
+  source=tvmaze | rating=7.8 | votes=0 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -560,7 +560,7 @@ tvmazeId: 5260
 title: Hungry Hungry Homer
 showTitle: 
 ratings (N=1)
-  source=tvmaze | rating=8 | votes=0 | min=0 | max=10
+  source=tvmaze | rating=8.2 | votes=0 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -599,7 +599,7 @@ tvmazeId: 5261
 title: Bye Bye Nerdy
 showTitle: 
 ratings (N=1)
-  source=tvmaze | rating=8.4 | votes=0 | min=0 | max=10
+  source=tvmaze | rating=8.6 | votes=0 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -638,7 +638,7 @@ tvmazeId: 5262
 title: Simpsons Safari
 showTitle: 
 ratings (N=1)
-  source=tvmaze | rating=8.4 | votes=0 | min=0 | max=10
+  source=tvmaze | rating=8.6 | votes=0 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -716,7 +716,7 @@ tvmazeId: 5264
 title: I'm Goin' to Praise Land
 showTitle: 
 ratings (N=1)
-  source=tvmaze | rating=8 | votes=0 | min=0 | max=10
+  source=tvmaze | rating=8.2 | votes=0 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -755,7 +755,7 @@ tvmazeId: 5265
 title: Children of a Lesser Clod
 showTitle: 
 ratings (N=1)
-  source=tvmaze | rating=7.8 | votes=0 | min=0 | max=10
+  source=tvmaze | rating=8 | votes=0 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -794,7 +794,7 @@ tvmazeId: 5266
 title: Simpsons Tall Tales
 showTitle: 
 ratings (N=1)
-  source=tvmaze | rating=8 | votes=0 | min=0 | max=10
+  source=tvmaze | rating=8.2 | votes=0 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
