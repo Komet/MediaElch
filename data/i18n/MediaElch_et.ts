@@ -447,6 +447,24 @@
     </message>
 </context>
 <context>
+    <name>ConcertRenamerDialog</name>
+    <message>
+        <location filename="../../src/ui/renamer/ConcertRenamerDialog.cpp" line="+43"/>
+        <source>Finished</source>
+        <translation>Tehtud</translation>
+    </message>
+    <message numerus="yes">
+        <location line="+10"/>
+        <source>%n concerts will be renamed</source>
+        <translation><numerusform>%n kontsert nimetatakse ümber</numerusform><numerusform>%n kontserti nimetatakse ümber</numerusform></translation>
+    </message>
+    <message>
+        <location line="+18"/>
+        <source>&lt;b&gt;Concert&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>ConcertScraperInfoWidget</name>
     <message>
         <location filename="../../src/ui/settings/ConcertScraperInfoWidget.ui" line="+17"/>
@@ -4046,7 +4064,7 @@ Main menu entry (tooltip)</extracomment>
         <translation>Programmist</translation>
     </message>
     <message>
-        <location filename="../../src/ui/main/MainWindow.cpp" line="+121"/>
+        <location filename="../../src/ui/main/MainWindow.cpp" line="+126"/>
         <source>FAQ</source>
         <translation>KKK</translation>
     </message>
@@ -4086,12 +4104,12 @@ Main menu entry (tooltip)</extracomment>
         <translation>Vaata litsentsi</translation>
     </message>
     <message>
-        <location line="+257"/>
+        <location line="+261"/>
         <source>&amp;Quick Open</source>
         <translation>&amp;Kiiravamine</translation>
     </message>
     <message>
-        <location line="+467"/>
+        <location line="+465"/>
         <source>Reload all Movies (%1)</source>
         <translation>Värskenda kõik filmid (% 1)</translation>
     </message>
@@ -4706,6 +4724,24 @@ Main menu entry (tooltip)</extracomment>
         <location line="+288"/>
         <source>Internal inconsistency: Selected an invalid scraper!</source>
         <translation>Sisemine vastuolu: valitud vale kaabits! </translation>
+    </message>
+</context>
+<context>
+    <name>MovieRenamerDialog</name>
+    <message>
+        <location filename="../../src/ui/renamer/MovieRenamerDialog.cpp" line="+44"/>
+        <source>Finished</source>
+        <translation>Tehtud</translation>
+    </message>
+    <message numerus="yes">
+        <location line="+10"/>
+        <source>%n movies will be renamed</source>
+        <translation><numerusform>%n film nimetatakse ümber</numerusform><numerusform>%n filmi nimetatakse ümber</numerusform></translation>
+    </message>
+    <message>
+        <location line="+18"/>
+        <source>&lt;b&gt;Movie&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -6508,7 +6544,12 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
 <context>
     <name>PlaceholderLineEdit</name>
     <message>
-        <location filename="../../src/ui/small_widgets/PlaceholderLineEdit.cpp" line="+26"/>
+        <location filename="../../src/ui/small_widgets/PlaceholderLineEdit.cpp" line="+31"/>
+        <source>Errors in naming pattern: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+18"/>
         <source>Insert placeholder</source>
         <translation type="unfinished"/>
     </message>
@@ -6718,6 +6759,48 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
         <source>Genre</source>
         <translation>Žanr</translation>
     </message>
+    <message>
+        <location filename="../../src/renamer/PlaceholderParser.cpp" line="+23"/>
+        <location line="+9"/>
+        <source>Unexpected closing &apos;%1&apos;, without opening &apos;%2&apos;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Missing closing tag for &apos;%1&apos;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Unexpected empty condition &apos;{}&apos;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+7"/>
+        <location line="+39"/>
+        <source>Missing closing &apos;%1&apos;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="-18"/>
+        <source>Unexpected closing tag &apos;{/%1}&apos;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+11"/>
+        <source>Expected closing tag &apos;{/%1}&apos;, but found &apos;{/%2}&apos;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+29"/>
+        <source>Unexpected empty value &apos;&lt;&gt;&apos;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Missing &apos;%1&apos; for placeholder</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>QuaGzipFile</name>
@@ -6883,62 +6966,17 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
     </message>
     <message>
         <location line="+10"/>
-        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="+433"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="+188"/>
         <source>Rename</source>
         <translation>Nimeta ümber</translation>
     </message>
     <message>
-        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="-391"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="-153"/>
         <source>Please see %1 for help and examples on how to use the renamer.</source>
         <translation type="unfinished"/>
     </message>
-    <message numerus="yes">
-        <location line="+19"/>
-        <source>%n concerts will be renamed</source>
-        <translation><numerusform>%n kontsert nimetatakse ümber</numerusform><numerusform>%n kontserti nimetatakse ümber</numerusform></translation>
-    </message>
-    <message numerus="yes">
-        <location line="+1"/>
-        <source>%n movies will be renamed</source>
-        <translation><numerusform>%n film nimetatakse ümber</numerusform><numerusform>%n filmi nimetatakse ümber</numerusform></translation>
-    </message>
-    <message numerus="yes">
-        <location line="+2"/>
-        <source>%n TV shows and %1</source>
-        <translation><numerusform>%n seriaal ja %1</numerusform><numerusform>%n seriaali ja %1</numerusform></translation>
-    </message>
-    <message numerus="yes">
-        <location line="+1"/>
-        <source>%n episodes will be renamed</source>
-        <translation><numerusform>%n episood nimetatakse ümber</numerusform><numerusform>%n episoodi nimetatakse ümber</numerusform></translation>
-    </message>
     <message>
-        <location line="+224"/>
-        <source>Finished</source>
-        <translation>Tehtud</translation>
-    </message>
-    <message>
-        <location line="+17"/>
-        <source>&lt;b&gt;Movie&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location line="+29"/>
-        <source>&lt;b&gt;Episode&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location line="+23"/>
-        <source>&lt;b&gt;TV Show&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location line="+54"/>
-        <source>&lt;b&gt;Concert&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location line="+19"/>
+        <location line="+151"/>
         <source>Create dir</source>
         <translation>Loo kataloog</translation>
     </message>
@@ -6949,156 +6987,156 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
     </message>
 </context>
 <context>
-    <name>RenamerPlaceholders</name>
+    <name>RenamerPlaceholdersWidget</name>
     <message>
-        <location filename="../../src/ui/renamer/RenamerPlaceholders.ui" line="+35"/>
+        <location filename="../../src/ui/renamer/RenamerPlaceholdersWidget.ui" line="+35"/>
         <source>Placeholders</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location line="+246"/>
-        <source>Placeholder</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location line="+363"/>
-        <source>Artist</source>
-        <translation>Esitaja</translation>
-    </message>
-    <message>
-        <location line="-551"/>
-        <source>File extension</source>
-        <translation>Faililaiend</translation>
-    </message>
-    <message>
-        <location line="+370"/>
-        <source>Original Title</source>
-        <translation>Algne pealkiri</translation>
-    </message>
-    <message>
-        <location line="+26"/>
-        <source>Season Name</source>
-        <translation>Hooaja nimi</translation>
-    </message>
-    <message>
-        <location line="+208"/>
-        <source>Part number of the current file</source>
-        <translation>Praeguse faili osa number</translation>
-    </message>
-    <message>
-        <location line="+132"/>
-        <source>TMDb ID</source>
-        <translation>TMDb ID</translation>
-    </message>
-    <message>
-        <location line="-637"/>
-        <source>Album</source>
-        <translation>Album</translation>
-    </message>
-    <message>
-        <location line="-85"/>
-        <source>Title</source>
-        <translation>Pealkiri</translation>
-    </message>
-    <message>
-        <location line="+666"/>
-        <source>Season Number</source>
-        <translation>Hooaja number</translation>
-    </message>
-    <message>
-        <location line="-692"/>
-        <source>Title of the show</source>
-        <translation>Seriaali pealkiri</translation>
-    </message>
-    <message>
-        <location line="+718"/>
-        <source>Year</source>
-        <translation>Aasta</translation>
-    </message>
-    <message>
-        <location line="-661"/>
-        <source>Description</source>
-        <translation>Kirjeldus</translation>
-    </message>
-    <message>
-        <location line="+535"/>
-        <source>Studio(s) (separated by a comma)</source>
-        <translation>Stuudio(d) (eraldatud komaga)</translation>
-    </message>
-    <message>
-        <location line="-78"/>
-        <source>Sort Title</source>
-        <translation>Sortimispealkiri</translation>
-    </message>
-    <message>
-        <location line="-94"/>
-        <source>Director(s)</source>
-        <translation>Lavastaja(d)</translation>
-    </message>
-    <message>
-        <location line="+136"/>
-        <source>Audio Language(s) (separated by a minus)</source>
-        <translation>Helikeel(ed) (eraldatud miinusega)</translation>
-    </message>
-    <message>
-        <location line="-107"/>
-        <source>Episode Number</source>
-        <translation>Episoodi number</translation>
-    </message>
-    <message>
-        <location line="-367"/>
-        <source>Resolution (1080p, 720p, ...)</source>
-        <translation>Lahutus (1080p, 720p, ...)</translation>
-    </message>
-    <message>
-        <location line="+68"/>
-        <source>File/directory is BluRay</source>
-        <translation>Fail/kataloog on BluRay</translation>
-    </message>
-    <message>
-        <location line="+195"/>
-        <source>Subtitle Language(s) (separated by a minus)</source>
-        <translation>Subtiitrite keel(ed) (eraldatud miinusega)</translation>
-    </message>
-    <message>
-        <location line="-358"/>
+        <location line="+33"/>
         <source>File/directory is DVD</source>
         <translation>Fail/kataloog on DVD</translation>
     </message>
     <message>
-        <location line="+407"/>
-        <source>File is 3D</source>
-        <translation>Fail on 3D</translation>
+        <location line="+13"/>
+        <source>Title of the show</source>
+        <translation>Seriaali pealkiri</translation>
     </message>
     <message>
-        <location line="-354"/>
+        <location line="+12"/>
+        <source>File extension</source>
+        <translation>Faililaiend</translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>Title</source>
+        <translation>Pealkiri</translation>
+    </message>
+    <message>
+        <location line="+14"/>
         <source>Movie set name</source>
         <translation>Filmikomplekti nimi</translation>
     </message>
     <message>
-        <location line="+293"/>
-        <source>IMDb ID</source>
-        <translation>IMDb ID</translation>
+        <location line="+17"/>
+        <source>Description</source>
+        <translation>Kirjeldus</translation>
     </message>
     <message>
-        <location line="-29"/>
-        <source>Video Codec</source>
-        <translation>Videokoodek</translation>
+        <location line="+25"/>
+        <source>Resolution (1080p, 720p, ...)</source>
+        <translation>Lahutus (1080p, 720p, ...)</translation>
     </message>
     <message>
-        <location line="-181"/>
+        <location line="+29"/>
+        <source>Album</source>
+        <translation>Album</translation>
+    </message>
+    <message>
+        <location line="+12"/>
         <source>Episode has a season name</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location line="+138"/>
+        <location line="+27"/>
+        <source>File/directory is BluRay</source>
+        <translation>Fail/kataloog on BluRay</translation>
+    </message>
+    <message>
+        <location line="+50"/>
+        <source>Placeholder</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+61"/>
         <source>Audio Codec</source>
         <translation>Helikoodek</translation>
     </message>
     <message>
-        <location line="+224"/>
+        <location line="+43"/>
+        <source>Video Codec</source>
+        <translation>Videokoodek</translation>
+    </message>
+    <message>
+        <location line="+29"/>
+        <source>IMDb ID</source>
+        <translation>IMDb ID</translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Subtitle Language(s) (separated by a minus)</source>
+        <translation>Subtiitrite keel(ed) (eraldatud miinusega)</translation>
+    </message>
+    <message>
+        <location line="+37"/>
+        <source>Original Title</source>
+        <translation>Algne pealkiri</translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>File is 3D</source>
+        <translation>Fail on 3D</translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>Season Name</source>
+        <translation>Hooaja nimi</translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Director(s)</source>
+        <translation>Lavastaja(d)</translation>
+    </message>
+    <message>
+        <location line="+29"/>
+        <source>Episode Number</source>
+        <translation>Episoodi number</translation>
+    </message>
+    <message>
+        <location line="+36"/>
         <source>Number of audio channels</source>
         <translation>Helikanalite arv</translation>
+    </message>
+    <message>
+        <location line="+29"/>
+        <source>Sort Title</source>
+        <translation>Sortimispealkiri</translation>
+    </message>
+    <message>
+        <location line="+42"/>
+        <source>Audio Language(s) (separated by a minus)</source>
+        <translation>Helikeel(ed) (eraldatud miinusega)</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Artist</source>
+        <translation>Esitaja</translation>
+    </message>
+    <message>
+        <location line="+29"/>
+        <source>Studio(s) (separated by a comma)</source>
+        <translation>Stuudio(d) (eraldatud komaga)</translation>
+    </message>
+    <message>
+        <location line="+24"/>
+        <source>Part number of the current file</source>
+        <translation>Praeguse faili osa number</translation>
+    </message>
+    <message>
+        <location line="+76"/>
+        <source>Season Number</source>
+        <translation>Hooaja number</translation>
+    </message>
+    <message>
+        <location line="+26"/>
+        <source>Year</source>
+        <translation>Aasta</translation>
+    </message>
+    <message>
+        <location line="+30"/>
+        <source>TMDb ID</source>
+        <translation>TMDb ID</translation>
     </message>
 </context>
 <context>
@@ -8349,6 +8387,34 @@ pärast kaapimist automaatselt</translation>
         <location line="+21"/>
         <source>S%2E%3: Finished scraping episode details. Title is: &quot;%1&quot;.</source>
         <translation>S%2E%3: Episoodi üksikasjade kaapimine on lõpetatud. Pealkiri on: &quot;%1&quot;.</translation>
+    </message>
+</context>
+<context>
+    <name>TvShowRenamerDialog</name>
+    <message>
+        <location filename="../../src/ui/renamer/TvShowRenamerDialog.cpp" line="+55"/>
+        <source>Finished</source>
+        <translation>Tehtud</translation>
+    </message>
+    <message numerus="yes">
+        <location line="+11"/>
+        <source>%n TV shows and %1</source>
+        <translation><numerusform>%n seriaal ja %1</numerusform><numerusform>%n seriaali ja %1</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <location line="+1"/>
+        <source>%n episodes will be renamed</source>
+        <translation><numerusform>%n episood nimetatakse ümber</numerusform><numerusform>%n episoodi nimetatakse ümber</numerusform></translation>
+    </message>
+    <message>
+        <location line="+19"/>
+        <source>&lt;b&gt;Episode&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+25"/>
+        <source>&lt;b&gt;TV Show&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
