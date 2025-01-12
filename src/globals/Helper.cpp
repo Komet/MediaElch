@@ -493,7 +493,7 @@ QString matchResolution(int width, int height, const QString& scanType)
     QString res;
     if (height >= 4312 || width >= 7672) {
         res = "4320";
-    } else if (height >= 2152 || width >= 3832) {
+    } else if (height >= 1570 || width >= 3820) {
         res = "2160";
     } else if (height >= 1072 || width >= 1912) {
         res = "1080";
