@@ -24,7 +24,7 @@ userRating: 0
 imdbTop250: 0
 released: 2016-06-16
 runtime: 97min
-writer: Andrew Stanton, Victoria Strouse, Bob Peterson, Matt Jones
+writer: Andrew Stanton, Bob Peterson, Victoria Strouse, Matt Jones
 director: Andrew Stanton
 actors: (N>60)
  - id: 
@@ -54,7 +54,7 @@ actors: (N>60)
  - id: 
    name: Diane Keaton
    role: Jenny (voice)
-   thumb: http://image.tmdb.org/t/p/original/vgOcI9gfmBmJxnHWhhiEpJLaOq4.jpg
+   thumb: http://image.tmdb.org/t/p/original/tnx7pJqisfAzvXOR5wHQsbnH9XH.jpg
    order: 4
    imageHasChanged: false
  - id: 
@@ -90,7 +90,7 @@ actors: (N>60)
  - id: 
    name: Kate McKinnon
    role: Wife Fish (voice)
-   thumb: http://image.tmdb.org/t/p/original/2cNetzianFcxPQbyOQnkAIkKUZE.jpg
+   thumb: http://image.tmdb.org/t/p/original/8rMn2ZiEm2rCHZ28EVWUenirpw8.jpg
    order: 10
    imageHasChanged: false
  - id: 
@@ -168,7 +168,7 @@ dateAdded: <not set or invalid>
 discType: Single
 color label: 0
 resumeTime: position=0 / total=0
-streamDetails: <nullptr>
+streamDetails: <not loaded>
 subtitles: (N=0)
 fileLastModified: <not set or invalid>
 files: (N=0)

@@ -217,15 +217,15 @@ dateAdded: <not set or invalid>
 discType: Single
 color label: 0
 resumeTime: position=0 / total=0
-streamDetails: <nullptr>
+streamDetails: <not loaded>
 subtitles: (N=0)
 fileLastModified: <not set or invalid>
 files: (N=0)
 folderName: 
 posters: (N=1)
   - id: 
-    originalUrl: https://m.media-amazon.com/images/M/MV5BYTJkNGQyZDgtZDQ0NC00MDM0LWEzZWQtYzUzZDEwMDljZWNjXkEyXkFqcGc@.jpg
-    thumbUrl: https://m.media-amazon.com/images/M/MV5BYTJkNGQyZDgtZDQ0NC00MDM0LWEzZWQtYzUzZDEwMDljZWNjXkEyXkFqcGc@.jpg
+    originalUrl: https://m.media-amazon.com/images/M/MV5BMGQ1NmJkNjYtOTYyZi00N2M1LTk4MDMtNGEyOGUxNzQxZGQ3XkEyXkFqcGc@.jpg
+    thumbUrl: https://m.media-amazon.com/images/M/MV5BMGQ1NmJkNjYtOTYyZi00N2M1LTk4MDMtNGEyOGUxNzQxZGQ3XkEyXkFqcGc@.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 

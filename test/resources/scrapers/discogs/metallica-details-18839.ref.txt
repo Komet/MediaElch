@@ -84,8 +84,6 @@ discography: (N>100)
     year: 1986
   - title: Master Of Puppets
     year: 1986
-  - title: The $5.98 EP: Garage Days Re-Revisited
-    year: 1987
   - title: Creeping Death / Jump In The Fire
     year: 1987
   - title: The $5.98 E.P. - Garage Days Re-Revisited
@@ -93,8 +91,6 @@ discography: (N>100)
   - title: $19.98 Home Vid Cliff 'Em All!
     year: 1987
   - title: Harvester Of Sorrow / Barbablù
-    year: 1988
-  - title: ...And Justice For All
     year: 1988
   - title: 2 Of One
     year: 1988
@@ -121,12 +117,6 @@ discography: (N>100)
   - title: The Good The Bad & The Live: The 6½ Year Anniversary 12" Collection
     year: 1990
   - title: Stone Cold Crazy
-    year: 1990
-  - title: Master Of Puppets
-    year: 1990
-  - title: Kill 'Em All
-    year: 1990
-  - title: Ride The Lightning
     year: 1990
   - title: Enter Sandman / Calling Elvis
     year: 1991
@@ -260,6 +250,16 @@ discography: (N>100)
     year: 1998
   - title: Turn The Page
     year: 1998
+  - title: Whiskey In The Jar
+    year: 1998
+  - title: S&M Documentary
+    year: 1999
+  - title: Did Die My Darling / I Finally Found My Way
+    year: 1999
+  - title: "S & M" Concert Special
+    year: 1999
+  - title: S & M Documentary
+    year: 1999
 genres: (N=0)
 styles: (N=0)
 moods: (N=0)

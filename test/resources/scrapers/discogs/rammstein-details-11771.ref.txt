@@ -129,8 +129,6 @@ discography: (N>90)
     year: 2003
   - title: Master Collection
     year: 2003
-  - title: Das Modell
-    year: 2003
   - title: Lichtspielhaus
     year: 2003
   - title: Reise, Reise Videospecial
@@ -179,8 +177,6 @@ discography: (N>90)
     year: 2010
   - title: Mein Land
     year: 2011
-  - title: Mein Land
-    year: 2011
   - title: Made In Germany (1995-2011)
     year: 2011
   - title: Waidmanns Heil / Liebe Ist Für Alle Da
@@ -201,6 +197,8 @@ discography: (N>90)
     year: 2015
   - title: Raritäten (1994-2012)
     year: 2015
+  - title: Paris
+    year: 2017
   - title: Paris
     year: 2017
   - title: Ausländer
@@ -228,6 +226,8 @@ discography: (N>90)
   - title: MTV / VOX
     year: 
   - title: Zeig Dich
+    year: 
+  - title: Rammstein Tipo - Duplicamos La Imagen
     year: 
 genres: (N=0)
 styles: (N=0)
