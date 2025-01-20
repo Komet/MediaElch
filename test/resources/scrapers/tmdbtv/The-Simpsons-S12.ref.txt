@@ -13,7 +13,7 @@ tvmazeId:
 title: Treehouse of Horror XI
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=6.4 | votes=10 | min=0 | max=10
+  source=tmdb | rating=6.4 | votes=20 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -423,7 +423,7 @@ tvmazeId:
 title: Homer vs. Dignity
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=6.4 | votes=20 | min=0 | max=10
+  source=tmdb | rating=6.6 | votes=20 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -873,7 +873,7 @@ tvmazeId:
 title: Pokey Mom
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=6.8 | votes=10 | min=0 | max=10
+  source=tmdb | rating=6.8 | votes=20 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -899,7 +899,7 @@ actors: (N>10)
  - id: 2232
    name: Michael Keaton
    role: Jack Crowley (voice)
-   thumb: https://image.tmdb.org/t/p/original/82rxrGxOqQW2NjKsIiNbDYHFfmb.jpg
+   thumb: https://image.tmdb.org/t/p/original/baeHNv3qrVsnApuKbZXiJOhqMnw.jpg
    order: 0
    imageHasChanged: false
  - id: 119713
@@ -979,7 +979,7 @@ tvmazeId:
 title: Worst Episode Ever
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=6.4 | votes=10 | min=0 | max=10
+  source=tmdb | rating=6.6 | votes=20 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -1069,7 +1069,7 @@ tvmazeId:
 title: Tennis the Menace
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=5.8 | votes=10 | min=0 | max=10
+  source=tmdb | rating=5.8 | votes=20 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -1186,7 +1186,7 @@ tvmazeId:
 title: Day of the Jackanapes
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=6.2 | votes=10 | min=0 | max=10
+  source=tmdb | rating=6.2 | votes=20 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -1383,7 +1383,7 @@ tvmazeId:
 title: Hungry Hungry Homer
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=6.4 | votes=20 | min=0 | max=10
+  source=tmdb | rating=6.6 | votes=20 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -1491,7 +1491,7 @@ tvmazeId:
 title: Bye Bye Nerdy
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=6 | votes=10 | min=0 | max=10
+  source=tmdb | rating=6 | votes=20 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -1612,7 +1612,7 @@ tvmazeId:
 title: Simpson Safari
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=5.6 | votes=10 | min=0 | max=10
+  source=tmdb | rating=5.8 | votes=10 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -1689,7 +1689,7 @@ tvmazeId:
 title: Trilogy of Error
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=7.8 | votes=20 | min=0 | max=10
+  source=tmdb | rating=7.6 | votes=20 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -1979,7 +1979,7 @@ tvmazeId:
 title: Simpsons Tall Tales
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=5.6 | votes=10 | min=0 | max=10
+  source=tmdb | rating=5.6 | votes=20 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12

@@ -39,37 +39,37 @@ episodeGuideUrl:
 actors: (N>5)
  - id: 
    name: Donald Faison
-   role: Chris Turk (200 Folgen, 2001–2010)
+   role: Chris Turk (182 Folgen, 2001–2010)
    thumb: https://bilder.fernsehserien.de/gfx/person_1000/d/donald-faison.jpg
    order: 0
    imageHasChanged: false
  - id: 
    name: John C. McGinley
-   role: Dr. Perry Cox (200 Folgen, 2001–2010)
+   role: Dr. Perry Cox (182 Folgen, 2001–2010)
    thumb: https://bilder.fernsehserien.de/gfx/person_1000/j/john-c-mcginley.jpg
    order: 1
    imageHasChanged: false
  - id: 
    name: Sarah Chalke
-   role: Elliot Reid (197 Folgen, 2001–2010)
+   role: Elliot Reid (179 Folgen, 2001–2010)
    thumb: https://bilder.fernsehserien.de/gfx/person_1000/s/sarah-chalke.jpg
    order: 2
    imageHasChanged: false
  - id: 
    name: Zach Braff
-   role: Dr. John „J.D.“ Dorian (196 Folgen, 2001–2010)
+   role: Dr. John „J.D.“ Dorian (178 Folgen, 2001–2010)
    thumb: https://bilder.fernsehserien.de/gfx/person_1000/z/zach-braff.jpg
    order: 3
    imageHasChanged: false
  - id: 
    name: Judy Reyes
-   role: Carla Espinosa (190 Folgen, 2001–2010)
+   role: Carla Espinosa (171 Folgen, 2001–2010)
    thumb: https://bilder.fernsehserien.de/gfx/person_1000/j/judy-reyes.jpg
    order: 4
    imageHasChanged: false
  - id: 
    name: Neil Flynn
-   role: Hausmeister (188 Folgen, 2001–2009)
+   role: Hausmeister (169 Folgen, 2001–2009)
    thumb: https://bilder.fernsehserien.de/gfx/person_1000/n/neil-flynn.jpg
    order: 5
    imageHasChanged: false

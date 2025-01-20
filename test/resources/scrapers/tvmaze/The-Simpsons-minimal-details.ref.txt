@@ -515,6 +515,15 @@ seasonPoster S34: (N=1)
     hint: 
     aspect: 
     season: SeasonNumber=xx
+seasonPoster S35: (N=1)
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/552/1381540.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/552/1381540.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/552/1381540.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
 hasTune: false
 extraFanarts: (N=0)
 status: Running

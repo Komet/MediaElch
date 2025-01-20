@@ -204,7 +204,7 @@ dateAdded: <not set or invalid>
 discType: Single
 color label: 0
 resumeTime: position=0 / total=0
-streamDetails: <nullptr>
+streamDetails: <not loaded>
 subtitles: (N=0)
 fileLastModified: <not set or invalid>
 files: (N=0)
