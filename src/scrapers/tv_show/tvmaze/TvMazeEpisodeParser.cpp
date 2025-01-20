@@ -53,6 +53,29 @@ void TvMazeEpisodeParser::parseEpisode(TvShowEpisode& episode, const QJsonObject
         episode.setThumbnail(QUrl(thumbOriginal));
     }
 
+    // -------------------------------------
+    QJsonObject embedded = json["_embedded"].toObject();
+    {
+        // TODO: Combine with TvMazeShowParser
+        const QJsonArray cast = embedded["guestcast"].toArray();
+        for (const QJsonValue& val : cast) {
+            QJsonObject castObj = val.toObject();
+            QJsonObject person = castObj["person"].toObject();
+            QJsonObject character = castObj["character"].toObject();
+
+            Actor actor;
+            actor.name = person["name"].toString();
+            actor.role = character["name"].toString();
+            actor.id = QString::number(person["id"].toInt());
+            actor.thumb = person["image"].toObject()["original"].toString();
+            if (actor.thumb.isEmpty()) { // no image of the person available -> use character
+                actor.thumb = character["image"].toObject()["original"].toString();
+            }
+            episode.addActor(actor);
+        }
+    }
+
+
     // TODO: Support "runtime" when TvShowEpisode supports it.
 }
 

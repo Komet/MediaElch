@@ -39,6 +39,7 @@ TvMaze::TvMaze(TvMazeConfiguration& settings, QObject* parent) : TvScraper(paren
         ShowScraperInfo::ExtraArts //
     };
     m_meta.supportedEpisodeDetails = {
+        EpisodeScraperInfo::Actors,
         EpisodeScraperInfo::Title,
         EpisodeScraperInfo::FirstAired,
         EpisodeScraperInfo::Thumbnail,
