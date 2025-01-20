@@ -110,6 +110,7 @@ QUrl TvMazeApi::makeEpisodeUrl(const TvMazeId& episodeId) const
     //    queries.addQueryItem("embed[]", "cast");
     //    queries.addQueryItem("embed[]", "crew");
     //    queries.addQueryItem("embed[]", "images");
+    queries.addQueryItem("embed[]", "guestcast");
     return makeApiUrl(QStringLiteral("/episodes/%1").arg(episodeId.toString()), queries);
 }
 

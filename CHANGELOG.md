@@ -23,9 +23,10 @@
 
 ### Added
 
-- Renamer: Placeholder `<tmdbId>` is now also available for TV shows and episodes (#1814)
+- TVMaze can now load episodes' guest cast (actors) (#1801)
 - NFO: `<hdrtype>` is now supported (#1810)
 - Renamer:
+  - Placeholder `<tmdbId>` is now also available for TV shows and episodes (#1814)
   - Spaces in file names can be replaced by `_` or `-` (#1827)
   - If there is a syntax error in the `<value>`s or `{conditions}`, the field will by
     highlighted red and the tooltip will tell you what the issue is (#1840)
