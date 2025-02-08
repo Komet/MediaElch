@@ -436,7 +436,7 @@
        <item>
         <spacer name="menuSpacer">
          <property name="orientation">
-          <enum>Qt::Orientation::Vertical</enum>
+          <enum>Qt::Vertical</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
@@ -498,7 +498,7 @@
           <item>
            <widget class="MySplitter" name="movieSplitter">
             <property name="orientation">
-             <enum>Qt::Orientation::Horizontal</enum>
+             <enum>Qt::Horizontal</enum>
             </property>
             <property name="handleWidth">
              <number>1</number>
@@ -513,10 +513,10 @@
             </widget>
             <widget class="QScrollArea" name="scrollArea">
              <property name="frameShape">
-              <enum>QFrame::Shape::NoFrame</enum>
+              <enum>QFrame::NoFrame</enum>
              </property>
              <property name="frameShadow">
-              <enum>QFrame::Shadow::Plain</enum>
+              <enum>QFrame::Plain</enum>
              </property>
              <property name="lineWidth">
               <number>0</number>
@@ -529,7 +529,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>83</width>
+                <width>72</width>
                 <height>736</height>
                </rect>
               </property>
@@ -573,7 +573,7 @@
           <item>
            <widget class="MySplitter" name="tvShowSplitter">
             <property name="orientation">
-             <enum>Qt::Orientation::Horizontal</enum>
+             <enum>Qt::Horizontal</enum>
             </property>
             <property name="handleWidth">
              <number>1</number>
@@ -586,15 +586,15 @@
               </size>
              </property>
              <property name="focusPolicy">
-              <enum>Qt::FocusPolicy::NoFocus</enum>
+              <enum>Qt::NoFocus</enum>
              </property>
             </widget>
             <widget class="QScrollArea" name="scrollArea_2">
              <property name="frameShape">
-              <enum>QFrame::Shape::NoFrame</enum>
+              <enum>QFrame::NoFrame</enum>
              </property>
              <property name="frameShadow">
-              <enum>QFrame::Shadow::Plain</enum>
+              <enum>QFrame::Plain</enum>
              </property>
              <property name="lineWidth">
               <number>0</number>
@@ -670,7 +670,7 @@
           <item>
            <widget class="MySplitter" name="concertSplitter">
             <property name="orientation">
-             <enum>Qt::Orientation::Horizontal</enum>
+             <enum>Qt::Horizontal</enum>
             </property>
             <property name="handleWidth">
              <number>1</number>
@@ -688,10 +688,10 @@
             </widget>
             <widget class="QScrollArea" name="scrollArea_3">
              <property name="frameShape">
-              <enum>QFrame::Shape::NoFrame</enum>
+              <enum>QFrame::NoFrame</enum>
              </property>
              <property name="frameShadow">
-              <enum>QFrame::Shadow::Plain</enum>
+              <enum>QFrame::Plain</enum>
              </property>
              <property name="lineWidth">
               <number>0</number>
@@ -805,15 +805,15 @@
           <item>
            <widget class="MySplitter" name="musicSplitter">
             <property name="orientation">
-             <enum>Qt::Orientation::Horizontal</enum>
+             <enum>Qt::Horizontal</enum>
             </property>
             <widget class="MusicFilesWidget" name="musicFilesWidget" native="true"/>
             <widget class="QScrollArea" name="scrollArea_4">
              <property name="frameShape">
-              <enum>QFrame::Shape::NoFrame</enum>
+              <enum>QFrame::NoFrame</enum>
              </property>
              <property name="frameShadow">
-              <enum>QFrame::Shadow::Plain</enum>
+              <enum>QFrame::Plain</enum>
              </property>
              <property name="lineWidth">
               <number>0</number>
@@ -826,7 +826,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>83</width>
+                <width>72</width>
                 <height>30</height>
                </rect>
               </property>
