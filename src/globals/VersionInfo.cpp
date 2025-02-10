@@ -50,7 +50,7 @@ bool VersionInfo::operator!=(const VersionInfo& rhs) const
 
 bool VersionInfo::operator>(const VersionInfo& rhs) const
 {
-    // don't use ternary operator for readbility
+    // don't use ternary operator for readability
 
     if (!isValid() || !rhs.isValid()) {
         return false;

@@ -24,7 +24,7 @@ private:
     /// \todo Load in parallel.
     void loadEpisodes(QMap<SeasonNumber, QMap<EpisodeNumber, ImdbId>> episodeIds);
     /// \brief Gathers all episode IDs for the given seasons by loading each
-    ///        season page and then calls laodEpisodes().
+    ///        season page and then calls loadEpisodes().
     void gatherAndLoadEpisodes(QList<SeasonNumber> seasonsToLoad,
         QMap<SeasonNumber, QMap<EpisodeNumber, ImdbId>> episodeIds);
     void loadAllSeasons();

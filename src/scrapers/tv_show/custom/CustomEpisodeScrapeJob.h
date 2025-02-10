@@ -21,7 +21,7 @@ private slots:
     void onTmdbLoaded(mediaelch::scraper::EpisodeScrapeJob* job);
 
 private:
-    /// \brief Load the sepisodehow using the given episode identifier from the specified scraper.
+    /// \brief Load the episode using the given episode identifier from the specified scraper.
     void loadWithScraper(const QString& scraperId, const EpisodeIdentifier& identifier);
     /// \brief   Checks if all scrapers have finished.
     /// \details Thread safe check that all scrapers have finished. If all have finished,

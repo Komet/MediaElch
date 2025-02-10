@@ -644,7 +644,7 @@ void TvShowWidgetEpisode::onSaveInformation()
     }
 
     if (m_episode->isDummy()) {
-        // don't save dummys
+        // don't save dummies
         return;
     }
 

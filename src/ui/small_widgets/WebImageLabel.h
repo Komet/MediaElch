@@ -37,7 +37,7 @@ public:
     void showPlaceholder();
 
 private slots:
-    /// \brief Called when the image set via showImageFrom() was downlaoded.
+    /// \brief Called when the image set via showImageFrom() was downloaded.
     void onImageDownloaded();
 
 private:

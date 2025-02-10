@@ -120,8 +120,8 @@ void CsvMovieExport::exportMovies(const QVector<Movie*>& movies, std::function<v
         const auto* st = movie->streamDetails();
         csv.addRow({
             {s(Field::Type), "movie"},
-            {s(Field::Imdbid), movie->imdbId().toString()},
-            {s(Field::Tmdbid), movie->tmdbId().toString()},
+            {s(Field::ImdbId), movie->imdbId().toString()},
+            {s(Field::TmdbId), movie->tmdbId().toString()},
             {s(Field::WikidataId), movie->wikidataId().toString()},
             {s(Field::Title), movie->name()},
             {s(Field::OriginalTitle), movie->originalName()},
@@ -179,8 +179,8 @@ QString CsvMovieExport::fieldToString(Field field)
 {
     switch (field) {
     case Field::Type: return "type";
-    case Field::Imdbid: return "movie_imdb_id";
-    case Field::Tmdbid: return "movie_tmdb_id";
+    case Field::ImdbId: return "movie_imdb_id";
+    case Field::TmdbId: return "movie_tmdb_id";
     case Field::WikidataId: return "movie_wikidata_id";
     case Field::Title: return "movie_title";
     case Field::OriginalTitle: return "movie_original_title";

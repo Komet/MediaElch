@@ -1,0 +1,22 @@
+---
+$schema: https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json
+version: '0.2'
+allowCompoundWords: true
+useGitignore: true
+dictionaryDefinitions:
+  - name: project-words
+    path: './scripts/project_words.txt'
+    addWords: true
+dictionaries:
+  - project-words
+ignorePaths:
+  - 'node_modules/'
+  - 'build/'
+  - 'scripts/library/'
+  - 'scripts/generated_media/'
+  - 'third_party/'
+  - 'data/i18n'
+  - 'test/'
+  - 'tmp/'
+  - '*.ui'
+  - '/scripts/project_words.txt'

@@ -284,15 +284,15 @@ MyIconFont::~MyIconFont()
     qDeleteAll(painterMap_);
 }
 
-/// initializes the QtAwesome icon factory with the given fontname
-void MyIconFont::init(const QString& fontname)
+/// initializes the QtAwesome icon factory with the given font name
+void MyIconFont::init(const QString& fontName)
 {
-    fontName_ = fontname;
+    fontName_ = fontName;
 }
 
 
 /// a specialized init function so font-awesome is loaded and initialized
-/// this method return true on success, it will return false if the fnot cannot be initialized
+/// this method return true on success, it will return false if the font cannot be initialized
 /// To initialize QtAwesome with font-awesome you need to call this method
 bool MyIconFont::initFontAwesome()
 {

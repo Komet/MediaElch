@@ -76,7 +76,7 @@ public:
     explicit MyIconFont(QObject* parent = nullptr);
     ~MyIconFont() override;
 
-    void init(const QString& fontname);
+    void init(const QString& fontName);
     bool initFontAwesome();
 
     void addNamedCodepoint(const QString& name, int codePoint);

@@ -132,7 +132,7 @@ void CsvExportDialog::onExport()
 
         QFile file(exportFilePath(exportDir, "movies"));
         openFileWithStream(file, [&](QTextStream& stream) {
-            // Export with a progress bar (even though it may be so fast that it's not noticable)
+            // Export with a progress bar (even though it may be so fast that it's not noticeable)
             CsvMovieExport exporter(stream, getFields<CsvMovieExport::Field>(ui->movieDetailsToExport));
             exporter.setSeparator(separator);
             exporter.setReplacement(replacement);
@@ -149,7 +149,7 @@ void CsvExportDialog::onExport()
 
             QFile showFile(exportFilePath(exportDir, "tv_shows"));
             openFileWithStream(showFile, [&](QTextStream& stream) {
-                // Export with a progress bar (even though it may be so fast that it's not noticable)
+                // Export with a progress bar (even though it may be so fast that it's not noticeable)
                 CsvTvShowExport exporter(stream, getFields<CsvTvShowExport::Field>(ui->tvShowDetailsToExport));
                 exporter.setSeparator(separator);
                 exporter.setReplacement(replacement);
@@ -163,7 +163,7 @@ void CsvExportDialog::onExport()
 
             QFile episodeFile(exportFilePath(exportDir, "tv_episodes"));
             openFileWithStream(episodeFile, [&](QTextStream& stream) {
-                // Export with a progress bar (even though it may be so fast that it's not noticable)
+                // Export with a progress bar (even though it may be so fast that it's not noticeable)
                 CsvTvEpisodeExport exporter(stream, getFields<CsvTvEpisodeExport::Field>(ui->tvEpisodeDetailsToExport));
                 exporter.setSeparator(separator);
                 exporter.setReplacement(replacement);
@@ -181,7 +181,7 @@ void CsvExportDialog::onExport()
 
         QFile episodeFile(exportFilePath(exportDir, "concerts"));
         openFileWithStream(episodeFile, [&](QTextStream& stream) {
-            // Export with a progress bar (even though it may be so fast that it's not noticable)
+            // Export with a progress bar (even though it may be so fast that it's not noticeable)
             CsvConcertExport exporter(stream, getFields<CsvConcertExport::Field>(ui->concertDetailsToExport));
             exporter.setSeparator(separator);
             exporter.setReplacement(replacement);
@@ -199,7 +199,7 @@ void CsvExportDialog::onExport()
 
             QFile episodeFile(exportFilePath(exportDir, "artists"));
             openFileWithStream(episodeFile, [&](QTextStream& stream) {
-                // Export with a progress bar (even though it may be so fast that it's not noticable)
+                // Export with a progress bar (even though it may be so fast that it's not noticeable)
                 CsvArtistExport exporter(stream, getFields<CsvArtistExport::Field>(ui->artistDetailsToExport));
                 exporter.setSeparator(separator);
                 exporter.setReplacement(replacement);
@@ -214,7 +214,7 @@ void CsvExportDialog::onExport()
 
             QFile episodeFile(exportFilePath(exportDir, "albums"));
             openFileWithStream(episodeFile, [&](QTextStream& stream) {
-                // Export with a progress bar (even though it may be so fast that it's not noticable)
+                // Export with a progress bar (even though it may be so fast that it's not noticeable)
                 CsvAlbumExport exporter(stream, getFields<CsvAlbumExport::Field>(ui->albumDetailsToExport));
                 exporter.setSeparator(separator);
                 exporter.setReplacement(replacement);
@@ -290,8 +290,8 @@ void CsvExportDialog::initializeItems()
 
         // TODO: Compile time / runtime check for completness
         addField(Field::Type, tr("Type"));
-        addField(Field::Imdbid, tr("IMDb ID"));
-        addField(Field::Tmdbid, tr("TMDB ID"));
+        addField(Field::ImdbId, tr("IMDb ID"));
+        addField(Field::TmdbId, tr("TMDB ID"));
         addField(Field::WikidataId, tr("Wikidata ID"));
         addField(Field::Title, tr("Title"));
         addField(Field::OriginalTitle, tr("Original Title"));

@@ -38,8 +38,8 @@ public:
     // TODO: Maybe have this as global enums?
     enum class Field
     {
-        Imdbid = 1,
-        Tmdbid,
+        ImdbId = 1,
+        TmdbId,
         Title,
         OriginalTitle,
         SortTitle,

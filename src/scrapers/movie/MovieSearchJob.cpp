@@ -32,7 +32,7 @@ MovieSearchJob::MovieSearchJob(MovieSearchJob::Config config, QObject* parent) :
     // Wrapper to avoid static_assert calls.
     connect(this, &Job::finished, this, [this]() { emit searchFinished(this, QPrivateSignal{}); });
 
-    // TODO: Change to true / remove once all usages of ShowSearhJob are updated.
+    // TODO: Change to true / remove once all usages of ShowSearchJob are updated.
     setAutoDelete(false);
 }
 

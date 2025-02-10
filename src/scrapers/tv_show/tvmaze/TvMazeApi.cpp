@@ -34,7 +34,7 @@ void TvMazeApi::sendGetRequest(const QUrl& url, TvMazeApi::ApiCallback callback)
         // set up a Qt connection while the network request is running.
         QTimer::singleShot(0, this, [cb = std::move(callback), element = m_network.cache().getElement(request)]() {
             // should not result in a parse error because the cache element is
-            // only stored if no error occured at all.
+            // only stored if no error occurred at all.
             cb(QJsonDocument::fromJson(element.toUtf8()), {});
         });
         return;
