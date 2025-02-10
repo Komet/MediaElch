@@ -30,7 +30,7 @@ void TvMazeSeasonScrapeJob::doStart()
 
     // Simply load all episodes for the show.
     // TVmaze does not have an API for scraping a single season.
-    // Furthermore this makes it possible to use the cache and avoid reaching
+    // Furthermore, this makes it possible to use the cache and avoid reaching
     // their rate limit.
 
     m_api.loadAllEpisodes(m_showId, [this](QJsonDocument json, ScraperError error) {

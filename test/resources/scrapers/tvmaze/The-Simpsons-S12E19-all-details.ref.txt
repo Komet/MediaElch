@@ -29,6 +29,30 @@ epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
 thumbnail: https://static.tvmaze.com/uploads/images/original_untouched/69/173070.jpg
-actors: (N=0)
+actors: (N<6)
+ - id: 44735
+   name: Tress MacNeille
+   role: Agnes Skinner
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/123/307705.jpg
+   order: 0
+   imageHasChanged: false
+ - id: 53565
+   name: Marcia Mitzman Gaven
+   role: Helen Lovejoy
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/196/491653.jpg
+   order: 1
+   imageHasChanged: false
+ - id: 53571
+   name: Shawn Colvin
+   role: Rachel Jordan
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/498/1245834.jpg
+   order: 2
+   imageHasChanged: false
+ - id: 47222
+   name: Karl Wiedergott
+   role: Travolta
+   thumb: 
+   order: 3
+   imageHasChanged: false
 streamDetails: <not loaded>
 files: (N=0)

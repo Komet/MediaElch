@@ -50,10 +50,19 @@ void TvMazeEpisodeScrapeJob::loadAllEpisodes(const TvMazeId& showId)
     m_api.loadAllEpisodes(showId, [this, showId](QJsonDocument json, ScraperError error) {
         if (error.hasError()) {
             setScraperError(error);
+            emitFinished();
         } else {
             TvMazeEpisodeParser::parseEpisodeFromOverview(episode(), json);
+            // The "all episodes" page only contains basic details.
+            // To get all details we need, load details based on the episode's ID.
+            if (episode().tvmazeId().isValid()) {
+               const TvMazeId id = episode().tvmazeId();
+                episode().clear(); // avoid re-loading ratings, etc.
+                loadEpisode(id);
+            } else {
+                emitFinished();
+            }
         }
-        emitFinished();
     });
 }
 
