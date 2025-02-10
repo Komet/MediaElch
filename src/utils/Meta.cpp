@@ -47,7 +47,7 @@ void registerAllMetaTypes()
     qRegisterMetaType<Album*>("Album*");
     qRegisterMetaType<Artist*>("Artist*");
     qRegisterMetaType<MusicModelItem*>("MusicModelItem*");
-    // Required e.g. for DonloadManager
+    // Required e.g. for DownloadManager
     qRegisterMetaType<Movie*>("Movie*");
     qRegisterMetaType<TvShow*>("TvShow*");
     qRegisterMetaType<TvShowEpisode*>("TvShowEpisode*");

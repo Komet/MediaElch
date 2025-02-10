@@ -284,7 +284,7 @@ QVector<Filter*> FilterWidget::setupMovieFilters()
     QStringList countries;
     QStringList tags;
     QStringList directors;
-    QStringList videocodecs;
+    QStringList videoCodecs;
     // TODO: QVector<MovieSet>
     QStringList sets;
 
@@ -305,8 +305,8 @@ QVector<Filter*> FilterWidget::setupMovieFilters()
         if (!directors.contains(movie->director())) {
             directors.append(movie->director());
         }
-        if (!videocodecs.contains(movie->streamDetails()->videoDetails().value(StreamDetails::VideoDetails::Codec))) {
-            videocodecs.append(movie->streamDetails()->videoDetails().value(StreamDetails::VideoDetails::Codec));
+        if (!videoCodecs.contains(movie->streamDetails()->videoDetails().value(StreamDetails::VideoDetails::Codec))) {
+            videoCodecs.append(movie->streamDetails()->videoDetails().value(StreamDetails::VideoDetails::Codec));
         }
         if (movie->released().isValid() && !years.contains(QString::number(movie->released().year()))) {
             years.append(QString::number(movie->released().year()));
@@ -330,7 +330,7 @@ QVector<Filter*> FilterWidget::setupMovieFilters()
     sortByLocaleCompare(countries);
     sortByLocaleCompare(tags);
     sortByLocaleCompare(directors);
-    sortByLocaleCompare(videocodecs);
+    sortByLocaleCompare(videoCodecs);
     sortByLocaleCompare(sets);
 
     // Set new filters
@@ -357,7 +357,7 @@ QVector<Filter*> FilterWidget::setupMovieFilters()
     QVector<Filter *> movieSetsFilters          = setNewFilters(sets,           tr("Set"),           MovieFilters::Set);
     QVector<Filter *> movieTagsFilters          = setNewFilters(tags,           tr("Tag"),           MovieFilters::Tags);
     QVector<Filter *> movieDirectorFilters      = setNewFilters(directors,      tr("Director"),      MovieFilters::Director);
-    QVector<Filter *> movieVideoCodecFilters    = setNewFilters(videocodecs,    tr("Video codec"),   MovieFilters::VideoCodec);
+    QVector<Filter *> movieVideoCodecFilters    = setNewFilters(videoCodecs,    tr("Video codec"),   MovieFilters::VideoCodec);
     QVector<Filter *> movieCertificationFilters = setNewFilters(certifications, tr("Certification"), MovieFilters::Certification);
     // clang-format on
 
@@ -482,7 +482,7 @@ void FilterWidget::initAvailableFilters()
     m_availableMovieFilters << new Filter(tr("Format DVD"),       "DVD",    {tr("Format"), tr("DVD")},       MovieFilters::Quality, true);
     m_availableMovieFilters << new Filter(tr("BluRay Format"),    "BluRay", {tr("Format"), tr("BluRay")},    MovieFilters::Quality, true);
 
-    // Audiochannels
+    // Audio Channels
     m_availableMovieFilters << new Filter(tr("Channels 2.0"),         "2.0",          {tr("Audio"), tr("Channels"), "2.0"},                        MovieFilters::AudioChannels, true);
     m_availableMovieFilters << new Filter(tr("Channels 5.1"),         "5.1",          {tr("Audio"), tr("Channels"), "5.1"},                        MovieFilters::AudioChannels, true);
     m_availableMovieFilters << new Filter(tr("Channels 7.1"),         "7.1",          {tr("Audio"), tr("Channels"), "2.0"},                        MovieFilters::AudioChannels, true);

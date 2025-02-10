@@ -84,5 +84,5 @@ private:
     QVector<QNetworkReply*> m_currentReplies;
     QQueue<DownloadManagerElement> m_queue;
 
-    int numberOfParellelDownloads = 5;
+    int numberOfParallelDownloads = 5;
 };

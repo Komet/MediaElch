@@ -21,8 +21,8 @@ void initLoggingPattern();
 /// \brief MediaElch's default message handler with optional log file.
 ///
 /// If a debug log file is set in MediaElch's advanced settings then all debug
-/// messages are redirected to that.  Otherwise stderr is used.
-/// Repects QT_MESSAGE_PATTERN.
+/// messages are redirected to that.  Otherwise, stderr is used.
+/// Respects QT_MESSAGE_PATTERN.
 ///
 /// \see initLoggingPattern()
 void messageHandler(QtMsgType type, const QMessageLogContext& context, const QString& msg);

@@ -220,7 +220,7 @@ QString MediaInfoFile::audioCodec(int streamIndex) const
         }
     }
 
-    // Logic similiar to TMM
+    // Logic similar to TMM
     // old <= 18.05 style
     QString audioProfile = getAudio(streamIndex, "Format_Profile");
     if (!audioProfile.isEmpty()) {
@@ -265,7 +265,7 @@ QString MediaInfoFile::audioCodec(int streamIndex) const
         audioCodec = "aac";
     }
 
-    // Logic similiar to TMM
+    // Logic similar to TMM
     // newer 18.12 style
     if ("ac3" == audioCodec || "dts" == audioCodec || "truehd" == audioCodec) {
         const QString formatCommercial = getAudio(streamIndex, "Format_Commercial");

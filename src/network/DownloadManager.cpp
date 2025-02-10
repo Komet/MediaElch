@@ -84,7 +84,7 @@ void DownloadManager::addDownload(DownloadManagerElement elem)
 
     m_queue.enqueue(elem);
 
-    const bool shouldStartDownloading = m_currentReplies.size() <= numberOfParellelDownloads;
+    const bool shouldStartDownloading = m_currentReplies.size() <= numberOfParallelDownloads;
     if (shouldStartDownloading) {
         startNextDownload();
     }
@@ -242,7 +242,7 @@ void DownloadManager::restartDownloadAfterTimeout(QNetworkReply* reply)
 
     // Should always be true because we're replacing the previous request
     // but just to be sure, we still check this.
-    if (m_currentReplies.size() <= numberOfParellelDownloads) {
+    if (m_currentReplies.size() <= numberOfParallelDownloads) {
         startNextDownload();
     }
 }
