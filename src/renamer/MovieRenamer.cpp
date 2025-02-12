@@ -339,7 +339,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
     if (m_config.renameDirectories && movie.inSeparateFolder()) {
         renamerData.setPartNo(0);
         renamerData.setExtension("");
-        newFileName = renamerPlaceholder.replace(newFolderName, renamerData);
+        newFolderName = renamerPlaceholder.replace(newFolderName, renamerData);
 
         // Sanitize + Replace Delimiter with the one chosen by the user
         helper::sanitizeFolderName(newFolderName, newDelimiter);
@@ -352,7 +352,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
     else if (m_config.renameDirectories) {
         renamerData.setPartNo(0);
         renamerData.setExtension("");
-        newFileName = renamerPlaceholder.replace(newFolderName, renamerData);
+        newFolderName = renamerPlaceholder.replace(newFolderName, renamerData);
 
         // Sanitize + Replace Delimiter with the one chosen by the user
         helper::sanitizeFolderName(newFolderName, newDelimiter);

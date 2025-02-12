@@ -237,7 +237,7 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert& concert)
     if (m_config.renameDirectories && concert.inSeparateFolder()) {
         renamerData.setPartNo(0);
         renamerData.setExtension("");
-        newFileName = renamerPlaceholder.replace(newFolderName, renamerData);
+        newFolderName = renamerPlaceholder.replace(newFolderName, renamerData);
 
         // Sanitize + Replace Delimiter with the one chosen by the user
         helper::sanitizeFolderName(newFolderName, delimiter);

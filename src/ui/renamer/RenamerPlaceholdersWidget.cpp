@@ -42,7 +42,16 @@ void RenamerPlaceholdersWidget::setPlaceholders(mediaelch::RenamerPlaceholders& 
     clearLayout(ui->placeholderLayout);
     const QVector<mediaelch::Placeholder> placeholders = renamerPlaceholders.placeholders();
     for (const auto& placeholder : placeholders) {
-        ui->placeholderLayout->addWidget(new QLabel(placeholder.placeholderText()));
-        ui->placeholderLayout->addWidget(new QLabel(placeholder.translation));
+        QLabel* textLabel = new QLabel(this);
+        textLabel->setTextFormat(Qt::TextFormat::PlainText);
+        textLabel->setText(placeholder.placeholderText());
+        textLabel->setAlignment(Qt::AlignRight);
+        ui->placeholderLayout->addWidget(textLabel);
+
+        QLabel* translationLabel = new QLabel(this);
+        translationLabel->setTextFormat(Qt::TextFormat::PlainText);
+        translationLabel->setText(placeholder.translation);
+        translationLabel->setAlignment(Qt::AlignLeft);
+        ui->placeholderLayout->addWidget(translationLabel);
     }
 }
