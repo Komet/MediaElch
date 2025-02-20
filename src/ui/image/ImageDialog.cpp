@@ -41,16 +41,16 @@ ImageDialog::ImageDialog(QWidget* parent) : QDialog(parent), ui(new Ui::ImageDia
     ui->gallery->setShowZoomAndResolution(false);
 
     // clang-format off
-    connect(ui->table,             &QTableWidget::cellClicked,       this, &ImageDialog::imageClicked);
-    connect(ui->table,             &MyTableWidget::sigDroppedImage,  this, &ImageDialog::onImageDropped);
-    connect(ui->buttonClose,       &QPushButton::clicked,            this, &ImageDialog::reject);
-    connect(ui->buttonChoose,      &QAbstractButton::clicked,        this, &ImageDialog::chooseLocalImage);
-    connect(ui->previewSizeSlider, &QAbstractSlider::valueChanged,   this, &ImageDialog::onPreviewSizeChange);
-    connect(ui->buttonZoomIn,      &QAbstractButton::clicked,        this, &ImageDialog::onZoomIn);
-    connect(ui->buttonZoomOut,     &QAbstractButton::clicked,        this, &ImageDialog::onZoomOut);
-    connect(ui->searchTerm,        &MyLineEdit::returnPressed,       this, &ImageDialog::onSearchWithAllResults);
-    connect(ui->results,           &QTableWidget::itemClicked,       this, &ImageDialog::onResultClicked);
-    connect(ui->btnAcceptImages,   &QPushButton::clicked,            this, &ImageDialog::accept);
+    connect(ui->table,             &QTableWidget::cellClicked,       this, &ImageDialog::imageClicked,           Qt::QueuedConnection);
+    connect(ui->table,             &MyTableWidget::sigDroppedImage,  this, &ImageDialog::onImageDropped,         Qt::QueuedConnection);
+    connect(ui->buttonClose,       &QPushButton::clicked,            this, &ImageDialog::reject,                 Qt::QueuedConnection);
+    connect(ui->buttonChoose,      &QAbstractButton::clicked,        this, &ImageDialog::chooseLocalImage,       Qt::QueuedConnection);
+    connect(ui->previewSizeSlider, &QAbstractSlider::valueChanged,   this, &ImageDialog::onPreviewSizeChange,    Qt::QueuedConnection);
+    connect(ui->buttonZoomIn,      &QAbstractButton::clicked,        this, &ImageDialog::onZoomIn,               Qt::QueuedConnection);
+    connect(ui->buttonZoomOut,     &QAbstractButton::clicked,        this, &ImageDialog::onZoomOut,              Qt::QueuedConnection);
+    connect(ui->searchTerm,        &MyLineEdit::returnPressed,       this, &ImageDialog::onSearchWithAllResults, Qt::QueuedConnection);
+    connect(ui->results,           &QTableWidget::itemClicked,       this, &ImageDialog::onResultClicked,        Qt::QueuedConnection);
+    connect(ui->btnAcceptImages,   &QPushButton::clicked,            this, &ImageDialog::accept,                 Qt::QueuedConnection);
 
     connect(ui->gallery,       elchOverload<QString>(&ImageGallery::sigRemoveImage),  this, &ImageDialog::onImageClosed);
     connect(ui->imageProvider, elchOverload<int>(&QComboBox::currentIndexChanged),    this, &ImageDialog::onProviderChanged);
@@ -536,7 +536,7 @@ void ImageDialog::chooseLocalImage()
         return;
     }
 
-    qCWarning(generic) << fileName;
+    qCDebug(generic) << "[ImageDialog] Selected image with url:" << fileName;
 
     QFileInfo fi(fileName);
     Settings::instance()->setLastImagePath(mediaelch::DirectoryPath(fi.absoluteDir().canonicalPath()));
@@ -577,8 +577,7 @@ void ImageDialog::chooseLocalImage()
  */
 void ImageDialog::onImageDropped(QUrl url)
 {
-    qCDebug(generic) << "[ImageDialog] Dropped Image with url:" << url;
-
+    qCDebug(generic) << "[ImageDialog] Dropped image with url:" << url;
     const elch_ssize_t index = m_elements.size();
 
     DownloadElement d;
@@ -596,6 +595,7 @@ void ImageDialog::onImageDropped(QUrl url)
         m_elements[index].cellWidget->setImage(m_elements[index].pixmap);
         m_elements[index].cellWidget->setHint(m_elements[index].pixmap.size());
     }
+
     ui->table->resizeRowsToContents();
     m_elements[index].downloaded = true;
     if (m_multiSelection) {

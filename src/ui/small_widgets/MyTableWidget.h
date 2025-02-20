@@ -7,7 +7,7 @@
 #include <QUrl>
 
 /**
- * \brief The MyTableWidget class can handle drap and drop events
+ * \brief The MyTableWidget class can handle drag and drop events
  */
 class MyTableWidget : public QTableWidget
 {
@@ -21,5 +21,6 @@ protected:
     void dragMoveEvent(QDragMoveEvent* event) override;
 
 signals:
+    /// Emitted when an image was dropped.
     void sigDroppedImage(QUrl);
 };

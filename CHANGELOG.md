@@ -10,7 +10,9 @@
 
 ### Fixed
 
-- UI: The movie search widget is no longer stuck in case of network errors.
+- UI: 
+  - The movie search widget is no longer stuck in case of network errors.
+  - Fixed potential crash when dragging an image onto the image dialog.
 - HotMovies/AdultDvdEmpire: Search works again (#1811)
 - IMDb: Writers/Directors are scraped again for TV show episodes (#1832)
 
