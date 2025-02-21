@@ -20,7 +20,7 @@ namespace cli {
 void printMovie(TableWriter& table, Movie& movie)
 {
     table.writeCell(movie.imdbId().isValid() ? movie.imdbId().toString() : "");
-    table.writeCell(movie.name());
+    table.writeCell(movie.title());
     table.writeCell(movie.genres().join(", "));
 }
 

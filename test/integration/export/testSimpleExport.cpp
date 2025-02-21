@@ -23,10 +23,10 @@ QVector<Movie*> fakeMovies()
         movies.push_back(std::make_unique<Movie>());
         movies.push_back(std::make_unique<Movie>());
 
-        movies[0]->setName("Spiderman - Coming Home");
-        movies[1]->setName("Oceans 12");
-        movies[2]->setName("Guardians of the Galaxy");
-        movies[3]->setName("Jackass 3.5");
+        movies[0]->setTitle("Spiderman - Coming Home");
+        movies[1]->setTitle("Oceans 12");
+        movies[2]->setTitle("Guardians of the Galaxy");
+        movies[3]->setTitle("Jackass 3.5");
 
         moviePtrs.push_back(movies[0].get());
         moviePtrs.push_back(movies[1].get());

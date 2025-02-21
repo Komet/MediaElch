@@ -170,10 +170,10 @@ void TmdbMovieScrapeJob::parseAndAssignInfos(const QJsonDocument& json)
     }
     {
         if (!parsedJson.value("title").toString().isEmpty()) {
-            m_movie->setName(parsedJson.value("title").toString());
+            m_movie->setTitle(parsedJson.value("title").toString());
         }
         if (!parsedJson.value("original_title").toString().isEmpty()) {
-            m_movie->setOriginalName(parsedJson.value("original_title").toString());
+            m_movie->setOriginalTitle(parsedJson.value("original_title").toString());
         }
     }
     if (parsedJson.value("belongs_to_collection").isObject()) {

@@ -42,10 +42,10 @@ static void cleanupMovie(Movie& movie)
         movie.setOverview(overview);
     }
     {
-        QString title = movie.name();
+        QString title = movie.title();
         title.replace(" - On Sale! Dive Into Summer Sale", "", Qt::CaseSensitivity::CaseInsensitive);
         title.replace(" - On Sale!", "", Qt::CaseSensitivity::CaseInsensitive);
-        movie.setName(title);
+        movie.setTitle(title);
     }
 }
 
@@ -74,7 +74,7 @@ TEST_CASE("HotMovies scrapes correct movie details", "[movie][HotMovies][load_da
         test::scrapeMovieScraperSync(scrapeJob.get(), false);
         auto& m = scrapeJob->movie();
 
-        REQUIRE_THAT(m.name(), StartsWith("Magic Mike XXXL"));
+        REQUIRE_THAT(m.title(), StartsWith("Magic Mike XXXL"));
         cleanupMovie(m);
         test::scraper::compareAgainstReference(m, "scrapers/hot-movies/Magic-Mike-292788");
     }
@@ -85,7 +85,7 @@ TEST_CASE("HotMovies scrapes correct movie details", "[movie][HotMovies][load_da
         test::scrapeMovieScraperSync(scrapeJob.get(), false);
         auto& m = scrapeJob->movie();
 
-        REQUIRE_THAT(m.name(), StartsWith("\"M\" Is For Mischief No. 3"));
+        REQUIRE_THAT(m.title(), StartsWith("\"M\" Is For Mischief No. 3"));
         REQUIRE(m.set().name == "\"M\" Is For Mischief");
         cleanupMovie(m);
         test::scraper::compareAgainstReference(m, "scrapers/hot-movies/M-Is-For-Mischief-214343");

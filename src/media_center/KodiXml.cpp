@@ -58,7 +58,7 @@ QByteArray KodiXml::getMovieXml(Movie* movie)
 /// \see KodiXml::writeMovieXml
 bool KodiXml::saveMovie(Movie* movie)
 {
-    qCDebug(generic) << "Save movie as Kodi NFO file; movie: " << movie->name();
+    qCDebug(generic) << "Save movie as Kodi NFO file; movie: " << movie->title();
     QByteArray xmlContent = getMovieXml(movie);
 
     if (movie->files().isEmpty()) {

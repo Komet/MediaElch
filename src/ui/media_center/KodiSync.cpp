@@ -583,7 +583,7 @@ void KodiSync::updateWatched()
             movie->setLastPlayed(m_xbmcMovies.value(id).lastPlayed);
             movie->blockSignals(false);
         } else {
-            qCDebug(generic) << "Movie not found" << movie->name();
+            qCDebug(generic) << "Movie not found" << movie->title();
         }
         movie->setSyncNeeded(false);
     }

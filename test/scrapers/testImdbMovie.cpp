@@ -71,8 +71,8 @@ TEST_CASE("IMDb scrapes correct movie details", "[movie][IMDb][load_data]")
 
         REQUIRE(m.imdbId() == ImdbId("tt2277860"));
         CHECK(m.tmdbId() == TmdbId::NoId);
-        CHECK_THAT(m.name(), Matches("Finding Dory|Findet Dorie")); // Maintainer is German
-        CHECK(m.originalName() == "Finding Dory");
+        CHECK_THAT(m.title(), Matches("Finding Dory|Findet Dorie")); // Maintainer is German
+        CHECK(m.originalTitle() == "Finding Dory");
         CHECK(m.certification() == Certification("PG"));
         CHECK(m.released().toString("yyyy-MM-dd") == "2016-09-29");
         // Finding Dory is rated 7.3 (date: 2018-08-31)
@@ -148,12 +148,12 @@ TEST_CASE("IMDb scrapes correct movie details", "[movie][IMDb][load_data]")
 
         REQUIRE(m.imdbId() == ImdbId("tt2987732"));
         // translated english version / german original
-        CHECK_THAT(m.name(), Matches("Suck Me Shakespeer|Fack ju Göhte"));
-        if (m.name() == "Suck Me Shakespeer") {
+        CHECK_THAT(m.title(), Matches("Suck Me Shakespeer|Fack ju Göhte"));
+        if (m.title() == "Suck Me Shakespeer") {
             // original german title
             // Only appears if the site is the English version. If it's the German one,
             // no original title is shown.
-            CHECK(m.originalName() == "Fack ju Göhte");
+            CHECK(m.originalTitle() == "Fack ju Göhte");
         }
     }
 

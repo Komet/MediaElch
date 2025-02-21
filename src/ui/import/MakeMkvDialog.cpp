@@ -293,8 +293,8 @@ void MakeMkvDialog::onImport()
     QDir dir(ui->comboImportDir->currentText());
     if (ui->comboImportDir->itemData(ui->comboImportDir->currentIndex()).toBool()) {
         QString newFolderName = ui->directoryNaming->text();
-        newFolderName.replace("<title>", m_movie->name());
-        newFolderName.replace("<originalTitle>", m_movie->originalName());
+        newFolderName.replace("<title>", m_movie->title());
+        newFolderName.replace("<originalTitle>", m_movie->originalTitle());
         newFolderName.replace("<year>", m_movie->released().toString("yyyy"));
         helper::sanitizeFolderName(newFolderName);
         if (!dir.mkdir(newFolderName)) {
@@ -362,8 +362,8 @@ void MakeMkvDialog::importFinished()
             if (m_movie->files().count() > 1) {
                 newFileName = ui->multiFileNaming->text();
             }
-            newFileName.replace("<title>", m_movie->name());
-            newFileName.replace("<originalTitle>", m_movie->originalName());
+            newFileName.replace("<title>", m_movie->title());
+            newFileName.replace("<originalTitle>", m_movie->originalTitle());
             newFileName.replace("<year>", m_movie->released().toString("yyyy"));
             newFileName.replace("<extension>", fi.suffix());
             newFileName.replace("<partNo>", QString::number(++partNo));

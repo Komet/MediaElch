@@ -74,7 +74,7 @@ void MovieRenamerDialog::renameMovies(QVector<Movie*> movies, const RenamerConfi
         }
         if (movie->hasChanged()) {
             ui->results->append(
-                tr("<b>Movie</b> \"%1\" not renamed: It has been edited but is not saved").arg(movie->name()));
+                tr("<b>Movie</b> \"%1\" not renamed: It has been edited but is not saved").arg(movie->title()));
             continue;
         }
 

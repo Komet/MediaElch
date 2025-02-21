@@ -25,14 +25,13 @@
 
 class MediaCenterInterface;
 
-/**
- * \brief The Movie class represents a single movie
- */
+/// \brief The Movie class represents a single movie
 class Movie : public QObject
 {
     Q_OBJECT
 
 public:
+    /// \param files List of files for this movie
     explicit Movie(QStringList files = {}, QObject* parent = nullptr);
     ~Movie() override = default;
 
@@ -47,9 +46,10 @@ public:
     /// \see Movie::Exporter
     void exportTo(Exporter& exporter) const;
 
-    QString name() const;
+    QString title() const;
     QString sortTitle() const;
-    QString originalName() const;
+    QString originalTitle() const;
+
     MovieImages& images();
     const MovieImages& constImages() const;
     QString overview() const;
@@ -105,9 +105,9 @@ public:
     QString localTrailerFileName() const;
 
     void setFiles(const mediaelch::FileList& files);
-    void setName(QString name);
+    void setTitle(QString title);
     void setSortTitle(QString sortTitle);
-    void setOriginalName(QString originalName);
+    void setOriginalTitle(QString originalTitle);
     void setOverview(QString overview);
     void setTop250(int top250);
     void setReleased(QDate released);
@@ -242,7 +242,7 @@ private:
     QString m_folderName;
     QString m_name;
     QString m_sortTitle;
-    QString m_originalName;
+    QString m_originalTitle;
     QString m_overview;
     Ratings m_ratings;
     double m_userRating = 0.0;

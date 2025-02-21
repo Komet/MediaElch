@@ -59,7 +59,7 @@ TEST_CASE("AEBN scrapes correct movie details", "[movie][AEBN][load_data]")
         test::scrapeMovieScraperSync(scrapeJob.get(), false);
         auto& m = scrapeJob->movie();
 
-        REQUIRE_THAT(m.name(), StartsWith("Magic Mike XXXL"));
+        REQUIRE_THAT(m.title(), StartsWith("Magic Mike XXXL"));
         test::scraper::compareAgainstReference(m, "scrapers/aebn/Magic-Mike-188623");
     }
 
@@ -69,7 +69,7 @@ TEST_CASE("AEBN scrapes correct movie details", "[movie][AEBN][load_data]")
         test::scrapeMovieScraperSync(scrapeJob.get(), false);
         auto& m = scrapeJob->movie();
 
-        REQUIRE(m.name() == "M Is For Mischief 3");
+        REQUIRE(m.title() == "M Is For Mischief 3");
         REQUIRE(m.set().name == "M Is For Mischief");
         test::scraper::compareAgainstReference(m, "scrapers/aebn/M-Is-For-Mischief-159236");
     }

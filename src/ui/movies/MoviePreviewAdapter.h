@@ -26,7 +26,7 @@ public:
     ELCH_NODISCARD QString title() override
     {
         MediaElch_Expects(m_scrapeJob != nullptr);
-        return m_scrapeJob->movie().name();
+        return m_scrapeJob->movie().title();
     }
 
     ELCH_NODISCARD QString description() override

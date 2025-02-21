@@ -50,7 +50,7 @@ TEST_CASE("Movie XML writer for Kodi v18", "[data][movie][kodi][nfo]")
     {
         createAndCompareMovie("movie/kodi_v18_Alien_1979.nfo", [](Movie& movie) {
             // check some details
-            CHECK(movie.name() == "Alien");
+            CHECK(movie.title() == "Alien");
             REQUIRE(!movie.ratings().isEmpty());
             CHECK(movie.ratings().first().voteCount == 7653);
             CHECK(movie.images().posters().size() == 176);  // TODO: currently every thumb is a poster...
@@ -65,7 +65,7 @@ TEST_CASE("Movie XML writer for Kodi v18", "[data][movie][kodi][nfo]")
     {
         createAndCompareMovie("movie/kodi_v18_Toy_Story_3_2010.nfo", [](Movie& movie) {
             // check some details
-            CHECK(movie.name() == "Toy Story 3");
+            CHECK(movie.title() == "Toy Story 3");
             CHECK(movie.ratings().first().voteCount == 8542);
             CHECK(movie.images().posters().size() == 101);  // TODO: currently every thumb is a poster...
             CHECK(movie.images().backdrops().size() == 29); // <fanart>
@@ -95,8 +95,8 @@ TEST_CASE("Movie XML writer for Kodi v18", "[data][movie][kodi][nfo]")
         // - dateadded
         // - art
 
-        movie.setName("Allegiant");
-        movie.setOriginalName("AllegiantOriginal");
+        movie.setTitle("Allegiant");
+        movie.setOriginalTitle("AllegiantOriginal");
         movie.setSortTitle("TmovieFc10");
 
         {

@@ -122,7 +122,7 @@ QVariant MovieModel::data(const QModelIndex& index, int role) const
 
     if (index.column() == 0) {
         if (role == Qt::DisplayRole) {
-            return helper::appendArticle(movie->name());
+            return helper::appendArticle(movie->title());
         }
         if (role == Qt::ToolTipRole || role == Roles::FileNameRole) {
             if (movie->files().isEmpty()) {
@@ -152,7 +152,7 @@ QVariant MovieModel::data(const QModelIndex& index, int role) const
             // 8: Sort title or the "normalized" title if the former does not exist.
             QString sortTitle = movie->sortTitle();
             if (sortTitle.isEmpty()) {
-                return helper::appendArticle(movie->name());
+                return helper::appendArticle(movie->title());
             }
             return sortTitle;
         }

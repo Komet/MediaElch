@@ -42,7 +42,7 @@ void HotMoviesScrapeJob::parseAndAssignInfos(const QString& html)
     if (match.hasMatch()) {
         QString name = decodeAndTrim(match.captured(1));
         name.remove("Kick Off Sale");
-        m_movie->setName(name.trimmed());
+        m_movie->setTitle(name.trimmed());
     }
 
     // Rating currently not available; HotMovies has switched to likes

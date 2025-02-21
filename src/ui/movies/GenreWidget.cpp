@@ -124,7 +124,7 @@ void GenreWidget::onGenreSelected()
     for (Movie* movie : Manager::instance()->movieModel()->movies()) {
         if (movie->genres().contains(genreName)) {
             int row = ui->movies->rowCount();
-            auto* item = new QTableWidgetItem(movie->name());
+            auto* item = new QTableWidgetItem(movie->title());
             item->setData(Qt::UserRole, QVariant::fromValue(movie));
             ui->movies->insertRow(row);
             ui->movies->setItem(row, 0, item);

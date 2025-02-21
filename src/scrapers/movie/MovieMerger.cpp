@@ -28,9 +28,9 @@ void copyDetailToMovie(Movie& target,
         break;
     }
     case MovieScraperInfo::Title: {
-        target.setName(source.name());
-        if (!ignoreDuplicateOriginalTitle || source.name() != source.originalName()) {
-            target.setOriginalName(source.originalName());
+        target.setTitle(source.title());
+        if (!ignoreDuplicateOriginalTitle || source.title() != source.originalTitle()) {
+            target.setOriginalTitle(source.originalTitle());
         }
         break;
     }

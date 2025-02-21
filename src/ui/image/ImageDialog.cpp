@@ -115,7 +115,7 @@ int ImageDialog::execWithType(ImageType type)
     ui->stackedWidget->setCurrentIndex(1);
 
     if (m_itemType == ItemType::Movie && m_movie != nullptr) {
-        ui->searchTerm->setText(formatSearchText(m_movie->name()));
+        ui->searchTerm->setText(formatSearchText(m_movie->title()));
     } else if (m_itemType == ItemType::Concert && m_concert != nullptr) {
         ui->searchTerm->setText(formatSearchText(m_concert->title()));
     } else if (m_itemType == ItemType::TvShow && m_tvShow != nullptr) {
@@ -763,7 +763,7 @@ void ImageDialog::onSearch(bool onlyFirstResult)
     QString initialSearchTerm;
     QString id;
     if (m_itemType == ItemType::Movie) {
-        initialSearchTerm = m_movie->name();
+        initialSearchTerm = m_movie->title();
         id = m_movie->tmdbId().toString();
 
     } else if (m_itemType == ItemType::Concert) {

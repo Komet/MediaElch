@@ -200,7 +200,7 @@
                </widget>
               </item>
               <item row="3" column="1">
-               <widget class="QLineEdit" name="originalName"/>
+               <widget class="QLineEdit" name="originalTitle"/>
               </item>
               <item row="4" column="0">
                <widget class="QLabel" name="lblSortTitle">
@@ -1725,7 +1725,7 @@
   <tabstop>tabWidget</tabstop>
   <tabstop>files</tabstop>
   <tabstop>name</tabstop>
-  <tabstop>originalName</tabstop>
+  <tabstop>originalTitle</tabstop>
   <tabstop>sortTitle</tabstop>
   <tabstop>set</tabstop>
   <tabstop>tagline</tabstop>

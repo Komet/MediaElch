@@ -174,7 +174,7 @@ MovieWidget::MovieWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieWid
     connect(ui->imdbId,           &QLineEdit::textEdited,           this, &MovieWidget::onImdbIdChange);
     connect(ui->tmdbId,           &QLineEdit::textEdited,           this, &MovieWidget::onTmdbIdChange);
     connect(ui->name,             &QLineEdit::textEdited,           this, &MovieWidget::onNameChange);
-    connect(ui->originalName,     &QLineEdit::textEdited,           this, &MovieWidget::onOriginalNameChange);
+    connect(ui->originalTitle,     &QLineEdit::textEdited,           this, &MovieWidget::onOriginalNameChange);
     connect(ui->sortTitle,        &QLineEdit::textEdited,           this, &MovieWidget::onSortTitleChange);
     connect(ui->tagline,          &QLineEdit::textEdited,           this, &MovieWidget::onTaglineChange);
 
@@ -269,7 +269,7 @@ void MovieWidget::clear()
     clear(ui->imdbId);
     clear(ui->tmdbId);
     clear(ui->name);
-    clear(ui->originalName);
+    clear(ui->originalTitle);
     clear(ui->sortTitle);
     clear(ui->tagline);
     clear(ui->userRating);
@@ -359,7 +359,7 @@ void MovieWidget::setDisabledTrue()
 void MovieWidget::setMovie(Movie* movie)
 {
     using namespace std::chrono;
-    qCDebug(generic) << "[MovieWidget] Changing movie to:" << movie->name();
+    qCDebug(generic) << "[MovieWidget] Changing movie to:" << movie->title();
     movie->controller()->loadData(Manager::instance()->mediaCenterInterface());
     if (!movie->streamDetailsLoaded() && Settings::instance()->autoLoadStreamDetails()) {
         // TODO: Load asynchronously
@@ -428,7 +428,7 @@ void MovieWidget::startScraperSearch()
     // TODO: Don't use "this", because we don't want to inherit the stylesheet,
     // but we can't pass "nullptr", because otherwise there won't be a modal.
     auto* searchWidget = new MovieSearch(MainWindow::instance());
-    searchWidget->execWithSearch(m_movie->name(), m_movie->imdbId(), m_movie->tmdbId());
+    searchWidget->execWithSearch(m_movie->title(), m_movie->imdbId(), m_movie->tmdbId());
 
     if (searchWidget->result() != QDialog::Accepted) {
         searchWidget->deleteLater();
@@ -572,9 +572,9 @@ void MovieWidget::updateMovieInfo()
     ui->tmdbId->setText(m_movie->tmdbId().toString());
     ui->btnImdb->setEnabled(m_movie->imdbId().isValid());
     ui->btnTmdb->setEnabled(m_movie->tmdbId().isValid());
-    ui->name->setText(m_movie->name());
-    ui->movieName->setText(m_movie->name());
-    ui->originalName->setText(m_movie->originalName());
+    ui->name->setText(m_movie->title());
+    ui->movieName->setText(m_movie->title());
+    ui->originalTitle->setText(m_movie->originalTitle());
     ui->sortTitle->setText(m_movie->sortTitle());
     ui->tagline->setText(m_movie->tagline());
     ui->userRating->setValue(m_movie->userRating());
@@ -941,7 +941,7 @@ void MovieWidget::saveInformation()
         m_movie->controller()->loadData(Manager::instance()->mediaCenterInterface(), true);
         updateMovieInfo();
         NotificationBox::instance()->removeMessage(id);
-        NotificationBox::instance()->showSuccess(tr("<b>\"%1\"</b> Saved").arg(m_movie->name()));
+        NotificationBox::instance()->showSuccess(tr("<b>\"%1\"</b> Saved").arg(m_movie->title()));
     }
     setEnabledTrue();
     m_savingWidget->hide();
@@ -1130,7 +1130,7 @@ void MovieWidget::onNameChange(QString text)
     if (m_movie == nullptr) {
         return;
     }
-    m_movie->setName(text);
+    m_movie->setTitle(text);
     ui->buttonRevert->setVisible(true);
 }
 
@@ -1177,7 +1177,7 @@ void MovieWidget::onOriginalNameChange(QString text)
     if (m_movie == nullptr) {
         return;
     }
-    m_movie->setOriginalName(text);
+    m_movie->setOriginalTitle(text);
     ui->buttonRevert->setVisible(true);
 }
 

@@ -104,9 +104,9 @@ void SimpleEngine::replaceVars(QString& m, Movie* movie, bool subDir)
     m.replace("{{ MOVIE.LINK }}", QString("movies/%1.html").arg(movie->movieId()));
     m.replace("{{ MOVIE.IMDB_ID }}", movie->imdbId().toString());
     m.replace("{{ MOVIE.TMDB_ID }}", movie->tmdbId().toString());
-    m.replace("{{ MOVIE.TITLE }}", movie->name().toHtmlEscaped());
+    m.replace("{{ MOVIE.TITLE }}", movie->title().toHtmlEscaped());
     m.replace("{{ MOVIE.YEAR }}", movie->released().isValid() ? movie->released().toString("yyyy") : "");
-    m.replace("{{ MOVIE.ORIGINAL_TITLE }}", movie->originalName().toHtmlEscaped());
+    m.replace("{{ MOVIE.ORIGINAL_TITLE }}", movie->originalTitle().toHtmlEscaped());
     m.replace("{{ MOVIE.PLOT }}", movie->overview().toHtmlEscaped().replace("\n", "<br />"));
     m.replace("{{ MOVIE.PLOT_SIMPLE }}", movie->outline().toHtmlEscaped().replace("\n", "<br />"));
     m.replace("{{ MOVIE.SET }}", movie->set().name.toHtmlEscaped());

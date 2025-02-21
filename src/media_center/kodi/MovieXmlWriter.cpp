@@ -28,10 +28,10 @@ QByteArray MovieXmlWriterGeneric::getMovieXml(bool testMode)
 
     xml.writeStartElement("movie");
 
-    xml.writeTextElement("title", m_movie.name());
-    if (!m_movie.originalName().isEmpty()
-        && (m_movie.originalName() != m_movie.name() || !ignoreDuplicateOriginalTitle())) {
-        xml.writeTextElement("originaltitle", m_movie.originalName());
+    xml.writeTextElement("title", m_movie.title());
+    if (!m_movie.originalTitle().isEmpty()
+        && (m_movie.originalTitle() != m_movie.title() || !ignoreDuplicateOriginalTitle())) {
+        xml.writeTextElement("originaltitle", m_movie.originalTitle());
     }
     if (!m_movie.sortTitle().isEmpty()) {
         xml.writeTextElement("sorttitle", m_movie.sortTitle());

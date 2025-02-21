@@ -36,7 +36,7 @@ auto setupCustomMovieScraperStubs(std::size_t N) -> CustomMovieScraperTestSetup
         setup.scrapers.emplace_back(std::make_unique<test::StubMovieScraper>( //
             QStringLiteral("stub-scraper-%1").arg(i),
             nullptr));
-        setup.scrapers[i]->stub_movie.setName(QStringLiteral("name-%1").arg(i));
+        setup.scrapers[i]->stub_movie.setTitle(QStringLiteral("name-%1").arg(i));
         setup.scrapers[i]->stub_movie.setOverview(QStringLiteral("overview-%1").arg(i));
         setup.scrapers[i]->stub_movie.setDirector(QStringLiteral("director-%1").arg(i));
         setup.scrapers[i]->stub_movie.addGenre(QStringLiteral("first-genre-%1").arg(i));
@@ -71,7 +71,7 @@ TEST_CASE("CustomMovieScraper scrapes correct movie details", "[CustomMovieScrap
         test::scrapeMovieScraperSync(scrapeJob.get(), false);
         auto& movie = scrapeJob->movie();
 
-        CHECK(movie.name() == "name-2");
+        CHECK(movie.title() == "name-2");
         CHECK(movie.director() == "director-1");
         CHECK(movie.set().name == "movie-set-name-3");
         CHECK(movie.set().overview == "movie-set-overview-3");
@@ -91,7 +91,7 @@ TEST_CASE("CustomMovieScraper scrapes correct movie details", "[CustomMovieScrap
         test::scrapeMovieScraperSync(scrapeJob.get(), false);
         auto& movie = scrapeJob->movie();
 
-        CHECK(movie.name().isEmpty());
+        CHECK(movie.title().isEmpty());
         CHECK(movie.overview().isEmpty());
     }
 }

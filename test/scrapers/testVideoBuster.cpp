@@ -63,7 +63,7 @@ TEST_CASE("VideoBuster scrapes correct movie details", "[movie][VideoBuster][loa
         auto& m = scrapeJob->movie();
 
         // Note: VideoBuster is a German site, i.e. will contain German voices
-        REQUIRE(m.name() == "Findet Dorie");
+        REQUIRE(m.title() == "Findet Dorie");
         test::scraper::compareAgainstReference(m, "scrapers/video-buster/Findet-Dorie-183469");
     }
 }

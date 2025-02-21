@@ -54,7 +54,7 @@ TEST_CASE("AdultDvdEmpire scrapes correct movie details", "[movie][AdultDvdEmpir
         test::scrapeMovieScraperSync(scrapeJob.get(), false);
         auto& m = scrapeJob->movie();
 
-        REQUIRE_THAT(m.name(), StartsWith("Magic Mike XXXL"));
+        REQUIRE_THAT(m.title(), StartsWith("Magic Mike XXXL"));
         test::scraper::compareAgainstReference(m, "scrapers/ade/DVD-Magic-Mike-1745335");
     }
 
@@ -64,7 +64,7 @@ TEST_CASE("AdultDvdEmpire scrapes correct movie details", "[movie][AdultDvdEmpir
         test::scrapeMovieScraperSync(scrapeJob.get(), false);
         auto& m = scrapeJob->movie();
 
-        REQUIRE_THAT(m.name(), StartsWith("50 Shades Of Pink"));
+        REQUIRE_THAT(m.title(), StartsWith("50 Shades Of Pink"));
         test::scraper::compareAgainstReference(m, "scrapers/ade/VOD-50-Shades-1670507");
     }
 }

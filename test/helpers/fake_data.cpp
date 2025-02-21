@@ -9,8 +9,8 @@ namespace test {
 std::unique_ptr<Movie> movieWithAllDetails()
 {
     auto movie = std::make_unique<Movie>();
-    movie->setName("Allegiant");
-    movie->setOriginalName("AllegiantOriginal");
+    movie->setTitle("Allegiant");
+    movie->setOriginalTitle("AllegiantOriginal");
     movie->setSortTitle("TmovieFc10");
 
     {

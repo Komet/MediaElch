@@ -49,7 +49,7 @@ void AdultDvdEmpireScrapeJob::parseAndAssignInfos(const QString& html)
         if (onSale > -1) {
             title = title.left(onSale);
         }
-        m_movie->setName(title);
+        m_movie->setTitle(title);
     }
 
     rx.setPattern("<small>Length: </small> ([0-9]*) hrs. ([0-9]*) mins.[\\s\\n]*</li>");

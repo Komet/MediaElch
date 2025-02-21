@@ -202,7 +202,7 @@ void SetsWidget::loadSet(QString set)
     for (Movie* movie : m_sets[set]) {
         int row = ui->movies->rowCount();
         ui->movies->insertRow(row);
-        ui->movies->setItem(row, 0, new QTableWidgetItem(movie->name()));
+        ui->movies->setItem(row, 0, new QTableWidgetItem(movie->title()));
         ui->movies->item(row, 0)->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
         ui->movies->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(movie));
         ui->movies->setItem(row, 1, new QTableWidgetItem(movie->sortTitle()));
@@ -364,7 +364,7 @@ void SetsWidget::chooseSetPoster()
 
     QString setName = ui->sets->item(ui->sets->currentRow(), 0)->data(Qt::UserRole).toString();
     auto* movie = new Movie(QStringList());
-    movie->setName(setName);
+    movie->setTitle(setName);
 
     // TODO: Don't use "this", because we don't want to inherit the stylesheet,
     // but we can't pass "nullptr", because otherwise there won't be a modal.
@@ -399,7 +399,7 @@ void SetsWidget::chooseSetBackdrop()
 
     QString setName = ui->sets->item(ui->sets->currentRow(), 0)->data(Qt::UserRole).toString();
     auto* movie = new Movie(QStringList());
-    movie->setName(setName);
+    movie->setTitle(setName);
 
     // TODO: Don't use "this", because we don't want to inherit the stylesheet,
     // but we can't pass "nullptr", because otherwise there won't be a modal.
@@ -598,7 +598,7 @@ void SetsWidget::onSetNameChanged(QTableWidgetItem* item)
 
 void SetsWidget::onDownloadFinished(DownloadManagerElement elem)
 {
-    QString setName = elem.movie->name();
+    QString setName = elem.movie->title();
     if (elem.imageType == ImageType::MovieSetPoster) {
         if (m_setPosters.contains(setName)) {
             m_setPosters[setName] = QImage::fromData(elem.data);

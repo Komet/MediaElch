@@ -40,8 +40,8 @@ int MovieListDialog::exec()
         int row = ui->movies->rowCount();
         ui->movies->insertRow(row);
         QString title = (movie->released().isValid())
-                            ? QString("%1 (%2)").arg(movie->name()).arg(movie->released().toString("yyyy"))
-                            : movie->name();
+                            ? QString("%1 (%2)").arg(movie->title()).arg(movie->released().toString("yyyy"))
+                            : movie->title();
         ui->movies->setItem(row, 0, new QTableWidgetItem(title));
         ui->movies->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(movie));
     }
@@ -69,8 +69,8 @@ int MovieListDialog::execWithoutGenre(QString genre)
         const int row = ui->movies->rowCount();
         ui->movies->insertRow(row);
         const QString title = (movie->released().isValid())
-                                  ? QString("%1 (%2)").arg(movie->name()).arg(movie->released().toString("yyyy"))
-                                  : movie->name();
+                                  ? QString("%1 (%2)").arg(movie->title()).arg(movie->released().toString("yyyy"))
+                                  : movie->title();
         ui->movies->setItem(row, 0, new QTableWidgetItem(title));
         ui->movies->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(movie));
     }
@@ -98,8 +98,8 @@ int MovieListDialog::execWithoutCertification(Certification certification)
         const int row = ui->movies->rowCount();
         ui->movies->insertRow(row);
         QString title = (movie->released().isValid())
-                            ? QString("%1 (%2)").arg(movie->name()).arg(movie->released().toString("yyyy"))
-                            : movie->name();
+                            ? QString("%1 (%2)").arg(movie->title()).arg(movie->released().toString("yyyy"))
+                            : movie->title();
         ui->movies->setItem(row, 0, new QTableWidgetItem(title));
         ui->movies->item(row, 0)->setData(Qt::UserRole, QVariant::fromValue(movie));
     }

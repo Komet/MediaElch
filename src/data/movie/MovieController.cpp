@@ -96,7 +96,7 @@ bool MovieController::loadData(MediaCenterInterface* mediaCenterInterface, bool 
     }
 
     // Movies should always have a name, even if a valid NFO file does not have a name tag.
-    if (!infoLoaded || m_movie->name().isEmpty()) {
+    if (!infoLoaded || m_movie->title().isEmpty()) {
         if (!m_movie->files().isEmpty()) {
             QFileInfo fi(m_movie->files().at(0).toString());
             if (QString::compare(fi.fileName(), "VIDEO_TS.IFO", Qt::CaseInsensitive) == 0) {
@@ -106,7 +106,7 @@ bool MovieController::loadData(MediaCenterInterface* mediaCenterInterface, bool 
                     pathElements.removeLast();
                 }
                 if (!pathElements.isEmpty()) {
-                    m_movie->setName(NameFormatter::formatName(pathElements.last(), false));
+                    m_movie->setTitle(NameFormatter::formatName(pathElements.last(), false));
                 }
             } else if (QString::compare(fi.fileName(), "index.bdmv", Qt::CaseInsensitive) == 0) {
                 QStringList pathElements = QDir::toNativeSeparators(fi.path()).split(QDir::separator());
@@ -115,24 +115,24 @@ bool MovieController::loadData(MediaCenterInterface* mediaCenterInterface, bool 
                     pathElements.removeLast();
                 }
                 if (!pathElements.isEmpty()) {
-                    m_movie->setName(NameFormatter::formatName(pathElements.last(), false));
+                    m_movie->setTitle(NameFormatter::formatName(pathElements.last(), false));
                 }
             } else if (m_movie->inSeparateFolder()) {
                 QStringList splitted = QDir::toNativeSeparators(fi.path()).split(QDir::separator());
                 if (!splitted.isEmpty()) {
-                    m_movie->setName(NameFormatter::formatName(splitted.last(), false));
+                    m_movie->setTitle(NameFormatter::formatName(splitted.last(), false));
                 } else {
                     if (m_movie->files().size() > 1) {
-                        m_movie->setName(NameFormatter::formatName(NameFormatter::removeParts(fi.completeBaseName())));
+                        m_movie->setTitle(NameFormatter::formatName(NameFormatter::removeParts(fi.completeBaseName())));
                     } else {
-                        m_movie->setName(NameFormatter::formatName(fi.completeBaseName()));
+                        m_movie->setTitle(NameFormatter::formatName(fi.completeBaseName()));
                     }
                 }
             } else {
                 if (m_movie->files().size() > 1) {
-                    m_movie->setName(NameFormatter::formatName(NameFormatter::removeParts(fi.completeBaseName())));
+                    m_movie->setTitle(NameFormatter::formatName(NameFormatter::removeParts(fi.completeBaseName())));
                 } else {
-                    m_movie->setName(NameFormatter::formatName(fi.completeBaseName()));
+                    m_movie->setTitle(NameFormatter::formatName(fi.completeBaseName()));
                 }
             }
 
@@ -414,7 +414,7 @@ void MovieController::onFanartLoadDone(Movie* movie, QMap<ImageType, QVector<Pos
         // We must take care not to emit sigLoadDone() twice.
         qCCritical(generic)
             << "[MovieController] Download is already in progress! Won't start other downloads for movie:"
-            << m_movie->name();
+            << m_movie->title();
         return;
     }
 

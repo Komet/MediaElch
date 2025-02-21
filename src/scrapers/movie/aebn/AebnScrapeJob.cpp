@@ -64,7 +64,7 @@ void AebnScrapeJob::parseAndAssignInfos(const QString& html, QStringList& actorI
     rx.setPattern(R"(<h1 itemprop="name"  class="md-movieTitle"  >(.*)</h1>)");
     match = rx.match(html);
     if (match.hasMatch()) {
-        m_movie->setName(match.captured(1));
+        m_movie->setTitle(match.captured(1));
     }
 
     rx.setPattern("<span class=\"runTime\"><span itemprop=\"duration\" content=\"([^\"]*)\">([0-9]+)</span>");

@@ -107,7 +107,7 @@ int TrailerDialog::exec(Movie* movie)
     m_downloadInProgress = false;
     m_currentMovie = movie;
     ui->stackedWidget->setCurrentIndex(0);
-    ui->searchString->setText(movie->name());
+    ui->searchString->setText(movie->title());
     search();
     return QDialog::exec();
 }

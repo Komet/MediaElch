@@ -225,7 +225,7 @@ void MovieMultiScrapeDialog::scrapeNext()
     }
     m_currentMovie = m_queue.dequeue();
 
-    ui->movie->setText(m_currentMovie->name().trimmed());
+    ui->movie->setText(m_currentMovie->title().trimmed());
     ui->movieCounter->setText(QStringLiteral("%1/%2").arg(m_movies.count() - m_queue.count()).arg(m_movies.count()));
     ui->progressAll->setValue(ui->progressAll->maximum() - m_queue.size() - 1);
     ui->progressMovie->setValue(0);
@@ -270,7 +270,7 @@ void MovieMultiScrapeDialog::scrapeNext()
         // non-specific, generic scraper
         MovieSearchJob::Config config;
         config.includeAdult = Settings::instance()->showAdultScrapers();
-        config.query = m_currentMovie->name();
+        config.query = m_currentMovie->title();
         config.locale = m_currentScraper->meta().defaultLocale;
         auto* searchJob = m_currentScraper->search(config);
         connect(searchJob, &MovieSearchJob::searchFinished, this, &MovieMultiScrapeDialog::onSearchFinished);
@@ -381,7 +381,7 @@ void MovieMultiScrapeDialog::startNextCustomScraperSearch()
             config.query = m_currentMovie->tmdbId().withPrefix();
 
         } else {
-            config.query = m_currentMovie->name().replace('.', ' ');
+            config.query = m_currentMovie->title().replace('.', ' ');
         }
 
         MovieSearchJob* nextSearchJob = nextScraper->search(config);

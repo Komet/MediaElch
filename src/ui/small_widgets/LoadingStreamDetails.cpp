@@ -44,7 +44,7 @@ void LoadingStreamDetails::loadMovies(QVector<Movie*> movies)
         }
         movie->blockSignals(false);
         ui->progressBar->setValue(ui->progressBar->value() + 1);
-        ui->currentFile->setText(movie->name());
+        ui->currentFile->setText(movie->title());
         QApplication::processEvents();
     }
     accept();

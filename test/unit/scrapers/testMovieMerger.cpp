@@ -16,8 +16,8 @@ TEST_CASE("movies are correctly merged", "[movie][merger]")
         Movie copy;
         copyDetailsToMovie(copy, *original, allMovieScraperInfos(), true, false);
 
-        CHECK(copy.name() == original->name());
-        CHECK(copy.originalName() == original->originalName());
+        CHECK(copy.title() == original->title());
+        CHECK(copy.originalTitle() == original->originalTitle());
         CHECK(copy.overview() == original->overview());
         CHECK(copy.outline() == original->outline());
     }
@@ -28,8 +28,8 @@ TEST_CASE("movies are correctly merged", "[movie][merger]")
         original->setOutline("");
         copyDetailsToMovie(copy, *original, allMovieScraperInfos(), true, true);
 
-        CHECK(copy.name() == original->name());
-        CHECK(copy.originalName() == original->originalName());
+        CHECK(copy.title() == original->title());
+        CHECK(copy.originalTitle() == original->originalTitle());
         CHECK(copy.overview() == original->overview());
         CHECK(copy.outline() == original->overview()); // !
     }
@@ -40,8 +40,8 @@ TEST_CASE("movies are correctly merged", "[movie][merger]")
         original->setOutline("");
         copyDetailsToMovie(copy, *original, allMovieScraperInfos(), false, true);
 
-        CHECK(copy.name() == original->name());
-        CHECK(copy.originalName() == original->originalName());
+        CHECK(copy.title() == original->title());
+        CHECK(copy.originalTitle() == original->originalTitle());
         CHECK(copy.overview() == original->overview());
         CHECK(copy.outline().isEmpty()); // !
     }
@@ -49,11 +49,11 @@ TEST_CASE("movies are correctly merged", "[movie][merger]")
     SECTION("Does not copy original title if it's the same")
     {
         Movie copy;
-        original->setOriginalName(original->name());
+        original->setOriginalTitle(original->title());
         copyDetailsToMovie(copy, *original, allMovieScraperInfos(), true, true);
 
-        CHECK(copy.name() == original->name());
-        CHECK(copy.originalName().isEmpty());
+        CHECK(copy.title() == original->title());
+        CHECK(copy.originalTitle().isEmpty());
         CHECK(copy.overview() == original->overview());
         CHECK(copy.outline() == original->outline());
     }

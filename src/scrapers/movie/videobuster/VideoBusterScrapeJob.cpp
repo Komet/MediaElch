@@ -45,14 +45,14 @@ void VideoBusterScrapeJob::parseAndAssignInfos(const QString& html)
     rx.setPattern(R"(<h1 itemprop="name" class="[^"]+">([^<]*)</h1>)");
     match = rx.match(html);
     if (match.hasMatch()) {
-        m_movie->setName(match.captured(1).trimmed());
+        m_movie->setTitle(match.captured(1).trimmed());
     }
 
     // Original Title
     rx.setPattern(R"(<label>Originaltitel:?</label><[^>]+><span itemprop="alternateName">(.*)</span>)");
     match = rx.match(html);
     if (match.hasMatch()) {
-        m_movie->setOriginalName(match.captured(1).trimmed());
+        m_movie->setOriginalTitle(match.captured(1).trimmed());
     }
 
     // Year

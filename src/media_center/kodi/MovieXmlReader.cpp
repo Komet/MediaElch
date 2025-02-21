@@ -34,8 +34,8 @@ bool MovieXmlReader::parseNfoDom(QDomDocument domDoc)
     QDomElement movieElement = domDoc.elementsByTagName("movie").at(0).toElement();
     QMap<QString, void (MovieXmlReader::*)(const QDomElement&)> tagParsers;
     // clang-format off
-    tagParsers.insert("title",         &MovieXmlReader::simpleString<&Movie::setName>);
-    tagParsers.insert("originaltitle", &MovieXmlReader::simpleString<&Movie::setOriginalName>);
+    tagParsers.insert("title",         &MovieXmlReader::simpleString<&Movie::setTitle>);
+    tagParsers.insert("originaltitle", &MovieXmlReader::simpleString<&Movie::setOriginalTitle>);
     tagParsers.insert("sorttitle",     &MovieXmlReader::simpleString<&Movie::setSortTitle>);
     tagParsers.insert("plot",          &MovieXmlReader::simpleString<&Movie::setOverview>);
     tagParsers.insert("outline",       &MovieXmlReader::simpleString<&Movie::setOutline>);

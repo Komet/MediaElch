@@ -325,7 +325,7 @@ void MovieDiskLoader::createMovie(QStringList files)
         emitPercent(++m_processed, m_approxTotal);
         if (size % 40 == 0) {
             // TODO: Use SignalThrottler
-            emit progressText(this, movie->name());
+            emit progressText(this, movie->title());
         }
 
     } else {
@@ -371,7 +371,7 @@ void MovieDiskLoader::createMovie(QStringList files)
             emitPercent(++m_processed, m_approxTotal);
             if (size % 40 == 0) {
                 // TODO: Use SignalThrottler
-                emit progressText(this, movie->name());
+                emit progressText(this, movie->title());
             }
         }
     }

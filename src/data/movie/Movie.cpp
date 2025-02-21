@@ -14,10 +14,7 @@
 
 using namespace std::chrono_literals;
 
-/**
- * \brief Constructs a new movie object
- * \param files List of files for this movie
- */
+
 Movie::Movie(QStringList files, QObject* parent) :
     QObject(parent),
     m_controller{new MovieController(this)},
@@ -110,7 +107,7 @@ void Movie::clear(QSet<MovieScraperInfo> infos)
         m_studios.clear();
     }
     if (infos.contains(MovieScraperInfo::Title)) {
-        m_originalName = "";
+        m_originalTitle = "";
     }
     if (infos.contains(MovieScraperInfo::Set)) {
         m_set = MovieSet{};
@@ -171,7 +168,7 @@ void Movie::exportTo(Movie::Exporter& exporter) const
 
     exporter.exportTitle(m_name);
     exporter.exportSortTitle(m_sortTitle);
-    exporter.exportOriginalTitle(m_originalName);
+    exporter.exportOriginalTitle(m_originalTitle);
 
     exporter.exportOverview(m_overview);
     exporter.exportOutline(m_outline);
@@ -207,9 +204,7 @@ void Movie::exportTo(Movie::Exporter& exporter) const
     exporter.endExport();
 }
 
-/*** GETTER ***/
-
-QString Movie::name() const
+QString Movie::title() const
 {
     return m_name;
 }
@@ -219,9 +214,9 @@ QString Movie::sortTitle() const
     return m_sortTitle;
 }
 
-QString Movie::originalName() const
+QString Movie::originalTitle() const
 {
-    return m_originalName;
+    return m_originalTitle;
 }
 
 MovieImages& Movie::images()
@@ -566,16 +561,14 @@ QStringList Movie::tags() const
     return m_tags;
 }
 
-/*** SETTER ***/
-
 /**
  * \brief Sets the movies name
  * \param name Name of the movie
  * \see Movie::name
  */
-void Movie::setName(QString name)
+void Movie::setTitle(QString title)
 {
-    m_name = std::move(name);
+    m_name = std::move(title);
     setChanged(true);
 }
 
@@ -592,12 +585,12 @@ void Movie::setSortTitle(QString sortTitle)
 
 /**
  * \brief Sets the movies original name
- * \param originalName Original name of the movie
- * \see Movie::originalName
+ * \param originalTitle Original name of the movie
+ * \see Movie::originalTitle
  */
-void Movie::setOriginalName(QString originalName)
+void Movie::setOriginalTitle(QString originalTitle)
 {
-    m_originalName = std::move(originalName);
+    m_originalTitle = std::move(originalTitle);
     setChanged(true);
 }
 
@@ -1079,7 +1072,7 @@ DiscType Movie::discType() const
 
 bool Movie::lessThan(Movie* a, Movie* b)
 {
-    return (QString::localeAwareCompare(helper::appendArticle(a->name()), helper::appendArticle(b->name())) < 0);
+    return (QString::localeAwareCompare(helper::appendArticle(a->title()), helper::appendArticle(b->title())) < 0);
 }
 
 QSet<ImageType> Movie::imageTypes()
@@ -1153,7 +1146,7 @@ MovieDuplicate Movie::duplicateProperties(Movie* movie) const
     MovieDuplicate md;
     md.imdbId = movie->imdbId().isValid() && movie->imdbId() == imdbId();
     md.tmdbId = movie->tmdbId().isValid() && movie->tmdbId() == tmdbId();
-    md.title = !movie->name().isEmpty() && movie->name() == name();
+    md.title = !movie->title().isEmpty() && movie->title() == title();
 
     return md;
 }
@@ -1169,8 +1162,8 @@ QDebug operator<<(QDebug dbg, const Movie& movie)
     for (const mediaelch::FilePath& file : movie.files()) {
         out.append(QString("    %1").arg(file.toNativePathString()).append(nl));
     }
-    out.append(QString("  Name:          ").append(movie.name()).append(nl));
-    out.append(QString("  Original-Name: ").append(movie.originalName()).append(nl));
+    out.append(QString("  Name:          ").append(movie.title()).append(nl));
+    out.append(QString("  Original-Name: ").append(movie.originalTitle()).append(nl));
     out.append(QString("  Ratings:").append(nl));
     for (const Rating& rating : movie.ratings()) {
         out.append(

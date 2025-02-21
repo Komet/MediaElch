@@ -77,11 +77,11 @@ void ImdbMovieScrapeJob::parseAndAssignInfos(const QString& html)
 
     const QString title = ImdbReferencePage::extractTitle(html);
     if (!title.isEmpty()) {
-        m_movie->setName(title);
+        m_movie->setTitle(title);
     }
     const QString originalTitle = ImdbReferencePage::extractOriginalTitle(html);
     if (!originalTitle.isEmpty()) {
-        m_movie->setOriginalName(originalTitle);
+        m_movie->setOriginalTitle(originalTitle);
     }
 
     ImdbReferencePage::extractDirectors(m_movie, html);
