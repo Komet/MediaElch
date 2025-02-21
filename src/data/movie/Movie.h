@@ -18,6 +18,7 @@
 
 #include <QDate>
 #include <QDebug>
+#include <QMap>
 #include <QObject>
 #include <QStringList>
 #include <QUrl>
@@ -78,13 +79,19 @@ public:
     ELCH_NODISCARD const Actors& actors() const;
     ELCH_NODISCARD Actors& actors();
 
+    ELCH_NODISCARD QMap<QString, QString> idsForScrapers();
+
+    ELCH_NODISCARD ImdbId imdbId() const;
+    void setImdbId(ImdbId imdbId);
+    ELCH_NODISCARD TmdbId tmdbId() const;
+    void setTmdbId(TmdbId tmdbId);
+    ELCH_NODISCARD WikidataId wikidataId() const;
+    void setWikidataId(WikidataId wikidataId);
+
     ELCH_NODISCARD const mediaelch::FileList& files() const;
     ELCH_NODISCARD QString folderName() const;
     ELCH_NODISCARD int playCount() const;
     ELCH_NODISCARD QDateTime lastPlayed() const;
-    ELCH_NODISCARD ImdbId imdbId() const;
-    ELCH_NODISCARD TmdbId tmdbId() const;
-    ELCH_NODISCARD WikidataId wikidataId() const;
     ELCH_NODISCARD MovieSet set() const;
     ELCH_NODISCARD bool watched() const;
     ELCH_NODISCARD int movieId() const;
@@ -128,9 +135,6 @@ public:
     void addCountry(QString country);
     void setPlayCount(int playCount);
     void setLastPlayed(QDateTime lastPlayed);
-    void setImdbId(ImdbId imdbId);
-    void setTmdbId(TmdbId tmdbId);
-    void setWikidataId(WikidataId wikidataId);
     void setSet(MovieSet set);
     void setUserRating(double rating);
     void setChanged(bool changed);

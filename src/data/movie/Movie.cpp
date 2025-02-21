@@ -423,12 +423,19 @@ QDateTime Movie::lastPlayed() const
     return m_lastPlayed;
 }
 
-/**
- * \property Movie::id
- * \brief Holds the movies id
- * \return Id of the movie
- * \see Movie::setId
- */
+
+QMap<QString, QString> Movie::idsForScrapers()
+{
+    QMap<QString, QString> ids;
+    if (m_imdbId.isValid()) {
+        ids["imdb"] = m_imdbId.toString();
+    }
+    if (m_tmdbId.isValid()) {
+        ids["tmdb"] = m_tmdbId.toString();
+    }
+    return ids;
+}
+
 ImdbId Movie::imdbId() const
 {
     return m_imdbId;
