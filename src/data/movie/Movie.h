@@ -14,6 +14,7 @@
 #include "database/DatabaseId.h"
 #include "globals/Globals.h"
 #include "media/StreamDetails.h"
+#include "utils/Meta.h"
 
 #include <QDate>
 #include <QDebug>
@@ -46,63 +47,63 @@ public:
     /// \see Movie::Exporter
     void exportTo(Exporter& exporter) const;
 
-    QString title() const;
-    QString sortTitle() const;
-    QString originalTitle() const;
+    ELCH_NODISCARD QString title() const;
+    ELCH_NODISCARD QString sortTitle() const;
+    ELCH_NODISCARD QString originalTitle() const;
 
-    MovieImages& images();
-    const MovieImages& constImages() const;
-    QString overview() const;
-    Ratings& ratings();
-    const Ratings& ratings() const;
-    double userRating() const;
-    int top250() const;
-    QDate released() const;
-    QString tagline() const;
-    QString outline() const;
-    std::chrono::minutes runtime() const;
-    Certification certification() const;
-    QString writer() const;
-    QString director() const;
-    QStringList genres() const;
-    QVector<QString*> genresPointer();
-    QStringList countries() const;
-    QVector<QString*> countriesPointer();
-    QStringList studios() const;
-    QStringList tags() const;
-    QVector<QString*> studiosPointer();
-    QUrl trailer() const;
-    QStringList tvShowLinks() const;
+    ELCH_NODISCARD MovieImages& images();
+    ELCH_NODISCARD const MovieImages& constImages() const;
+    ELCH_NODISCARD QString overview() const;
+    ELCH_NODISCARD Ratings& ratings();
+    ELCH_NODISCARD const Ratings& ratings() const;
+    ELCH_NODISCARD double userRating() const;
+    ELCH_NODISCARD int top250() const;
+    ELCH_NODISCARD QDate released() const;
+    ELCH_NODISCARD QString tagline() const;
+    ELCH_NODISCARD QString outline() const;
+    ELCH_NODISCARD std::chrono::minutes runtime() const;
+    ELCH_NODISCARD Certification certification() const;
+    ELCH_NODISCARD QString writer() const;
+    ELCH_NODISCARD QString director() const;
+    ELCH_NODISCARD QStringList genres() const;
+    ELCH_NODISCARD QVector<QString*> genresPointer();
+    ELCH_NODISCARD QStringList countries() const;
+    ELCH_NODISCARD QVector<QString*> countriesPointer();
+    ELCH_NODISCARD QStringList studios() const;
+    ELCH_NODISCARD QStringList tags() const;
+    ELCH_NODISCARD QVector<QString*> studiosPointer();
+    ELCH_NODISCARD QUrl trailer() const;
+    ELCH_NODISCARD QStringList tvShowLinks() const;
 
-    const Actors& actors() const;
-    Actors& actors();
+    ELCH_NODISCARD const Actors& actors() const;
+    ELCH_NODISCARD Actors& actors();
 
-    const mediaelch::FileList& files() const;
-    QString folderName() const;
-    int playCount() const;
-    QDateTime lastPlayed() const;
-    ImdbId imdbId() const;
-    TmdbId tmdbId() const;
-    WikidataId wikidataId() const;
-    MovieSet set() const;
-    bool watched() const;
-    int movieId() const;
-    bool inSeparateFolder() const;
-    int mediaCenterId() const;
-    StreamDetails* streamDetails();
-    bool streamDetailsLoaded() const;
-    QDateTime fileLastModified() const;
-    QString nfoContent() const;
-    mediaelch::DatabaseId databaseId() const;
-    bool syncNeeded() const;
-    bool hasLocalTrailer() const;
-    QDateTime dateAdded() const;
-    mediaelch::ResumeTime resumeTime() const;
-    bool hasValidImdbId() const;
-    bool hasImage(ImageType imageType) const;
+    ELCH_NODISCARD const mediaelch::FileList& files() const;
+    ELCH_NODISCARD QString folderName() const;
+    ELCH_NODISCARD int playCount() const;
+    ELCH_NODISCARD QDateTime lastPlayed() const;
+    ELCH_NODISCARD ImdbId imdbId() const;
+    ELCH_NODISCARD TmdbId tmdbId() const;
+    ELCH_NODISCARD WikidataId wikidataId() const;
+    ELCH_NODISCARD MovieSet set() const;
+    ELCH_NODISCARD bool watched() const;
+    ELCH_NODISCARD int movieId() const;
+    ELCH_NODISCARD bool inSeparateFolder() const;
+    ELCH_NODISCARD int mediaCenterId() const;
+    ELCH_NODISCARD StreamDetails* streamDetails();
+    ELCH_NODISCARD bool streamDetailsLoaded() const;
+    ELCH_NODISCARD QDateTime fileLastModified() const;
+    ELCH_NODISCARD QString nfoContent() const;
+    ELCH_NODISCARD mediaelch::DatabaseId databaseId() const;
+    ELCH_NODISCARD bool syncNeeded() const;
+    ELCH_NODISCARD bool hasLocalTrailer() const;
+    ELCH_NODISCARD QDateTime dateAdded() const;
+    ELCH_NODISCARD mediaelch::ResumeTime resumeTime() const;
+    ELCH_NODISCARD bool hasValidImdbId() const;
+    ELCH_NODISCARD bool hasImage(ImageType imageType) const;
 
-    bool hasChanged() const;
-    QString localTrailerFileName() const;
+    ELCH_NODISCARD bool hasChanged() const;
+    ELCH_NODISCARD QString localTrailerFileName() const;
 
     void setFiles(const mediaelch::FileList& files);
     void setTitle(QString title);
@@ -154,25 +155,25 @@ public:
     void removeTag(QString tag);
 
     void setLabel(ColorLabel label);
-    ColorLabel label() const;
+    ELCH_NODISCARD ColorLabel label() const;
 
-    DiscType discType() const;
+    ELCH_NODISCARD DiscType discType() const;
     void setDiscType(DiscType type);
 
-    static bool lessThan(Movie* a, Movie* b);
-    static QSet<ImageType> imageTypes();
+    ELCH_NODISCARD static bool lessThan(Movie* a, Movie* b);
+    ELCH_NODISCARD static QSet<ImageType> imageTypes();
 
     /// \brief Whether there are external subtitles or streamdetails subtitles.
-    bool hasSubtitles() const;
+    ELCH_NODISCARD bool hasSubtitles() const;
     QVector<Subtitle*> subtitles() const;
     void addSubtitle(Subtitle* subtitle, bool fromLoad = false);
 
-    bool isDuplicate(Movie* movie) const;
+    ELCH_NODISCARD bool isDuplicate(Movie* movie) const;
 
-    bool hasDuplicates() const;
+    ELCH_NODISCARD bool hasDuplicates() const;
     void setHasDuplicates(bool hasDuplicates);
 
-    MovieDuplicate duplicateProperties(Movie* movie) const;
+    ELCH_NODISCARD MovieDuplicate duplicateProperties(Movie* movie) const;
 
 public:
     /// \brief   Export interface for Movie::exportTo().
