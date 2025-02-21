@@ -69,9 +69,11 @@ void TmdbTvSeasonScrapeJob::loadAllSeasons()
             return;
         }
         QSet<SeasonNumber> seasons;
-        const QJsonArray seasonArray = json.object()["seasons"].toArray();
+        QJsonObject rootObject = json.object();
+        const QJsonArray seasonArray = rootObject["seasons"].toArray();
         for (const auto& season : seasonArray) {
-            int number = season.toObject()["season_number"].toInt(-1);
+            QJsonObject seasonObj = season.toObject();
+            int number = seasonObj["season_number"].toInt(-1);
             if (number >= 0) {
                 seasons.insert(SeasonNumber(number));
             }
