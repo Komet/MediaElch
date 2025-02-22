@@ -788,17 +788,25 @@ void MainWindow::updateTvShows()
 
 void MainWindow::onCommandBarOpen()
 {
-    // TODO: At the moment we only support movies
-    if (currentTab() != MainWidgets::Movies) {
+    // TODO: At the moment we only support movies and concerts
+    if (currentTab() != MainWidgets::Movies && currentTab() != MainWidgets::Concerts) {
         return;
     }
 
     auto* commandBar = new mediaelch::QuickOpen(this);
-    connect(commandBar, &mediaelch::QuickOpen::itemSelected, this, [this](QModelIndex index) {
-        ui->movieFilesWidget->selectIndex(index);
+    connect(commandBar, &mediaelch::QuickOpen::itemSelected, this, [tab = currentTab(), this](QModelIndex index) {
+        if (tab == MainWidgets::Movies) {
+            ui->movieFilesWidget->selectIndex(index);
+        } else if (tab == MainWidgets::Concerts) {
+            ui->concertFilesWidget->selectIndex(index);
+        }
     });
     connect(commandBar, &mediaelch::QuickOpen::closed, this, [commandBar]() { commandBar->deleteLater(); });
-    commandBar->setModel(Manager::instance()->movieModel());
+    if (currentTab() == MainWidgets::Movies) {
+        commandBar->setModel(Manager::instance()->movieModel());
+    } else if (currentTab() == MainWidgets::Concerts) {
+        commandBar->setModel(Manager::instance()->concertModel());
+    }
     centralWidget()->setFocusProxy(commandBar);
 }
 

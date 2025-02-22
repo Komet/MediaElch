@@ -33,6 +33,7 @@ public:
 
     QVector<Concert*> selectedConcerts();
     void renewModel();
+    void selectIndex(const QModelIndex& index);
 
 public slots:
     void restoreLastSelection();

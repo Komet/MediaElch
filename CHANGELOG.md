@@ -14,6 +14,8 @@
   - The movie search widget is no longer stuck in case of network errors.
   - Fixed potential crash when dragging an image onto the image dialog.
   - If a scraper returns an error, in some cases the search bar remained stuck.
+  - A quick-open menu for concerts was added, similar to movies.
+    Open it by clicking <kbd>Ctrl+O</kbd> (<kbd>⌘+O</kbd> on macOS)
 - HotMovies/AdultDvdEmpire: Search works again (#1811)
 - IMDb: Writers/Directors are scraped again for TV show episodes (#1832)
 - TMDB: If there is an unknown season, and you want to load _all_ episodes, MediaElch

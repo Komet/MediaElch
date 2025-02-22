@@ -345,6 +345,11 @@ void ConcertFilesWidget::renewModel()
     m_concertProxyModel->setSourceModel(Manager::instance()->concertModel());
 }
 
+void ConcertFilesWidget::selectIndex(const QModelIndex& index)
+{
+    ui->files->selectRow(m_concertProxyModel->mapFromSource(index).row());
+}
+
 void ConcertFilesWidget::onLeftEdge(bool isEdge)
 {
     if (isEdge && m_mouseIsIn) {
