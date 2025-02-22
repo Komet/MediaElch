@@ -16,6 +16,8 @@
   - If a scraper returns an error, in some cases the search bar remained stuck.
 - HotMovies/AdultDvdEmpire: Search works again (#1811)
 - IMDb: Writers/Directors are scraped again for TV show episodes (#1832)
+- TMDB: If there is an unknown season, and you want to load _all_ episodes, MediaElch
+  aborted scraping after failing to load the unknown season (#1692)
 
 ### Changed
 

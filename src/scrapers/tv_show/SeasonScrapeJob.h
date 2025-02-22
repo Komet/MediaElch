@@ -76,7 +76,7 @@ signals:
     /// \details A simple wrapper around finished() to avoid static_asserts
     ///          from Job* to SeasonScrapeJob*.
     ///          Use hasError() and tvShow() to know whether the request was successful.
-    void loadFinished(mediaelch::scraper::SeasonScrapeJob* scrapeJob, QPrivateSignal);
+    void loadFinished(SeasonScrapeJob* scrapeJob, QPrivateSignal);
 
 protected:
     void setScraperError(ScraperError error);

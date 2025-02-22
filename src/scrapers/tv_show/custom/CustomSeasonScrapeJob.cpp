@@ -84,6 +84,7 @@ void CustomSeasonScrapeJob::loadWithScraper(const QString& scraperId, const Show
     connect(scrapeJob, &SeasonScrapeJob::loadFinished, this, [this](SeasonScrapeJob* job) {
         {
             // locking to avoid concurrent access to m_episodes
+            // FIXME: We're not multithreaded here!
             QMutexLocker locker(&m_loadMutex);
             copyDetailsToEpisodeMap(m_episodes, job->episodes(), job->config().details, this);
         }
