@@ -274,6 +274,7 @@ SOURCES += \
     src/scrapers/movie/adultdvdempire/AdultDvdEmpire.cpp \
     src/scrapers/movie/adultdvdempire/AdultDvdEmpireScrapeJob.cpp \
     src/scrapers/movie/adultdvdempire/AdultDvdEmpireSearchJob.cpp \
+    src/scrapers/movie/adultdvdempire/AdultDvdEmpireConfiguration.cpp \
     src/scrapers/movie/aebn/AebnApi.cpp \
     src/scrapers/movie/aebn/AebnConfiguration.cpp \
     src/scrapers/movie/aebn/AEBN.cpp \
@@ -440,6 +441,7 @@ SOURCES += \
     src/ui/scrapers/image/FanartTvConfigurationView.cpp \
     src/ui/scrapers/image/TheTvDbImagesConfigurationView.cpp \
     src/ui/scrapers/movie/AebnConfigurationView.cpp \
+    src/ui/scrapers/movie/AdultDvdEmpireConfigurationView.cpp \
     src/ui/scrapers/movie/ImdbMovieConfigurationView.cpp \
     src/ui/scrapers/movie/TmdbMovieConfigurationView.cpp \
     src/ui/scrapers/music/UniversalMusicConfigurationView.cpp \
@@ -675,6 +677,7 @@ HEADERS += Version.h \
     src/scrapers/movie/adultdvdempire/AdultDvdEmpire.h \
     src/scrapers/movie/adultdvdempire/AdultDvdEmpireScrapeJob.h \
     src/scrapers/movie/adultdvdempire/AdultDvdEmpireSearchJob.h \
+    src/scrapers/movie/adultdvdempire/AdultDvdEmpireConfiguration.h \
     src/scrapers/movie/aebn/AebnApi.h \
     src/scrapers/movie/aebn/AebnConfiguration.h \
     src/scrapers/movie/aebn/AEBN.h \
@@ -843,6 +846,7 @@ HEADERS += Version.h \
     src/ui/scrapers/image/FanartTvConfigurationView.h \
     src/ui/scrapers/image/TheTvDbImagesConfigurationView.h \
     src/ui/scrapers/movie/AebnConfigurationView.h \
+    src/ui/scrapers/movie/AdultDvdEmpireConfigurationView.h \
     src/ui/scrapers/movie/ImdbMovieConfigurationView.h \
     src/ui/scrapers/movie/TmdbMovieConfigurationView.h \
     src/ui/scrapers/music/UniversalMusicConfigurationView.h \

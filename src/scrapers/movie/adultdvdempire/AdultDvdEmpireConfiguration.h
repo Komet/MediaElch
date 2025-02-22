@@ -8,12 +8,12 @@
 namespace mediaelch {
 namespace scraper {
 
-class ImdbMovieConfiguration : public QObject, public ScraperConfiguration
+class AdultDvdEmpireConfiguration : public QObject, public ScraperConfiguration
 {
     Q_OBJECT
 public:
-    explicit ImdbMovieConfiguration(Settings& settings);
-    ~ImdbMovieConfiguration() override = default;
+    explicit AdultDvdEmpireConfiguration(Settings& settings);
+    ~AdultDvdEmpireConfiguration() override = default;
 
     void init() override;
 
@@ -24,12 +24,12 @@ public:
     ELCH_NODISCARD Locale language() override;
     void setLanguage(const Locale& value) override;
 
-    ELCH_NODISCARD bool shouldLoadAllTags();
-    void setLoadAllTags(const bool& value);
+    ELCH_NODISCARD bool storeBackCoverAsFanart();
+    void setStoreBackCoverAsFanart(const bool& value);
 
 signals:
     void languageChanged(Locale language);
-    void loadAllTagsChanged(bool value);
+    void storeBackCoverAsFanartChanged(bool value);
 };
 
 } // namespace scraper

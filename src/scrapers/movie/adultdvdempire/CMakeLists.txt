@@ -1,7 +1,7 @@
 add_library(
   mediaelch_scraper_movie_ade OBJECT
   AdultDvdEmpire.cpp AdultDvdEmpireApi.cpp AdultDvdEmpireSearchJob.cpp
-  AdultDvdEmpireScrapeJob.cpp
+  AdultDvdEmpireScrapeJob.cpp AdultDvdEmpireConfiguration.cpp
 )
 
 target_link_libraries(

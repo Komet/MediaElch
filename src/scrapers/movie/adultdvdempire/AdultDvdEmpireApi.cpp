@@ -31,13 +31,14 @@ AdultDvdEmpireApi::AdultDvdEmpireApi(QObject* parent) : QObject(parent)
 
 void AdultDvdEmpireApi::sendGetRequest(const QUrl& url, AdultDvdEmpireApi::ApiCallback callback)
 {
-    QNetworkRequest request = mediaelch::network::requestWithDefaults(url);
-    if (m_network.cache().hasValidElement(request)) {
+    QNetworkRequest getRequest = mediaelch::network::requestWithDefaults(url);
+    if (m_network.cache().hasValidElement(getRequest)) {
         // Do not immediately run the callback because classes higher up may
         // set up a Qt connection while the network request is running.
-        QTimer::singleShot(0, this, [cb = std::move(callback), element = m_network.cache().getElement(request)]() { //
-            cb(element, {});
-        });
+        QTimer::singleShot(
+            0, this, [cb = std::move(callback), element = m_network.cache().getElement(getRequest)]() { //
+                cb(element, {});
+            });
         return;
     }
 

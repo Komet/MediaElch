@@ -1,10 +1,11 @@
 #include "scrapers/movie/adultdvdempire/AdultDvdEmpire.h"
 
+#include "AdultDvdEmpireConfiguration.h"
+#include "AdultDvdEmpireScrapeJob.h"
+#include "AdultDvdEmpireSearchJob.h"
 #include "globals/Helper.h"
 #include "log/Log.h"
 #include "network/NetworkRequest.h"
-#include "scrapers/movie/adultdvdempire/AdultDvdEmpireScrapeJob.h"
-#include "scrapers/movie/adultdvdempire/AdultDvdEmpireSearchJob.h"
 #include "settings/Settings.h"
 
 namespace mediaelch {
@@ -12,7 +13,8 @@ namespace scraper {
 
 const char* const AdultDvdEmpire::ID = "adult-dvd-empire";
 
-AdultDvdEmpire::AdultDvdEmpire(QObject* parent) : MovieScraper(parent)
+AdultDvdEmpire::AdultDvdEmpire(AdultDvdEmpireConfiguration& settings, QObject* parent) :
+    MovieScraper(parent), m_settings{settings}
 {
     m_meta.identifier = ID;
     m_meta.name = "Adult DVD Empire";
@@ -21,7 +23,8 @@ AdultDvdEmpire::AdultDvdEmpire(QObject* parent) : MovieScraper(parent)
     m_meta.termsOfService = "https://www.adultempire.com/help/cs_termsofuse.html";
     m_meta.privacyPolicy = "https://www.adultempire.com/help/cs_privacypolicy.html";
     m_meta.help = "https://www.adultempire.com/help/home.html";
-    m_meta.supportedDetails = {MovieScraperInfo::Title,
+    m_meta.supportedDetails = {
+        MovieScraperInfo::Title,
         MovieScraperInfo::Released,
         MovieScraperInfo::Runtime,
         MovieScraperInfo::Overview,
@@ -31,9 +34,10 @@ AdultDvdEmpire::AdultDvdEmpire(QObject* parent) : MovieScraper(parent)
         MovieScraperInfo::Studios,
         MovieScraperInfo::Backdrop,
         MovieScraperInfo::Set,
-        MovieScraperInfo::Director};
-    m_meta.supportedLanguages = {"en"};
-    m_meta.defaultLocale = "en";
+        MovieScraperInfo::Director,
+    };
+    m_meta.supportedLanguages = AdultDvdEmpireConfiguration::supportedLanguages();
+    m_meta.defaultLocale = AdultDvdEmpireConfiguration::defaultLocale();
     m_meta.isAdult = true;
 }
 
@@ -63,7 +67,7 @@ MovieScrapeJob* AdultDvdEmpire::loadMovie(MovieScrapeJob::Config config)
     if (config.locale == Locale::NoLocale) {
         config.locale = meta().defaultLocale;
     }
-    return new AdultDvdEmpireScrapeJob(m_api, std::move(config), this);
+    return new AdultDvdEmpireScrapeJob(m_api, std::move(config), m_settings.storeBackCoverAsFanart(), this);
 }
 
 QSet<MovieScraperInfo> AdultDvdEmpire::scraperNativelySupports()

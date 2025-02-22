@@ -14,6 +14,7 @@
 #include "scrapers/image/TmdbImages.h"
 #include "scrapers/movie/MovieScraper.h"
 #include "scrapers/movie/adultdvdempire/AdultDvdEmpire.h"
+#include "scrapers/movie/adultdvdempire/AdultDvdEmpireConfiguration.h"
 #include "scrapers/movie/aebn/AEBN.h"
 #include "scrapers/movie/aebn/AebnConfiguration.h"
 #include "scrapers/movie/custom/CustomMovieScraper.h"
@@ -39,6 +40,7 @@
 #include "ui/scrapers/concert/TmdbConcertConfigurationView.h"
 #include "ui/scrapers/image/FanartTvConfigurationView.h"
 #include "ui/scrapers/image/TheTvDbImagesConfigurationView.h"
+#include "ui/scrapers/movie/AdultDvdEmpireConfigurationView.h"
 #include "ui/scrapers/movie/AebnConfigurationView.h"
 #include "ui/scrapers/movie/ImdbMovieConfigurationView.h"
 #include "ui/scrapers/movie/TmdbMovieConfigurationView.h"
@@ -233,9 +235,10 @@ void ScraperManager::initMovieScrapers()
     }
     {
         ManagedMovieScraper ade;
-        auto config = std::make_unique<ScraperConfigurationStub>(AdultDvdEmpire::ID, m_settings);
+        auto config = std::make_unique<AdultDvdEmpireConfiguration>(m_settings);
         config->init();
-        ade.m_scraper = std::make_unique<AdultDvdEmpire>(nullptr);
+        ade.m_scraper = std::make_unique<AdultDvdEmpire>(*config, nullptr);
+        ade.m_viewFactory = [adeConfig = config.get()]() { return new AdultDvdEmpireConfigurationView(*adeConfig); };
         ade.m_config = std::move(config);
 
         m_scraperMovies.push_back(std::move(ade));
