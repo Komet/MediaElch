@@ -76,6 +76,7 @@ private:
     void setupScraperDropdown();
     void setupLanguageDropdown();
 
+    void enableSearch();
     void showError(const QString& message);
     void showSuccess(const QString& message);
     void abortAndClearResults();
