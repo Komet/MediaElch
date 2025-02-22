@@ -47,13 +47,15 @@ void TmdbTvSeasonScrapeJob::loadSeasons(QList<SeasonNumber> seasons)
     const TmdbApi::ApiCallback callback = [this, season = nextSeason, seasons](QJsonDocument json, ScraperError error) {
         if (error.hasError()) {
             setScraperError(error);
-            emitFinished();
-            return;
+            // don't abort here, as we want to load _all_ seasons before returning an error.
+            // TODO: Collect all season error instead of overriding the previous one.
+
+        } else {
+            m_actors[season] = TmdbTvSeasonParser::parseSeasonActors(m_api, json);
+            const auto onEpisode = [this](TvShowEpisode* episode) { storeEpisode(episode); };
+            // Pass `this` so that newly generated episodes belong to this instance.
+            TmdbTvSeasonParser::parseEpisodes(m_api, json, this, onEpisode);
         }
-        m_actors[season] = TmdbTvSeasonParser::parseSeasonActors(m_api, json);
-        const auto onEpisode = [this](TvShowEpisode* episode) { storeEpisode(episode); };
-        // Pass `this` so that newly generated episodes belong to this instance.
-        TmdbTvSeasonParser::parseEpisodes(m_api, json, this, onEpisode);
         loadSeasons(seasons);
     };
 
