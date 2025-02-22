@@ -12,7 +12,10 @@ class AdultDvdEmpireScrapeJob : public MovieScrapeJob
     Q_OBJECT
 
 public:
-    AdultDvdEmpireScrapeJob(AdultDvdEmpireApi& api, Config _config, QObject* parent = nullptr);
+    AdultDvdEmpireScrapeJob(AdultDvdEmpireApi& api,
+        Config _config,
+        bool storeBackCoverAsFanart,
+        QObject* parent = nullptr);
     ~AdultDvdEmpireScrapeJob() override = default;
 
     void doStart() override;
@@ -23,6 +26,7 @@ private:
 
 private:
     AdultDvdEmpireApi& m_api;
+    bool m_storeBackCoverAsFanart{false};
 };
 
 } // namespace scraper

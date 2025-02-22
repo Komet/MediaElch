@@ -1,9 +1,11 @@
 #include "test/test_helpers.h"
 
 #include "scrapers/movie/adultdvdempire/AdultDvdEmpire.h"
+#include "scrapers/movie/adultdvdempire/AdultDvdEmpireConfiguration.h"
 #include "scrapers/movie/adultdvdempire/AdultDvdEmpireScrapeJob.h"
 #include "scrapers/movie/adultdvdempire/AdultDvdEmpireSearchJob.h"
 #include "test/helpers/scraper_helpers.h"
+#include "test/mocks/settings/SettingsMock.h"
 
 #include <chrono>
 
@@ -18,7 +20,9 @@ static AdultDvdEmpireApi& getAdultDvdEmpireApi()
 
 static MovieScrapeJob::Config makeAdultDvdEmpireConfig(QString id)
 {
-    static auto ade = std::make_unique<AdultDvdEmpire>();
+    static auto settings = std::make_unique<SettingsMock>();
+    static auto adeConfig = std::make_unique<AdultDvdEmpireConfiguration>(*settings);
+    static auto ade = std::make_unique<AdultDvdEmpire>(*adeConfig);
     MovieScrapeJob::Config config;
     config.identifier = MovieIdentifier(id);
     config.details = ade->meta().supportedDetails;
@@ -28,7 +32,8 @@ static MovieScrapeJob::Config makeAdultDvdEmpireConfig(QString id)
 
 static auto makeScrapeJob(QString id)
 {
-    return std::make_unique<AdultDvdEmpireScrapeJob>(getAdultDvdEmpireApi(), makeAdultDvdEmpireConfig(id));
+    auto config = makeAdultDvdEmpireConfig(id);
+    return std::make_unique<AdultDvdEmpireScrapeJob>(getAdultDvdEmpireApi(), config, true);
 }
 
 TEST_CASE("AdultDvdEmpire returns valid search results", "[movie][AdultDvdEmpire][search]")
@@ -46,8 +51,6 @@ TEST_CASE("AdultDvdEmpire returns valid search results", "[movie][AdultDvdEmpire
 
 TEST_CASE("AdultDvdEmpire scrapes correct movie details", "[movie][AdultDvdEmpire][load_data]")
 {
-    AdultDvdEmpire hm;
-
     SECTION("Movie has correct details for DVD movie")
     {
         auto scrapeJob = makeScrapeJob("/1745335/magic-mike-xxxl-porn-movies.html");

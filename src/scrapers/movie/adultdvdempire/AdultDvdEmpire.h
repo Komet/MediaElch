@@ -9,11 +9,13 @@
 namespace mediaelch {
 namespace scraper {
 
+class AdultDvdEmpireConfiguration;
+
 class AdultDvdEmpire : public MovieScraper
 {
     Q_OBJECT
 public:
-    explicit AdultDvdEmpire(QObject* parent = nullptr);
+    explicit AdultDvdEmpire(AdultDvdEmpireConfiguration& settings, QObject* parent = nullptr);
     static const char* const ID;
 
     const ScraperMeta& meta() const override;
@@ -30,6 +32,7 @@ public:
     void changeLanguage(mediaelch::Locale locale) override;
 
 private:
+    AdultDvdEmpireConfiguration& m_settings;
     ScraperMeta m_meta;
     AdultDvdEmpireApi m_api;
 };

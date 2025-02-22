@@ -13,6 +13,7 @@ add_library(
   concert/TmdbConcertConfigurationView.cpp
   image/FanartTvConfigurationView.cpp
   image/TheTvDbImagesConfigurationView.cpp
+  movie/AdultDvdEmpireConfigurationView.cpp
 )
 
 target_link_libraries(

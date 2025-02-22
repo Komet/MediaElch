@@ -12,8 +12,9 @@ namespace scraper {
 
 AdultDvdEmpireScrapeJob::AdultDvdEmpireScrapeJob(AdultDvdEmpireApi& api,
     MovieScrapeJob::Config _config,
+    bool storeBackCoverAsFanart,
     QObject* parent) :
-    MovieScrapeJob(std::move(_config), parent), m_api{api}
+    MovieScrapeJob(std::move(_config), parent), m_api{api}, m_storeBackCoverAsFanart{storeBackCoverAsFanart}
 {
 }
 
@@ -154,16 +155,18 @@ void AdultDvdEmpireScrapeJob::parseAndAssignInfos(const QString& html)
         m_movie->images().addPoster(p);
     }
 
-    rx.setPattern(R"re(href="([^"]*)"[\s\n]*class="[^"]+"[\s\n]*sty="[^"]+"[\s\n]*id="back-cover")re");
-    match = rx.match(html);
-    if (match.hasMatch()) {
-        Poster p;
-        p.thumbUrl = match.captured(1);
-        p.originalUrl = match.captured(1);
-        // add both as additional poster and backdrop (fanart)
-        // TODO: Add as "posterN" when we support it
-        m_movie->images().addPoster(p);
-        m_movie->images().addBackdrop(p);
+    if (m_storeBackCoverAsFanart) {
+        rx.setPattern(R"re(href="([^"]*)"[\s\n]*class="[^"]+"[\s\n]*sty="[^"]+"[\s\n]*id="back-cover")re");
+        match = rx.match(html);
+        if (match.hasMatch()) {
+            Poster p;
+            p.thumbUrl = match.captured(1);
+            p.originalUrl = match.captured(1);
+            // add both as additional poster and backdrop (fanart)
+            // TODO: Add as "posterN" when we support it
+            m_movie->images().addPoster(p);
+            m_movie->images().addBackdrop(p);
+        }
     }
 
     rx.setPattern(R"(<a href="[^"]*"[\s\r\n]*Category="Item Page" Label="Series">[\s\r\n]*([^<]*)<span)");
