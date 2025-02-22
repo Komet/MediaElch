@@ -176,7 +176,8 @@ void TvShowSearchWidget::onShowResults(ShowSearchJob* searchJob)
 {
     auto dls = makeDeleteLaterScope(searchJob);
     if (searchJob->wasKilled()) {
-        // If it was killed, don't report anything.
+        // If it was killed, don't report anything, but reset the search bar.
+        enableSearch();
         return;
 
     } else if (searchJob->hasError()) {
@@ -519,18 +520,22 @@ void TvShowSearchWidget::setupLanguageDropdown()
 
 void TvShowSearchWidget::showError(const QString& message)
 {
-    ui->searchString->setLoading(false);
-    ui->searchString->setFocus();
     ui->lblSuccessMessage->hide();
     ui->lblErrorMessage->setText(message);
     ui->lblErrorMessage->show();
+    enableSearch();
 }
 
 void TvShowSearchWidget::showSuccess(const QString& message)
 {
-    ui->searchString->setLoading(false);
-    ui->searchString->setFocus();
     ui->lblErrorMessage->hide();
     ui->lblSuccessMessage->setText(message);
     ui->lblSuccessMessage->show();
+    enableSearch();
+}
+
+void TvShowSearchWidget::enableSearch()
+{
+    ui->searchString->setLoading(false);
+    ui->searchString->setFocus();
 }

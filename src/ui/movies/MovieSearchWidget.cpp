@@ -169,7 +169,6 @@ void MovieSearchWidget::showError(const QString& message)
     ui->lblSuccessMessage->hide();
     ui->lblErrorMessage->setText(message);
     ui->lblErrorMessage->show();
-
     enableSearch();
 }
 
@@ -222,7 +221,8 @@ void MovieSearchWidget::onShowResults(mediaelch::scraper::MovieSearchJob* search
     auto dls = makeDeleteLaterScope(searchJob);
 
     if (searchJob->wasKilled()) {
-        // If it was killed, don't report anything.
+        // If it was killed, don't report anything, but reset the search bar.
+        enableSearch();
         return;
 
     } else if (searchJob->hasError()) {
@@ -231,7 +231,7 @@ void MovieSearchWidget::onShowResults(mediaelch::scraper::MovieSearchJob* search
         return;
     }
 
-    qCDebug(generic) << "[Search Results] Count: " << searchJob->results().size();
+    qCDebug(generic) << "[MovieSearch] Count: " << searchJob->results().size();
     showSuccess(tr("Found %n results", "", qsizetype_to_int(searchJob->results().size())));
 
 
