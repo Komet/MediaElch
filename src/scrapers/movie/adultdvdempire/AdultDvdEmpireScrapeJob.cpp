@@ -155,16 +155,16 @@ void AdultDvdEmpireScrapeJob::parseAndAssignInfos(const QString& html)
         m_movie->images().addPoster(p);
     }
 
-    if (m_storeBackCoverAsFanart) {
-        rx.setPattern(R"re(href="([^"]*)"[\s\n]*class="[^"]+"[\s\n]*sty="[^"]+"[\s\n]*id="back-cover")re");
-        match = rx.match(html);
-        if (match.hasMatch()) {
-            Poster p;
-            p.thumbUrl = match.captured(1);
-            p.originalUrl = match.captured(1);
-            // add both as additional poster and backdrop (fanart)
-            // TODO: Add as "posterN" when we support it
-            m_movie->images().addPoster(p);
+    rx.setPattern(R"re(href="([^"]*)"[\s\n]*class="[^"]+"[\s\n]*sty="[^"]+"[\s\n]*id="back-cover")re");
+    match = rx.match(html);
+    if (match.hasMatch()) {
+        Poster p;
+        p.thumbUrl = match.captured(1);
+        p.originalUrl = match.captured(1);
+        // add both as additional poster and backdrop (fanart)
+        // TODO: Add as "posterN" when we support it
+        m_movie->images().addPoster(p);
+        if (m_storeBackCoverAsFanart) {
             m_movie->images().addBackdrop(p);
         }
     }
