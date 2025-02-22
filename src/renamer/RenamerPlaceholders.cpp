@@ -31,7 +31,8 @@ RenamerPlaceholders::ValidationResult RenamerPlaceholders::validate(const QStrin
 QString RenamerPlaceholders::replace(QString text, RenamerData& data)
 {
     // TODO: Properly tokenize input string.
-    for (const auto& placeholder : placeholders()) {
+    const auto all = placeholders();
+    for (const auto& placeholder : all) {
         if (placeholder.isCondition) {
             QRegularExpression rx(QStringLiteral("{%1}(.*){/%1}").arg(placeholder.name),
                 QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);

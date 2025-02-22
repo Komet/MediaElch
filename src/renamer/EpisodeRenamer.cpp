@@ -91,7 +91,7 @@ ELCH_NODISCARD bool TvShowRenamerData::passesCondition(const QString& name) cons
     return map.contains(name) //
                ? map[name]()
                : !value(name).isEmpty();
-};
+}
 
 EpisodeRenamerData::~EpisodeRenamerData() = default;
 
@@ -161,7 +161,7 @@ ELCH_NODISCARD bool EpisodeRenamerData::passesCondition(const QString& name) con
     return map.contains(name) //
                ? map[name]()
                : !value(name).isEmpty();
-};
+}
 
 } // namespace mediaelch
 

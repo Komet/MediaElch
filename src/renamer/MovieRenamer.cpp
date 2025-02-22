@@ -99,7 +99,7 @@ ELCH_NODISCARD bool MovieRenamerData::passesCondition(const QString& name) const
     return map.contains(name) //
                ? map[name]()
                : !value(name).isEmpty();
-};
+}
 
 } // namespace mediaelch
 

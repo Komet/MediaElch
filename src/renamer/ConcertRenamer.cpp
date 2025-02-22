@@ -88,7 +88,7 @@ ELCH_NODISCARD bool ConcertRenamerData::passesCondition(const QString& name) con
     return map.contains(name) //
                ? map[name]()
                : !value(name).isEmpty();
-};
+}
 
 } // namespace mediaelch
 
