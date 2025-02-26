@@ -288,7 +288,7 @@ void CsvExportDialog::initializeItems()
             item->setCheckState(isChecked ? Qt::Checked : Qt::Unchecked);
         };
 
-        // TODO: Compile time / runtime check for completness
+        // TODO: Compile time / runtime check for completeness
         addField(Field::Type, tr("Type"));
         addField(Field::ImdbId, tr("IMDb ID"));
         addField(Field::TmdbId, tr("TMDB ID"));

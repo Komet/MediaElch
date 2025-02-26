@@ -38,7 +38,7 @@ TEST_CASE("version info class", "[globals]")
         CHECK(VersionInfo("2.6.2") <= VersionInfo("2.6.2"));
     }
 
-    SECTION("validtor")
+    SECTION("validator")
     {
         CHECK_FALSE(VersionInfo().isValid());
         CHECK_FALSE(VersionInfo("0").isValid());

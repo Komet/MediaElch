@@ -327,7 +327,7 @@ bool MyIconFont::initFontAwesome()
     give("star", new StarIconPainter());
     give("duplicate", new DuplicateIconPainter());
 
-    // intialize the map
+    // initialize the map
     QHash<QString, int>& m = namedCodepoints_;
     m.insert("film", icon_film);
     m.insert("monitor", icon_monitor);

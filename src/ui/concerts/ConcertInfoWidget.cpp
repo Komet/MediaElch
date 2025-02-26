@@ -6,7 +6,7 @@
 #include "log/Log.h"
 #include "utils/Containers.h"
 
-// Each change event listener requires the concert to be valid. This is a marco to avoid repitition.
+// Each change event listener requires the concert to be valid. This is a marco to avoid repetition.
 // do {} while() is used to force a semicolon after the use of this macro.
 // NOLINTNEXTLINE
 #define ME_REQUIRE_CONCERT_OR_RETURN                                                                                   \

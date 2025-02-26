@@ -643,7 +643,7 @@ bool KodiXml::saveConcert(Concert* concert)
         QFile file(saveFilePath);
         qCDebug(generic) << "[KodiXml] Saving to" << file.fileName();
         if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-            qCWarning(generic) << "[KodiXml] File could not be openend";
+            qCWarning(generic) << "[KodiXml] File could not be opened";
         } else {
             file.write(xmlContent);
             file.close();
@@ -944,7 +944,7 @@ bool KodiXml::saveTvShow(TvShow* show)
         }
         QFile file(saveFilePath);
         if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-            qCWarning(generic) << "[KodiXml] NFO file could not be openend for writing" << file.fileName();
+            qCWarning(generic) << "[KodiXml] NFO file could not be opened for writing" << file.fileName();
             return false;
         }
         file.write(xmlContent);
@@ -1666,7 +1666,7 @@ bool KodiXml::saveArtist(Artist* artist)
     {
         QFile file(fileName);
         if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-            qCWarning(generic) << "[KodiXml] File could not be openend";
+            qCWarning(generic) << "[KodiXml] File could not be opened";
             return false;
         }
         file.write(xmlContent);

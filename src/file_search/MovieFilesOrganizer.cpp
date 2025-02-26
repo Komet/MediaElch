@@ -14,7 +14,7 @@ MovieFilesOrganizer::MovieFilesOrganizer(QObject* parent) : QThread(parent)
 }
 
 /**
- * \brief moves all movies in given path to seperate directories
+ * \brief moves all movies in given path to separate directories
  * \param dir place to organize
  */
 void MovieFilesOrganizer::moveToDirs(mediaelch::DirectoryPath dir)

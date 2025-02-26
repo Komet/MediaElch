@@ -113,7 +113,7 @@ private:
 
     QHash<QString, MyIconFontIconPainter*> painterMap_; ///< A map of custom painters
     QVariantMap defaultOptions_;                        ///< The default icon options
-    MyIconFontIconPainter* fontIconPainter_;            ///< A special painter fo painting codepoints
+    MyIconFontIconPainter* fontIconPainter_;            ///< A special painter for painting codepoints
 };
 
 

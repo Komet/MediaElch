@@ -40,7 +40,7 @@ private:
 
 private:
     QStringList m_allExcludeWords;
-    /// \brief Exluded words that contain special characters not suitable for regular expressions.
+    /// \brief Excluded words that contain special characters not suitable for regular expressions.
     QStringList m_excludeWordsNoRegEx;
     QVector<QRegularExpression> m_excludeWordsRegEx;
     QReadWriteLock m_lock;

@@ -32,7 +32,7 @@ bool MyFile::copy(const QString& newName)
                 out.close();
                 close();
             } else {
-                char block[4096]; // NOLINT: This file neeeds a refactoring nonetheless; allow c array for now
+                char block[4096]; // NOLINT: This file needs a refactoring nonetheless; allow c array for now
                 qint64 totalRead = 0;
                 while (!atEnd()) {
                     qint64 in = read(block, sizeof(block));
