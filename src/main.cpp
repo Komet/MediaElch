@@ -30,8 +30,8 @@ static void initLogFile()
         return;
     }
     QMessageBox::critical(nullptr,
-        QObject::tr("Logfile could not be openened"),
-        QObject::tr("The logfile %1 could not be openend for writing.").arg(logFile));
+        QObject::tr("Logfile could not be opened"),
+        QObject::tr("The logfile %1 could not be opened for writing.").arg(logFile));
 }
 
 static QString themeStylesheetName(const QString& theme, const QString& customStylesheet)

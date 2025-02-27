@@ -30,7 +30,7 @@ TEST_CASE("TvShow Renamer works", "[renamer][tv_show]")
     }
 }
 
-TEST_CASE("Episode Renamer works", "[renamer][epsiode]")
+TEST_CASE("Episode Renamer works", "[renamer][episode]")
 {
     mediaelch::EpisodeRenamerPlaceholders placeholders;
 

@@ -509,7 +509,7 @@ NetworkSettings& Settings::networkSettings()
 
 /**
  * \brief Returns the words to exclude from media names,
- * seperated by commas
+ * separated by commas
  * \return exclude words
  */
 QStringList Settings::excludeWords()
@@ -611,7 +611,7 @@ void Settings::setMovieDuplicatesSplitterState(QByteArray state)
 /**
  * \brief Sets the exclude words
  * \param words Words to exclude from media names,
- * seperated by commas
+ * separated by commas
  */
 void Settings::setExcludeWords(QString words)
 {

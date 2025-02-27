@@ -52,7 +52,7 @@ string(REPLACE "\n" ";" output "${output}")
 # Parse output
 foreach(line ${output})
   set(test ${line})
-  # use escape commas to handle properly test cases with commans inside the name
+  # use escape commas to handle properly test cases with commas inside the name
   string(REPLACE "," "\\," test_name ${test})
   # ...and add to script
   add_command(add_test

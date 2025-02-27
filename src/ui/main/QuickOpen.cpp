@@ -33,7 +33,7 @@ public slots:
 
     void setSourceModel(QAbstractItemModel* sourceModel) override
     {
-        // also default-initializes socres, i.e. 0
+        // also default-initializes scores, i.e. 0
         m_scores.resize(sourceModel->rowCount());
         QSortFilterProxyModel::setSourceModel(sourceModel);
     }

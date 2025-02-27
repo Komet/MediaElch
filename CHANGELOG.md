@@ -176,7 +176,7 @@
 - Universal Music Scraper:
 
   - MusicBrainz works again (#1597)
-  - MusicBrainz now loads an artist's biography in the preferred langauge
+  - MusicBrainz now loads an artist's biography in the preferred language
   - Discogs correctly loads an artists discography again (#1606)
   - AllMusic loads album ratings again
 
@@ -599,7 +599,7 @@ If you package MediaElch, e.g. for some Linux distributions, these notes may be 
    though their system is German.  This needs a do-over.
  - Fix regression for BluRays (#1090)  
    BluRay discs had their `BACKUP` and `STREAM` folders recognized as different movies.
-   This is now fixed and those two directories are skiped.
+   This is now fixed and those two directories are skipped.
 
 #### Changes
 
@@ -727,7 +727,7 @@ or other non-local drives.
 
  - Export: The generated folder name now also contains seconds (#935)  
    It now has the pattern `MediaElch Export yyyy-MM-dd hh-mm-ss`.
-   Exporting multiple times whithin a minute otherwise leads to name clashes.
+   Exporting multiple times within a minute otherwise leads to name clashes.
 
 #### Improvements
 
@@ -1175,7 +1175,7 @@ See: https://mediaelch.github.io/mediaelch-doc/faq.html#where-are-mediaelchs-set
  - Actors for TV show episodes
  - TheTvDb: Search by ID
  - Speed up loading items
- - Add warning for extra fanarts when sep. folders is not cheked
+ - Add warning for extra fanarts when sep. folders is not checked
  - GUI updates
  - Fix hd-trailers.net scraping
  - Poster naming of stacked files

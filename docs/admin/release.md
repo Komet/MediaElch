@@ -210,7 +210,7 @@ A new release should be announced in some forum posts:
 ## Update External Documentation
 
 There are several external forum posts and other documentation pages that may
-need to be updated. Look at following pages and update them if neccessary:
+need to be updated. Look at following pages and update them if necessary:
 
  - [English] User documentation: https://github.com/mediaelch/mediaelch-doc
  - [German] https://wiki.ubuntuusers.de/MediaElch

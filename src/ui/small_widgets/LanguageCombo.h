@@ -19,7 +19,7 @@ signals:
     void languageChanged();
 
 public:
-    /// \brief   Setup the language dropdown with a pre-selected entry.
+    /// \brief   Setup the language dropdown with a preselected entry.
     /// \details This function does not emit any signals while adding entries.
     void setupLanguages(const QVector<mediaelch::Locale>& locales, const mediaelch::Locale& selected);
     /// \brief Set the given language as the selected one if it is valid.

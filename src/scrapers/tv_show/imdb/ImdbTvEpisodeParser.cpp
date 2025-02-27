@@ -244,7 +244,7 @@ void ImdbTvEpisodeParser::parseInfos(TvShowEpisode& episode, const QString& html
             // media-amazon has some auto-crop magic, we can specify the format ourselves.
             // So we use the 16:9 format: 400x225px
             // Most if not all episodes should have thumbs that are bigger than this.
-            // This results in the followng postfix:
+            // This results in the following postfix:
             const QString imdbThumbSizeSpec = QStringLiteral("._V1_UX400_CR0,0,400,225_AL_.jpg");
             const elch_ssize_t index = thumbUrlRaw.lastIndexOf("._V1");
             if (index > -1) {

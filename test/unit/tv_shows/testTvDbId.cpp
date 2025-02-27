@@ -6,7 +6,7 @@ TEST_CASE("TvDbId data type", "[data]")
 {
     SECTION("Default Case")
     {
-        // only valid IDs are comparible
+        // only valid IDs are comparable
         CHECK(TvDbId() != TvDbId(""));
 
         CHECK_FALSE(TvDbId() == TvDbId(""));

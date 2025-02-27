@@ -339,7 +339,7 @@
      <item row="4" column="0">
       <widget class="QLabel" name="lblMovieSetFanartFilename">
        <property name="text">
-        <string>Movie Set Fanart Filname</string>
+        <string>Movie Set Fanart Filename</string>
        </property>
       </widget>
      </item>

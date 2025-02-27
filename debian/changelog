@@ -157,7 +157,7 @@ mediaelch (2.6.2-1) vivid; urgency=low
   * Windows: Stream Details do not load (#688)
   * Crashes on macOS when scanning episodes due to a Qt bug (#641)
   * Fix ADE scraper (#703, #725)
-  * Fix TV shows always beeing reloaded (#732)
+  * Fix TV shows always being reloaded (#732)
   * Fix incompatibilities with Kodi v17 NFO files (#719)
   * Fix race-condition in DownloadManager (#766)
   * Update French translation (#646)
@@ -509,7 +509,7 @@ mediaelch (2.0-1) raring; urgency=low
   * Actors for TV show episodes
   * TheTvDb: Search by ID
   * Speed up loading items
-  * Add warning for extra fanarts when sep. folders is not cheked
+  * Add warning for extra fanarts when sep. folders is not checked
   * GUI updates
   * Fix hd-trailers.net scraping
   * Poster naming of stacked files
