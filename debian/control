@@ -23,6 +23,7 @@ Package: mediaelch
 Architecture: any
 Depends: ${misc:Depends},
          ${shlibs:Depends},
+         libqt6svg6,
          libmediainfo0v5,
          libzen0v5,
 Description: Media Manager for Kodi
