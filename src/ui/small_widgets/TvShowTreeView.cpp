@@ -36,7 +36,7 @@ void TvShowTreeView::drawBranches(QPainter* painter,
     QColor textColor = option.palette.color(textColorRole);
 
     const int drawSize = qRound(rect.height() * 0.85);
-    QString text = isExpanded(index) ? QChar(icon_angle_down) : QChar(icon_angle_right);
+    QString text = isExpanded(index) ? QChar(static_cast<uint>(icon_angle_down)): QChar(static_cast<uint>(icon_angle_right));
 
     painter->save();
     painter->setPen(textColor);
@@ -195,7 +195,7 @@ void TvShowTreeView::drawEpisodeRow(QPainter* painter,
         painter->setPen(isSelected ? QColor(255, 255, 255) : QColor(248, 148, 6));
         painter->setFont(Manager::instance()->iconFont()->font(drawSize));
         painter->drawText(
-            iconRect, QString(QChar(icon_refresh_cloud)), QTextOption(Qt::AlignCenter | Qt::AlignVCenter));
+            iconRect, QString(QChar(static_cast<uint>(icon_refresh_cloud))), QTextOption(Qt::AlignCenter | Qt::AlignVCenter));
 #endif
         itemIndent += 20;
     }
@@ -212,7 +212,7 @@ void TvShowTreeView::drawEpisodeRow(QPainter* painter,
         int drawSize = qRound(iconRect.width() * 1.0);
         painter->setPen(isSelected ? QColor(255, 255, 255) : QColor(241, 96, 106));
         painter->setFont(Manager::instance()->iconFont()->font(drawSize));
-        painter->drawText(iconRect, QString(QChar(icon_attention)), QTextOption(Qt::AlignCenter | Qt::AlignVCenter));
+        painter->drawText(iconRect, QString(QChar(static_cast<uint>(icon_attention))), QTextOption(Qt::AlignCenter | Qt::AlignVCenter));
 #endif
         itemIndent += 20;
     }
@@ -263,7 +263,7 @@ int TvShowTreeView::drawNewIcon(QPainter* painter,
         int drawSize = qRound(iconRect.width() * 1.0);
         painter->setPen(isSelected ? QColor(255, 255, 255) : QColor(58, 135, 173));
         painter->setFont(Manager::instance()->iconFont()->font(drawSize));
-        painter->drawText(iconRect, QString(QChar(icon_star)), QTextOption(Qt::AlignCenter | Qt::AlignVCenter));
+        painter->drawText(iconRect, QString(QChar(static_cast<uint>(icon_star))), QTextOption(Qt::AlignCenter | Qt::AlignVCenter));
 #endif
         return 20;
 
