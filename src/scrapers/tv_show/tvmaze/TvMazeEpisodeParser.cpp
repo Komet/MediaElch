@@ -84,8 +84,7 @@ void TvMazeEpisodeParser::parseEpisode(TvShowEpisode& episode, const QJsonObject
 
             if (guestCrewType == "Writer") {
                 episode.addWriter(name);
-            }
-            else if (guestCrewType == "Director") {
+            } else if (guestCrewType == "Director") {
                 episode.addDirector(name);
             }
         }
