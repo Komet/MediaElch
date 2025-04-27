@@ -74,6 +74,22 @@ void TvMazeEpisodeParser::parseEpisode(TvShowEpisode& episode, const QJsonObject
             episode.addActor(actor);
         }
     }
+    {
+        const QJsonArray crew = embedded["guestcrew"].toArray();
+        for (const QJsonValue& val : crew) {
+            QJsonObject castObj = val.toObject();
+            QJsonObject person = castObj["person"].toObject();
+            QString name = person["name"].toString();
+            QString guestCrewType = castObj["guestCrewType"].toString();
+
+            if (guestCrewType == "Writer") {
+                episode.addWriter(name);
+            }
+            else if (guestCrewType == "Director") {
+                episode.addDirector(name);
+            }
+        }
+    }
 
 
     // TODO: Support "runtime" when TvShowEpisode supports it.

@@ -32,6 +32,7 @@
 ### Added
 
 - TVMaze can now load episodes' guest cast (actors) for single-episode scraping (#1801)
+- TVMaze can now load episodes' guest crew (directors, writers) for single-episode scraping (#1877)
 - NFO: `<hdrtype>` is now supported (#1810)
 - Renamer:
   - Placeholder `<tmdbId>` is now also available for TV shows and episodes (#1814)
