@@ -149,16 +149,16 @@ actors: (N>90)
    name: Joe Pingue
    role: Captain Merrit
    thumb:
-    https://m.media-amazon.com/images/M/MV5BODk0MDI3ODItMjBkMS00NTA1LTlkMGUtNjlhMWIy
-    NjRjZGY1XkEyXkFqcGc@.jpg
+    https://m.media-amazon.com/images/M/MV5BZmU2MDQ4MDYtM2ZmYi00NWQ2LTllZTQtOTFjNTIy
+    NGVhOGQyXkEyXkFqcGc@.jpg
    order: 14
    imageHasChanged: false
  - id: 
    name: Milton Barnes
    role: McTighe
    thumb:
-    https://m.media-amazon.com/images/M/MV5BM2MwZThhM2UtMWFhYy00ZTRhLTljYWItNjc3OTMw
-    ZjMyNmRhXkEyXkFqcGc@.jpg
+    https://m.media-amazon.com/images/M/MV5BMWI3MDY4OWYtOTJkNi00M2NjLWFhY2ItNjliZjUx
+    YjQxZDU4XkEyXkFqcGc@.jpg
    order: 15
    imageHasChanged: false
  - id: 

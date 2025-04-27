@@ -1668,3 +1668,213 @@ thumbnail:
 actors: (N=0)
 streamDetails: <not loaded>
 files: (N=0)
+
+
+================================================================================
+Season 07 - Episode 01
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Gewöhnliche Leute
+showTitle: 
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=07
+episode: EpisodeNumber=01
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview: 
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2025-04-10
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+networks: (N=0)
+thumbnail: 
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 07 - Episode 02
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Bête Noire
+showTitle: 
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=07
+episode: EpisodeNumber=02
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview: 
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2025-04-10
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+networks: (N=0)
+thumbnail: 
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 07 - Episode 03
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Hotel Reverie
+showTitle: 
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=07
+episode: EpisodeNumber=03
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview: 
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2025-04-10
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+networks: (N=0)
+thumbnail: 
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 07 - Episode 04
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Spielzeug
+showTitle: 
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=07
+episode: EpisodeNumber=04
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview: 
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2025-04-10
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+networks: (N=0)
+thumbnail: 
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 07 - Episode 05
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Eulogy
+showTitle: 
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=07
+episode: EpisodeNumber=05
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview: 
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2025-04-10
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+networks: (N=0)
+thumbnail: 
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)
+
+
+================================================================================
+Season 07 - Episode 06
+
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: USS Callister: Willkommen bei Infinity
+showTitle: 
+ratings (N=0)
+userRating: 0
+imdbTop250: 0
+season: SeasonNumber=07
+episode: EpisodeNumber=06
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview: 
+writers: (N=0)
+directors: (N=0)
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2025-04-10
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+networks: (N=0)
+thumbnail: 
+actors: (N=0)
+streamDetails: <not loaded>
+files: (N=0)

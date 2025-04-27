@@ -107,8 +107,6 @@ discography: (N>90)
     year: 2001
   - title: Spanish Music Video Sampler "Mutter"
     year: 2001
-  - title: Sehnsucht
-    year: 2001
   - title: Mutter
     year: 2001
   - title:  4-Song Sampler From The Forthcoming Album "Mutter" 
@@ -228,6 +226,8 @@ discography: (N>90)
   - title: Zeig Dich
     year: 
   - title: Rammstein Tipo - Duplicamos La Imagen
+    year: 
+  - title: Seemann
     year: 
 genres: (N=0)
 styles: (N=0)

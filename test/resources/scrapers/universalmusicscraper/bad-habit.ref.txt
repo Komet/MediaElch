@@ -3,9 +3,109 @@ Artist Reference File
 
 mbId: fe2897f1-a391-41d6-b0e2-f15261be0c69
 allMusicId: 
-name: 
-biography: 
-discography: (N=0)
+name: Bad Habit
+biography:
+    Swedish hard rock / AOR band from Lund, Skåne. Active from 1986 until 2012. The 
+    band reunited again in 2018 and are recording new music.
+discography: (N>40)
+  - title: Need Somebody
+    year: 1987
+  - title: Never Find Another You
+    year: 1988
+  - title: Young & Innocent
+    year: 1988
+  - title: More Than A Feeling
+    year: 1988
+  - title: Rowena
+    year: 1989
+  - title: More Than I
+    year: 1989
+  - title: After Hours
+    year: 1989
+  - title: Revolution
+    year: 1995
+  - title: Adult Orientation
+    year: 1998
+  - title: 13 Years Of Bad Habits
+    year: 2000
+  - title: Hear-Say
+    year: 2005
+  - title: Ultimate Collection 1987-2009
+    year: 2009
+  - title: Above And Beyond
+    year: 2009
+  - title: Timeless
+    year: 2010
+  - title: Atmosphere
+    year: 2011
+  - title: Autonomy
+    year: 2021
+  - title: Love, Damini
+    year: 2023
+  - title: KROQ 106.7 FM Presents Bad Habit - Alien - Swedish Erotica
+    year: 1989
+  - title: Melodic Mayhem Three - Tribute
+    year: 1995
+  - title: Swedish Hard Rock And Heavy Metal 1970 - 1996
+    year: 1996
+  - title: MVP // Crystal
+    year: 1996
+  - title: Heart Rock CD 2
+    year: 1996
+  - title: MVP Compilation Series Fantasy
+    year: 1997
+  - title: Ballads
+    year: 1998
+  - title: MTM Ballads Volume 2
+    year: 1999
+  - title: The Best Swedish Melodic Hardrock AnthemsIn The World...Ever!
+    year: 1999
+  - title: Thomas Hässler Presents: Rock Ballads
+    year: 2001
+  - title: MTM Rock Radio Hits
+    year: 2001
+  - title: Cruisin'
+    year: 2001
+  - title: Rock Stars
+    year: 2002
+  - title: Rock Stars - CD3
+    year: 2002
+  - title: Rock Ballads
+    year: 2004
+  - title: GMR Compilation 2004
+    year: 2004
+  - title: Madchester [So Much To Answer For]
+    year: 2005
+  - title: Hear It! Volume 41
+    year: 2009
+  - title: Sweden Rock Magazine #58
+    year: 2009
+  - title: Le Sampler RockHard #84
+    year: 2009
+  - title: Power Files Chapter 37
+    year: 2009
+  - title: Hear It! Volume 41
+    year: 2009
+  - title: Der Soundtrack Zum Heft Nr. 21 (02/2011)
+    year: 2011
+  - title: Le Sampler RockHard 106
+    year: 2011
+  - title: Dissolved: Richmond Street Records 2016
+    year: 2016
+  - title: Demo-Tape 5
+    year: 
+  - title: Revolution
+    year: 1995
+  - title: Adult Orientation
+    year: 1998
+  - title: MTM Rock Radio Hits
+    year: 2001
+  - title: Autonomy
+    year: 2022
+  - title: 1990 Demos
+    year: 
+  - title: After Hours
+    year: 
 genres: (N=0)
 styles: (N=0)
 moods: (N=0)

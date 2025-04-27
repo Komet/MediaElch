@@ -26,7 +26,7 @@ movie set: tmdbid= | name=
 movie set overview: 
 tagline: An offer you can't refuse.
 ratings (N=1)
-  source=imdb | rating=9.2 | votes=2000000 | min=0 | max=10
+  source=imdb | rating=9.2 | votes=2100000 | min=0 | max=10
 userRating: 0
 imdbTop250: 2
 released: 1972-03-24
@@ -224,8 +224,8 @@ files: (N=0)
 folderName: 
 posters: (N=1)
   - id: 
-    originalUrl: https://m.media-amazon.com/images/M/MV5BMGQ1NmJkNjYtOTYyZi00N2M1LTk4MDMtNGEyOGUxNzQxZGQ3XkEyXkFqcGc@.jpg
-    thumbUrl: https://m.media-amazon.com/images/M/MV5BMGQ1NmJkNjYtOTYyZi00N2M1LTk4MDMtNGEyOGUxNzQxZGQ3XkEyXkFqcGc@.jpg
+    originalUrl: https://m.media-amazon.com/images/M/MV5BNGEwYjgwOGQtYjg5ZS00Njc1LTk2ZGEtM2QwZWQ2NjdhZTE5XkEyXkFqcGc@.jpg
+    thumbUrl: https://m.media-amazon.com/images/M/MV5BNGEwYjgwOGQtYjg5ZS00Njc1LTk2ZGEtM2QwZWQ2NjdhZTE5XkEyXkFqcGc@.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 

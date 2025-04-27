@@ -24,7 +24,7 @@ userRating: 0
 imdbTop250: 0
 released: 2016-06-16
 runtime: 97min
-writer: Andrew Stanton, Bob Peterson, Victoria Strouse, Matt Jones
+writer: Andrew Stanton, Victoria Strouse, Bob Peterson, Matt Jones
 director: Andrew Stanton
 actors: (N>60)
  - id: 
@@ -54,7 +54,7 @@ actors: (N>60)
  - id: 
    name: Diane Keaton
    role: Jenny (voice)
-   thumb: http://image.tmdb.org/t/p/original/tnx7pJqisfAzvXOR5wHQsbnH9XH.jpg
+   thumb: http://image.tmdb.org/t/p/original/A8B3BsFgbmw2WEmJuQX38qeU9eR.jpg
    order: 4
    imageHasChanged: false
  - id: 
@@ -84,13 +84,13 @@ actors: (N>60)
  - id: 
    name: Dominic West
    role: Rudder (voice)
-   thumb: http://image.tmdb.org/t/p/original/eMxNZZtVTjIvypWAYqahvVtZuhZ.jpg
+   thumb: http://image.tmdb.org/t/p/original/6y2M3EWslBPwPlugEFg8XDHfSJ0.jpg
    order: 9
    imageHasChanged: false
  - id: 
    name: Kate McKinnon
    role: Wife Fish (voice)
-   thumb: http://image.tmdb.org/t/p/original/8rMn2ZiEm2rCHZ28EVWUenirpw8.jpg
+   thumb: http://image.tmdb.org/t/p/original/7o26OzpEPAUma65jGQZop9d52gy.jpg
    order: 10
    imageHasChanged: false
  - id: 

@@ -52,7 +52,7 @@ actors: (N>5)
  - id: 5586
    name: Yeardley Smith
    role: Lisa Simpson (voice)
-   thumb: https://image.tmdb.org/t/p/original/oACYQyA8k8oDaMxsbMRHz8OP6u2.jpg
+   thumb: https://image.tmdb.org/t/p/original/9AjPwbb3uz4GfgOPBYsy2ILvwkB.jpg
    order: 3
    imageHasChanged: false
  - id: 5587

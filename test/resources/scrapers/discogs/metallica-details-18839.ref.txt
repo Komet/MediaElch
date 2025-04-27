@@ -140,7 +140,7 @@ discography: (N>100)
     year: 1992
   - title: A Year And A Half In The Life Of ... Continued (Part 2)
     year: 1992
-  - title: For Those About To Rock: Monsters In Moscow
+  - title: For Those About To Rock:  Monsters In Moscow
     year: 1992
   - title: Metallica 1
     year: 1992
@@ -208,6 +208,8 @@ discography: (N>100)
     year: 1997
   - title: Recovery / MCM Interviews Oct 3 97
     year: 1997
+  - title: Reload
+    year: 1997
   - title: Fuel
     year: 1997
   - title: King Nothing
@@ -257,8 +259,6 @@ discography: (N>100)
   - title: Did Die My Darling / I Finally Found My Way
     year: 1999
   - title: "S & M" Concert Special
-    year: 1999
-  - title: S & M Documentary
     year: 1999
 genres: (N=0)
 styles: (N=0)

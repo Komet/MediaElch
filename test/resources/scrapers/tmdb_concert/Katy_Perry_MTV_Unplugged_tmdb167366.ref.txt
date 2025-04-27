@@ -32,6 +32,14 @@ lastPlayed: <not set or invalid>
 lastModified: <not set or invalid>
 posters: (N<6)
   - id: 
+    originalUrl: http://image.tmdb.org/t/p/original/43v1rCP83OhCQ4UpxjLI3E8jq98.jpg
+    thumbUrl: http://image.tmdb.org/t/p/w342/43v1rCP83OhCQ4UpxjLI3E8jq98.jpg
+    originalSize: h=2100 w=1400
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
     originalUrl: http://image.tmdb.org/t/p/original/mAd2zKsiQ1w5TuQYK5QLyW5YR22.jpg
     thumbUrl: http://image.tmdb.org/t/p/w342/mAd2zKsiQ1w5TuQYK5QLyW5YR22.jpg
     originalSize: h=1500 w=1000

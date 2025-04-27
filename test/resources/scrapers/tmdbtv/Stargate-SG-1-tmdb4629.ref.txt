@@ -26,13 +26,13 @@ genres: (N<6)
   - Sci-Fi & Fantasy
   - Action & Adventure
   - Mystery
-tags: (N>5)
+tags: (N>10)
+  - wormhole
   - space travel
   - space
   - travel
   - alien
-  - alien planet
-  - ... and <6 more
+  - ... and >5 more
 certification: TV-PG
 networks: (N<6)
   - Showtime
@@ -108,7 +108,7 @@ actors: (N>800)
  - id: 1225394
    name: Peter Williams
    role: Apophis
-   thumb: https://image.tmdb.org/t/p/original/lLCIT3kWr4RWg2boqS5vjUiR7KF.jpg
+   thumb: https://image.tmdb.org/t/p/original/krmHWFeVL6QhqdhywOBS6uNq1HT.jpg
    order: 11
    imageHasChanged: false
  - id: 118462
@@ -120,9 +120,9 @@ actors: (N>800)
  - id: 118463
    name: Peter DeLuise
    role:
-    Director / Peter DeLuise, Airman, SF Guard (Uncredited), Young Urgo in Uniform, 
-    Man Leaving Cafe, Tok'ra Guard, Interviewer, Lieutenant, Machine Gun Guard, Scre
-    aming Villager, Free Jaffa (Voice only) (Uncredited)
+    Director / Peter DeLuise, Airman, SF Guard (Uncredited), Free Jaffa (Voice only)
+     (Uncredited), Screaming Villager, Machine Gun Guard, Tok'ra Guard, Interviewer,
+     Young Urgo in Uniform, Man Leaving Cafe, Lieutenant
    thumb: https://image.tmdb.org/t/p/original/sLkSOm6HBLB4VCfshQLdSEq63tr.jpg
    order: 13
    imageHasChanged: false
@@ -146,17 +146,17 @@ actors: (N>800)
    imageHasChanged: false
  - id: 59245
    name: Laara Sadiq
-   role: Technician #2, Technician, Technican, Technician Davis
+   role: Technician #2, Technican, Technician, Technician Davis
    thumb: https://image.tmdb.org/t/p/original/l7MkydwslaXo1EmYrRpJARnaFKs.jpg
    order: 17
    imageHasChanged: false
  - id: 1366510
    name: Fraser Aitcheson
    role:
-    Hathor's Jaffa, Jaffa Warrior, Free Jaffa (Uncredited), Free Jaffa 2 (Uncredited
-    ), Tagrean Worker, Anubis' Jaffa, Orderly, Jaffa, Ares' Jaffa commander (Uncredi
-    ted), Jaffa Guard, Dakara Jaffa 3 (Uncredited), Jaffa Commander, Apophis' Red Ja
-    ffa
+    Hathor's Jaffa, Free Jaffa 2 (Uncredited), Anubis' Jaffa, Free Jaffa (Uncredited
+    ), Apophis' Red Jaffa, Jaffa, Jaffa Commander, Jaffa Guard, Orderly, Jaffa Warri
+    or, Ares' Jaffa commander (Uncredited), Tagrean Worker, Dakara Jaffa 3 (Uncredit
+    ed)
    thumb: https://image.tmdb.org/t/p/original/j0fou5tZvXHe3GcVr24UnYQLg6S.jpg
    order: 18
    imageHasChanged: false

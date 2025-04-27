@@ -167,9 +167,9 @@ posters: (N=1)
     aspect: 
     season: SeasonNumber=xx
 backdrops: (N=1)
-  - id: https://image.tmdb.org/t/p/original/5olSfAUqoASDsq1C7el6hYM9Kju.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/5olSfAUqoASDsq1C7el6hYM9Kju.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/5olSfAUqoASDsq1C7el6hYM9Kju.jpg
+  - id: https://image.tmdb.org/t/p/original/z6fUdAWIqSenjIYsPmRltaGHcTq.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/z6fUdAWIqSenjIYsPmRltaGHcTq.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/z6fUdAWIqSenjIYsPmRltaGHcTq.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 

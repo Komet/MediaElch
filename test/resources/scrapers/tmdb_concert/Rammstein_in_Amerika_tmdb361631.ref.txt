@@ -16,7 +16,7 @@ overview:
      various periods in the band’s history, the band members speak about their exper
     iences across the Atlantic.
 ratings (N=1)
-  source=themoviedb | rating=8 | votes=54 | min=0 | max=10
+  source=themoviedb | rating=7.973 | votes=55 | min=0 | max=10
 userRating: 0
 releaseDate: 2015-09-25
 tagline: 
@@ -32,6 +32,14 @@ lastPlayed: <not set or invalid>
 lastModified: <not set or invalid>
 posters: (N<6)
   - id: 
+    originalUrl: http://image.tmdb.org/t/p/original/nBxFphQ3RtLw71nZ2IcEQmyRe6m.jpg
+    thumbUrl: http://image.tmdb.org/t/p/w342/nBxFphQ3RtLw71nZ2IcEQmyRe6m.jpg
+    originalSize: h=2400 w=1600
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
     originalUrl: http://image.tmdb.org/t/p/original/3jQELB04oNbWQvirKoq2p6a0uqX.jpg
     thumbUrl: http://image.tmdb.org/t/p/w342/3jQELB04oNbWQvirKoq2p6a0uqX.jpg
     originalSize: h=2092 w=1395
@@ -40,18 +48,18 @@ posters: (N<6)
     aspect: 
     season: SeasonNumber=xx
   - id: 
-    originalUrl: http://image.tmdb.org/t/p/original/2OkkU9tTylJ8KASzNVlO5ALPF2N.jpg
-    thumbUrl: http://image.tmdb.org/t/p/w342/2OkkU9tTylJ8KASzNVlO5ALPF2N.jpg
+    originalUrl: http://image.tmdb.org/t/p/original/vVmbEH2VDJZMsgPnER78UsM9WQ.jpg
+    thumbUrl: http://image.tmdb.org/t/p/w342/vVmbEH2VDJZMsgPnER78UsM9WQ.jpg
     originalSize: h=1500 w=1000
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
   - id: 
-    originalUrl: http://image.tmdb.org/t/p/original/vVmbEH2VDJZMsgPnER78UsM9WQ.jpg
-    thumbUrl: http://image.tmdb.org/t/p/w342/vVmbEH2VDJZMsgPnER78UsM9WQ.jpg
+    originalUrl: http://image.tmdb.org/t/p/original/2OkkU9tTylJ8KASzNVlO5ALPF2N.jpg
+    thumbUrl: http://image.tmdb.org/t/p/w342/2OkkU9tTylJ8KASzNVlO5ALPF2N.jpg
     originalSize: h=1500 w=1000
-    language: 
+    language: en
     hint: 
     aspect: 
     season: SeasonNumber=xx

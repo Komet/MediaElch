@@ -8,7 +8,7 @@ tvmazeId:
 title: Unaired Pilot
 showTitle: 
 ratings (N=1)
-  source=imdb | rating=6.6 | votes=1000 | min=0 | max=10
+  source=imdb | rating=6.6 | votes=2000 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=01

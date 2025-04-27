@@ -9,11 +9,11 @@ discography: (N=0)
 genres: (N=0)
 styles: (N=0)
 moods: (N>30)
-  - Bittersweet
-  - Boisterous
-  - Brassy
+  - Energetic
+  - Fun
+  - Reflective
+  - Carefree
   - Celebratory
-  - Cheerful
   - ... and >30 more
 yearsActive: 
 formed: 
