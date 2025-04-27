@@ -19,8 +19,10 @@ overview:
     With Homer's help, Ned Flanders tries to establish a Christian theme park based 
     on drawings in his deceased wife's sketch book. Blackboard: 'Genetics is not an 
     excuse'.
-writers: (N=0)
-directors: (N=0)
+writers: (N=1)
+  - Julie Thacker Scully
+directors: (N=1)
+  - Chuck Sheetz
 playCount: 0
 lastPlayed: <not set or invalid>
 firstAired: 2001-05-06

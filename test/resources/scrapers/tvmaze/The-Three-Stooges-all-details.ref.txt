@@ -13,7 +13,7 @@ overview:
     Watch as Moe, Larry and Curly go through life the only way a stooge can, with la
     ughs and a lot of mischief.
 ratings (N=1)
-  source=tvmaze | rating=7.8 | votes=0 | min=0 | max=10
+  source=tvmaze | rating=7 | votes=0 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 firstAired: 1934-05-05
@@ -25,7 +25,13 @@ certification:
 networks: (N=1)
   - Syndication
 episodeGuideUrl: 
-actors: (N=0)
+actors: (N=1)
+ - id: 454107
+   name: Moe Howard
+   role: Moe Howard
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/565/1413106.jpg
+   order: 0
+   imageHasChanged: false
 posters: (N<6)
   - id: https://static.tvmaze.com/uploads/images/original_untouched/9/24485.jpg
     originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/9/24485.jpg
