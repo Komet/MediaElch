@@ -40,6 +40,8 @@ TvMaze::TvMaze(TvMazeConfiguration& settings, QObject* parent) : TvScraper(paren
     };
     m_meta.supportedEpisodeDetails = {
         EpisodeScraperInfo::Actors,
+        EpisodeScraperInfo::Writer,
+        EpisodeScraperInfo::Director,
         EpisodeScraperInfo::Title,
         EpisodeScraperInfo::FirstAired,
         EpisodeScraperInfo::Thumbnail,
