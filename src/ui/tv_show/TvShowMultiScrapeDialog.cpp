@@ -351,7 +351,7 @@ void TvShowMultiScrapeDialog::scrapeNext()
             if (id.str().isEmpty()) {
                 logToUser(tr("Skipping show \"%1\" because it does not have a valid ID and you requested only shows "
                              "with an ID to be scraped.")
-                              .arg(show->title()));
+                        .arg(show->title()));
                 scrapeNext();
                 return;
             }
@@ -408,7 +408,7 @@ void TvShowMultiScrapeDialog::scrapeNext()
 
         if (id.str().isEmpty()) {
             logToUser(tr("Search for TV show \"%1\" because no valid show ID was found for the episode.")
-                          .arg(m_currentEpisode->tvShow()->title()));
+                    .arg(m_currentEpisode->tvShow()->title()));
             ShowSearchJob::Config config{
                 m_currentEpisode->tvShow()->title(), m_currentLanguage, Settings::instance()->showAdultScrapers()};
             auto* searchJob = m_currentScraper->search(config);
@@ -417,9 +417,9 @@ void TvShowMultiScrapeDialog::scrapeNext()
 
         } else {
             logToUser(tr("S%1E%2: Scraping next episode with show ID \"%3\".")
-                          .arg(m_currentEpisode->seasonNumber().toPaddedString(),
-                              m_currentEpisode->episodeNumber().toPaddedString(),
-                              id.str()));
+                    .arg(m_currentEpisode->seasonNumber().toPaddedString(),
+                        m_currentEpisode->episodeNumber().toPaddedString(),
+                        id.str()));
             m_currentEpisode->scrapeData(
                 m_currentScraper, m_currentLanguage, id, m_seasonOrder, m_episodeDetailsToLoad);
         }
@@ -494,9 +494,9 @@ void TvShowMultiScrapeDialog::onSearchFinished(scraper::ShowSearchJob* searchJob
 
     } else if (m_currentEpisode != nullptr) {
         logToUser(tr("S%1E%2: Scraping next episode with show ID \"%3\".")
-                      .arg(m_currentEpisode->seasonNumber().toPaddedString(),
-                          m_currentEpisode->episodeNumber().toPaddedString(),
-                          id.str()));
+                .arg(m_currentEpisode->seasonNumber().toPaddedString(),
+                    m_currentEpisode->episodeNumber().toPaddedString(),
+                    id.str()));
         m_showIds.insert(m_currentEpisode->tvShow()->title(), id);
 
         // TODO: deduplicate code with scrapeNext()
@@ -571,7 +571,7 @@ void TvShowMultiScrapeDialog::onInfoLoadDone(TvShow* show, QSet<ShowScraperInfo>
 
     if (show->tvdbId().isValid() && details.contains(ShowScraperInfo::ExtraArts)) {
         logToUser(tr("Start loading extra fanart from TheTvDb for TV show with ID \"%1\".") //
-                      .arg(show->tvdbId().toString()));
+                .arg(show->tvdbId().toString()));
         connect(Manager::instance()->fanartTv(),
             &mediaelch::scraper::ImageProvider::sigTvShowImagesLoaded,
             this,
@@ -857,9 +857,9 @@ void TvShowMultiScrapeDialog::onEpisodeLoadDone()
     bool addedNewDownload = false;
 
     logToUser(tr("S%2E%3: Finished scraping episode details. Title is: \"%1\".")
-                  .arg(episode->title(),
-                      m_currentEpisode->seasonNumber().toPaddedString(),
-                      m_currentEpisode->episodeNumber().toPaddedString()));
+            .arg(episode->title(),
+                m_currentEpisode->seasonNumber().toPaddedString(),
+                m_currentEpisode->episodeNumber().toPaddedString()));
 
     if (m_episodeDetailsToLoad.contains(EpisodeScraperInfo::Thumbnail) && !episode->thumbnail().isEmpty()) {
         addDownload(ImageType::TvShowEpisodeThumb, episode->thumbnail(), episode);

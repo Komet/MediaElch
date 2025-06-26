@@ -379,8 +379,8 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
                         dir.dirName() + "/" + newFolderName + "/" + fi.fileName(),
                         RenameOperation::Move);
                     m_dialog->appendResultText(QObject::tr(R"(<b>Move File</b> "%1" to "%2")")
-                                                   .arg(fi.fileName())
-                                                   .arg(dir.dirName() + "/" + newFolderName + "/" + fi.fileName()));
+                            .arg(fi.fileName())
+                            .arg(dir.dirName() + "/" + newFolderName + "/" + fi.fileName()));
                     if (!m_config.dryRun) {
                         if (!rename(dir.absolutePath() + "/" + fileName,
                                 dir.absolutePath() + "/" + newFolderName + "/" + fi.fileName())) {

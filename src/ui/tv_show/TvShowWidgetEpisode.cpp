@@ -482,9 +482,9 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     if (!m_episode->thumbnailImage().isNull()) {
         ui->thumbnail->setImage(m_episode->thumbnailImage());
     } else if (!Manager::instance()
-                    ->mediaCenterInterface()
-                    ->imageFileName(m_episode, ImageType::TvShowEpisodeThumb)
-                    .isEmpty()) {
+                   ->mediaCenterInterface()
+                   ->imageFileName(m_episode, ImageType::TvShowEpisodeThumb)
+                   .isEmpty()) {
         ui->thumbnail->setImageFromPath(mediaelch::FilePath{
             Manager::instance()->mediaCenterInterface()->imageFileName(m_episode, ImageType::TvShowEpisodeThumb)});
     }
@@ -1101,9 +1101,9 @@ void TvShowWidgetEpisode::onDeleteThumbnail()
     m_episode->removeImage(ImageType::TvShowEpisodeThumb);
     if (!m_episode->imagesToRemove().contains(ImageType::TvShowEpisodeThumb)
         && !Manager::instance()
-                ->mediaCenterInterface()
-                ->imageFileName(m_episode, ImageType::TvShowEpisodeThumb)
-                .isEmpty()) {
+            ->mediaCenterInterface()
+            ->imageFileName(m_episode, ImageType::TvShowEpisodeThumb)
+            .isEmpty()) {
         ui->thumbnail->setImageFromPath(mediaelch::FilePath{
             Manager::instance()->mediaCenterInterface()->imageFileName(m_episode, ImageType::TvShowEpisodeThumb)});
     }

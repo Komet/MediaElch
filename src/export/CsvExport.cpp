@@ -733,10 +733,10 @@ void CsvExport::writeEscaped(const QString& text)
     }
 
     m_out << (QString(text)
-                  .replace(m_separator, m_replacement)
-                  .replace("\r\n", "\\n")
-                  .replace("\n", "\\n")
-                  .replace("\r", "\\n"));
+            .replace(m_separator, m_replacement)
+            .replace("\r\n", "\\n")
+            .replace("\n", "\\n")
+            .replace("\r", "\\n"));
 }
 
 } // namespace mediaelch

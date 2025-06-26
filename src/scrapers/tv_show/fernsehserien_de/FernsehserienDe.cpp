@@ -102,7 +102,7 @@ bool isFernsehserienDeActorRole(const QString& role)
 QUrl FernsehserienDeApi::searchUrl(const QString& query)
 {
     return QUrl{QStringLiteral("https://www.fernsehserien.de/suche/%1") //
-                    .arg(QString(QUrl::toPercentEncoding(query)))};
+            .arg(QString(QUrl::toPercentEncoding(query)))};
 }
 
 QUrl FernsehserienDeApi::tvShowUrl(const ShowIdentifier& id)

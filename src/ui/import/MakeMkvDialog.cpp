@@ -179,9 +179,9 @@ void MakeMkvDialog::onScanFinished(QString title, QMap<int, MakeMkvCon::Track> t
     while (it.hasNext()) {
         it.next();
         auto* item = new QListWidgetItem(QString("%1 (%3, %2)")
-                                             .arg(it.value().name)
-                                             .arg(it.value().duration)
-                                             .arg(helper::formatFileSize(it.value().size, locale)));
+                .arg(it.value().name)
+                .arg(it.value().duration)
+                .arg(helper::formatFileSize(it.value().size, locale)));
         item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
         item->setCheckState(Qt::Unchecked);
         item->setData(Qt::UserRole, it.key());

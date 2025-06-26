@@ -57,7 +57,7 @@ MovieFilesWidget::MovieFilesWidget(QWidget* parent) : QWidget(parent), ui(new Ui
 
     auto* mediaStatusColumnsMenu = new QMenu(tr("Media Status Columns"), ui->files);
     for (int i = static_cast<int>(MediaStatusColumn::First), n = static_cast<int>(MediaStatusColumn::Last); i <= n;
-         ++i) {
+        ++i) {
         auto* action = new QAction(MovieModel::mediaStatusToText(static_cast<MediaStatusColumn>(i)), this);
         action->setProperty("mediaStatusColumn", i);
         action->setCheckable(true);

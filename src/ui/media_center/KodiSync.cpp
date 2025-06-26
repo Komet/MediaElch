@@ -817,7 +817,7 @@ QUrl KodiSync::xbmcUrl()
         url.append("@");
     }
     url.append(QString("%1:%2/jsonrpc") //
-                   .arg(m_settings.xbmcHost())
-                   .arg(m_settings.xbmcPort()));
+            .arg(m_settings.xbmcHost())
+            .arg(m_settings.xbmcPort()));
     return QUrl{url};
 }

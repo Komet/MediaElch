@@ -900,7 +900,7 @@ void MainWindow::onMenu(QToolButton* button)
         // Import
         widget = MainWidgets::Downloads;
         ui->navbar->setReloadToolTip(tr("Reload all Downloads (%1)")
-                                         .arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
+                .arg(QKeySequence(QKeySequence::Refresh).toString(QKeySequence::NativeText)));
         break;
     case 7:
         // Music

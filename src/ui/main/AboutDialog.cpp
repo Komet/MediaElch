@@ -28,8 +28,8 @@ AboutDialog::AboutDialog(QWidget* parent) : QDialog(parent), ui(new Ui::AboutDia
     ui->buttonBox->button(QDialogButtonBox::Close)->setDefault(true);
 
     ui->labelMediaElch->setText(QStringLiteral("MediaElch %1 - %2")
-                                    .arg(QApplication::applicationVersion())
-                                    .arg(mediaelch::constants::VersionName));
+            .arg(QApplication::applicationVersion())
+            .arg(mediaelch::constants::VersionName));
 
     QPixmap p(":/img/MediaElch.png");
     p = p.scaled(ui->icon->size() * devicePixelRatioF(), Qt::KeepAspectRatio, Qt::SmoothTransformation);

@@ -145,8 +145,8 @@ QByteArray TvShowXmlWriterGeneric::getTvShowXml(bool testMode)
     xml.writeTextElement("trailer", "");
 
     for (auto namedSeason = m_show.seasonNameMappings().constBegin();
-         namedSeason != m_show.seasonNameMappings().constEnd();
-         ++namedSeason) {
+        namedSeason != m_show.seasonNameMappings().constEnd();
+        ++namedSeason) {
         xml.writeStartElement("namedseason");
         xml.writeAttribute("number", namedSeason.key().toString());
         xml.writeCharacters(namedSeason.value());

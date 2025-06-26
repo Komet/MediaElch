@@ -162,7 +162,7 @@ void TmdbConcert::loadData(TmdbId id, Concert* concert, QSet<ConcertScraperInfo>
     {
         loadsLeft.append(ScraperData::Infos);
         url.setUrl(QStringLiteral("https://api.themoviedb.org/3/movie/%1?api_key=%2&language=%3")
-                       .arg(id.toString(), m_apiKey, localeForTmdb()));
+                .arg(id.toString(), m_apiKey, localeForTmdb()));
         request.setUrl(url);
         QNetworkReply* reply = network()->getWithWatcher(request);
         reply->setProperty("storage", QVariant::fromValue(concert));

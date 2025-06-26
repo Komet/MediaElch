@@ -172,12 +172,12 @@ bool TvShowXmlReader::parseNfoDom(QDomDocument domDoc)
         // TODO: Only kept for backwards compatibility to Kodi < v19.  Later versions use uniqueids
         //       again in <episodeguide>, which is of no use for us.
         m_show.setEpisodeGuideUrl(domDoc.elementsByTagName("episodeguide")
-                                      .at(0)
-                                      .toElement()
-                                      .elementsByTagName("url")
-                                      .at(0)
-                                      .toElement()
-                                      .text());
+                .at(0)
+                .toElement()
+                .elementsByTagName("url")
+                .at(0)
+                .toElement()
+                .text());
     }
     if (!domDoc.elementsByTagName("runtime").isEmpty()) {
         m_show.setRuntime(std::chrono::minutes(domDoc.elementsByTagName("runtime").at(0).toElement().text().toInt()));

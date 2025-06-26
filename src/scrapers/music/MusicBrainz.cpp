@@ -174,21 +174,21 @@ QVector<ScraperSearchResult> MusicBrainzApi::parseAlbumSearchPage(const QString&
 QUrl MusicBrainzApi::makeArtistSearchUrl(const QString& query)
 {
     QUrl url(QString("https://musicbrainz.org/ws/2/artist/?query=artist:\"%1\"")
-                 .arg(QString(QUrl::toPercentEncoding(query))));
+            .arg(QString(QUrl::toPercentEncoding(query))));
     return url;
 }
 
 QUrl MusicBrainzApi::makeAlbumSearchUrl(const QString& query)
 {
     QUrl url(QStringLiteral("https://musicbrainz.org/ws/2/release/?query=release:\"%1\"")
-                 .arg(QString(QUrl::toPercentEncoding(query))));
+            .arg(QString(QUrl::toPercentEncoding(query))));
     return url;
 }
 
 QUrl MusicBrainzApi::makeAlbumWithArtistSearchUrl(const QString& albumQuery, const QString& artistName)
 {
     QUrl url(QStringLiteral("https://musicbrainz.org/ws/2/release/?query=release:\"%1\"%20AND%20artist:\"%2\"")
-                 .arg(QString(QUrl::toPercentEncoding(albumQuery)), QString(QUrl::toPercentEncoding(artistName))));
+            .arg(QString(QUrl::toPercentEncoding(albumQuery)), QString(QUrl::toPercentEncoding(artistName))));
     return url;
 }
 
@@ -210,7 +210,7 @@ void MusicBrainzApi::loadArtist(const Locale& locale,
 void MusicBrainzApi::loadAlbum(const Locale& locale, const MusicBrainzId& albumId, MusicBrainzApi::ApiCallback callback)
 {
     QUrl url(QStringLiteral("https://musicbrainz.org/ws/2/release/%1?inc=url-rels+labels+artist-credits")
-                 .arg(albumId.toString()));
+            .arg(albumId.toString()));
     return sendGetRequest(locale, url, std::move(callback));
 }
 
@@ -219,7 +219,7 @@ void MusicBrainzApi::loadReleaseGroup(const Locale& locale,
     MusicBrainzApi::ApiCallback callback)
 {
     QUrl url(QStringLiteral("https://musicbrainz.org/ws/2/release-group/%1?inc=url-rels+artist-credits")
-                 .arg(groupId.toString()));
+            .arg(groupId.toString()));
     return sendGetRequest(locale, url, std::move(callback));
 }
 
@@ -257,12 +257,12 @@ void MusicBrainz::parseAndAssignAlbum(const QString& xml, Album& album, const QS
                 artist.append(joinPhrase.isEmpty() ? ", " : joinPhrase);
             }
             artist.append(artistElem.elementsByTagName("artist")
-                              .at(0)
-                              .toElement()
-                              .elementsByTagName("name")
-                              .at(0)
-                              .toElement()
-                              .text());
+                    .at(0)
+                    .toElement()
+                    .elementsByTagName("name")
+                    .at(0)
+                    .toElement()
+                    .text());
         }
         if (!artist.isEmpty()) {
             album.setArtist(artist);

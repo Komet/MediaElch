@@ -323,7 +323,7 @@ int MovieModel::mediaStatusToColumn(MediaStatusColumn column)
 MediaStatusColumn MovieModel::columnToMediaStatus(int column)
 {
     for (int i = static_cast<int>(MediaStatusColumn::First), n = static_cast<int>(MediaStatusColumn::Last); i <= n;
-         ++i) {
+        ++i) {
         if (MovieModel::mediaStatusToColumn(static_cast<MediaStatusColumn>(i)) == column) {
             return static_cast<MediaStatusColumn>(i);
         }

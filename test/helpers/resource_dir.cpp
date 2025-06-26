@@ -24,14 +24,14 @@ void setResourceDir(QDir dir)
     const bool success = dir.makeAbsolute();
     if (!success || !dir.exists()) {
         throw std::runtime_error(QStringLiteral("Resource directory '%1' does not exist!") //
-                                     .arg(dir.absolutePath())
-                                     .toStdString());
+                .arg(dir.absolutePath())
+                .toStdString());
     }
 
     if (!dir.isReadable()) {
         throw std::runtime_error(QStringLiteral("Resource directory '%1' is not readable!") //
-                                     .arg(dir.absolutePath())
-                                     .toStdString());
+                .arg(dir.absolutePath())
+                .toStdString());
     }
 
     s_resourceDir = std::move(dir);
@@ -79,8 +79,8 @@ void writeResourceFile(const QString& filename, const QString& content)
 
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
         throw std::runtime_error(QString("File '%1' can't be opened for writing! Does parent directory exist? Abort.")
-                                     .arg(filepath)
-                                     .toStdString());
+                .arg(filepath)
+                .toStdString());
     }
     file.write(content.toUtf8());
 
@@ -152,14 +152,14 @@ void setTempRootDir(QDir dir)
         const bool success = dir.mkpath(".") && dir.makeAbsolute();
         if (!success || !dir.exists()) {
             throw std::runtime_error(QStringLiteral("Temporary directory '%1' does not exist and could not be created!")
-                                         .arg(dir.absolutePath())
-                                         .toStdString());
+                    .arg(dir.absolutePath())
+                    .toStdString());
         }
     }
     if (!dir.isReadable()) {
         throw std::runtime_error(QStringLiteral("Temporary directory '%1' is not readable!") //
-                                     .arg(dir.absolutePath())
-                                     .toStdString());
+                .arg(dir.absolutePath())
+                .toStdString());
     }
     s_tempDir = std::move(dir);
 }

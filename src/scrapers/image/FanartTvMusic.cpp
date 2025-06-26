@@ -70,7 +70,7 @@ void FanartTvMusic::searchArtist(QString searchStr, int limit)
 {
     Q_UNUSED(limit);
     QUrl url(QStringLiteral("https://www.musicbrainz.org/ws/2/artist/?query=artist:%1")
-                 .arg(QString(QUrl::toPercentEncoding(searchStr))));
+            .arg(QString(QUrl::toPercentEncoding(searchStr))));
     QNetworkRequest request = mediaelch::network::requestWithDefaults(url);
 
     QNetworkReply* reply = network()->getWithWatcher(request);

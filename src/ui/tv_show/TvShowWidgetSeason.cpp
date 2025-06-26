@@ -154,9 +154,9 @@ void TvShowWidgetSeason::updateImages(QSet<ImageType> images)
         if (!m_show->seasonImage(m_season, imageType).isNull()) {
             image->setImage(m_show->seasonImage(m_season, imageType));
         } else if (!Manager::instance()
-                        ->mediaCenterInterfaceTvShow()
-                        ->imageFileName(m_show, imageType, m_season)
-                        .isEmpty()
+                       ->mediaCenterInterfaceTvShow()
+                       ->imageFileName(m_show, imageType, m_season)
+                       .isEmpty()
                    && (!m_show->imagesToRemove().contains(imageType)
                        || !m_show->imagesToRemove().value(imageType).contains(m_season))) {
             image->setImageFromPath(mediaelch::FilePath{

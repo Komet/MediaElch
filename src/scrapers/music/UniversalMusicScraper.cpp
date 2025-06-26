@@ -344,7 +344,7 @@ void UniversalAlbumScrapeJob::doStart()
         appendDownloadElement("theaudiodb",
             "tadb_data",
             QUrl(QStringLiteral("https://www.theaudiodb.com/api/v1/json/%1/album-mb.php?i=%2")
-                     .arg(m_scraper.m_tadbApiKey, album().mbReleaseGroupId().toString())));
+                    .arg(m_scraper.m_tadbApiKey, album().mbReleaseGroupId().toString())));
 
         const auto& amId = album().allMusicId();
         if (amId.isValid()) {
