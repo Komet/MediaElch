@@ -193,7 +193,7 @@ void DownloadManager::startNextDownload()
         } else if (download.imageType == ImageType::TvShowEpisodeThumb && !download.directDownload) {
             download.episode->setThumbnailImage(data);
 
-        } else {
+        } else { // TODO: Why the "else"?
             emit sigDownloadFinished(download);
         }
         startNextDownload();
@@ -285,7 +285,7 @@ void DownloadManager::downloadFinished()
     } else if (downloadElelement.imageType == ImageType::TvShowEpisodeThumb && !downloadElelement.directDownload) {
         downloadElelement.episode->setThumbnailImage(data);
 
-    } else {
+    } else { // TODO: Why the "else"?
         emit sigDownloadFinished(downloadElelement);
     }
 

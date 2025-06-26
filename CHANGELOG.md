@@ -17,6 +17,8 @@
   - If a scraper returns an error, in some cases the search bar remained stuck.
   - A quick-open menu for concerts was added, similar to movies.
     Open it by clicking <kbd>Ctrl+O</kbd> (<kbd>⌘+O</kbd> on macOS)
+  - After scraping a single episode, the UI did not allow saving.
+    You had to select another episode again (#1896)
 - HotMovies/AdultDvdEmpire: Search works again (#1811)
 - IMDb: Writers/Directors are scraped again for TV show episodes (#1832)
 - TMDB: If there is an unknown season, and you want to load _all_ episodes, MediaElch

@@ -45,6 +45,7 @@ private slots:
     void onDeleteThumbnail();
     void onImageDropped(ImageType imageType, QUrl imageUrl);
     void onPosterDownloadFinished(DownloadManagerElement elem);
+    void onAllPosterDownloadFinished();
     void onLoadDone(QSet<EpisodeScraperInfo> details);
     void onRevertChanges();
     void onCaptureImage(ImageType type);

@@ -76,6 +76,11 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget* parent) :
         this,
         &TvShowWidgetEpisode::onPosterDownloadFinished,
         static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
+    connect(m_imageDownloadManager,
+        &DownloadManager::allDownloadsFinished,
+        this,
+        &TvShowWidgetEpisode::onAllPosterDownloadFinished,
+        static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
     connect(ui->buttonRevert, &QAbstractButton::clicked, this, &TvShowWidgetEpisode::onRevertChanges);
     connect(ui->buttonPlay, &QAbstractButton::clicked, this, &TvShowWidgetEpisode::onPlayEpisode);
     connect(
@@ -849,11 +854,14 @@ void TvShowWidgetEpisode::onPosterDownloadFinished(DownloadManagerElement elem)
             Manager::instance()->mediaCenterInterface()->imageFileName(elem.episode, ImageType::TvShowEpisodeThumb)));
         elem.episode->setThumbnailImage(elem.data);
     }
-    if (m_imageDownloadManager->downloadQueueSize() == 0) {
-        emit sigSetActionSaveEnabled(true, MainWidgets::TvShows);
-        emit sigSetActionSearchEnabled(true, MainWidgets::TvShows);
-    }
 }
+
+void TvShowWidgetEpisode::onAllPosterDownloadFinished()
+{
+    emit sigSetActionSaveEnabled(true, MainWidgets::TvShows);
+    emit sigSetActionSearchEnabled(true, MainWidgets::TvShows);
+}
+
 
 /**
  * \brief Adds a director
