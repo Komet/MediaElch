@@ -1,5 +1,7 @@
 FROM debian:bullseye
 
+ENV TZ=Europe/London
+
 # Docker Image for building MediaElch using MXE
 #   MXE:       https://github.com/mxe/mxe/
 #   MediaElch: https://mediaelch.github.io/mediaelch-doc/
@@ -20,6 +22,7 @@ RUN apt-get update && apt-get upgrade -y && \
         bash \
         bison \
         bzip2 \
+        curl \
         flex \
         g++ \
         g++-multilib \
@@ -46,7 +49,9 @@ RUN apt-get update && apt-get upgrade -y && \
         sed \
         unzip \
         wget \
-        xz-utils && \
+        xz-utils \
+        libgl-dev \
+        gtk-doc-tools && \
     apt-get install -y --no-install-recommends \
         zip openssl openssh-client && \
     apt-get autoremove -y && \
@@ -56,6 +61,18 @@ RUN apt-get update && apt-get upgrade -y && \
 RUN mkdir /build
 WORKDIR /build
 RUN git clone --depth=1 https://github.com/mxe/mxe.git
+
+# Install a more recent version of autoconf, required by fontconfig
+RUN cd /build && mkdir autoconf-build && cd autoconf-build \
+    && curl --output autoconf-2.72.tar.xz https://ftp.halifax.rwth-aachen.de/gnu/autoconf/autoconf-2.72.tar.xz \
+    && tar -xvf autoconf-2.72.tar.xz \
+    && cd autoconf-2.72 \
+    && ./configure \
+    && make install \
+    && export PATH="/usr/local/bin/:$PATH"
+
+# Enhance path
+ENV PATH /build/mxe/usr/bin:$PATH
 
 # Build cross environment
 #   We build Compilers and some other libraries that are required for Qt.
@@ -71,9 +88,9 @@ RUN git clone --depth=1 https://github.com/mxe/mxe.git
 #     ./.git 27 MB
 #     ./.ccache 1.56 GB
 #
-RUN cd mxe && make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 2 JOBS=4 cc zlib gnutls \
+RUN cd /build/mxe && make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 4 JOBS=4 cc zlib gnutls \
            && make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 1 JOBS=1 boost \
-           && make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 2 JOBS=4 mesa cmake \
+           && make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 2 JOBS=4 mesa cmake fontconfig \
            && make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 1 JOBS=1 qtbase \
            && make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 2 JOBS=4 qttools \
                  qtimageformats \

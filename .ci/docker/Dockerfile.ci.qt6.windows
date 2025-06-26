@@ -22,6 +22,7 @@ RUN apt-get update && apt-get upgrade -y && \
         bash \
         bison \
         bzip2 \
+        curl \
         flex \
         g++ \
         g++-multilib \
@@ -61,10 +62,19 @@ RUN mkdir /build
 WORKDIR /build
 RUN git clone --depth=1 https://github.com/mxe/mxe.git
 
+# Install a more recent version of autoconf, required by fontconfig
+RUN cd /build && mkdir autoconf-build && cd autoconf-build \
+    && curl --output autoconf-2.72.tar.xz https://ftp.halifax.rwth-aachen.de/gnu/autoconf/autoconf-2.72.tar.xz \
+    && tar -xvf autoconf-2.72.tar.xz \
+    && cd autoconf-2.72 \
+    && ./configure \
+    && make install \
+    && export PATH="/usr/local/bin/:$PATH"
+
 # Build cross environment
 #   We build Compilers and some other libraries that are required for Qt.
 #   Note: On my system, I occasionally run into internal compiler bugs.
-#         The workaround was to build "boost" and "qtbase" in a single thread.
+#         The workaround was to build "boost" in a single thread.
 #
 # Cleanup
 #   We remove some directories and run MXE's cleanup task.
@@ -75,18 +85,19 @@ RUN git clone --depth=1 https://github.com/mxe/mxe.git
 #     ./.git 27 MB
 #     ./.ccache 1.56 GB
 #
-RUN cd mxe && make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 2 JOBS=4 cc zlib gnutls \
-           && make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 1 JOBS=1 boost \
-           && make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 2 JOBS=4 mesa cmake \
-           && make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 2 JOBS=4 qt6-qtbase \
+RUN cd /build/mxe && make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 4 JOBS=4 cc \
+           && make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 4 JOBS=4 zlib gnutls \
+           && make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 2 JOBS=2 boost \
+           && make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 4 JOBS=4 mesa cmake fontconfig \
+           && make MXE_TARGETS='x86_64-w64-mingw32.shared' --jobs 4 JOBS=4 qt6-qtbase \
                  qt6-qttools \
                  qt6-qtimageformats \
                  qt6-qtmultimedia \
                  qt6-qttranslations \
                  qt6-qtsvg \
                  qt6-qt5compat \
-            && make clean-junk \
-            && rm -rf /build/mxe/src /build/mxe/log /build/mxe/pkg /build/mxe/.git /build/mxe/.ccache
+           && make clean-junk \
+           && rm -rf /build/mxe/src /build/mxe/log /build/mxe/pkg /build/mxe/.git /build/mxe/.ccache
 
 # Enhance path
 ENV PATH /build/mxe/usr/bin:$PATH
