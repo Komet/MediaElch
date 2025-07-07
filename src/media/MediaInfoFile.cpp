@@ -122,19 +122,33 @@ QString MediaInfoFile::hdrType(int streamIndex) const
 {
     // See https://en.wikipedia.org/wiki/High-dynamic-range_television for values.
     // We map them to https://kodi.wiki/view/NFO_files/Movies -> `<hdrtype>`
-    const QString scanType = getVideo(streamIndex, "HDR_Format_Compatibility").toLower();
+    // See discussion https://github.com/Komet/MediaElch/issues/1883#issuecomment-3012619101
 
-    if (scanType.contains("hdr10")) {
-        return "hdr10";
-    }
-    if (scanType.contains("dolby")) {
+    const QString hdrFormat = getVideo(streamIndex, "HDR_Format").toLower();
+    if (hdrFormat.contains("dolby vision")) {
         return "dolbyvision";
     }
-    if (scanType.contains("hlg")) {
+    if (hdrFormat.contains("smpte st")) {
+        return "hdr10";
+    }
+
+    const QString transferCharacteristics = getVideo(streamIndex, "transfer_characteristics").toLower();
+    if (transferCharacteristics.contains("hlg")) {
         return "hlg";
     }
 
-    return scanType.toLower();
+    const QString hdrFormatComp = getVideo(streamIndex, "HDR_Format_Compatibility").toLower();
+    if (hdrFormatComp.contains("hdr10")) {
+        return "hdr10";
+    }
+    if (hdrFormatComp.contains("dolby")) {
+        return "dolbyvision";
+    }
+    if (hdrFormatComp.contains("hlg")) {
+        return "hlg";
+    }
+
+    return hdrFormatComp.toLower();
 }
 
 QString MediaInfoFile::stereoFormat(int streamIndex) const
