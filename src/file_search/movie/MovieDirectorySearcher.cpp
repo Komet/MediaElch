@@ -6,6 +6,7 @@
 #include "globals/MediaDirectory.h"
 #include "log/Log.h"
 #include "media/FilenameUtils.h"
+#include "settings/Settings.h"
 
 
 #include <QMutexLocker>
@@ -283,8 +284,27 @@ void MovieDiskLoader::createMovie(QStringList files)
         movie->controller()->loadData(Manager::instance()->mediaCenterInterface());
         if (discType == DiscType::Single) {
             QFileInfo mFi(files.first());
+
+            // Get subtitle filters from AdvancedSettings
+            const mediaelch::FileFilter& subtitleFilters = Settings::instance()->advanced()->subtitleFilters();
+
+            // Build list of subtitle extensions from the filters
+            QStringList subtitleExtensions;
+            for (const QString& filter : subtitleFilters.fileGlob) {
+                if (filter.startsWith("*.")) {
+                    subtitleExtensions << filter.mid(2); // Remove "*."
+                }
+            }
+
+            // Create a filter string for QDir
+            QStringList subtitleGlobs;
+            for (const QString& ext : subtitleExtensions) {
+                subtitleGlobs << mFi.completeBaseName() + "*." + ext;
+            }
+
             const QList<QFileInfo> subFiles = mFi.dir().entryInfoList(
-                QStringList{"*.sub", "*.srt", "*.smi", "*.ssa"}, QDir::Files | QDir::NoDotAndDotDot);
+                subtitleGlobs, QDir::Files | QDir::NoDotAndDotDot);
+
             for (const QFileInfo& subFi : subFiles) {
                 QString subFileName = subFi.fileName().mid(mFi.completeBaseName().length() + 1);
                 QStringList parts = subFileName.split(QRegularExpression(R"(\s+|\-+|\.+)"));
@@ -294,6 +314,7 @@ void MovieDiskLoader::createMovie(QStringList files)
                 parts.takeLast();
 
                 QStringList subSubFiles = QStringList() << subFi.fileName();
+                // Special handling for .sub/.idx pairs
                 if (QString::compare(subFi.suffix(), "sub", Qt::CaseInsensitive) == 0) {
                     QFileInfo subIdxFi(subFi.absolutePath() + "/" + subFi.completeBaseName() + ".idx");
                     if (subIdxFi.exists()) {
