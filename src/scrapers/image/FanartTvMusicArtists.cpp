@@ -182,7 +182,7 @@ QVector<Poster> FanartTvMusicArtists::parseData(QString json, ImageType type)
             }();
 
             b.language = poster.value("lang").toString();
-            FanartTv::insertPoster(posters, b, m_meta.defaultLocale.toString(), m_settings.preferredDiscType());
+            FanartTv::insertPoster(posters, b, m_meta.languagePriority, m_settings.preferredDiscType());
         }
     }
 

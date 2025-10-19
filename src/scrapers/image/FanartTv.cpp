@@ -52,6 +52,8 @@ FanartTv::FanartTv(FanartTvConfiguration& settings, QObject* parent) : ImageProv
     m_meta.supportedLanguages = FanartTvConfiguration::supportedLanguages();
     m_meta.defaultLocale = FanartTvConfiguration::defaultLocale();
 
+    m_meta.languagePriority = QVector<QString>({settings.language().language(), FanartTvConfiguration::defaultLocale().language()});
+
     m_apiKey = "842f7a5d1cc7396f142b8dd47c4ba42b";
     m_tmdbConfig = std::make_unique<mediaelch::scraper::TmdbMovieConfiguration>(*Settings::instance());
     m_tmdb = new TmdbMovie(*m_tmdbConfig, this);
@@ -408,7 +410,7 @@ QVector<Poster> FanartTv::parseMovieData(QString json, ImageType type)
             }();
 
             b.language = poster.value("lang").toString();
-            insertPoster(posters, b, m_meta.defaultLocale.toString(), m_settings.preferredDiscType());
+            insertPoster(posters, b, m_meta.languagePriority, m_settings.preferredDiscType());
         }
     }
 
@@ -710,39 +712,63 @@ QVector<Poster> FanartTv::parseTvShowData(QString json, ImageType type, SeasonNu
                 return QStringLiteral("");
             }();
             b.language = poster.value("lang").toString();
-            insertPoster(posters, b, m_meta.defaultLocale.toString(), m_settings.preferredDiscType());
+            insertPoster(posters, b, m_meta.languagePriority, m_settings.preferredDiscType());
         }
     }
 
     return posters;
 }
 
-void FanartTv::insertPoster(QVector<Poster>& posters, Poster b, QString language, QString preferredDiscType)
+void FanartTv::insertPoster(QVector<Poster>& posters, const Poster& b, const QVector<QString>& languagePriority, const QString& preferredDiscType)
 {
-    int lastInPreferredLangAndHd = -1;
-    int lastInPreferredLang = -1;
-    int lastHd = -1;
+    struct InsertionPoints {
+        int lastInLangAndHd = -1;
+        int lastInLang = -1;
+    };
 
-    for (int i = 0, n = qsizetype_to_int(posters.count()); i < n; ++i) {
-        if (posters[i].language == language && (posters[i].hint == "HD" || posters[i].hint == preferredDiscType)) {
-            lastInPreferredLangAndHd = i;
-        }
-        if (posters[i].language == language || posters[i].language.isEmpty()) {
-            // if "language" is empty then the poster is language-agnostic
-            lastInPreferredLang = i;
-        }
-        if (posters[i].hint == "HD" || posters[i].hint == preferredDiscType) {
+    QHash<QString, InsertionPoints> langMap;
+    langMap.reserve(languagePriority.size());
+
+    int lastHd = -1;
+    const int n = posters.size();
+
+    for (int i = 0; i < n; ++i) {
+        const Poster& p = posters.at(i);
+
+        const bool isHdOrPreferred = (p.hint == QLatin1String("HD") || p.hint == preferredDiscType);
+        if (isHdOrPreferred)
             lastHd = i;
+
+        for (const QString& lang : languagePriority) {
+            if (p.language == lang) {
+                InsertionPoints &pts = langMap[lang];
+                pts.lastInLang = i;
+                if (isHdOrPreferred)
+                    pts.lastInLangAndHd = i;
+            } else if (p.language.isEmpty()) {
+                InsertionPoints &pts = langMap[lang];
+                pts.lastInLang = i;
+            }
         }
     }
 
-    if (b.language == language && (b.hint == "HD" || b.hint == preferredDiscType)) {
-        // lastInPreferredLangAndHd < n
-        posters.insert(lastInPreferredLangAndHd + 1, b);
-    } else if (b.language == language) {
-        posters.insert(lastInPreferredLang + 1, b);
-    } else if (b.hint == "HD" || b.hint == preferredDiscType) {
-        // lastHd < n
+    const bool bIsHdOrPreferred = (b.hint == QLatin1String("HD") || b.hint == preferredDiscType);
+
+    // Insert according to priority
+    for (const QString& lang : languagePriority) {
+        const InsertionPoints pts = langMap.value(lang);
+        if (b.language == lang && bIsHdOrPreferred) {
+            posters.insert(pts.lastInLangAndHd + 1, b);
+            return;
+        }
+        if (b.language == lang) {
+            posters.insert(pts.lastInLang + 1, b);
+            return;
+        }
+    }
+
+    // Fallback to HD/disc placement or append
+    if (bIsHdOrPreferred) {
         posters.insert(lastHd + 1, b);
     } else {
         posters.append(b);

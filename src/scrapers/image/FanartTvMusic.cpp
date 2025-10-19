@@ -312,7 +312,7 @@ QVector<Poster> FanartTvMusic::parseData(QString json, ImageType type) const
                 return QStringLiteral("");
             }();
             b.language = val.value("lang").toString();
-            FanartTv::insertPoster(posters, b, m_meta.defaultLocale.toString(), "");
+            FanartTv::insertPoster(posters, b, m_meta.languagePriority, "");
         }
     }
 

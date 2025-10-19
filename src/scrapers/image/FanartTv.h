@@ -76,7 +76,7 @@ public:
     void albumImages(Album* album, MusicBrainzId mbId, QSet<ImageType> types) override;
     void albumBooklets(MusicBrainzId mbId) override;
 
-    static void insertPoster(QVector<Poster>& posters, Poster b, QString language, QString preferredDiscType);
+    static void insertPoster(QVector<Poster>& posters, const Poster& b, const QVector<QString>& languagePriority, const QString& preferredDiscType);
 
 public slots:
     void searchMovie(QString searchStr, int limit = 0) override;
