@@ -1223,7 +1223,16 @@ void KodiXml::saveMovieSetPoster(QString setName, QImage poster)
     for (DataFile dataFile : Settings::instance()->dataFiles(DataFileType::MovieSetPoster)) {
         QString fileName = movieSetFileName(setName, &dataFile);
         if (!fileName.isEmpty()) {
-            poster.save(fileName, "jpg", 100);
+            QDir dir = QFileInfo(fileName).dir();
+            bool success = false;
+
+            if (!dir.exists()){
+                success = dir.mkpath(".");
+            }
+
+            if (success){
+                poster.save(fileName, "jpg", 100);
+            }
         }
     }
 }
@@ -1308,7 +1317,7 @@ QString KodiXml::movieSetFileName(QString setName, DataFile* dataFile)
     if (Settings::instance()->movieSetArtworkType() == MovieSetArtworkType::SeparateArtworkFolder) {
         QDir dir = Settings::instance()->movieSetArtworkDirectory().dir();
         QString fileName = dataFile->saveFileName(setName);
-        return dir.absolutePath() + "/" + fileName;
+        return dir.absolutePath() + "/" + setName + "/" + fileName;
     }
     if (Settings::instance()->movieSetArtworkType() == MovieSetArtworkType::ArtworkNextToMovies) {
         for (Movie* movie : Manager::instance()->movieModel()->movies()) {
