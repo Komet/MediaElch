@@ -35,14 +35,10 @@ private:
     void parseAndStoreActors(const QJsonDocument& json);
     void parseAndAssignDirectors(const QJsonDocument& json);
     void parseAndAssignWriters(const QJsonDocument& json);
-    void parseAndAssignTags(const QJsonDocument& json);
 
-    void parseAndAssignInfos(const QString& html);
-    void parseAndAssignPoster(const QString& html);
-    void parseAndStoreActors(const QString& html);
     void parseAndAssignTags(const QString& html);
 
-    QString sanitizeAmazonMediaUrl(QString url);
+    static QString sanitizeAmazonMediaUrl(QString url);
 
     void decreaseDownloadCount();
 

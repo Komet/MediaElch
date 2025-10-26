@@ -7,7 +7,7 @@ wikidataId:
 mediaCenterId: -1
 title: Pacific Rim
 sortTitle: 
-originalTitle: 
+originalTitle: Pacific Rim
 overview:
     When monstrous creatures, known as Kaiju, started rising from the sea, a war beg
     an that would take millions of lives and consume humanity's resources for years 
@@ -28,11 +28,11 @@ ratings (N=1)
   source=imdb | rating=6.8 | votes=500000 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
-released: 2013-07-18
+released: 2013-07-12
 runtime: 131min
-writer: Travis Beacham, Guillermo del Toro, Travis Beacham
+writer: Travis Beacham, Guillermo del Toro
 director: Guillermo del Toro
-actors: (N>90)
+actors: (N>5)
  - id: 
    name: Charlie Hunnam
    role: Raleigh Becket
@@ -77,21 +77,21 @@ actors: (N>90)
    name: Burn Gorman
    role: Gottlieb
    thumb:
-    https://m.media-amazon.com/images/M/MV5BNzU4ZTJmZGUtMDAxZS00Y2FkLWFkYTQtZjZhY2Uz
-    MzgyZTMwXkEyXkFqcGc@.jpg
+    https://m.media-amazon.com/images/M/MV5BOGE5NDcxNzYtYjc0Mi00MTIzLTgxNjctNjEwM2Zm
+    ZjU3ZmQ3XkEyXkFqcGc@.jpg
    order: 5
    imageHasChanged: false
  - id: 
    name: Max Martini
    role: Herc Hansen
    thumb:
-    https://m.media-amazon.com/images/M/MV5BZmM5M2I2YTUtNGY5ZS00ZjA1LWEyODYtYjViY2Uz
-    ZTMyMjAzXkEyXkFqcGc@.jpg
+    https://m.media-amazon.com/images/M/MV5BNzBkNDI5MDUtZDljYy00YTc4LWE0OTMtZDkzYzMz
+    ZWYwYWMzXkEyXkFqcGc@.jpg
    order: 6
    imageHasChanged: false
  - id: 
    name: Robert Kazinsky
-   role: Chuck Hansen (as Rob Kazinsky)
+   role: Chuck Hansen
    thumb:
     https://m.media-amazon.com/images/M/MV5BMjA2NDM1MDY0Ml5BMl5BanBnXkFtZTgwMTc3Mzc1
     NzM@.jpg
@@ -200,14 +200,13 @@ genres: (N<6)
   - Adventure
   - Sci-Fi
 tags: (N<6)
-  - lovecraftian
-  - tank-top
-  - pregnancy
-  - time-bomb
-  - sleeping-shirtless
-countries: (N<6)
-  - United States
-  - Mexico
+  - kaiju
+  - human piloted robot
+  - ocean
+  - apocalypse
+  - human versus monster
+countries: (N=1)
+  - US
 studios: (N<6)
   - Warner Bros.
   - Legendary Entertainment

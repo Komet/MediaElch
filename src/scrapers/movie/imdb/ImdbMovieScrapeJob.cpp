@@ -37,6 +37,7 @@ const QVector<QString> IMDB_JSON_PATH_POSTER_URL       = { "props", "pageProps",
 const QVector<QString> IMDB_JSON_PATH_TRAILER_URL      = { "props", "pageProps", "aboveTheFoldData", "primaryVideos", "edges", "0", "node", "playbackURLs", "0", "url" };
 
 // Cast / Actors / Directors
+// TODO: Scrape more actors from reference page
 const QVector<QString> IMDB_JSON_PATH_CREDIT_GROUPING = { "props", "pageProps", "mainColumnData", "creditGroupings", "edges" };
 const QVector<QString> IMDB_JSON_PATH_CAST_NAME       = { "node", "name", "nameText", "text" };
 const QVector<QString> IMDB_JSON_PATH_CAST_URL        = { "node", "name", "primaryImage", "url" };
@@ -420,125 +421,8 @@ void ImdbMovieScrapeJob::parseAndStoreActors(const QJsonDocument& json)
     }
 }
 
-void ImdbMovieScrapeJob::parseAndAssignTags(const QJsonDocument& json)
-{
-}
 
-void ImdbMovieScrapeJob::parseAndAssignInfos(const QString& html)
-{
-    using namespace std::chrono;
-
-    QRegularExpression rx;
-    rx.setPatternOptions(QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
-    QRegularExpressionMatch match;
-
-    const QString title = ImdbReferencePage::extractTitle(html);
-    if (!title.isEmpty()) {
-        m_movie->setTitle(title);
-    }
-    const QString originalTitle = ImdbReferencePage::extractOriginalTitle(html);
-    if (!originalTitle.isEmpty()) {
-        m_movie->setOriginalTitle(originalTitle);
-    }
-
-    ImdbReferencePage::extractDirectors(m_movie, html);
-    ImdbReferencePage::extractWriters(m_movie, html);
-    ImdbReferencePage::extractGenres(m_movie, html);
-    ImdbReferencePage::extractTaglines(m_movie, html);
-
-    if (!m_loadAllTags) {
-        ImdbReferencePage::extractTags(m_movie, html);
-    }
-
-    QDate date = ImdbReferencePage::extractReleaseDate(html);
-    if (date.isValid()) {
-        m_movie->setReleased(date);
-    }
-
-    ImdbReferencePage::extractCertification(m_movie, html);
-
-    rx.setPattern(R"re(Runtime</td>.*<li class="ipl-inline-list__item">\n\s+(\d+) min)re");
-    match = rx.match(html);
-
-    if (match.hasMatch()) {
-        minutes runtime = minutes(match.captured(1).toInt());
-        m_movie->setRuntime(runtime);
-    }
-
-    rx.setPattern(R"(<h4 class="inline">Runtime:</h4>[^<]*<time datetime="PT([0-9]+)M">)");
-    match = rx.match(html);
-    if (match.hasMatch()) {
-        m_movie->setRuntime(minutes(match.captured(1).toInt()));
-    }
-
-    ImdbReferencePage::extractOverview(m_movie, html);
-    ImdbReferencePage::extractRating(m_movie, html);
-    ImdbReferencePage::extractStudios(m_movie, html);
-    ImdbReferencePage::extractCountries(m_movie, html);
-}
-
-void ImdbMovieScrapeJob::parseAndStoreActors(const QString& html)
-{
-    QRegularExpression rx(R"(<table class="cast_list">(.*)</table>)",
-        QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
-    QRegularExpressionMatch match = rx.match(html);
-    if (!match.hasMatch()) {
-        return;
-    }
-
-    const QString content = match.captured(1);
-    rx.setPattern(R"(<tr class="[^"]*">(.*)</tr>)");
-
-    QRegularExpressionMatchIterator actorRowsMatch = rx.globalMatch(content);
-
-    while (actorRowsMatch.hasNext()) {
-        QString actorHtml = actorRowsMatch.next().captured(1);
-
-        QPair<Actor, QUrl> actorUrl;
-
-        // Name
-        rx.setPattern(R"re(<span class="itemprop" itemprop="name">([^<]+)</span>)re");
-        match = rx.match(actorHtml);
-        if (match.hasMatch()) {
-            actorUrl.first.name = match.captured(1).trimmed();
-        }
-
-        // URL
-        rx.setPattern(R"re(<a href="(/name/[^"]+)")re");
-        match = rx.match(actorHtml);
-        if (match.hasMatch()) {
-            actorUrl.second = QUrl("https://www.imdb.com" + match.captured(1));
-        }
-
-        // Character
-        rx.setPattern(R"(<td class="character">(.*)</td>)");
-        match = rx.match(actorHtml);
-        if (match.hasMatch()) {
-            QString role = match.captured(1);
-            // Everything between <div> and </div>
-            rx.setPattern(R"(>(.*)</)");
-            match = rx.match(role);
-            if (match.hasMatch()) {
-                role = match.captured(1);
-            }
-            actorUrl.first.role = role.remove("(voice)")
-                                      .trimmed() //
-                                      .replace(QRegularExpression("\\s\\s+"), " ")
-                                      .trimmed();
-        }
-
-        rx.setPattern(R"re(loadlate="([^"]+)")re");
-        match = rx.match(actorHtml);
-        if (match.hasMatch()) {
-            actorUrl.first.thumb = sanitizeAmazonMediaUrl(match.captured(1));
-        }
-
-        m_movie->addActor(actorUrl.first);
-    }
-}
-
-void ImdbMovieScrapeJob::parseAndAssignTags(const QString& html)
-{
+void ImdbMovieScrapeJob::parseAndAssignTags(const QString& html) {
     QRegularExpression rx;
     rx.setPatternOptions(QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
     if (m_loadAllTags) {
@@ -550,25 +434,6 @@ void ImdbMovieScrapeJob::parseAndAssignTags(const QString& html)
     QRegularExpressionMatchIterator match = rx.globalMatch(html);
     while (match.hasNext()) {
         m_movie->addTag(match.next().captured(1).trimmed());
-    }
-}
-
-void ImdbMovieScrapeJob::parseAndAssignPoster(const QString& html)
-{
-    QString regex = QStringLiteral(R"url(<meta property='og:image' content="([^"]+)")url");
-    QRegularExpression rx(regex, QRegularExpression::InvertedGreedinessOption);
-
-    QRegularExpressionMatch match = rx.match(html);
-    if (match.hasMatch()) {
-        const QUrl url(sanitizeAmazonMediaUrl(match.captured(1)));
-        if (!url.isValid()) {
-            return;
-        }
-
-        Poster p;
-        p.thumbUrl = url;
-        p.originalUrl = url;
-        m_movie->images().addPoster(p);
     }
 }
 
