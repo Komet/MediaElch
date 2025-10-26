@@ -23,7 +23,7 @@ const QVector<QString> IMDB_JSON_PATH_OUTLINE        = { "props", "pageProps", "
 const QVector<QString> IMDB_JSON_PATH_DIRECTORS      = { "props", "pageProps", "mainColumnData", "directors" };
 const QVector<QString> IMDB_JSON_PATH_WRITERS        = { "props", "pageProps", "mainColumnData", "writers" };
 const QVector<QString> IMDB_JSON_PATH_CREW           = { "props", "pageProps", "mainColumnData", "crewV2" };
-const QVector<QString> IMDB_JSON_PATH_RELEASE_DATE   = { "props", "pageProps", "aboveTheFoldData", "releaseDate" };
+const QVector<QString> IMDB_JSON_PATH_RELEASE_DATE   = { "props", "pageProps", "mainColumnData", "releaseDate" };
 const QVector<QString> IMDB_JSON_PATH_RUNTIME        = { "props", "pageProps", "aboveTheFoldData", "runtime", "seconds" };
 const QVector<QString> IMDB_JSON_PATH_RATING         = { "props", "pageProps", "aboveTheFoldData", "ratingsSummary", "aggregateRating" };
 const QVector<QString> IMDB_JSON_PATH_VOTE_COUNT     = { "props", "pageProps", "aboveTheFoldData", "ratingsSummary", "voteCount" };
@@ -212,6 +212,20 @@ void ImdbMovieScrapeJob::parseAndAssignInfos(const QJsonDocument& json)
     value = followJsonPath(json, IMDB_JSON_PATH_TAGLINE);
     if (value.isString()) {
         m_movie->setTagline(removeHtmlEntities(value.toString().trimmed()));
+    }
+
+    value = followJsonPath(json, IMDB_JSON_PATH_RELEASE_DATE);
+    if (value.isObject()) {
+        QJsonObject releaseDateObj = value.toObject();
+        int day = releaseDateObj.value("day").toInt(-1);
+        int month = releaseDateObj.value("month").toInt(-1);
+        int year = releaseDateObj.value("year").toInt(-1);
+        if (day > -1 && month > -1 && year > -1) {
+            QDate date(year, month, day);
+            if (date.isValid()) {
+                m_movie->setReleased(date);
+            }
+        }
     }
 
     value = followJsonPath(json, IMDB_JSON_PATH_TAGS);
