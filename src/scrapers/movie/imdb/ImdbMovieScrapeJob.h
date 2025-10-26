@@ -4,6 +4,12 @@
 
 #include "data/Actor.h"
 
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonValue>
+#include <QString>
+#include <QVector>
+
 namespace mediaelch {
 namespace scraper {
 
@@ -21,10 +27,20 @@ public:
 private:
     void loadTags();
 
+    QJsonDocument extractJsonFromHtml(const QString& html);
+    QStringList valueToJsonStringArray(const QJsonArray& json);
+    QJsonValue followJsonPath(const QJsonDocument& json, const QVector<QString>& paths);
+    QJsonValue followJsonPath(const QJsonObject& json, const QVector<QString>& paths);
+
+    void parseAndAssignInfos(const QJsonDocument& json);
+    void parseAndAssignPoster(const QJsonDocument& json);
+    void parseAndStoreActors(const QJsonDocument& json);
+    void parseAndAssignTags(const QJsonDocument& json);
     void parseAndAssignInfos(const QString& html);
     void parseAndAssignPoster(const QString& html);
     void parseAndStoreActors(const QString& html);
     void parseAndAssignTags(const QString& html);
+
     QString sanitizeAmazonMediaUrl(QString url);
 
     void decreaseDownloadCount();
@@ -36,7 +52,6 @@ private: // config
 
 private: // initialized during scraping
     int m_itemsLeftToDownloads = 0;
-    QVector<QPair<Actor, QUrl>> m_actorUrls;
 };
 
 } // namespace scraper

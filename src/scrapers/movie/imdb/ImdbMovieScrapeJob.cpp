@@ -7,7 +7,41 @@
 #include "scrapers/imdb/ImdbReferencePage.h"
 #include "scrapers/movie/imdb/ImdbMovie.h"
 
+#include <QJsonObject>
 #include <QRegularExpression>
+
+#include "scrapers/ScraperUtils.h"
+
+namespace {
+
+// clang-format off
+const QVector<QString> IMDB_JSON_PATH_ID             = { "props", "pageProps", "mainColumnData", "id" };
+const QVector<QString> IMDB_JSON_PATH_TITLE          = { "props", "pageProps", "mainColumnData", "titleText", "text" };
+const QVector<QString> IMDB_JSON_PATH_ORIGINAL_TITLE = { "props", "pageProps", "mainColumnData", "originalTitleText", "text" };
+const QVector<QString> IMDB_JSON_PATH_OVERVIEW       = { "props", "pageProps", "aboveTheFoldData", "creditGroupings", "summaries", "edges", "0", "node", "plotText", "plaidHtml" };
+const QVector<QString> IMDB_JSON_PATH_OUTLINE        = { "props", "pageProps", "mainColumnData", "plot", "plotText", "plainText" };
+const QVector<QString> IMDB_JSON_PATH_DIRECTORS      = { "props", "pageProps", "mainColumnData", "directors" };
+const QVector<QString> IMDB_JSON_PATH_WRITERS        = { "props", "pageProps", "mainColumnData", "writers" };
+const QVector<QString> IMDB_JSON_PATH_CREW           = { "props", "pageProps", "mainColumnData", "crewV2" };
+const QVector<QString> IMDB_JSON_PATH_RELEASE_DATE   = { "props", "pageProps", "aboveTheFoldData", "releaseDate" };
+const QVector<QString> IMDB_JSON_PATH_RUNTIME        = { "props", "pageProps", "aboveTheFoldData", "runtime", "seconds" };
+const QVector<QString> IMDB_JSON_PATH_RATING         = { "props", "pageProps", "aboveTheFoldData", "ratingsSummary", "aggregateRating" };
+const QVector<QString> IMDB_JSON_PATH_VOTE_COUNT     = { "props", "pageProps", "aboveTheFoldData", "ratingsSummary", "voteCount" };
+const QVector<QString> IMDB_JSON_PATH_GENRES         = { "props", "pageProps", "aboveTheFoldData", "genres", "genres" };
+const QVector<QString> IMDB_JSON_PATH_TAGLINE        = { "props", "pageProps", "mainColumnData", "taglines", "edges", "0", "node", "text" };
+const QVector<QString> IMDB_JSON_PATH_KEYWORDS       = { "props", "pageProps", "aboveTheFoldData", "keywords", "edges" };
+const QVector<QString> IMDB_JSON_PATH_POSTER         = { "props", "pageProps", "aboveTheFoldData", "primaryImage" };
+const QVector<QString> IMDB_JSON_PATH_TRAILER        = { "props", "pageProps", "aboveTheFoldData", "primaryVideos", "edges" };
+
+// Cast / Actors
+const QVector<QString> IMDB_JSON_PATH_CREDIT_GROUPING = { "props", "pageProps", "mainColumnData", "creditGroupings", "edges" };
+const QVector<QString> IMDB_JSON_PATH_CAST_NAME       = { "node", "name", "nameText", "text" };
+const QVector<QString> IMDB_JSON_PATH_CAST_URL        = { "node", "name", "primaryImage", "url" };
+const QVector<QString> IMDB_JSON_PATH_CAST_ROLE       = { "node", "creditedRoles", "edges",  "0", "node", "text" };
+
+// clang-format on
+
+} // namespace
 
 namespace mediaelch {
 namespace scraper {
@@ -35,9 +69,11 @@ void ImdbMovieScrapeJob::doStart()
             return;
         }
 
-        parseAndAssignInfos(html);
-        parseAndAssignPoster(html);
-        parseAndStoreActors(html);
+        QJsonDocument json = extractJsonFromHtml(html);
+
+        parseAndAssignInfos(json);
+        parseAndAssignPoster(json);
+        parseAndStoreActors(json);
 
         // How many pages do we have to download? Count them.
         m_itemsLeftToDownloads = 1;
@@ -65,6 +101,159 @@ void ImdbMovieScrapeJob::loadTags()
         decreaseDownloadCount();
     };
     m_api.loadTitle(config().locale, m_imdbId, ImdbApi::PageKind::Keywords, cb);
+}
+
+QJsonDocument ImdbMovieScrapeJob::extractJsonFromHtml(const QString& html)
+{
+    QRegularExpression rx(R"re(<script id="__NEXT_DATA__" type="application/json">(.*)</script>)re",
+        QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
+    QRegularExpressionMatch match = rx.match(html);
+    if (match.hasMatch()) {
+        return QJsonDocument::fromJson(match.captured(1).toUtf8());
+    }
+    return QJsonDocument{};
+}
+
+QJsonValue ImdbMovieScrapeJob::followJsonPath(const QJsonDocument& json, const QVector<QString>& paths)
+{
+    return followJsonPath(json.object(), paths);
+}
+
+QJsonValue ImdbMovieScrapeJob::followJsonPath(const QJsonObject& json, const QVector<QString>& paths)
+{
+    QJsonValue next = json;
+    QJsonObject obj;
+
+    for (const QString& path : paths) {
+        if (path == "0") { // special case for first entry of arrays
+            if (!next.isArray()) {
+                return QJsonValue::Null;
+            }
+            QJsonArray array = next.toArray();
+            if (array.isEmpty()) {
+                return QJsonValue::Null;
+            }
+            next = array.at(0);
+
+        } else {
+            if (!next.isObject()) {
+                return QJsonValue::Null;
+            }
+            obj = next.toObject();
+            if (!obj.contains(path)) {
+                return QJsonValue::Null;
+            }
+            next = obj.value(path);
+        }
+    }
+    return next;
+}
+
+QStringList ImdbMovieScrapeJob::valueToJsonStringArray(const QJsonArray& json)
+{
+    QStringList entries;
+    for (const auto& director : json) {
+        entries.append(removeHtmlEntities(director.toString()).trimmed());
+    }
+    return entries;
+}
+
+void ImdbMovieScrapeJob::parseAndAssignInfos(const QJsonDocument& json)
+{
+    using namespace std::chrono;
+
+    QJsonValue value;
+
+    value = followJsonPath(json, IMDB_JSON_PATH_ID);
+    if (value.isString()) {
+        QString id = value.toString();
+        m_movie->setImdbId(ImdbId(id));
+    }
+
+    value = followJsonPath(json, IMDB_JSON_PATH_TITLE);
+    if (value.isString()) {
+        m_movie->setTitle(value.toString().trimmed());
+    }
+
+    value = followJsonPath(json, IMDB_JSON_PATH_ORIGINAL_TITLE);
+    if (value.isString()) {
+        m_movie->setOriginalTitle(value.toString().trimmed());
+    }
+
+    value = followJsonPath(json, IMDB_JSON_PATH_OVERVIEW);
+    if (value.isString()) {
+        m_movie->setOverview(removeHtmlEntities(value.toString().trimmed()));
+    }
+
+    value = followJsonPath(json, IMDB_JSON_PATH_OUTLINE);
+    if (value.isString()) {
+        m_movie->setOutline(removeHtmlEntities(value.toString().trimmed()));
+    }
+
+    value = followJsonPath(json, IMDB_JSON_PATH_DIRECTORS);
+    if (value.isArray()) {
+        QStringList directors = valueToJsonStringArray(value.toArray());
+        m_movie->setDirector(directors.join(", "));
+    }
+
+    value = followJsonPath(json, IMDB_JSON_PATH_WRITERS);
+    if (value.isArray()) {
+        QStringList writers = valueToJsonStringArray(value.toArray());
+        m_movie->setWriter(writers.join(", "));
+    }
+
+    value = followJsonPath(json, IMDB_JSON_PATH_GENRES);
+    if (value.isArray()) {
+        QStringList genres = valueToJsonStringArray(value.toArray());
+        m_movie->setGenres(genres);
+    }
+
+    value = followJsonPath(json, IMDB_JSON_PATH_TAGLINE);
+    if (value.isString()) {
+        m_movie->setTagline(removeHtmlEntities(value.toString().trimmed()));
+    }
+}
+
+void ImdbMovieScrapeJob::parseAndAssignPoster(const QJsonDocument& json)
+{
+}
+
+void ImdbMovieScrapeJob::parseAndStoreActors(const QJsonDocument& json)
+{
+    QJsonValue groupings = followJsonPath(json, IMDB_JSON_PATH_CREDIT_GROUPING);
+    if (!groupings.isArray()) {
+        return;
+    }
+
+    for (QJsonValue grouping : groupings.toArray()) {
+        QString groupingType =
+            grouping.toObject().value("node").toObject().value("grouping").toObject().value("text").toString();
+
+        if (groupingType != "Cast") {
+            continue;
+        }
+
+        QJsonArray actorsJson =
+            grouping.toObject().value("node").toObject().value("credits").toObject().value("edges").toArray();
+
+        for (const auto& actorEntry : actorsJson) {
+            const QJsonObject actorObj = actorEntry.toObject();
+            const QString name = followJsonPath(actorObj, IMDB_JSON_PATH_CAST_NAME).toString();
+            const QString url = followJsonPath(actorObj, IMDB_JSON_PATH_CAST_URL).toString();
+            const QString role = followJsonPath(actorObj, IMDB_JSON_PATH_CAST_ROLE).toString();
+            if (!name.isEmpty()) {
+                Actor actor;
+                actor.name = name;
+                actor.role = role;
+                actor.thumb = url;
+                m_movie->addActor(actor);
+            }
+        }
+    }
+}
+
+void ImdbMovieScrapeJob::parseAndAssignTags(const QJsonDocument& json)
+{
 }
 
 void ImdbMovieScrapeJob::parseAndAssignInfos(const QString& html)
@@ -177,10 +366,6 @@ void ImdbMovieScrapeJob::parseAndStoreActors(const QString& html)
         }
 
         m_movie->addActor(actorUrl.first);
-        // URL may be empty
-        if (actorUrl.second.isValid()) {
-            m_actorUrls.push_back(actorUrl);
-        }
     }
 }
 
