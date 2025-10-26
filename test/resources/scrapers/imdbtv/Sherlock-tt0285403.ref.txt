@@ -24,11 +24,11 @@ genres: (N<6)
   - Drama
   - Mystery
 tags: (N<6)
-  - friendship
   - detective
-  - genius
+  - friendship
   - murder
   - modernized setting
+  - genius
 certification: TV-14
 networks: (N=0)
 episodeGuideUrl: 

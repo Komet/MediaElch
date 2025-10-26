@@ -13,7 +13,7 @@ tvmazeId:
 title: Treehouse of Horror XI
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=6.6 | votes=20 | min=0 | max=10
+  source=tmdb | rating=6.8 | votes=20 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -101,7 +101,7 @@ tvmazeId:
 title: A Tale of Two Springfields
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=6.8 | votes=10 | min=0 | max=10
+  source=tmdb | rating=7 | votes=20 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -208,7 +208,7 @@ tvmazeId:
 title: Insane Clown Poppy
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=6.4 | votes=20 | min=0 | max=10
+  source=tmdb | rating=6.6 | votes=20 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -266,7 +266,7 @@ actors: (N>10)
  - id: 69597
    name: Drew Barrymore
    role: Sophie (voice)
-   thumb: https://image.tmdb.org/t/p/original/kv9sX8bzpBPWNsWwRpxdcW35FWo.jpg
+   thumb: https://image.tmdb.org/t/p/original/9xMu2GLC5otUcC11sEWC5aEAERQ.jpg
    order: 5
    imageHasChanged: false
  - id: 198
@@ -322,7 +322,7 @@ tvmazeId:
 title: Lisa the Tree Hugger
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=6.2 | votes=10 | min=0 | max=10
+  source=tmdb | rating=6.4 | votes=20 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -423,7 +423,7 @@ tvmazeId:
 title: Homer vs. Dignity
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=6.6 | votes=20 | min=0 | max=10
+  source=tmdb | rating=6.8 | votes=20 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -512,7 +512,7 @@ tvmazeId:
 title: The Computer Wore Menace Shoes
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=7.4 | votes=20 | min=0 | max=10
+  source=tmdb | rating=7.6 | votes=20 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -542,7 +542,7 @@ actors: (N>5)
  - id: 2463
    name: Patrick McGoohan
    role: Number 6 (voice)
-   thumb: https://image.tmdb.org/t/p/original/xtUMgFYGF7KmJg1KqiYQuwYTTe3.jpg
+   thumb: https://image.tmdb.org/t/p/original/4oL5giyb1n4uxT4Nr3CPk6ugE8A.jpg
    order: 0
    imageHasChanged: false
  - id: 6036
@@ -604,7 +604,7 @@ tvmazeId:
 title: The Great Money Caper
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=7 | votes=20 | min=0 | max=10
+  source=tmdb | rating=7.2 | votes=20 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -687,7 +687,7 @@ tvmazeId:
 title: Skinner's Sense of Snow
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=7.2 | votes=20 | min=0 | max=10
+  source=tmdb | rating=7.4 | votes=20 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -794,7 +794,7 @@ tvmazeId:
 title: HOMЯ
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=7.4 | votes=20 | min=0 | max=10
+  source=tmdb | rating=7.6 | votes=20 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -911,13 +911,13 @@ actors: (N>10)
  - id: 16119
    name: Charles Napier
    role: Warden (voice)
-   thumb: https://image.tmdb.org/t/p/original/kXenIuk3NWtwihRQIyrqQKf4d2t.jpg
+   thumb: https://image.tmdb.org/t/p/original/w16LEJlHDtqGWeFCk5a7a2GDeBK.jpg
    order: 2
    imageHasChanged: false
  - id: 95197
    name: Robert Schimmel
    role: Prisoner (voice)
-   thumb: 
+   thumb: https://image.tmdb.org/t/p/original/cYFBfEQ9JbiJ0b7jxQFowa5ot9d.jpg
    order: 3
    imageHasChanged: false
  - id: 6036
@@ -979,7 +979,7 @@ tvmazeId:
 title: Worst Episode Ever
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=6.6 | votes=20 | min=0 | max=10
+  source=tmdb | rating=6.8 | votes=20 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -1186,7 +1186,7 @@ tvmazeId:
 title: Day of the Jackanapes
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=6.2 | votes=20 | min=0 | max=10
+  source=tmdb | rating=6.4 | votes=20 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -1417,7 +1417,7 @@ actors: (N>10)
  - id: 825
    name: Stacy Keach
    role: Howard Duff (voice)
-   thumb: https://image.tmdb.org/t/p/original/pxD1jmx9oAaV2lCLr87G3zRGv6i.jpg
+   thumb: https://image.tmdb.org/t/p/original/gtYepb7Vu9bXcdZ62PXm56KalNl.jpg
    order: 1
    imageHasChanged: false
  - id: 6009
@@ -1526,7 +1526,7 @@ actors: (N>10)
  - id: 3138
    name: Kathy Griffin
    role: Francine (voice)
-   thumb: https://image.tmdb.org/t/p/original/khhZT54SfcKIZuPwTH55CB1I0Gf.jpg
+   thumb: https://image.tmdb.org/t/p/original/yGWgGBhJgE1tnggQ8X319OQMPGv.jpg
    order: 1
    imageHasChanged: false
  - id: 6036
@@ -1808,7 +1808,7 @@ tvmazeId:
 title: I'm Goin' to Praiseland
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=6.8 | votes=10 | min=0 | max=10
+  source=tmdb | rating=7 | votes=20 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -1902,7 +1902,7 @@ tvmazeId:
 title: Children of a Lesser Clod
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=6.4 | votes=10 | min=0 | max=10
+  source=tmdb | rating=6.4 | votes=20 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12
@@ -1979,7 +1979,7 @@ tvmazeId:
 title: Simpsons Tall Tales
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=5.6 | votes=20 | min=0 | max=10
+  source=tmdb | rating=5.8 | votes=20 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=12

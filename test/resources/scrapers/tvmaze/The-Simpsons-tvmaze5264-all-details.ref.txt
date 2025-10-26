@@ -53,7 +53,7 @@ actors: (N<6)
  - id: 47222
    name: Karl Wiedergott
    role: Travolta
-   thumb: 
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/565/1414529.jpg
    order: 3
    imageHasChanged: false
 streamDetails: <not loaded>
