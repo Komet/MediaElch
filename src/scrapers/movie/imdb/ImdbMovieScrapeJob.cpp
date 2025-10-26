@@ -28,6 +28,9 @@ const QVector<QString> IMDB_JSON_PATH_GENRES           = { "props", "pageProps",
 const QVector<QString> IMDB_JSON_PATH_TAGLINE          = { "props", "pageProps", "mainColumnData", "taglines", "edges", "0", "node", "text" };
 const QVector<QString> IMDB_JSON_PATH_TAGS             = { "props", "pageProps", "mainColumnData", "storylineKeywords", "edges" };
 const QVector<QString> IMDB_JSON_PATH_CERTIFICATIONS   = { "props", "pageProps", "mainColumnData", "certificates", "edges" };
+const QVector<QString> IMDB_JSON_PATH_STUDIOS          = { "props", "pageProps", "mainColumnData", "production", "edges" };
+const QVector<QString> IMDB_JSON_PATH_STUDIO_NAME      = { "node", "company", "companyText", "text" };
+const QVector<QString> IMDB_JSON_PATH_COUNTRIES        = { "props", "pageProps", "mainColumnData", "countriesOfOrigin", "countries" };
 const QVector<QString> IMDB_JSON_PATH_POSTER           = { "props", "pageProps", "aboveTheFoldData", "primaryImage" };
 const QVector<QString> IMDB_JSON_PATH_TRAILER          = { "props", "pageProps", "aboveTheFoldData", "primaryVideos", "edges" };
 
@@ -185,9 +188,29 @@ void ImdbMovieScrapeJob::parseAndAssignInfos(const QJsonDocument& json)
     value = followJsonPath(json, IMDB_JSON_PATH_GENRES);
     if (value.isArray()) {
         for (const auto& genreObj : value.toArray()) {
-            QString genre = genreObj.toObject().value("text").toString();
+            QString genre = genreObj.toObject().value("text").toString().trimmed();
             if (!genre.isEmpty()) {
-                m_movie->addGenre(removeHtmlEntities(genreObj.toString()).trimmed());
+                m_movie->addGenre(genre);
+            }
+        }
+    }
+
+    value = followJsonPath(json, IMDB_JSON_PATH_STUDIOS);
+    if (value.isArray()) {
+        for (const auto& studioObj : value.toArray()) {
+            QString studio = followJsonPath(studioObj.toObject(), IMDB_JSON_PATH_STUDIO_NAME).toString().trimmed();
+            if (!studio.isEmpty()) {
+                m_movie->addStudio(helper::mapStudio(studio));
+            }
+        }
+    }
+
+    value = followJsonPath(json, IMDB_JSON_PATH_COUNTRIES);
+    if (value.isArray()) {
+        for (const auto& countryObj : value.toArray()) {
+            QString country = countryObj.toObject().value("id").toString().trimmed();
+            if (!country.isEmpty()) {
+                m_movie->addCountry(helper::mapCountry(country));
             }
         }
     }
