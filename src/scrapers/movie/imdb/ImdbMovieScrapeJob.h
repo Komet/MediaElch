@@ -35,7 +35,10 @@ private:
     void parseAndAssignInfos(const QJsonDocument& json);
     void parseAndAssignPoster(const QJsonDocument& json);
     void parseAndStoreActors(const QJsonDocument& json);
+    void parseAndAssignDirectors(const QJsonDocument& json);
+    void parseAndAssignWriters(const QJsonDocument& json);
     void parseAndAssignTags(const QJsonDocument& json);
+
     void parseAndAssignInfos(const QString& html);
     void parseAndAssignPoster(const QString& html);
     void parseAndStoreActors(const QString& html);
