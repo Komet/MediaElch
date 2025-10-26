@@ -196,7 +196,7 @@ countries: (N=1)
   - US
 studios: (N=1)
   - Castle Rock Entertainment
-trailer: 
+trailer: https://imdb-video.media-imdb.com/vi3877612057/1434659454657-dx9ykf-1616202333253.mp4?Expires=1761596758&Signature=U8RjEnQ1FfAvQjDejcqufr14tngwFaRD60wrek3f82c4B6GdC7~e72YV5naHaAdaxUKHExqCgPJK9dctwrhAXOYhjAYeBJWFVXFf36veuKJnfpvtipB0VxigW8odimZNwWYhsAW5uwRzfv3ROuMNvqnl-3WxPHWajMsC6hltY3OSNDSgntw8jbDOliGby7R-MG~RmTuvxZkc-E4lqN57J6~TUlG4b0QmegneD6LqeywT9EPMSh3rGg7L6nNgcbI4LNmiH85hC5VVmvSXRGIvuQigqovZ0FRw6F0c62w3dwWrVYAThUUVOE6XyQJlY9lJhmIt8pZ14aZq2JjJZosF-A__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA
 showlink: (N=0)
 playcount: 0
 lastPlayed: <not set or invalid>

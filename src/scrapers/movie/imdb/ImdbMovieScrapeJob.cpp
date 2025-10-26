@@ -34,7 +34,7 @@ const QVector<QString> IMDB_JSON_PATH_STUDIO_NAME      = { "node", "company", "c
 const QVector<QString> IMDB_JSON_PATH_COUNTRIES        = { "props", "pageProps", "mainColumnData", "countriesOfOrigin", "countries" };
 const QVector<QString> IMDB_JSON_PATH_POSTER_URL       = { "props", "pageProps", "aboveTheFoldData", "primaryImage", "url" };
 // TODO: Select highest definition
-const QVector<QString> IMDB_JSON_PATH_TRAILER_URL      = { "props", "pageProps", "aboveTheFoldData", "primaryVideos", "edges", "0", "node", "playbackURLs", "0", "url" };
+const QVector<QString> IMDB_JSON_PATH_TRAILER_URL      = { "props", "pageProps", "mainColumnData", "primaryVideos", "edges", "0", "node", "playbackURLs", "0", "url" };
 
 // Cast / Actors / Directors
 // TODO: Scrape more actors from reference page

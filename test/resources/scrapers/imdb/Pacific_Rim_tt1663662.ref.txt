@@ -211,7 +211,7 @@ studios: (N<6)
   - Warner Bros.
   - Legendary Entertainment
   - Double Dare You (DDY)
-trailer: 
+trailer: https://imdb-video.media-imdb.com/vi1369752345/1434659529640-260ouz-1632281728566.mp4?Expires=1761596947&Signature=kUrxS9gydzaGlHP5VkMwxdX0Z4pmKYF8pbko4OlLIHTY38YAU9kTPHUgSYWpythX9m~p7ZlnoXMzSq2Sv2eUQE38~CJbOuGhr01NrkX5fHJQ~QvKe~-pTOI0yqvCK~5UXs6ANKk4NnOGfS0yND6JDi24b3jQWNzQT7nEDawtI3GGsrHPLjf3XKVQP~7FQ0I-S8sQ7k1CE-DTxxJHOpDFasCG1BFHf8wBQWL7eSTjyzyXjFhCs8AQTS8Pu8N1TH66c8T~SWv-KwgZX88dCPDhPWO8JCd9BtyMm0AFpbQiaisPFbW17VahqJQg4lAYII90fb~gT~WeULd8dnK9QMMmHw__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA
 showlink: (N=0)
 playcount: 0
 lastPlayed: <not set or invalid>
