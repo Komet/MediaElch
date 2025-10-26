@@ -32,7 +32,8 @@ const QVector<QString> IMDB_JSON_PATH_STUDIOS          = { "props", "pageProps",
 const QVector<QString> IMDB_JSON_PATH_STUDIO_NAME      = { "node", "company", "companyText", "text" };
 const QVector<QString> IMDB_JSON_PATH_COUNTRIES        = { "props", "pageProps", "mainColumnData", "countriesOfOrigin", "countries" };
 const QVector<QString> IMDB_JSON_PATH_POSTER_URL       = { "props", "pageProps", "aboveTheFoldData", "primaryImage", "url" };
-const QVector<QString> IMDB_JSON_PATH_TRAILER          = { "props", "pageProps", "aboveTheFoldData", "primaryVideos", "edges" };
+// TODO: Select highest definition
+const QVector<QString> IMDB_JSON_PATH_TRAILER_URL      = { "props", "pageProps", "aboveTheFoldData", "primaryVideos", "edges", "0", "node", "playbackURLs", "0", "url" };
 
 // Cast / Actors / Directors
 const QVector<QString> IMDB_JSON_PATH_CREDIT_GROUPING = { "props", "pageProps", "mainColumnData", "creditGroupings", "edges" };
@@ -292,7 +293,6 @@ void ImdbMovieScrapeJob::parseAndAssignInfos(const QJsonDocument& json)
         }
     }
 
-
     value = followJsonPath(json, IMDB_JSON_PATH_POSTER_URL);
     if (value.isString()) {
         const QUrl url(sanitizeAmazonMediaUrl(value.toString()));
@@ -306,6 +306,13 @@ void ImdbMovieScrapeJob::parseAndAssignInfos(const QJsonDocument& json)
         m_movie->images().addPoster(p);
     }
 
+    value = followJsonPath(json, IMDB_JSON_PATH_TRAILER_URL);
+    if (value.isString()) {
+        const QUrl url(value.toString());
+        if (url.isValid()) {
+            m_movie->setTrailer(url);
+        }
+    }
 }
 
 void ImdbMovieScrapeJob::parseAndAssignDirectors(const QJsonDocument& json)
