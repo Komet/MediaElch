@@ -18,7 +18,7 @@ namespace {
 const QVector<QString> IMDB_JSON_PATH_ID               = { "props", "pageProps", "mainColumnData", "id" };
 const QVector<QString> IMDB_JSON_PATH_TITLE            = { "props", "pageProps", "mainColumnData", "titleText", "text" };
 const QVector<QString> IMDB_JSON_PATH_ORIGINAL_TITLE   = { "props", "pageProps", "mainColumnData", "originalTitleText", "text" };
-const QVector<QString> IMDB_JSON_PATH_OVERVIEW         = { "props", "pageProps", "aboveTheFoldData", "creditGroupings", "summaries", "edges", "0", "node", "plotText", "plaidHtml" };
+const QVector<QString> IMDB_JSON_PATH_OVERVIEW         = { "props", "pageProps", "mainColumnData", "summaries", "edges", "0", "node", "plotText", "plaidHtml" };
 const QVector<QString> IMDB_JSON_PATH_OUTLINE          = { "props", "pageProps", "mainColumnData", "plot", "plotText", "plainText" };
 const QVector<QString> IMDB_JSON_PATH_RELEASE_DATE     = { "props", "pageProps", "mainColumnData", "releaseDate" };
 const QVector<QString> IMDB_JSON_PATH_RUNTIME_SECONDS  = { "props", "pageProps", "aboveTheFoldData", "runtime", "seconds" };
