@@ -28,7 +28,6 @@ private:
     void loadTags();
 
     QJsonDocument extractJsonFromHtml(const QString& html);
-    QStringList valueToJsonStringArray(const QJsonArray& json);
     QJsonValue followJsonPath(const QJsonDocument& json, const QVector<QString>& paths);
     QJsonValue followJsonPath(const QJsonObject& json, const QVector<QString>& paths);
 

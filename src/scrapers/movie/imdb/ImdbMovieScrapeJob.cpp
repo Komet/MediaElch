@@ -24,7 +24,7 @@ const QVector<QString> IMDB_JSON_PATH_RELEASE_DATE     = { "props", "pageProps",
 const QVector<QString> IMDB_JSON_PATH_RUNTIME_SECONDS  = { "props", "pageProps", "aboveTheFoldData", "runtime", "seconds" };
 const QVector<QString> IMDB_JSON_PATH_RATING           = { "props", "pageProps", "aboveTheFoldData", "ratingsSummary", "aggregateRating" };
 const QVector<QString> IMDB_JSON_PATH_VOTE_COUNT       = { "props", "pageProps", "aboveTheFoldData", "ratingsSummary", "voteCount" };
-const QVector<QString> IMDB_JSON_PATH_GENRES           = { "props", "pageProps", "aboveTheFoldData", "genres", "genres" };
+const QVector<QString> IMDB_JSON_PATH_GENRES           = { "props", "pageProps", "mainColumnData", "genres", "genres" };
 const QVector<QString> IMDB_JSON_PATH_TAGLINE          = { "props", "pageProps", "mainColumnData", "taglines", "edges", "0", "node", "text" };
 const QVector<QString> IMDB_JSON_PATH_TAGS             = { "props", "pageProps", "mainColumnData", "storylineKeywords", "edges" };
 const QVector<QString> IMDB_JSON_PATH_CERTIFICATIONS   = { "props", "pageProps", "mainColumnData", "certificates", "edges" };
@@ -149,14 +149,6 @@ QJsonValue ImdbMovieScrapeJob::followJsonPath(const QJsonObject& json, const QVe
     return next;
 }
 
-QStringList ImdbMovieScrapeJob::valueToJsonStringArray(const QJsonArray& json)
-{
-    QStringList entries;
-    for (const auto& director : json) {
-        entries.append(removeHtmlEntities(director.toString()).trimmed());
-    }
-    return entries;
-}
 
 void ImdbMovieScrapeJob::parseAndAssignInfos(const QJsonDocument& json)
 {
@@ -192,8 +184,12 @@ void ImdbMovieScrapeJob::parseAndAssignInfos(const QJsonDocument& json)
 
     value = followJsonPath(json, IMDB_JSON_PATH_GENRES);
     if (value.isArray()) {
-        QStringList genres = valueToJsonStringArray(value.toArray());
-        m_movie->setGenres(genres);
+        for (const auto& genreObj : value.toArray()) {
+            QString genre = genreObj.toObject().value("text").toString();
+            if (!genre.isEmpty()) {
+                m_movie->addGenre(removeHtmlEntities(genreObj.toString()).trimmed());
+            }
+        }
     }
 
     value = followJsonPath(json, IMDB_JSON_PATH_TAGLINE);

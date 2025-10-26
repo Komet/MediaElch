@@ -131,7 +131,6 @@ public:
     void setTvShowLinks(QStringList tvShowLinks);
     void setActors(QVector<Actor> actors);
     void addActor(Actor actor);
-    void setGenres(const QStringList& genres);
     void addGenre(QString genre);
     void addCountry(QString country);
     void setPlayCount(int playCount);

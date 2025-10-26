@@ -863,17 +863,6 @@ void Movie::addCountry(QString country) // NOLINT // we require pass-by-value
     setChanged(true);
 }
 
-void Movie::setGenres(const QStringList& genres)
-{
-    m_genres.clear();
-    for (const QString& genre : genres) {
-        if (!m_genres.contains(genre)) {
-            m_genres.append(genre);
-        }
-    }
-    setChanged(true);
-}
-
 /**
  * \brief Adds a genre to the movie
  * \param genre Genre to add
