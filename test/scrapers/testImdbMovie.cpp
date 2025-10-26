@@ -136,7 +136,7 @@ TEST_CASE("IMDb scrapes correct movie details", "[movie][IMDb][load_data]")
             const auto tags = m.tags();
             REQUIRE(tags.size() >= 2);
             REQUIRE(tags.size() <= 20);
-            CHECK_THAT(tags, Contains("abuse-of-power"));
+            CHECK_THAT(tags, Contains("escape from prison"));
         }
     }
 

@@ -29,6 +29,7 @@ const QVector<QString> IMDB_JSON_PATH_RATING         = { "props", "pageProps", "
 const QVector<QString> IMDB_JSON_PATH_VOTE_COUNT     = { "props", "pageProps", "aboveTheFoldData", "ratingsSummary", "voteCount" };
 const QVector<QString> IMDB_JSON_PATH_GENRES         = { "props", "pageProps", "aboveTheFoldData", "genres", "genres" };
 const QVector<QString> IMDB_JSON_PATH_TAGLINE        = { "props", "pageProps", "mainColumnData", "taglines", "edges", "0", "node", "text" };
+const QVector<QString> IMDB_JSON_PATH_TAGS           = { "props", "pageProps", "mainColumnData", "storylineKeywords", "edges" };
 const QVector<QString> IMDB_JSON_PATH_KEYWORDS       = { "props", "pageProps", "aboveTheFoldData", "keywords", "edges" };
 const QVector<QString> IMDB_JSON_PATH_POSTER         = { "props", "pageProps", "aboveTheFoldData", "primaryImage" };
 const QVector<QString> IMDB_JSON_PATH_TRAILER        = { "props", "pageProps", "aboveTheFoldData", "primaryVideos", "edges" };
@@ -211,6 +212,16 @@ void ImdbMovieScrapeJob::parseAndAssignInfos(const QJsonDocument& json)
     value = followJsonPath(json, IMDB_JSON_PATH_TAGLINE);
     if (value.isString()) {
         m_movie->setTagline(removeHtmlEntities(value.toString().trimmed()));
+    }
+
+    value = followJsonPath(json, IMDB_JSON_PATH_TAGS);
+    if (value.isArray()) {
+        for (const auto& tagObj : value.toArray()) {
+            QString tag = tagObj.toObject().value("node").toObject().value("text").toString().trimmed();
+            if (!tag.isEmpty()) {
+                m_movie->addTag(tag);
+            }
+        }
     }
 }
 
