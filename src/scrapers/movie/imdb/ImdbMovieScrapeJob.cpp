@@ -27,7 +27,7 @@ const QVector<QString> IMDB_JSON_PATH_VOTE_COUNT       = { "props", "pageProps",
 const QVector<QString> IMDB_JSON_PATH_GENRES           = { "props", "pageProps", "aboveTheFoldData", "genres", "genres" };
 const QVector<QString> IMDB_JSON_PATH_TAGLINE          = { "props", "pageProps", "mainColumnData", "taglines", "edges", "0", "node", "text" };
 const QVector<QString> IMDB_JSON_PATH_TAGS             = { "props", "pageProps", "mainColumnData", "storylineKeywords", "edges" };
-const QVector<QString> IMDB_JSON_PATH_KEYWORDS         = { "props", "pageProps", "aboveTheFoldData", "keywords", "edges" };
+const QVector<QString> IMDB_JSON_PATH_CERTIFICATIONS   = { "props", "pageProps", "mainColumnData", "certificates", "edges" };
 const QVector<QString> IMDB_JSON_PATH_POSTER           = { "props", "pageProps", "aboveTheFoldData", "primaryImage" };
 const QVector<QString> IMDB_JSON_PATH_TRAILER          = { "props", "pageProps", "aboveTheFoldData", "primaryVideos", "edges" };
 
@@ -237,7 +237,6 @@ void ImdbMovieScrapeJob::parseAndAssignInfos(const QJsonDocument& json)
         }
     }
 
-
     value = followJsonPath(json, IMDB_JSON_PATH_TAGS);
     if (value.isArray()) {
         for (const auto& tagObj : value.toArray()) {
@@ -245,6 +244,33 @@ void ImdbMovieScrapeJob::parseAndAssignInfos(const QJsonDocument& json)
             if (!tag.isEmpty()) {
                 m_movie->addTag(tag);
             }
+        }
+    }
+
+    value = followJsonPath(json, IMDB_JSON_PATH_CERTIFICATIONS);
+    if (value.isArray()) {
+        // TODO: Since IMDB only supports one locale at the moment, this has no real effect, yet!
+        Certification locale;
+        Certification us;
+
+        for (const auto& certObj : value.toArray()) {
+            QJsonObject node = certObj.toObject().value("node").toObject();
+            QString certificationCountry = node.value("country").toObject().value("id").toString().trimmed();
+            QString certificationCode = node.value("rating").toString().trimmed();
+
+            const Certification certification = Certification(certificationCode);
+            if (certificationCountry == "US") {
+                us = certification;
+            }
+            if (certificationCountry == config().locale.country()) {
+                locale = certification;
+            }
+        }
+
+        if (locale.isValid()) {
+            m_movie->setCertification(helper::mapCertification(locale));
+        } else if (us.isValid()) {
+            m_movie->setCertification(helper::mapCertification(us));
         }
     }
 }

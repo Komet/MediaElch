@@ -71,7 +71,8 @@ TEST_CASE("IMDb scrapes correct movie details", "[movie][IMDb][load_data]")
 
         REQUIRE(m.imdbId() == ImdbId("tt2277860"));
         CHECK(m.tmdbId() == TmdbId::NoId);
-        CHECK_THAT(m.title(), Matches("Finding Dory|Findet Dorie")); // Maintainer is German; sometimes IMDB responded in German
+        CHECK_THAT(m.title(),
+            Matches("Finding Dory|Findet Dorie")); // Maintainer is German; sometimes IMDB responded in German
         CHECK(m.originalTitle() == "Finding Dory");
         CHECK(m.certification() == Certification("PG"));
         CHECK(m.released().toString("yyyy-MM-dd") == "2016-06-17"); // in United States
