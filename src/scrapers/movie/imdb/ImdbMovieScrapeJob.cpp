@@ -31,7 +31,7 @@ const QVector<QString> IMDB_JSON_PATH_CERTIFICATIONS   = { "props", "pageProps",
 const QVector<QString> IMDB_JSON_PATH_STUDIOS          = { "props", "pageProps", "mainColumnData", "production", "edges" };
 const QVector<QString> IMDB_JSON_PATH_STUDIO_NAME      = { "node", "company", "companyText", "text" };
 const QVector<QString> IMDB_JSON_PATH_COUNTRIES        = { "props", "pageProps", "mainColumnData", "countriesOfOrigin", "countries" };
-const QVector<QString> IMDB_JSON_PATH_POSTER           = { "props", "pageProps", "aboveTheFoldData", "primaryImage" };
+const QVector<QString> IMDB_JSON_PATH_POSTER_URL       = { "props", "pageProps", "aboveTheFoldData", "primaryImage", "url" };
 const QVector<QString> IMDB_JSON_PATH_TRAILER          = { "props", "pageProps", "aboveTheFoldData", "primaryVideos", "edges" };
 
 // Cast / Actors / Directors
@@ -73,7 +73,6 @@ void ImdbMovieScrapeJob::doStart()
         QJsonDocument json = extractJsonFromHtml(html);
 
         parseAndAssignInfos(json);
-        parseAndAssignPoster(json);
         parseAndStoreActors(json);
         parseAndAssignDirectors(json);
         parseAndAssignWriters(json);
@@ -292,10 +291,21 @@ void ImdbMovieScrapeJob::parseAndAssignInfos(const QJsonDocument& json)
             m_movie->setCertification(helper::mapCertification(us));
         }
     }
-}
 
-void ImdbMovieScrapeJob::parseAndAssignPoster(const QJsonDocument& json)
-{
+
+    value = followJsonPath(json, IMDB_JSON_PATH_POSTER_URL);
+    if (value.isString()) {
+        const QUrl url(sanitizeAmazonMediaUrl(value.toString()));
+        if (!url.isValid()) {
+            return;
+        }
+
+        Poster p;
+        p.thumbUrl = url;
+        p.originalUrl = url;
+        m_movie->images().addPoster(p);
+    }
+
 }
 
 void ImdbMovieScrapeJob::parseAndAssignDirectors(const QJsonDocument& json)
@@ -321,7 +331,7 @@ void ImdbMovieScrapeJob::parseAndAssignDirectors(const QJsonDocument& json)
             // TODO: We could/should also store images, etc. of directors and writers
             const QJsonObject directorObj = directorEntry.toObject();
             const QString name = followJsonPath(directorObj, IMDB_JSON_PATH_CAST_NAME).toString().trimmed();
-            if (!name.isEmpty()) {
+            if (!name.isEmpty() && !directors.contains(name)) {
                 directors.append(name);
             }
         }
@@ -352,7 +362,7 @@ void ImdbMovieScrapeJob::parseAndAssignWriters(const QJsonDocument& json)
             // TODO: We could/should also store images, etc. of directors and writers
             const QJsonObject writerObj = writerEntry.toObject();
             const QString name = followJsonPath(writerObj, IMDB_JSON_PATH_CAST_NAME).toString().trimmed();
-            if (!name.isEmpty()) {
+            if (!name.isEmpty() && !writers.contains(name)) {
                 writers.append(name);
             }
         }
@@ -387,7 +397,7 @@ void ImdbMovieScrapeJob::parseAndStoreActors(const QJsonDocument& json)
                 Actor actor;
                 actor.name = name;
                 actor.role = role;
-                actor.thumb = url;
+                actor.thumb = sanitizeAmazonMediaUrl(url);
                 m_movie->addActor(actor);
             }
         }

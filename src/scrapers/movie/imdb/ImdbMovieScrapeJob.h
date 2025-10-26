@@ -32,7 +32,6 @@ private:
     QJsonValue followJsonPath(const QJsonObject& json, const QVector<QString>& paths);
 
     void parseAndAssignInfos(const QJsonDocument& json);
-    void parseAndAssignPoster(const QJsonDocument& json);
     void parseAndStoreActors(const QJsonDocument& json);
     void parseAndAssignDirectors(const QJsonDocument& json);
     void parseAndAssignWriters(const QJsonDocument& json);
