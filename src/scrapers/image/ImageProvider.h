@@ -60,6 +60,9 @@ public:
 
         /// \brief Default locale for this scraper.
         Locale defaultLocale = Locale::English;
+
+        /// \brief A priotity list of languages for this scraper.
+        QVector<QString> languagePriority;
     };
 
 public:
