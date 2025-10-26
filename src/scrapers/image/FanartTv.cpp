@@ -52,7 +52,8 @@ FanartTv::FanartTv(FanartTvConfiguration& settings, QObject* parent) : ImageProv
     m_meta.supportedLanguages = FanartTvConfiguration::supportedLanguages();
     m_meta.defaultLocale = FanartTvConfiguration::defaultLocale();
 
-    m_meta.languagePriority = QVector<QString>({settings.language().language(), FanartTvConfiguration::defaultLocale().language()});
+    m_meta.languagePriority =
+        QVector<QString>({settings.language().language(), FanartTvConfiguration::defaultLocale().language()});
 
     m_apiKey = "842f7a5d1cc7396f142b8dd47c4ba42b";
     m_tmdbConfig = std::make_unique<mediaelch::scraper::TmdbMovieConfiguration>(*Settings::instance());
@@ -719,9 +720,13 @@ QVector<Poster> FanartTv::parseTvShowData(QString json, ImageType type, SeasonNu
     return posters;
 }
 
-void FanartTv::insertPoster(QVector<Poster>& posters, const Poster& b, const QVector<QString>& languagePriority, const QString& preferredDiscType)
+void FanartTv::insertPoster(QVector<Poster>& posters,
+    const Poster& b,
+    const QVector<QString>& languagePriority,
+    const QString& preferredDiscType)
 {
-    struct InsertionPoints {
+    struct InsertionPoints
+    {
         int lastInLangAndHd = -1;
         int lastInLang = -1;
     };
@@ -741,12 +746,12 @@ void FanartTv::insertPoster(QVector<Poster>& posters, const Poster& b, const QVe
 
         for (const QString& lang : languagePriority) {
             if (p.language == lang) {
-                InsertionPoints &pts = langMap[lang];
+                InsertionPoints& pts = langMap[lang];
                 pts.lastInLang = i;
                 if (isHdOrPreferred)
                     pts.lastInLangAndHd = i;
             } else if (p.language.isEmpty()) {
-                InsertionPoints &pts = langMap[lang];
+                InsertionPoints& pts = langMap[lang];
                 pts.lastInLang = i;
             }
         }
