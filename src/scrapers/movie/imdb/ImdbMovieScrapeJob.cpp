@@ -228,6 +228,21 @@ void ImdbMovieScrapeJob::parseAndAssignInfos(const QJsonDocument& json)
         }
     }
 
+    value = followJsonPath(json, IMDB_JSON_PATH_RATING);
+    if (value.isDouble()) {
+        const double avgRating = value.toDouble();
+        const int voteCount = followJsonPath(json, IMDB_JSON_PATH_VOTE_COUNT).toInt(-1);
+        if (avgRating > 0 || voteCount > 0) {
+            Rating rating;
+            rating.rating = avgRating;
+            rating.voteCount = voteCount;
+            rating.source = "imdb";
+            rating.maxRating = 10;
+            m_movie->ratings().setOrAddRating(rating);
+        }
+    }
+
+
     value = followJsonPath(json, IMDB_JSON_PATH_TAGS);
     if (value.isArray()) {
         for (const auto& tagObj : value.toArray()) {
