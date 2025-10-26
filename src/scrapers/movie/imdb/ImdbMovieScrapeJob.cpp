@@ -22,6 +22,7 @@ const QVector<QString> IMDB_JSON_PATH_OVERVIEW         = { "props", "pageProps",
 const QVector<QString> IMDB_JSON_PATH_OUTLINE          = { "props", "pageProps", "mainColumnData", "plot", "plotText", "plainText" };
 const QVector<QString> IMDB_JSON_PATH_RELEASE_DATE     = { "props", "pageProps", "mainColumnData", "releaseDate" };
 const QVector<QString> IMDB_JSON_PATH_RUNTIME_SECONDS  = { "props", "pageProps", "aboveTheFoldData", "runtime", "seconds" };
+const QVector<QString> IMDB_JSON_PATH_TOP250           = { "props", "pageProps", "aboveTheFoldData", "ratingsSummary", "topRanking", "rank" };
 const QVector<QString> IMDB_JSON_PATH_RATING           = { "props", "pageProps", "aboveTheFoldData", "ratingsSummary", "aggregateRating" };
 const QVector<QString> IMDB_JSON_PATH_VOTE_COUNT       = { "props", "pageProps", "aboveTheFoldData", "ratingsSummary", "voteCount" };
 const QVector<QString> IMDB_JSON_PATH_GENRES           = { "props", "pageProps", "mainColumnData", "genres", "genres" };
@@ -253,6 +254,14 @@ void ImdbMovieScrapeJob::parseAndAssignInfos(const QJsonDocument& json)
             rating.source = "imdb";
             rating.maxRating = 10;
             m_movie->ratings().setOrAddRating(rating);
+        }
+    }
+
+    value = followJsonPath(json, IMDB_JSON_PATH_TOP250);
+    if (value.isDouble()) {
+        const double top250 = value.toInt(-1);
+        if (top250 > 0 && top250 <= 250) {
+            m_movie->setTop250(top250);
         }
     }
 
