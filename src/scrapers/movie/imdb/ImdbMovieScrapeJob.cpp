@@ -15,24 +15,24 @@
 namespace {
 
 // clang-format off
-const QVector<QString> IMDB_JSON_PATH_ID             = { "props", "pageProps", "mainColumnData", "id" };
-const QVector<QString> IMDB_JSON_PATH_TITLE          = { "props", "pageProps", "mainColumnData", "titleText", "text" };
-const QVector<QString> IMDB_JSON_PATH_ORIGINAL_TITLE = { "props", "pageProps", "mainColumnData", "originalTitleText", "text" };
-const QVector<QString> IMDB_JSON_PATH_OVERVIEW       = { "props", "pageProps", "aboveTheFoldData", "creditGroupings", "summaries", "edges", "0", "node", "plotText", "plaidHtml" };
-const QVector<QString> IMDB_JSON_PATH_OUTLINE        = { "props", "pageProps", "mainColumnData", "plot", "plotText", "plainText" };
-const QVector<QString> IMDB_JSON_PATH_DIRECTORS      = { "props", "pageProps", "mainColumnData", "directors" };
-const QVector<QString> IMDB_JSON_PATH_WRITERS        = { "props", "pageProps", "mainColumnData", "writers" };
-const QVector<QString> IMDB_JSON_PATH_CREW           = { "props", "pageProps", "mainColumnData", "crewV2" };
-const QVector<QString> IMDB_JSON_PATH_RELEASE_DATE   = { "props", "pageProps", "mainColumnData", "releaseDate" };
-const QVector<QString> IMDB_JSON_PATH_RUNTIME        = { "props", "pageProps", "aboveTheFoldData", "runtime", "seconds" };
-const QVector<QString> IMDB_JSON_PATH_RATING         = { "props", "pageProps", "aboveTheFoldData", "ratingsSummary", "aggregateRating" };
-const QVector<QString> IMDB_JSON_PATH_VOTE_COUNT     = { "props", "pageProps", "aboveTheFoldData", "ratingsSummary", "voteCount" };
-const QVector<QString> IMDB_JSON_PATH_GENRES         = { "props", "pageProps", "aboveTheFoldData", "genres", "genres" };
-const QVector<QString> IMDB_JSON_PATH_TAGLINE        = { "props", "pageProps", "mainColumnData", "taglines", "edges", "0", "node", "text" };
-const QVector<QString> IMDB_JSON_PATH_TAGS           = { "props", "pageProps", "mainColumnData", "storylineKeywords", "edges" };
-const QVector<QString> IMDB_JSON_PATH_KEYWORDS       = { "props", "pageProps", "aboveTheFoldData", "keywords", "edges" };
-const QVector<QString> IMDB_JSON_PATH_POSTER         = { "props", "pageProps", "aboveTheFoldData", "primaryImage" };
-const QVector<QString> IMDB_JSON_PATH_TRAILER        = { "props", "pageProps", "aboveTheFoldData", "primaryVideos", "edges" };
+const QVector<QString> IMDB_JSON_PATH_ID               = { "props", "pageProps", "mainColumnData", "id" };
+const QVector<QString> IMDB_JSON_PATH_TITLE            = { "props", "pageProps", "mainColumnData", "titleText", "text" };
+const QVector<QString> IMDB_JSON_PATH_ORIGINAL_TITLE   = { "props", "pageProps", "mainColumnData", "originalTitleText", "text" };
+const QVector<QString> IMDB_JSON_PATH_OVERVIEW         = { "props", "pageProps", "aboveTheFoldData", "creditGroupings", "summaries", "edges", "0", "node", "plotText", "plaidHtml" };
+const QVector<QString> IMDB_JSON_PATH_OUTLINE          = { "props", "pageProps", "mainColumnData", "plot", "plotText", "plainText" };
+const QVector<QString> IMDB_JSON_PATH_DIRECTORS        = { "props", "pageProps", "mainColumnData", "directors" };
+const QVector<QString> IMDB_JSON_PATH_WRITERS          = { "props", "pageProps", "mainColumnData", "writers" };
+const QVector<QString> IMDB_JSON_PATH_CREW             = { "props", "pageProps", "mainColumnData", "crewV2" };
+const QVector<QString> IMDB_JSON_PATH_RELEASE_DATE     = { "props", "pageProps", "mainColumnData", "releaseDate" };
+const QVector<QString> IMDB_JSON_PATH_RUNTIME_SECONDS  = { "props", "pageProps", "aboveTheFoldData", "runtime", "seconds" };
+const QVector<QString> IMDB_JSON_PATH_RATING           = { "props", "pageProps", "aboveTheFoldData", "ratingsSummary", "aggregateRating" };
+const QVector<QString> IMDB_JSON_PATH_VOTE_COUNT       = { "props", "pageProps", "aboveTheFoldData", "ratingsSummary", "voteCount" };
+const QVector<QString> IMDB_JSON_PATH_GENRES           = { "props", "pageProps", "aboveTheFoldData", "genres", "genres" };
+const QVector<QString> IMDB_JSON_PATH_TAGLINE          = { "props", "pageProps", "mainColumnData", "taglines", "edges", "0", "node", "text" };
+const QVector<QString> IMDB_JSON_PATH_TAGS             = { "props", "pageProps", "mainColumnData", "storylineKeywords", "edges" };
+const QVector<QString> IMDB_JSON_PATH_KEYWORDS         = { "props", "pageProps", "aboveTheFoldData", "keywords", "edges" };
+const QVector<QString> IMDB_JSON_PATH_POSTER           = { "props", "pageProps", "aboveTheFoldData", "primaryImage" };
+const QVector<QString> IMDB_JSON_PATH_TRAILER          = { "props", "pageProps", "aboveTheFoldData", "primaryVideos", "edges" };
 
 // Cast / Actors
 const QVector<QString> IMDB_JSON_PATH_CREDIT_GROUPING = { "props", "pageProps", "mainColumnData", "creditGroupings", "edges" };
@@ -212,6 +212,14 @@ void ImdbMovieScrapeJob::parseAndAssignInfos(const QJsonDocument& json)
     value = followJsonPath(json, IMDB_JSON_PATH_TAGLINE);
     if (value.isString()) {
         m_movie->setTagline(removeHtmlEntities(value.toString().trimmed()));
+    }
+
+    value = followJsonPath(json, IMDB_JSON_PATH_RUNTIME_SECONDS);
+    if (value.isDouble()) {
+        const int runtime = value.toInt(-1);
+        if (runtime > 0) {
+            m_movie->setRuntime(minutes(qCeil(runtime / 60.)));
+        }
     }
 
     value = followJsonPath(json, IMDB_JSON_PATH_RELEASE_DATE);
