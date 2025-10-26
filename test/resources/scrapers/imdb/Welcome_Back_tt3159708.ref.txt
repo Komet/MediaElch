@@ -7,7 +7,7 @@ wikidataId:
 mediaCenterId: -1
 title: Welcome Back
 sortTitle: 
-originalTitle: 
+originalTitle: Welcome Back
 overview:
     Uday Shetty and Majnu Bhai have left the underworld, and are now big businessmen
     . Two women, Chandni and Maharani, enter their life. Chandni is the new love in 
@@ -27,11 +27,11 @@ ratings (N=1)
   source=imdb | rating=4.2 | votes=7000 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
-released: 2015-09-03
+released: 2015-09-04
 runtime: 152min
-writer: Anees Bazmee, Rajeev Kaul, Rajeev Kaul
-director: Anees Bazmee
-actors: (N>30)
+writer: Anees Bazmee, Rajeev Kaul, Rajan Agarwal, Praful Parekh, Raaj Shaandilyaa
+director: Anees Bazmee, Sushma Sunam
+actors: (N>5)
  - id: 
    name: John Abraham
    role: Ajay 'Ajju' Ghunghroo
@@ -66,7 +66,7 @@ actors: (N>30)
    imageHasChanged: false
  - id: 
    name: Shruti Haasan
-   role: Ranjana Shetty (as Shruti K. Haasan)
+   role: Ranjana Shetty
    thumb:
     https://m.media-amazon.com/images/M/MV5BMmVmYmY5OWMtZjAwZC00N2ZhLWFjMzMtNzkwMGY5
     ZmJjOWJlXkEyXkFqcGc@.jpg
@@ -82,7 +82,7 @@ actors: (N>30)
    imageHasChanged: false
  - id: 
    name: Ranjeet Bedi
-   role: Kapoor, 'the criminal' (as Ranjeet)
+   role: Kapoor, 'the criminal'
    thumb:
     https://m.media-amazon.com/images/M/MV5BNDdlYTUwMDUtOTRmMS00NGQ1LThjZTQtZDBlZjVl
     NjM4MDMyXkEyXkFqcGc@.jpg
@@ -198,10 +198,9 @@ genres: (N<6)
   - Crime
   - Drama
 tags: (N=1)
-  - husband-wife-relationship
-countries: (N<6)
-  - India
-  - United Arab Emirates
+  - husband wife relationship
+countries: (N=1)
+  - IN
 studios: (N=1)
   - Base Industries Group
 trailer: 

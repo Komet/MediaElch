@@ -5,7 +5,7 @@ imdbId: tt0111161
 tmdbId: 
 wikidataId: 
 mediaCenterId: -1
-title: Die Verurteilten
+title: The Shawshank Redemption
 sortTitle: 
 originalTitle: The Shawshank Redemption
 overview:
@@ -22,14 +22,14 @@ movie set: tmdbid= | name=
 movie set overview: 
 tagline: Fear can hold you prisoner. Hope can set you free.
 ratings (N=1)
-  source=imdb | rating=9.2 | votes=3000000 | min=0 | max=10
+  source=imdb | rating=9.2 | votes=3100000 | min=0 | max=10
 userRating: 0
 imdbTop250: 1
-released: 1995-03-09
+released: 1994-10-14
 runtime: 142min
 writer: Stephen King, Frank Darabont
 director: Frank Darabont
-actors: (N>70)
+actors: (N>5)
  - id: 
    name: Tim Robbins
    role: Andy Dufresne
@@ -90,8 +90,8 @@ actors: (N>70)
    name: James Whitmore
    role: Brooks Hatlen
    thumb:
-    https://m.media-amazon.com/images/M/MV5BMTg5MzkxMTkxOV5BMl5BanBnXkFtZTcwNTEzNTgx
-    Mw@@.jpg
+    https://m.media-amazon.com/images/M/MV5BYjcxNTU0MTYtYjgwNi00ZjIxLTljYWUtMzY4OGRk
+    ZjUyNzRhXkEyXkFqcGc@.jpg
    order: 7
    imageHasChanged: false
  - id: 
@@ -187,13 +187,13 @@ certification: R
 genres: (N=1)
   - Drama
 tags: (N<6)
-  - abuse-of-power
-  - place-name-in-title
-  - corruption
-  - metaphoric-title
-  - hypocrisy
+  - prison
+  - based on the works of stephen king
+  - escape from prison
+  - friendship between men
+  - wrongful conviction
 countries: (N=1)
-  - United States
+  - US
 studios: (N=1)
   - Castle Rock Entertainment
 trailer: 

@@ -5,7 +5,7 @@ imdbId: tt0068646
 tmdbId: 
 wikidataId: 
 mediaCenterId: -1
-title: Der Pate
+title: The Godfather
 sortTitle: 
 originalTitle: The Godfather
 overview:
@@ -31,7 +31,7 @@ userRating: 0
 imdbTop250: 2
 released: 1972-03-24
 runtime: 175min
-writer: Mario Puzo, Francis Ford Coppola, Mario Puzo
+writer: Mario Puzo, Francis Ford Coppola
 director: Francis Ford Coppola
 actors: (N>80)
  - id: 
@@ -60,7 +60,7 @@ actors: (N>80)
    imageHasChanged: false
  - id: 
    name: Richard S. Castellano
-   role: Clemenza (as Richard Castellano)
+   role: Clemenza
    thumb:
     https://m.media-amazon.com/images/M/MV5BMjI2MzA3MjQ5N15BMl5BanBnXkFtZTcwMzY5NDYw
     OA@@.jpg

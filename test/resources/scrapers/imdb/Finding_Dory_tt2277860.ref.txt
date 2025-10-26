@@ -5,7 +5,7 @@ imdbId: tt2277860
 tmdbId: 
 wikidataId: 
 mediaCenterId: -1
-title: Findet Dorie
+title: Finding Dory
 sortTitle: 
 originalTitle: Finding Dory
 overview:
@@ -24,11 +24,11 @@ ratings (N=1)
   source=imdb | rating=7.2 | votes=300000 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
-released: 2016-09-29
+released: 2016-06-17
 runtime: 97min
-writer: Andrew Stanton, Andrew Stanton, Victoria Strouse
-director: Andrew Stanton, Angus MacLane
-actors: (N>60)
+writer: Andrew Stanton, Victoria Strouse
+director: Angus MacLane, Andrew Stanton
+actors: (N>5)
  - id: 
    name: Ellen DeGeneres
    role: Dory
@@ -65,7 +65,7 @@ actors: (N>60)
    name: Hayden Rolence
    role: Nemo
    thumb:
-    https://m.media-amazon.com/images/M/MV5BMTk2NTYxMzQ5NV5BMl5BanBnXkFtZTgwNzM2Njgw
+    https://m.media-amazon.com/images/M/MV5BMjM0MjI0ODE5Ml5BMl5BanBnXkFtZTgwOTM2NzMx
     OTE@.jpg
    order: 4
    imageHasChanged: false
@@ -185,23 +185,24 @@ actors: (N>60)
    imageHasChanged: false
   - ... and >40 more
 certification: PG
-genres: (N<6)
+genres: (N>5)
   - Animation
   - Adventure
   - Comedy
   - Family
   - Fantasy
+  - ... and =1 more
 tags: (N<6)
-  - father-son-relationship
-  - no-opening-credits
-  - female-protagonist
-  - motor-vehicle
-  - controversy
+  - fish
+  - father son relationship
+  - family relationships
+  - ocean
+  - whale
 countries: (N=1)
-  - United States
+  - US
 studios: (N<6)
-  - Pixar Animation Studios
   - Walt Disney Pictures
+  - Pixar Animation Studios
 trailer: 
 showlink: (N=0)
 playcount: 0
