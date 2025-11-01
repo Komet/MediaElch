@@ -8,7 +8,7 @@ tvmazeId:
 title: Welcome to the Hellmouth
 showTitle: 
 ratings (N=1)
-  source=imdb | rating=7.8 | votes=5000 | min=0 | max=10
+  source=imdb | rating=7.8 | votes=6000 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=01
@@ -16,33 +16,110 @@ episode: EpisodeNumber=01
 displaySeason: SeasonNumber=xx
 displayEpisode: EpisodeNumber=xx
 overview:
-    Buffy Summers just moved with her mom from L.A. (where she set fire to the schoo
-    l gym) to Sunnydale, which is, alas, experiencing a plague of vampires. She meet
-    s nerd Willow Rosenberg, cool skateboarder Xander Harris, and his mate Jesse McN
-    ally, fashionable snooty Cordelia Chase and the somewhat creepy British libraria
-    n, Rupert Giles. When a corpse with bite-marks is found in a locker, she realize
-    s, but refuses to acknowledge, that her vampire-killing past is catching up with
-     her and keeps Giles, her watcher (trainer), at arms-length, but is stalked by A
-    ngel who refers to the hell-mouth. Finally her destiny kicks in. Written by KGF 
-    Vissers
-writers: (N>5)
-  - Joss Whedon
-  - Joss Whedon
+    When teen vampire slayer Buffy tries to start a new life at Sunnydale High, she 
+    discovers that the school sits atop a demonic dimensional portal.
+writers: (N<6)
   - Matt Kiene
-  - Joe Reinkemeyer
   - Rob DesHotel
-  - ... and =1 more
-directors: (N<6)
-  - Charles Martin Smith
   - Joss Whedon
+  - Joe Reinkemeyer
+  - Dean Batali
+directors: (N<6)
+  - Joss Whedon
+  - Charles Martin Smith
 playCount: 0
 lastPlayed: <not set or invalid>
-firstAired: 1998-10-09
-tags: (N=0)
+firstAired: 1997-03-10
+tags: (N<6)
+  - superhero
+  - waking up from a nightmare
+  - break in
+  - first day of school
+  - skateboarding
 epBookmark: <not set or invalid>
-certification: 
+certification: TV-14
 networks: (N=0)
-thumbnail: https://m.media-amazon.com/images/M/MV5BMTU2NDQ1NTI2MF5BMl5BanBnXkFtZTgwNDMzMTM1NjM@._V1_UX400_CR0,0,400,225_AL_.jpg
-actors: (N=0)
+thumbnail: https://m.media-amazon.com/images/M/MV5BMTU2NDQ1NTI2MF5BMl5BanBnXkFtZTgwNDMzMTM1NjM@.jpg
+actors: (N>5)
+ - id: 
+   name: Sarah Michelle Gellar
+   role: Buffy Summers
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BNzA5MDA4MTEwOV5BMl5BanBnXkFtZTcwNzY2Mjcy
+    Nw@@.jpg
+   order: 0
+   imageHasChanged: false
+ - id: 
+   name: Nicholas Brendon
+   role: Xander Harris
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTM3NTA3MzM3N15BMl5BanBnXkFtZTYwMTY4NjEz
+    .jpg
+   order: 1
+   imageHasChanged: false
+ - id: 
+   name: Alyson Hannigan
+   role: Willow Rosenberg
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTkxODc5ODI5OV5BMl5BanBnXkFtZTcwNzExOTUy
+    Nw@@.jpg
+   order: 2
+   imageHasChanged: false
+ - id: 
+   name: Charisma Carpenter
+   role: Cordelia Chase
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BYTk0MzY3ZjItMWRiNi00YjE4LTgzNWItMTAwMGM1
+    ZDQwNmY4XkEyXkFqcGc@.jpg
+   order: 3
+   imageHasChanged: false
+ - id: 
+   name: Anthony Head
+   role: Rupert Giles
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTI3NDQ3NTMwNF5BMl5BanBnXkFtZTYwMzY4NjEz
+    .jpg
+   order: 4
+   imageHasChanged: false
+ - id: 
+   name: Mark Metcalf
+   role: The Master
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BODA0MDM4NzUyNV5BMl5BanBnXkFtZTcwOTgwNTUw
+    OA@@.jpg
+   order: 5
+   imageHasChanged: false
+ - id: 
+   name: Brian Thompson
+   role: Luke
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTM2ODA3NDg0M15BMl5BanBnXkFtZTYwMTcyNDky
+    .jpg
+   order: 6
+   imageHasChanged: false
+ - id: 
+   name: David Boreanaz
+   role: Angel
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BODI0OTUyNDktZDRmYS00MzRjLThhYjktNzNiNjc0
+    NjYzYmJlXkEyXkFqcGc@.jpg
+   order: 7
+   imageHasChanged: false
+ - id: 
+   name: Ken Lerner
+   role: Principal Bob Flutie
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTYzOTg0NzY4MV5BMl5BanBnXkFtZTcwMTUxOTgy
+    MQ@@.jpg
+   order: 8
+   imageHasChanged: false
+ - id: 
+   name: Kristine Sutherland
+   role: Joyce Summers
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTMzNDcxMzAwMV5BMl5BanBnXkFtZTcwNzAyODcy
+    NA@@.jpg
+   order: 9
+   imageHasChanged: false
 streamDetails: <not loaded>
 files: (N=0)

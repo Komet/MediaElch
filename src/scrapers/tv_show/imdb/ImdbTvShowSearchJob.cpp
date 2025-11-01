@@ -29,10 +29,10 @@ void ImdbTvShowSearchJob::searchViaImdbId()
     MediaElch_Debug_Ensures(ImdbId::isValidFormat(config().query));
 
     ImdbId id = ImdbId(config().query);
-    m_api.loadTitle(config().locale, id, ImdbApi::PageKind::Main, [this](QString html, ScraperError error) {
+    m_api.loadTitle(config().locale, id, ImdbApi::PageKind::Reference, [this](QString html, ScraperError error) {
         if (!error.hasError()) {
             TvShow show;
-            ImdbTvShowParser parser(show);
+            ImdbTvShowParser parser(show, config().locale);
             error = parser.parseInfos(html);
             if (!error.hasError() && !show.title().isEmpty()) {
                 ShowSearchJob::Result result;

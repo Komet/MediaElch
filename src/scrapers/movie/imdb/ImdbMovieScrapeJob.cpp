@@ -75,7 +75,9 @@ void ImdbMovieScrapeJob::parseAndAssignInfos(const QString& html)
 {
     ImdbData data = ImdbJsonParser::parseFromReferencePage(html, config().locale);
 
-    m_movie->setImdbId(data.imdbId);
+    if (data.imdbId.isValid()) {
+        m_movie->setImdbId(data.imdbId);
+    }
     if (data.title.hasValue()) {
         m_movie->setTitle(data.title.value);
     }
@@ -106,8 +108,8 @@ void ImdbMovieScrapeJob::parseAndAssignInfos(const QString& html)
     if (data.certification.hasValue()) {
         m_movie->setCertification(data.certification.value);
     }
-    for (Poster poster : data.posters) {
-        m_movie->images().addPoster(poster);
+    if (data.poster.hasValue()) {
+        m_movie->images().addPoster(data.poster.value);
     }
     if (data.trailer.hasValue()) {
         m_movie->setTrailer(data.trailer.value);
@@ -130,8 +132,8 @@ void ImdbMovieScrapeJob::parseAndAssignInfos(const QString& html)
     for (QString country : data.countries) {
         m_movie->addCountry(country);
     }
-    for (QString tag : data.tags) {
-        m_movie->addTag(tag);
+    for (QString keyword : data.keywords) {
+        m_movie->addTag(keyword);
     }
 }
 

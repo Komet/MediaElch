@@ -7,7 +7,7 @@ imdbId: tt1384816
 tvmazeId: 
 title: Mater's Tall Tales
 showTitle: 
-originalTitle: 
+originalTitle: Mater's Tall Tales
 sortTitle: 
 overview:
     Cruise into the crazy adventures of Tow Mater as you watch him be a fire truck, 
@@ -20,24 +20,194 @@ firstAired: 2008-10-27
 runtime: 36min
 genres: (N<6)
   - Animation
-  - Adventure
+  - Sport
   - Comedy
+  - Family
+  - Adventure
 tags: (N<6)
   - astronaut
-  - space adventure
-  - car
-  - anthropomorphic car
   - anthropomorphic vehicle
-certification: TV-Y
+  - space adventure
+  - anthropomorphic car
+  - car
+certification: TV-G
 networks: (N=0)
 episodeGuideUrl: 
-actors: (N=0)
+actors: (N>30)
+ - id: 
+   name: Larry the Cable Guy
+   role: Mater / Mator
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTY5MjA0MjQ4Ml5BMl5BanBnXkFtZTcwNTIwMTc2
+    NQ@@.jpg
+   order: 0
+   imageHasChanged: false
+ - id: 
+   name: Keith Ferguson
+   role: Lightning McQueen
+   thumb: 
+   order: 1
+   imageHasChanged: false
+ - id: 
+   name: Lindsey Collins
+   role: Mia
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMjI2Mzk3NzYwNV5BMl5BanBnXkFtZTcwNzgwMzMz
+    Mw@@.jpg
+   order: 2
+   imageHasChanged: false
+ - id: 
+   name: Elissa Knight
+   role: Tia
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMjA2NTY0MTAxN15BMl5BanBnXkFtZTcwNjY2MjY3
+    MQ@@.jpg
+   order: 3
+   imageHasChanged: false
+ - id: 
+   name: Bob Scott
+   role:
+    Shouting Car / Additional Voice Talent / Crane / Crush Car / Rasta Carian / NASC
+    A Pitty #1 / Rescue Squad Trooper / Kabuto Ninjas / Military Truck #1
+   thumb: 
+   order: 4
+   imageHasChanged: false
+ - id: 
+   name: Jan Rabson
+   role:
+    Plane #1 / Additional Voice Talent / Dock Pitty / Dr. Feel Bad / Paddy O'Concret
+    e / NASCA Truck / Van-San / Kabuto Ninjas / Military Truck #2 / Stanley's Oasis 
+    Population
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BOTJhNDRmZWYtNWVhYS00MmNmLWE1MzQtYWZiOTMy
+    NjIzNzU2XkEyXkFqcGc@.jpg
+   order: 5
+   imageHasChanged: false
+ - id: 
+   name: Danny Mann
+   role:
+    Additional Voice Talent / Sparky / Clyde / Referee Pitty / Wingo / Albert / Stan
+    ley's Oasis Population
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BNzI3MTUzNmEtYjJiOC00NTkwLWJlMTEtOGEzZmY4
+    ZTVmZjgwXkEyXkFqcGc@.jpg
+   order: 6
+   imageHasChanged: false
+ - id: 
+   name: John Cygan
+   role:
+    Green Hawk / Plane #2 / Heavy Metal Delivery Pitty / Stinky / Announcer #1 / Add
+    itional Voice Talent / Helicopter #1
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BNGFjOGM4ZGQtNzQzOS00MzQwLTkxZjctM2VmMTQy
+    ZGNjNmE4XkEyXkFqcGc@.jpg
+   order: 7
+   imageHasChanged: false
+ - id: 
+   name: Jess Harnell
+   role:
+    Additional Voice Talent / Announcer / Announcer #2 / Mission Control Pitty / Boo
+    st / Broken Down Ford Model T
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTU3YTIzYmYtMGYwZi00ZDEyLTg2Y2EtYjk3ZWQx
+    MzBlN2RhXkEyXkFqcGc@.jpg
+   order: 8
+   imageHasChanged: false
+ - id: 
+   name: Lori Alan
+   role:
+    Additional Voice Talent / Blue Hawk / Red Car / Area 51 PA Announcer / Ford Mode
+    l T at Wedding
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMjk4ODUwZmQtNTJkOS00YzIzLWJlYzItMDhjNjJi
+    ODFmNDRlXkEyXkFqcGc@.jpg
+   order: 9
+   imageHasChanged: false
+ - id: 
+   name: Mickie McGowan
+   role: Additional Voice Talent / Female Car / Mama Ship
+   thumb: 
+   order: 10
+   imageHasChanged: false
+ - id: 
+   name: Steve Purcell
+   role: Dex / Clyde's Buddy / The I-Screamer / Pink Car / Tractors
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BNjM3NTBmYWMtYzI1Yi00ZGUzLTg0NjMtNzYxNTAz
+    YWNkOTA0XkEyXkFqcGc@.jpg
+   order: 11
+   imageHasChanged: false
+ - id: 
+   name: Peter Sohn
+   role: Padre / Crush Car / Screaming Car / Ito-San's Modify Crew
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTk0NzcwMzc1MF5BMl5BanBnXkFtZTcwMTY2Njkx
+    OA@@.jpg
+   order: 12
+   imageHasChanged: false
+ - id: 
+   name: Bob Peterson
+   role:
+    Bulldozers / Spanish Crowd Cars / Crush Car / Emergency Dispatcher / Announcer /
+     Kabuto Ninjas
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTU4NTQ4ODI5N15BMl5BanBnXkFtZTYwNzIwODA3
+    .jpg
+   order: 13
+   imageHasChanged: false
+ - id: 
+   name: Guido Quaroni
+   role: Guido
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BYzRmNzU5N2YtMDI4YS00MTVmLTlmODctMjNhOTBi
+    ZTUwOTNmXkEyXkFqcGc@.jpg
+   order: 14
+   imageHasChanged: false
+ - id: 
+   name: Paul Eiding
+   role:
+    Red Hawk / Drummer Pitty / Dr. Frankenwagon's Monster / Military Truck #3 / Scie
+    ntist
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMzRjZGRlYWYtMzQxNy00YmZkLWFmZjEtZDlkZjYx
+    YzVjMmI4XkEyXkFqcGc@.jpg
+   order: 15
+   imageHasChanged: false
+ - id: 
+   name: Laraine Newman
+   role: Curious Car / Additional Voice Talent / Nurse GTO / Announcer #2
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTAxOTkwNzgxMDFeQTJeQWpwZ15BbWU4MDg0MTMy
+    MTYx.jpg
+   order: 16
+   imageHasChanged: false
+ - id: 
+   name: George Carlin
+   role: Filmore
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BNDUxZTI5ZTgtZGE3NC00YTUxLWE5ODItY2EwMDI0
+    YzY5ODA2XkEyXkFqcGc@.jpg
+   order: 17
+   imageHasChanged: false
+ - id: 
+   name: Bret 'Brook' Parker
+   role: Spanish Crowd Cars / Crush Car / Rescue Squad Ambulance
+   thumb: 
+   order: 18
+   imageHasChanged: false
+ - id: 
+   name: Jim Ward
+   role: Additional Voice Talent / NASCA Pitty #2 / Stanley's Oasis Population
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BOTJhNzJkZWEtZjc4Yi00NjlhLTlmMTktMjk4OWNm
+    NTYzZjU4XkEyXkFqcGc@.jpg
+   order: 19
+   imageHasChanged: false
+  - ... and >10 more
 posters: (N=1)
-  - id:
-    https://m.media-amazon.com/images/M/MV5BNDMxYjQ3ZDAtMjg4OC00ZTQ0LTk1NGEtNjdlMmU1
-    MWYxNGI3XkEyXkFqcGc@._V1_.jpg
-    originalUrl: https://m.media-amazon.com/images/M/MV5BNDMxYjQ3ZDAtMjg4OC00ZTQ0LTk1NGEtNjdlMmU1MWYxNGI3XkEyXkFqcGc@._V1_.jpg
-    thumbUrl: https://m.media-amazon.com/images/M/MV5BNDMxYjQ3ZDAtMjg4OC00ZTQ0LTk1NGEtNjdlMmU1MWYxNGI3XkEyXkFqcGc@._V1_.jpg
+  - id: 
+    originalUrl: https://m.media-amazon.com/images/M/MV5BNDMxYjQ3ZDAtMjg4OC00ZTQ0LTk1NGEtNjdlMmU1MWYxNGI3XkEyXkFqcGc@.jpg
+    thumbUrl: https://m.media-amazon.com/images/M/MV5BNDMxYjQ3ZDAtMjg4OC00ZTQ0LTk1NGEtNjdlMmU1MWYxNGI3XkEyXkFqcGc@.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 

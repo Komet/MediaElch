@@ -24,7 +24,7 @@ const QVector<QString> IMDB_JSON_PATH_RATING           = { "props", "pageProps",
 const QVector<QString> IMDB_JSON_PATH_VOTE_COUNT       = { "props", "pageProps", "mainColumnData", "ratingsSummary", "voteCount" };
 const QVector<QString> IMDB_JSON_PATH_GENRES           = { "props", "pageProps", "mainColumnData", "genres", "genres" };
 const QVector<QString> IMDB_JSON_PATH_TAGLINE          = { "props", "pageProps", "mainColumnData", "taglines", "edges", "0", "node", "text" };
-const QVector<QString> IMDB_JSON_PATH_TAGS             = { "props", "pageProps", "mainColumnData", "storylineKeywords", "edges" };
+const QVector<QString> IMDB_JSON_PATH_KEYWORDS         = { "props", "pageProps", "mainColumnData", "storylineKeywords", "edges" };
 const QVector<QString> IMDB_JSON_PATH_CERTIFICATIONS   = { "props", "pageProps", "mainColumnData", "certificates", "edges" };
 const QVector<QString> IMDB_JSON_PATH_STUDIOS          = { "props", "pageProps", "mainColumnData", "production", "edges" };
 const QVector<QString> IMDB_JSON_PATH_STUDIO_NAME      = { "node", "company", "companyText", "text" };
@@ -40,6 +40,9 @@ const QVector<QString> IMDB_JSON_PATH_CAST_NAME       = { "node", "name", "nameT
 const QVector<QString> IMDB_JSON_PATH_CAST_URL        = { "node", "name", "primaryImage", "url" };
 const QVector<QString> IMDB_JSON_PATH_CAST_ROLE       = { "node", "creditedRoles", "edges",  "0", "node", "text" };
 
+// TV Shows
+const QVector<QString> IMDB_JSON_PATH_SEASONS         = { "props", "pageProps", "contentData", "entityMetadata",/*??*/ "data", "title", "episodes", "seasons" };
+const QVector<QString> IMDB_JSON_PATH_SEASON_EPISODES = { "props", "pageProps", "contentData", "section", "episodes", "items" };
 // clang-format on
 
 } // namespace
@@ -47,8 +50,9 @@ const QVector<QString> IMDB_JSON_PATH_CAST_ROLE       = { "node", "creditedRoles
 namespace mediaelch {
 namespace scraper {
 
-ImdbData ImdbJsonParser::parseFromReferencePage(const QString& html, const mediaelch::Locale& preferredLocale)
+ImdbData ImdbJsonParser::parseFromReferencePage(const QString& html, const Locale& preferredLocale)
 {
+    // Note: Expects HTML from https://www.imdb.com/title/tt________/reference
     QJsonDocument json = extractJsonFromHtml(html);
 
     ImdbJsonParser parser{};
@@ -60,7 +64,49 @@ ImdbData ImdbJsonParser::parseFromReferencePage(const QString& html, const media
     return parser.m_data;
 }
 
-void ImdbJsonParser::parserAndAssignDetails(const QJsonDocument& json, const mediaelch::Locale& preferredLocale)
+QVector<int> ImdbJsonParser::parseSeasonNumbersFromEpisodesPage(const QString& html)
+{
+    QVector<int> seasons;
+    QJsonObject json = extractJsonFromHtml(html).object();
+    QJsonArray seasonsArray = followJsonPath(json, IMDB_JSON_PATH_SEASONS).toArray();
+    for (const auto& season : seasonsArray) {
+        const int number = season.toObject().value("number").toInt(-1);
+        if (number > -1) {
+            seasons.append(number);
+        }
+    }
+    return seasons;
+}
+
+QVector<ImdbShortEpisodeData> ImdbJsonParser::parseEpisodeIds(const QString& html)
+{
+    QVector<ImdbShortEpisodeData> episodes;
+    QJsonObject json = extractJsonFromHtml(html).object();
+    QJsonArray episodesArray = followJsonPath(json, IMDB_JSON_PATH_SEASON_EPISODES).toArray();
+    for (const auto& episodeValue : episodesArray) {
+        QJsonObject episodeObject = episodeValue.toObject();
+        ImdbShortEpisodeData data;
+        {
+            bool ok{false};
+            data.imdbId = episodeObject.value("id").toString();
+            data.seasonNumber = episodeObject.value("season").toString().toInt(&ok);
+            if (!ok) {
+                continue;
+            }
+        }
+        {
+            bool ok{false};
+            data.episodeNumber = episodeObject.value("episode").toString().toInt(&ok);
+            if (!ok) {
+                continue;
+            }
+        }
+        episodes.append(data);
+    }
+    return episodes;
+}
+
+void ImdbJsonParser::parserAndAssignDetails(const QJsonDocument& json, const Locale& preferredLocale)
 {
     using namespace std::chrono;
 
@@ -171,12 +217,12 @@ void ImdbJsonParser::parserAndAssignDetails(const QJsonDocument& json, const med
         }
     }
 
-    value = followJsonPath(json, IMDB_JSON_PATH_TAGS);
+    value = followJsonPath(json, IMDB_JSON_PATH_KEYWORDS);
     if (value.isArray()) {
-        for (const auto& tagObj : value.toArray()) {
-            QString tag = tagObj.toObject().value("node").toObject().value("text").toString().trimmed();
-            if (!tag.isEmpty()) {
-                m_data.tags.insert(tag);
+        for (const auto& keywordObj : value.toArray()) {
+            QString keyword = keywordObj.toObject().value("node").toObject().value("text").toString().trimmed();
+            if (!keyword.isEmpty()) {
+                m_data.keywords.insert(keyword);
             }
         }
     }
@@ -215,7 +261,7 @@ void ImdbJsonParser::parserAndAssignDetails(const QJsonDocument& json, const med
             Poster p;
             p.thumbUrl = url;
             p.originalUrl = url;
-            m_data.posters.append(p);
+            m_data.poster = p;
         }
     }
 

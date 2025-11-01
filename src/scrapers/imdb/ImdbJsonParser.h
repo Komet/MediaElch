@@ -30,9 +30,9 @@ public:
     Optional<std::chrono::minutes> runtime{};
     Optional<QDate> released;
     QVector<Rating> ratings{};
-    Optional<int> top250{-1};
+    Optional<int> top250;
     Optional<Certification> certification;
-    QVector<Poster> posters;
+    Optional<Poster> poster;
     Optional<QUrl> trailer{};
     QVector<Actor> actors;
 
@@ -41,13 +41,22 @@ public:
     QSet<QString> genres;
     QSet<QString> studios;
     QSet<QString> countries;
-    QSet<QString> tags;
+    QSet<QString> keywords;
+};
+
+struct ImdbShortEpisodeData
+{
+    QString imdbId;
+    int seasonNumber;
+    int episodeNumber;
 };
 
 class ImdbJsonParser
 {
 public:
     static ImdbData parseFromReferencePage(const QString& html, const mediaelch::Locale& preferredLocale);
+    static QVector<int> parseSeasonNumbersFromEpisodesPage(const QString& html);
+    static QVector<ImdbShortEpisodeData> parseEpisodeIds(const QString& html);
 
     ~ImdbJsonParser() = default;
 

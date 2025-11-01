@@ -40,6 +40,7 @@ public:
         PlotSummary,
         ReleaseInfo,
         Keywords,
+        Episodes,
     };
 
 public:
