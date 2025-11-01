@@ -2,13 +2,7 @@
 
 #include "scrapers/movie/MovieScrapeJob.h"
 
-#include "data/Actor.h"
-
-#include <QJsonArray>
-#include <QJsonDocument>
-#include <QJsonValue>
 #include <QString>
-#include <QVector>
 
 namespace mediaelch {
 namespace scraper {
@@ -27,15 +21,7 @@ public:
 private:
     void loadTags();
 
-    QJsonDocument extractJsonFromHtml(const QString& html);
-    QJsonValue followJsonPath(const QJsonDocument& json, const QVector<QString>& paths);
-    QJsonValue followJsonPath(const QJsonObject& json, const QVector<QString>& paths);
-
-    void parseAndAssignInfos(const QJsonDocument& json);
-    void parseAndStoreActors(const QJsonDocument& json);
-    void parseAndAssignDirectors(const QJsonDocument& json);
-    void parseAndAssignWriters(const QJsonDocument& json);
-
+    void parseAndAssignInfos(const QString& html);
     void parseAndAssignTags(const QString& html);
 
     static QString sanitizeAmazonMediaUrl(QString url);

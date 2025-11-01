@@ -1,5 +1,6 @@
 add_library(
   mediaelch_utils OBJECT Math.cpp Meta.cpp Random.cpp Containers.cpp Time.cpp
+                         Optional.cpp
 )
 
 target_link_libraries(

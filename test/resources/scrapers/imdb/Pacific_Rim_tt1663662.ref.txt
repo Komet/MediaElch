@@ -27,7 +27,7 @@ tagline: Go big or go extinct
 ratings (N=1)
   source=imdb | rating=6.8 | votes=500000 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 released: 2013-07-12
 runtime: 131min
 writer: Travis Beacham, Guillermo del Toro
@@ -196,22 +196,22 @@ actors: (N>5)
   - ... and >70 more
 certification: PG-13
 genres: (N<6)
+  - Sci-Fi
   - Action
   - Adventure
-  - Sci-Fi
 tags: (N<6)
-  - kaiju
-  - human piloted robot
-  - ocean
   - apocalypse
+  - human piloted robot
   - human versus monster
+  - ocean
+  - kaiju
 countries: (N=1)
   - US
 studios: (N<6)
   - Warner Bros.
-  - Legendary Entertainment
   - Double Dare You (DDY)
-trailer: https://imdb-video.media-imdb.com/vi1369752345/1434659529640-260ouz-1632281728566.mp4?Expires=1761596947&Signature=kUrxS9gydzaGlHP5VkMwxdX0Z4pmKYF8pbko4OlLIHTY38YAU9kTPHUgSYWpythX9m~p7ZlnoXMzSq2Sv2eUQE38~CJbOuGhr01NrkX5fHJQ~QvKe~-pTOI0yqvCK~5UXs6ANKk4NnOGfS0yND6JDi24b3jQWNzQT7nEDawtI3GGsrHPLjf3XKVQP~7FQ0I-S8sQ7k1CE-DTxxJHOpDFasCG1BFHf8wBQWL7eSTjyzyXjFhCs8AQTS8Pu8N1TH66c8T~SWv-KwgZX88dCPDhPWO8JCd9BtyMm0AFpbQiaisPFbW17VahqJQg4lAYII90fb~gT~WeULd8dnK9QMMmHw__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA
+  - Legendary Entertainment
+trailer: https://imdb-video.media-imdb.com/vi1369752345/1434659529640-260ouz-1632281728566.mp4?Expires=1762085728&Signature=Ipx5qyk9zEAFmK7tnZpxnOnwtfKYN8NUv53zzKAkh-tLFFLMYfMxQUGo-5R~hZd1TiR-QmHio9gDxXuTu~5XGQVRedkO5aZutyQxSPm60NglEC6aA3ur8WYyXYPVEJydAmF3LG9nPvxNOH84wT8ZoVv84LFBHqAlovrLCA0ThbHyt2Zpm5HssnKqx60yXd9IUoKnTtFnk~UV-z8~x384xX96IWAM75qDXiTjEPES6NmoQ317jtgeKDfrefIriSYVEY3228VqCnI3Bx65r2~YDguf-GwpOPGcW6Oq9MqOFmcbSMvtH3H8LBHwC72Eyc5voEJ9X9DVv4DpUbo8MM4HgQ__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA
 showlink: (N=0)
 playcount: 0
 lastPlayed: <not set or invalid>
