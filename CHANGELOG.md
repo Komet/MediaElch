@@ -20,7 +20,9 @@
   - After scraping a single episode, the UI did not allow saving.
     You had to select another episode again (#1896)
 - HotMovies/AdultDvdEmpire: Search works again (#1811)
-- IMDb: Writers/Directors are scraped again for TV show episodes (#1832)
+- IMDb:
+  - Scraping of was completely broken; it is fixed again (#1889)
+  - Writers/Directors are scraped again for TV show episodes (#1832)
 - TMDB: If there is an unknown season, and you want to load _all_ episodes, MediaElch
   aborted scraping after failing to load the unknown season (#1692)
 - Improved media codec detection for HDR10 and dolby vision (#1883).

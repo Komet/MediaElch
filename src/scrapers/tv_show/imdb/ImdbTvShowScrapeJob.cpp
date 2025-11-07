@@ -11,7 +11,7 @@ namespace scraper {
 ImdbTvShowScrapeJob::ImdbTvShowScrapeJob(ImdbApi& api, ShowScrapeJob::Config _config, QObject* parent) :
     ShowScrapeJob(_config, parent),
     m_api{api},
-    m_parser(tvShow()),
+    m_parser(tvShow(), _config.locale),
     m_notLoaded{ShowScraperInfo::Title,
         ShowScraperInfo::Genres,
         ShowScraperInfo::Certification,
@@ -72,7 +72,7 @@ void ImdbTvShowScrapeJob::loadTvShow()
         checkIfDone();
     };
 
-    m_api.loadTitle(config().locale, m_id, ImdbApi::PageKind::Main, callback);
+    m_api.loadTitle(config().locale, m_id, ImdbApi::PageKind::Reference, callback);
 }
 
 

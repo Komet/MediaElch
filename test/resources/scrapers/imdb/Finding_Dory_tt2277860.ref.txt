@@ -5,7 +5,7 @@ imdbId: tt2277860
 tmdbId: 
 wikidataId: 
 mediaCenterId: -1
-title: Findet Dorie
+title: Finding Dory
 sortTitle: 
 originalTitle: Finding Dory
 overview:
@@ -23,12 +23,12 @@ tagline: She just kept swimming...
 ratings (N=1)
   source=imdb | rating=7.2 | votes=300000 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
-released: 2016-09-29
+imdbTop250: -1
+released: 2016-06-17
 runtime: 97min
-writer: Andrew Stanton, Andrew Stanton, Victoria Strouse
-director: Andrew Stanton, Angus MacLane
-actors: (N>60)
+writer: Andrew Stanton, Victoria Strouse
+director: Angus MacLane, Andrew Stanton
+actors: (N>5)
  - id: 
    name: Ellen DeGeneres
    role: Dory
@@ -65,7 +65,7 @@ actors: (N>60)
    name: Hayden Rolence
    role: Nemo
    thumb:
-    https://m.media-amazon.com/images/M/MV5BMTk2NTYxMzQ5NV5BMl5BanBnXkFtZTgwNzM2Njgw
+    https://m.media-amazon.com/images/M/MV5BMjM0MjI0ODE5Ml5BMl5BanBnXkFtZTgwOTM2NzMx
     OTE@.jpg
    order: 4
    imageHasChanged: false
@@ -185,24 +185,25 @@ actors: (N>60)
    imageHasChanged: false
   - ... and >40 more
 certification: PG
-genres: (N<6)
+genres: (N>5)
   - Animation
-  - Adventure
   - Comedy
   - Family
-  - Fantasy
+  - Adventure
+  - Mystery
+  - ... and =1 more
 tags: (N<6)
-  - father-son-relationship
-  - no-opening-credits
-  - female-protagonist
-  - motor-vehicle
-  - controversy
+  - family relationships
+  - whale
+  - father son relationship
+  - ocean
+  - fish
 countries: (N=1)
-  - United States
+  - US
 studios: (N<6)
-  - Pixar Animation Studios
   - Walt Disney Pictures
-trailer: 
+  - Pixar Animation Studios
+trailer: https://imdb-video.media-imdb.com/vi2669917209/1434659454657-dx9ykf-1464098554017.mp4?Expires=1762085717&Signature=fMnW1gQ-AngFkPdWwdYJTYAOI2BRBZdyIoRnQKZJEHjQXtHDq5GvvXKoiE81CDRgNYLjHguo7xEh-riw2b3A6-mPJSqIz96o5xuQQRiF8BxUn7qZ8xzxFnVxXIf84mFzc47T-C1xaLANxsVqIOhOEd3ad9BmR7IJu48EWqY6appb1Ih7xu9RKFH2N~Q8G2beNjC-r2CHUcQGtON3U0fgbGUPljazQmDaY~rOv-b5TLnPG04LqP4S39eAXsGUIsiplM4~Y69~SR7InYJBppRX28UybeawFQN~Bk4O1K0H5HzeBicaIdNeRA1lOblwY3FPnBhSt27wv3tjAhxWMexvXQ__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA
 showlink: (N=0)
 playcount: 0
 lastPlayed: <not set or invalid>

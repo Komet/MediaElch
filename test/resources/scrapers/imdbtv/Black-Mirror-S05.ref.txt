@@ -13,7 +13,7 @@ tvmazeId:
 title: Striking Vipers
 showTitle: 
 ratings (N=1)
-  source=imdb | rating=6.8 | votes=40000 | min=0 | max=10
+  source=imdb | rating=6.8 | votes=50000 | min=0 | max=10
 userRating: 0
 imdbTop250: 0
 season: SeasonNumber=05
@@ -21,26 +21,102 @@ episode: EpisodeNumber=01
 displaySeason: SeasonNumber=xx
 displayEpisode: EpisodeNumber=xx
 overview:
-    Danny and Karl were best friends in college. Eleven years later and Danny has bu
-    ilt a stable life with a wife and son while Karl remains wild, seemingly incapab
-    le of growing up. When Karl attends Danny's birthday party, they seem to find th
-    eir old groove. The gift of a virtual reality game introduces new possibilities.
-     While playing the nostalgic video game from their youth, both men discover a ne
-    w form of satisfaction.
-writers: (N<6)
-  - Charlie Brooker
+    Two estranged college friends reunite in later life, triggering a series of even
+    ts that could alter their lives forever.
+writers: (N=1)
   - Charlie Brooker
 directors: (N=1)
   - Owen Harris
 playCount: 0
 lastPlayed: <not set or invalid>
 firstAired: 2019-06-05
-tags: (N=0)
+tags: (N<6)
+  - virtual reality addiction
+  - unexpected
+  - gender roles
+  - love
+  - confusion
 epBookmark: <not set or invalid>
-certification: 
+certification: TV-MA
 networks: (N=0)
-thumbnail: https://m.media-amazon.com/images/M/MV5BNWNkY2QwMmEtYTc3NS00MzdlLTgxMTItMWIzNWVlYTc3NGMzXkEyXkFqcGc@._V1_UX400_CR0,0,400,225_AL_.jpg
-actors: (N=0)
+thumbnail: https://m.media-amazon.com/images/M/MV5BNWNkY2QwMmEtYTc3NS00MzdlLTgxMTItMWIzNWVlYTc3NGMzXkEyXkFqcGc@.jpg
+actors: (N>5)
+ - id: 
+   name: Anthony Mackie
+   role: Danny
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTk3NTM1MjE2M15BMl5BanBnXkFtZTcwNzc5OTI2
+    Mg@@.jpg
+   order: 0
+   imageHasChanged: false
+ - id: 
+   name: Yahya Abdul-Mateen II
+   role: Karl
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMWFhMWQ3OTYtMjY1Ny00YzA4LWI3YjYtM2VkYjlj
+    OTA3ZTI1XkEyXkFqcGc@.jpg
+   order: 1
+   imageHasChanged: false
+ - id: 
+   name: Nicole Beharie
+   role: Theo
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BYzczNjAyYmUtYzAyZi00OTQ3LWI2MTEtZDc0MDNm
+    YTFjMzM1XkEyXkFqcGc@.jpg
+   order: 2
+   imageHasChanged: false
+ - id: 
+   name: Pom Klementieff
+   role: Roxette
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BYjRkZTk1NDYtNjEyNC00ZTQ3LTlhNjctNjQ2OTFl
+    ZmM3ZjZhXkEyXkFqcGc@.jpg
+   order: 3
+   imageHasChanged: false
+ - id: 
+   name: Ludi Lin
+   role: Lance
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BM2NjNDM1ZmQtYTEyNy00MGZhLWJhOWYtNWE1NGI0
+    YTZhMzgyXkEyXkFqcGc@.jpg
+   order: 4
+   imageHasChanged: false
+ - id: 
+   name: August Muschett
+   role: Tyler
+   thumb: 
+   order: 5
+   imageHasChanged: false
+ - id: 
+   name: Fola Evans-Akingbola
+   role: Mariella
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BZjRiNDM1N2YtMGFiNy00ZWZlLWFlZmEtMGMyYmY0
+    NzMzNDBmXkEyXkFqcGc@.jpg
+   order: 6
+   imageHasChanged: false
+ - id: 
+   name: Monique Cynthia Brown
+   role: Daisy
+   thumb: 
+   order: 7
+   imageHasChanged: false
+ - id: 
+   name: Caroline Martin
+   role: Jemma
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMzUxZGQ4ZjUtOTAxMS00OGZiLTk5MmItNmMzNmFi
+    ZWE1ZDQ2XkEyXkFqcGc@.jpg
+   order: 8
+   imageHasChanged: false
+ - id: 
+   name: Jordan Carlos
+   role: Simon
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BOWE0ODJkZWEtZDcxYi00OWZjLWIyYzEtMWIxODUx
+    MzY2YTM0XkEyXkFqcGc@.jpg
+   order: 9
+   imageHasChanged: false
 streamDetails: <not loaded>
 files: (N=0)
 
@@ -66,25 +142,106 @@ episode: EpisodeNumber=02
 displaySeason: SeasonNumber=xx
 displayEpisode: EpisodeNumber=xx
 overview:
-    After kidnapping an intern at a tech company, a mysterious Uber driver is surrou
-    nded by police in a meadow. The story follows an hours long standoff between the
-     police and the kidnapper, who doesn't want money or to harm his victim, as his 
-    true motive slowly becomes clearer the further that the situation spirals out of
-     control.
-writers: (N<6)
-  - Charlie Brooker
+    A cab driver with an agenda becomes the center of attention on a day that rapidl
+    y spirals out of control.
+writers: (N=1)
   - Charlie Brooker
 directors: (N=1)
   - James Hawes
 playCount: 0
 lastPlayed: <not set or invalid>
 firstAired: 2019-06-05
-tags: (N=0)
+tags: (N<6)
+  - ride share service
+  - stopped by police
+  - reflection in a rearview mirror
+  - camera shot of a closed eye
+  - bare chested male
 epBookmark: <not set or invalid>
-certification: 
+certification: TV-MA
 networks: (N=0)
-thumbnail: https://m.media-amazon.com/images/M/MV5BNWM3YTEzZTMtOTRkMC00NzVkLTlhNzItNWFiOWYzMWU2NDI0XkEyXkFqcGc@._V1_UX400_CR0,0,400,225_AL_.jpg
-actors: (N=0)
+thumbnail: https://m.media-amazon.com/images/M/MV5BNWM3YTEzZTMtOTRkMC00NzVkLTlhNzItNWFiOWYzMWU2NDI0XkEyXkFqcGc@.jpg
+actors: (N>5)
+ - id: 
+   name: Andrew Scott
+   role: Chris Gillhaney
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTQ5MjI2NTc1Ml5BMl5BanBnXkFtZTcwMzM5NjY4
+    Nw@@.jpg
+   order: 0
+   imageHasChanged: false
+ - id: 
+   name: Damson Idris
+   role: Jaden
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BYmYyYWM1OTctYWNjZS00NTcxLTkwODAtZjU4MzAw
+    MzJkNDM1XkEyXkFqcGc@.jpg
+   order: 1
+   imageHasChanged: false
+ - id: 
+   name: Topher Grace
+   role: Billy Bauer
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTc0MjM4OTg0Nl5BMl5BanBnXkFtZTcwNzQ1MDE3
+    Nw@@.jpg
+   order: 2
+   imageHasChanged: false
+ - id: 
+   name: Monica Dolan
+   role: CS Linda Grace
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BNjA3NTk3MzkxN15BMl5BanBnXkFtZTcwOTE1Nzky
+    Mg@@.jpg
+   order: 3
+   imageHasChanged: false
+ - id: 
+   name: Amanda Drew
+   role: Hayley
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BZjI4ZTBjNzYtNzk1NC00M2IyLTkwMTgtNzc4MDFk
+    NTc3ZWJjXkEyXkFqcGc@.jpg
+   order: 4
+   imageHasChanged: false
+ - id: 
+   name: Daniel Ings
+   role: David Gilkes
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMzZiNzNiYjktNGNiNC00Mzc4LWFiNTYtYjJhZjli
+    ZGM0ZTQ4XkEyXkFqcGc@.jpg
+   order: 5
+   imageHasChanged: false
+ - id: 
+   name: Ruibo Qian
+   role: Penelope Wu
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BNGU0MDhhNzMtMDRmNi00Y2U3LTkzZjctNWI2ODhi
+    MGQwZThlXkEyXkFqcGc@.jpg
+   order: 6
+   imageHasChanged: false
+ - id: 
+   name: Ambreen Razia
+   role: WPC Najma Haque
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BODYwMWQ4ZjYtNWFjZS00MGY5LTkyMTUtMGM0NWVm
+    ZjJmMzdkXkEyXkFqcGc@.jpg
+   order: 7
+   imageHasChanged: false
+ - id: 
+   name: Calum Callaghan
+   role: PC Damien Bullen
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BOTliNmYzYjYtYTc4NC00NTNjLThlMTAtN2ZjOWQ2
+    ZTYzNTcwXkEyXkFqcGc@.jpg
+   order: 8
+   imageHasChanged: false
+ - id: 
+   name: Quincy Dunn-Baker
+   role: Don
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BZDRhOWFhN2YtZDMxNi00OWVmLTg5OTEtZWJmZGE0
+    NzQ4MjdhXkEyXkFqcGc@.jpg
+   order: 9
+   imageHasChanged: false
 streamDetails: <not loaded>
 files: (N=0)
 
@@ -112,19 +269,103 @@ displayEpisode: EpisodeNumber=xx
 overview:
     A lonely teenager yearns to connect with her favorite pop star - whose charmed e
     xistence isn't quite as rosy as it appears...
-writers: (N<6)
-  - Charlie Brooker
+writers: (N=1)
   - Charlie Brooker
 directors: (N=1)
   - Anne Sewitsky
 playCount: 0
 lastPlayed: <not set or invalid>
 firstAired: 2019-06-05
-tags: (N=0)
+tags: (N<6)
+  - white grand piano
+  - watching a music video
+  - milk bath
+  - modern house
+  - high school cafeteria
 epBookmark: <not set or invalid>
-certification: 
+certification: TV-MA
 networks: (N=0)
-thumbnail: https://m.media-amazon.com/images/M/MV5BMGViNDgzMGYtZDJiOC00ZjRkLWIwYTktNWM4ZDUyZDA1OGE2XkEyXkFqcGc@._V1_UX400_CR0,0,400,225_AL_.jpg
-actors: (N=0)
+thumbnail: https://m.media-amazon.com/images/M/MV5BMGViNDgzMGYtZDJiOC00ZjRkLWIwYTktNWM4ZDUyZDA1OGE2XkEyXkFqcGc@.jpg
+actors: (N>5)
+ - id: 
+   name: Miley Cyrus
+   role: Ashley O
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTc3MzE1MzcxNl5BMl5BanBnXkFtZTcwNTM1MTA2
+    OA@@.jpg
+   order: 0
+   imageHasChanged: false
+ - id: 
+   name: Angourie Rice
+   role: Rachel
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMzMxNGM1YTItMGFiNi00NzdiLTg2NDctOTIzMzY2
+    MDQ3ZDRkXkEyXkFqcGc@.jpg
+   order: 1
+   imageHasChanged: false
+ - id: 
+   name: Madison Davenport
+   role: Jack
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BYjczM2QxOWUtYTQ1OC00ZjA2LWE1ZDUtYmY5ZDJm
+    YzU4YjgwXkEyXkFqcGc@.jpg
+   order: 2
+   imageHasChanged: false
+ - id: 
+   name: Susan Pourfar
+   role: Catherine
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTJhNjg0ZWYtZGI5Ny00OGRkLTljZmEtMzJiMTg3
+    YzAyZTk3XkEyXkFqcGc@.jpg
+   order: 3
+   imageHasChanged: false
+ - id: 
+   name: Marc Menchaca
+   role: Kevin
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BZTZkMWJhYjAtNmFkMy00YWEzLTgwOTEtODBiMGE3
+    MzEyYjlhXkEyXkFqcGc@.jpg
+   order: 4
+   imageHasChanged: false
+ - id: 
+   name: Jerah Milligan
+   role: Busy G
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BOTgxODdkNzctZWIzZS00YzQ3LTkxOGQtNmE5ODc4
+    ZDYxMDAwXkEyXkFqcGc@.jpg
+   order: 5
+   imageHasChanged: false
+ - id: 
+   name: Daniel Stewart Sherman
+   role: Bear
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMjg3ZjQ1NGMtYmU2MC00MTkwLTkyYTEtMWRiNDg1
+    MGQzNzVkXkEyXkFqcGc@.jpg
+   order: 6
+   imageHasChanged: false
+ - id: 
+   name: James III
+   role: Habanero
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BZGFiOGQzMWUtOWRmMy00OWE2LWE3OWEtNjFjOTkx
+    NWMxYTcyXkEyXkFqcGc@.jpg
+   order: 7
+   imageHasChanged: false
+ - id: 
+   name: Nicholas Pauling
+   role: Dr. Munk
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BYTliYzA3OGEtYmEwMS00NjNiLWJjZDUtMWNhM2E2
+    MDgxY2RhXkEyXkFqcGc@.jpg
+   order: 8
+   imageHasChanged: false
+ - id: 
+   name: Frances Sholto-Douglas
+   role: Carmen
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMjNmZjRiOTItNDIzNi00NjU4LWEyZWEtZjVmOTkx
+    ZGJiZDI4XkEyXkFqcGc@.jpg
+   order: 9
+   imageHasChanged: false
 streamDetails: <not loaded>
 files: (N=0)

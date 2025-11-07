@@ -7,7 +7,7 @@ imdbId: tt0096697
 tvmazeId: 
 title: The Simpsons
 showTitle: 
-originalTitle: 
+originalTitle: The Simpsons
 sortTitle: 
 overview:
     The satiric half-hour adventures of a working-class family in the misfit city of
@@ -15,28 +15,438 @@ overview:
 ratings (N=1)
   source=imdb | rating=8.6 | votes=400000 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: 111
 firstAired: 1989-12-17
 runtime: 22min
 genres: (N<6)
   - Animation
   - Comedy
 tags: (N<6)
-  - beer
-  - sitcom
-  - satire
   - cult tv
+  - satire
+  - sitcom
+  - beer
   - family as protagonists
-certification: TV-14
+certification: TV-MA
 networks: (N=0)
 episodeGuideUrl: 
-actors: (N=0)
+actors: (N>50)
+ - id: 
+   name: Dan Castellaneta
+   role:
+    Homer Simpson / Grampa Simpson / Barney Gumble / Groundskeeper Willie / Sideshow
+     Mel / Krusty the Clown / Mayor Quimby / Hans Moleman / Squeaky-Voiced Teen / Sa
+    nta's Little Helper / Grampa / Krusty / Itchy / Rich Texan / Krusty the Klown / 
+    Squeaky Voiced Teen / Kodos / Gil Gunderson / Gil / Louie / Abraham Simpson / Ba
+    rney / Mr. Teeny / Blue-Haired Lawyer / Snowball II / Scott Christian / Marty / 
+    Bill / Arnie Pie / Arnie Pye / Blue Haired Lawyer / Reporter / Count Dracula / B
+    enjamin / Bill Clinton / Charlie / Frankie the Squealer / Abe Simpson / Addition
+    al Voices / Hot Dog Vendor / Leprechaun / Sam / Willie / Worker / Butler / Burns
+    ' Lawyer / The Yes Guy / Monkey / Quimby / Mailman / Bill Cosby / Abraham 'Gramp
+    a' Simpson / Woody Allen / Capt. Lance Murdock / Audience Member / George Washin
+    gton / Announcer / Man in Audience / John Travolta / Moleman / Player / Homer's 
+    Brain / Cop / Doug / Monkeys / Man #2 / Crowd Members / Reporter #1 / Man in Cro
+    wd / Guard / Reporter #2 / Soldier / Poochie / Squeaky-voiced teen / St. Peter /
+     Smitty / Wolves / Jake the Barber / Reporter #4 / Reporter #5 / Heckler #1 / Be
+    er Vendor / Sailor / Stuart / Man on Street / Man in Crowd #2 / Benjamin Frankli
+    n / Abraham Lincoln / Ice Cream Man / TV Voice / Conductor / Gomer Pyle / French
+    man / News Director / Uncle Sam / Troy McClure / Smartline Announcer / Writer / 
+    Arthur Miller / Waiter
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMjAyNDY5NDEwOV5BMl5BanBnXkFtZTcwMjY0ODYy
+    MQ@@.jpg
+   order: 0
+   imageHasChanged: false
+ - id: 
+   name: Julie Kavner
+   role:
+    Marge Simpson / Patty Bouvier / Selma Bouvier / Jacqueline Bouvier / Others / Ja
+    ckie Bouvier / Eunice Bouvier / Bowler #2 / Receptionist / Actress as Marge / Nu
+    rse / Teacher / Marge's Grandmother / Queen Elizabeth I / Elizabeth Raleigh / Ca
+    rtoon Squirrel / Margarine of aragon / Angela Lansburry / Herb's Mother / Aunt G
+    ladys / Marge Bufflekill / Mary / Pagan Mother / Audience / Mabel Simpson / Adil
+    's Mother / Floor Buffer / Whispering Teachers / Gloria / Spirit #3 / Zombie DJ 
+    #1 / Marge Bar / Genevieve Bouvier / Marge robots / Majora / Frida Kahlo / Patty
+     / Selma / Turkey / Marge Albertson / The Pookadook
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTcwMjUzMTc1OF5BMl5BanBnXkFtZTYwODE0MjM0
+    .jpg
+   order: 1
+   imageHasChanged: false
+ - id: 
+   name: Nancy Cartwright
+   role:
+    Bart Simpson / Nelson Muntz / Ralph Wiggum / Kearney / Todd Flanders / Maggie Si
+    mpson / Kearney Zzyzwicz / Database / Additional Voices / Lewis / Martin Prince 
+    / Ralph / Rod Flanders / Girl / Boy / Others / Miss Springfield / White-Haired G
+    irl / Ling Bouvier / Woman #1 / Crowd Members / Krusty's Assistant / Nina Skalka
+     / Mother / Kearney Jr. / Child Crowd / International Harvester Spuckler / Kent 
+    Brockman's Daughter / Gavin / Baby / Crystal Meth Spuckler / British Woman / Ger
+    ms / Yay Crowd / Joe Spuckler / Kearney's Son / Auditioning Woman #2 / Auditioni
+    ng Woman #3 / Dancing Girl #3 / 1st Parrot / Chorus Girl #3 / Hospital Tannoy / 
+    Students / Child #2 / Dr. Hibbert's Younger Son / Girl with Sore Teeth / Child #
+    3 / Child #5 / Skinner's secretary / Lassie Actress / Saleswoman / Woman in 'Spa
+    ce Mutants VIII' / Nun #2 / Shouting Crowd / Elmo / Dino-Son / Homer's cousin's 
+    son / Nelson Moontz / Junior Camper / Baby at Park / Baby #1 / Baby #2 / Snowbal
+    l II / Kid / Exercise Video Girl / Girls / Various Kids / Homer's Date / Girl at
+     Kissing Booth / Ex-Wife #2 / Simon Woosterfield / Young Bully / Glee Club Singe
+    rs / Brittany / Girl on Bus / Wanda / Becky / Prince Ralph of Austria / Nelson's
+     children / Wendell / Female Scientist / Gravey / Polly / Charlotte / Picard Sim
+    pson / Kirk Simpson / Vicky / Louise / Ashley Grant Actress / Jamshed / Admiral 
+    Baby / Paperboy / Photography Club Member #2 / Freddy / Boy at Kwik-E-Mart / Act
+    or / Inanimate Carbon Rod #3 / Nuclear Waste / "Cockamamie's" Salesgirl / Child
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMjZmYTQ1YjItZTUzYi00Nzk1LTlmNzEtMmRmMjM4
+    NjZmOTcyXkEyXkFqcGc@.jpg
+   order: 2
+   imageHasChanged: false
+ - id: 
+   name: Harry Shearer
+   role:
+    Ned Flanders / Principal Skinner / Kent Brockman / Lenny / Mr. Burns / Dr. Hibbe
+    rt / Lenny Leonard / Waylon Smithers / Reverend Lovejoy / Otto / Montgomery Burn
+    s / Scratchy / Jasper / Smithers / Rainier Wolfcastle / Eddie / Kang / Otto Mann
+     / Rev. Lovejoy / Judge Snyder / Mr. Largo / Announcer / Dewey Largo / TV Announ
+    cer / God / Principal Seymour Skinner / Skinner / Seymour Skinner / Jasper Beard
+    ly / Dr. Julius Hibbert / Hibbert / Herman / Marty / Dr. Marvin Monroe / Legs / 
+    Radio Announcer / Bill / Reverand Lovejoy / Judge / Tom Brokaw / Additional Voic
+    es / Bill Clinton / McBain / Louie / Gary / Dave Shutton / Narrator / Jasper Bea
+    rdley / Sanjay / Charles Montgomery Burns / Others / Guard / Principal Dondeling
+    er / Ronald Reagan / Baseball Announcer / George H.W. Bush / Herman Hermann / Je
+    rry / Dr. J. Loren Pryor / Director / Man / Commercial Announcer / Richard Nixon
+     / Adolf Hitler / Evil Laugh / J. Loren Pryor / Al Gore / Lou / Guard #2 / Sport
+    scaster / George H. W. Bush / Bob Dole / Doctor / First Man / Johnny Carson / Ne
+    dward Flanders, Sr. / Jebediah Springfield / Cesar / Concert Announcer / Pilot /
+     Stadium Announcer / Clifford Burns / Clancy Bouvier / Rabbi Rudenstein / Otto M
+    an / Learned Pervert / Satan / Dutch Policeman / European Judge #2 / Mr. Prince 
+    / Movie Announcer / Hitler / Bartender / Announcer #1 / Radio DJ / Krusty Show A
+    nnouncer / Football Announcer / Teamster / Man on TV / Sanjay Nahasapeemapetilon
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTIxNDg4MzA5OF5BMl5BanBnXkFtZTYwOTM3MDc1
+    .jpg
+   order: 3
+   imageHasChanged: false
+ - id: 
+   name: Yeardley Smith
+   role:
+    Lisa Simpson / Cecile Shapiro / Grandma Flanders / Yay Crowd / Rudy Huxtable / C
+    osine / Shouting Crowd / Woman in Queue / Estonian Dwarf as Lisa / Alive Charact
+    er #2 / Snow White / Jake Boyman / Zia Simpson / Crowd Members / Inanimate Carbo
+    n Rod #2 / Nuclear Waste / Surgery Audience / Dil / Francine Rhenquist / Angry C
+    rowd / Child Crowd / Child at Dentist's / Lisabello / Pahasatira Nahasapeemapeti
+    lon / Marge's Friend #1 / Maggie Simpson / Anonymous Students / Retirement Party
+     Singers / Singing Crowd / Sacajawea / Salieri / Lisa Jr. / Driver / Connie Appl
+    eseed / Becky Thatcher / Gabriel / Pagan Daughter / 'Share my locker' / Eliza Si
+    mpson / Angelica Button / Shouting Teachers / Singing Choir / Itchy & Scratchy S
+    how End Credits Singers / Voice Activated Search Machine / Lisa's Guilt / Bessie
+     / Apple / Genital Snurfs / Kate / Siddmartha / Lisa Cactus / Tracey Ullman Lisa
+     Simpson / Lisandra / Lisanardo da Vinci / Improv Shakespeare Actress #2 / Yeard
+    ley Smith / Lisa's Mindsets / Lizzie Albertson / Malibu Kevin / Lisa's Granddaug
+    hter / Edith
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BNzcyNjQ1NTAtMDk4My00NDc1LWIzYjMtYmQ1MGE3
+    MTdkODZmXkEyXkFqcGc@.jpg
+   order: 4
+   imageHasChanged: false
+ - id: 
+   name: Hank Azaria
+   role:
+    Moe Szyslak / Chief Wiggum / Carl / Comic Book Guy / Lou / Kirk Van Houten / Sup
+    erintendent Chalmers / Carl Carlson / Apu Nahasapeemapetilon / Apu / Professor F
+    rink / Cletus / Snake / Disco Stu / Old Jewish Man / Bumblebee Man / Wiseguy / D
+    uffman / Dr. Nick Riviera / Cletus Spuckler / Raphael / Prof. Frink / Drederick 
+    Tatum / Luigi / Captain McAllister / Luigi Risotto / Snake Jailbird / Sea Captai
+    n / Johnny Tightlips / Captain Horatio McCallister / Captain McCallister / Julio
+     / Coach Krupt / Clancy Wiggum / Gary Chalmers / Frink / Waiter / Director / Cle
+    rk / Moe / Chief Clancy Wiggum / TV Announcer / Additional Voices / Crazy Old Ma
+    n / The Sea Captain / Auctioneer / Roofi / Ranger / Cab Driver / Announcer / Dou
+    g / Superintendant Chalmers / Tour Guide / Chalmers / Doctor / Chazz Busby / Gab
+    bo / Ron Rabinowitz / Bailiff / Nobel Prize Announcer / Van Krusten / European J
+    udge #1 / Easy Reader / Sprooklyn Bum / Guy Talking To Krusty / Legs / Delivery 
+    Man / Lifeguard / Santa Claus / Homeless Man / Chef / Man in Crowd / Pilot / Man
+     / Robot / Jesus / Old Jewish Guy / Gunter / Very Tall Man / Reporter #3 / Sam /
+     Guard / Pyro / Bellhop / Audience Member / Security Guard / Jack / Lawyer / Cap
+    tain / Krusty's Assistant / Hippie / Technician / General / Veterinarian / Super
+    intendent Gary Chalmers / Akira / Construction Worker / Benjamin / Crowd Members
+     / Pig
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTQ0MzIxMzUwMV5BMl5BanBnXkFtZTcwMjE1NjM1
+    Mg@@.jpg
+   order: 5
+   imageHasChanged: false
+ - id: 
+   name: Pamela Hayden
+   role:
+    Milhouse Van Houten / Jimbo Jones / Rod Flanders / Janey Powell / Sarah Wiggum /
+     Wendell / Additional Voices / Janey / Nurse / Jimbo / Crowd Members / Boy / Mar
+    tin Prince / Others / Dolph / Lewis / Kid / Richard / Patches / Child Crowd / Mi
+    lhouse van Houten / Birthday Spuckler / Receptionist / Audience Member / Child #
+    1 / Ham / Actress / Lady / Child / Old Woman / Waitress / Woman in Crowd / Jitne
+    y Spuckler / Angry Crowd / Cheering Crowd / Miss Springfield / Woman in Casino /
+     Bill Cosby's Daughter / Reporter / Police Dispatcher / Pregnant Woman / Laurie 
+    / Chimp Nurse / Dr. Hibbert's Son / Reporter #2 / Japanese Mother / Woman Praisi
+    ng Barney's Movie / Maude Flanders / E-Mail / Dancing Girl #1 / Fan-Demonium Che
+    erleader / Woman on Street / Around the World Performer / Chorus Girl #1 / Choru
+    s Girl #3 / Princess Opal the Psychic / Krusty's Fan / BartChat Girl / Televisio
+    n Aerobics Instructor / Students / Luanne Van Houten / Escape from Grandma's Hou
+    se Announcer / Janey Hagstrom / Ethan Foley / Sparkle / Yo-Yo Victim / Internati
+    onal Operator / Tobias / Dakota / Kid #2 / 'She-Bear' / Email / Jack's Girlfrien
+    d / Commercial Narrator / Sunday School Teacher / Shouting Crowd / Girl in Viagr
+    aGaine Commercial / Saleswoman / Bartender / Saultery Stevens / Real Housewife #
+    1 / Female Pin Vendor / Granddaughter / Amber / Anya / Girls / Stewardess #1 / W
+    oman at Pool / 'He's got a gun!' / Various Kids / Ex-Wife #1 / Unimpressed Fan #
+    2 / Ruthie / Tobey Hunter / Jennifer / Car Buyer / Child at Science Fair / Campa
+    ign Worker #1 / Milhouse / 1st Girl in Cafeteria
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTY1NjU1ODI1Ml5BMl5BanBnXkFtZTYwNDE2ODQz
+    .jpg
+   order: 6
+   imageHasChanged: false
+ - id: 
+   name: Tress MacNeille
+   role:
+    Agnes Skinner / Dolph / Various / Lindsey Naegle / Crazy Cat Lady / Mrs. Muntz /
+     Brandine / Brandine Spuckler / Shauna Chalmers / Dolph Starbeam / Cookie Kwan /
+     Bernice Hibbert / Lunchlady Doris / Nurse / Various Kids / Lindsay Naegle / Man
+    jula / Dubya Spuckler / Shauna / Lunchlady Dora / Dolph Shapiro / Mrs. Glick / L
+    ewis / Woman / Miss Springfield / Various People / Waitress / Socialite / Mrs. V
+    anderbilt / Jimbo Jones / Old Lady / Cora / Myra / Lindsey Neagle / Boy / Lady /
+     Booberella / Tour Guide / Plopper / Whitney Spuckler / Crowd Members / Brunella
+     Pommelhorst / Cosine / Librarian / Lindsay Neagle / Additional Voices / Martha 
+    / Maya / Opal / Teacher / Little Boy / Poor Violet / Witch / Brandine Del Roy / 
+    Mother / Kumiko / Amazon Alexa / Children / Alexa / Belle / Woman on Street / Pi
+    gs / Aide / Gov. Mary Bailey / Queen Elizabeth II / Actress / Gypsy / Medicine W
+    oman / Brenda / Mom / Others / Inga / Old Woman / Clara / Operator / Wife / Noah
+    's Mother / Kenny / Gino Terwilliger / TV Executive / Producer / Lucy / Woman #2
+     / Mrs. Burns / Ms. Albright / Tina / Sandra / Paper Boy / Animal Shelter Worker
+     / Girl / Terri / Parade Commentator / Cienega / Airport Announcer / Saleswoman 
+    / Baseball Player / Churchgoer / Amy / Receptionist / Krusty's Agent
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTQxMTQ1NzY5N15BMl5BanBnXkFtZTcwMDY5NDUw
+    OA@@.jpg
+   order: 7
+   imageHasChanged: false
+ - id: 
+   name: Chris Edgerly
+   role:
+    Additional Voices / Crowd Members / Laughing Crowd / Various Voices / The Detona
+    tor / Cheering Crowd / Veteran / Audience Members / Crowd / Actor Playing Homer 
+    / Angry Crowd / Tucker Carlson / Lifeguard / Death / Angry Driver / Parrot / Mar
+    lin / Huff'n'puffalus / Baldwin / Alien #1 / Giant Grasshopper / Drunk / Bar Pat
+    ron / Customer / Others / Santa's Little Hybrid / Casino Bouncer #2 / Paramedic 
+    / Demon / Train Engine / Man at Social Services / Jury Crowd / Bob Johnson / La 
+    Coffee Nostra Waiter / Water Park Members / Elders / Man of Couple / Imaginative
+     Talking Disposal Unit / Nuclear Power Plant Audience Members / Comedy Club Crow
+    d / Boston Football Fan / Ricky Ricardo / America's Media Company Employee / Cha
+    rlie / Jimmy Jimmy / Yale Dean / Jaime Escalante / Hobbit / William Shakespeare 
+    / Plane People / Fund Bunch bowler 1 / Xylem / Conor / Tunnel-Rat / Leroy Jethro
+     Gibbs / Marv Szyslak / Hamster's Mind / Person with Smoker / Danish Police Offi
+    cer / Promise Keeper / Coders / Squirrel / Clowns / Trump Voter / Stewie Griffin
+     / Don / Lucas / Just Desserts Owner / Krusty the Clown Writer #2 / Krusty the C
+    lown Writer #3 / Springfield Nuclear Power Plant Employees / Film Actor / Massag
+    er / Soft Man / The Toast Master Guy / The Toast Master Voice Generator / Hockey
+     Gamer / Audience Member / Calgary Lames Team Member / Josh.0 Host / Miles / Gus
+    tavo Dudamel / Small Parent / Youth Orchestra Students / Dynamic Bodymaker / Hov
+    erboard Guy / Suited Employees / Jimmy Kissass / Amphibian Man / Ticket Salesman
+     / Aquatraz Water Park Announcer / Gorilla Sanctuaries Host #2 / Foam Lenny at F
+    ox Announcer / Airport Manager / First Thanksgiving Celebrators / David Bowie / 
+    Mr. Prince / Santa Claus / Jim / Librarian
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BNWEzNjVhM2MtYmNlOS00NTk4LWI5ZjYtYWQyMWY2
+    ZWNjNGQwXkEyXkFqcGc@.jpg
+   order: 8
+   imageHasChanged: false
+ - id: 
+   name: Maggie Roswell
+   role:
+    Helen Lovejoy / Luann Van Houten / Maude Flanders / Miss Hoover / Elizabeth Hoov
+    er / Nurse / Others / Various / Librarian / Martha Quimby / Mother / Judge / Fan
+     #1 / Reporter / Gavin's Mom / Mrs. Winfield / Shary Bobbins / Ruth Powers / Gov
+    . Mary Bailey / Emma / Auditioning Woman #1 / Dancing Girl #2 / Bowler #3 / Star
+    let / Bernice Hibbert / Chorus Girl #2 / Quimby's Wife / Farrah Fawcett-Majors-O
+    'Neal-Varney / Kitty Carlisle / KBBL Boss / Child #3 / Tar Pit Information Speak
+    er / Child #4 / Richard / Janey Powell / Mrs. Spencer / Woman at Observatory / O
+    perator / Singing Nun / Female Tour Guide / Jimmy Stewart's Granddaughter / Mail
+     Lady / Warren / Maude Flanders #1 / Showgirl / Kristin Shepard / Woman at Park 
+    / Newsreader / Fergie / Mrs. Norton / NASA Scientist #2 / Peggy Bundy / Mrs. Phi
+    llips / Screaming Woman / Woman at Science Fair / Lady / Telemarketer #2 / All i
+    s well / Police Photographer / Thelma / Ashley Grant / Protesting Woman / Woman 
+    on Chat Show / Woman in Gentle Ben Audience #1 / Computer Voice / Marguerita / F
+    emale Worker / Power Plant Voice / Inspector #1 / Application Reviewer #2 / Answ
+    ering Machine / Ticket Booth Lady / Distressed Woman / Dorothy / Building Owner 
+    / Three Stooges Actress / Employee / Guest / Princess Kashmir / Fe-Mail-Man / Ph
+    otography Club Member #1 / Churchgoer / Sunday School Teacher / Strawberry / Old
+     Lady / Ticket Lady / Child Care Woman #1 / Bort #1's Mother / Child Care Woman 
+    #2 / 'I'd be terribly embarrased if I were that boy's mother' / Animator #3 / Sc
+    hool Nurse / Queen Elizabeth / Allison Taylor / Future Tour Guide / Shelbyville 
+    Lemonade Kid / Singing Waiters / Architect Simpson / Sales Coordinator Simpson /
+     Girl #2
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BOGE4ZmUyOTQtY2MyOS00ZTgwLThkMGEtNDlhMWMy
+    MTY1ZDY4XkEyXkFqcGc@.jpg
+   order: 9
+   imageHasChanged: false
+ - id: 
+   name: Karl Wiedergott
+   role:
+    Additional Voices / Various / Others / Jimmy Carter / Legs / Bill Clinton / Crow
+    d / Actor / Additional voices / Delivery Man / Diego / Jesse / Security Guard / 
+    Prisoners / Burns' First Cellmate / Two-Hook Handed Man / High School Student / 
+    Billy Carter / Kevin / Junkie / Huckleberry Hound / Burt Ward / Bum #1 / Jetskie
+    r #3 / Stage Manager / I'm afraid / Uncle Tyrone / Oliver / Cap'n Crunch / Trix 
+    Rabbit / Gay Man / Cookie / Politician in a Think Tank / Candidates / Farmer #2 
+    / Mexicans / Man / Circuit Circus Employee / Ryan Lief / Lawyer / Telemarketer #
+    1 / Pilot #1 / Man in Audience / Guy at the Airport / Pilot #2 / Happy Little El
+    f #2 / Robot #1 / Hockey Player / Fan #2 / Cecil / Writer #1 / Writer #3 / Ned F
+    landers / Valet / Citizen Worker / Editor / Partygoer / Kenny Loggins / SNPP Sec
+    urity Guard / Crane Operator / Groundskeeper Seamus / Umpire / Ribhead #4 / Parr
+    ot / Citizens / Soldier #2 / Psychologist #2 / Snowman / Reveller / Various Indi
+    an Men / Angelo / Caleb / Rick / Anthro Lecturer / Cook / Cruise Line Man #1 / A
+    ustralian Barfly / Repo Man #1 / Pick-Up Truck Driver / Hobo / Diner / Missionar
+    y 2 / Trucker 4 / Bodyguard #2 / Whiner #1 / Gay Man #2 / Gay Man #4 / Man with 
+    Check / Poet Writers / Cecil Hampstead-on-Cecil Cecil / Master of Ceremonies / A
+    stronaut #1 / Garbage Man / Monster in Commercial / Screaming Man / Christian Ca
+    rrot Theater Announcer / Bacon Truck Driver / Announcer / Redneck #1 / Bum
+   thumb: 
+   order: 10
+   imageHasChanged: false
+ - id: 
+   name: Russi Taylor
+   role:
+    Martin Prince / Sherri / Terri / Uter / Wendell / Additional Voices / Lewis / Ma
+    rtin / Various / Others / Quimby's Mistress / Loni Anderson / Students / Mother 
+    / Dr. Hibbert's Daughter / Sidney Swift / Ian / Billy / Chuck / Wendell Borton /
+     Mother in Baby-So-Fresh Commercial / Ewa / Stenographer / Son / Nun / Phone Voi
+    ce / Girls / Woman on Parole Board / Janey Powell / Ron Howard's Son / Gummy Sue
+     / Inanimate Carbon Rod #1 / Nuclear Waste / Mrs. Winfield / Orphan / Mount Holy
+    oke Sister / Vassar Sister / Adrian / Woman in Club / Various Students / Sisters
+     / Singing Kid in Commercial / Ronnie Beck / Craig's Girlfriend / Kids / Beezee 
+    / Fish / Shirley Temple / Spirit #6 / Mrs. Prince / Sushi / Üter Zörker / Anonym
+    ous Children
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTk1ODEwNTIxNV5BMl5BanBnXkFtZTcwNjA4ODkx
+    OA@@.jpg
+   order: 11
+   imageHasChanged: false
+ - id: 
+   name: Marcia Wallace
+   role: Edna Krabappel / Ms. Melon / Woman in Bar / Crowd / Others / Spirit #1
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTM5ODczNTY5M15BMl5BanBnXkFtZTgwNTUwMTk2
+    MDE@.jpg
+   order: 12
+   imageHasChanged: false
+ - id: 
+   name: Kevin Michael Richardson
+   role:
+    Dr. Hibbert / Anger Watkins / Security Guard / Narrator / Maxwell Flinch / Mark 
+    / Burns' Cellmate / Mall Cop / Lady Gaga Express Conductor / Various Voices / Se
+    ndEx employee / Party Guest / Retirement Castle orderly / Jamaican Musician / Co
+    p with a Secret / FBI Agent / Prison inmate / Chester / Jamaican Krusty / Albert
+     / Nigerian King / Black Prison Guard #1 / The Patriarch / End Credits Singer / 
+    Jay G / Deuce / Andre / Bird 3 / Stogie / Pazuzu / Bechdel Test Announcer / Azzl
+    an / Icewalker / Louis Armstrong / Bleeding Gums Murphy's Nephew / Scott / Envel
+    ope / Michael Clarke Duncan-type / Cthulhu / Phloem / Bookaccino's employee / Ji
+    mi Hendrix / Coders / Fats / Tubberware Bowl / Sprawl Mart Employee / Atlanta Fa
+    lcon Fan / Mr. Monroe / Snow Ballroom Bodyguard / GoodCop DogCop Police Manager 
+    / Earl Woods / Basketball Gamer / Louie Armstrong / Sonny Go-along / Demogorgon 
+    / Demogorgon Flanders / Lewis / JJ Hibbert / Jelly Monster / Gautama Buddha / Po
+    lice Guard / Boarding School Manager / Tupac Shakur / 'The Ballad of John Homer'
+     singer / Distributed Ledger / People at Therapy / Black Voodoo / Moby Man / Dav
+    e Chappelle / Michael / Preacher Mac / Jupiter / Security guard / Puppy Goo-Goo 
+    / Cyclist / Knight / Marvel Fan / Apology Instructor / Loitering Guy / Lead Chur
+    ch Singer / Black Singer / Crowd Members / Wakkety Yak / The Shipper / Devil / C
+    hristmas Choir Singer / Parking Guy / Isotope Stadium Manager / Mac Tonight / MI
+    5 Agents / Agent / Male Director Fan / Groot / Devil Moe / Co-Pilot / Oliver Har
+    dy / Audio Spy Manager / Film Student #2 / Jed Hawk / Manager
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTI0OTg2NDQyOV5BMl5BanBnXkFtZTcwMTAwNjkz
+    MQ@@.jpg
+   order: 13
+   imageHasChanged: false
+ - id: 
+   name: Alex Désert
+   role:
+    Carl Carlson / Lou / Security Guard / Fausto / Audrey II / FBI Officer #1 / Empl
+    oyee Praising Dance Moves / Partygoer #2 / Gamer / Hockey Player / Wyatt / Fathe
+    r / New York Yankees Player / Male Scientist / Judge
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTY1ODM2NDMzNF5BMl5BanBnXkFtZTcwNzkzMTgy
+    Mg@@.jpg
+   order: 14
+   imageHasChanged: false
+ - id: 
+   name: Phil Hartman
+   role:
+    Troy McClure / Lionel Hutz / Lyle Lanley / Hospital Chairman / Fat Tony / Charlt
+    on Heston / Heavenly Voice / Barfly / Joey / Godfather / Evan Conover / Tom / Ne
+    lson's Dad / Football Commentator / Tuesday Night Live Announcer / Stockbroker /
+     Horst / Commercial Announcer #2 / Man in Radio Commercial / Mobster / Moses / C
+    able Guy / Mexican wrestling announcer / Congressman / Smooth Jimmy Apollo / 'Lo
+    ok at that stupid kid!' / Plato / Duff Gardens Commercial Voice-Over / Bill Clin
+    ton
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BNTEyNjYxNTY3Ml5BMl5BanBnXkFtZTYwNTM1MDE0
+    .jpg
+   order: 15
+   imageHasChanged: false
+ - id: 
+   name: Grey DeLisle
+   role:
+    Martin Prince / Terri / Sherri / Terri Mackleberry / Leland Huebner III / Young 
+    Woman / Martin Prince's Brother / Martin's Child #2 / Women's Bar Customer / Air
+    port Passerby #2 / Airport Passerby #4 / Angry Crowd / Taxidermy Teacher / Frenc
+    h Fry / Francine / Little Girl in Commercial / Parking Enforcement Leader / Rile
+    y / Gloria Prince / Crowd Members / Iris Dalrymple / Malibu Stacy / Mr. Tumnus /
+     Derren Brown Emplyoee / Üter Zörker / Sherri Mackleberry
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMjg2MTQxOTUyMl5BMl5BanBnXkFtZTcwMTgxNTEx
+    OA@@.jpg
+   order: 16
+   imageHasChanged: false
+ - id: 
+   name: Joe Mantegna
+   role: Fat Tony / Fit Tony / Gordus Antonius / Fat Tony's Former Father
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTYwMzY4NDYwN15BMl5BanBnXkFtZTgwNDM3OTY4
+    MzE@.jpg
+   order: 17
+   imageHasChanged: false
+ - id: 
+   name: Maurice LaMarche
+   role:
+    Orson Welles / Hedonismbot / Eudora Welty / George C. Scott / Erman Millwood / S
+    tarsky / Hutch / Admiral Crunchy / Recruiter #2 / Cap'n Crunch / Jock #2 / Addit
+    ional Voices / Gate Guard #1 / Harvest Fest Worker / Mr. Burns' Doctor / Command
+    er McBragg / Billy / Oceanographer / Screaming Cop / City Inspector / Fox announ
+    cer / Chinese #1 / Chinese #4 / Leprechaun / Charlie Sheen / Chef Naziwa / Marlo
+    n Brando / Milo / Morbo / Lrrr / Rodney Dangerfield / Clive Meriwether / Neil Si
+    mon / Vincent Price / Hedonismbot Cosplayer / Fred Flintstone Parody / Wlihelm v
+    on Wonthelm
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BY2UwY2MxODMtNmZhZi00NzI0LTg5YzMtY2MzZjg0
+    YTZmNjczXkEyXkFqcGc@.jpg
+   order: 18
+   imageHasChanged: false
+ - id: 
+   name: Dawnn Lewis
+   role:
+    Bernice Hibbert / Opal / Female Party Guest / Miata / Juvenile Court Bailiff / C
+    o-Pilot / Pat O'Brien's Waitress / Lenora Carter / Carlotta Carlson / Hotshot la
+    wyer / Cannabis Influencer / Flight Attendant / Texxon Customer / Female Firefig
+    hter / Daly Night / Etta Pryor / Mrs. McBride / Allergy Doctor / Court Bailiff /
+     Female Criticizing Workforce / Naima / Grocery Store Clerk / Flight Attendance 
+    #2 / Morher / Karate Kids / Ursula
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTYwNTk1NTA3Nl5BMl5BanBnXkFtZTYwNTAyMTM1
+    .jpg
+   order: 19
+   imageHasChanged: false
+  - ... and >30 more
 posters: (N=1)
-  - id:
-    https://m.media-amazon.com/images/M/MV5BNTU2OWE0YWYtMjRlMS00NTUwLWJmZWUtODFhNzJi
-    MGJlMzI3XkEyXkFqcGc@._V1_.jpg
-    originalUrl: https://m.media-amazon.com/images/M/MV5BNTU2OWE0YWYtMjRlMS00NTUwLWJmZWUtODFhNzJiMGJlMzI3XkEyXkFqcGc@._V1_.jpg
-    thumbUrl: https://m.media-amazon.com/images/M/MV5BNTU2OWE0YWYtMjRlMS00NTUwLWJmZWUtODFhNzJiMGJlMzI3XkEyXkFqcGc@._V1_.jpg
+  - id: 
+    originalUrl: https://m.media-amazon.com/images/M/MV5BNTU2OWE0YWYtMjRlMS00NTUwLWJmZWUtODFhNzJiMGJlMzI3XkEyXkFqcGc@.jpg
+    thumbUrl: https://m.media-amazon.com/images/M/MV5BNTU2OWE0YWYtMjRlMS00NTUwLWJmZWUtODFhNzJiMGJlMzI3XkEyXkFqcGc@.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 

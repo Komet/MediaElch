@@ -31,7 +31,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
-thumbnail: 
+thumbnail: https://bilder.fernsehserien.de/fernsehserien.de/fs-2021/img/bell-solid-darkmode.svg
 actors: (N=0)
 streamDetails: <not loaded>
 files: (N=0)

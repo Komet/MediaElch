@@ -109,13 +109,15 @@ discography: (N>90)
     year: 2001
   - title: Mutter
     year: 2001
-  - title:  4-Song Sampler From The Forthcoming Album "Mutter" 
+  - title: 4-Song Sampler From The Forthcoming Album "Mutter" 
     year: 2001
   - title: Ich Will
     year: 2001
   - title: Mutter
     year: 2001
   - title: Sonne
+    year: 2001
+  - title: Greatest Hits 2001
     year: 2001
   - title: Megamix
     year: 2002
@@ -138,6 +140,8 @@ discography: (N>90)
   - title: Interview Disc 3
     year: 2004
   - title: Reise,Reise Interview
+    year: 2004
+  - title: Mutter - Instrumentals
     year: 2004
   - title: Ohne Dich
     year: 2004
@@ -165,6 +169,8 @@ discography: (N>90)
     year: 2006
   - title: Völkerball
     year: 2006
+  - title: Donaukinder
+    year: 2009
   - title: Liebe Ist Für Alle Da
     year: 2009
   - title: Pussy
@@ -222,12 +228,6 @@ discography: (N>90)
   - title: Adieu
     year: 2022
   - title: MTV / VOX
-    year: 
-  - title: Zeig Dich
-    year: 
-  - title: Rammstein Tipo - Duplicamos La Imagen
-    year: 
-  - title: Seemann
     year: 
 genres: (N=0)
 styles: (N=0)

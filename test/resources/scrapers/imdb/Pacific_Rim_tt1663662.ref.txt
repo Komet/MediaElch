@@ -7,7 +7,7 @@ wikidataId:
 mediaCenterId: -1
 title: Pacific Rim
 sortTitle: 
-originalTitle: 
+originalTitle: Pacific Rim
 overview:
     When monstrous creatures, known as Kaiju, started rising from the sea, a war beg
     an that would take millions of lives and consume humanity's resources for years 
@@ -27,12 +27,12 @@ tagline: Go big or go extinct
 ratings (N=1)
   source=imdb | rating=6.8 | votes=500000 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
-released: 2013-07-18
+imdbTop250: -1
+released: 2013-07-12
 runtime: 131min
-writer: Travis Beacham, Guillermo del Toro, Travis Beacham
+writer: Travis Beacham, Guillermo del Toro
 director: Guillermo del Toro
-actors: (N>90)
+actors: (N>5)
  - id: 
    name: Charlie Hunnam
    role: Raleigh Becket
@@ -77,21 +77,21 @@ actors: (N>90)
    name: Burn Gorman
    role: Gottlieb
    thumb:
-    https://m.media-amazon.com/images/M/MV5BNzU4ZTJmZGUtMDAxZS00Y2FkLWFkYTQtZjZhY2Uz
-    MzgyZTMwXkEyXkFqcGc@.jpg
+    https://m.media-amazon.com/images/M/MV5BOGE5NDcxNzYtYjc0Mi00MTIzLTgxNjctNjEwM2Zm
+    ZjU3ZmQ3XkEyXkFqcGc@.jpg
    order: 5
    imageHasChanged: false
  - id: 
    name: Max Martini
    role: Herc Hansen
    thumb:
-    https://m.media-amazon.com/images/M/MV5BZmM5M2I2YTUtNGY5ZS00ZjA1LWEyODYtYjViY2Uz
-    ZTMyMjAzXkEyXkFqcGc@.jpg
+    https://m.media-amazon.com/images/M/MV5BNzBkNDI5MDUtZDljYy00YTc4LWE0OTMtZDkzYzMz
+    ZWYwYWMzXkEyXkFqcGc@.jpg
    order: 6
    imageHasChanged: false
  - id: 
    name: Robert Kazinsky
-   role: Chuck Hansen (as Rob Kazinsky)
+   role: Chuck Hansen
    thumb:
     https://m.media-amazon.com/images/M/MV5BMjA2NDM1MDY0Ml5BMl5BanBnXkFtZTgwMTc3Mzc1
     NzM@.jpg
@@ -196,23 +196,22 @@ actors: (N>90)
   - ... and >70 more
 certification: PG-13
 genres: (N<6)
+  - Sci-Fi
   - Action
   - Adventure
-  - Sci-Fi
 tags: (N<6)
-  - lovecraftian
-  - tank-top
-  - pregnancy
-  - time-bomb
-  - sleeping-shirtless
-countries: (N<6)
-  - United States
-  - Mexico
+  - apocalypse
+  - human piloted robot
+  - human versus monster
+  - ocean
+  - kaiju
+countries: (N=1)
+  - US
 studios: (N<6)
   - Warner Bros.
-  - Legendary Entertainment
   - Double Dare You (DDY)
-trailer: 
+  - Legendary Entertainment
+trailer: https://imdb-video.media-imdb.com/vi1369752345/1434659529640-260ouz-1632281728566.mp4?Expires=1762085728&Signature=Ipx5qyk9zEAFmK7tnZpxnOnwtfKYN8NUv53zzKAkh-tLFFLMYfMxQUGo-5R~hZd1TiR-QmHio9gDxXuTu~5XGQVRedkO5aZutyQxSPm60NglEC6aA3ur8WYyXYPVEJydAmF3LG9nPvxNOH84wT8ZoVv84LFBHqAlovrLCA0ThbHyt2Zpm5HssnKqx60yXd9IUoKnTtFnk~UV-z8~x384xX96IWAM75qDXiTjEPES6NmoQ317jtgeKDfrefIriSYVEY3228VqCnI3Bx65r2~YDguf-GwpOPGcW6Oq9MqOFmcbSMvtH3H8LBHwC72Eyc5voEJ9X9DVv4DpUbo8MM4HgQ__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA
 showlink: (N=0)
 playcount: 0
 lastPlayed: <not set or invalid>

@@ -124,8 +124,5 @@ TEST_CASE("ImdbTv scrapes episode details for 'All in the Family' S01E01", "[epi
         REQUIRE(episode.imdbId() == ImdbId("tt0509891"));
         test::scraper::compareAgainstReference(
             episode, "scrapers/imdbtv/All-in-the-Family-S01E01-tt0509891-minimal-details");
-
-        // These fields should not be set
-        CHECK_FALSE(episode.actors().hasActors());
     }
 }

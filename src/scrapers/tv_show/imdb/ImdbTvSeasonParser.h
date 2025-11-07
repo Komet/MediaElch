@@ -28,7 +28,8 @@ public:
 
     /// \brief Parses episode IDs from the HTML.
     /// \param html IMDb website HTML for a season page.
-    static QMap<EpisodeNumber, ImdbId> parseEpisodeIds(const QString& html);
+    /// \param forSeason Only parse episode IDs for this season.
+    static QMap<EpisodeNumber, ImdbId> parseEpisodeIds(const QString& html, int forSeason);
 };
 
 } // namespace scraper

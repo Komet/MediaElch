@@ -113,6 +113,7 @@ QUrl ImdbApi::makeTitleUrl(const ImdbId& id, PageKind page) const
         case PageKind::PlotSummary: return "plotsummaryre";
         case PageKind::ReleaseInfo: return "releaseinfo";
         case PageKind::Keywords: return "keywords";
+        case PageKind::Episodes: return "episodes";
         }
         qCCritical(generic, "[ImdbApi] Unhandled page key!");
         return "";
@@ -169,7 +170,7 @@ QUrl ImdbApi::makeSeasonUrl(const ImdbId& showId, SeasonNumber season) const
 
 QUrl ImdbApi::makeDefaultEpisodesUrl(const ImdbId& showId) const
 {
-    return makeFullUrl(QStringLiteral("/title/") + showId.toString() + QStringLiteral("/episodes"));
+    return makeTitleUrl(showId, PageKind::Episodes);
 }
 
 

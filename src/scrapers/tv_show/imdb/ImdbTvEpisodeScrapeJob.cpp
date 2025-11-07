@@ -90,7 +90,7 @@ void ImdbTvEpisodeScrapeJob::loadEpisode(const ImdbId& episodeId)
             networkError.message = tr("Loaded IMDb content is empty. Cannot load requested episode.");
             setScraperError(networkError);
         } else {
-            ImdbTvEpisodeParser::parseInfos(episode(), html);
+            ImdbTvEpisodeParser::parseInfos(episode(), html, config().locale);
         }
         emitFinished();
     });

@@ -76,7 +76,7 @@ void ImdbTvSeasonScrapeJob::loadEpisodes(QMap<SeasonNumber, QMap<EpisodeNumber, 
                 // only store error but try to load other episodes
                 setScraperError(error);
             } else if (!html.isEmpty()) {
-                ImdbTvEpisodeParser::parseInfos(*episode, html);
+                ImdbTvEpisodeParser::parseInfos(*episode, html, config().locale);
                 storeEpisode(episode);
             }
             loadEpisodes(episodeIds);
@@ -99,7 +99,7 @@ void ImdbTvSeasonScrapeJob::gatherAndLoadEpisodes(QList<SeasonNumber> seasonsToL
             emitFinished();
             return;
         }
-        QMap<EpisodeNumber, ImdbId> episodesForSeason = ImdbTvSeasonParser::parseEpisodeIds(html);
+        QMap<EpisodeNumber, ImdbId> episodesForSeason = ImdbTvSeasonParser::parseEpisodeIds(html, nextSeason.toInt());
         auto ids = episodeIds;
         ids.insert(nextSeason, episodesForSeason);
         gatherAndLoadEpisodes(seasonsToLoad, ids);

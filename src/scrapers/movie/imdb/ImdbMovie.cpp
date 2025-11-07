@@ -33,6 +33,7 @@ ImdbMovie::ImdbMovie(ImdbMovieConfiguration& settings, QObject* parent) : MovieS
         MovieScraperInfo::Rating,
         MovieScraperInfo::Tagline,
         MovieScraperInfo::Studios,
+        MovieScraperInfo::Trailer,
         MovieScraperInfo::Countries,
         MovieScraperInfo::Actors,
         MovieScraperInfo::Poster};

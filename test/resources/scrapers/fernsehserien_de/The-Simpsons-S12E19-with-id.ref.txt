@@ -31,7 +31,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
-thumbnail: https://bilder.fernsehserien.de/epg/epg-archiv/2025/02/10/0c89b15ee7694019977e0ccc700be3c9_b-w-970.jpg.jpg
+thumbnail: https://bilder.fernsehserien.de/epg/epg-archiv/2025/09/23/f4f1752166b84e02b3622a9096e6f0c6_b-w-970.jpg.jpg
 actors: (N<6)
  - id: 
    name: Norbert Gastell
