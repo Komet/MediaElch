@@ -215,6 +215,9 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
                 }
 
                 // Handle all external subtitle files using preconfigured patterns
+                // FIXME: All of these subtitles should have been found by the movie-file-searcher.
+                // It shouldn't be necessary to add them in the renamer.
+                // This is a (hopefully) temporary workaround. See #1917
                 const mediaelch::FileFilter& subtitleFilters = Settings::instance()->advanced()->subtitleFilters();
                 QStringList subtitlePatterns;
                 for (const QString& pattern : subtitleFilters.fileGlob) {
