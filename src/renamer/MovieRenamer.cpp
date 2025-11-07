@@ -8,6 +8,7 @@
 #include "globals/Manager.h"
 #include "log/Log.h"
 #include "media_center/MediaCenterInterface.h"
+#include "settings/Settings.h"
 
 #include <QDir>
 #include <QFileInfo>
@@ -213,24 +214,100 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
                     }
                 }
 
-                /*
-                QStringList filters;
-                for (const QString &extra: m_extraFiles)
-                    filters << baseName + extra;
-                for (const QString &subFileName: currentDir.entryList(filters, QDir::Files |
-                QDir::NoDotAndDotDot)) { QString subSuffix = subFileName.mid(baseName.length()); QString newBaseName
-                = newFileName.left(newFileName.lastIndexOf(".")); QString newSubName = newBaseName + subSuffix;
-                    ui->results->append(tr("<b>Rename File</b> \"%1\" to \"%2\"").arg(subFileName).arg(newSubName));
-                    if (!dryRun) {
-                        if (!rename(currentDir.canonicalPath() + "/" + subFileName, currentDir.canonicalPath() + "/"
-                + newSubName)) ui->results->append("&nbsp;&nbsp;<span style=\"color:#ff0000;\"><b>" + tr("Failed") +
-                "</b></span>"); else FilmFiles.append(newSubName);
-                    }
-                    else
-                        FilmFiles.append(newSubName);
+                // Handle all external subtitle files using preconfigured patterns
+                // FIXME: All of these subtitles should have been found by the movie-file-searcher.
+                // It shouldn't be necessary to add them in the renamer.
+                // This is a (hopefully) temporary workaround. See #1917
+                const mediaelch::FileFilter& subtitleFilters = Settings::instance()->advanced()->subtitleFilters();
+                QStringList subtitlePatterns;
+                for (const QString& pattern : subtitleFilters.fileGlob) {
+                    // Convert glob pattern to work with the movie's base name
+                    QString subtitlePattern = pattern;
+                    subtitlePattern.replace("*", baseName + "*");
+                    subtitlePatterns << subtitlePattern;
                 }
-                */
 
+                QStringList subtitleFiles = currentDir.entryList(subtitlePatterns, QDir::Files | QDir::NoDotAndDotDot);
+                QList<Subtitle*> detectedSubtitles;
+
+                for (const QString& subtitleFile : subtitleFiles) {
+                    QFileInfo subInfo(fi.canonicalPath() + "/" + subtitleFile);
+
+                    // Extract the part between the original basename and the extension
+                    // This could be language codes like ".en" or ".eng" or nothing
+                    QString middlePart = subtitleFile.mid(baseName.length());
+                    middlePart = middlePart.left(middlePart.lastIndexOf(".")); // Remove the extension
+
+                    QString newSubName = newFileName.left(newFileName.lastIndexOf(".")) + middlePart + "." + subInfo.suffix();
+
+                    if (subtitleFile != newSubName) {
+                        const int row = m_dialog->addResultToTable(subtitleFile, newSubName, RenameOperation::Rename);
+                        if (!m_config.dryRun) {
+                            if (!rename(fi.canonicalPath() + "/" + subtitleFile,
+                                    fi.canonicalPath() + "/" + newSubName)) {
+                                m_dialog->setResultStatus(row, RenameResult::Failed);
+                            } else {
+                                FilmFiles.append(newSubName);
+
+                                // Check if this subtitle is already tracked in the movie object
+                                bool subtitleTracked = false;
+                                for (Subtitle* sub : movie.subtitles()) {
+                                    if (sub->files().contains(subtitleFile)) {
+                                        subtitleTracked = true;
+                                        break;
+                                    }
+                                }
+
+                                // If not tracked, create a new subtitle entry
+                                if (!subtitleTracked) {
+                                    Subtitle* newSub = new Subtitle(&movie);
+
+                                    // Check if it's a forced subtitle
+                                    if (middlePart.contains("forced", Qt::CaseInsensitive)) {
+                                        newSub->setForced(true);
+                                    }
+
+                                    newSub->setFiles({newSubName});
+                                    detectedSubtitles.append(newSub);
+                                }
+                            }
+                        } else {
+                            FilmFiles.append(newSubName);
+                        }
+                    } else {
+                        FilmFiles.append(subtitleFile);
+
+                        // Check if this subtitle needs to be tracked
+                        bool subtitleTracked = false;
+                        for (Subtitle* sub : movie.subtitles()) {
+                            if (sub->files().contains(subtitleFile)) {
+                                subtitleTracked = true;
+                                break;
+                            }
+                        }
+
+                        // If not tracked, create a new subtitle entry
+                        if (!subtitleTracked && !m_config.dryRun) {
+                            Subtitle* newSub = new Subtitle(&movie);
+
+                            // Check if it's a forced subtitle
+                            if (middlePart.contains("forced", Qt::CaseInsensitive)) {
+                                newSub->setForced(true);
+                            }
+
+                            newSub->setFiles({subtitleFile});
+                            detectedSubtitles.append(newSub);
+                        }
+                    }
+                }
+
+                // Add newly detected subtitles to the movie
+                if (!m_config.dryRun && !detectedSubtitles.isEmpty()) {
+                    for (Subtitle* sub : detectedSubtitles) {
+                        movie.addSubtitle(sub, true);
+                    }
+                    movie.setChanged(true);
+                }
 
                 bool hasChangedSubTitles = false;
                 for (Subtitle* subtitle : movie.subtitles()) {
