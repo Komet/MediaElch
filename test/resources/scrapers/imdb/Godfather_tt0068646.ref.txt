@@ -5,7 +5,7 @@ imdbId: tt0068646
 tmdbId: 
 wikidataId: 
 mediaCenterId: -1
-title: Der Pate
+title: The Godfather
 sortTitle: 
 originalTitle: The Godfather
 overview:
@@ -31,9 +31,9 @@ userRating: 0
 imdbTop250: 2
 released: 1972-03-24
 runtime: 175min
-writer: Mario Puzo, Francis Ford Coppola, Mario Puzo
+writer: Francis Ford Coppola, Mario Puzo
 director: Francis Ford Coppola
-actors: (N>80)
+actors: (N>5)
  - id: 
    name: Marlon Brando
    role: Don Vito Corleone
@@ -60,7 +60,7 @@ actors: (N>80)
    imageHasChanged: false
  - id: 
    name: Richard S. Castellano
-   role: Clemenza (as Richard Castellano)
+   role: Clemenza
    thumb:
     https://m.media-amazon.com/images/M/MV5BMjI2MzA3MjQ5N15BMl5BanBnXkFtZTcwMzY5NDYw
     OA@@.jpg
@@ -114,102 +114,23 @@ actors: (N>80)
     NzM@.jpg
    order: 9
    imageHasChanged: false
- - id: 
-   name: Abe Vigoda
-   role: Tessio
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMjE1MDk5NzMyN15BMl5BanBnXkFtZTYwMjA4Mjg1
-    .jpg
-   order: 10
-   imageHasChanged: false
- - id: 
-   name: Talia Shire
-   role: Connie
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMTkwMzc0NjQzNV5BMl5BanBnXkFtZTYwNzM0NTk3
-    .jpg
-   order: 11
-   imageHasChanged: false
- - id: 
-   name: Gianni Russo
-   role: Carlo
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BNTgyMTgxODM4MV5BMl5BanBnXkFtZTcwNDg5NDYw
-    OA@@.jpg
-   order: 12
-   imageHasChanged: false
- - id: 
-   name: John Cazale
-   role: Fredo
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMTUzMTM1MjI5NV5BMl5BanBnXkFtZTcwMTM5NTM1
-    Mw@@.jpg
-   order: 13
-   imageHasChanged: false
- - id: 
-   name: Rudy Bond
-   role: Cuneo
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BZDNlZWQzOTQtZTAxNy00NjUxLWIzN2MtMDVlN2Rl
-    MzNlYzY0XkEyXkFqcGc@.jpg
-   order: 14
-   imageHasChanged: false
- - id: 
-   name: Al Martino
-   role: Johnny Fontane
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMjMyMDk4MzYyMl5BMl5BanBnXkFtZTcwNzg5NDYw
-    OA@@.jpg
-   order: 15
-   imageHasChanged: false
- - id: 
-   name: Morgana King
-   role: Mama Corleone
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BODg5OTAxNDQzMl5BMl5BanBnXkFtZTgwOTM3ODIx
-    NjM@.jpg
-   order: 16
-   imageHasChanged: false
- - id: 
-   name: Lenny Montana
-   role: Luca Brasi
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BZWVkODE4NjktMDQ2NS00NGRlLTg4ZGUtOGFmNTJl
-    YWMxZmQ2XkEyXkFqcGc@.jpg
-   order: 17
-   imageHasChanged: false
- - id: 
-   name: John Martino
-   role: Paulie Gatto
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMTUzNTgzNTg5MV5BMl5BanBnXkFtZTgwOTMzODU3
-    NjE@.jpg
-   order: 18
-   imageHasChanged: false
- - id: 
-   name: Salvatore Corsitto
-   role: Bonasera
-   thumb: 
-   order: 19
-   imageHasChanged: false
-  - ... and >60 more
 certification: R
 genres: (N<6)
   - Crime
   - Drama
 tags: (N<6)
-  - bagman
-  - neo-noir
-  - first-of-series
-  - dancing
-  - fbi-surveillance
+  - patriarch
+  - gangster
+  - crime family
+  - mafia
+  - organized crime
 countries: (N=1)
-  - United States
+  - US
 studios: (N<6)
-  - Paramount Pictures
   - Albert S. Ruddy Productions
+  - Paramount Pictures
   - Alfran Productions
-trailer: 
+trailer: https://imdb-video.media-imdb.com/vi1348706585/1434659529640-260ouz-1616202346191.mp4?Expires=1764701343&Signature=YRJbcbwsCaBMj6aMGaFjs5OUif54id7JJwZgt5iJGfZCXlD0WvqNc1BhMjaWdqiwey2k-Vy-umTDmoVdP4AooVpGG8KFGCSMbgRptf0PBRFK5XrLRIZ15T9wcfZZqkJbo~8nRJoccILupPro8fO-A4HdPWwWfaj2p0M7WEwhDo~9IMKSE-5i1Zu8WOohXjUPSx64YSikAFOFjBNRETg1zMbKMIS9TzA6pb8jojunI1tu74MxXwfoyTgFBUU51c9fq4Lt5MnoidlY2lD3yam1-QrUmeTjKCRIKcon6oHFvG4eUmTD0CsuRVoNA1UPy0IMpuk7i06bcFCpSiaW7G0jqw__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA
 showlink: (N=0)
 playcount: 0
 lastPlayed: <not set or invalid>

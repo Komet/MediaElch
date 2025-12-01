@@ -54,7 +54,8 @@ void ImdbTvEpisodeScrapeJob::loadSeason()
             }
             ImdbTvEpisodeParser::parseIdFromSeason(episode(), html);
             if (!episode().imdbId().isValid()) {
-                qCWarning(generic) << "[ImdbTvEpisodeScrapeJob] Could not parse IMDb ID for episode from season page!";
+                qCWarning(generic) << "[ImdbTvEpisodeScrapeJob] Could not parse IMDb ID for episode from season page! "
+                                   << episode().seasonNumber() << episode().episodeNumber();
                 ScraperError configError;
                 configError.error = ScraperError::Type::ConfigError;
                 configError.message =
@@ -90,7 +91,7 @@ void ImdbTvEpisodeScrapeJob::loadEpisode(const ImdbId& episodeId)
             networkError.message = tr("Loaded IMDb content is empty. Cannot load requested episode.");
             setScraperError(networkError);
         } else {
-            ImdbTvEpisodeParser::parseInfos(episode(), html);
+            ImdbTvEpisodeParser::parseInfos(episode(), html, config().locale);
         }
         emitFinished();
     });

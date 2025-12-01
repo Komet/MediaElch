@@ -65,8 +65,7 @@ void ImdbApi::sendGetRequest(const Locale& locale, const QUrl& url, ImdbApi::Api
 
 void ImdbApi::searchForShow(const Locale& locale, const QString& query, ImdbApi::ApiCallback callback)
 {
-    QUrl url{makeShowSearchUrl(query)};
-    sendGetRequest(locale, url, std::move(callback));
+    sendGetRequest(locale, makeShowSearchUrl(query), std::move(callback));
 }
 
 void ImdbApi::searchForMovie(const Locale& locale,
@@ -113,6 +112,7 @@ QUrl ImdbApi::makeTitleUrl(const ImdbId& id, PageKind page) const
         case PageKind::PlotSummary: return "plotsummaryre";
         case PageKind::ReleaseInfo: return "releaseinfo";
         case PageKind::Keywords: return "keywords";
+        case PageKind::Episodes: return "episodes";
         }
         qCCritical(generic, "[ImdbApi] Unhandled page key!");
         return "";
@@ -122,6 +122,7 @@ QUrl ImdbApi::makeTitleUrl(const ImdbId& id, PageKind page) const
 
 QUrl ImdbApi::makeMovieSearchUrl(const QString& searchStr, bool includeAdult) const
 {
+    // e.g. https://www.imdb.com/de/search/title/?title=finding%20dori&title_type=feature,tv_movie,short,video,tv_short
     QUrlQuery queries;
     if (includeAdult) {
         queries.addQueryItem("adult", "include");
@@ -151,6 +152,8 @@ QUrl ImdbApi::makeShowSearchUrl(const QString& searchStr) const
     }
 
     // e.g. https://www.imdb.com/search/title/?title=Family%20Guy&title_type=tv_series,tv_miniseries&view=simple
+    // An alternative (if it breaks in the future) would be
+    // e.g. https://www.imdb.com/find/?q=scrubs&s=tt&ttype=tv&ref_=fn_tv
     QUrlQuery queries;
     queries.addQueryItem("title", searchStr);
     queries.addQueryItem("title_type", "tv_series,tv_miniseries");
@@ -161,6 +164,7 @@ QUrl ImdbApi::makeShowSearchUrl(const QString& searchStr) const
 
 QUrl ImdbApi::makeSeasonUrl(const ImdbId& showId, SeasonNumber season) const
 {
+    // e.g. https://www.imdb.com/title/tt0096697/episodes/?season=10
     QUrlQuery queries;
     queries.addQueryItem("season", season.toString());
     return makeFullUrl(QStringLiteral("/title/") + showId.toString() + //
@@ -169,7 +173,7 @@ QUrl ImdbApi::makeSeasonUrl(const ImdbId& showId, SeasonNumber season) const
 
 QUrl ImdbApi::makeDefaultEpisodesUrl(const ImdbId& showId) const
 {
-    return makeFullUrl(QStringLiteral("/title/") + showId.toString() + QStringLiteral("/episodes"));
+    return makeTitleUrl(showId, PageKind::Episodes);
 }
 
 

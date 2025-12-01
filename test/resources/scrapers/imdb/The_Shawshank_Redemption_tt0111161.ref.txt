@@ -5,7 +5,7 @@ imdbId: tt0111161
 tmdbId: 
 wikidataId: 
 mediaCenterId: -1
-title: Die Verurteilten
+title: The Shawshank Redemption
 sortTitle: 
 originalTitle: The Shawshank Redemption
 overview:
@@ -22,14 +22,14 @@ movie set: tmdbid= | name=
 movie set overview: 
 tagline: Fear can hold you prisoner. Hope can set you free.
 ratings (N=1)
-  source=imdb | rating=9.2 | votes=3000000 | min=0 | max=10
+  source=imdb | rating=9.2 | votes=3100000 | min=0 | max=10
 userRating: 0
 imdbTop250: 1
-released: 1995-03-09
+released: 1994-10-14
 runtime: 142min
 writer: Stephen King, Frank Darabont
 director: Frank Darabont
-actors: (N>70)
+actors: (N>5)
  - id: 
    name: Tim Robbins
    role: Andy Dufresne
@@ -90,8 +90,8 @@ actors: (N>70)
    name: James Whitmore
    role: Brooks Hatlen
    thumb:
-    https://m.media-amazon.com/images/M/MV5BMTg5MzkxMTkxOV5BMl5BanBnXkFtZTcwNTEzNTgx
-    Mw@@.jpg
+    https://m.media-amazon.com/images/M/MV5BYjcxNTU0MTYtYjgwNi00ZjIxLTljYWUtMzY4OGRk
+    ZjUyNzRhXkEyXkFqcGc@.jpg
    order: 7
    imageHasChanged: false
  - id: 
@@ -110,93 +110,20 @@ actors: (N>70)
     ZmFlMDg5XkEyXkFqcGc@.jpg
    order: 9
    imageHasChanged: false
- - id: 
-   name: Neil Giuntoli
-   role: Jigger
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMjI0OTUxNjIyNF5BMl5BanBnXkFtZTcwNDE0MDcw
-    OA@@.jpg
-   order: 10
-   imageHasChanged: false
- - id: 
-   name: Brian Libby
-   role: Floyd
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMjI2NDYwNzU0NV5BMl5BanBnXkFtZTcwMjYwMTcw
-    OA@@.jpg
-   order: 11
-   imageHasChanged: false
- - id: 
-   name: David Proval
-   role: Snooze
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMjE0MTU0NjU3Nl5BMl5BanBnXkFtZTYwNTgzNjY0
-    .jpg
-   order: 12
-   imageHasChanged: false
- - id: 
-   name: Joseph Ragno
-   role: Ernie
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMTQyNzMyNTUwNV5BMl5BanBnXkFtZTcwNjQ2MTcw
-    OA@@.jpg
-   order: 13
-   imageHasChanged: false
- - id: 
-   name: Jude Ciccolella
-   role: Guard Mert
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BYTFkYzlhMGQtZjYzYy00YmY0LTg3N2MtMDcwMTU0
-    MzFjYjA0XkEyXkFqcGc@.jpg
-   order: 14
-   imageHasChanged: false
- - id: 
-   name: Paul McCrane
-   role: Guard Trout
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMTI2Mjc1NzExN15BMl5BanBnXkFtZTYwNjUzMzQz
-    .jpg
-   order: 15
-   imageHasChanged: false
- - id: 
-   name: Renee Blaine
-   role: Andy Dufresne's Wife
-   thumb: 
-   order: 16
-   imageHasChanged: false
- - id: 
-   name: Scott Mann
-   role: Glenn Quentin
-   thumb: 
-   order: 17
-   imageHasChanged: false
- - id: 
-   name: John Horton
-   role: 1946 Judge
-   thumb: 
-   order: 18
-   imageHasChanged: false
- - id: 
-   name: Gordon Greene
-   role: 1947 Parole Hearings Man (as Gordon C. Greene)
-   thumb: 
-   order: 19
-   imageHasChanged: false
-  - ... and >50 more
 certification: R
 genres: (N=1)
   - Drama
 tags: (N<6)
-  - abuse-of-power
-  - place-name-in-title
-  - corruption
-  - metaphoric-title
-  - hypocrisy
+  - friendship between men
+  - based on the works of stephen king
+  - wrongful conviction
+  - escape from prison
+  - prison
 countries: (N=1)
-  - United States
+  - US
 studios: (N=1)
   - Castle Rock Entertainment
-trailer: 
+trailer: https://imdb-video.media-imdb.com/vi3877612057/1434659454657-dx9ykf-1616202333253.mp4?Expires=1764701331&Signature=S9Llf0-OYhDuUk6QVqrTo9FfFGCl3SM4zF6M7l6oRrFFYGr9vjm8xtoio8ubkhQoMC~51VeMGH-Rvyr~dzV8CY6IZH1~pBVd3QHKWFAn0QsEm4GmnYAC-p1ETK28ZQ21bhNLuPWFWZ0iltqmv9dlHJLFef9Axj1NxIUotAP84aMevjqzDQYBzfVcaq5FIrd3wQlT4RatNq834M31oclxL50eRafy-KuorvQZ1eQ4cY1E99azVF7DMzBP0zWELvCdfTEYf76MBYQw7~l3WsY3veAlmeU-80n7byCUiCjkt9qUhqZKCxPWVprh2GKHWEHHdcRYD8OfOOKpcTRTpVmA-w__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA
 showlink: (N=0)
 playcount: 0
 lastPlayed: <not set or invalid>

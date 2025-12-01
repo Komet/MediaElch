@@ -4,10 +4,15 @@
 #include "log/Log.h"
 #include "network/NetworkRequest.h"
 #include "scrapers/imdb/ImdbApi.h"
+#include "scrapers/imdb/ImdbJsonParser.h"
 #include "scrapers/imdb/ImdbReferencePage.h"
 #include "scrapers/movie/imdb/ImdbMovie.h"
 
 #include <QRegularExpression>
+
+#include "scrapers/ScraperUtils.h"
+#include "utils/Containers.h"
+
 
 namespace mediaelch {
 namespace scraper {
@@ -36,8 +41,6 @@ void ImdbMovieScrapeJob::doStart()
         }
 
         parseAndAssignInfos(html);
-        parseAndAssignPoster(html);
-        parseAndStoreActors(html);
 
         // How many pages do we have to download? Count them.
         m_itemsLeftToDownloads = 1;
@@ -67,120 +70,70 @@ void ImdbMovieScrapeJob::loadTags()
     m_api.loadTitle(config().locale, m_imdbId, ImdbApi::PageKind::Keywords, cb);
 }
 
+
 void ImdbMovieScrapeJob::parseAndAssignInfos(const QString& html)
 {
-    using namespace std::chrono;
+    ImdbData data = ImdbJsonParser::parseFromReferencePage(html, config().locale);
 
-    QRegularExpression rx;
-    rx.setPatternOptions(QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
-    QRegularExpressionMatch match;
-
-    const QString title = ImdbReferencePage::extractTitle(html);
-    if (!title.isEmpty()) {
-        m_movie->setTitle(title);
+    if (data.imdbId.isValid()) {
+        m_movie->setImdbId(data.imdbId);
     }
-    const QString originalTitle = ImdbReferencePage::extractOriginalTitle(html);
-    if (!originalTitle.isEmpty()) {
-        m_movie->setOriginalTitle(originalTitle);
+    if (data.title.hasValue()) {
+        m_movie->setTitle(data.title.value);
     }
-
-    ImdbReferencePage::extractDirectors(m_movie, html);
-    ImdbReferencePage::extractWriters(m_movie, html);
-    ImdbReferencePage::extractGenres(m_movie, html);
-    ImdbReferencePage::extractTaglines(m_movie, html);
-
-    if (!m_loadAllTags) {
-        ImdbReferencePage::extractTags(m_movie, html);
+    if (data.originalTitle.hasValue()) {
+        m_movie->setOriginalTitle(data.originalTitle.value);
     }
-
-    QDate date = ImdbReferencePage::extractReleaseDate(html);
-    if (date.isValid()) {
-        m_movie->setReleased(date);
+    if (data.overview.hasValue()) {
+        m_movie->setOverview(data.overview.value);
     }
-
-    ImdbReferencePage::extractCertification(m_movie, html);
-
-    rx.setPattern(R"re(Runtime</td>.*<li class="ipl-inline-list__item">\n\s+(\d+) min)re");
-    match = rx.match(html);
-
-    if (match.hasMatch()) {
-        minutes runtime = minutes(match.captured(1).toInt());
-        m_movie->setRuntime(runtime);
+    if (data.outline.hasValue()) {
+        m_movie->setOutline(data.outline.value);
+    }
+    if (data.tagline.hasValue()) {
+        m_movie->setTagline(data.tagline.value);
+    }
+    if (data.runtime.hasValue()) {
+        m_movie->setRuntime(data.runtime.value);
+    }
+    if (data.released.hasValue()) {
+        m_movie->setReleased(data.released.value);
+    }
+    for (Rating rating : data.ratings) {
+        m_movie->ratings().addRating(rating);
     }
 
-    rx.setPattern(R"(<h4 class="inline">Runtime:</h4>[^<]*<time datetime="PT([0-9]+)M">)");
-    match = rx.match(html);
-    if (match.hasMatch()) {
-        m_movie->setRuntime(minutes(match.captured(1).toInt()));
+    m_movie->setTop250(data.top250.getOrValue(-1));
+
+    if (data.certification.hasValue()) {
+        m_movie->setCertification(data.certification.value);
     }
-
-    ImdbReferencePage::extractOverview(m_movie, html);
-    ImdbReferencePage::extractRating(m_movie, html);
-    ImdbReferencePage::extractStudios(m_movie, html);
-    ImdbReferencePage::extractCountries(m_movie, html);
-}
-
-void ImdbMovieScrapeJob::parseAndStoreActors(const QString& html)
-{
-    QRegularExpression rx(R"(<table class="cast_list">(.*)</table>)",
-        QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
-    QRegularExpressionMatch match = rx.match(html);
-    if (!match.hasMatch()) {
-        return;
+    if (data.poster.hasValue()) {
+        m_movie->images().addPoster(data.poster.value);
     }
-
-    const QString content = match.captured(1);
-    rx.setPattern(R"(<tr class="[^"]*">(.*)</tr>)");
-
-    QRegularExpressionMatchIterator actorRowsMatch = rx.globalMatch(content);
-
-    while (actorRowsMatch.hasNext()) {
-        QString actorHtml = actorRowsMatch.next().captured(1);
-
-        QPair<Actor, QUrl> actorUrl;
-
-        // Name
-        rx.setPattern(R"re(<span class="itemprop" itemprop="name">([^<]+)</span>)re");
-        match = rx.match(actorHtml);
-        if (match.hasMatch()) {
-            actorUrl.first.name = match.captured(1).trimmed();
-        }
-
-        // URL
-        rx.setPattern(R"re(<a href="(/name/[^"]+)")re");
-        match = rx.match(actorHtml);
-        if (match.hasMatch()) {
-            actorUrl.second = QUrl("https://www.imdb.com" + match.captured(1));
-        }
-
-        // Character
-        rx.setPattern(R"(<td class="character">(.*)</td>)");
-        match = rx.match(actorHtml);
-        if (match.hasMatch()) {
-            QString role = match.captured(1);
-            // Everything between <div> and </div>
-            rx.setPattern(R"(>(.*)</)");
-            match = rx.match(role);
-            if (match.hasMatch()) {
-                role = match.captured(1);
-            }
-            actorUrl.first.role = role.remove("(voice)")
-                                      .trimmed() //
-                                      .replace(QRegularExpression("\\s\\s+"), " ")
-                                      .trimmed();
-        }
-
-        rx.setPattern(R"re(loadlate="([^"]+)")re");
-        match = rx.match(actorHtml);
-        if (match.hasMatch()) {
-            actorUrl.first.thumb = sanitizeAmazonMediaUrl(match.captured(1));
-        }
-
-        m_movie->addActor(actorUrl.first);
-        // URL may be empty
-        if (actorUrl.second.isValid()) {
-            m_actorUrls.push_back(actorUrl);
-        }
+    if (data.trailer.hasValue()) {
+        m_movie->setTrailer(data.trailer.value);
+    }
+    for (Actor actor : data.actors) {
+        m_movie->addActor(actor);
+    }
+    if (!data.directors.isEmpty()) {
+        m_movie->setDirector(setToVector(data.directors).join(", "));
+    }
+    if (!data.writers.isEmpty()) {
+        m_movie->setWriter(setToVector(data.writers).join(", "));
+    }
+    for (QString genre : data.genres) {
+        m_movie->addGenre(genre);
+    }
+    for (QString studio : data.studios) {
+        m_movie->addStudio(studio);
+    }
+    for (QString country : data.countries) {
+        m_movie->addCountry(country);
+    }
+    for (QString keyword : data.keywords) {
+        m_movie->addTag(keyword);
     }
 }
 
@@ -197,25 +150,6 @@ void ImdbMovieScrapeJob::parseAndAssignTags(const QString& html)
     QRegularExpressionMatchIterator match = rx.globalMatch(html);
     while (match.hasNext()) {
         m_movie->addTag(match.next().captured(1).trimmed());
-    }
-}
-
-void ImdbMovieScrapeJob::parseAndAssignPoster(const QString& html)
-{
-    QString regex = QStringLiteral(R"url(<meta property='og:image' content="([^"]+)")url");
-    QRegularExpression rx(regex, QRegularExpression::InvertedGreedinessOption);
-
-    QRegularExpressionMatch match = rx.match(html);
-    if (match.hasMatch()) {
-        const QUrl url(sanitizeAmazonMediaUrl(match.captured(1)));
-        if (!url.isValid()) {
-            return;
-        }
-
-        Poster p;
-        p.thumbUrl = url;
-        p.originalUrl = url;
-        m_movie->images().addPoster(p);
     }
 }
 

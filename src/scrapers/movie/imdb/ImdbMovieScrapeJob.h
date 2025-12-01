@@ -2,7 +2,7 @@
 
 #include "scrapers/movie/MovieScrapeJob.h"
 
-#include "data/Actor.h"
+#include <QString>
 
 namespace mediaelch {
 namespace scraper {
@@ -22,10 +22,9 @@ private:
     void loadTags();
 
     void parseAndAssignInfos(const QString& html);
-    void parseAndAssignPoster(const QString& html);
-    void parseAndStoreActors(const QString& html);
     void parseAndAssignTags(const QString& html);
-    QString sanitizeAmazonMediaUrl(QString url);
+
+    static QString sanitizeAmazonMediaUrl(QString url);
 
     void decreaseDownloadCount();
 
@@ -36,7 +35,6 @@ private: // config
 
 private: // initialized during scraping
     int m_itemsLeftToDownloads = 0;
-    QVector<QPair<Actor, QUrl>> m_actorUrls;
 };
 
 } // namespace scraper

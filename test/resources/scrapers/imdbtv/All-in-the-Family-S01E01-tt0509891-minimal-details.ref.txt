@@ -8,9 +8,9 @@ tvmazeId:
 title: Meet the Bunkers
 showTitle: 
 ratings (N=1)
-  source=imdb | rating=8.4 | votes=500 | min=0 | max=10
+  source=imdb | rating=8.4 | votes=600 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=xx
 episode: EpisodeNumber=xx
 displaySeason: SeasonNumber=xx
@@ -21,18 +21,62 @@ overview:
     een conservative Archie and the liberal "Meathead" on virtually every topic.
 writers: (N<6)
   - Norman Lear
-  - Norman Lear
   - Johnny Speight
 directors: (N=1)
   - John Rich
 playCount: 0
 lastPlayed: <not set or invalid>
 firstAired: 1971-01-12
-tags: (N=0)
+tags: (N<6)
+  - season premiere
+  - brunch
+  - italian slur
+  - reference to cosmopolitan magazine
+  - series premiere
 epBookmark: <not set or invalid>
-certification: 
+certification: TV-14
 networks: (N=0)
-thumbnail: https://m.media-amazon.com/images/M/MV5BY2E5MDNhZmEtZmU4OS00ZGE1LTg5M2MtODg2MjJmMDU2MzliXkEyXkFqcGc@._V1_UX400_CR0,0,400,225_AL_.jpg
-actors: (N=0)
+thumbnail: https://m.media-amazon.com/images/M/MV5BY2E5MDNhZmEtZmU4OS00ZGE1LTg5M2MtODg2MjJmMDU2MzliXkEyXkFqcGc@.jpg
+actors: (N<6)
+ - id: 
+   name: Carroll O'Connor
+   role: Archie Bunker
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BNGUzMmEwN2QtNzA2NS00ZTExLWIyZDItMzQ5ZWZj
+    ODdkMDI2XkEyXkFqcGc@.jpg
+   order: 0
+   imageHasChanged: false
+ - id: 
+   name: Jean Stapleton
+   role: Edith Bunker
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTMyNTE1MzgyNl5BMl5BanBnXkFtZTcwMTkzMzE0
+    NQ@@.jpg
+   order: 1
+   imageHasChanged: false
+ - id: 
+   name: Rob Reiner
+   role: Michael 'Meathead' Stivic
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTc2Njg1MDM2OV5BMl5BanBnXkFtZTcwMTE4NDk2
+    Mw@@.jpg
+   order: 2
+   imageHasChanged: false
+ - id: 
+   name: Sally Struthers
+   role: Gloria Bunker-Stivic
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BNDA4Y2I1Y2YtNGQ5Ni00ODMzLWE0OTItYTg4ZTZm
+    NDIzMDFkXkEyXkFqcGc@.jpg
+   order: 3
+   imageHasChanged: false
+ - id: 
+   name: Mike Evans
+   role: Lionel Jefferson
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTkzNjMxOTkyM15BMl5BanBnXkFtZTcwOTE4OTEy
+    OA@@.jpg
+   order: 4
+   imageHasChanged: false
 streamDetails: <not loaded>
 files: (N=0)

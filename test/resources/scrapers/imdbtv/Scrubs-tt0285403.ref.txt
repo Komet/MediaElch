@@ -7,7 +7,7 @@ imdbId: tt0285403
 tvmazeId: 
 title: Scrubs
 showTitle: 
-originalTitle: 
+originalTitle: Scrubs
 sortTitle: 
 overview:
     In the unreal world of Sacred Heart Hospital, intern John "J.D." Dorian learns t
@@ -15,28 +15,183 @@ overview:
 ratings (N=1)
   source=imdb | rating=8.4 | votes=200000 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 firstAired: 2001-10-02
 runtime: 22min
 genres: (N<6)
   - Comedy
   - Drama
 tags: (N<6)
-  - bromance
-  - 2000s
   - hospital
+  - bromance
   - california
   - male bonding
+  - 2000s
 certification: TV-14
 networks: (N=0)
 episodeGuideUrl: 
-actors: (N=0)
+actors: (N>50)
+ - id: 
+   name: Donald Faison
+   role: Dr. Christopher Turk
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTQ1NDQ2MzA2NV5BMl5BanBnXkFtZTcwODQ0MzUw
+    NA@@.jpg
+   order: 0
+   imageHasChanged: false
+ - id: 
+   name: John C. McGinley
+   role: Dr. Perry Cox / Mr. Slidell
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTY2ODk4NzQ0NF5BMl5BanBnXkFtZTgwMzk4Mjgz
+    NDE@.jpg
+   order: 1
+   imageHasChanged: false
+ - id: 
+   name: Ken Jenkins
+   role: Dr. Bob Kelso / Dr. Kelso
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BNTIwNTQxOTA1NV5BMl5BanBnXkFtZTcwMTY1MDQw
+    NA@@.jpg
+   order: 2
+   imageHasChanged: false
+ - id: 
+   name: Zach Braff
+   role: Dr. John 'J.D.' Dorian / Mrs. Zeebee
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTYyNjIyZGUtMDhlZC00NWYwLTlkNDEtMDU5YzBl
+    NmY2NTQ2XkEyXkFqcGc@.jpg
+   order: 3
+   imageHasChanged: false
+ - id: 
+   name: Sarah Chalke
+   role: Dr. Elliot Reid / Elliot
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMjQyNjg4NDI4NV5BMl5BanBnXkFtZTcwOTAzOTUx
+    Mg@@.jpg
+   order: 4
+   imageHasChanged: false
+ - id: 
+   name: Neil Flynn
+   role: Janitor / Wheelchair Guy
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTcxNTYxMzYyNV5BMl5BanBnXkFtZTcwMzA3ODY3
+    Mg@@.jpg
+   order: 5
+   imageHasChanged: false
+ - id: 
+   name: Judy Reyes
+   role: Nurse Carla Espinosa
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTY0NTgzOTMzM15BMl5BanBnXkFtZTcwODUwMTY4
+    MQ@@.jpg
+   order: 6
+   imageHasChanged: false
+ - id: 
+   name: Robert Maschio
+   role: Todd Quinlan
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTY1MDAyMDkzOF5BMl5BanBnXkFtZTcwMDk2MTgz
+    MQ@@.jpg
+   order: 7
+   imageHasChanged: false
+ - id: 
+   name: Sam Lloyd
+   role: Ted Buckland / Lawyer
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMzA3OWU0YjYtNWJhMS00NWI1LWJjOTAtOGQ5OWY0
+    YTZmNDg3XkEyXkFqcGc@.jpg
+   order: 8
+   imageHasChanged: false
+ - id: 
+   name: Aloma Wright
+   role: Nurse Roberts / Nurse Shirley / Nurse Laverne Roberts
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTMzODcwNTUwOV5BMl5BanBnXkFtZTYwNjM2MDM4
+    .jpg
+   order: 9
+   imageHasChanged: false
+ - id: 
+   name: Christa Miller
+   role: Jordan Sullivan
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTQ4NDI4Nzc5N15BMl5BanBnXkFtZTYwNDIyNTcz
+    .jpg
+   order: 10
+   imageHasChanged: false
+ - id: 
+   name: Johnny Kastl
+   role: Doug
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTkyMjYxMjE0N15BMl5BanBnXkFtZTcwMDE4NzEz
+    MQ@@.jpg
+   order: 11
+   imageHasChanged: false
+ - id: 
+   name: Travis Schuldt
+   role: Keith
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMjEzYTk1NjQtZDM0Zi00YzMzLWFhNmUtZjY5MDQx
+    NDU0ZjZiXkEyXkFqcGc@.jpg
+   order: 12
+   imageHasChanged: false
+ - id: 
+   name: Eliza Coupe
+   role: Dr. Denise Mahoney / Denise
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMjQ1MDg4MDYzMF5BMl5BanBnXkFtZTgwODUxNDg3
+    MzI@.jpg
+   order: 13
+   imageHasChanged: false
+ - id: 
+   name: Frank Encarnacao
+   role: Dr. Mickhead
+   thumb: 
+   order: 14
+   imageHasChanged: false
+ - id: 
+   name: Charles Rahi Chun
+   role: Dr. Wen
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTg3Nzk5NzY0OF5BMl5BanBnXkFtZTcwODk4Mzkz
+    MQ@@.jpg
+   order: 15
+   imageHasChanged: false
+ - id: 
+   name: Mike Schwartz
+   role: Lloyd / Delivery Man / Patient / Delivery Guy
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMjI4NTczOTc1MV5BMl5BanBnXkFtZTgwNDIzMzcz
+    MjE@.jpg
+   order: 16
+   imageHasChanged: false
+ - id: 
+   name: Elizabeth Banks
+   role: Dr. Kim Briggs
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BODNlYzdjZTUtYTQ2ZC00ZmQ1LWI2Y2EtNTY4Zjlm
+    Y2ZkNDA4XkEyXkFqcGc@.jpg
+   order: 17
+   imageHasChanged: false
+ - id: 
+   name: Michael Hobert
+   role: Lonnie / Pizza Guy
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTQ3MTU2ODI2OF5BMl5BanBnXkFtZTgwNTIyMTgz
+    MjE@.jpg
+   order: 18
+   imageHasChanged: false
+ - id: 
+   name: Andrew Miller
+   role: Baby Jack
+   thumb: 
+   order: 19
+   imageHasChanged: false
+  - ... and >30 more
 posters: (N=1)
-  - id:
-    https://m.media-amazon.com/images/M/MV5BZDYwNTk4YzEtMTRjNS00YWZjLTlkOWYtYzFlYWQy
-    MjU2ZjkwXkEyXkFqcGc@._V1_.jpg
-    originalUrl: https://m.media-amazon.com/images/M/MV5BZDYwNTk4YzEtMTRjNS00YWZjLTlkOWYtYzFlYWQyMjU2ZjkwXkEyXkFqcGc@._V1_.jpg
-    thumbUrl: https://m.media-amazon.com/images/M/MV5BZDYwNTk4YzEtMTRjNS00YWZjLTlkOWYtYzFlYWQyMjU2ZjkwXkEyXkFqcGc@._V1_.jpg
+  - id: 
+    originalUrl: https://m.media-amazon.com/images/M/MV5BZDYwNTk4YzEtMTRjNS00YWZjLTlkOWYtYzFlYWQyMjU2ZjkwXkEyXkFqcGc@.jpg
+    thumbUrl: https://m.media-amazon.com/images/M/MV5BZDYwNTk4YzEtMTRjNS00YWZjLTlkOWYtYzFlYWQyMjU2ZjkwXkEyXkFqcGc@.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 

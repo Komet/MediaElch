@@ -251,7 +251,7 @@ private:
     QString m_overview;
     Ratings m_ratings;
     double m_userRating = 0.0;
-    int m_imdbTop250 = 0;
+    int m_imdbTop250 = -1;
     QDate m_released;
     QString m_tagline;
     QString m_outline;

@@ -7,273 +7,83 @@
 #include "scrapers/ScraperUtils.h"
 #include "scrapers/imdb/ImdbReferencePage.h"
 
+#include "scrapers/imdb/ImdbJsonParser.h"
+
 #include <QRegularExpression>
 #include <chrono>
+
+#include "utils/Containers.h"
 
 namespace mediaelch {
 namespace scraper {
 
-void ImdbTvEpisodeParser::parseInfos(TvShowEpisode& episode, const QString& html)
+void ImdbTvEpisodeParser::parseInfos(TvShowEpisode& episode, const QString& html, const Locale& preferredLocale)
 {
     // Note: Expects HTML from https://www.imdb.com/title/tt________/reference
     using namespace std::chrono;
 
-    QRegularExpression rx;
-    rx.setPatternOptions(QRegularExpression::InvertedGreedinessOption | QRegularExpression::DotMatchesEverythingOption);
-    QRegularExpressionMatch match;
+    ImdbData data = ImdbJsonParser::parseFromReferencePage(html, preferredLocale);
 
-    rx.setPattern(R"re(<meta property="pageId" content="(tt\d+)" />)re");
-    match = rx.match(html);
-    if (match.hasMatch()) {
-        episode.setImdbId(ImdbId(match.captured(1).trimmed()));
+    if (data.imdbId.isValid()) {
+        episode.setImdbId(data.imdbId);
     }
-
-    const QString title = ImdbReferencePage::extractTitle(html);
-    if (!title.isEmpty()) {
-        episode.setTitle(title);
+    if (data.title.hasValue()) {
+        episode.setTitle(data.title.value);
     }
-
     // Enable once original titles exist for episodes.
-    // const QString originalTitle = ImdbReferencePage::extractOriginalTitle(html);
-    // if (!originalTitle.isEmpty()) {
-    //     episode.setOriginalTitle(originalTitle);
+    // if (data.originalTitle.hasValue()) {
+    //     episode.setOriginalTitle(data.originalTitle.value);
     // }
 
-    // --------------------------------------
-
-    rx.setPattern(R"(Directed by.*<table class="simpleTable spFirst crew_list">(.*)</table>)");
-    match = rx.match(html);
-    QString directorsBlock;
-    if (match.hasMatch()) {
-        directorsBlock = match.captured(1);
+    if (data.outline.hasValue()) {
+        // TODO: We use the outline for the overview; at the moment, we don't distinguish them in TV episodes.
+        episode.setOverview(data.outline.value);
+    } else if (data.overview.hasValue()) {
+        episode.setOverview(data.overview.value);
     }
 
-    if (!directorsBlock.isEmpty()) {
-        QStringList directors;
-        rx.setPattern(R"(<a href="[^"]*"[^>]*>([^<]*)</a>)");
-
-        QRegularExpressionMatchIterator matches = rx.globalMatch(directorsBlock);
-        while (matches.hasNext()) {
-            directors << matches.next().captured(1);
-        }
-        episode.setDirectors(directors);
+    if (data.released.hasValue()) {
+        episode.setFirstAired(data.released.value);
     }
-
-    // --------------------------------------
-
-    rx.setPattern(R"(Written by.*<table class="simpleTable spFirst writers_list">(.*)</table>)");
-    match = rx.match(html);
-    QString writersBlock;
-    if (match.hasMatch()) {
-        writersBlock = match.captured(1);
+    for (Rating rating : data.ratings) {
+        episode.ratings().addRating(rating);
     }
-
-    if (!writersBlock.isEmpty()) {
-        QStringList writers;
-        rx.setPattern(R"(<a href="[^"]*"[^>]*>([^<]*)</a>)");
-        QRegularExpressionMatchIterator matches = rx.globalMatch(writersBlock);
-        while (matches.hasNext()) {
-            writers << matches.next().captured(1).trimmed();
-        }
-        episode.setWriters(writers);
+    if (data.top250.hasValue()) {
+        episode.setTop250(data.top250.value);
     }
-
-    // --------------------------------------
-    // rx.setPattern(R"(<div class="see-more inline canwrap">\n *<h4 class="inline">Genres:</h4>(.*)</div>)");
-    // match = rx.match(html);
-    // if (match.hasMatch()) {
-    //     QString genres = match.captured(1);
-    //     rx.setPattern(R"(<a href="[^"]*"[^>]*>([^<]*)</a>)");
-    //     int pos = 0;
-    //     while ((pos = rx.indexIn(genres, pos)) != -1) {
-    //         episode.addGenre(match.captured(1).trimmed());
-    //         pos += rx.matchedLength();
-    //     }
-    // }
-
-    // --------------------------------------
-    // rx.setPattern(R"(<div class="txt-block">[^<]*<h4 class="inline">Taglines:</h4>(.*)</div>)");
-    // match = rx.match(html);
-    // if (match.hasMatch()) {
-    //     QString tagline = match.captured(1);
-    //     QRegularExpression rxMore("<span class=\"see-more inline\">.*</span>");
-    //     rxMore.setMinimal(true);
-    //     tagline.remove(rxMore);
-    //     episode.setTagline(tagline.trimmed());
-    // }
-
-    // --------------------------------------
-    // rx.setPattern(R"(<div class="see-more inline canwrap">\n *<h4 class="inline">Plot Keywords:</h4>(.*)<nobr>)");
-    // match = rx.match(html);
-    // if (match.hasMatch()) {
-    //     QString tags = match.captured(1);
-    //     rx.setPattern(R"(<span class="itemprop">([^<]*)</span>)");
-    //     int pos = 0;
-    //     while ((pos = rx.indexIn(tags, pos)) != -1) {
-    //         episode.addTag(match.captured(1).trimmed());
-    //         pos += rx.matchedLength();
-    //     }
-    // }
-
-    // --------------------------------------
-
-    const QDate released = ImdbReferencePage::extractReleaseDate(html);
-    if (released.isValid()) {
-        episode.setFirstAired(released);
+    if (data.certification.hasValue()) {
+        episode.setCertification(data.certification.value);
     }
-
-    // --------------------------------------
-
-    rx.setPattern(R"rx("contentRating": "([^"]*)",)rx");
-    match = rx.match(html);
-    if (match.hasMatch()) {
-        episode.setCertification(Certification(match.captured(1).trimmed()));
+    for (const Actor& actor : data.actors) {
+        episode.addActor(actor);
     }
-
-    // --------------------------------------
-    // rx.setPattern(R"("duration": "PT([0-9]+)H?([0-9]+)M")");
-    // if (match.hasMatch()) {
-    //     if (match.capturedtureCount() > 1) {
-    //         minutes runtime = hours(match.captured(1).toInt()) + minutes(match.captured(2).toInt());
-    //         episode.setRuntime(runtime);
-    //     } else {
-    //         minutes runtime = minutes(match.captured(1).toInt());
-    //         episode.setRuntime(runtime);
-    //     }
-    // }
-
-    // --------------------------------------
-    // rx.setPattern(R"(<h4 class="inline">Runtime:</h4>[^<]*<time datetime="PT([0-9]+)M">)");
-    // if (match.hasMatch()) {
-    //     episode.setRuntime(minutes(match.captured(1).toInt()));
-    // }
-
-    // --------------------------------------
-    // Overview: Try different formats.
-
-    bool hasOverview = false;
-    rx.setPattern(R"re(Plot Summary</td>(.*)</td>)re");
-    MediaElch_Debug_Assert(rx.isValid());
-    match = rx.match(html);
-    if (match.hasMatch()) {
-        QString outline = match.captured(1);
-        outline = outline.remove("Plot Summary").trimmed();
-        outline = outline.remove("Plot Synopsis").trimmed();
-        outline = removeHtmlEntities(outline);
-        episode.setOverview(outline);
-        hasOverview = !outline.isEmpty();
+    if (!data.directors.isEmpty()) {
+        episode.setDirectors(setToVector(data.directors));
     }
-
-    if (!hasOverview) {
-        rx.setPattern(R"(<h2>Storyline</h2>\n +\n +<div class="inline canwrap">\n +<p>\n +<span>(.*)</span>)");
-        MediaElch_Debug_Assert(rx.isValid());
-        match = rx.match(html);
-        if (match.hasMatch()) {
-            QString overview = removeHtmlEntities(match.captured(1));
-            episode.setOverview(overview);
-            hasOverview = !overview.isEmpty();
-        }
+    if (!data.writers.isEmpty()) {
+        episode.setWriters(setToVector(data.writers));
     }
-
-    if (!hasOverview) {
-        rx.setPattern(R"(<section class="titlereference-section-overview">.+<hr>(.+)<hr>)");
-        MediaElch_Debug_Assert(rx.isValid());
-        match = rx.match(html);
-        if (match.hasMatch()) {
-            QString overview = removeHtmlEntities(match.captured(1));
-            episode.setOverview(overview);
-            hasOverview = !overview.isEmpty();
-        }
+    for (const QString& keyword : data.keywords) {
+        episode.addTag(keyword);
     }
-
-    Q_UNUSED(hasOverview)
-
-    // --------------------------------------
-
-    Rating rating;
-    rating.source = "imdb";
-    rating.maxRating = 10;
-    rx.setPattern("<div class=\"ipl-rating-star ?\">(.*)</div>");
-    match = rx.match(html);
-    if (match.hasMatch()) {
-        QString content = match.captured(1);
-        rx.setPattern("<span class=\"ipl-rating-star__rating\">(.*)</span>");
-        match = rx.match(content);
-        if (match.hasMatch()) {
-            rating.rating = match.captured(1).trimmed().replace(",", ".").toDouble();
-        }
-
-        rx.setPattern(R"(<span class="ipl-rating-star__total-votes">\((.*)\)</span>)");
-        match = rx.match(content);
-        if (match.hasMatch()) {
-            rating.voteCount = match.captured(1).replace(",", "").replace(".", "").toInt();
-        }
-
-    } else {
-        rx.setPattern(R"(<div class="imdbRating"[^>]*>\n +<div class="ratingValue">(.*)</div>)");
-        match = rx.match(html);
-        if (match.hasMatch()) {
-            QString content = match.captured(1);
-            rx.setPattern("([0-9]\\.[0-9]) based on ([0-9\\,]*) ");
-            match = rx.match(content);
-            if (match.hasMatch()) {
-                rating.rating = match.captured(1).trimmed().replace(",", ".").toDouble();
-                rating.voteCount = match.captured(2).replace(",", "").replace(".", "").toInt();
-            }
-
-            rx.setPattern("([0-9]\\,[0-9]) based on ([0-9\\.]*) ");
-            match = rx.match(content);
-            if (match.hasMatch()) {
-                rating.rating = match.captured(1).trimmed().replace(",", ".").toDouble();
-                rating.voteCount = match.captured(2).replace(",", "").replace(".", "").toInt();
-            }
-        }
+    if (data.poster.hasValue()) {
+        episode.setThumbnail(data.poster.value.originalUrl);
     }
-
-    if (rating.voteCount > 0 || rating.rating > 0.0) {
-        episode.ratings().setOrAddRating(rating);
-    }
-
-    // Top250 for TV shows (used by TheTvDb)
-    rx.setPattern(R"re(<link rel='image_src' href="(https://[^"]+.jpg)")re");
-    match = rx.match(html);
-    if (match.hasMatch()) {
-        QString thumbUrlRaw = match.captured(1);
-        if (thumbUrlRaw.contains("media-amazon.com")) {
-            // Neither the season nor episode page have a proper thumb. But because
-            // media-amazon has some auto-crop magic, we can specify the format ourselves.
-            // So we use the 16:9 format: 400x225px
-            // Most if not all episodes should have thumbs that are bigger than this.
-            // This results in the following postfix:
-            const QString imdbThumbSizeSpec = QStringLiteral("._V1_UX400_CR0,0,400,225_AL_.jpg");
-            const elch_ssize_t index = thumbUrlRaw.lastIndexOf("._V1");
-            if (index > -1) {
-                thumbUrlRaw.truncate(index);
-                thumbUrlRaw.append(imdbThumbSizeSpec);
-            }
-        }
-        episode.setThumbnail(QUrl(thumbUrlRaw));
-    }
-
-    // --------------------------------------
-
-    // rx.setPattern(R"(<h4 class="inline">Production Co:</h4>(.*)<span class="see-more inline">)");
-    // if (match.hasMatch()) {
-    //     QString studios = match.captured(1);
-    //     rx.setPattern(R"(<a href="/company/[^"]*"[^>]*>([^<]+)</a>)");
-    //     int pos = 0;
-    //     while ((pos = rx.indexIn(studios, pos)) != -1) {
-    //         episode.setNetwork(match.captured(1).trimmed());
-    //         pos += rx.matchedLength();
-    //     }
-    // }
+    // TODO
+    // - genres
+    // - setNetwork
+    // TODO if supported by episode class
+    // - runtime
+    // - keywords
+    // - tagline
 }
 
 void ImdbTvEpisodeParser::parseIdFromSeason(TvShowEpisode& episode, const QString& html)
 {
+    // e.g. from https://www.imdb.com/title/tt0096697/episodes?season=4
     // Example JSON:
     //   ```json
-    //   {"id":"tt0696611","type":"tvEpisode","season":"2","episode":"0"…}
+    //   {"id":"tt0096697","type":"tvEpisode","season":"2","episode":"0"…}
     //   ```
     QRegularExpression regex(QStringLiteral(R"re("id":"(tt\d+)","type":"tvEpisode","season":"\d+","episode":"%1")re")
                                  .arg(episode.episodeNumber().toString()),

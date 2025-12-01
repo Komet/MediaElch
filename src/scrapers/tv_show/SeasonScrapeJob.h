@@ -53,7 +53,9 @@ public:
         /// \brief Order of episodes when loading seasons.
         SeasonOrder seasonOrder;
 
-        /// \brief Details to be loaded using the scraper.
+        /// \brief   Details to be loaded using the scraper.
+        /// \details The scraper may set more details, as this field is only used for optimizations
+        ///          such as reducing the number of HTTP requests.
         QSet<EpisodeScraperInfo> details;
 
         /// \brief Returns true if all seasons should be loaded.

@@ -24,12 +24,12 @@ tagline:
 ratings (N=1)
   source=themoviedb | rating=6.6 | votes=2000 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 released: 1977-06-22
 runtime: 78min
 writer:
-    Margery Sharp, Larry Clemmons, Ken Anderson, Frank Thomas, Vance Gerry, David Mi
-    chener, Fred Lucky, Burny Mattinson, Dick Sebast, Ted Berman
+    Margery Sharp, Larry Clemmons, Ken Anderson, Vance Gerry, Ted Berman, Burny Matt
+    inson, Frank Thomas, David Michener, Fred Lucky, Dick Sebast
 director: Art Stevens
 actors: (N>10)
  - id: 
@@ -47,7 +47,7 @@ actors: (N>10)
  - id: 
    name: Geraldine Page
    role: Madame Medusa (voice)
-   thumb: http://image.tmdb.org/t/p/original/oBQTdTuGwc88tV32V0bbzAiLwhi.jpg
+   thumb: http://image.tmdb.org/t/p/original/5G8uNYzNtEMBSnOUUs6ms1JcOJj.jpg
    order: 2
    imageHasChanged: false
  - id: 
@@ -216,8 +216,8 @@ backdrops: (N>10)
     aspect: 
     season: SeasonNumber=xx
   - id: 
-    originalUrl: http://image.tmdb.org/t/p/original/jToyymxSX9YU1iIabEa22XQucob.jpg
-    thumbUrl: http://image.tmdb.org/t/p/w780/jToyymxSX9YU1iIabEa22XQucob.jpg
+    originalUrl: http://image.tmdb.org/t/p/original/bOash26erxuv6EqA1ZQ6ZytpHca.jpg
+    thumbUrl: http://image.tmdb.org/t/p/w780/bOash26erxuv6EqA1ZQ6ZytpHca.jpg
     originalSize: h=1080 w=1920
     language: 
     hint: 
@@ -232,9 +232,9 @@ backdrops: (N>10)
     aspect: 
     season: SeasonNumber=xx
   - id: 
-    originalUrl: http://image.tmdb.org/t/p/original/bOash26erxuv6EqA1ZQ6ZytpHca.jpg
-    thumbUrl: http://image.tmdb.org/t/p/w780/bOash26erxuv6EqA1ZQ6ZytpHca.jpg
-    originalSize: h=1080 w=1920
+    originalUrl: http://image.tmdb.org/t/p/original/2rJ1LDxVS2EofZmRT7YiCgIFSq3.jpg
+    thumbUrl: http://image.tmdb.org/t/p/w780/2rJ1LDxVS2EofZmRT7YiCgIFSq3.jpg
+    originalSize: h=1440 w=2560
     language: 
     hint: 
     aspect: 

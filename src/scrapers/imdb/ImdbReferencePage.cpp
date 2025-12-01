@@ -50,7 +50,6 @@ QDate ImdbReferencePage::extractReleaseDate(const QString& html)
     match = rx.match(html);
 
     if (match.hasMatch()) {
-        // Date format, e.g. "09 Mar 1995 (Germany)"
         rx.setPattern(R"( \(.+\))");
         const QString dateStr = match.captured(1).remove(rx).trimmed();
         // Qt::RFC2822Date is basically "dd MMM yyyy"

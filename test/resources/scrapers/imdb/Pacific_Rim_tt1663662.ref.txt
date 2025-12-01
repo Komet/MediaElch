@@ -7,7 +7,7 @@ wikidataId:
 mediaCenterId: -1
 title: Pacific Rim
 sortTitle: 
-originalTitle: 
+originalTitle: Pacific Rim
 overview:
     When monstrous creatures, known as Kaiju, started rising from the sea, a war beg
     an that would take millions of lives and consume humanity's resources for years 
@@ -27,18 +27,18 @@ tagline: Go big or go extinct
 ratings (N=1)
   source=imdb | rating=6.8 | votes=500000 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
-released: 2013-07-18
+imdbTop250: -1
+released: 2013-07-12
 runtime: 131min
-writer: Travis Beacham, Guillermo del Toro, Travis Beacham
+writer: Travis Beacham, Guillermo del Toro
 director: Guillermo del Toro
-actors: (N>90)
+actors: (N>5)
  - id: 
    name: Charlie Hunnam
    role: Raleigh Becket
    thumb:
-    https://m.media-amazon.com/images/M/MV5BMjE5NjE5Mzk2MV5BMl5BanBnXkFtZTcwODI5MDE1
-    Ng@@.jpg
+    https://m.media-amazon.com/images/M/MV5BMWRiMzljOGYtMjE4Yi00OTVkLTk5MzQtZGYwMzU3
+    NTgyMjFhXkEyXkFqcGc@.jpg
    order: 0
    imageHasChanged: false
  - id: 
@@ -77,21 +77,21 @@ actors: (N>90)
    name: Burn Gorman
    role: Gottlieb
    thumb:
-    https://m.media-amazon.com/images/M/MV5BNzU4ZTJmZGUtMDAxZS00Y2FkLWFkYTQtZjZhY2Uz
-    MzgyZTMwXkEyXkFqcGc@.jpg
+    https://m.media-amazon.com/images/M/MV5BOGE5NDcxNzYtYjc0Mi00MTIzLTgxNjctNjEwM2Zm
+    ZjU3ZmQ3XkEyXkFqcGc@.jpg
    order: 5
    imageHasChanged: false
  - id: 
    name: Max Martini
    role: Herc Hansen
    thumb:
-    https://m.media-amazon.com/images/M/MV5BZmM5M2I2YTUtNGY5ZS00ZjA1LWEyODYtYjViY2Uz
-    ZTMyMjAzXkEyXkFqcGc@.jpg
+    https://m.media-amazon.com/images/M/MV5BNzBkNDI5MDUtZDljYy00YTc4LWE0OTMtZDkzYzMz
+    ZWYwYWMzXkEyXkFqcGc@.jpg
    order: 6
    imageHasChanged: false
  - id: 
    name: Robert Kazinsky
-   role: Chuck Hansen (as Rob Kazinsky)
+   role: Chuck Hansen
    thumb:
     https://m.media-amazon.com/images/M/MV5BMjA2NDM1MDY0Ml5BMl5BanBnXkFtZTgwMTc3Mzc1
     NzM@.jpg
@@ -113,106 +113,24 @@ actors: (N>90)
     Ng@@.jpg
    order: 9
    imageHasChanged: false
- - id: 
-   name: Brad William Henke
-   role: Construction Foreman
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMTM4NTE3NjU1Nl5BMl5BanBnXkFtZTcwMjQwNzcy
-    MQ@@.jpg
-   order: 10
-   imageHasChanged: false
- - id: 
-   name: Larry Joe Campbell
-   role: Construction Worker
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BNWE4MjI1YzgtMmUzZC00MTM2LWEwN2YtZTI4ZDU3
-    ODEwNWMwXkEyXkFqcGc@.jpg
-   order: 11
-   imageHasChanged: false
- - id: 
-   name: Mana Ashida
-   role: Young Mako
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BYTBhMmM1Y2ItODdjMy00NWFkLWI2ODUtM2ExY2Fl
-    ODhiMzNmXkEyXkFqcGc@.jpg
-   order: 12
-   imageHasChanged: false
- - id: 
-   name: Santiago Segura
-   role: Wizened Man
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMmUwZThhMDgtNWZlOS00OGM3LTlhYWMtYzM2ZTk3
-    ODQ3OTZmXkEyXkFqcGc@.jpg
-   order: 13
-   imageHasChanged: false
- - id: 
-   name: Joe Pingue
-   role: Captain Merrit
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BZmU2MDQ4MDYtM2ZmYi00NWQ2LTllZTQtOTFjNTIy
-    NGVhOGQyXkEyXkFqcGc@.jpg
-   order: 14
-   imageHasChanged: false
- - id: 
-   name: Milton Barnes
-   role: McTighe
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMWI3MDY4OWYtOTJkNi00M2NjLWFhY2ItNjliZjUx
-    YjQxZDU4XkEyXkFqcGc@.jpg
-   order: 15
-   imageHasChanged: false
- - id: 
-   name: Brian Frank
-   role: 1st Officer
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BZmUxZTBhYjgtZTI0ZS00OTg4LWIwMmUtMGE3Y2Nl
-    ZWYxOGM5XkEyXkFqcGc@.jpg
-   order: 16
-   imageHasChanged: false
- - id: 
-   name: Ellen McLain
-   role: Gipsy Danger AI
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BOTk4NjU4MDM1M15BMl5BanBnXkFtZTcwNjE3MTYw
-    NQ@@.jpg
-   order: 17
-   imageHasChanged: false
- - id: 
-   name: David Fox
-   role: Old Man on Beach
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMTkzNzU1Njc1M15BMl5BanBnXkFtZTgwNDU0MDg3
-    MjE@.jpg
-   order: 18
-   imageHasChanged: false
- - id: 
-   name: Jake Goodman
-   role: Child
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMjIxMzk0ODMxMV5BMl5BanBnXkFtZTgwMjU2NTIw
-    MzE@.jpg
-   order: 19
-   imageHasChanged: false
-  - ... and >70 more
 certification: PG-13
 genres: (N<6)
+  - Sci-Fi
   - Action
   - Adventure
-  - Sci-Fi
 tags: (N<6)
-  - lovecraftian
-  - tank-top
-  - pregnancy
-  - time-bomb
-  - sleeping-shirtless
-countries: (N<6)
-  - United States
-  - Mexico
+  - apocalypse
+  - human piloted robot
+  - human versus monster
+  - ocean
+  - kaiju
+countries: (N=1)
+  - US
 studios: (N<6)
   - Warner Bros.
   - Legendary Entertainment
-  - Double Dare You (DDY)
-trailer: 
+  - Legendary Pictures
+trailer: https://imdb-video.media-imdb.com/vi1369752345/1434659529640-260ouz-1632281728566.mp4?Expires=1764701338&Signature=HZPDsLNw7bJ3erHmOmoj~9YUDhvoaiBsDR0waj-4ooKSsKPtN0wJRvo5OgUCS0WXkROCaBdLqwBMnBGLT7bresHOslHfac6NDpxtqfP8ZRYdcR-CHilXDlPG8UDz2cWCwNvqJ~jptRnutkeXqBZg0b6FXQEdHaDau5f9Rasr~CPVRvadauCFZc-mI7l9lizc~s-AgemgKMTIbI1tm-IorWC4bzx2jXSklG9bg86p68yBcPL8uwvj0WffG0ZAqrTdIHjPG6UN0hqcudVKuT3-spITgN-PJb~of4Ti30p9sReOF~rNk6uey8IA6kFTfLTqpnf6M9ZelSSvmBUqsXZfPQ__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA
 showlink: (N=0)
 playcount: 0
 lastPlayed: <not set or invalid>

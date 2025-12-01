@@ -54,9 +54,9 @@ discography: (N>40)
     year: 1996
   - title: MVP Compilation Series Fantasy
     year: 1997
-  - title: Ballads
+  - title: MTM Ballads
     year: 1998
-  - title: MTM Ballads Volume 2
+  - title: MTM Ballads - Volume 2
     year: 1999
   - title: The Best Swedish Melodic Hardrock AnthemsIn The World...Ever!
     year: 1999

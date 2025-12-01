@@ -7,7 +7,7 @@ wikidataId:
 mediaCenterId: -1
 title: Welcome Back
 sortTitle: 
-originalTitle: 
+originalTitle: Welcome Back
 overview:
     Uday Shetty and Majnu Bhai have left the underworld, and are now big businessmen
     . Two women, Chandni and Maharani, enter their life. Chandni is the new love in 
@@ -26,12 +26,12 @@ tagline:
 ratings (N=1)
   source=imdb | rating=4.2 | votes=7000 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
-released: 2015-09-03
+imdbTop250: -1
+released: 2015-09-04
 runtime: 152min
-writer: Anees Bazmee, Rajeev Kaul, Rajeev Kaul
-director: Anees Bazmee
-actors: (N>30)
+writer: Anees Bazmee, Raaj Shaandilyaa, Rajeev Kaul, Rajan Agarwal, Praful Parekh
+director: Anees Bazmee, Sushma Sunam
+actors: (N>5)
  - id: 
    name: John Abraham
    role: Ajay 'Ajju' Ghunghroo
@@ -66,7 +66,7 @@ actors: (N>30)
    imageHasChanged: false
  - id: 
    name: Shruti Haasan
-   role: Ranjana Shetty (as Shruti K. Haasan)
+   role: Ranjana Shetty
    thumb:
     https://m.media-amazon.com/images/M/MV5BMmVmYmY5OWMtZjAwZC00N2ZhLWFjMzMtNzkwMGY5
     ZmJjOWJlXkEyXkFqcGc@.jpg
@@ -82,7 +82,7 @@ actors: (N>30)
    imageHasChanged: false
  - id: 
    name: Ranjeet Bedi
-   role: Kapoor, 'the criminal' (as Ranjeet)
+   role: Kapoor, 'the criminal'
    thumb:
     https://m.media-amazon.com/images/M/MV5BNDdlYTUwMDUtOTRmMS00NGQ1LThjZTQtZDBlZjVl
     NjM4MDMyXkEyXkFqcGc@.jpg
@@ -110,101 +110,19 @@ actors: (N>30)
    thumb: 
    order: 9
    imageHasChanged: false
- - id: 
-   name: Supriya Karnik
-   role: Payal Ghungroo
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BOGViYjJmNzctOGJkMy00Nzg0LWI3NGItMWRlNjU3
-    YjJkZjk3XkEyXkFqcGc@.jpg
-   order: 10
-   imageHasChanged: false
- - id: 
-   name: Rajpal Naurang Yadav
-   role: The Tailor (as Rajpal Yadav)
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMTQ3MTI4MzUyNl5BMl5BanBnXkFtZTgwMjAzMTMz
-    OTE@.jpg
-   order: 11
-   imageHasChanged: false
- - id: 
-   name: Neeraj Vora
-   role: Badshah Khan / Basha bhai
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BODgzNjYxMzMwNl5BMl5BanBnXkFtZTcwODIzNTE3
-    Mw@@.jpg
-   order: 12
-   imageHasChanged: false
- - id: 
-   name: Mushtaq Khan
-   role: Balu
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BYzNiODA3OTktMjA2Ni00MGI4LThlMDAtOGNhNGFh
-    NzA0YTUyXkEyXkFqcGc@.jpg
-   order: 13
-   imageHasChanged: false
- - id: 
-   name: Adi Irani
-   role: Advocate Harkesh Sahni
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BY2MxODlhOTMtOGM1NC00MWIzLTllNWYtYjQ2ZmQ5
-    YzBlOTQxXkEyXkFqcGc@.jpg
-   order: 14
-   imageHasChanged: false
- - id: 
-   name: Snehal Dabi
-   role: Kakhil
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMmM5MmI0NzMtMjkzMC00ZWM1LWE5MGEtMjQzNTY5
-    MDQ2NGIyXkEyXkFqcGc@.jpg
-   order: 15
-   imageHasChanged: false
- - id: 
-   name: Amjad Qureshi
-   role: Ajju bhai friend
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMGVlYWEyNTMtMDQ3ZC00M2YyLWFjYTAtZDU0YzVi
-    N2EwMmQ1XkEyXkFqcGc@.jpg
-   order: 16
-   imageHasChanged: false
- - id: 
-   name: Javed Rizvi
-   role: Ajju's dumb and deaf friend (as Javed Rizvi Jarehavi)
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BZmZmOWIyYjUtYmY5ZC00Yjc3LWE4NmItYTUxMzEw
-    OTI2ZTI0XkEyXkFqcGc@.jpg
-   order: 17
-   imageHasChanged: false
- - id: 
-   name: Lauren Gottlieb
-   role: Special appearance in song '20-20'
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BNGM0MmE1ZTAtNjY5YS00OTc5LTlkZDctZWUyYjIy
-    NDFjNDE2XkEyXkFqcGc@.jpg
-   order: 18
-   imageHasChanged: false
- - id: 
-   name: Reema Debnath
-   role: Special appearance in song '20-20'
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMDNkMGQ0Y2UtYTBjZi00MDRkLThlMjAtOGJlNjFm
-    NGQ4NjRmXkEyXkFqcGc@.jpg
-   order: 19
-   imageHasChanged: false
-  - ... and >10 more
 certification: Not Rated
 genres: (N<6)
+  - Crime
   - Action
   - Comedy
-  - Crime
   - Drama
 tags: (N=1)
-  - husband-wife-relationship
-countries: (N<6)
-  - India
-  - United Arab Emirates
+  - husband wife relationship
+countries: (N=1)
+  - IN
 studios: (N=1)
   - Base Industries Group
-trailer: 
+trailer: https://imdb-video.media-imdb.com/vi956348441/1434659529640-260ouz-1563738237646.mp4?Expires=1764701340&Signature=YgtVBH3sqP9dDz9WWfLvRv-vIOYF6Tgx3gFzrZyZxNbCK9trUAkUVsn7VbRntQkCJ~W7Qnon26j~iBvsgOKpZmGZSinEgX8wq1WZYJBeivsrMRznurl7aKwaLNDVGgRr6ElCTnCEn5MvN-Bg-PHH6qxUhUloXi3CVlzmG3tj2ReWCk8O8mrwao7IVjqNyd292qAU2dJBADZrtxUJKcqZrUDhOlTYmVzW48QoUSnOS4bFJOTjWW9T2jm6nj6CRka7I72rAC1ITTAqOzfBU7XsJnOMLF2dUnTfMDE8Ms7xs7AUPpcGH0758hRgJT7EeAxu2h9eoTL5GL08fURWGVz2pg__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA
 showlink: (N=0)
 playcount: 0
 lastPlayed: <not set or invalid>

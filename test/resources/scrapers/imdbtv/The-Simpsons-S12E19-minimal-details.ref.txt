@@ -8,40 +8,124 @@ tvmazeId:
 title: I'm Goin' to Praiseland
 showTitle: 
 ratings (N=1)
-  source=imdb | rating=7.2 | votes=2000 | min=0 | max=10
+  source=imdb | rating=7 | votes=2000 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=12
 episode: EpisodeNumber=19
 displaySeason: SeasonNumber=xx
 displayEpisode: EpisodeNumber=xx
 overview:
-    Ned opens a theme park to the memory of his late wife Maude and it becomes a hug
-    e success when people kneeling in front of a statue of Maude experience mystic v
-    isions. The reason for this is that a grille in front of the statue is an out-pi
-    pe for a propane gas line and they are getting high on the gas. Unfortunately th
-    e park is closed down when Homer and Ned try to stop two children from lighting 
-    a candle before the altar and are charged with assault.Ned does,however,enjoy th
-    e further company of Rachel Jordan,despite his efforts to turn her into a clone 
-    of Maude. Written by don @ minifie-1
-writers: (N>5)
-  - Matt Groening
+    With Homer's help, Flanders tries to establish a Christian theme park based on d
+    rawings in Maude's sketch book.
+writers: (N<6)
+  - Julie Thacker-Scully
+  - Joel H. Cohen
   - James L. Brooks
   - Matt Groening
   - Sam Simon
-  - Julie Thacker-Scully
-  - ... and =1 more
 directors: (N<6)
   - Chuck Sheetz
   - Jim Reardon
 playCount: 0
 lastPlayed: <not set or invalid>
-firstAired: 2002-02-04
-tags: (N=0)
+firstAired: 2001-05-06
+tags: (N<6)
+  - tv show theme song
+  - lazy man
+  - cameo
+  - lazy employee
+  - american cult tv
 epBookmark: <not set or invalid>
-certification: 
+certification: TV-14
 networks: (N=0)
-thumbnail: https://m.media-amazon.com/images/M/MV5BMzc1Njk2YzItNDZhZC00NzI1LWFhMzMtMTQ5Y2I2NDNjYzc2XkEyXkFqcGc@._V1_UX400_CR0,0,400,225_AL_.jpg
-actors: (N=0)
+thumbnail: https://m.media-amazon.com/images/M/MV5BMzc1Njk2YzItNDZhZC00NzI1LWFhMzMtMTQ5Y2I2NDNjYzc2XkEyXkFqcGc@.jpg
+actors: (N>5)
+ - id: 
+   name: Dan Castellaneta
+   role:
+    Homer Simpson / Rich Texan / Krusty / Willie / Mayor Quimby / Sideshow Mel / Joh
+    n Travolta
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMjAyNDY5NDEwOV5BMl5BanBnXkFtZTcwMjY0ODYy
+    MQ@@.jpg
+   order: 0
+   imageHasChanged: false
+ - id: 
+   name: Julie Kavner
+   role: Marge Simpson
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTcwMjUzMTc1OF5BMl5BanBnXkFtZTYwODE0MjM0
+    .jpg
+   order: 1
+   imageHasChanged: false
+ - id: 
+   name: Nancy Cartwright
+   role: Bart Simpson / Nelson Muntz / Todd Flanders / Ralph Wiggum
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMjZmYTQ1YjItZTUzYi00Nzk1LTlmNzEtMmRmMjM4
+    NjZmOTcyXkEyXkFqcGc@.jpg
+   order: 2
+   imageHasChanged: false
+ - id: 
+   name: Yeardley Smith
+   role: Lisa Simpson
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BNzcyNjQ1NTAtMDk4My00NDc1LWIzYjMtYmQ1MGE3
+    MTdkODZmXkEyXkFqcGc@.jpg
+   order: 3
+   imageHasChanged: false
+ - id: 
+   name: Hank Azaria
+   role:
+    Moe Szyslak / Frink / Cletus / Chief Wiggum / Carl / Dr. Nick Riviera / Apu / Ch
+    almers / Comic Book Guy / Kirk Van Houten / Captain McAllister / Disco Stu
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTQ0MzIxMzUwMV5BMl5BanBnXkFtZTcwMjE1NjM1
+    Mg@@.jpg
+   order: 4
+   imageHasChanged: false
+ - id: 
+   name: Harry Shearer
+   role:
+    Ned Flanders / Reverend Lovejoy / Dr. Hibbert / Kent Brockman / King David / Len
+    ny / Louie / Skinner / St. Peter
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTIxNDg4MzA5OF5BMl5BanBnXkFtZTYwOTM3MDc1
+    .jpg
+   order: 5
+   imageHasChanged: false
+ - id: 
+   name: Shawn Colvin
+   role: Rachel Jordan
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTI5MDYzMzcwMF5BMl5BanBnXkFtZTYwNzcxMzQ1
+    .jpg
+   order: 6
+   imageHasChanged: false
+ - id: 
+   name: Marcia Wallace
+   role: Edna Krabappel
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTM5ODczNTY5M15BMl5BanBnXkFtZTgwNTUwMTk2
+    MDE@.jpg
+   order: 7
+   imageHasChanged: false
+ - id: 
+   name: Marcia Mitzman Gaven
+   role: Helen Lovejoy
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BY2RiNDVjMjAtNzNjZi00ODZhLTgxYjQtNDUwYWQ2
+    OWY5MDY0XkEyXkFqcGc@.jpg
+   order: 8
+   imageHasChanged: false
+ - id: 
+   name: Pamela Hayden
+   role: Milhouse Van Houten / Rod Flanders / Patches
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTY1NjU1ODI1Ml5BMl5BanBnXkFtZTYwNDE2ODQz
+    .jpg
+   order: 9
+   imageHasChanged: false
 streamDetails: <not loaded>
 files: (N=0)

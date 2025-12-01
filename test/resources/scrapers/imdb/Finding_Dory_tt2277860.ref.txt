@@ -5,7 +5,7 @@ imdbId: tt2277860
 tmdbId: 
 wikidataId: 
 mediaCenterId: -1
-title: Findet Dorie
+title: Finding Dory
 sortTitle: 
 originalTitle: Finding Dory
 overview:
@@ -23,12 +23,12 @@ tagline: She just kept swimming...
 ratings (N=1)
   source=imdb | rating=7.2 | votes=300000 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
-released: 2016-09-29
+imdbTop250: -1
+released: 2016-06-17
 runtime: 97min
-writer: Andrew Stanton, Andrew Stanton, Victoria Strouse
-director: Andrew Stanton, Angus MacLane
-actors: (N>60)
+writer: Andrew Stanton, Victoria Strouse
+director: Angus MacLane, Andrew Stanton
+actors: (N>5)
  - id: 
    name: Ellen DeGeneres
    role: Dory
@@ -65,7 +65,7 @@ actors: (N>60)
    name: Hayden Rolence
    role: Nemo
    thumb:
-    https://m.media-amazon.com/images/M/MV5BMTk2NTYxMzQ5NV5BMl5BanBnXkFtZTgwNzM2Njgw
+    https://m.media-amazon.com/images/M/MV5BMjM0MjI0ODE5Ml5BMl5BanBnXkFtZTgwOTM2NzMx
     OTE@.jpg
    order: 4
    imageHasChanged: false
@@ -107,102 +107,26 @@ actors: (N>60)
     OA@@.jpg
    order: 9
    imageHasChanged: false
- - id: 
-   name: Dominic West
-   role: Rudder
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMjM1MDU1Mzg3N15BMl5BanBnXkFtZTgwNTcwNzcy
-    MzI@.jpg
-   order: 10
-   imageHasChanged: false
- - id: 
-   name: Bob Peterson
-   role: Mr. Ray / Additional Voices
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMTU4NTQ4ODI5N15BMl5BanBnXkFtZTYwNzIwODA3
-    .jpg
-   order: 11
-   imageHasChanged: false
- - id: 
-   name: Kate McKinnon
-   role: Wife Fish
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMjQwMzEwMDQ2NF5BMl5BanBnXkFtZTgwMzU4NTY4
-    NjE@.jpg
-   order: 12
-   imageHasChanged: false
- - id: 
-   name: Bill Hader
-   role: Husband Fish (Stan)
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BNTY3MzgwMjE3N15BMl5BanBnXkFtZTcwNjc2MjE3
-    NA@@.jpg
-   order: 13
-   imageHasChanged: false
- - id: 
-   name: Sigourney Weaver
-   role: Sigourney Weaver
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMTk1MTcyNTE3OV5BMl5BanBnXkFtZTcwMTA0MTMy
-    Mw@@.jpg
-   order: 14
-   imageHasChanged: false
- - id: 
-   name: Alexander Gould
-   role: Passenger Carl / Additional Voices
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BNzBlOWI2MDEtNjhkMi00ZjAxLWFhMTctYjMzYWYz
-    MjI2MjBlXkEyXkFqcGc@.jpg
-   order: 15
-   imageHasChanged: false
- - id: 
-   name: Torbin Xan Bullock
-   role: Gerald / Additional Voices
-   thumb: 
-   order: 16
-   imageHasChanged: false
- - id: 
-   name: Andrew Stanton
-   role: Crush / Additional Voices
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMmZiOTE4NDktMmZjNi00MzcwLWJjMzAtYWVlZDUw
-    NjhiMGIwXkEyXkFqcGc@.jpg
-   order: 17
-   imageHasChanged: false
- - id: 
-   name: Katherine Ringgold
-   role: Chickenfish
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BOGU1NTY1N2ItOWVhYS00NWRjLWJmYWMtNWY5MzFh
-    MDUzMGE2XkEyXkFqcGc@.jpg
-   order: 18
-   imageHasChanged: false
- - id: 
-   name: Lucia Geddes
-   role: Tween Dory
-   thumb: 
-   order: 19
-   imageHasChanged: false
-  - ... and >40 more
 certification: PG
-genres: (N<6)
+genres: (N>5)
   - Animation
-  - Adventure
   - Comedy
   - Family
-  - Fantasy
+  - Adventure
+  - Mystery
+  - ... and =1 more
 tags: (N<6)
-  - father-son-relationship
-  - no-opening-credits
-  - female-protagonist
-  - motor-vehicle
-  - controversy
+  - family relationships
+  - whale
+  - father son relationship
+  - ocean
+  - fish
 countries: (N=1)
-  - United States
+  - US
 studios: (N<6)
-  - Pixar Animation Studios
   - Walt Disney Pictures
-trailer: 
+  - Pixar Animation Studios
+trailer: https://imdb-video.media-imdb.com/vi2669917209/1434659454657-dx9ykf-1464098554017.mp4?Expires=1764701327&Signature=IGQwPMsgDXOtuKm2p39-0JabfTlNqJ9AdwhvKoxaHejexqn7X~3D2KTK-IxAu3DBGSzOLfyuP-3X-1rkDOXMj83KfTwrvUu80jIfYbHYV0QpHH2A2jy88ltgKwYtdXP5i3Znis1UyNgr5~La1HvHIM1DmvqOFQ3HD3bsManNHXknICZQ27OMGBl8KRvtwLBt82duj1BkypkDL6MpRIjaYf31PtmULwK2lFeEtvyv4~fRR~CiPq9v0w92Tsplztga3XYMZsQlQe-vo2vSYdp2o9VD1RvpwY0gC5c1BIwBVD8FSYftkxcwaVozt-DpeHHyMTtVNwaatTGHD-s7oPH~1Q__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA
 showlink: (N=0)
 playcount: 0
 lastPlayed: <not set or invalid>

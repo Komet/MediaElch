@@ -15,7 +15,7 @@ showTitle:
 ratings (N=1)
   source=tvmaze | rating=8.6 | votes=0 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=12
 episode: EpisodeNumber=01
 displaySeason: SeasonNumber=xx
@@ -54,7 +54,7 @@ showTitle:
 ratings (N=1)
   source=tvmaze | rating=8.4 | votes=0 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=12
 episode: EpisodeNumber=02
 displaySeason: SeasonNumber=xx
@@ -93,7 +93,7 @@ showTitle:
 ratings (N=1)
   source=tvmaze | rating=8.4 | votes=0 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=12
 episode: EpisodeNumber=03
 displaySeason: SeasonNumber=xx
@@ -134,7 +134,7 @@ showTitle:
 ratings (N=1)
   source=tvmaze | rating=8.2 | votes=0 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=12
 episode: EpisodeNumber=04
 displaySeason: SeasonNumber=xx
@@ -173,7 +173,7 @@ showTitle:
 ratings (N=1)
   source=tvmaze | rating=8 | votes=0 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=12
 episode: EpisodeNumber=05
 displaySeason: SeasonNumber=xx
@@ -212,7 +212,7 @@ showTitle:
 ratings (N=1)
   source=tvmaze | rating=8.6 | votes=0 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=12
 episode: EpisodeNumber=06
 displaySeason: SeasonNumber=xx
@@ -251,7 +251,7 @@ showTitle:
 ratings (N=1)
   source=tvmaze | rating=8.2 | votes=0 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=12
 episode: EpisodeNumber=07
 displaySeason: SeasonNumber=xx
@@ -289,7 +289,7 @@ showTitle:
 ratings (N=1)
   source=tvmaze | rating=8.2 | votes=0 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=12
 episode: EpisodeNumber=08
 displaySeason: SeasonNumber=xx
@@ -327,7 +327,7 @@ showTitle:
 ratings (N=1)
   source=tvmaze | rating=8.2 | votes=0 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=12
 episode: EpisodeNumber=09
 displaySeason: SeasonNumber=xx
@@ -366,7 +366,7 @@ showTitle:
 ratings (N=1)
   source=tvmaze | rating=7.2 | votes=0 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=12
 episode: EpisodeNumber=10
 displaySeason: SeasonNumber=xx
@@ -404,7 +404,7 @@ showTitle:
 ratings (N=1)
   source=tvmaze | rating=8.6 | votes=0 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=12
 episode: EpisodeNumber=11
 displaySeason: SeasonNumber=xx
@@ -445,7 +445,7 @@ showTitle:
 ratings (N=1)
   source=tvmaze | rating=7.8 | votes=0 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=12
 episode: EpisodeNumber=12
 displaySeason: SeasonNumber=xx
@@ -483,7 +483,7 @@ showTitle:
 ratings (N=1)
   source=tvmaze | rating=8.2 | votes=0 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=12
 episode: EpisodeNumber=13
 displaySeason: SeasonNumber=xx
@@ -523,7 +523,7 @@ showTitle:
 ratings (N=1)
   source=tvmaze | rating=7.8 | votes=0 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=12
 episode: EpisodeNumber=14
 displaySeason: SeasonNumber=xx
@@ -562,7 +562,7 @@ showTitle:
 ratings (N=1)
   source=tvmaze | rating=8.2 | votes=0 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=12
 episode: EpisodeNumber=15
 displaySeason: SeasonNumber=xx
@@ -601,7 +601,7 @@ showTitle:
 ratings (N=1)
   source=tvmaze | rating=8.6 | votes=0 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=12
 episode: EpisodeNumber=16
 displaySeason: SeasonNumber=xx
@@ -640,7 +640,7 @@ showTitle:
 ratings (N=1)
   source=tvmaze | rating=8.6 | votes=0 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=12
 episode: EpisodeNumber=17
 displaySeason: SeasonNumber=xx
@@ -679,7 +679,7 @@ showTitle:
 ratings (N=1)
   source=tvmaze | rating=8.8 | votes=0 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=12
 episode: EpisodeNumber=18
 displaySeason: SeasonNumber=xx
@@ -718,7 +718,7 @@ showTitle:
 ratings (N=1)
   source=tvmaze | rating=8.2 | votes=0 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=12
 episode: EpisodeNumber=19
 displaySeason: SeasonNumber=xx
@@ -757,7 +757,7 @@ showTitle:
 ratings (N=1)
   source=tvmaze | rating=8 | votes=0 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=12
 episode: EpisodeNumber=20
 displaySeason: SeasonNumber=xx
@@ -796,7 +796,7 @@ showTitle:
 ratings (N=1)
   source=tvmaze | rating=8.2 | votes=0 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=12
 episode: EpisodeNumber=21
 displaySeason: SeasonNumber=xx

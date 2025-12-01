@@ -16,9 +16,9 @@ overview:
     t nur der Job hält die Mediziner auf Trab – auch ihr Privatleben gerät immer wie
     der in Turbulenzen.
 ratings (N=1)
-  source=themoviedb | rating=8 | votes=1000 | min=0 | max=10
+  source=themoviedb | rating=8 | votes=2000 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 firstAired: 2001-10-02
 runtime: 22min
 genres: (N=1)
@@ -69,7 +69,7 @@ actors: (N>800)
  - id: 43776
    name: Neil Flynn
    role: Janitor
-   thumb: https://image.tmdb.org/t/p/original/17td6SExyUuOf2HYuYvnUnc4Ivy.jpg
+   thumb: https://image.tmdb.org/t/p/original/iXxOMuPI5S4ANwXPgsCA2gFXpWS.jpg
    order: 5
    imageHasChanged: false
  - id: 159657
@@ -157,7 +157,7 @@ actors: (N>800)
    order: 19
    imageHasChanged: false
   - ... and >800 more
-posters: (N=1)
+posters: (N<6)
   - id: https://image.tmdb.org/t/p/original/8pzVHCIOSuwreFHXbSOMoLrQGeQ.jpg
     originalUrl: https://image.tmdb.org/t/p/original/8pzVHCIOSuwreFHXbSOMoLrQGeQ.jpg
     thumbUrl: https://image.tmdb.org/t/p/original/8pzVHCIOSuwreFHXbSOMoLrQGeQ.jpg
@@ -166,7 +166,23 @@ posters: (N=1)
     hint: 
     aspect: 
     season: SeasonNumber=xx
-backdrops: (N=1)
+  - id: https://image.tmdb.org/t/p/original/8pzVHCIOSuwreFHXbSOMoLrQGeQ.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/8pzVHCIOSuwreFHXbSOMoLrQGeQ.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/8pzVHCIOSuwreFHXbSOMoLrQGeQ.jpg
+    originalSize: h=1500 w=1000
+    language: de
+    hint: 
+    aspect: 0
+    season: SeasonNumber=xx
+  - id: https://image.tmdb.org/t/p/original/jbzltMNqGbSkbSJrbOMJtqtwzsW.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/jbzltMNqGbSkbSJrbOMJtqtwzsW.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/jbzltMNqGbSkbSJrbOMJtqtwzsW.jpg
+    originalSize: h=3000 w=2000
+    language: de
+    hint: 
+    aspect: 0
+    season: SeasonNumber=xx
+backdrops: (N<6)
   - id: https://image.tmdb.org/t/p/original/z6fUdAWIqSenjIYsPmRltaGHcTq.jpg
     originalUrl: https://image.tmdb.org/t/p/original/z6fUdAWIqSenjIYsPmRltaGHcTq.jpg
     thumbUrl: https://image.tmdb.org/t/p/original/z6fUdAWIqSenjIYsPmRltaGHcTq.jpg
@@ -174,6 +190,14 @@ backdrops: (N=1)
     language: 
     hint: 
     aspect: 
+    season: SeasonNumber=xx
+  - id: https://image.tmdb.org/t/p/original/7Q0F6JQ3UUXMTUZguIRKKsOmvBF.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/7Q0F6JQ3UUXMTUZguIRKKsOmvBF.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/7Q0F6JQ3UUXMTUZguIRKKsOmvBF.jpg
+    originalSize: h=2160 w=3840
+    language: de
+    hint: 
+    aspect: 0
     season: SeasonNumber=xx
 banners: (N=0)
 seasonPoster S00: (N=1)
@@ -258,9 +282,9 @@ seasonPoster S08: (N=1)
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S09: (N=1)
-  - id: https://image.tmdb.org/t/p/original/xiByNzFlQTwzfLFQl4yxQIbI8gE.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/xiByNzFlQTwzfLFQl4yxQIbI8gE.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/xiByNzFlQTwzfLFQl4yxQIbI8gE.jpg
+  - id: https://image.tmdb.org/t/p/original/sjmyzBEodCHtCQMMXxJlVjr8P0Z.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/sjmyzBEodCHtCQMMXxJlVjr8P0Z.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/sjmyzBEodCHtCQMMXxJlVjr8P0Z.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 

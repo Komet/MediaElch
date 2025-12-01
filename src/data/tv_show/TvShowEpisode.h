@@ -232,7 +232,7 @@ private:
     QString m_showTitle;
     Ratings m_ratings;
     double m_userRating = 0.0;
-    int m_imdbTop250 = 0;
+    int m_imdbTop250 = -1;
     TmdbId m_tmdbId;
     ImdbId m_imdbId;
     TvDbId m_tvdbId;

@@ -16,7 +16,7 @@ overview:
 ratings (N=1)
   source=tvmaze | rating=8 | votes=0 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 firstAired: 1989-12-17
 runtime: 30min
 genres: (N<6)
@@ -142,17 +142,17 @@ actors: (N>1000)
    thumb: https://static.tvmaze.com/uploads/images/original_untouched/2/7324.jpg
    order: 18
    imageHasChanged: false
- - id: 14856
-   name: Nancy Cartwright
-   role: Ralph Wiggum
-   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/968.jpg
+ - id: 14854
+   name: Dan Castellaneta
+   role: Barney Gumble
+   thumb: https://static.tvmaze.com/uploads/images/original_untouched/0/963.jpg
    order: 19
    imageHasChanged: false
   - ... and >1000 more
 posters: (N>30)
-  - id: https://static.tvmaze.com/uploads/images/original_untouched/488/1222067.jpg
-    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/488/1222067.jpg
-    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/488/1222067.jpg
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/588/1471731.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/588/1471731.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_portrait/588/1471731.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
@@ -208,7 +208,15 @@ backdrops: (N<6)
     hint: 
     aspect: 
     season: SeasonNumber=xx
-banners: (N=0)
+banners: (N=1)
+  - id: https://static.tvmaze.com/uploads/images/original_untouched/595/1489709.jpg
+    originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/595/1489709.jpg
+    thumbUrl: https://static.tvmaze.com/uploads/images/medium_leaderboard/595/1489709.jpg
+    originalSize: h=-1 w=-1
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
 seasonPoster S01: (N=1)
   - id: https://static.tvmaze.com/uploads/images/original_untouched/24/60887.jpg
     originalUrl: https://static.tvmaze.com/uploads/images/original_untouched/24/60887.jpg

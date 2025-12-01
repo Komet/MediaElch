@@ -29,7 +29,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
-thumbnail: 
+thumbnail: https://bilder.fernsehserien.de/fernsehserien.de/fs-2021/img/bell-solid-darkmode.svg
 actors: (N=0)
 streamDetails: <not loaded>
 files: (N=0)
@@ -64,7 +64,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
-thumbnail: 
+thumbnail: https://bilder.fernsehserien.de/fernsehserien.de/fs-2021/img/bell-solid-darkmode.svg
 actors: (N=0)
 streamDetails: <not loaded>
 files: (N=0)
@@ -105,7 +105,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
-thumbnail: 
+thumbnail: https://bilder.fernsehserien.de/fernsehserien.de/fs-2021/img/bell-solid-darkmode.svg
 actors: (N>20)
  - id: 
    name: Rory Kinnear
@@ -283,7 +283,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
-thumbnail: 
+thumbnail: https://bilder.fernsehserien.de/fernsehserien.de/fs-2021/img/bell-solid-darkmode.svg
 actors: (N=0)
 streamDetails: <not loaded>
 files: (N=0)
@@ -327,7 +327,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
-thumbnail: 
+thumbnail: https://bilder.fernsehserien.de/fernsehserien.de/fs-2021/img/bell-solid-darkmode.svg
 actors: (N>10)
  - id: 
    name: Toby Kebbell
@@ -452,7 +452,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
-thumbnail: 
+thumbnail: https://bilder.fernsehserien.de/fernsehserien.de/fs-2021/img/bell-solid-darkmode.svg
 actors: (N>10)
  - id: 
    name: Hayley Atwell
@@ -565,7 +565,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
-thumbnail: 
+thumbnail: https://bilder.fernsehserien.de/fernsehserien.de/fs-2021/img/bell-solid-darkmode.svg
 actors: (N>10)
  - id: 
    name: Lenora Crichlow
@@ -713,7 +713,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
-thumbnail: 
+thumbnail: https://bilder.fernsehserien.de/fernsehserien.de/fs-2021/img/bell-solid-darkmode.svg
 actors: (N>20)
  - id: 
    name: Daniel Rigby
@@ -750,7 +750,9 @@ actors: (N>20)
  - id: 
    name: James Lance
    role: Conor
-   thumb: 
+   thumb:
+    https://bilder.fernsehserien.de/gfx/person_1000/j/james-lance-18416-1752485351.j
+    pg
    order: 5
    imageHasChanged: false
  - id: 
@@ -880,7 +882,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
-thumbnail: 
+thumbnail: https://bilder.fernsehserien.de/fernsehserien.de/fs-2021/img/bell-solid-darkmode.svg
 actors: (N=0)
 streamDetails: <not loaded>
 files: (N=0)
@@ -921,7 +923,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
-thumbnail: 
+thumbnail: https://bilder.fernsehserien.de/fernsehserien.de/fs-2021/img/bell-solid-darkmode.svg
 actors: (N=0)
 streamDetails: <not loaded>
 files: (N=0)
@@ -962,7 +964,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
-thumbnail: 
+thumbnail: https://bilder.fernsehserien.de/fernsehserien.de/fs-2021/img/bell-solid-darkmode.svg
 actors: (N=0)
 streamDetails: <not loaded>
 files: (N=0)
@@ -1003,7 +1005,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
-thumbnail: 
+thumbnail: https://bilder.fernsehserien.de/fernsehserien.de/fs-2021/img/bell-solid-darkmode.svg
 actors: (N=0)
 streamDetails: <not loaded>
 files: (N=0)
@@ -1043,7 +1045,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
-thumbnail: 
+thumbnail: https://bilder.fernsehserien.de/fernsehserien.de/fs-2021/img/bell-solid-darkmode.svg
 actors: (N=0)
 streamDetails: <not loaded>
 files: (N=0)
@@ -1090,7 +1092,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
-thumbnail: 
+thumbnail: https://bilder.fernsehserien.de/fernsehserien.de/fs-2021/img/bell-solid-darkmode.svg
 actors: (N=0)
 streamDetails: <not loaded>
 files: (N=0)
@@ -1135,7 +1137,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
-thumbnail: 
+thumbnail: https://bilder.fernsehserien.de/fernsehserien.de/fs-2021/img/bell-solid-darkmode.svg
 actors: (N=0)
 streamDetails: <not loaded>
 files: (N=0)
@@ -1177,7 +1179,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
-thumbnail: 
+thumbnail: https://bilder.fernsehserien.de/fernsehserien.de/fs-2021/img/bell-solid-darkmode.svg
 actors: (N=0)
 streamDetails: <not loaded>
 files: (N=0)
@@ -1221,7 +1223,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
-thumbnail: 
+thumbnail: https://bilder.fernsehserien.de/fernsehserien.de/fs-2021/img/bell-solid-darkmode.svg
 actors: (N=0)
 streamDetails: <not loaded>
 files: (N=0)
@@ -1266,7 +1268,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
-thumbnail: 
+thumbnail: https://bilder.fernsehserien.de/fernsehserien.de/fs-2021/img/bell-solid-darkmode.svg
 actors: (N=0)
 streamDetails: <not loaded>
 files: (N=0)
@@ -1308,7 +1310,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
-thumbnail: 
+thumbnail: https://bilder.fernsehserien.de/fernsehserien.de/fs-2021/img/bell-solid-darkmode.svg
 actors: (N=0)
 streamDetails: <not loaded>
 files: (N=0)
@@ -1349,7 +1351,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
-thumbnail: 
+thumbnail: https://bilder.fernsehserien.de/fernsehserien.de/fs-2021/img/bell-solid-darkmode.svg
 actors: (N=0)
 streamDetails: <not loaded>
 files: (N=0)
@@ -1392,7 +1394,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
-thumbnail: 
+thumbnail: https://bilder.fernsehserien.de/fernsehserien.de/fs-2021/img/bell-solid-darkmode.svg
 actors: (N=0)
 streamDetails: <not loaded>
 files: (N=0)
@@ -1441,7 +1443,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
-thumbnail: 
+thumbnail: https://bilder.fernsehserien.de/fernsehserien.de/fs-2021/img/bell-solid-darkmode.svg
 actors: (N=0)
 streamDetails: <not loaded>
 files: (N=0)
@@ -1489,7 +1491,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
-thumbnail: 
+thumbnail: https://bilder.fernsehserien.de/fernsehserien.de/fs-2021/img/bell-solid-darkmode.svg
 actors: (N=0)
 streamDetails: <not loaded>
 files: (N=0)
@@ -1524,7 +1526,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
-thumbnail: 
+thumbnail: https://bilder.fernsehserien.de/fernsehserien.de/fs-2021/img/bell-solid-darkmode.svg
 actors: (N=0)
 streamDetails: <not loaded>
 files: (N=0)
@@ -1559,7 +1561,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
-thumbnail: 
+thumbnail: https://bilder.fernsehserien.de/fernsehserien.de/fs-2021/img/bell-solid-darkmode.svg
 actors: (N=0)
 streamDetails: <not loaded>
 files: (N=0)
@@ -1594,7 +1596,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
-thumbnail: 
+thumbnail: https://bilder.fernsehserien.de/fernsehserien.de/fs-2021/img/bell-solid-darkmode.svg
 actors: (N=0)
 streamDetails: <not loaded>
 files: (N=0)
@@ -1629,7 +1631,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
-thumbnail: 
+thumbnail: https://bilder.fernsehserien.de/fernsehserien.de/fs-2021/img/bell-solid-darkmode.svg
 actors: (N=0)
 streamDetails: <not loaded>
 files: (N=0)
@@ -1664,7 +1666,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
-thumbnail: 
+thumbnail: https://bilder.fernsehserien.de/fernsehserien.de/fs-2021/img/bell-solid-darkmode.svg
 actors: (N=0)
 streamDetails: <not loaded>
 files: (N=0)
@@ -1699,7 +1701,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
-thumbnail: 
+thumbnail: https://bilder.fernsehserien.de/fernsehserien.de/fs-2021/img/bell-solid-darkmode.svg
 actors: (N=0)
 streamDetails: <not loaded>
 files: (N=0)
@@ -1734,7 +1736,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
-thumbnail: 
+thumbnail: https://bilder.fernsehserien.de/fernsehserien.de/fs-2021/img/bell-solid-darkmode.svg
 actors: (N=0)
 streamDetails: <not loaded>
 files: (N=0)
@@ -1769,7 +1771,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
-thumbnail: 
+thumbnail: https://bilder.fernsehserien.de/fernsehserien.de/fs-2021/img/bell-solid-darkmode.svg
 actors: (N=0)
 streamDetails: <not loaded>
 files: (N=0)
@@ -1804,7 +1806,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
-thumbnail: 
+thumbnail: https://bilder.fernsehserien.de/fernsehserien.de/fs-2021/img/bell-solid-darkmode.svg
 actors: (N=0)
 streamDetails: <not loaded>
 files: (N=0)
@@ -1839,7 +1841,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
-thumbnail: 
+thumbnail: https://bilder.fernsehserien.de/fernsehserien.de/fs-2021/img/bell-solid-darkmode.svg
 actors: (N=0)
 streamDetails: <not loaded>
 files: (N=0)
@@ -1874,7 +1876,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
-thumbnail: 
+thumbnail: https://bilder.fernsehserien.de/fernsehserien.de/fs-2021/img/bell-solid-darkmode.svg
 actors: (N=0)
 streamDetails: <not loaded>
 files: (N=0)

@@ -30,9 +30,6 @@ TEST_CASE("ImdbTv scrapes episode details for The Simpsons S12E19", "[episode][I
         REQUIRE(episode.imdbId() == ImdbId("tt0701133"));
         test::scraper::compareAgainstReference(
             episode, "scrapers/imdbtv/The-Simpsons-S12E19-tt0701133-minimal-details");
-
-        // These fields should not be set
-        CHECK_FALSE(episode.actors().hasActors());
     }
 
     SECTION("Loads minimal details with season and episode number")
@@ -46,9 +43,6 @@ TEST_CASE("ImdbTv scrapes episode details for The Simpsons S12E19", "[episode][I
 
         REQUIRE(episode.imdbId() == ImdbId("tt0701133"));
         test::scraper::compareAgainstReference(episode, "scrapers/imdbtv/The-Simpsons-S12E19-minimal-details");
-
-        // These fields should not be set
-        CHECK_FALSE(episode.actors().hasActors());
     }
 
     SECTION("Loads all details for The Simpsons S12E19")
@@ -74,7 +68,8 @@ TEST_CASE("ImdbTv scrapes episode details for Buffy", "[buffy][episode][ImdbTv][
     SeasonNumber season(1);
     ImdbId showId("tt0118276");
 
-    SECTION("Loads minimal details for episode number 00")
+    // As of 2025-12-01, this is no longer part of season 01, but its own video, instead.
+    /* SECTION("Loads minimal details for episode number 00")
     {
         EpisodeNumber episodeNumber(0);
         ImdbId episodeId("tt0533518");
@@ -87,7 +82,7 @@ TEST_CASE("ImdbTv scrapes episode details for Buffy", "[buffy][episode][ImdbTv][
 
         REQUIRE(episode.imdbId() == ImdbId("tt0533518"));
         test::scraper::compareAgainstReference(episode, "scrapers/imdbtv/Buffy-S01E00-minimal-details");
-    }
+    }*/
 
     SECTION("Loads minimal details for episode number 01")
     {
@@ -124,8 +119,5 @@ TEST_CASE("ImdbTv scrapes episode details for 'All in the Family' S01E01", "[epi
         REQUIRE(episode.imdbId() == ImdbId("tt0509891"));
         test::scraper::compareAgainstReference(
             episode, "scrapers/imdbtv/All-in-the-Family-S01E01-tt0509891-minimal-details");
-
-        // These fields should not be set
-        CHECK_FALSE(episode.actors().hasActors());
     }
 }

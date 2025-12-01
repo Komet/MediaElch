@@ -66,6 +66,8 @@ discography: (N>100)
     year: 1982
   - title: No Life 'Til Leather
     year: 1982
+  - title: Demo 10/29/1983
+    year: 1983
   - title: Kill 'Em All
     year: 1983
   - title: Jump In The Fire
@@ -109,8 +111,6 @@ discography: (N>100)
   - title: One / More Than You Know
     year: 1989
   - title: One
-    year: 1989
-  - title: 2 Of One: The One Videos
     year: 1989
   - title: ...And Justice For All
     year: 1989
@@ -196,8 +196,6 @@ discography: (N>100)
     year: 1996
   - title: Until It Sleeps
     year: 1996
-  - title: Bleeding Me
-    year: 1997
   - title: Reload The Interview
     year: 1997
   - title: Ain't My Bitch
@@ -207,8 +205,6 @@ discography: (N>100)
   - title: Classic Concert
     year: 1997
   - title: Recovery / MCM Interviews Oct 3 97
-    year: 1997
-  - title: Reload
     year: 1997
   - title: Fuel
     year: 1997
@@ -221,6 +217,8 @@ discography: (N>100)
   - title: Mandatory 2
     year: 1997
   - title: THE HTZ-FM Interview 
+    year: 1997
+  - title: Bleeding Me
     year: 1997
   - title: The Memory Remains
     year: 1997
@@ -259,6 +257,8 @@ discography: (N>100)
   - title: Did Die My Darling / I Finally Found My Way
     year: 1999
   - title: "S & M" Concert Special
+    year: 1999
+  - title: S & M Documentary
     year: 1999
 genres: (N=0)
 styles: (N=0)

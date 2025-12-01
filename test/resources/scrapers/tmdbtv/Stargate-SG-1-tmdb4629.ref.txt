@@ -19,48 +19,47 @@ overview:
 ratings (N=1)
   source=themoviedb | rating=8.2 | votes=1000 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 firstAired: 1997-07-27
 runtime: 42min
 genres: (N<6)
   - Sci-Fi & Fantasy
   - Action & Adventure
-  - Mystery
-tags: (N>10)
+tags: (N>5)
   - wormhole
   - space travel
   - space
   - travel
   - alien
-  - ... and >5 more
+  - ... and <6 more
 certification: TV-PG
 networks: (N<6)
   - Showtime
   - Syfy
 episodeGuideUrl: 
 actors: (N>800)
- - id: 26085
-   name: Richard Dean Anderson
-   role: Jack O'Neill
-   thumb: https://image.tmdb.org/t/p/original/hHCSMRiI4OMT1AxgWQhugtipvy2.jpg
-   order: 0
-   imageHasChanged: false
  - id: 26087
    name: Amanda Tapping
    role: Samantha Carter
    thumb: https://image.tmdb.org/t/p/original/nywSL24aczcjI2CINyXGEY1Nn6D.jpg
-   order: 1
+   order: 0
    imageHasChanged: false
  - id: 26088
    name: Christopher Judge
    role: Teal'c
    thumb: https://image.tmdb.org/t/p/original/hxU7NXyTmVe7hbGnKJiLU6r9uQw.jpg
-   order: 2
+   order: 1
    imageHasChanged: false
  - id: 26086
    name: Michael Shanks
    role: Daniel Jackson, Thor (voice)
    thumb: https://image.tmdb.org/t/p/original/4YkOrSUmfKljqTMwGIo50oviKe1.jpg
+   order: 2
+   imageHasChanged: false
+ - id: 26085
+   name: Richard Dean Anderson
+   role: Jack O'Neill
+   thumb: https://image.tmdb.org/t/p/original/hHCSMRiI4OMT1AxgWQhugtipvy2.jpg
    order: 3
    imageHasChanged: false
  - id: 15863
@@ -69,22 +68,22 @@ actors: (N>800)
    thumb: https://image.tmdb.org/t/p/original/gxUvCXIFxAMqcWgosErBP5rHKDw.jpg
    order: 4
    imageHasChanged: false
+ - id: 5494
+   name: Gary Jones
+   role: Walter Harriman, Radio Dispatcher
+   thumb: https://image.tmdb.org/t/p/original/w6Q2F6n7sq7jIZLGqk908qhd3Ac.jpg
+   order: 5
+   imageHasChanged: false
  - id: 51800
    name: Teryl Rothery
    role: Janet Fraiser
    thumb: https://image.tmdb.org/t/p/original/16rUSnTH56cKatjd6kjEYEfU4cA.jpg
-   order: 5
-   imageHasChanged: false
- - id: 16180
-   name: Robert Picardo
-   role: Richard Woolsey
-   thumb: https://image.tmdb.org/t/p/original/9TOY0mhWRMlU5Ur8QHMoDecWs2n.jpg
    order: 6
    imageHasChanged: false
- - id: 26054
-   name: Claudia Black
-   role: Vala Mal Doran
-   thumb: https://image.tmdb.org/t/p/original/mfjzbZy2eO11ZvCPFZhmZvLj4aY.jpg
+ - id: 385220
+   name: Dan Shea
+   role: Sylvester Siler, Sylvester Siler (uncredited), Fireman Opening Station Door
+   thumb: https://image.tmdb.org/t/p/original/58bGSn8u45HBOMrt2E2LBW26snT.jpg
    order: 7
    imageHasChanged: false
  - id: 26048
@@ -99,75 +98,71 @@ actors: (N>800)
    thumb: https://image.tmdb.org/t/p/original/Aiezvt0Uj2Ka9QVW3GvuRLkNS2V.jpg
    order: 9
    imageHasChanged: false
+ - id: 26054
+   name: Claudia Black
+   role: Vala Mal Doran
+   thumb: https://image.tmdb.org/t/p/original/7bwHbuv81Q1ytQkJL1g8JLHrdrN.jpg
+   order: 10
+   imageHasChanged: false
+ - id: 34842
+   name: Tony Amendola
+   role: Master Bra'tac, Bra'tac
+   thumb: https://image.tmdb.org/t/p/original/eGgQGEwO2vCqhFcmDfyyjctmWcl.jpg
+   order: 11
+   imageHasChanged: false
  - id: 21563
    name: Corin Nemec
    role: Jonas Quinn
    thumb: https://image.tmdb.org/t/p/original/vndALqWdbdM4IMMU6CTmOCMjzEA.jpg
-   order: 10
+   order: 12
    imageHasChanged: false
  - id: 1225394
    name: Peter Williams
    role: Apophis
    thumb: https://image.tmdb.org/t/p/original/krmHWFeVL6QhqdhywOBS6uNq1HT.jpg
-   order: 11
+   order: 13
    imageHasChanged: false
  - id: 118462
    name: Bill Dow
    role: Bill Lee
    thumb: https://image.tmdb.org/t/p/original/dfl1WQzIRhswOw4zQxo6YKWL3Ik.jpg
-   order: 12
+   order: 14
    imageHasChanged: false
  - id: 118463
    name: Peter DeLuise
    role:
-    Director / Peter DeLuise, Airman, SF Guard (Uncredited), Free Jaffa (Voice only)
-     (Uncredited), Screaming Villager, Machine Gun Guard, Tok'ra Guard, Interviewer,
-     Young Urgo in Uniform, Man Leaving Cafe, Lieutenant
+    Director / Peter DeLuise, Airman, SF Guard (Uncredited), Tok'ra Guard, Lieutenan
+    t, Interviewer, Man Leaving Cafe, Screaming Villager, Young Urgo in Uniform, Fre
+    e Jaffa (Voice only) (Uncredited), Machine Gun Guard
    thumb: https://image.tmdb.org/t/p/original/sLkSOm6HBLB4VCfshQLdSEq63tr.jpg
-   order: 13
+   order: 15
    imageHasChanged: false
  - id: 1218926
    name: Colin Cunningham
    role: Paul Davis
    thumb: https://image.tmdb.org/t/p/original/5ooKQ9tpLZDtDc5dHeREdvAWAOJ.jpg
-   order: 14
+   order: 16
    imageHasChanged: false
  - id: 91404
    name: Eric Breker
    role: Albert Reynolds, Colonel Reynolds
    thumb: https://image.tmdb.org/t/p/original/bD08h8S2wmXmw6MDD2mHuRO4J2B.jpg
-   order: 15
+   order: 17
    imageHasChanged: false
  - id: 111378
    name: Cliff Simon
    role: Ba'al
    thumb: https://image.tmdb.org/t/p/original/e8t2fD2kFUMQBJDRm2ehcvdCxBJ.jpg
-   order: 16
+   order: 18
    imageHasChanged: false
  - id: 59245
    name: Laara Sadiq
-   role: Technician #2, Technican, Technician, Technician Davis
+   role: Technician #2, Technician Davis, Technician, Technican
    thumb: https://image.tmdb.org/t/p/original/l7MkydwslaXo1EmYrRpJARnaFKs.jpg
-   order: 17
-   imageHasChanged: false
- - id: 1366510
-   name: Fraser Aitcheson
-   role:
-    Hathor's Jaffa, Free Jaffa 2 (Uncredited), Anubis' Jaffa, Free Jaffa (Uncredited
-    ), Apophis' Red Jaffa, Jaffa, Jaffa Commander, Jaffa Guard, Orderly, Jaffa Warri
-    or, Ares' Jaffa commander (Uncredited), Tagrean Worker, Dakara Jaffa 3 (Uncredit
-    ed)
-   thumb: https://image.tmdb.org/t/p/original/j0fou5tZvXHe3GcVr24UnYQLg6S.jpg
-   order: 18
-   imageHasChanged: false
- - id: 780
-   name: Ronny Cox
-   role: Senator Robert Kinsey
-   thumb: https://image.tmdb.org/t/p/original/cKkVkqft2RacSDhsKxO8nMFgeAd.jpg
    order: 19
    imageHasChanged: false
   - ... and >800 more
-posters: (N=1)
+posters: (N>20)
   - id: https://image.tmdb.org/t/p/original/dQjmI7XxI47v8IM2MUysHG0LuU2.jpg
     originalUrl: https://image.tmdb.org/t/p/original/dQjmI7XxI47v8IM2MUysHG0LuU2.jpg
     thumbUrl: https://image.tmdb.org/t/p/original/dQjmI7XxI47v8IM2MUysHG0LuU2.jpg
@@ -176,20 +171,86 @@ posters: (N=1)
     hint: 
     aspect: 
     season: SeasonNumber=xx
-backdrops: (N=1)
-  - id: https://image.tmdb.org/t/p/original/mt3SRKq7uRBKVntaBg2ofsDfOdg.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/mt3SRKq7uRBKVntaBg2ofsDfOdg.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/mt3SRKq7uRBKVntaBg2ofsDfOdg.jpg
+  - id: https://image.tmdb.org/t/p/original/dQjmI7XxI47v8IM2MUysHG0LuU2.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/dQjmI7XxI47v8IM2MUysHG0LuU2.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/dQjmI7XxI47v8IM2MUysHG0LuU2.jpg
+    originalSize: h=2303 w=1535
+    language: en
+    hint: 
+    aspect: 0
+    season: SeasonNumber=xx
+  - id: https://image.tmdb.org/t/p/original/9Jegw0yle4x8jlmLNZon37Os27h.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/9Jegw0yle4x8jlmLNZon37Os27h.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/9Jegw0yle4x8jlmLNZon37Os27h.jpg
+    originalSize: h=1500 w=1000
+    language: en
+    hint: 
+    aspect: 0
+    season: SeasonNumber=xx
+  - id: https://image.tmdb.org/t/p/original/rst5xc4f7v1KiDiQjzDiZqLtBpl.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/rst5xc4f7v1KiDiQjzDiZqLtBpl.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/rst5xc4f7v1KiDiQjzDiZqLtBpl.jpg
+    originalSize: h=1600 w=1066
+    language: en
+    hint: 
+    aspect: 0
+    season: SeasonNumber=xx
+  - id: https://image.tmdb.org/t/p/original/7PR2yp08jgYQODmPEi25R77JvHg.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/7PR2yp08jgYQODmPEi25R77JvHg.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/7PR2yp08jgYQODmPEi25R77JvHg.jpg
+    originalSize: h=3000 w=2000
+    language: en
+    hint: 
+    aspect: 0
+    season: SeasonNumber=xx
+  - ... and >20 more
+backdrops: (N>10)
+  - id: https://image.tmdb.org/t/p/original/yOyzlRw54oYaGvhUBdPr7TFwtrX.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/yOyzlRw54oYaGvhUBdPr7TFwtrX.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/yOyzlRw54oYaGvhUBdPr7TFwtrX.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
+  - id: https://image.tmdb.org/t/p/original/4drB6vv1lpwcnclwIeJc8MCGn1R.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/4drB6vv1lpwcnclwIeJc8MCGn1R.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/4drB6vv1lpwcnclwIeJc8MCGn1R.jpg
+    originalSize: h=720 w=1280
+    language: en
+    hint: 
+    aspect: 0
+    season: SeasonNumber=xx
+  - id: https://image.tmdb.org/t/p/original/giVw3KyyZlsdSNsVY0x28igHoo6.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/giVw3KyyZlsdSNsVY0x28igHoo6.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/giVw3KyyZlsdSNsVY0x28igHoo6.jpg
+    originalSize: h=720 w=1280
+    language: en
+    hint: 
+    aspect: 0
+    season: SeasonNumber=xx
+  - id: https://image.tmdb.org/t/p/original/qzZmj4NTokuBlAioem4c4Wj735X.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/qzZmj4NTokuBlAioem4c4Wj735X.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/qzZmj4NTokuBlAioem4c4Wj735X.jpg
+    originalSize: h=720 w=1280
+    language: en
+    hint: 
+    aspect: 0
+    season: SeasonNumber=xx
+  - id: https://image.tmdb.org/t/p/original/4rnx6XpKp96iUCGqEycTuJxFHgD.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/4rnx6XpKp96iUCGqEycTuJxFHgD.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/4rnx6XpKp96iUCGqEycTuJxFHgD.jpg
+    originalSize: h=720 w=1280
+    language: en
+    hint: 
+    aspect: 0
+    season: SeasonNumber=xx
+  - ... and >5 more
 banners: (N=0)
 seasonPoster S00: (N=1)
-  - id: https://image.tmdb.org/t/p/original/iytxkMIUR6rPQFsh3A2WJah6JC9.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/iytxkMIUR6rPQFsh3A2WJah6JC9.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/iytxkMIUR6rPQFsh3A2WJah6JC9.jpg
+  - id: https://image.tmdb.org/t/p/original/zu6G7M8G7NO6H10Uh9GibI4yJev.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/zu6G7M8G7NO6H10Uh9GibI4yJev.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/zu6G7M8G7NO6H10Uh9GibI4yJev.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 

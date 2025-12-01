@@ -8,9 +8,9 @@ tvmazeId:
 title: I'm Goin' to Praiseland
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=6.8 | votes=10 | min=0 | max=10
+  source=tmdb | rating=7.2 | votes=20 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=12
 episode: EpisodeNumber=19
 displaySeason: SeasonNumber=xx

@@ -22,7 +22,7 @@ public:
 private:
     // can be replaced by std::optional<T> in C++17
     QString m_imdbId;
-    bool m_isValid = false;
+    bool m_isValid{false};
 };
 
 std::ostream& operator<<(std::ostream& os, const ImdbId& id);

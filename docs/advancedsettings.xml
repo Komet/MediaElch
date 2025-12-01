@@ -138,7 +138,7 @@
     <!--
         <countries> defines a mapping which is applied when data is
         loaded from a scraper. If uncommented, the example below will
-        replace the country "US" with "United states".
+        replace the country "US" with "United States".
     -->
     <countries>
         <!--<map from="US" to="United States" />-->

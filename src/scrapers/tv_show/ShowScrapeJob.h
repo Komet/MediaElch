@@ -27,7 +27,9 @@ public:
         ShowIdentifier identifier;
         /// \brief Language key for the scraper, e.g. "en-US", "de-DE", ...
         Locale locale = Locale::English;
-        /// \brief TV show details to be loaded using the scraper.
+        /// \brief   TV show details to be loaded using the scraper.
+        /// \details The scraper may set more details, as this field is only used for optimizations
+        ///          such as reducing the number of HTTP requests.
         QSet<ShowScraperInfo> details;
     };
 
