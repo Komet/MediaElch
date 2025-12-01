@@ -27,6 +27,7 @@
   aborted scraping after failing to load the unknown season (#1692)
 - Improved media codec detection for HDR10 and dolby vision (#1883).
   Thanks to GitHub user `@Quppa` for the help!
+- Music: If an album's cover can't be found, MediaElch may have crashed (#1918)
 
 ### Changed
 
