@@ -25,6 +25,7 @@ ImdbTv::ImdbTv(ImdbTvConfiguration& settings, QObject* parent) : TvScraper(paren
     m_meta.privacyPolicy = "https://www.imdb.com/privacy";
     m_meta.help = "https://help.imdb.com";
     m_meta.supportedShowDetails = {ShowScraperInfo::Title,
+        ShowScraperInfo::Actors,
         ShowScraperInfo::Genres,
         ShowScraperInfo::Certification,
         ShowScraperInfo::Overview,
@@ -34,7 +35,7 @@ ImdbTv::ImdbTv(ImdbTvConfiguration& settings, QObject* parent) : TvScraper(paren
         ShowScraperInfo::FirstAired,
         ShowScraperInfo::Poster};
     m_meta.supportedEpisodeDetails = {EpisodeScraperInfo::Title,
-        // EpisodeScraperInfo::Actors,
+        EpisodeScraperInfo::Actors,
         EpisodeScraperInfo::Overview,
         EpisodeScraperInfo::Director,
         EpisodeScraperInfo::Writer,
