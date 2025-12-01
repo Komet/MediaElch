@@ -19,7 +19,7 @@ overview:
 ratings (N=1)
   source=themoviedb | rating=8.2 | votes=1000 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 firstAired: 1997-07-27
 runtime: 42min
 genres: (N<6)
@@ -131,9 +131,9 @@ actors: (N>800)
  - id: 118463
    name: Peter DeLuise
    role:
-    Director / Peter DeLuise, Airman, SF Guard (Uncredited), Screaming Villager, Int
-    erviewer, Machine Gun Guard, Free Jaffa (Voice only) (Uncredited), Tok'ra Guard,
-     Man Leaving Cafe, Lieutenant, Young Urgo in Uniform
+    Director / Peter DeLuise, Airman, SF Guard (Uncredited), Tok'ra Guard, Lieutenan
+    t, Interviewer, Man Leaving Cafe, Screaming Villager, Young Urgo in Uniform, Fre
+    e Jaffa (Voice only) (Uncredited), Machine Gun Guard
    thumb: https://image.tmdb.org/t/p/original/sLkSOm6HBLB4VCfshQLdSEq63tr.jpg
    order: 15
    imageHasChanged: false
@@ -157,7 +157,7 @@ actors: (N>800)
    imageHasChanged: false
  - id: 59245
    name: Laara Sadiq
-   role: Technician #2, Technician, Technican, Technician Davis
+   role: Technician #2, Technician Davis, Technician, Technican
    thumb: https://image.tmdb.org/t/p/original/l7MkydwslaXo1EmYrRpJARnaFKs.jpg
    order: 19
    imageHasChanged: false

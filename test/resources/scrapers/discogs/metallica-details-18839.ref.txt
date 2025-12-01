@@ -112,8 +112,6 @@ discography: (N>100)
     year: 1989
   - title: One
     year: 1989
-  - title: 2 Of One: The One Videos
-    year: 1989
   - title: ...And Justice For All
     year: 1989
   - title: The Good The Bad & The Live: The 6½ Year Anniversary 12" Collection
@@ -259,6 +257,8 @@ discography: (N>100)
   - title: Did Die My Darling / I Finally Found My Way
     year: 1999
   - title: "S & M" Concert Special
+    year: 1999
+  - title: S & M Documentary
     year: 1999
 genres: (N=0)
 styles: (N=0)

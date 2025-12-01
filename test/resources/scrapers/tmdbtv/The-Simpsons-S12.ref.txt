@@ -13,9 +13,9 @@ tvmazeId:
 title: Treehouse of Horror XI
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=6.8 | votes=20 | min=0 | max=10
+  source=tmdb | rating=7 | votes=20 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=12
 episode: EpisodeNumber=01
 displaySeason: SeasonNumber=xx
@@ -103,7 +103,7 @@ showTitle:
 ratings (N=1)
   source=tmdb | rating=7 | votes=20 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=12
 episode: EpisodeNumber=02
 displaySeason: SeasonNumber=xx
@@ -210,7 +210,7 @@ showTitle:
 ratings (N=1)
   source=tmdb | rating=6.6 | votes=20 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=12
 episode: EpisodeNumber=03
 displaySeason: SeasonNumber=xx
@@ -324,7 +324,7 @@ showTitle:
 ratings (N=1)
   source=tmdb | rating=6.4 | votes=20 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=12
 episode: EpisodeNumber=04
 displaySeason: SeasonNumber=xx
@@ -425,7 +425,7 @@ showTitle:
 ratings (N=1)
   source=tmdb | rating=6.8 | votes=20 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=12
 episode: EpisodeNumber=05
 displaySeason: SeasonNumber=xx
@@ -514,7 +514,7 @@ showTitle:
 ratings (N=1)
   source=tmdb | rating=7.6 | votes=20 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=12
 episode: EpisodeNumber=06
 displaySeason: SeasonNumber=xx
@@ -542,7 +542,7 @@ actors: (N>5)
  - id: 2463
    name: Patrick McGoohan
    role: Number 6 (voice)
-   thumb: https://image.tmdb.org/t/p/original/4oL5giyb1n4uxT4Nr3CPk6ugE8A.jpg
+   thumb: https://image.tmdb.org/t/p/original/xtUMgFYGF7KmJg1KqiYQuwYTTe3.jpg
    order: 0
    imageHasChanged: false
  - id: 6036
@@ -606,7 +606,7 @@ showTitle:
 ratings (N=1)
   source=tmdb | rating=7.2 | votes=20 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=12
 episode: EpisodeNumber=07
 displaySeason: SeasonNumber=xx
@@ -689,7 +689,7 @@ showTitle:
 ratings (N=1)
   source=tmdb | rating=7.4 | votes=20 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=12
 episode: EpisodeNumber=08
 displaySeason: SeasonNumber=xx
@@ -796,7 +796,7 @@ showTitle:
 ratings (N=1)
   source=tmdb | rating=7.6 | votes=20 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=12
 episode: EpisodeNumber=09
 displaySeason: SeasonNumber=xx
@@ -873,9 +873,9 @@ tvmazeId:
 title: Pokey Mom
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=7 | votes=20 | min=0 | max=10
+  source=tmdb | rating=7.2 | votes=20 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=12
 episode: EpisodeNumber=10
 displaySeason: SeasonNumber=xx
@@ -981,7 +981,7 @@ showTitle:
 ratings (N=1)
   source=tmdb | rating=6.8 | votes=20 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=12
 episode: EpisodeNumber=11
 displaySeason: SeasonNumber=xx
@@ -1069,9 +1069,9 @@ tvmazeId:
 title: Tennis the Menace
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=6 | votes=20 | min=0 | max=10
+  source=tmdb | rating=6.2 | votes=20 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=12
 episode: EpisodeNumber=12
 displaySeason: SeasonNumber=xx
@@ -1188,7 +1188,7 @@ showTitle:
 ratings (N=1)
   source=tmdb | rating=6.4 | votes=20 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=12
 episode: EpisodeNumber=13
 displaySeason: SeasonNumber=xx
@@ -1277,9 +1277,9 @@ tvmazeId:
 title: New Kids on the Blecch
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=6.8 | votes=20 | min=0 | max=10
+  source=tmdb | rating=7 | votes=20 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=12
 episode: EpisodeNumber=14
 displaySeason: SeasonNumber=xx
@@ -1385,7 +1385,7 @@ showTitle:
 ratings (N=1)
   source=tmdb | rating=6.8 | votes=20 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=12
 episode: EpisodeNumber=15
 displaySeason: SeasonNumber=xx
@@ -1491,9 +1491,9 @@ tvmazeId:
 title: Bye Bye Nerdy
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=6 | votes=20 | min=0 | max=10
+  source=tmdb | rating=6.2 | votes=20 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=12
 episode: EpisodeNumber=16
 displaySeason: SeasonNumber=xx
@@ -1614,7 +1614,7 @@ showTitle:
 ratings (N=1)
   source=tmdb | rating=6 | votes=20 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=12
 episode: EpisodeNumber=17
 displaySeason: SeasonNumber=xx
@@ -1689,9 +1689,9 @@ tvmazeId:
 title: Trilogy of Error
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=7.6 | votes=20 | min=0 | max=10
+  source=tmdb | rating=7.8 | votes=20 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=12
 episode: EpisodeNumber=18
 displaySeason: SeasonNumber=xx
@@ -1808,9 +1808,9 @@ tvmazeId:
 title: I'm Goin' to Praiseland
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=7 | votes=20 | min=0 | max=10
+  source=tmdb | rating=7.2 | votes=20 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=12
 episode: EpisodeNumber=19
 displaySeason: SeasonNumber=xx
@@ -1904,7 +1904,7 @@ showTitle:
 ratings (N=1)
   source=tmdb | rating=6.4 | votes=20 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=12
 episode: EpisodeNumber=20
 displaySeason: SeasonNumber=xx
@@ -1981,7 +1981,7 @@ showTitle:
 ratings (N=1)
   source=tmdb | rating=5.8 | votes=20 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=12
 episode: EpisodeNumber=21
 displaySeason: SeasonNumber=xx

@@ -227,8 +227,8 @@ discography: (N>90)
     year: 2022
   - title: Adieu
     year: 2022
-  - title: MTV / VOX
-    year: 
+  - title: XXXIII
+    year: 2025
 genres: (N=0)
 styles: (N=0)
 moods: (N=0)

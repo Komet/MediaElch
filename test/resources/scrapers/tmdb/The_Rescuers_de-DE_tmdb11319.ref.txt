@@ -24,13 +24,13 @@ tagline:
 ratings (N=1)
   source=themoviedb | rating=6.6 | votes=2000 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 released: 1977-06-22
 runtime: 78min
 writer:
-    Margery Sharp, Ken Anderson, Larry Clemmons, Vance Gerry, Frank Thomas, Burny Ma
-    ttinson, Dick Sebast, Ted Berman, David Michener, Fred Lucky
-director: Wolfgang Reitherman
+    Margery Sharp, Larry Clemmons, Ken Anderson, Vance Gerry, Ted Berman, Burny Matt
+    inson, Frank Thomas, David Michener, Fred Lucky, Dick Sebast
+director: Art Stevens
 actors: (N>10)
  - id: 
    name: Bob Newhart

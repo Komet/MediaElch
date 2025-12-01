@@ -15,7 +15,7 @@ overview:
 ratings (N=1)
   source=imdb | rating=6.8 | votes=4000 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 firstAired: 2008-10-27
 runtime: 36min
 genres: (N<6)

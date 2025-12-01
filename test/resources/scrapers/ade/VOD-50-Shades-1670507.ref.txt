@@ -24,7 +24,7 @@ movie set overview:
 tagline: 
 ratings (N=0)
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 released: 2013-01-01
 runtime: 111min
 writer: 

@@ -15,7 +15,7 @@ overview:
 ratings (N=1)
   source=imdb | rating=8.4 | votes=200000 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 firstAired: 2001-10-02
 runtime: 22min
 genres: (N<6)

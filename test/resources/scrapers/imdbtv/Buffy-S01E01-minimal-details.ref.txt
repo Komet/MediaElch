@@ -10,7 +10,7 @@ showTitle:
 ratings (N=1)
   source=imdb | rating=7.8 | votes=6000 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=01
 episode: EpisodeNumber=01
 displaySeason: SeasonNumber=xx
