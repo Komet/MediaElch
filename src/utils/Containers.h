@@ -5,6 +5,8 @@
 
 #include <QList>
 #include <QSet>
+#include <QStringList>
+#include <QVector>
 
 namespace mediaelch {
 
@@ -27,6 +29,8 @@ QVector<T> setToVector(const QSet<T>& set)
     return QVector<T>(set.begin(), set.end());
 #endif
 }
+
+QStringList setToStringList(const QSet<QString>& set);
 
 /// Split a string at the given delimiter and trim all entries.
 /// Removes empty entries.

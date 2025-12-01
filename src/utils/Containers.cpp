@@ -2,6 +2,15 @@
 
 namespace mediaelch {
 
+QStringList setToStringList(const QSet<QString>& set)
+{
+#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
+    return QStringList::fromList(set.values());
+#else
+    return QStringList(set.begin(), set.end());
+#endif
+}
+
 QStringList split_string_trimmed(const QString& str, const QString& delimiter)
 {
     QStringList entries = str.split(delimiter);
@@ -23,6 +32,5 @@ QStringList split_string_trimmed(const QString& str, const QString& delimiter)
 
     return entries;
 }
-
 
 } // namespace mediaelch

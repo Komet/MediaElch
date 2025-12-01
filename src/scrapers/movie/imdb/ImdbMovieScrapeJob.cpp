@@ -118,10 +118,10 @@ void ImdbMovieScrapeJob::parseAndAssignInfos(const QString& html)
         m_movie->addActor(actor);
     }
     if (!data.directors.isEmpty()) {
-        m_movie->setDirector(setToVector(data.directors).join(", "));
+        m_movie->setDirector(setToStringList(data.directors).join(", "));
     }
     if (!data.writers.isEmpty()) {
-        m_movie->setWriter(setToVector(data.writers).join(", "));
+        m_movie->setWriter(setToStringList(data.writers).join(", "));
     }
     for (QString genre : data.genres) {
         m_movie->addGenre(genre);
