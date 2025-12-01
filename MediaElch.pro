@@ -269,6 +269,8 @@ SOURCES += \
     src/scrapers/image/TheTvDbImages.cpp \
     src/scrapers/image/TmdbImages.cpp \
     src/scrapers/imdb/ImdbApi.cpp \
+    src/scrapers/imdb/ImdbJsonParser.cpp \
+    src/scrapers/imdb/ImdbSearchPage.cpp \
     src/scrapers/imdb/ImdbReferencePage.cpp \
     src/scrapers/movie/adultdvdempire/AdultDvdEmpireApi.cpp \
     src/scrapers/movie/adultdvdempire/AdultDvdEmpire.cpp \
@@ -524,6 +526,7 @@ SOURCES += \
     src/utils/Math.cpp \
     src/utils/Meta.cpp \
     src/utils/Random.cpp \
+    src/utils/Optional.cpp \
     src/utils/Time.cpp \
     src/workers/Job.cpp
 
@@ -672,6 +675,8 @@ HEADERS += Version.h \
     src/scrapers/image/TheTvDbImages.h \
     src/scrapers/image/TmdbImages.h \
     src/scrapers/imdb/ImdbApi.h \
+    src/scrapers/imdb/ImdbJsonParser.h \
+    src/scrapers/imdb/ImdbSearchPage.h \
     src/scrapers/imdb/ImdbReferencePage.h \
     src/scrapers/movie/adultdvdempire/AdultDvdEmpireApi.h \
     src/scrapers/movie/adultdvdempire/AdultDvdEmpire.h \
@@ -929,6 +934,7 @@ HEADERS += Version.h \
     src/utils/Math.h \
     src/utils/Meta.h \
     src/utils/Random.h \
+    src/utils/Optional.h \
     src/utils/Time.h \
     src/workers/Job.h
 
