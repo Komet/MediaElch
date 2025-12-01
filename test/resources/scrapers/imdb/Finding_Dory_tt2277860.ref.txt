@@ -23,7 +23,7 @@ tagline: She just kept swimming...
 ratings (N=1)
   source=imdb | rating=7.2 | votes=300000 | min=0 | max=10
 userRating: 0
-imdbTop250: -1
+imdbTop250: 0
 released: 2016-06-17
 runtime: 97min
 writer: Andrew Stanton, Victoria Strouse
@@ -107,83 +107,6 @@ actors: (N>5)
     OA@@.jpg
    order: 9
    imageHasChanged: false
- - id: 
-   name: Dominic West
-   role: Rudder
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMjM1MDU1Mzg3N15BMl5BanBnXkFtZTgwNTcwNzcy
-    MzI@.jpg
-   order: 10
-   imageHasChanged: false
- - id: 
-   name: Bob Peterson
-   role: Mr. Ray / Additional Voices
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMTU4NTQ4ODI5N15BMl5BanBnXkFtZTYwNzIwODA3
-    .jpg
-   order: 11
-   imageHasChanged: false
- - id: 
-   name: Kate McKinnon
-   role: Wife Fish
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMjQwMzEwMDQ2NF5BMl5BanBnXkFtZTgwMzU4NTY4
-    NjE@.jpg
-   order: 12
-   imageHasChanged: false
- - id: 
-   name: Bill Hader
-   role: Husband Fish (Stan)
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BNTY3MzgwMjE3N15BMl5BanBnXkFtZTcwNjc2MjE3
-    NA@@.jpg
-   order: 13
-   imageHasChanged: false
- - id: 
-   name: Sigourney Weaver
-   role: Sigourney Weaver
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMTk1MTcyNTE3OV5BMl5BanBnXkFtZTcwMTA0MTMy
-    Mw@@.jpg
-   order: 14
-   imageHasChanged: false
- - id: 
-   name: Alexander Gould
-   role: Passenger Carl / Additional Voices
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BNzBlOWI2MDEtNjhkMi00ZjAxLWFhMTctYjMzYWYz
-    MjI2MjBlXkEyXkFqcGc@.jpg
-   order: 15
-   imageHasChanged: false
- - id: 
-   name: Torbin Xan Bullock
-   role: Gerald / Additional Voices
-   thumb: 
-   order: 16
-   imageHasChanged: false
- - id: 
-   name: Andrew Stanton
-   role: Crush / Additional Voices
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMmZiOTE4NDktMmZjNi00MzcwLWJjMzAtYWVlZDUw
-    NjhiMGIwXkEyXkFqcGc@.jpg
-   order: 17
-   imageHasChanged: false
- - id: 
-   name: Katherine Ringgold
-   role: Chickenfish
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BOGU1NTY1N2ItOWVhYS00NWRjLWJmYWMtNWY5MzFh
-    MDUzMGE2XkEyXkFqcGc@.jpg
-   order: 18
-   imageHasChanged: false
- - id: 
-   name: Lucia Geddes
-   role: Tween Dory
-   thumb: 
-   order: 19
-   imageHasChanged: false
-  - ... and >40 more
 certification: PG
 genres: (N>5)
   - Animation
@@ -203,7 +126,7 @@ countries: (N=1)
 studios: (N<6)
   - Walt Disney Pictures
   - Pixar Animation Studios
-trailer: https://imdb-video.media-imdb.com/vi2669917209/1434659454657-dx9ykf-1464098554017.mp4?Expires=1762085717&Signature=fMnW1gQ-AngFkPdWwdYJTYAOI2BRBZdyIoRnQKZJEHjQXtHDq5GvvXKoiE81CDRgNYLjHguo7xEh-riw2b3A6-mPJSqIz96o5xuQQRiF8BxUn7qZ8xzxFnVxXIf84mFzc47T-C1xaLANxsVqIOhOEd3ad9BmR7IJu48EWqY6appb1Ih7xu9RKFH2N~Q8G2beNjC-r2CHUcQGtON3U0fgbGUPljazQmDaY~rOv-b5TLnPG04LqP4S39eAXsGUIsiplM4~Y69~SR7InYJBppRX28UybeawFQN~Bk4O1K0H5HzeBicaIdNeRA1lOblwY3FPnBhSt27wv3tjAhxWMexvXQ__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA
+trailer: https://imdb-video.media-imdb.com/vi2669917209/1434659454657-dx9ykf-1464098554017.mp4?Expires=1764699748&Signature=l5IshopS-SNwV~QLGPFow~VlpArgb9JPwXGlxuVNJjRL4tJ9kuvU~-pMsDqgPhmNnDrfl2Ka2oZShcEYZMBl4KldpNbvEE5e67RZXSbDZMdv-2ViuLZqlvk7OUeQKECd5e9i-TXBpaBOldA~b-wMP4i7wuOG6iOdORH8HLj8iZKi4A6ClegGrw5IFrYJZQpa2544UP48qqCpP8kd8imjdwWy6szwnNZpgOFnKDv8gPcGtplmEITstPaRZkdbhsJq8iHy2f7UbyGQX54Rh-znA8dg0OPi9Rzxbbm6OzOvStmFaIPwHxPp-EYNxeAy3O2wuTkUpIrVZRJNsi3K1Uneqw__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA
 showlink: (N=0)
 playcount: 0
 lastPlayed: <not set or invalid>

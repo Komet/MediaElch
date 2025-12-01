@@ -64,14 +64,14 @@ void ImdbMovieSearchJob::parseIdFromMovieReferencePage(const QString& html)
     rx.setPatternOptions(QRegularExpression::InvertedGreedinessOption);
     QRegularExpressionMatch match;
 
-    rx.setPattern(R"re(<h3 itemprop="name">\n(.*)<span)re");
+    rx.setPattern(R"re("titleText":{"text":"([^"]+)","__typename":"TitleText")re");
     match = rx.match(html);
     if (match.hasMatch()) {
         result.title = match.captured(1).trimmed();
     }
 
-    // For search results, we are only interested in the year.
-    rx.setPattern(R"re(<a href="/search/title\?year=(\d+)&)re");
+    // For search results, we are only interested in the year, not the full release date.
+    rx.setPattern(R"re("releaseYear":{"year":(\d{4}))re");
     match = rx.match(html);
     if (match.hasMatch()) {
         result.released = QDate::fromString(match.captured(1), "yyyy");

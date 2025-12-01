@@ -31,7 +31,7 @@ userRating: 0
 imdbTop250: 2
 released: 1972-03-24
 runtime: 175min
-writer: Mario Puzo, Francis Ford Coppola
+writer: Francis Ford Coppola, Mario Puzo
 director: Francis Ford Coppola
 actors: (N>5)
  - id: 
@@ -114,102 +114,23 @@ actors: (N>5)
     NzM@.jpg
    order: 9
    imageHasChanged: false
- - id: 
-   name: Abe Vigoda
-   role: Tessio
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMjE1MDk5NzMyN15BMl5BanBnXkFtZTYwMjA4Mjg1
-    .jpg
-   order: 10
-   imageHasChanged: false
- - id: 
-   name: Talia Shire
-   role: Connie
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMTkwMzc0NjQzNV5BMl5BanBnXkFtZTYwNzM0NTk3
-    .jpg
-   order: 11
-   imageHasChanged: false
- - id: 
-   name: Gianni Russo
-   role: Carlo
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BNTgyMTgxODM4MV5BMl5BanBnXkFtZTcwNDg5NDYw
-    OA@@.jpg
-   order: 12
-   imageHasChanged: false
- - id: 
-   name: John Cazale
-   role: Fredo
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMTUzMTM1MjI5NV5BMl5BanBnXkFtZTcwMTM5NTM1
-    Mw@@.jpg
-   order: 13
-   imageHasChanged: false
- - id: 
-   name: Rudy Bond
-   role: Cuneo
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BZDNlZWQzOTQtZTAxNy00NjUxLWIzN2MtMDVlN2Rl
-    MzNlYzY0XkEyXkFqcGc@.jpg
-   order: 14
-   imageHasChanged: false
- - id: 
-   name: Al Martino
-   role: Johnny Fontane
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMjMyMDk4MzYyMl5BMl5BanBnXkFtZTcwNzg5NDYw
-    OA@@.jpg
-   order: 15
-   imageHasChanged: false
- - id: 
-   name: Morgana King
-   role: Mama Corleone
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BODg5OTAxNDQzMl5BMl5BanBnXkFtZTgwOTM3ODIx
-    NjM@.jpg
-   order: 16
-   imageHasChanged: false
- - id: 
-   name: Lenny Montana
-   role: Luca Brasi
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BZWVkODE4NjktMDQ2NS00NGRlLTg4ZGUtOGFmNTJl
-    YWMxZmQ2XkEyXkFqcGc@.jpg
-   order: 17
-   imageHasChanged: false
- - id: 
-   name: John Martino
-   role: Paulie Gatto
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMTUzNTgzNTg5MV5BMl5BanBnXkFtZTgwOTMzODU3
-    NjE@.jpg
-   order: 18
-   imageHasChanged: false
- - id: 
-   name: Salvatore Corsitto
-   role: Bonasera
-   thumb: 
-   order: 19
-   imageHasChanged: false
-  - ... and >60 more
 certification: R
 genres: (N<6)
   - Crime
   - Drama
 tags: (N<6)
-  - mafia
   - patriarch
-  - crime family
-  - organized crime
   - gangster
+  - crime family
+  - mafia
+  - organized crime
 countries: (N=1)
   - US
 studios: (N<6)
-  - Paramount Pictures
   - Albert S. Ruddy Productions
+  - Paramount Pictures
   - Alfran Productions
-trailer: https://imdb-video.media-imdb.com/vi1348706585/1434659529640-260ouz-1616202346191.mp4?Expires=1761596952&Signature=UD--HTNzuko3LztSopyoY7~nYLMkpYq9kFaj8z3ye01kmIS6qak9VJUp005AWAcdIFp71F~2Ef4ZTSGdQiq7TBXiY3inmFoQQSD~G3Tj8QO5pn3KnNtA8zzYBBbRY-1Q3-669OpAWcHIgiEQPiB0OOuQxI30llZqQj79mzyGvC0HeN-s8R1rX0zHH2gRGuzNlIQY8e0i35GIIIaIJOrYdWRRpWCH4RWvE4CfQNfJIIFOnVUAMsknYP1f2BH-aQIlXhf2dd1yGKpqH1Gr1p7rHZ6~IPCjKY0cfWpusNc2zAbSUzLmqbFll57Z6sqDu0z65wC9~U2IMSL3hiuJMa5XNA__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA
+trailer: https://imdb-video.media-imdb.com/vi1348706585/1434659529640-260ouz-1616202346191.mp4?Expires=1764699763&Signature=sWxEFCQHtHK5Jivoz1XjpgGAx6Uaj4VN5cbfprNf67F4UX8jkq5s5bscCmIue9kv2t1uq2oVhzq6ptqRA4hSRGuiSjl5HFr3U2o-5~YUS7CYL4eqSy3yKRPQ77yJxycyST3z-v2kJZOQQ806uPE4vmIeaxBQBukW3-sl5bbJyDdj4IglbZ-vnDuHueBzTVmaaZTA5KFYLCS8J0cRIhmDPPPtwLyS3oGtIfsczAcfLMTBrIk6rO9yC--cmOUyTpRJfkOW9SnVw2eqrawhwVNxUODJUJPQ46YfrIJ3Lc6XSqmQ8X4JOVquE6Nj0a-r-w0zM1niHmEqMvORLJXf8lvxbQ__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA
 showlink: (N=0)
 playcount: 0
 lastPlayed: <not set or invalid>

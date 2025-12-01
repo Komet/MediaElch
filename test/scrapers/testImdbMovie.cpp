@@ -50,6 +50,7 @@ TEST_CASE("IMDb returns valid search results", "[movie][IMDb][search]")
 
     SECTION("Search by IMDb ID returns correct results")
     {
+        CAPTURE(ImdbId("tt2277860"));
         MovieSearchJob::Config config{"tt2277860", mediaelch::Locale::English};
         auto* searchJob = new ImdbMovieSearchJob(getImdbApi(), config);
         const auto scraperResults = test::searchMovieScraperSync(searchJob).first;

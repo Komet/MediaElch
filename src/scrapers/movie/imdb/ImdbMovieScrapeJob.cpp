@@ -102,9 +102,9 @@ void ImdbMovieScrapeJob::parseAndAssignInfos(const QString& html)
     for (Rating rating : data.ratings) {
         m_movie->ratings().addRating(rating);
     }
-    if (data.top250.hasValue()) {
-        m_movie->setTop250(data.top250.value);
-    }
+
+    m_movie->setTop250(data.top250.getOrValue(-1));
+
     if (data.certification.hasValue()) {
         m_movie->setCertification(data.certification.value);
     }

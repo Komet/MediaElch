@@ -26,7 +26,7 @@ tagline:
 ratings (N=1)
   source=imdb | rating=4.2 | votes=7000 | min=0 | max=10
 userRating: 0
-imdbTop250: -1
+imdbTop250: 0
 released: 2015-09-04
 runtime: 152min
 writer: Anees Bazmee, Raaj Shaandilyaa, Rajeev Kaul, Rajan Agarwal, Praful Parekh
@@ -110,87 +110,6 @@ actors: (N>5)
    thumb: 
    order: 9
    imageHasChanged: false
- - id: 
-   name: Supriya Karnik
-   role: Payal Ghungroo
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BOGViYjJmNzctOGJkMy00Nzg0LWI3NGItMWRlNjU3
-    YjJkZjk3XkEyXkFqcGc@.jpg
-   order: 10
-   imageHasChanged: false
- - id: 
-   name: Rajpal Naurang Yadav
-   role: The Tailor (as Rajpal Yadav)
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMTQ3MTI4MzUyNl5BMl5BanBnXkFtZTgwMjAzMTMz
-    OTE@.jpg
-   order: 11
-   imageHasChanged: false
- - id: 
-   name: Neeraj Vora
-   role: Badshah Khan / Basha bhai
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BODgzNjYxMzMwNl5BMl5BanBnXkFtZTcwODIzNTE3
-    Mw@@.jpg
-   order: 12
-   imageHasChanged: false
- - id: 
-   name: Mushtaq Khan
-   role: Balu
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BYzNiODA3OTktMjA2Ni00MGI4LThlMDAtOGNhNGFh
-    NzA0YTUyXkEyXkFqcGc@.jpg
-   order: 13
-   imageHasChanged: false
- - id: 
-   name: Adi Irani
-   role: Advocate Harkesh Sahni
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BY2MxODlhOTMtOGM1NC00MWIzLTllNWYtYjQ2ZmQ5
-    YzBlOTQxXkEyXkFqcGc@.jpg
-   order: 14
-   imageHasChanged: false
- - id: 
-   name: Snehal Dabi
-   role: Kakhil
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMmM5MmI0NzMtMjkzMC00ZWM1LWE5MGEtMjQzNTY5
-    MDQ2NGIyXkEyXkFqcGc@.jpg
-   order: 15
-   imageHasChanged: false
- - id: 
-   name: Amjad Qureshi
-   role: Ajju bhai friend
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMGVlYWEyNTMtMDQ3ZC00M2YyLWFjYTAtZDU0YzVi
-    N2EwMmQ1XkEyXkFqcGc@.jpg
-   order: 16
-   imageHasChanged: false
- - id: 
-   name: Javed Rizvi
-   role: Ajju's dumb and deaf friend (as Javed Rizvi Jarehavi)
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BZmZmOWIyYjUtYmY5ZC00Yjc3LWE4NmItYTUxMzEw
-    OTI2ZTI0XkEyXkFqcGc@.jpg
-   order: 17
-   imageHasChanged: false
- - id: 
-   name: Lauren Gottlieb
-   role: Special appearance in song '20-20'
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BNGM0MmE1ZTAtNjY5YS00OTc5LTlkZDctZWUyYjIy
-    NDFjNDE2XkEyXkFqcGc@.jpg
-   order: 18
-   imageHasChanged: false
- - id: 
-   name: Reema Debnath
-   role: Special appearance in song '20-20'
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMDNkMGQ0Y2UtYTBjZi00MDRkLThlMjAtOGJlNjFm
-    NGQ4NjRmXkEyXkFqcGc@.jpg
-   order: 19
-   imageHasChanged: false
-  - ... and >10 more
 certification: Not Rated
 genres: (N<6)
   - Crime
@@ -203,7 +122,7 @@ countries: (N=1)
   - IN
 studios: (N=1)
   - Base Industries Group
-trailer: https://imdb-video.media-imdb.com/vi956348441/1434659529640-260ouz-1563738237646.mp4?Expires=1762085731&Signature=AfK~e8jlM5DQAeYKGFPtOU3Q4ZHoGtiQUawFJsXQneo9rIKHoOf5nJGSiyJwmvDC72SedXJ0SYJitSR-g4C7hr1h17bHbL95gnBuQ7L52wkMvW6yIs9e6f8jVjSqktn1u5jAZvddLR-5D6iHnH7DKANXq--k9KBQz3Xi9~Q2JshtuSGz7J2D1A7R9BHoN6SMRcfTb~u~yYpT18ebcWmnyjB8KLzYAf4JZNAbN6hE1bL531eePlIDY5Yls~kwchQw-JtJEND2Ry~2lFJ8-Mrv3kMlefeG7-3E~jXqu7j3ekVA0WNi3pjwLak5xs6vTYBZ4QV-ydfVn82KUr3I0C47Ng__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA
+trailer: https://imdb-video.media-imdb.com/vi956348441/1434659529640-260ouz-1563738237646.mp4?Expires=1764699761&Signature=UzpFDO~dgG8htqGL0u53L86cu9laG6PGDTFekWqoVvabROPUBt~Aij1hkQvU1TEgF4g7ZpflHBBGCoLWOMZBzWsPHd-ZElqjqtfaTGMT-8wunJmFLAtVDvGLWm8wn3NbT6TYUWtmI7uOkTuGrmbmckszeeac0YLocbWjzIw0sMY6UImIfxybUfHmuyJtGLMsakeMt4GtMkiXXd8ssiepRHqOi4SX3xWcqcsldHeifA0rXVsqRg~4G2tXfto1HtRVrRZzJpGdTOe-QjaVvOAJIR~pwOPbiJwRXFhvI1vwiNx24boTQv0hVkZzzsLZM~RSl2oUxTpwku4YTS6jmhO~wg__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA
 showlink: (N=0)
 playcount: 0
 lastPlayed: <not set or invalid>
