@@ -6,6 +6,8 @@
 
 #include <QRegularExpression>
 
+#include "scrapers/imdb/ImdbSearchPage.h"
+
 namespace mediaelch {
 namespace scraper {
 
@@ -73,33 +75,12 @@ void ImdbTvShowSearchJob::searchViaQuery()
 
 QVector<ShowSearchJob::Result> ImdbTvShowSearchJob::parseSearch(const QString& html)
 {
-    // Note: Keep in sync with ImdbMovieSearchJob::parseSearch
-    // TODO: De-duplicate?
-
-    // Search result table from "https://www.imdb.com/search/title/?title=..."
-    static const QRegularExpression rx(R"(<a href="/title/(tt[\d]+)/[^>]+>(.+)</a>.*(\d{4})[–<])",
-        QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
-    // Entries are numbered: Remove Number.
-    static const QRegularExpression listNo(
-        R"(^\d+\.\s+)", QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
-
-    QVector<ShowSearchJob::Result> results;
-    QRegularExpressionMatchIterator matches = rx.globalMatch(html);
-    QRegularExpressionMatch match;
-    while (matches.hasNext()) {
-        match = matches.next();
-        if (match.hasMatch()) {
-            QString title = normalizeFromHtml(match.captured(2));
-            title.remove(listNo);
-            ShowSearchJob::Result result;
-            result.title = title;
-            result.identifier = ShowIdentifier(match.captured(1));
-            result.released = QDate::fromString(match.captured(3), "yyyy");
-            results.push_back(std::move(result));
-        }
+    auto results = ImdbSearchPage::parseSearch(html);
+    QVector<ShowSearchJob::Result> showResults;
+    for (const auto& result : results) {
+        showResults << ShowSearchJob::Result{result.title, result.released, ShowIdentifier{result.identifier}};
     }
-
-    return results;
+    return showResults;
 }
 
 QVector<ShowSearchJob::Result> ImdbTvShowSearchJob::parseResultFromShowPage(const QString& html)

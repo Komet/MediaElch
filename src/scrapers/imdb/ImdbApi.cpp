@@ -65,8 +65,7 @@ void ImdbApi::sendGetRequest(const Locale& locale, const QUrl& url, ImdbApi::Api
 
 void ImdbApi::searchForShow(const Locale& locale, const QString& query, ImdbApi::ApiCallback callback)
 {
-    QUrl url{makeShowSearchUrl(query)};
-    sendGetRequest(locale, url, std::move(callback));
+    sendGetRequest(locale, makeShowSearchUrl(query), std::move(callback));
 }
 
 void ImdbApi::searchForMovie(const Locale& locale,
@@ -123,6 +122,7 @@ QUrl ImdbApi::makeTitleUrl(const ImdbId& id, PageKind page) const
 
 QUrl ImdbApi::makeMovieSearchUrl(const QString& searchStr, bool includeAdult) const
 {
+    // e.g. https://www.imdb.com/de/search/title/?title=finding%20dori&title_type=feature,tv_movie,short,video,tv_short
     QUrlQuery queries;
     if (includeAdult) {
         queries.addQueryItem("adult", "include");
@@ -152,6 +152,8 @@ QUrl ImdbApi::makeShowSearchUrl(const QString& searchStr) const
     }
 
     // e.g. https://www.imdb.com/search/title/?title=Family%20Guy&title_type=tv_series,tv_miniseries&view=simple
+    // An alternative (if it breaks in the future) would be
+    // e.g. https://www.imdb.com/find/?q=scrubs&s=tt&ttype=tv&ref_=fn_tv
     QUrlQuery queries;
     queries.addQueryItem("title", searchStr);
     queries.addQueryItem("title_type", "tv_series,tv_miniseries");
