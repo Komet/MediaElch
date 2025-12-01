@@ -27,7 +27,7 @@ tagline: Go big or go extinct
 ratings (N=1)
   source=imdb | rating=6.8 | votes=500000 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 released: 2013-07-12
 runtime: 131min
 writer: Travis Beacham, Guillermo del Toro

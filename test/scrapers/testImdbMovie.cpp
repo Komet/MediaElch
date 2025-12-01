@@ -82,7 +82,7 @@ TEST_CASE("IMDb scrapes correct movie details", "[movie][IMDb][load_data]")
         CHECK(m.ratings().first().rating == Approx(7).margin(0.5));
         CHECK(m.ratings().first().voteCount > 6300);
         // Movie is not in top 250
-        CHECK(m.top250() == 0);
+        CHECK(m.top250() == -1);
         // Tagline may be different on each run, so we only
         // check if it is existent.
         CHECK_FALSE(m.tagline().isEmpty());

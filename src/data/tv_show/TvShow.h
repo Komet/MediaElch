@@ -287,7 +287,7 @@ private:
     QString m_sortTitle;
     Ratings m_ratings;
     double m_userRating = 0.0;
-    int m_imdbTop250 = 0;
+    int m_imdbTop250 = -1;
     QDate m_firstAired;
     std::chrono::minutes m_runtime;
     QStringList m_genres;

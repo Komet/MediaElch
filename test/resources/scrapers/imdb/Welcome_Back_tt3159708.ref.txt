@@ -26,7 +26,7 @@ tagline:
 ratings (N=1)
   source=imdb | rating=4.2 | votes=7000 | min=0 | max=10
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 released: 2015-09-04
 runtime: 152min
 writer: Anees Bazmee, Raaj Shaandilyaa, Rajeev Kaul, Rajan Agarwal, Praful Parekh
