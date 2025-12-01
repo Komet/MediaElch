@@ -154,21 +154,21 @@ actors: (N>50)
     Moe Szyslak / Chief Wiggum / Carl / Comic Book Guy / Lou / Kirk Van Houten / Sup
     erintendent Chalmers / Carl Carlson / Apu Nahasapeemapetilon / Apu / Professor F
     rink / Cletus / Snake / Disco Stu / Old Jewish Man / Bumblebee Man / Wiseguy / D
-    uffman / Dr. Nick Riviera / Cletus Spuckler / Raphael / Prof. Frink / Drederick 
-    Tatum / Luigi / Captain McAllister / Luigi Risotto / Snake Jailbird / Sea Captai
+    uffman / Dr. Nick Riviera / Raphael / Cletus Spuckler / Drederick Tatum / Prof. 
+    Frink / Luigi / Captain McAllister / Luigi Risotto / Snake Jailbird / Sea Captai
     n / Johnny Tightlips / Captain Horatio McCallister / Captain McCallister / Julio
      / Coach Krupt / Clancy Wiggum / Gary Chalmers / Frink / Waiter / Director / Cle
     rk / Moe / Chief Clancy Wiggum / TV Announcer / Additional Voices / Crazy Old Ma
     n / The Sea Captain / Auctioneer / Roofi / Ranger / Cab Driver / Announcer / Dou
-    g / Superintendant Chalmers / Tour Guide / Chalmers / Doctor / Chazz Busby / Gab
-    bo / Ron Rabinowitz / Bailiff / Nobel Prize Announcer / Van Krusten / European J
-    udge #1 / Easy Reader / Sprooklyn Bum / Guy Talking To Krusty / Legs / Delivery 
-    Man / Lifeguard / Santa Claus / Homeless Man / Chef / Man in Crowd / Pilot / Man
-     / Robot / Jesus / Old Jewish Guy / Gunter / Very Tall Man / Reporter #3 / Sam /
-     Guard / Pyro / Bellhop / Audience Member / Security Guard / Jack / Lawyer / Cap
-    tain / Krusty's Assistant / Hippie / Technician / General / Veterinarian / Super
-    intendent Gary Chalmers / Akira / Construction Worker / Benjamin / Crowd Members
-     / Pig
+    g / Superintendant Chalmers / Tour Guide / Chalmers / Doctor / Chazz Busby / Moe
+     Syzlak / Gabbo / Ron Rabinowitz / Bailiff / Nobel Prize Announcer / Van Krusten
+     / European Judge #1 / Easy Reader / Sprooklyn Bum / Guy Talking To Krusty / Leg
+    s / Delivery Man / Lifeguard / Santa Claus / Homeless Man / Chef / Man in Crowd 
+    / Pilot / Man / Robot / Jesus / Old Jewish Guy / Gunter / Very Tall Man / Report
+    er #3 / Sam / Guard / Pyro / Bellhop / Audience Member / Security Guard / Jack /
+     Lawyer / Captain / Krusty's Assistant / Hippie / Technician / General / Veterin
+    arian / Superintendent Gary Chalmers / Akira / Construction Worker / Benjamin / 
+    Crowd Members
    thumb:
     https://m.media-amazon.com/images/M/MV5BMTQ0MzIxMzUwMV5BMl5BanBnXkFtZTcwMjE1NjM1
     Mg@@.jpg
@@ -214,13 +214,13 @@ actors: (N>50)
      Booberella / Tour Guide / Plopper / Whitney Spuckler / Crowd Members / Brunella
      Pommelhorst / Cosine / Librarian / Lindsay Neagle / Additional Voices / Martha 
     / Maya / Opal / Teacher / Little Boy / Poor Violet / Witch / Brandine Del Roy / 
-    Mother / Kumiko / Amazon Alexa / Children / Alexa / Belle / Woman on Street / Pi
-    gs / Aide / Gov. Mary Bailey / Queen Elizabeth II / Actress / Gypsy / Medicine W
-    oman / Brenda / Mom / Others / Inga / Old Woman / Clara / Operator / Wife / Noah
-    's Mother / Kenny / Gino Terwilliger / TV Executive / Producer / Lucy / Woman #2
-     / Mrs. Burns / Ms. Albright / Tina / Sandra / Paper Boy / Animal Shelter Worker
-     / Girl / Terri / Parade Commentator / Cienega / Airport Announcer / Saleswoman 
-    / Baseball Player / Churchgoer / Amy / Receptionist / Krusty's Agent
+    Mother / Kumiko / Virgin Mary / Amazon Alexa / Children / Alexa / Belle / Woman 
+    on Street / Pigs / Aide / Gov. Mary Bailey / Queen Elizabeth II / Actress / Gyps
+    y / Medicine Woman / Brenda / Mom / Others / Inga / Old Woman / Clara / Operator
+     / Wife / Noah's Mother / Kenny / Gino Terwilliger / TV Executive / Producer / L
+    ucy / Woman #2 / Mrs. Burns / Ms. Albright / Tina / Sandra / Paper Boy / Animal 
+    Shelter Worker / Girl / Terri / Parade Commentator / Cienega / Airport Announcer
+     / Saleswoman / Baseball Player / Churchgoer / Amy / Receptionist
    thumb:
     https://m.media-amazon.com/images/M/MV5BMTQxMTQ1NzY5N15BMl5BanBnXkFtZTcwMDY5NDUw
     OA@@.jpg
@@ -339,12 +339,12 @@ actors: (N>50)
  - id: 
    name: Kevin Michael Richardson
    role:
-    Dr. Hibbert / Anger Watkins / Security Guard / Narrator / Maxwell Flinch / Mark 
-    / Burns' Cellmate / Mall Cop / Lady Gaga Express Conductor / Various Voices / Se
-    ndEx employee / Party Guest / Retirement Castle orderly / Jamaican Musician / Co
-    p with a Secret / FBI Agent / Prison inmate / Chester / Jamaican Krusty / Albert
-     / Nigerian King / Black Prison Guard #1 / The Patriarch / End Credits Singer / 
-    Jay G / Deuce / Andre / Bird 3 / Stogie / Pazuzu / Bechdel Test Announcer / Azzl
+    Dr. Hibbert / Anger Watkins / Security Guard / Narrator / Jay G / Maxwell Flinch
+     / Mark / Burns' Cellmate / Mall Cop / Lady Gaga Express Conductor / Various Voi
+    ces / SendEx employee / Party Guest / Retirement Castle orderly / Jamaican Music
+    ian / Cop with a Secret / FBI Agent / Prison inmate / Chester / Jamaican Krusty 
+    / Albert / Nigerian King / Black Prison Guard #1 / The Patriarch / End Credits S
+    inger / Deuce / Andre / Bird 3 / Stogie / Pazuzu / Bechdel Test Announcer / Azzl
     an / Icewalker / Louis Armstrong / Bleeding Gums Murphy's Nephew / Scott / Envel
     ope / Michael Clarke Duncan-type / Cthulhu / Phloem / Bookaccino's employee / Ji
     mi Hendrix / Coders / Fats / Tubberware Bowl / Sprawl Mart Employee / Atlanta Fa
@@ -376,6 +376,20 @@ actors: (N>50)
    order: 14
    imageHasChanged: false
  - id: 
+   name: Grey DeLisle
+   role:
+    Martin Prince / Terri / Sherri / Terri Mackleberry / Leland Huebner III / Young 
+    Woman / Martin Prince's Brother / Martin's Child #2 / Women's Bar Customer / Air
+    port Passerby #2 / Airport Passerby #4 / Angry Crowd / Taxidermy Teacher / Frenc
+    h Fry / Francine / Little Girl in Commercial / Parking Enforcement Leader / Rile
+    y / Gloria Prince / Crowd Members / Iris Dalrymple / Malibu Stacy / Mr. Tumnus /
+     Derren Brown Emplyoee / Üter Zörker / Golf Commentator / Sherri Mackleberry
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMjg2MTQxOTUyMl5BMl5BanBnXkFtZTcwMTgxNTEx
+    OA@@.jpg
+   order: 15
+   imageHasChanged: false
+ - id: 
    name: Phil Hartman
    role:
     Troy McClure / Lionel Hutz / Lyle Lanley / Hospital Chairman / Fat Tony / Charlt
@@ -388,20 +402,6 @@ actors: (N>50)
    thumb:
     https://m.media-amazon.com/images/M/MV5BNTEyNjYxNTY3Ml5BMl5BanBnXkFtZTYwNTM1MDE0
     .jpg
-   order: 15
-   imageHasChanged: false
- - id: 
-   name: Grey DeLisle
-   role:
-    Martin Prince / Terri / Sherri / Terri Mackleberry / Leland Huebner III / Young 
-    Woman / Martin Prince's Brother / Martin's Child #2 / Women's Bar Customer / Air
-    port Passerby #2 / Airport Passerby #4 / Angry Crowd / Taxidermy Teacher / Frenc
-    h Fry / Francine / Little Girl in Commercial / Parking Enforcement Leader / Rile
-    y / Gloria Prince / Crowd Members / Iris Dalrymple / Malibu Stacy / Mr. Tumnus /
-     Derren Brown Emplyoee / Üter Zörker / Sherri Mackleberry
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMjg2MTQxOTUyMl5BMl5BanBnXkFtZTcwMTgxNTEx
-    OA@@.jpg
    order: 16
    imageHasChanged: false
  - id: 
@@ -413,6 +413,20 @@ actors: (N>50)
    order: 17
    imageHasChanged: false
  - id: 
+   name: Dawnn Lewis
+   role:
+    Bernice Hibbert / Female Party Guest / Miata / Opal / Juvenile Court Bailiff / C
+    o-Pilot / Pat O'Brien's Waitress / Lenora Carter / Carlotta Carlson / Hotshot la
+    wyer / Cannabis Influencer / Flight Attendant / Texxon Customer / Female Firefig
+    hter / Daly Night / Etta Pryor / Mrs. McBride / Allergy Doctor / Court Bailiff /
+     Female Criticizing Workforce / Naima / Grocery Store Clerk / Flight Attendance 
+    #2 / Morher / Karate Kids / Ursula / Party guest
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTYwNTk1NTA3Nl5BMl5BanBnXkFtZTYwNTAyMTM1
+    .jpg
+   order: 18
+   imageHasChanged: false
+ - id: 
    name: Maurice LaMarche
    role:
     Orson Welles / Hedonismbot / Eudora Welty / George C. Scott / Erman Millwood / S
@@ -421,25 +435,11 @@ actors: (N>50)
     er McBragg / Billy / Oceanographer / Screaming Cop / City Inspector / Fox announ
     cer / Chinese #1 / Chinese #4 / Leprechaun / Charlie Sheen / Chef Naziwa / Marlo
     n Brando / Milo / Morbo / Lrrr / Rodney Dangerfield / Clive Meriwether / Neil Si
-    mon / Vincent Price / Hedonismbot Cosplayer / Fred Flintstone Parody / Wlihelm v
-    on Wonthelm
+    mon / Vincent Price / Hedonismbot Cosplayer / Jerry Seinfeld / Fred Flintstone P
+    arody / Wlihelm von Wonthelm
    thumb:
     https://m.media-amazon.com/images/M/MV5BY2UwY2MxODMtNmZhZi00NzI0LTg5YzMtY2MzZjg0
     YTZmNjczXkEyXkFqcGc@.jpg
-   order: 18
-   imageHasChanged: false
- - id: 
-   name: Dawnn Lewis
-   role:
-    Bernice Hibbert / Opal / Female Party Guest / Miata / Juvenile Court Bailiff / C
-    o-Pilot / Pat O'Brien's Waitress / Lenora Carter / Carlotta Carlson / Hotshot la
-    wyer / Cannabis Influencer / Flight Attendant / Texxon Customer / Female Firefig
-    hter / Daly Night / Etta Pryor / Mrs. McBride / Allergy Doctor / Court Bailiff /
-     Female Criticizing Workforce / Naima / Grocery Store Clerk / Flight Attendance 
-    #2 / Morher / Karate Kids / Ursula
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMTYwNTk1NTA3Nl5BMl5BanBnXkFtZTYwNTAyMTM1
-    .jpg
    order: 19
    imageHasChanged: false
   - ... and >30 more

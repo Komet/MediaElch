@@ -139,19 +139,19 @@ actors: (N>50)
    order: 12
    imageHasChanged: false
  - id: 
-   name: Lindsay Duncan
-   role: Lady Smallwood
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMTYwNTkxOTQzMV5BMl5BanBnXkFtZTcwODQ3ODIy
-    OA@@.jpg
-   order: 13
-   imageHasChanged: false
- - id: 
    name: Lars Mikkelsen
    role: Charles Magnussen
    thumb:
     https://m.media-amazon.com/images/M/MV5BMDc2NDI4NDEtYmQyZi00NDI4LWE2MjgtZGE5M2Fh
     ZDg4ZDQ1XkEyXkFqcGc@.jpg
+   order: 13
+   imageHasChanged: false
+ - id: 
+   name: Lindsay Duncan
+   role: Lady Smallwood
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTYwNTkxOTQzMV5BMl5BanBnXkFtZTcwODQ3ODIy
+    OA@@.jpg
    order: 14
    imageHasChanged: false
  - id: 
