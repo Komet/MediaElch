@@ -2,7 +2,7 @@
 <movie>
     <title></title>
     <userrating>0</userrating>
-    <top250>0</top250>
+    <top250>-1</top250>
     <outline></outline>
     <plot></plot>
     <tagline></tagline>
