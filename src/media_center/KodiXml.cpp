@@ -1226,11 +1226,11 @@ void KodiXml::saveMovieSetPoster(QString setName, QImage poster)
             QDir dir = QFileInfo(fileName).dir();
             bool success = false;
 
-            if (!dir.exists()){
+            if (!dir.exists()) {
                 success = dir.mkpath(".");
             }
 
-            if (success){
+            if (success) {
                 poster.save(fileName, "jpg", 100);
             }
         }

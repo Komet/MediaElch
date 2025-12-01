@@ -302,8 +302,8 @@ void MovieDiskLoader::createMovie(QStringList files)
                 subtitleGlobs << mFi.completeBaseName() + "*." + ext;
             }
 
-            const QList<QFileInfo> subFiles = mFi.dir().entryInfoList(
-                subtitleGlobs, QDir::Files | QDir::NoDotAndDotDot);
+            const QList<QFileInfo> subFiles =
+                mFi.dir().entryInfoList(subtitleGlobs, QDir::Files | QDir::NoDotAndDotDot);
 
             for (const QFileInfo& subFi : subFiles) {
                 QString subFileName = subFi.fileName().mid(mFi.completeBaseName().length() + 1);

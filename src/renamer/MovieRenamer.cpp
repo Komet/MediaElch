@@ -238,13 +238,14 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
                     QString middlePart = subtitleFile.mid(baseName.length());
                     middlePart = middlePart.left(middlePart.lastIndexOf(".")); // Remove the extension
 
-                    QString newSubName = newFileName.left(newFileName.lastIndexOf(".")) + middlePart + "." + subInfo.suffix();
+                    QString newSubName =
+                        newFileName.left(newFileName.lastIndexOf(".")) + middlePart + "." + subInfo.suffix();
 
                     if (subtitleFile != newSubName) {
                         const int row = m_dialog->addResultToTable(subtitleFile, newSubName, RenameOperation::Rename);
                         if (!m_config.dryRun) {
-                            if (!rename(fi.canonicalPath() + "/" + subtitleFile,
-                                    fi.canonicalPath() + "/" + newSubName)) {
+                            if (!rename(
+                                    fi.canonicalPath() + "/" + subtitleFile, fi.canonicalPath() + "/" + newSubName)) {
                                 m_dialog->setResultStatus(row, RenameResult::Failed);
                             } else {
                                 FilmFiles.append(newSubName);
