@@ -8,6 +8,7 @@
 
 #include <QJsonArray>
 #include <QJsonObject>
+#include <QRegularExpression>
 #include <qmath.h>
 
 namespace {

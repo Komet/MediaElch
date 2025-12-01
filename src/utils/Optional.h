@@ -11,7 +11,7 @@ class Optional
 public:
     Optional() = default;
 
-    /*implicit*/ Optional(T value) : value(std::move(value)), m_hasValue{true} {};
+    /*implicit*/ Optional(T val) : value(std::move(val)), m_hasValue{true} {};
 
     bool hasValue() const { return m_hasValue; }
 

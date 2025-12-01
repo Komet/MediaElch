@@ -58,10 +58,10 @@ void ImdbTvEpisodeParser::parseInfos(TvShowEpisode& episode, const QString& html
         episode.addActor(actor);
     }
     if (!data.directors.isEmpty()) {
-        episode.setDirectors(setToVector(data.directors));
+        episode.setDirectors(setToStringList(data.directors));
     }
     if (!data.writers.isEmpty()) {
-        episode.setWriters(setToVector(data.writers));
+        episode.setWriters(setToStringList(data.writers));
     }
     for (const QString& keyword : data.keywords) {
         episode.addTag(keyword);
