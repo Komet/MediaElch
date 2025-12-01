@@ -80,9 +80,10 @@ void ImdbTvEpisodeParser::parseInfos(TvShowEpisode& episode, const QString& html
 
 void ImdbTvEpisodeParser::parseIdFromSeason(TvShowEpisode& episode, const QString& html)
 {
+    // e.g. from https://www.imdb.com/title/tt0096697/episodes?season=4
     // Example JSON:
     //   ```json
-    //   {"id":"tt0696611","type":"tvEpisode","season":"2","episode":"0"…}
+    //   {"id":"tt0096697","type":"tvEpisode","season":"2","episode":"0"…}
     //   ```
     QRegularExpression regex(QStringLiteral(R"re("id":"(tt\d+)","type":"tvEpisode","season":"\d+","episode":"%1")re")
                                  .arg(episode.episodeNumber().toString()),

@@ -164,6 +164,7 @@ QUrl ImdbApi::makeShowSearchUrl(const QString& searchStr) const
 
 QUrl ImdbApi::makeSeasonUrl(const ImdbId& showId, SeasonNumber season) const
 {
+    // e.g. https://www.imdb.com/title/tt0096697/episodes/?season=10
     QUrlQuery queries;
     queries.addQueryItem("season", season.toString());
     return makeFullUrl(QStringLiteral("/title/") + showId.toString() + //

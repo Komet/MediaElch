@@ -68,7 +68,8 @@ TEST_CASE("ImdbTv scrapes episode details for Buffy", "[buffy][episode][ImdbTv][
     SeasonNumber season(1);
     ImdbId showId("tt0118276");
 
-    SECTION("Loads minimal details for episode number 00")
+    // As of 2025-12-01, this is no longer part of season 01, but its own video, instead.
+    /* SECTION("Loads minimal details for episode number 00")
     {
         EpisodeNumber episodeNumber(0);
         ImdbId episodeId("tt0533518");
@@ -81,7 +82,7 @@ TEST_CASE("ImdbTv scrapes episode details for Buffy", "[buffy][episode][ImdbTv][
 
         REQUIRE(episode.imdbId() == ImdbId("tt0533518"));
         test::scraper::compareAgainstReference(episode, "scrapers/imdbtv/Buffy-S01E00-minimal-details");
-    }
+    }*/
 
     SECTION("Loads minimal details for episode number 01")
     {
