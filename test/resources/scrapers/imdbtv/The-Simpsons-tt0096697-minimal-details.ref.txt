@@ -15,7 +15,7 @@ overview:
 ratings (N=1)
   source=imdb | rating=8.6 | votes=400000 | min=0 | max=10
 userRating: 0
-imdbTop250: 111
+imdbTop250: 112
 firstAired: 1989-12-17
 runtime: 22min
 genres: (N<6)
@@ -106,7 +106,7 @@ actors: (N>50)
     Ned Flanders / Principal Skinner / Kent Brockman / Lenny / Mr. Burns / Dr. Hibbe
     rt / Lenny Leonard / Waylon Smithers / Reverend Lovejoy / Otto / Montgomery Burn
     s / Scratchy / Jasper / Smithers / Rainier Wolfcastle / Eddie / Kang / Otto Mann
-     / Rev. Lovejoy / Judge Snyder / Mr. Largo / Announcer / Dewey Largo / TV Announ
+     / Rev. Lovejoy / Mr. Largo / Judge Snyder / Announcer / Dewey Largo / TV Announ
     cer / God / Principal Seymour Skinner / Skinner / Seymour Skinner / Jasper Beard
     ly / Dr. Julius Hibbert / Hibbert / Herman / Marty / Dr. Marvin Monroe / Legs / 
     Radio Announcer / Bill / Reverand Lovejoy / Judge / Tom Brokaw / Additional Voic
@@ -205,7 +205,7 @@ actors: (N>50)
  - id: 
    name: Tress MacNeille
    role:
-    Agnes Skinner / Dolph / Various / Lindsey Naegle / Crazy Cat Lady / Mrs. Muntz /
+    Agnes Skinner / Dolph / Lindsey Naegle / Various / Crazy Cat Lady / Mrs. Muntz /
      Brandine / Brandine Spuckler / Shauna Chalmers / Dolph Starbeam / Cookie Kwan /
      Bernice Hibbert / Lunchlady Doris / Nurse / Various Kids / Lindsay Naegle / Man
     jula / Dubya Spuckler / Shauna / Lunchlady Dora / Dolph Shapiro / Mrs. Glick / L
@@ -261,26 +261,26 @@ actors: (N>50)
    role:
     Helen Lovejoy / Luann Van Houten / Maude Flanders / Miss Hoover / Elizabeth Hoov
     er / Nurse / Others / Various / Librarian / Martha Quimby / Mother / Judge / Fan
-     #1 / Reporter / Gavin's Mom / Mrs. Winfield / Shary Bobbins / Ruth Powers / Gov
-    . Mary Bailey / Emma / Auditioning Woman #1 / Dancing Girl #2 / Bowler #3 / Star
-    let / Bernice Hibbert / Chorus Girl #2 / Quimby's Wife / Farrah Fawcett-Majors-O
-    'Neal-Varney / Kitty Carlisle / KBBL Boss / Child #3 / Tar Pit Information Speak
-    er / Child #4 / Richard / Janey Powell / Mrs. Spencer / Woman at Observatory / O
-    perator / Singing Nun / Female Tour Guide / Jimmy Stewart's Granddaughter / Mail
-     Lady / Warren / Maude Flanders #1 / Showgirl / Kristin Shepard / Woman at Park 
-    / Newsreader / Fergie / Mrs. Norton / NASA Scientist #2 / Peggy Bundy / Mrs. Phi
-    llips / Screaming Woman / Woman at Science Fair / Lady / Telemarketer #2 / All i
-    s well / Police Photographer / Thelma / Ashley Grant / Protesting Woman / Woman 
-    on Chat Show / Woman in Gentle Ben Audience #1 / Computer Voice / Marguerita / F
-    emale Worker / Power Plant Voice / Inspector #1 / Application Reviewer #2 / Answ
-    ering Machine / Ticket Booth Lady / Distressed Woman / Dorothy / Building Owner 
-    / Three Stooges Actress / Employee / Guest / Princess Kashmir / Fe-Mail-Man / Ph
-    otography Club Member #1 / Churchgoer / Sunday School Teacher / Strawberry / Old
-     Lady / Ticket Lady / Child Care Woman #1 / Bort #1's Mother / Child Care Woman 
-    #2 / 'I'd be terribly embarrased if I were that boy's mother' / Animator #3 / Sc
-    hool Nurse / Queen Elizabeth / Allison Taylor / Future Tour Guide / Shelbyville 
-    Lemonade Kid / Singing Waiters / Architect Simpson / Sales Coordinator Simpson /
-     Girl #2
+     #1 / Reporter / Gavin's Mom / Mrs. Winfield / Shary Bobbins / Additional Voices
+     / Ruth Powers / Gov. Mary Bailey / Emma / Auditioning Woman #1 / Dancing Girl #
+    2 / Bowler #3 / Starlet / Bernice Hibbert / Chorus Girl #2 / Quimby's Wife / Far
+    rah Fawcett-Majors-O'Neal-Varney / Kitty Carlisle / KBBL Boss / Child #3 / Tar P
+    it Information Speaker / Child #4 / Richard / Janey Powell / Mrs. Spencer / Woma
+    n at Observatory / Operator / Singing Nun / Female Tour Guide / Jimmy Stewart's 
+    Granddaughter / Mail Lady / Warren / Maude Flanders #1 / Showgirl / Kristin Shep
+    ard / Woman at Park / Newsreader / Fergie / Mrs. Norton / NASA Scientist #2 / Pe
+    ggy Bundy / Mrs. Phillips / Screaming Woman / Woman at Science Fair / Lady / Tel
+    emarketer #2 / All is well / Police Photographer / Thelma / Ashley Grant / Prote
+    sting Woman / Woman on Chat Show / Woman in Gentle Ben Audience #1 / Computer Vo
+    ice / Marguerita / Female Worker / Power Plant Voice / Inspector #1 / Applicatio
+    n Reviewer #2 / Answering Machine / Ticket Booth Lady / Distressed Woman / Dorot
+    hy / Building Owner / Three Stooges Actress / Employee / Guest / Princess Kashmi
+    r / Fe-Mail-Man / Photography Club Member #1 / Churchgoer / Sunday School Teache
+    r / Strawberry / Old Lady / Ticket Lady / Child Care Woman #1 / Bort #1's Mother
+     / Child Care Woman #2 / 'I'd be terribly embarrased if I were that boy's mother
+    ' / Animator #3 / School Nurse / Queen Elizabeth / Allison Taylor / Future Tour 
+    Guide / Shelbyville Lemonade Kid / Singing Waiters / Architect Simpson / Sales C
+    oordinator Simpson
    thumb:
     https://m.media-amazon.com/images/M/MV5BOGE4ZmUyOTQtY2MyOS00ZTgwLThkMGEtNDlhMWMy
     MTY1ZDY4XkEyXkFqcGc@.jpg
@@ -369,7 +369,7 @@ actors: (N>50)
    role:
     Carl Carlson / Lou / Security Guard / Fausto / Audrey II / FBI Officer #1 / Empl
     oyee Praising Dance Moves / Partygoer #2 / Gamer / Hockey Player / Wyatt / Fathe
-    r / New York Yankees Player / Male Scientist / Judge
+    r / Chunk Mafia / New York Yankees Player / Male Scientist / Judge
    thumb:
     https://m.media-amazon.com/images/M/MV5BMTY1ODM2NDMzNF5BMl5BanBnXkFtZTcwNzkzMTgy
     Mg@@.jpg
@@ -378,12 +378,13 @@ actors: (N>50)
  - id: 
    name: Grey DeLisle
    role:
-    Martin Prince / Terri / Sherri / Terri Mackleberry / Leland Huebner III / Young 
-    Woman / Martin Prince's Brother / Martin's Child #2 / Women's Bar Customer / Air
-    port Passerby #2 / Airport Passerby #4 / Angry Crowd / Taxidermy Teacher / Frenc
-    h Fry / Francine / Little Girl in Commercial / Parking Enforcement Leader / Rile
-    y / Gloria Prince / Crowd Members / Iris Dalrymple / Malibu Stacy / Mr. Tumnus /
-     Derren Brown Emplyoee / Üter Zörker / Golf Commentator / Sherri Mackleberry
+    Martin Prince / Terri / Sherri / Terri Mackleberry / Sherri Mackleberry / Leland
+     Huebner III / Young Woman / Martin Prince's Brother / Martin's Child #2 / Women
+    's Bar Customer / Airport Passerby #2 / Airport Passerby #4 / Angry Crowd / Taxi
+    dermy Teacher / French Fry / Francine / Little Girl in Commercial / Parking Enfo
+    rcement Leader / Riley / Gloria Prince / Crowd Members / Iris Dalrymple / Malibu
+     Stacy / Mr. Tumnus / Derren Brown Emplyoee / Üter Zörker / Sherri and Terri Mac
+    kleberry / Hub's Mother / Golf Commentator / She-E-O Journalist / Amber
    thumb:
     https://m.media-amazon.com/images/M/MV5BMjg2MTQxOTUyMl5BMl5BanBnXkFtZTcwMTgxNTEx
     OA@@.jpg
@@ -420,7 +421,8 @@ actors: (N>50)
     wyer / Cannabis Influencer / Flight Attendant / Texxon Customer / Female Firefig
     hter / Daly Night / Etta Pryor / Mrs. McBride / Allergy Doctor / Court Bailiff /
      Female Criticizing Workforce / Naima / Grocery Store Clerk / Flight Attendance 
-    #2 / Morher / Karate Kids / Ursula / Party guest
+    #2 / Morher / Karate Kids / Ursula / Party guest / Pam / Perimenopause: The Musi
+    cal Singer
    thumb:
     https://m.media-amazon.com/images/M/MV5BMTYwNTk1NTA3Nl5BMl5BanBnXkFtZTYwNTAyMTM1
     .jpg

@@ -47,10 +47,11 @@ void ScrapePreview::onScrapeJobFinished(mediaelch::worker::Job* scrapeJob)
         // If it was aborted, do not clear adapter; was done before
         return;
     }
-    if (!scrapeJob->hasError()) {
-        MediaElch_Expects(m_currentAdapter != nullptr);
-        MediaElch_Expects(scrapeJob == m_currentAdapter->scrapeJob());
 
+    MediaElch_Expects(m_currentAdapter != nullptr);
+    MediaElch_Expects(scrapeJob == m_currentAdapter->scrapeJob());
+
+    if (!scrapeJob->hasError()) {
         ui->lblDescriptionContent->setPlainText(m_currentAdapter->description());
         ui->poster->clearAndAbortDownload();
 
@@ -59,6 +60,8 @@ void ScrapePreview::onScrapeJobFinished(mediaelch::worker::Job* scrapeJob)
         if (url.isValid()) {
             ui->poster->showImageFrom(url);
         }
+    } else {
+        clearAndAbortPreview();
     }
     m_currentAdapter = nullptr;
 }

@@ -9,16 +9,70 @@ title: The Godfather
 sortTitle: 
 originalTitle: The Godfather
 overview:
-    The Godfather "Don" Vito Corleone is the head of the Corleone mafia family in Ne
-    w York. He is at the event of his daughter's wedding. Michael, Vito's youngest s
-    on and a decorated WWII Marine is also present at the wedding. Michael seems to 
-    be uninterested in being a part of the family business. Vito is a powerful man, 
-    and is kind to all those who give him respect but is ruthless against those who 
-    do not. But when a powerful and treacherous rival wants to sell drugs and needs 
-    the Don's influence for the same, Vito refuses to do it. What follows is a clash
-     between Vito's fading old values and the new ways which may cause Michael to do
-     the thing he was most reluctant in doing and wage a mob war against all the oth
-    er mafia families which could tear the Corleone family apart.
+    In 1945, while his daughter Connie is getting married to Carlo Rizzi, Vito Corle
+    one, the Don of the Corleone family in New York City, listens to requests. The r
+    eception is where Vito's youngest son, Michael, a Marine and World War II hero w
+    ho has so far avoided involvement in the family business, presents his girlfrien
+    d, Kay Adams. Vito's godson, well-known singer Johnny Fontane, asks Vito for ass
+    istance in landing a film role. To convince Jack Woltz, the studio president, to
+     give Johnny the role, Vito dispatches his consigliere Tom Hagen. Woltz initiall
+    y rejects Hagen's request, but after discovering the severed head of his beloved
+     stud horse in his bed, he eventually gives in.
+
+Drug lord Virgil "The Turk" Sol
+    lozzo appeals to Vito to invest in his drug business and provide police protecti
+    on as Christmas draws near. Vito refuses, saying that he would lose his politica
+    l network if he got involved in drug use. Vito sends his enforcer Luca Brasi on 
+    an espionage mission to the Tattaglias because he suspects Sollozzo of having a 
+    relationship with the Tattaglia crime family. At the first meeting, Brasi is kil
+    led by garroting. Officers later shoot Vito and force Hagen to attend a meeting.
+     Now that Vito's firstborn son Sonny is in charge, Sollozzo puts pressure on Hag
+    en to convince Sonny to agree to the drug deal. After NYPD officers on Sollozzo'
+    s payroll remove Vito's guards, Michael visits him in the hospital after he surv
+    ives the shooting and discovers that he is unprotected. When Michael stops his f
+    ather's murder attempt, dishonest police captain Mark McCluskey beats him. Sonny
+     hits Bruno Tattaglia in retaliation for the attempted hit at the hospital. In o
+    rder to resolve the conflict, Sollozzo and McCluskey ask to meet with Michael. A
+    fter pretending to be interested and agreeing to meet, Michael plans to kill Son
+    ny and Corleone capo Clemenza and then disappears. At a restaurant in the Bronx,
+     Michael meets Sollozzo and McCluskey. He takes out a gun that Clemenza had hidd
+    en in the restroom and kills both men.
+
+The Five Families engage in open warfare
+     in spite of the government's crackdown on the murder of a police captain. Moe G
+    reene provides sanctuary for Vito's second son Fredo in Las Vegas, while Michael
+     seeks safety in Sicily. Michael meets and weds Apollonia, a local, in Sicily. C
+    arlo is publicly attacked and threatened by Sonny for mistreating Connie physica
+    lly. Sonny rushes to their house after he mistreats her once more, but gangsters
+     ambush and kill him at a highway toll booth. Michael is the target of a car bom
+    b that kills Apollonia shortly after.
+
+Vito arranges a meeting with the Five Fam
+    ilies because he is weary of war and devastated by Sonny's passing. He promises 
+    them he will stop opposing their drug trade and that he will not seek revenge fo
+    r Sonny's death. With his safety assured, Michael goes back to his hometown to m
+    arry Kay and start the family business. At the beginning of the 1950s, Kay gives
+     birth to two children. Michael takes over as the head of the Corleone family si
+    nce his father is dying and Fredo is not fit to be the leader. Michael is inform
+    ed by Vito that Don Barzini ordered the hit on Sonny and that Barzini would atte
+    mpt to kill him during a meeting that a traitor Corleone capo had set up. Since 
+    Hagen is not a "wartime consigliere," Michael assigns him to oversee operations 
+    in Las Vegas with Vito's help. Michael is devastated to discover that Fredo is m
+    ore devoted to Greene than to his own family when he goes to Las Vegas to purcha
+    se Greene's share in the family's casinos.
+
+While playing with Michael's son Ant
+    hony in 1955, Vito suffers a heart attack and passes away. Tessio betrays Michae
+    l by asking him to meet with Barzini at Vito's funeral. The meeting is scheduled
+     for the same day as Connie's baby's baptism. The dons of the Five Families are 
+    killed by Corleone hit men, along with Greene for failing to sell his hotel and 
+    Tessio for betraying Michael, while Michael stands at the baptismal font as the 
+    child's godfather. Michael coerces Carlo into confessing to his role in Sonny's 
+    killing. He tells Carlo that he is not being killed but rather banished. Carlo c
+    onfesses, but shortly after, Clemenza chokes him in a car. With Kay present, Con
+    nie questions Michael about his role in Carlo's demise. Kay is relieved when Mic
+    hael denies responsibility when she asks him if he ordered Carlo's death. Capos 
+    enter the office and honor Michael as "Don Corleone" as she departs.
 outline:
     The aging patriarch of an organized crime dynasty transfers control of his cland
     estine empire to his reluctant son.
@@ -130,7 +184,7 @@ studios: (N<6)
   - Albert S. Ruddy Productions
   - Paramount Pictures
   - Alfran Productions
-trailer: https://imdb-video.media-imdb.com/vi1348706585/1434659529640-260ouz-1616202346191.mp4?Expires=1764701343&Signature=YRJbcbwsCaBMj6aMGaFjs5OUif54id7JJwZgt5iJGfZCXlD0WvqNc1BhMjaWdqiwey2k-Vy-umTDmoVdP4AooVpGG8KFGCSMbgRptf0PBRFK5XrLRIZ15T9wcfZZqkJbo~8nRJoccILupPro8fO-A4HdPWwWfaj2p0M7WEwhDo~9IMKSE-5i1Zu8WOohXjUPSx64YSikAFOFjBNRETg1zMbKMIS9TzA6pb8jojunI1tu74MxXwfoyTgFBUU51c9fq4Lt5MnoidlY2lD3yam1-QrUmeTjKCRIKcon6oHFvG4eUmTD0CsuRVoNA1UPy0IMpuk7i06bcFCpSiaW7G0jqw__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA
+trailer: https://imdb-video.media-imdb.com/vi1348706585/1434659529640-260ouz-1616202346191.mp4?Expires=1767274998&Signature=GHXfruTfr14Cgdfg~N3lbGaky1yjLQefHurjKweZofVloMPGE6XeOkyMfHeNrwDSWMRTWyhe9X-4ZGAy9tPwluHXQqVgfEHRSf5ZFbPNh4m4rgSSx5AW320TLI0Pb1uZipXnjBsDFCzBb~Im8u-T2-Y0iLy-4mMIeE23GGHOMHaqSf8lU9PBuXM8XYcl-Kh81NJGrseOhDrrxI5oIvn1xBUW76-TeiXsY91GIe3DVkZTN34I34aDkIQUaWSi~-fmC~nobbCkn2fWgtirhmiH1IGjG~WEFqVPGETgyrG9jntd5pKblQpWeKpZMBJJWPkEuPRoDPT64zCmyIMvhapzbQ__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA
 showlink: (N=0)
 playcount: 0
 lastPlayed: <not set or invalid>

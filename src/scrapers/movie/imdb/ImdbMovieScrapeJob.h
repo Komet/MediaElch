@@ -20,9 +20,11 @@ public:
 
 private:
     void loadTags();
+    void loadPlotSummary();
 
     void parseAndAssignInfos(const QString& html);
     void parseAndAssignTags(const QString& html);
+    void parseAndAssignOverviewFromPlotSummaryPage(const QString& html);
 
     static QString sanitizeAmazonMediaUrl(QString url);
 

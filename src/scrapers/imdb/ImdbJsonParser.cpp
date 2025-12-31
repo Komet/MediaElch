@@ -45,6 +45,10 @@ const QVector<QString> IMDB_JSON_PATH_CAST_ROLE       = { "node", "creditedRoles
 // TV Shows
 const QVector<QString> IMDB_JSON_PATH_SEASONS         = { "props", "pageProps", "contentData", "entityMetadata",/*??*/ "data", "title", "episodes", "seasons" };
 const QVector<QString> IMDB_JSON_PATH_SEASON_EPISODES = { "props", "pageProps", "contentData", "section", "episodes", "items" };
+
+// Plot-Summary page
+const QVector<QString> IMDB_JSON_PATH_PLOTSUMMARY_SYNOPSIS  = { "props", "pageProps", "contentData", "data", "title", "plotSynopsis", "edges", "0", "node", "plotText", "plaidHtml" };
+
 // clang-format on
 
 } // namespace
@@ -58,12 +62,23 @@ ImdbData ImdbJsonParser::parseFromReferencePage(const QString& html, const Local
     QJsonDocument json = extractJsonFromHtml(html);
 
     ImdbJsonParser parser{};
-    parser.parserAndAssignDetails(json, preferredLocale);
+    parser.parseAndAssignDetails(json, preferredLocale);
     parser.parseAndAssignDirectors(json);
     parser.parseAndAssignWriters(json);
     parser.parseAndStoreActors(json);
 
     return parser.m_data;
+}
+
+Optional<QString> ImdbJsonParser::parseOverviewFromPlotSummaryPage(const QString& html)
+{
+    // Note: Expects HTML from https://www.imdb.com/title/tt________/plotsummray
+    QJsonDocument json = extractJsonFromHtml(html);
+
+    ImdbJsonParser parser{};
+    parser.parseAndAssignOverviewFromPlotSummary(json);
+
+    return parser.m_data.overview;
 }
 
 QVector<int> ImdbJsonParser::parseSeasonNumbersFromEpisodesPage(const QString& html)
@@ -108,7 +123,7 @@ QVector<ImdbShortEpisodeData> ImdbJsonParser::parseEpisodeIds(const QString& htm
     return episodes;
 }
 
-void ImdbJsonParser::parserAndAssignDetails(const QJsonDocument& json, const Locale& preferredLocale)
+void ImdbJsonParser::parseAndAssignDetails(const QJsonDocument& json, const Locale& preferredLocale)
 {
     using namespace std::chrono;
 
@@ -413,6 +428,14 @@ void ImdbJsonParser::parseAndStoreActors(const QJsonDocument& json)
                 m_data.actors.append(actor);
             }
         }
+    }
+}
+
+void ImdbJsonParser::parseAndAssignOverviewFromPlotSummary(const QJsonDocument& json)
+{
+    const QJsonValue value = followJsonPath(json, IMDB_JSON_PATH_PLOTSUMMARY_SYNOPSIS);
+    if (value.isString()) {
+        m_data.overview = removeHtmlEntities(value.toString().trimmed());
     }
 }
 

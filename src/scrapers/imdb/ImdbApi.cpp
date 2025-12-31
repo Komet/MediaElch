@@ -109,7 +109,7 @@ QUrl ImdbApi::makeTitleUrl(const ImdbId& id, PageKind page) const
         switch (page) {
         case PageKind::Main: return "";
         case PageKind::Reference: return "reference";
-        case PageKind::PlotSummary: return "plotsummaryre";
+        case PageKind::PlotSummary: return "plotsummary";
         case PageKind::ReleaseInfo: return "releaseinfo";
         case PageKind::Keywords: return "keywords";
         case PageKind::Episodes: return "episodes";

@@ -42,13 +42,20 @@ void ImdbMovieScrapeJob::doStart()
 
         parseAndAssignInfos(html);
 
-        // How many pages do we have to download? Count them.
+        // How many pages do we have to download? Count them. Initial value '1' is the reference page itself.
         m_itemsLeftToDownloads = 1;
 
         // IMDb has an extra page listing all tags (popular movies can have more than 100 tags).
         if (m_loadAllTags) {
             ++m_itemsLeftToDownloads;
             loadTags();
+        }
+
+        if (config().details.contains(MovieScraperInfo::Overview)) {
+            // IMDb has a specific page for plot summaries, which we use for the movie's plot/overview.
+            // As this is an additional request, only do so if necessary.
+            ++m_itemsLeftToDownloads;
+            loadPlotSummary();
         }
 
         // It's possible that none of the above items should be loaded.
@@ -70,6 +77,19 @@ void ImdbMovieScrapeJob::loadTags()
     m_api.loadTitle(config().locale, m_imdbId, ImdbApi::PageKind::Keywords, cb);
 }
 
+void ImdbMovieScrapeJob::loadPlotSummary()
+{
+    const auto cb = [this](QString html, ScraperError error) {
+        if (!error.hasError()) {
+            parseAndAssignOverviewFromPlotSummaryPage(html);
+
+        } else {
+            setScraperError(error);
+        }
+        decreaseDownloadCount();
+    };
+    m_api.loadTitle(config().locale, m_imdbId, ImdbApi::PageKind::PlotSummary, cb);
+}
 
 void ImdbMovieScrapeJob::parseAndAssignInfos(const QString& html)
 {
@@ -153,6 +173,15 @@ void ImdbMovieScrapeJob::parseAndAssignTags(const QString& html)
     }
 }
 
+void ImdbMovieScrapeJob::parseAndAssignOverviewFromPlotSummaryPage(const QString& html)
+{
+    const Optional<QString> overview = ImdbJsonParser::parseOverviewFromPlotSummaryPage(html);
+
+    if (overview.hasValue()) {
+        m_movie->setOverview(overview.value);
+    }
+}
+
 QString ImdbMovieScrapeJob::sanitizeAmazonMediaUrl(QString url)
 {
     // The URL can look like this:
@@ -171,7 +200,7 @@ QString ImdbMovieScrapeJob::sanitizeAmazonMediaUrl(QString url)
 void ImdbMovieScrapeJob::decreaseDownloadCount()
 {
     --m_itemsLeftToDownloads;
-    if (m_itemsLeftToDownloads == 0) {
+    if (m_itemsLeftToDownloads <= 0) {
         emitFinished();
     }
 }

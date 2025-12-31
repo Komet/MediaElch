@@ -89,7 +89,7 @@ TEST_CASE("IMDb scrapes correct movie details", "[movie][IMDb][load_data]")
         CHECK(m.images().posters().size() == 1);
         CHECK(m.runtime() == 97min);
 
-        CHECK_THAT(m.overview(), StartsWith("Dory is a wide-eyed, blue tang fish"));
+        CHECK_THAT(m.overview(), StartsWith("Dory, the regal blue tang"));
         CHECK_THAT(m.outline(), StartsWith("Friendly but forgetful blue tang Dory"));
         CHECK_THAT(m.director(), Contains("Andrew Stanton"));
         CHECK_THAT(m.director(), Contains("Angus MacLane"));

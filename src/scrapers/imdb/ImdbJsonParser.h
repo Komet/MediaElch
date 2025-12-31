@@ -55,6 +55,7 @@ class ImdbJsonParser
 {
 public:
     static ImdbData parseFromReferencePage(const QString& html, const mediaelch::Locale& preferredLocale);
+    static Optional<QString> parseOverviewFromPlotSummaryPage(const QString& html);
     static QVector<int> parseSeasonNumbersFromEpisodesPage(const QString& html);
     static QVector<ImdbShortEpisodeData> parseEpisodeIds(const QString& html);
 
@@ -63,10 +64,14 @@ public:
 private:
     ImdbJsonParser() = default;
 
-    void parserAndAssignDetails(const QJsonDocument& json, const mediaelch::Locale& preferredLocale);
+    void parseAndAssignDetails(const QJsonDocument& json, const mediaelch::Locale& preferredLocale);
     void parseAndAssignDirectors(const QJsonDocument& json);
     void parseAndStoreActors(const QJsonDocument& json);
     void parseAndAssignWriters(const QJsonDocument& json);
+    /// \brief   Parse and assign the plot/overview from IMDB's `/plotsummary` page.
+    /// \details IMDB's `/reference` page does not include a movie's plot, only an outline.
+    ///          Hence, we use `/plotsummary` to get the full plot.
+    void parseAndAssignOverviewFromPlotSummary(const QJsonDocument& json);
 
     /// Sanitize the given URL. Return value is the same object as the input string.
     static QString sanitizeAmazonMediaUrl(QString url);
