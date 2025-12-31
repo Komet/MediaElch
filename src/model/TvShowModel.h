@@ -32,6 +32,7 @@ const int MissingEpisodes = Qt::UserRole + 16;
 const int LogoPath = Qt::UserRole + 17;
 const int FilePath = Qt::UserRole + 18;
 const int HasDummyEpisodes = Qt::UserRole + 20;
+const int SortTitleRole = Qt::UserRole + 21; // since v2.12.1
 } // namespace TvShowRoles
 
 /// \brief The TvShowModel is responsible for handling *all* TV shows and episodes. A single

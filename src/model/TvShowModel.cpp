@@ -109,15 +109,23 @@ QVariant TvShowModel::data(const QModelIndex& index, int role) const
     if (role == Qt::SizeHintRole) {
         return QSize(0, (item.type() == TvShowType::TvShow) ? 44 : (item.type() == TvShowType::Season) ? 26 : 22);
     }
-    if (role == TvShowRoles::Type) {
-        return static_cast<int>(item.type());
-    }
     if (role == TvShowRoles::EpisodeCount && item.type() == TvShowType::TvShow) {
         return item.data(1);
     }
 
+    if (role == TvShowRoles::SortTitleRole && item.type() == TvShowType::TvShow) {
+        // Sort title or the "normalized" title if the former does not exist.
+        const QString sortTitle = item.data(static_cast<int>(TvShowModelItem::Columns::SortTitle)).toString();
+        if (sortTitle.isEmpty()) {
+            const QString title = item.data(static_cast<int>(TvShowModelItem::Columns::Title)).toString();
+            return helper::appendArticle(title);
+        }
+        return sortTitle;
+    }
+
     switch (role) {
-        // TODO: Use TvShowRoles instead
+    // TODO: Use TvShowModelItem::Columns instead of magic numbers.
+    case TvShowRoles::Type: return static_cast<int>(item.type());
     case TvShowRoles::HasChanged: return item.data(2);
     case TvShowRoles::IsNew: return item.data(3);
     case TvShowRoles::SyncNeeded: return item.data(4);

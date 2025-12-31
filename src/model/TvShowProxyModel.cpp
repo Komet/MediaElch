@@ -82,32 +82,39 @@ bool TvShowProxyModel::hasAcceptedChildren(int source_row, const QModelIndex& so
     return false;
 }
 
-/// \brief Sort function for the TV show model. Sorts TV shows by name.
 bool TvShowProxyModel::lessThan(const QModelIndex& left, const QModelIndex& right) const
 {
     auto* model = dynamic_cast<TvShowModel*>(sourceModel());
     TvShowBaseModelItem& leftItem = model->getItem(left);
     TvShowBaseModelItem& rightItem = model->getItem(right);
 
-    if (leftItem.type() == rightItem.type() && leftItem.type() == TvShowType::Season) {
-        // todo: remove dynamic cast
-        return dynamic_cast<SeasonModelItem*>(&leftItem)->seasonNumber()
-               < dynamic_cast<SeasonModelItem*>(&rightItem)->seasonNumber();
-    }
-
-    if (leftItem.type() == rightItem.type() && leftItem.type() == TvShowType::Episode) {
-        return dynamic_cast<EpisodeModelItem*>(&leftItem)->tvShowEpisode()->episodeNumber()
-               < dynamic_cast<EpisodeModelItem*>(&rightItem)->tvShowEpisode()->episodeNumber();
-    }
-
-    if (leftItem.type() == rightItem.type() && leftItem.type() == TvShowType::TvShow) {
-        bool leftNew = !leftItem.tvShow()->infoLoaded() || leftItem.tvShow()->hasNewEpisodes();
-        bool rightNew = !rightItem.tvShow()->infoLoaded() || rightItem.tvShow()->hasNewEpisodes();
-        if (leftNew && !rightNew) {
-            return true;
+    if (leftItem.type() == rightItem.type()) {
+        if (leftItem.type() == TvShowType::Season) {
+            // todo: remove dynamic cast
+            return dynamic_cast<SeasonModelItem*>(&leftItem)->seasonNumber()
+                   < dynamic_cast<SeasonModelItem*>(&rightItem)->seasonNumber();
         }
-        if (!leftNew && rightNew) {
-            return false;
+
+        if (leftItem.type() == TvShowType::Episode) {
+            return dynamic_cast<EpisodeModelItem*>(&leftItem)->tvShowEpisode()->episodeNumber()
+                   < dynamic_cast<EpisodeModelItem*>(&rightItem)->tvShowEpisode()->episodeNumber();
+        }
+
+        if (leftItem.type() == TvShowType::TvShow) {
+            // Unscraped TV shows come first, then scraped ones. Each section is sorted by the TVShows' sort-title.
+            bool leftNew = !leftItem.tvShow()->infoLoaded() || leftItem.tvShow()->hasNewEpisodes();
+            bool rightNew = !rightItem.tvShow()->infoLoaded() || rightItem.tvShow()->hasNewEpisodes();
+            if (leftNew && !rightNew) {
+                return true;
+            }
+            if (!leftNew && rightNew) {
+                return false;
+            }
+
+            const QString leftTitle = sourceModel()->data(left, TvShowRoles::SortTitleRole).toString();
+            const QString rightTitle = sourceModel()->data(right, TvShowRoles::SortTitleRole).toString();
+            const int cmp = QString::localeAwareCompare(leftTitle, rightTitle);
+            return cmp < 0;
         }
     }
 

@@ -46,7 +46,8 @@ public:
         TvShowClearArt = 107,
         TvShowCharacterArt = 108,
         HasDummyEpisodes = 109,
-        Filename = 110
+        Filename = 110,
+        SortTitle = 111 // since v2.12.1
     };
 
 public:
