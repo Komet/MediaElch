@@ -1220,17 +1220,20 @@ QImage KodiXml::movieSetBackdrop(QString setName)
  */
 void KodiXml::saveMovieSetPoster(QString setName, QImage poster)
 {
+    qCInfo(generic) << "[KodiXml] Saving movie set poster for movie set:" << setName;
     for (DataFile dataFile : Settings::instance()->dataFiles(DataFileType::MovieSetPoster)) {
         QString fileName = movieSetFileName(setName, &dataFile);
         if (!fileName.isEmpty()) {
             QDir dir = QFileInfo(fileName).dir();
-            bool success = false;
+            bool success = true;
 
+            // TODO: Error handling!
             if (!dir.exists()) {
                 success = dir.mkpath(".");
             }
 
             if (success) {
+                // TODO: Error handling!
                 poster.save(fileName, "jpg", 100);
             }
         }
@@ -1242,9 +1245,11 @@ void KodiXml::saveMovieSetPoster(QString setName, QImage poster)
  */
 void KodiXml::saveMovieSetBackdrop(QString setName, QImage backdrop)
 {
+    qCInfo(generic) << "[KodiXml] Saving movie set poster for movie set:" << setName;
     for (DataFile dataFile : Settings::instance()->dataFiles(DataFileType::MovieSetBackdrop)) {
         QString fileName = movieSetFileName(setName, &dataFile);
         if (!fileName.isEmpty()) {
+            // TODO: Error handling!
             backdrop.save(fileName, "jpg", 100);
         }
     }

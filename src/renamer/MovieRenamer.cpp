@@ -21,6 +21,7 @@ QVector<Placeholder> MovieRenamerPlaceholders::placeholders()
 {
     return {
         // clang-format off
+        // name, isValue, isCondition, translation
         { "extension",        true,  false, QObject::tr("File extension") },
         { "bluray",           false, true,  QObject::tr("File/directory is BluRay") },
         { "dvd",              false, true,  QObject::tr("File/directory is DVD") },
