@@ -33,6 +33,8 @@ void ImdbApi::sendGetRequest(const Locale& locale, const QUrl& url, ImdbApi::Api
 {
     QNetworkRequest request = mediaelch::network::requestWithDefaults(url);
     addHeadersToRequest(locale, request);
+    // The IMDB does not accept requests with the MediaElch HTTP request user agent
+    mediaelch::network::useFirefoxUserAgent(request);
 
     if (m_network.cache().hasValidElement(request)) {
         // Do not immediately run the callback because classes higher up may
@@ -47,9 +49,24 @@ void ImdbApi::sendGetRequest(const Locale& locale, const QUrl& url, ImdbApi::Api
 
     connect(reply, &QNetworkReply::finished, this, [reply, cb = std::move(callback), request, locale, this]() {
         auto dls = makeDeleteLaterScope(reply);
+
+        // Get a list of all raw header names of the HTTP request
+        QList<QByteArray> requestHeaderList = request.rawHeaderList();
+        for (const QByteArray& headerName : requestHeaderList) {
+            QByteArray headerValue = request.rawHeader(headerName);
+            qCWarning(generic) << "[ImdbTv][Api] Request header:" << headerName << " | Value:" << headerValue;
+        }
+
         QString html;
         if (reply->error() == QNetworkReply::NoError) {
             html = QString::fromUtf8(reply->readAll());
+
+            // Get a list of all raw header names of the HTTP reply
+            QList<QByteArray> replyHeaderList = reply->rawHeaderList();
+            for (const QByteArray& headerName : replyHeaderList) {
+                QByteArray headerValue = reply->rawHeader(headerName);
+                qCWarning(generic) << "[ImdbTv][Api] Reply header:" << headerName << " | Value:" << headerValue;
+            }
 
             if (!html.isEmpty()) {
                 m_network.cache().addElement(request, html);
