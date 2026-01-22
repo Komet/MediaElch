@@ -423,13 +423,13 @@ void FernsehserienDeShowScrapeJob::parseTvShow(const QString& html)
         R"(\bitemprop="?description\b"?[^>]*>(.*?)</div><)", QRegularExpression::DotMatchesEverythingOption);
     // Note: There are possibly multiple "first aired"-dates ("Premiere"). Take the first, which
     //       is most likely the German one.
-    static QRegularExpression firstAiredRegEx(R"re(<ea-angabe-datum[^>]*>\s*<time\s+datetime="?(\d{4}-\d{2}-\d{2})"?[^>]*>)re");
+    static QRegularExpression firstAiredRegEx(R"re(<ea-angabe-datum\b[^>]*>\s*<time\s+[^>]*\bdatetime="?(\d{4}-\d{2}-\d{2})"?[^>]*>)re");
     static QRegularExpression genresRegEx(R"re(<meta\s+(?=[^>]*\bitemprop="?genre\b"?)(?=[^>]*\bcontent="([^"]+?)")[^>]*>)re");
 
     static QRegularExpression actorsRegEx(
-        R"re(\bdata-event-category="?liste-cast-crew"?.*?</a>)re", QRegularExpression::DotMatchesEverythingOption);
+        R"re(\bdata-event-category="?liste-cast-crew\b"?.*?</a>)re", QRegularExpression::DotMatchesEverythingOption);
     static QRegularExpression actorNameRegEx(
-        R"re(<dt\s+[^>]*itemprop="?name"?[^>]*>(.*?)</dt>)re", QRegularExpression::DotMatchesEverythingOption);
+        R"re(<dt\s+[^>]*\bitemprop="?name\b"?[^>]*>(.*?)</dt>)re", QRegularExpression::DotMatchesEverythingOption);
     static QRegularExpression actorRoleRegEx(R"re(<dd\b[^>]*>(.*?)</dd>)re", QRegularExpression::DotMatchesEverythingOption);
     static QRegularExpression actorImageRegEx(
         R"re(\bdata-src="(https://bilder.fernsehserien.de/[^"]+?)")re", QRegularExpression::DotMatchesEverythingOption);
