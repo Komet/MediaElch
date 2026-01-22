@@ -156,6 +156,7 @@ FernsehserienDe::FernsehserienDe(FernsehserienDeConfiguration& settings, QObject
         EpisodeScraperInfo::Overview,
         EpisodeScraperInfo::Director,
         EpisodeScraperInfo::Thumbnail,
+        EpisodeScraperInfo::Writer,
     };
 
     m_meta.supportedSeasonOrders = {SeasonOrder::Aired};
@@ -845,6 +846,8 @@ void FernsehserienDeEpisodeScrapeJob::parseEpisode(const QString& html)
 
     static QRegularExpression directorsRegEx(R"re(\bitemprop="?director\b"?[^>]*>\s*<a\s+[^>]*\btitle="([^"]+?)"[^>]*>)re");
 
+    static QRegularExpression writersRegEx(R"re(\bitemprop="?author\b"?[^>]*>\s*<a\s+[^>]*\btitle="([^"]+?)"[^>]*>)re");
+
     MediaElch_Debug_Ensures(titleRegEx.isValid());
     MediaElch_Debug_Ensures(seasonEpisodeRegEx.isValid());
     MediaElch_Debug_Ensures(overviewRegEx.isValid());
@@ -855,6 +858,7 @@ void FernsehserienDeEpisodeScrapeJob::parseEpisode(const QString& html)
     MediaElch_Debug_Ensures(thumbDivRegEx.isValid());
     MediaElch_Debug_Ensures(thumbRegEx.isValid());
     MediaElch_Debug_Ensures(directorsRegEx.isValid());
+    MediaElch_Debug_Ensures(writersRegEx.isValid());
 
     QRegularExpressionMatch seasonEpisodeMatch = seasonEpisodeRegEx.match(html);
     if (seasonEpisodeMatch.hasMatch()) {
@@ -914,6 +918,17 @@ void FernsehserienDeEpisodeScrapeJob::parseEpisode(const QString& html)
     }
     if (!directors.isEmpty()) {
         episode().setDirectors(directors);
+    }
+
+    // Writers (called authors in fernsehserien.de)
+    matches = writersRegEx.globalMatch(html);
+    QStringList writers;
+    while (matches.hasNext()) {
+        QString writer = normalizeFromHtml(matches.next().captured(1));
+        writers.push_back(writer);
+    }
+    if (!writers.isEmpty()) {
+        episode().setWriters(writers);
     }
 
     // There is also `itemprop="producer"`, but that is not supported by MediaElch, yet.
