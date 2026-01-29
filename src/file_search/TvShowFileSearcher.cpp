@@ -137,7 +137,7 @@ void TvShowFileSearcher::reloadEpisodes(const mediaelch::DirectoryPath& showDir)
             return;
         }
         SeasonNumber seasonNumber = getSeasonNumber(files);
-        QVector<EpisodeNumber> episodeNumbers = getEpisodeNumbers(files);
+        QVector<EpisodeNumber> episodeNumbers = getEpisodeNumbers(files, seasonNumber);
         for (const EpisodeNumber& episodeNumber : episodeNumbers) {
             auto* episode = new TvShowEpisode(files, show);
             episode->setSeason(seasonNumber);
@@ -309,7 +309,7 @@ SeasonNumber TvShowFileSearcher::getSeasonNumber(QStringList files)
     static const QRegularExpression rxSxE(R"((\d+)x\d+)", QRegularExpression::CaseInsensitiveOption);
     static const QRegularExpression rxSeasonEpisode(
         R"(Season[ ._-]?(\d+)[ ._-]?Episode)", QRegularExpression::CaseInsensitiveOption);
-    static const QRegularExpression rxSDotE(R"((\d+).\d{2,4})", QRegularExpression::CaseInsensitiveOption);
+    static const QRegularExpression rxSDotE(R"((\d+)\.\d{2,4})");
 
     if (files.isEmpty()) {
         return SeasonNumber::NoSeason;
@@ -352,11 +352,13 @@ SeasonNumber TvShowFileSearcher::getSeasonNumber(QStringList files)
         return SeasonNumber(match.captured(1).toInt());
     }
 
-    // Default if no valid season could be parsed.
-    return SeasonNumber::SpecialsSeason;
+    // Default if no valid season could be parsed with the 4 regular expressions above.
+    // According to the Kodi Wiki (see https://kodi.wiki/view/Naming_video_files/Episodes#Single_Episode_Files),
+    // a TV show's episode without a season requires a dedicated file naming scheme like "Name ep02.ext".
+    return SeasonNumber::NoSeason;
 }
 
-QVector<EpisodeNumber> TvShowFileSearcher::getEpisodeNumbers(QStringList files)
+QVector<EpisodeNumber> TvShowFileSearcher::getEpisodeNumbers(QStringList files, SeasonNumber seasonNumber)
 {
     if (files.isEmpty()) {
         return {};
@@ -384,7 +386,6 @@ QVector<EpisodeNumber> TvShowFileSearcher::getEpisodeNumbers(QStringList files)
     /// If mayBeAmbiguous is true, we apply a heuristic to avoid matching the video's resolution
     auto scanWithPattern = [&](const QString& pattern, bool mayBeAmbiguous) -> bool {
         QRegularExpression rx(pattern, QRegularExpression::CaseInsensitiveOption);
-
         QRegularExpressionMatchIterator matches = rx.globalMatch(filename);
 
         elch_ssize_t lastMatchEnd = -1;
@@ -395,7 +396,7 @@ QVector<EpisodeNumber> TvShowFileSearcher::getEpisodeNumbers(QStringList files)
             if (mayBeAmbiguous && lastMatchEnd != -1 && lastMatchEnd < match.capturedStart(0) + 5) {
                 return true;
             }
-            episodes << EpisodeNumber(match.captured(2).toInt());
+            episodes << EpisodeNumber(match.captured(1).toInt());
             lastMatchEnd = match.capturedEnd(0);
         }
 
@@ -431,15 +432,31 @@ QVector<EpisodeNumber> TvShowFileSearcher::getEpisodeNumbers(QStringList files)
         bool mayBeAmbiguous = false;
     };
 
-    QVector<EpisodeNumberPattern> patterns{{R"(S(\d+)[ ._-]?E(\d+))", false},
-        {R"(S(\d+)[ ._-]?EP(\d+))", false},
-        {R"(Season[ ._-]?(\d+)[._ -]?Episode[ ._-]?(\d+))", false},
-        {R"((\d+)x(\d+))", true},
-        {R"((\d+).(\d){2,4})", true}};
+    if (seasonNumber == SeasonNumber::NoSeason) {
+        QVector<EpisodeNumberPattern> patterns{
+            {R"(\bep_?(\d+))", false},
+            {R"(\b(?:part|pt).((?=[MDCLXVI])M*(?:C[MD]|D?C{0,3})(?:X[CL]|L?X{0,3})(?:I[XV]|V?I{0,3}))\b)", false},
+            {R"(\bpt_((?=[MDCLXVI])M*(?:C[MD]|D?C{0,3})(?:X[CL]|L?X{0,3})(?:I[XV]|V?I{0,3}))\b)", false}
+        };
 
-    for (const auto& pattern : patterns) {
-        if (scanWithPattern(pattern.regex, pattern.mayBeAmbiguous)) {
-            break;
+        for (const auto& pattern : patterns) {
+            if (scanWithPattern(pattern.regex, pattern.mayBeAmbiguous)) {
+                break;
+            }
+        }
+    } else {
+        QVector<EpisodeNumberPattern> patterns{
+            {R"(\bS\d+[ ._-]?E(\d+))", false},
+            {R"(\bS\d+[ ._-]?EP(\d+))", false},
+            {R"(\bSeason[ ._-]?\d+[._ -]?Episode[ ._-]?(\d+))", false},
+            {R"(\d+x(\d+))", true},
+            {R"(\d+.(\d){2,4})", true}
+        };
+
+        for (const auto& pattern : patterns) {
+            if (scanWithPattern(pattern.regex, pattern.mayBeAmbiguous)) {
+                break;
+            }
         }
     }
 
@@ -540,7 +557,7 @@ void TvShowFileSearcher::setupShows(QMap<QString, QVector<QStringList>>& content
         // Setup episodes list
         for (const QStringList& files : it.value()) {
             SeasonNumber seasonNumber = getSeasonNumber(files);
-            QVector<EpisodeNumber> episodeNumbers = getEpisodeNumbers(files);
+            QVector<EpisodeNumber> episodeNumbers = getEpisodeNumbers(files, seasonNumber);
             for (const EpisodeNumber& episodeNumber : episodeNumbers) {
                 auto* episode = new TvShowEpisode(files, show);
                 episode->setSeason(seasonNumber);

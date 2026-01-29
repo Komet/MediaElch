@@ -50,8 +50,36 @@ public:
 
     Result next()
     {
-        static QRegularExpression episodeSeason(R"(^(\d+)[.](\d+))");
+        // The following cases are known to fernsehserien.de regarding the combinations of season and episode numbers
+        // in the URLs and episode titles:
+        // 1. URL:   /die-simpsons/folgen/3x06-der-vater-eines-clowns-62074
+        //    Title: 3.06 Der Vater eines Clowns
+        //    File name: "Die Simpsons S03E06.mp4"
+        //    Comment: Kodi and MediaElch support this combination.
+        // 2. URL:   /dahoam-is-dahoam/folgen/240-schlaflos-in-lansing-122536
+        //    Title: 3.001 Schlaflos in Lansing
+        //    File name: "Dahoam is Dahoam ep240.mp4"
+        //    Comment: "3.001" is not visible in the TV show overview page.
+        //    Comment: Kodi and MediaElch support this combination.
+        // 3. URL:   /abenteuer-erde/folgen/die-rueckkehr-der-biber-1593463
+        //    Title: 0.01 Die Rückkehr der Biber
+        //    Comment: All episodes have "0.01" in the title.
+        //    Comment: Neither Kodi nor MediaElch support this combination.
+        // 4. URL:   /schaetze-der-welt/folgen/5-alhambra-residenz-der-mauren-spanien-551431
+        //    Title: 0.005 Alhambra - Residenz der Mauren (Spanien)
+        //    File name: "Schätze der Welt ep5.mp4"
+        //    Comment: The one-digit episode number has two leading zeros. The TV show has a three-digit number of episodes.
+        //    Comment: Kodi and MediaElch support this combination.
+        // The following TV show has other special features:
+        // 1. SRF bi de Lüt - Hüttengeschichten (https://www.fernsehserien.de/huettengeschichten/episodenguide)
+        //    has seasons 1 to 6 twice as of 2026-01-27.
+        //    Kodi and MediaElch cannot assign an episode of Winterhüttengeschichten (seasons 1 to 6) based on the season
+        //    and episode numbers of one of the six seasons.
+
+        static QRegularExpression episodeSeason(R"(\/0*(\d+)x0*(\d+)-)");
+        static QRegularExpression episodeWithoutSeason(R"(\/(\d+)-)");
         MediaElch_Debug_Ensures(episodeSeason.isValid());
+        MediaElch_Debug_Ensures(episodeWithoutSeason.isValid());
 
         Result current = m_next;
         m_next = {};
@@ -61,7 +89,7 @@ public:
 
             QString id = match.captured(1);
             QString title = match.captured(2);
-            match = episodeSeason.match(title);
+            match = episodeSeason.match(id);
 
             if (match.hasMatch()) {
                 bool seasonOk = false;
@@ -71,6 +99,18 @@ public:
 
                 if (seasonOk && episodeOk) {
                     m_next = Result{season, episode, id};
+                }
+            } else {
+                match = episodeWithoutSeason.match(id);
+
+                if (match.hasMatch()) {
+                    bool episodeOk = false;
+                    auto season = SeasonNumber::NoSeason;
+                    auto episode = EpisodeNumber(match.captured(1).toInt(&episodeOk, 10));
+
+                    if (episodeOk) {
+                        m_next = Result{season, episode, id};
+                    }
                 }
             }
         }
@@ -762,6 +802,7 @@ void FernsehserienDeEpisodeScrapeJob::parseAndLoadEpisodeIdFromSeason(const QStr
     EpisodeListParser parser = EpisodeListParser::forHtml(html);
     while (parser.hasNext()) {
         EpisodeListParser::Result next = parser.next();
+
         if (next.seasonNumber == config().identifier.seasonNumber
             && next.episodeNumber == config().identifier.episodeNumber) {
             episodeId = next.id;

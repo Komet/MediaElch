@@ -52,21 +52,10 @@ void ImdbApi::sendGetRequest(const Locale& locale, const QUrl& url, ImdbApi::Api
 
         // Get a list of all raw header names of the HTTP request
         QList<QByteArray> requestHeaderList = request.rawHeaderList();
-        for (const QByteArray& headerName : requestHeaderList) {
-            QByteArray headerValue = request.rawHeader(headerName);
-            qCWarning(generic) << "[ImdbTv][Api] Request header:" << headerName << " | Value:" << headerValue;
-        }
 
         QString html;
         if (reply->error() == QNetworkReply::NoError) {
             html = QString::fromUtf8(reply->readAll());
-
-            // Get a list of all raw header names of the HTTP reply
-            QList<QByteArray> replyHeaderList = reply->rawHeaderList();
-            for (const QByteArray& headerName : replyHeaderList) {
-                QByteArray headerValue = reply->rawHeader(headerName);
-                qCWarning(generic) << "[ImdbTv][Api] Reply header:" << headerName << " | Value:" << headerValue;
-            }
 
             if (!html.isEmpty()) {
                 m_network.cache().addElement(request, html);

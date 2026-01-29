@@ -14,7 +14,7 @@ public:
     explicit TvShowFileSearcher(QObject* parent = nullptr);
     void setTvShowDirectories(QVector<mediaelch::MediaDirectory> directories);
     static SeasonNumber getSeasonNumber(QStringList files);
-    static QVector<EpisodeNumber> getEpisodeNumbers(QStringList files);
+    static QVector<EpisodeNumber> getEpisodeNumbers(QStringList files, SeasonNumber seasonNumber);
     static TvShowEpisode* loadEpisodeData(TvShowEpisode* episode);
     static TvShowEpisode* reloadEpisodeData(TvShowEpisode* episode);
 
