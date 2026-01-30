@@ -136,11 +136,10 @@ void TvShowFileSearcher::reloadEpisodes(const mediaelch::DirectoryPath& showDir)
         if (m_aborted) {
             return;
         }
-        SeasonNumber seasonNumber = getSeasonNumber(files);
-        QVector<EpisodeNumber> episodeNumbers = getEpisodeNumbers(files, seasonNumber);
+        QVector<EpisodeNumber> episodeNumbers = getEpisodeNumbers(files);
         for (const EpisodeNumber& episodeNumber : episodeNumbers) {
             auto* episode = new TvShowEpisode(files, show);
-            episode->setSeason(seasonNumber);
+            episode->setSeason(getSeasonNumber(files));
             episode->setEpisode(episodeNumber);
             episodes.append(episode);
         }
@@ -358,7 +357,7 @@ SeasonNumber TvShowFileSearcher::getSeasonNumber(QStringList files)
     return SeasonNumber::NoSeason;
 }
 
-QVector<EpisodeNumber> TvShowFileSearcher::getEpisodeNumbers(QStringList files, SeasonNumber seasonNumber)
+QVector<EpisodeNumber> TvShowFileSearcher::getEpisodeNumbers(QStringList files)
 {
     if (files.isEmpty()) {
         return {};
@@ -432,31 +431,22 @@ QVector<EpisodeNumber> TvShowFileSearcher::getEpisodeNumbers(QStringList files, 
         bool mayBeAmbiguous = false;
     };
 
-    if (seasonNumber == SeasonNumber::NoSeason) {
-        QVector<EpisodeNumberPattern> patterns{
-            {R"(\bep_?(\d+))", false},
-            {R"(\b(?:part|pt).((?=[MDCLXVI])M*(?:C[MD]|D?C{0,3})(?:X[CL]|L?X{0,3})(?:I[XV]|V?I{0,3}))\b)", false},
-            {R"(\bpt_((?=[MDCLXVI])M*(?:C[MD]|D?C{0,3})(?:X[CL]|L?X{0,3})(?:I[XV]|V?I{0,3}))\b)", false}
-        };
+    QVector<EpisodeNumberPattern> patterns{
+        {R"(S\d+[ ._-]?E(\d+))", false},
+        {R"(S\d+[ ._-]?EP(\d+))", false},
+        {R"(Season[ ._-]?\d+[._ -]?Episode[ ._-]?(\d+))", false},
+        {R"(ep_?(\d+))", false},
+        // The next two patterns could be used in case fernsehserien.de uses roman numerals. However, this would require
+        // further changes in /src/scrapers/tv_show/fernsehserien_de/FernsehserienDe.cpp
+        // {R"((?:part|pt).((?=[MDCLXVI])M*(?:C[MD]|D?C{0,3})(?:X[CL]|L?X{0,3})(?:I[XV]|V?I{0,3}))\b)", false},
+        // {R"(pt_((?=[MDCLXVI])M*(?:C[MD]|D?C{0,3})(?:X[CL]|L?X{0,3})(?:I[XV]|V?I{0,3}))\b)", false},
+        {R"(\d+x(\d+))", true},
+        {R"(\d+.(\d){2,4})", true}
+    };
 
-        for (const auto& pattern : patterns) {
-            if (scanWithPattern(pattern.regex, pattern.mayBeAmbiguous)) {
-                break;
-            }
-        }
-    } else {
-        QVector<EpisodeNumberPattern> patterns{
-            {R"(\bS\d+[ ._-]?E(\d+))", false},
-            {R"(\bS\d+[ ._-]?EP(\d+))", false},
-            {R"(\bSeason[ ._-]?\d+[._ -]?Episode[ ._-]?(\d+))", false},
-            {R"(\d+x(\d+))", true},
-            {R"(\d+.(\d){2,4})", true}
-        };
-
-        for (const auto& pattern : patterns) {
-            if (scanWithPattern(pattern.regex, pattern.mayBeAmbiguous)) {
-                break;
-            }
+    for (const auto& pattern : patterns) {
+        if (scanWithPattern(pattern.regex, pattern.mayBeAmbiguous)) {
+            break;
         }
     }
 
@@ -556,11 +546,10 @@ void TvShowFileSearcher::setupShows(QMap<QString, QVector<QStringList>>& content
 
         // Setup episodes list
         for (const QStringList& files : it.value()) {
-            SeasonNumber seasonNumber = getSeasonNumber(files);
-            QVector<EpisodeNumber> episodeNumbers = getEpisodeNumbers(files, seasonNumber);
+            QVector<EpisodeNumber> episodeNumbers = getEpisodeNumbers(files);
             for (const EpisodeNumber& episodeNumber : episodeNumbers) {
                 auto* episode = new TvShowEpisode(files, show);
-                episode->setSeason(seasonNumber);
+                episode->setSeason(getSeasonNumber(files));
                 episode->setEpisode(episodeNumber);
                 episodes.append(episode);
             }

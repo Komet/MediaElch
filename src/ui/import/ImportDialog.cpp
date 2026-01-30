@@ -344,7 +344,7 @@ void ImportDialog::onTvShowChosen()
     m_episode = new TvShowEpisode(files(), m_show);
     SeasonNumber seasonNumber = TvShowFileSearcher::getSeasonNumber(files());
     m_episode->setSeason(seasonNumber);
-    QVector<EpisodeNumber> episodes = TvShowFileSearcher::getEpisodeNumbers(files(), seasonNumber);
+    QVector<EpisodeNumber> episodes = TvShowFileSearcher::getEpisodeNumbers(files());
     if (!episodes.isEmpty()) {
         m_episode->setEpisode(episodes.first());
     }
