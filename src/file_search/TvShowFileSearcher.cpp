@@ -432,12 +432,12 @@ QVector<EpisodeNumber> TvShowFileSearcher::getEpisodeNumbers(QStringList files)
     };
 
     QVector<EpisodeNumberPattern> patterns{
-        {R"(S\d+[ ._-]?E(\d+))", false},
-        {R"(S\d+[ ._-]?EP(\d+))", false},
-        {R"(Season[ ._-]?\d+[._ -]?Episode[ ._-]?(\d+))", false},
+        {R"([Ss]\d+[ ._-x]?[Ee](\d+))", false},
+        {R"([Ss]\d+[ ._-x]?[Ee][Pp](\d+))", false},
+        {R"([Ss]eason[ ._-x]?\d+[._ -]?[Ee]pisode[ ._-]?(\d+))", false},
         {R"(ep_?(\d+))", false},
-        // The next two patterns could be used in case fernsehserien.de uses roman numerals. However, this would require
-        // further changes in /src/scrapers/tv_show/fernsehserien_de/FernsehserienDe.cpp
+        // The next two patterns could be used in case fernsehserien.de uses roman numerals. However, this might require
+        // further changes in this file and in /src/scrapers/tv_show/fernsehserien_de/FernsehserienDe.cpp.
         // {R"((?:part|pt).((?=[MDCLXVI])M*(?:C[MD]|D?C{0,3})(?:X[CL]|L?X{0,3})(?:I[XV]|V?I{0,3}))\b)", false},
         // {R"(pt_((?=[MDCLXVI])M*(?:C[MD]|D?C{0,3})(?:X[CL]|L?X{0,3})(?:I[XV]|V?I{0,3}))\b)", false},
         {R"(\d+x(\d+))", true},

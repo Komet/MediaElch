@@ -31,12 +31,47 @@ TEST_CASE("TvShowFileSearcher parses episode data", "[show][utils]")
 {
     SECTION("single episode file")
     {
-        CHECK(getEpisodeNumber("dir/S01E4.mov") == EpisodeNumber(4));
         CHECK(getEpisodeNumber("dir/S01E04.mov") == EpisodeNumber(4));
         CHECK(getEpisodeNumber("dir/S01E004.mov") == EpisodeNumber(4));
         CHECK(getEpisodeNumber("dir/S01E14.mov") == EpisodeNumber(14));
         CHECK(getEpisodeNumber("dir/S01E142.mov") == EpisodeNumber(142));
         CHECK(getEpisodeNumber("dir/S01E1425.mov") == EpisodeNumber(1425));
+
+        CHECK(getEpisodeNumber("dir/S1E4.mov") == EpisodeNumber(4));
+        CHECK(getEpisodeNumber("dir/S01E4.mov") == EpisodeNumber(4));
+        CHECK(getEpisodeNumber("dir/S1E04.mov") == EpisodeNumber(4));
+        CHECK(getEpisodeNumber("dir/S1E14.mov") == EpisodeNumber(14));
+        CHECK(getEpisodeNumber("dir/S1E142.mov") == EpisodeNumber(142));
+        CHECK(getEpisodeNumber("dir/S1E1425.mov") == EpisodeNumber(1425));
+
+        CHECK(getEpisodeNumber("dir/S01.E04.mov") == EpisodeNumber(4));
+        CHECK(getEpisodeNumber("dir/S1.E4.mov") == EpisodeNumber(4));
+        CHECK(getEpisodeNumber("dir/S01.E004.mov") == EpisodeNumber(4));
+        CHECK(getEpisodeNumber("dir/S01.E14.mov") == EpisodeNumber(14));
+        CHECK(getEpisodeNumber("dir/S01.E142.mov") == EpisodeNumber(142));
+        CHECK(getEpisodeNumber("dir/S01.E1425.mov") == EpisodeNumber(1425));
+
+        CHECK(getEpisodeNumber("dir/S01_E04.mov") == EpisodeNumber(4));
+        CHECK(getEpisodeNumber("dir/S1_E4.mov") == EpisodeNumber(4));
+        CHECK(getEpisodeNumber("dir/S01_E004.mov") == EpisodeNumber(4));
+        CHECK(getEpisodeNumber("dir/S01_E14.mov") == EpisodeNumber(14));
+        CHECK(getEpisodeNumber("dir/S01_E142.mov") == EpisodeNumber(142));
+        CHECK(getEpisodeNumber("dir/S01_E1425.mov") == EpisodeNumber(1425));
+
+        CHECK(getEpisodeNumber("dir/S01xE04.mov") == EpisodeNumber(4));
+        CHECK(getEpisodeNumber("dir/S1xE4.mov") == EpisodeNumber(4));
+        CHECK(getEpisodeNumber("dir/S01xE004.mov") == EpisodeNumber(4));
+        CHECK(getEpisodeNumber("dir/S01xE14.mov") == EpisodeNumber(14));
+        CHECK(getEpisodeNumber("dir/S01xE142.mov") == EpisodeNumber(142));
+        CHECK(getEpisodeNumber("dir/S01xE1425.mov") == EpisodeNumber(1425));
+
+        CHECK(getEpisodeNumber("dir/1x04.mov") == EpisodeNumber(4));
+        CHECK(getEpisodeNumber("dir/01x4.mov") == EpisodeNumber(4));
+        CHECK(getEpisodeNumber("dir/01x04.mov") == EpisodeNumber(4));
+        CHECK(getEpisodeNumber("dir/01x004.mov") == EpisodeNumber(4));
+        CHECK(getEpisodeNumber("dir/01x14.mov") == EpisodeNumber(14));
+        CHECK(getEpisodeNumber("dir/01x142.mov") == EpisodeNumber(142));
+        CHECK(getEpisodeNumber("dir/01x1425.mov") == EpisodeNumber(1425));
 
         CHECK(getEpisodeNumber("dir/Season.01-Episode.142.mov") == EpisodeNumber(142));
         CHECK(getEpisodeNumber("dir/Season.01 Episode.142.mov") == EpisodeNumber(142));
@@ -101,7 +136,10 @@ TEST_CASE("TvShowFileSearcher parses episode data", "[show][utils]")
     SECTION("multi-episode file")
     {
         CHECK(getEpisodeNumbers("dir/S01E4-S01E5.mov") == episodeList({4, 5}));
-        CHECK(getEpisodeNumbers("dir/S01E04-S01E05.mov") == episodeList({4, 5}));
+        CHECK(getEpisodeNumbers("dir/S01E04-S01E5.mov") == episodeList({4, 5}));
+        CHECK(getEpisodeNumbers("dir/S01E4-S01E05.mov") == episodeList({4, 5}));
+        CHECK(getEpisodeNumbers("dir/S1E04-S1E05.mov") == episodeList({4, 5}));
+        CHECK(getEpisodeNumbers("dir/S1E4-S01E05.mov") == episodeList({4, 5}));
         CHECK(getEpisodeNumbers("dir/S01E14-S01E115.mov") == episodeList({14, 115}));
         CHECK(getEpisodeNumbers("dir/S01E004-S01E005.mov") == episodeList({4, 5}));
         CHECK(getEpisodeNumbers("dir/S01E004-S01E005-S01E15.mov") == episodeList({4, 5, 15}));
@@ -109,7 +147,18 @@ TEST_CASE("TvShowFileSearcher parses episode data", "[show][utils]")
 
         // Note: No episode ranges.
         CHECK(getEpisodeNumbers("dir/Name_S01E4-S01E6.mov") == episodeList({4, 6}));
+        CHECK(getEpisodeNumbers("dir/Name_S01E04-S01E6.mov") == episodeList({4, 6}));
+        CHECK(getEpisodeNumbers("dir/Name S01E4-S01E06.mov") == episodeList({4, 6}));
+        CHECK(getEpisodeNumbers("dir/Name S01E04-E6.mov") == episodeList({4, 6}));
+        CHECK(getEpisodeNumbers("dir/Name S01E04-E06.mov") == episodeList({4, 6}));
+        CHECK(getEpisodeNumbers("dir/Name S01E4-E6.mov") == episodeList({4, 6}));
+        CHECK(getEpisodeNumbers("dir/Name S01E4-E06.mov") == episodeList({4, 6}));
         CHECK(getEpisodeNumbers("dir/S01E4 Name with space S01E05 Second name.mov") == episodeList({4, 5}));
+        CHECK(getEpisodeNumbers("dir/Name s01e04-Episode4.Title-s01e05-Episode5.Title.mov") == episodeList({4, 5}));
+        CHECK(getEpisodeNumbers("dir/Name s01e01-s01e02-s01e03.mov") == episodeList({1, 2, 3}));
+        CHECK(getEpisodeNumbers("dir/Name s01e01e02.mov") == episodeList({1, 2}));
+        CHECK(getEpisodeNumbers("dir/Name s01e01-02-03.mov") == episodeList({1, 2, 3}));
+        CHECK(getEpisodeNumbers("dir/Name 1x01x02.mov") == episodeList({1, 2}));
         CHECK(getEpisodeNumbers("dir/S01E14-S01E115 - Some name.mov") == episodeList({14, 115}));
         CHECK(getEpisodeNumbers("dir/S01E004.S01E005-Another-Title.mov") == episodeList({4, 5}));
 
@@ -117,12 +166,15 @@ TEST_CASE("TvShowFileSearcher parses episode data", "[show][utils]")
 
 		// Check for TV show without season number
         CHECK(getEpisodeNumbers("dir/ep4-ep5.mov") == episodeList({4, 5}));
+        CHECK(getEpisodeNumbers("dir/ep04-ep5.mov") == episodeList({4, 5}));
+        CHECK(getEpisodeNumbers("dir/ep4-ep05.mov") == episodeList({4, 5}));
         CHECK(getEpisodeNumbers("dir/ep04-ep05.mov") == episodeList({4, 5}));
         CHECK(getEpisodeNumbers("dir/ep14-ep115.mov") == episodeList({14, 115}));
         CHECK(getEpisodeNumbers("dir/ep004-ep005.mov") == episodeList({4, 5}));
-
         CHECK(getEpisodeNumbers("dir/Name_ep4-ep6.mov") == episodeList({4, 6}));
+        CHECK(getEpisodeNumbers("dir/Name ep4-ep6.mov") == episodeList({4, 6}));
         CHECK(getEpisodeNumbers("dir/ep4 Name with space ep05 Second name.mov") == episodeList({4, 5}));
         CHECK(getEpisodeNumbers("dir/ep14-ep115 - Some name.mov") == episodeList({14, 115}));
-	}
+        CHECK(getEpisodeNumbers("dir/ep04-05.mov") == episodeList({4, 5}));
+    }
 }
