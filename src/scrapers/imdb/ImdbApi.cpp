@@ -50,9 +50,6 @@ void ImdbApi::sendGetRequest(const Locale& locale, const QUrl& url, ImdbApi::Api
     connect(reply, &QNetworkReply::finished, this, [reply, cb = std::move(callback), request, locale, this]() {
         auto dls = makeDeleteLaterScope(reply);
 
-        // Get a list of all raw header names of the HTTP request
-        QList<QByteArray> requestHeaderList = request.rawHeaderList();
-
         QString html;
         if (reply->error() == QNetworkReply::NoError) {
             html = QString::fromUtf8(reply->readAll());
