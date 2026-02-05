@@ -136,10 +136,11 @@ void TvShowFileSearcher::reloadEpisodes(const mediaelch::DirectoryPath& showDir)
         if (m_aborted) {
             return;
         }
+        SeasonNumber seasonNumber = getSeasonNumber(files);
         QVector<EpisodeNumber> episodeNumbers = getEpisodeNumbers(files);
         for (const EpisodeNumber& episodeNumber : episodeNumbers) {
             auto* episode = new TvShowEpisode(files, show);
-            episode->setSeason(getSeasonNumber(files));
+            episode->setSeason(seasonNumber);
             episode->setEpisode(episodeNumber);
             episodes.append(episode);
         }
