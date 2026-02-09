@@ -389,7 +389,7 @@ ShowSearchJob::Result FernsehserienDeShowSearchJob::parseResultFromEpisodePage(c
     static QRegularExpression resultTitle(
         R"(<div\s+[^>]*\bclass="?seriestitle\b"?[^>]*>(.*?)</div>)", QRegularExpression::DotMatchesEverythingOption);
     static QRegularExpression resultYear(
-        R"(<dd\b[^>]*>.*?(\d{4})[-–\s].*?</dd>)", QRegularExpression::DotMatchesEverythingOption);
+        R"(<div\s+[^>]*\bclass="?serie-produktionsjahre\b"?[^>]*>.*?(\d{4})[-–\s].*?</div>)", QRegularExpression::DotMatchesEverythingOption);
 
     MediaElch_Debug_Ensures(resultTitle.isValid());
     MediaElch_Debug_Ensures(resultYear.isValid());
