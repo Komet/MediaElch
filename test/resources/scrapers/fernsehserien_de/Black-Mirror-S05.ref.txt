@@ -14,7 +14,7 @@ title: Striking Vipers
 showTitle: 
 ratings (N=0)
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=05
 episode: EpisodeNumber=01
 displaySeason: SeasonNumber=xx
@@ -57,7 +57,7 @@ title: Smithereens
 showTitle: 
 ratings (N=0)
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=05
 episode: EpisodeNumber=02
 displaySeason: SeasonNumber=xx
@@ -106,7 +106,7 @@ title: Rachel, Jack und Ashley Too
 showTitle: 
 ratings (N=0)
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=05
 episode: EpisodeNumber=03
 displaySeason: SeasonNumber=xx

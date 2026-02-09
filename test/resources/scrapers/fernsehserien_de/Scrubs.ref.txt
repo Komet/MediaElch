@@ -26,7 +26,7 @@ overview:
     usste auch deutliche Zuschauereinbußen hinnehmen. (Text: ProSieben)
 ratings (N=0)
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 firstAired: 2003-09-02
 runtime: 0min
 genres: (N<6)

@@ -9,7 +9,7 @@ title: Metallkopf
 showTitle: 
 ratings (N=0)
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=04
 episode: EpisodeNumber=05
 displaySeason: SeasonNumber=xx

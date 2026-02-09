@@ -1,7 +1,7 @@
 
 
 ================================================================================
-Season 00 - Episode 01
+Season xx - Episode 01
 
 TvShowEpisode Reference File
 ------------------
@@ -14,8 +14,8 @@ title: Weiße Weihnachten
 showTitle: 
 ratings (N=0)
 userRating: 0
-imdbTop250: 0
-season: SeasonNumber=00
+imdbTop250: -1
+season: SeasonNumber=xx
 episode: EpisodeNumber=01
 displaySeason: SeasonNumber=xx
 displayEpisode: EpisodeNumber=xx
@@ -36,7 +36,7 @@ files: (N=0)
 
 
 ================================================================================
-Season 00 - Episode 02
+Season xx - Episode 02
 
 TvShowEpisode Reference File
 ------------------
@@ -49,8 +49,8 @@ title: Bandersnatch
 showTitle: 
 ratings (N=0)
 userRating: 0
-imdbTop250: 0
-season: SeasonNumber=00
+imdbTop250: -1
+season: SeasonNumber=xx
 episode: EpisodeNumber=02
 displaySeason: SeasonNumber=xx
 displayEpisode: EpisodeNumber=xx
@@ -84,7 +84,7 @@ title: Der Wille des Volkes
 showTitle: 
 ratings (N=0)
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=01
 episode: EpisodeNumber=01
 displaySeason: SeasonNumber=xx
@@ -95,7 +95,8 @@ overview:
     g: In einem nationalen Sender muss übertagen werden, wie der Premierminister Sex
      mit einem Schwein hat. Callow versucht alles um Zeit zu schinden und den Entfüh
     rer zu stellen. Eine Medienlawine bricht los, die Callow nicht aufhalten kann.
-writers: (N=0)
+writers: (N=1)
+  - Charlie Brooker
 directors: (N=1)
   - Otto Bathurst
 playCount: 0
@@ -254,7 +255,7 @@ title: Das Leben als Spiel
 showTitle: 
 ratings (N=0)
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=01
 episode: EpisodeNumber=02
 displaySeason: SeasonNumber=xx
@@ -303,7 +304,7 @@ title: Das transparente Ich
 showTitle: 
 ratings (N=0)
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=01
 episode: EpisodeNumber=03
 displaySeason: SeasonNumber=xx
@@ -317,7 +318,8 @@ overview:
     zenen immer und immer wieder neu zu erleben – vor den eigenen Augen oder alterna
     tiv auch auf Großbildschirmen zusammen mit den Freunden. Was zu ganz eigenen Rea
     ktionen führen kann …
-writers: (N=0)
+writers: (N=1)
+  - Jesse Armstrong
 directors: (N=1)
   - Brian Welsh
 playCount: 0
@@ -427,7 +429,7 @@ title: Wiedergänger
 showTitle: 
 ratings (N=0)
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=02
 episode: EpisodeNumber=01
 displaySeason: SeasonNumber=xx
@@ -442,7 +444,8 @@ overview:
     rächspartner zurück. Doch bald will sie mehr – die Simulation verstärkt noch ihr
      Bedürfnis, ihren Gatten wieder vollständig in ihrem Leben zu haben. Ein humanoi
     der Roboter soll Abhilfe schaffen. (Text: RTL Crime)
-writers: (N=0)
+writers: (N=1)
+  - Charlie Brooker
 directors: (N=1)
   - Owen Harris
 playCount: 0
@@ -540,7 +543,7 @@ title: Böse Neue Welt
 showTitle: 
 ratings (N=0)
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=02
 episode: EpisodeNumber=02
 displaySeason: SeasonNumber=xx
@@ -555,7 +558,8 @@ overview:
     rscheinen und filmen unbeirrt weiter den Alptraum, dem die Frau ausgesetzt ist. 
     Als die Frau gefesselt wird und kurz davor ist ermordet zu werden, klärt sich au
     f, was wirklich gespielt wird … (Text: RTL Crime)
-writers: (N=0)
+writers: (N=1)
+  - Charlie Brooker
 directors: (N=1)
   - Carl Tibbetts
 playCount: 0
@@ -689,7 +693,7 @@ title: Die Waldo-Kandidatur
 showTitle: 
 ratings (N=0)
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=02
 episode: EpisodeNumber=03
 displaySeason: SeasonNumber=xx
@@ -703,7 +707,8 @@ overview:
     hl antritt. Waldo nimmt Monroe während eines Interviews auf den Arm und kommenti
     ert ihn unverschämt. Das Publikum ist begeistert, während Jamie seine Rolle zune
     hmend unangenehm wird. (Text: RTL Crime)
-writers: (N=0)
+writers: (N=1)
+  - Charlie Brooker
 directors: (N=1)
   - Bryn Higgins
 playCount: 0
@@ -860,7 +865,7 @@ title: Abgestürzt
 showTitle: 
 ratings (N=0)
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=03
 episode: EpisodeNumber=01
 displaySeason: SeasonNumber=xx
@@ -902,7 +907,7 @@ title: Erlebnishunger
 showTitle: 
 ratings (N=0)
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=03
 episode: EpisodeNumber=02
 displaySeason: SeasonNumber=xx
@@ -943,7 +948,7 @@ title: Mach, was wir sagen
 showTitle: 
 ratings (N=0)
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=03
 episode: EpisodeNumber=03
 displaySeason: SeasonNumber=xx
@@ -984,7 +989,7 @@ title: San Junipero
 showTitle: 
 ratings (N=0)
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=03
 episode: EpisodeNumber=04
 displaySeason: SeasonNumber=xx
@@ -1025,7 +1030,7 @@ title: Männer aus Stahl
 showTitle: 
 ratings (N=0)
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=03
 episode: EpisodeNumber=05
 displaySeason: SeasonNumber=xx
@@ -1065,7 +1070,7 @@ title: Von allen gehasst
 showTitle: 
 ratings (N=0)
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=03
 episode: EpisodeNumber=06
 displaySeason: SeasonNumber=xx
@@ -1112,7 +1117,7 @@ title: USS Callister
 showTitle: 
 ratings (N=0)
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=04
 episode: EpisodeNumber=01
 displaySeason: SeasonNumber=xx
@@ -1157,7 +1162,7 @@ title: Arkangel
 showTitle: 
 ratings (N=0)
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=04
 episode: EpisodeNumber=02
 displaySeason: SeasonNumber=xx
@@ -1199,7 +1204,7 @@ title: Krokodil
 showTitle: 
 ratings (N=0)
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=04
 episode: EpisodeNumber=03
 displaySeason: SeasonNumber=xx
@@ -1243,7 +1248,7 @@ title: Hang the DJ
 showTitle: 
 ratings (N=0)
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=04
 episode: EpisodeNumber=04
 displaySeason: SeasonNumber=xx
@@ -1288,7 +1293,7 @@ title: Metallkopf
 showTitle: 
 ratings (N=0)
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=04
 episode: EpisodeNumber=05
 displaySeason: SeasonNumber=xx
@@ -1330,7 +1335,7 @@ title: Black Museum
 showTitle: 
 ratings (N=0)
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=04
 episode: EpisodeNumber=06
 displaySeason: SeasonNumber=xx
@@ -1371,7 +1376,7 @@ title: Striking Vipers
 showTitle: 
 ratings (N=0)
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=05
 episode: EpisodeNumber=01
 displaySeason: SeasonNumber=xx
@@ -1414,7 +1419,7 @@ title: Smithereens
 showTitle: 
 ratings (N=0)
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=05
 episode: EpisodeNumber=02
 displaySeason: SeasonNumber=xx
@@ -1463,7 +1468,7 @@ title: Rachel, Jack und Ashley Too
 showTitle: 
 ratings (N=0)
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=05
 episode: EpisodeNumber=03
 displaySeason: SeasonNumber=xx
@@ -1511,7 +1516,7 @@ title: Joan Is Awful
 showTitle: 
 ratings (N=0)
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=06
 episode: EpisodeNumber=01
 displaySeason: SeasonNumber=xx
@@ -1546,7 +1551,7 @@ title: Loch Henry
 showTitle: 
 ratings (N=0)
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=06
 episode: EpisodeNumber=02
 displaySeason: SeasonNumber=xx
@@ -1581,7 +1586,7 @@ title: Beyond the Sea
 showTitle: 
 ratings (N=0)
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=06
 episode: EpisodeNumber=03
 displaySeason: SeasonNumber=xx
@@ -1616,7 +1621,7 @@ title: Mazey Day
 showTitle: 
 ratings (N=0)
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=06
 episode: EpisodeNumber=04
 displaySeason: SeasonNumber=xx
@@ -1651,7 +1656,7 @@ title: Dämon 79
 showTitle: 
 ratings (N=0)
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=06
 episode: EpisodeNumber=05
 displaySeason: SeasonNumber=xx
@@ -1686,7 +1691,7 @@ title: Gewöhnliche Leute
 showTitle: 
 ratings (N=0)
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=07
 episode: EpisodeNumber=01
 displaySeason: SeasonNumber=xx
@@ -1721,7 +1726,7 @@ title: Bête Noire
 showTitle: 
 ratings (N=0)
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=07
 episode: EpisodeNumber=02
 displaySeason: SeasonNumber=xx
@@ -1756,7 +1761,7 @@ title: Hotel Reverie
 showTitle: 
 ratings (N=0)
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=07
 episode: EpisodeNumber=03
 displaySeason: SeasonNumber=xx
@@ -1791,7 +1796,7 @@ title: Spielzeug
 showTitle: 
 ratings (N=0)
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=07
 episode: EpisodeNumber=04
 displaySeason: SeasonNumber=xx
@@ -1826,7 +1831,7 @@ title: Eulogy
 showTitle: 
 ratings (N=0)
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=07
 episode: EpisodeNumber=05
 displaySeason: SeasonNumber=xx
@@ -1861,7 +1866,7 @@ title: USS Callister: Willkommen bei Infinity
 showTitle: 
 ratings (N=0)
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=07
 episode: EpisodeNumber=06
 displaySeason: SeasonNumber=xx

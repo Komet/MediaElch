@@ -9,7 +9,7 @@ title: Der Winter unseres monetarisierten Vergnügens
 showTitle: 
 ratings (N=0)
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 season: SeasonNumber=31
 episode: EpisodeNumber=01
 displaySeason: SeasonNumber=xx
@@ -22,7 +22,10 @@ overview:
     er und Sohn damit unbewusst den Nerv der Zeit. Binnen kurzem erlangen die beiden
      Kultstatus im Netz und träumen schon vom großen Geld. Doch der Ruhm hat seinen 
     Preis. (Text: ORF)
-writers: (N=0)
+writers: (N<6)
+  - Matt Groening
+  - James L. Brooks
+  - Sam Simon
 directors: (N=1)
   - Bob Anderson
 playCount: 0
@@ -32,7 +35,7 @@ tags: (N=0)
 epBookmark: <not set or invalid>
 certification: 
 networks: (N=0)
-thumbnail: https://bilder.fernsehserien.de/epg/epg-archiv/2024/12/30/dcfc9cb852ad470193b4e8f0a845aeb2_b-w-970.jpg.jpg
+thumbnail: https://bilder.fernsehserien.de/epg/epg-archiv/2026/01/06/7bf2972f26b74871b17e977f2794a9be_b-w-970.jpg.jpg
 actors: (N>10)
  - id: 
    name: Christoph Jablonka

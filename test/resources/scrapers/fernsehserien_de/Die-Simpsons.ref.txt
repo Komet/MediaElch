@@ -38,7 +38,7 @@ overview:
      irgendwie zu unfähig dazu sind. (Text: Sabrina)
 ratings (N=0)
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 firstAired: 1991-02-28
 runtime: 0min
 genres: (N<6)

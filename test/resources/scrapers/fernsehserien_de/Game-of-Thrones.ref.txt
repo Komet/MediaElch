@@ -22,7 +22,7 @@ overview:
     rliche Folgen für alle Einwohner von Westeros haben wird.
 ratings (N=0)
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 firstAired: 2011-11-02
 runtime: 0min
 genres: (N<6)

@@ -16,7 +16,7 @@ overview:
     emen herumschlagen muss. (Text: JN)
 ratings (N=0)
 userRating: 0
-imdbTop250: 0
+imdbTop250: -1
 firstAired: <not set or invalid>
 runtime: 0min
 genres: (N=1)
