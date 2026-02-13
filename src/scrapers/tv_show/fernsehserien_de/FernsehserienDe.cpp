@@ -25,13 +25,37 @@ public:
     static EpisodeListParser forHtml(const QString& html)
     {
         static QRegularExpression resultEntry(
-            R"re(<a\s+(?=[^>]*\brole="?row"?)(?=[^>]*\bdata-event-category="?liste-episoden"?)(?=[^>]*\bhref="\/([^"]+?)")(?=[^>]*\btitle="([^"]+?)")[^>]*)re",
-            QRegularExpression::DotMatchesEverythingOption);
+//            R"re(<a\s+(?=[^>]*\brole="?row"?)(?=[^>]*\bdata-event-category="?liste-episoden"?)(?=[^>]*\bhref="\/([^"]+?)")(?=[^>]*\btitle="([^"]+?)")[^>]*)re",
+            R"re(<a\b(?=[^>]*\sdata-event-category="?liste-episoden"?)(?=[^>]*\shref="\/([^"]+?)")(?=[^>]*\stitle="([^"]+?)")[^>]*>)re");
         MediaElch_Debug_Ensures(resultEntry.isValid());
+
+//        QRegularExpressionMatch match = resultEntry.match(html);
+//        if (match.hasMatch()) {
+//            QString matched = match.captured(0);
+//            qCDebug(generic) << "[forHtml] matched: " << matched;
+//        }
+
+//        QRegularExpressionMatchIterator iterator = resultEntry.globalMatch(html);
+//        QRegularExpressionMatch match;
+//        while (iterator.hasNext()) {
+//            match = iterator.next();
+//            qCDebug(generic) << "[forHtml] iterator, matched: " << match.captured(0);
+//            qCDebug(generic) << "[forHtml] iterator, id:      " << match.captured(1);
+//            qCDebug(generic) << "[forHtml] iterator, title:   " << match.captured(2);
+//        }
 
         EpisodeListParser parser;
         parser.m_matches = resultEntry.globalMatch(html);
+//        qCDebug(generic) << "[forHtml] parser.hasNext(): " << parser.hasNext();
         parser.next();
+        qCDebug(generic) << "[forHtml] parser.hasNext(): " << parser.hasNext();
+//        while (parser.m_matches.hasNext()) {
+//            match = parser.m_matches.next();
+//            qCDebug(generic) << "[forHtml] parser, matched: " << match.captured(0);
+//            qCDebug(generic) << "[forHtml] parser, id:      " << match.captured(1);
+//            qCDebug(generic) << "[forHtml] parser, title:   " << match.captured(2);
+//        }
+
         return parser;
     }
 
@@ -98,6 +122,7 @@ public:
                 auto episode = EpisodeNumber(match.captured(2).toInt(&episodeOk, 10));
 
                 if (seasonOk && episodeOk) {
+                    // The episode has a season and an episode number.
                     m_next = Result{season, episode, id};
                 }
             } else {
@@ -105,12 +130,16 @@ public:
 
                 if (match.hasMatch()) {
                     bool episodeOk = false;
-                    auto season = SeasonNumber::NoSeason;
                     auto episode = EpisodeNumber(match.captured(1).toInt(&episodeOk, 10));
 
                     if (episodeOk) {
-                        m_next = Result{season, episode, id};
+                        // The episode has not a season but an episode number.
+                        m_next = Result{SeasonNumber::NoSeason, episode, id};
                     }
+                }
+                else {
+                    // The episode has neither a season nor an episode number.
+                    m_next = Result{SeasonNumber::NoSeason, EpisodeNumber::NoEpisode, id};
                 }
             }
         }
@@ -800,6 +829,7 @@ void FernsehserienDeEpisodeScrapeJob::parseAndLoadEpisodeIdFromSeason(const QStr
 {
     QString episodeId;
     EpisodeListParser parser = EpisodeListParser::forHtml(html);
+    qCDebug(generic) << "[parseAndLoadEpisodeIdFromSeason] parser.hasNext(): " << parser.hasNext();
     while (parser.hasNext()) {
         EpisodeListParser::Result next = parser.next();
 
