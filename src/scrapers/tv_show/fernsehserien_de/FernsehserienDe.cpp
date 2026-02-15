@@ -135,6 +135,13 @@ void normalizeActorRole(QString& role)
     role.replace(QString::fromUtf8(" /\u200B"), ",");
 }
 
+void keepLineBreaks(QString& text, QRegularExpression& brRegEx)
+{
+    text.replace(brRegEx, "----------ME-BR----------");
+    text = normalizeFromHtml(text);
+    text.replace("----------ME-BR----------", "\n");
+}
+
 bool isFernsehserienDeActorRole(const QString& role)
 {
     return role != "Drehbuch" && role != "Regie";
@@ -404,7 +411,7 @@ ShowSearchJob::Result FernsehserienDeShowSearchJob::parseResultFromEpisodePage(c
     // Add a dash between title and addendum. Typical German thing.  For example, "Scrubs"
     // is "Scrubs - Die Anfänger". "Die Anfänger" is in the second row on fernsehserien.de.
     QString title = resultTitle.match(html).captured(1);
-    title.replace("<span>", "<span> - ");
+    title.replace("<span>", "<span> – ");
 
     ShowSearchJob::Result result;
     result.title = normalizeFromHtml(title);
@@ -464,6 +471,8 @@ void FernsehserienDeShowScrapeJob::parseTvShow(const QString& html)
         QRegularExpression::DotMatchesEverythingOption);
     static QRegularExpression overviewRegEx(
         R"(\bitemprop="?description\b"?[^>]*>(.*?)</div><)", QRegularExpression::DotMatchesEverythingOption);
+    static QRegularExpression brRegEx(
+        R"(\s*<br\s*/?>\s*)");
     // Note: There are possibly multiple "first aired"-dates ("Premiere"). Take the first, which
     //       is most likely the German one.
     static QRegularExpression firstAiredRegEx(R"re(<ea-angabe-datum\b[^>]*>\s*<time\s+[^>]*\bdatetime="?(\d{4}-\d{2}-\d{2})"?[^>]*>)re");
@@ -486,6 +495,7 @@ void FernsehserienDeShowScrapeJob::parseTvShow(const QString& html)
     MediaElch_Debug_Ensures(titleRegEx.isValid());
     MediaElch_Debug_Ensures(originalTitleRegEx.isValid());
     MediaElch_Debug_Ensures(overviewRegEx.isValid());
+    MediaElch_Debug_Ensures(brRegEx.isValid());
     MediaElch_Debug_Ensures(firstAiredRegEx.isValid());
     MediaElch_Debug_Ensures(genresRegEx.isValid());
     MediaElch_Debug_Ensures(actorsRegEx.isValid());
@@ -498,11 +508,14 @@ void FernsehserienDeShowScrapeJob::parseTvShow(const QString& html)
     // Add a dash between title and addendum. Typical German thing.  For example, "Scrubs"
     // is "Scrubs - Die Anfänger". "Die Anfänger" is in the second row on fernsehserien.de.
     QString seriesTitle = titleRegEx.match(html).captured(1);
-    seriesTitle.replace("<span>", "<span> - ");
+    seriesTitle.replace("<span>", "<span> – ");
 
     tvShow().setTitle(normalizeFromHtml(seriesTitle));
     tvShow().setOriginalTitle(normalizeFromHtml(originalTitleRegEx.match(html).captured(1)));
-    tvShow().setOverview(normalizeFromHtml(overviewRegEx.match(html).captured(1)));
+    QString tvShowDescription = overviewRegEx.match(html).captured(1);
+    // The description may contain line breaks (i.e. <br>), which should be retained for better readability.
+    keepLineBreaks(tvShowDescription, brRegEx);
+    tvShow().setOverview(tvShowDescription);
     tvShow().setFirstAired(QDate::fromString(firstAiredRegEx.match(html).captured(1), "yyyy-MM-dd"));
 
     QRegularExpressionMatchIterator matches = genresRegEx.globalMatch(html);
@@ -873,6 +886,8 @@ void FernsehserienDeEpisodeScrapeJob::parseEpisode(const QString& html)
         R"re(<div\s+(?=[^>]*\bitemprop="?episodeNumber\b"?)(?=[^>]*\bcontent="?\d+"?)[^>]*>Staffel\s+(\d+),\s+Folge\s+(\d+)\s+)re");
     static QRegularExpression overviewRegEx(
         R"(<div\s+[^>]*\bclass="?episode-output-inhalt-inner\b"?[^>]*>(.*?)</div>\s*<ea)", QRegularExpression::DotMatchesEverythingOption);
+    static QRegularExpression brRegEx(
+        R"(\s*<span\s+[^>]*\bclass="?br"?[^>]*>.*?</span>\s*)", QRegularExpression::DotMatchesEverythingOption);
     // Note: There are possibly multiple "first aired"-dates ("Premiere"). Take the first, which
     //       is most likely the German one.
     static QRegularExpression firstAiredRegEx(R"re(<ea-angabe-datum\b[^>]*>.*?(\d{2}[.]\d{2}[.]\d{4})<)re");
@@ -896,6 +911,7 @@ void FernsehserienDeEpisodeScrapeJob::parseEpisode(const QString& html)
     MediaElch_Debug_Ensures(titleRegEx.isValid());
     MediaElch_Debug_Ensures(seasonEpisodeRegEx.isValid());
     MediaElch_Debug_Ensures(overviewRegEx.isValid());
+    MediaElch_Debug_Ensures(brRegEx.isValid());
     MediaElch_Debug_Ensures(firstAiredRegEx.isValid());
     MediaElch_Debug_Ensures(actorsRegEx.isValid());
     MediaElch_Debug_Ensures(actorNameRegEx.isValid());
@@ -917,9 +933,12 @@ void FernsehserienDeEpisodeScrapeJob::parseEpisode(const QString& html)
             episode().setEpisode(EpisodeNumber(episodeNumber));
         }
     }
-
     episode().setTitle(normalizeFromHtml(titleRegEx.match(html).captured(1)));
-    episode().setOverview(normalizeFromHtml(overviewRegEx.match(html).captured(1)));
+    // The description may contain line breaks (i.e. <span class=br></span>),
+    // which should be retained for better readability.
+    QString episodeDescription = overviewRegEx.match(html).captured(1);
+    keepLineBreaks(episodeDescription, brRegEx);
+    episode().setOverview(episodeDescription);
     episode().setFirstAired(QDate::fromString(firstAiredRegEx.match(html).captured(1), "dd.MM.yyyy"));
 
     // Thumbnail
