@@ -878,6 +878,8 @@ void FernsehserienDeEpisodeScrapeJob::parseEpisode(const QString& html)
     // TODO: With a proper HTML parser, we wouldn't need to do this!
     static QRegularExpression titleRegEx(
         R"(<span\s+[^>]*\bitemprop="?name\b"?[^>]*>(.*?)</span>)", QRegularExpression::DotMatchesEverythingOption);
+    static QRegularExpression titleBracketsRegEx(
+        R"(^\((.*)\)$)", QRegularExpression::DotMatchesEverythingOption);
     // Not supported by episodes, yet:
     // static QRegularExpression originalTitleRegEx(R"re(<span class="episode-output-originaltitel"
     //    lang="[^"]+?">[(]?(.*?)[)]?</span>)re");
@@ -909,6 +911,7 @@ void FernsehserienDeEpisodeScrapeJob::parseEpisode(const QString& html)
     static QRegularExpression writersRegEx(R"re(\bitemprop="?author\b"?[^>]*>\s*<a\s+[^>]*\btitle="([^"]+?)"[^>]*>)re");
 
     MediaElch_Debug_Ensures(titleRegEx.isValid());
+    MediaElch_Debug_Ensures(titleBracketsRegEx.isValid());
     MediaElch_Debug_Ensures(seasonEpisodeRegEx.isValid());
     MediaElch_Debug_Ensures(overviewRegEx.isValid());
     MediaElch_Debug_Ensures(brRegEx.isValid());
@@ -933,7 +936,12 @@ void FernsehserienDeEpisodeScrapeJob::parseEpisode(const QString& html)
             episode().setEpisode(EpisodeNumber(episodeNumber));
         }
     }
-    episode().setTitle(normalizeFromHtml(titleRegEx.match(html).captured(1)));
+//    episode().setTitle(normalizeFromHtml(titleRegEx.match(html).captured(1)));
+    QString episodeTitle = titleRegEx.match(html).captured(1);
+    episodeTitle = normalizeFromHtml(episodeTitle);
+    // If the title is enclosed in round brackets, the brackets should be removed.
+    episodeTitle.replace(titleBracketsRegEx, "\\1");
+    episode().setTitle(episodeTitle);
     // The description may contain line breaks (i.e. <span class=br></span>),
     // which should be retained for better readability.
     QString episodeDescription = overviewRegEx.match(html).captured(1);
