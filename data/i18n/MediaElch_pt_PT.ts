@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
 <TS version="2.1" language="pt_PT">
 <context>
@@ -1473,7 +1473,7 @@
     </message>
     <message>
         <location line="+1"/>
-        <source>MusicBrainz ID</source>
+        <source>MusicBrainz Artist ID</source>
         <translation>Identificador MusicBrainz</translation>
     </message>
     <message>
@@ -6331,7 +6331,7 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
     </message>
     <message>
         <location line="+7"/>
-        <source>MusicBrainz ID</source>
+        <source>MusicBrainz Artist ID</source>
         <translation>Identificador MusicBrainz</translation>
     </message>
     <message>
