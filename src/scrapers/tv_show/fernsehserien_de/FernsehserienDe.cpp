@@ -398,10 +398,13 @@ ShowSearchJob::Result FernsehserienDeShowSearchJob::parseResultFromEpisodePage(c
 {
     static QRegularExpression resultTitle(
         R"(<div\s+[^>]*\bclass="?seriestitle\b"?[^>]*>(.*?)</div>)", QRegularExpression::DotMatchesEverythingOption);
+    static QRegularExpression resultYearDiv(
+        R"(<div\s+[^>]*\bclass="?serie-produktionsjahre\b"?[^>]*>(.*?)</div>)", QRegularExpression::DotMatchesEverythingOption);
     static QRegularExpression resultYear(
-        R"(<div\s+[^>]*\bclass="?serie-produktionsjahre\b"?[^>]*>.*?(\d{4}).*?</div>)", QRegularExpression::DotMatchesEverythingOption);
+        R"((\d{2,4}))");
 
     MediaElch_Debug_Ensures(resultTitle.isValid());
+    MediaElch_Debug_Ensures(resultYearDiv.isValid());
     MediaElch_Debug_Ensures(resultYear.isValid());
     MediaElch_Debug_Ensures(url.isValid());
 
@@ -415,7 +418,10 @@ ShowSearchJob::Result FernsehserienDeShowSearchJob::parseResultFromEpisodePage(c
 
     ShowSearchJob::Result result;
     result.title = normalizeFromHtml(title);
-    result.released = QDate::fromString(resultYear.match(html).captured(1), "yyyy");
+    // Copy the div element that matches resultYearDiv from the HTML page and remove all HTML tags.
+    QString yearDiv = normalizeFromHtml(resultYearDiv.match(html).captured(1));
+    // If the production year is not a four digit integer number, then result.released will be invalid.
+    result.released = QDate::fromString(resultYear.match(yearDiv).captured(1), "yyyy");
     result.identifier = ShowIdentifier(identifierUrl.remove(0, 1));
 
     return result;
