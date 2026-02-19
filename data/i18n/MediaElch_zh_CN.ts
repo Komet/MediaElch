@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_CN">
 <context>
@@ -1469,8 +1469,8 @@
     </message>
     <message>
         <location line="+1"/>
-        <source>MusicBrainz ID</source>
-        <translation>MusicBrainz ID</translation>
+        <source>MusicBrainz Artist ID</source>
+        <translation>MusicBrainz Artist ID</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -6313,8 +6313,8 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     </message>
     <message>
         <location line="+7"/>
-        <source>MusicBrainz ID</source>
-        <translation>MusicBrainz ID</translation>
+        <source>MusicBrainz Artist ID</source>
+        <translation>MusicBrainz Artist ID</translation>
     </message>
     <message>
         <location line="+20"/>

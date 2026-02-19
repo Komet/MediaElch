@@ -2,6 +2,8 @@
 
 #include "globals/Helper.h"
 
+#include <QRegularExpression>
+
 namespace mediaelch {
 
 QString guessTvShowTitleFromFiles(const FileList& files)
@@ -23,7 +25,10 @@ QString guessTvShowTitleFromFiles(const FileList& files)
     if (suffix.length() < filename.length()) {
         // The "if" exists just to ensure that the file has a proper file
         // ending and isn't e.g. `file-without-suffix`.
-        filename = filename.remove(suffix);
+        QString regExPattern = "\\." + suffix + "$";
+        QRegularExpression regEx(regExPattern);
+        // Remove the suffix at the end of the file name.
+        filename = filename.remove(regEx);
     }
     filename.remove("BluRay", Qt::CaseInsensitive);
     filename.remove("DVD", Qt::CaseInsensitive);

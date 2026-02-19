@@ -479,7 +479,7 @@ void CsvExportDialog::initializeItems()
         addField(Field::ArtistBorn, tr("Born"));
         addField(Field::ArtistDied, tr("Died"));
         addField(Field::ArtistDisbanded, tr("Disbanded"));
-        addField(Field::ArtistMusicBrainzId, tr("MusicBrainz ID"));
+        addField(Field::ArtistMusicBrainzId, tr("MusicBrainz Artist ID"));
         addField(Field::ArtistAllMusicId, tr("AllMusic ID"));
         addField(Field::ArtistDirectory, tr("Directory"));
     }

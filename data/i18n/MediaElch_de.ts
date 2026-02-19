@@ -1473,8 +1473,8 @@
     </message>
     <message>
         <location line="+1"/>
-        <source>MusicBrainz ID</source>
-        <translation>MusicBrainz ID</translation>
+        <source>MusicBrainz Artist ID</source>
+        <translation>MusicBrainz Artist ID</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -6329,8 +6329,8 @@ Wenn du bei TMDb nach einer ID suchen möchtest, stelle bitte &quot;id&quot; vor
     </message>
     <message>
         <location line="+7"/>
-        <source>MusicBrainz ID</source>
-        <translation>MusicBrainz ID</translation>
+        <source>MusicBrainz Artist ID</source>
+        <translation>MusicBrainz Artist ID</translation>
     </message>
     <message>
         <location line="+20"/>
