@@ -44,7 +44,19 @@ void ImdbMovieSearchJob::searchViaQuery()
 {
     MediaElch_Debug_Ensures(!ImdbId::isValidFormat(config().query));
 
-    m_api.searchForMovie(Locale("en"), config().query, config().includeAdult, [this](QString data, ScraperError error) {
+    // Split "Title 2015" or "Title (2015)" into title and year so that
+    // IMDb's release_date filter can be used for more precise results.
+    QString query = config().query;
+    int year = 0;
+    static const QRegularExpression yearRx(
+        R"(^(.+?)[\s(]+(\d{4})\)?$)", QRegularExpression::InvertedGreedinessOption);
+    QRegularExpressionMatch match = yearRx.match(query);
+    if (match.hasMatch()) {
+        query = match.captured(1).trimmed();
+        year = match.captured(2).toInt();
+    }
+
+    m_api.searchForMovie(Locale("en"), query, year, config().includeAdult, [this](QString data, ScraperError error) {
         if (error.hasError()) {
             setScraperError(error);
         } else {

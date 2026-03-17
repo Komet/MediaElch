@@ -73,10 +73,11 @@ void ImdbApi::searchForShow(const Locale& locale, const QString& query, ImdbApi:
 
 void ImdbApi::searchForMovie(const Locale& locale,
     const QString& query,
+    int year,
     bool includeAdult,
     ImdbApi::ApiCallback callback)
 {
-    sendGetRequest(locale, makeMovieSearchUrl(query, includeAdult), std::move(callback));
+    sendGetRequest(locale, makeMovieSearchUrl(query, year, includeAdult), std::move(callback));
 }
 
 void mediaelch::scraper::ImdbApi::loadTitle(const Locale& locale,
@@ -123,7 +124,7 @@ QUrl ImdbApi::makeTitleUrl(const ImdbId& id, PageKind page) const
     return makeFullUrl(QStringLiteral("/title/%1/%2").arg(id.toString(), pageStr));
 }
 
-QUrl ImdbApi::makeMovieSearchUrl(const QString& searchStr, bool includeAdult) const
+QUrl ImdbApi::makeMovieSearchUrl(const QString& searchStr, int year, bool includeAdult) const
 {
     // e.g. https://www.imdb.com/de/search/title/?title=finding%20dori&title_type=feature,tv_movie,short,video,tv_short
     QUrlQuery queries;
@@ -132,6 +133,10 @@ QUrl ImdbApi::makeMovieSearchUrl(const QString& searchStr, bool includeAdult) co
     }
     queries.addQueryItem("title", searchStr);
     queries.addQueryItem("title_type", "feature,tv_movie,short,video,tv_short"); // Movie categories
+    if (year > 0) {
+        const QString yearStr = QString::number(year);
+        queries.addQueryItem("release_date", yearStr + "," + yearStr);
+    }
     queries.addQueryItem("view", "simple");
     queries.addQueryItem("count", "100");
     return makeFullUrl("/search/title/?" + queries.toString());
