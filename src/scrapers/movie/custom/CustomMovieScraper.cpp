@@ -107,6 +107,15 @@ MovieScrapeJob* CustomMovieScraper::loadMovie(MovieScrapeJob::Config config)
         scraperMap[detailScraper].details << detail;
     }
 
+    // Always collect ratings from every sub-scraper that supports them.
+    // The merge logic in MovieMerger uses the rating source as key, so
+    // IMDb and TMDb ratings coexist without overwriting each other.
+    for (auto it = scraperMap.begin(); it != scraperMap.end(); ++it) {
+        if (it.key()->meta().supportedDetails.contains(MovieScraperInfo::Rating)) {
+            it.value().details.insert(MovieScraperInfo::Rating);
+        }
+    }
+
     CustomMovieScrapeJob::CustomScraperConfig scraperConfig;
     scraperConfig.scraperMap = scraperMap;
 
