@@ -24,6 +24,7 @@ const QVector<QString> IMDB_JSON_PATH_RUNTIME_SECONDS  = { "props", "pageProps",
 const QVector<QString> IMDB_JSON_PATH_TOP250           = { "props", "pageProps", "mainColumnData", "ratingsSummary", "topRanking", "rank" };
 const QVector<QString> IMDB_JSON_PATH_RATING           = { "props", "pageProps", "mainColumnData", "ratingsSummary", "aggregateRating" };
 const QVector<QString> IMDB_JSON_PATH_VOTE_COUNT       = { "props", "pageProps", "mainColumnData", "ratingsSummary", "voteCount" };
+const QVector<QString> IMDB_JSON_PATH_METACRITIC       = { "props", "pageProps", "mainColumnData", "metacritic", "metascore", "score" };
 const QVector<QString> IMDB_JSON_PATH_GENRES           = { "props", "pageProps", "mainColumnData", "genres", "genres" };
 const QVector<QString> IMDB_JSON_PATH_TAGLINE          = { "props", "pageProps", "mainColumnData", "taglines", "edges", "0", "node", "text" };
 const QVector<QString> IMDB_JSON_PATH_KEYWORDS         = { "props", "pageProps", "mainColumnData", "storylineKeywords", "edges" };
@@ -222,6 +223,19 @@ void ImdbJsonParser::parseAndAssignDetails(const QJsonDocument& json, const Loca
             rating.voteCount = voteCount;
             rating.source = "imdb";
             rating.maxRating = 10;
+            m_data.ratings.append(rating);
+        }
+    }
+
+    value = followJsonPath(json, IMDB_JSON_PATH_METACRITIC);
+    if (value.isDouble()) {
+        const int metascore = value.toInt(-1);
+        if (metascore > 0) {
+            Rating rating;
+            rating.rating = metascore;
+            rating.voteCount = 0;
+            rating.source = "metacritic";
+            rating.maxRating = 100;
             m_data.ratings.append(rating);
         }
     }
