@@ -11,7 +11,14 @@
 #include "ui/movies/MoviePreviewAdapter.h"
 #include "utils/Meta.h"
 
+#include "scrapers/tmdb/TmdbApi.h"
+
 #include "log/Log.h"
+
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QNetworkReply>
+#include <QNetworkRequest>
 
 MovieSearchWidget::MovieSearchWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieSearchWidget)
 {
@@ -327,8 +334,24 @@ void MovieSearchWidget::onResultDoubleClicked(QTableWidgetItem* item)
         emit sigResultClicked();
 
     } else {
-        createCustomScraperListLabel();
-        changeScraperTo(m_customScrapersLeft.first());
+        const QString nextScraperId = m_customScrapersLeft.first();
+        // If the next scraper is IMDB and the title scraper was TMDb, resolve
+        // the IMDB ID via TMDb API so that the IMDB search can use it directly.
+        // This avoids forcing users to re-search with the English title.
+        if (nextScraperId == mediaelch::scraper::ImdbMovie::ID && custom.titleScraper() != nullptr
+            && custom.titleScraper()->meta().identifier == mediaelch::scraper::TmdbMovie::ID
+            && !m_imdbId.isValid()) {
+            resolveImdbIdFromTmdb(currentIdentifier.str(), [this]() {
+                createCustomScraperListLabel();
+                if (m_imdbId.isValid()) {
+                    ui->searchString->setText(m_imdbId.toString());
+                }
+                changeScraperTo(m_customScrapersLeft.first());
+            });
+        } else {
+            createCustomScraperListLabel();
+            changeScraperTo(m_customScrapersLeft.first());
+        }
     }
 }
 
@@ -565,4 +588,31 @@ void MovieSearchWidget::initializeCheckBoxes()
         connect(box, &QAbstractButton::clicked, this, &MovieSearchWidget::updateInfoToLoad);
     }
     connect(ui->chkUnCheckAll, &QAbstractButton::clicked, this, &MovieSearchWidget::toggleAllInfo);
+}
+
+void MovieSearchWidget::resolveImdbIdFromTmdb(const QString& tmdbId, std::function<void()> onResolved)
+{
+    using namespace mediaelch::scraper;
+
+    QUrl url(QStringLiteral("https://api.themoviedb.org/3/movie/%1?api_key=%2").arg(tmdbId, TmdbApi::apiKey()));
+    QNetworkRequest request(url);
+
+    auto* manager = new QNetworkAccessManager(this);
+    QNetworkReply* reply = manager->get(request);
+
+    connect(reply, &QNetworkReply::finished, this, [this, reply, manager, onResolved]() {
+        reply->deleteLater();
+        manager->deleteLater();
+
+        if (reply->error() == QNetworkReply::NoError) {
+            QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
+            QString imdbIdStr = doc.object().value("imdb_id").toString();
+            if (ImdbId::isValidFormat(imdbIdStr)) {
+                m_imdbId = ImdbId(imdbIdStr);
+                qCDebug(generic) << "[MovieSearch] Resolved IMDB ID from TMDb:" << m_imdbId.toString();
+            }
+        }
+
+        onResolved();
+    });
 }
