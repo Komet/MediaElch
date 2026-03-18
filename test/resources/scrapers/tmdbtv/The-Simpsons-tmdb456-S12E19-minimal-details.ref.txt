@@ -46,7 +46,7 @@ actors: (N>5)
  - id: 200
    name: Nancy Cartwright
    role: Bart Simpson / Nelson Muntz / Ralph Wiggum (voice)
-   thumb: https://image.tmdb.org/t/p/original/40qNhyYJhSE2Yiy4pnXSZhdufO6.jpg
+   thumb: https://image.tmdb.org/t/p/original/kJQEz3NAwHGdb2sQzAnBf1RmMV4.jpg
    order: 2
    imageHasChanged: false
  - id: 5586
@@ -58,7 +58,7 @@ actors: (N>5)
  - id: 5587
    name: Hank Azaria
    role: Moe Szyslak / Chief Wiggum / Apu / Comic Book Guy / Carl (voice)
-   thumb: https://image.tmdb.org/t/p/original/yFDw4b0jucuFWNnGcBPfpYUtn16.jpg
+   thumb: https://image.tmdb.org/t/p/original/uON3TWSySIy8wbDhkSzmFTDM6XO.jpg
    order: 4
    imageHasChanged: false
  - id: 6008

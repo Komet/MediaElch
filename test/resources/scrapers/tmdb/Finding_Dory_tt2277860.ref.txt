@@ -36,7 +36,7 @@ actors: (N>60)
  - id: 
    name: Ellen DeGeneres
    role: Dory (voice)
-   thumb: http://image.tmdb.org/t/p/original/z8IEEid4z63CBlJtxrTKEfsW7NA.jpg
+   thumb: http://image.tmdb.org/t/p/original/54NvHEAkAi9Ry5G2dJOP81ZOQT8.jpg
    order: 1
    imageHasChanged: false
  - id: 
@@ -54,13 +54,13 @@ actors: (N>60)
  - id: 
    name: Diane Keaton
    role: Jenny (voice)
-   thumb: http://image.tmdb.org/t/p/original/tnx7pJqisfAzvXOR5wHQsbnH9XH.jpg
+   thumb: http://image.tmdb.org/t/p/original/A8B3BsFgbmw2WEmJuQX38qeU9eR.jpg
    order: 4
    imageHasChanged: false
  - id: 
    name: Eugene Levy
    role: Charlie (voice)
-   thumb: http://image.tmdb.org/t/p/original/y4CexxKSI6qR5A6PDaD8mSrEhYC.jpg
+   thumb: http://image.tmdb.org/t/p/original/u0QzUh5Iw2K8L9AOyl0pIQrojNM.jpg
    order: 5
    imageHasChanged: false
  - id: 
@@ -126,7 +126,7 @@ actors: (N>60)
  - id: 
    name: Alexander Gould
    role: Passenger Carl (voice)
-   thumb: http://image.tmdb.org/t/p/original/fe4mUSp0XotA6Ku4Bs69Q9o2lqU.jpg
+   thumb: http://image.tmdb.org/t/p/original/zzfj8LHhSiRntnyThvOBirEEmII.jpg
    order: 16
    imageHasChanged: false
  - id: 
@@ -138,7 +138,7 @@ actors: (N>60)
  - id: 
    name: John Ratzenberger
    role: Husband Crab (Bill) (voice)
-   thumb: http://image.tmdb.org/t/p/original/oRtDEOuIO1yDhTz5dORBdxXuLMO.jpg
+   thumb: http://image.tmdb.org/t/p/original/e5aNU09v1q6WYTx9pNzC7yjSpve.jpg
    order: 18
    imageHasChanged: false
  - id: 
@@ -152,7 +152,6 @@ certification: PG
 genres: (N<6)
   - Adventure
   - Animation
-  - Comedy
   - Family
 tags: (N=0)
 countries: (N=1)
@@ -216,17 +215,17 @@ posters: (N>40)
   - ... and >30 more
 backdrops: (N>20)
   - id: 
-    originalUrl: http://image.tmdb.org/t/p/original/o11rDwFa7nZMVI57Mm3C44YwmmF.jpg
-    thumbUrl: http://image.tmdb.org/t/p/w780/o11rDwFa7nZMVI57Mm3C44YwmmF.jpg
-    originalSize: h=2160 w=3840
+    originalUrl: http://image.tmdb.org/t/p/original/wijltj1toRcicHlCn8Cpsp4yPXe.jpg
+    thumbUrl: http://image.tmdb.org/t/p/w780/wijltj1toRcicHlCn8Cpsp4yPXe.jpg
+    originalSize: h=1080 w=1920
     language: 
     hint: 
     aspect: 
     season: SeasonNumber=xx
   - id: 
-    originalUrl: http://image.tmdb.org/t/p/original/wijltj1toRcicHlCn8Cpsp4yPXe.jpg
-    thumbUrl: http://image.tmdb.org/t/p/w780/wijltj1toRcicHlCn8Cpsp4yPXe.jpg
-    originalSize: h=1080 w=1920
+    originalUrl: http://image.tmdb.org/t/p/original/o11rDwFa7nZMVI57Mm3C44YwmmF.jpg
+    thumbUrl: http://image.tmdb.org/t/p/w780/o11rDwFa7nZMVI57Mm3C44YwmmF.jpg
+    originalSize: h=2160 w=3840
     language: 
     hint: 
     aspect: 
@@ -258,4 +257,36 @@ backdrops: (N>20)
   - ... and >10 more
 discArts: (N=0)
 clearArts: (N=0)
-logos: (N=0)
+logos: (N<6)
+  - id: 
+    originalUrl: http://image.tmdb.org/t/p/original/sguLSByYIpYIgN5uedU6gh0dflX.png
+    thumbUrl: http://image.tmdb.org/t/p/w342/sguLSByYIpYIgN5uedU6gh0dflX.png
+    originalSize: h=489 w=1326
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: http://image.tmdb.org/t/p/original/z9rSZT9sNjBG0mt8RtOQGHfVgKY.png
+    thumbUrl: http://image.tmdb.org/t/p/w342/z9rSZT9sNjBG0mt8RtOQGHfVgKY.png
+    originalSize: h=613 w=1600
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: http://image.tmdb.org/t/p/original/oxhv14QFHHkjVMvDmQrCk5lX8rX.png
+    thumbUrl: http://image.tmdb.org/t/p/w342/oxhv14QFHHkjVMvDmQrCk5lX8rX.png
+    originalSize: h=1299 w=2732
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: http://image.tmdb.org/t/p/original/iuMUtE3tj0d3lcudbwed22lAwEE.png
+    thumbUrl: http://image.tmdb.org/t/p/w342/iuMUtE3tj0d3lcudbwed22lAwEE.png
+    originalSize: h=1299 w=2716
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx

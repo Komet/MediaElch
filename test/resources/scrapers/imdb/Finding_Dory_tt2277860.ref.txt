@@ -192,8 +192,9 @@ outline:
 movie set: tmdbid= | name=
 movie set overview: 
 tagline: She just kept swimming...
-ratings (N=1)
+ratings (N<6)
   source=imdb | rating=7.2 | votes=300000 | min=0 | max=10
+  source=metacritic | rating=77 | votes=0 | min=0 | max=100
 userRating: 0
 imdbTop250: -1
 released: 2016-06-17
@@ -298,7 +299,7 @@ countries: (N=1)
 studios: (N<6)
   - Walt Disney Pictures
   - Pixar Animation Studios
-trailer: https://imdb-video.media-imdb.com/vi2669917209/1434659454657-dx9ykf-1464098554017.mp4?Expires=1767274805&Signature=ew7lM7CMBoiBMAuyGabEF3YsY54BeS-WrOyNuUmMAy1hZOkv93rbVaxqBc1UAT3cEeYIjfQ6NTiUmQvGcng0G2puLplRrO4FbNtcCvBfHIcpi8GgHZCp7Bt~20tZLzGW~ToLb~lvLjGWgq7uluu0hfpgiIjoc4XcfcS47wrJS4vFj1ESnrajtBy3FAelu1s7SvdAzJ5qSeoODVjqK4HGA2OcU8~aFnDl0Jee7rsz6jmoSgNbcxbx~~Ax1I1F9fv72G2XVbW3aHeKqcfVVG1Mx8-1WczzIteOlIsZ5IQuwSSd6bePC7C9ukZN4YVzsNVQnvZDhAlGK7IpDzPPTqQabA__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA
+trailer: https://imdb-video.media-imdb.com/vi2669917209/1434659454657-dx9ykf-1464098554017.mp4?Expires=1773924286&Signature=LMEW-aqA3zd-~PNRpt5F-1Hno9lyVXl1RMnpH1CyPci6n9m7gJ6fODnBFDVXNiCKrT~M-N0oARGOUrAKkLjBGqFWHM8g0Yj3jlLbtwXCUY5B2Wn~q468HEofVKc4G3KBdaFQPeJ5ecjuuEYSa02FgtT93rJHaVBf9shlp3zF38yz9s5y9xWzERwsrD~ePyN22PBA3pK75Thw5imsJWFTgjGvE6s1Syq3GkLLUon5neM7krTYlbSeyKKlWgSjpCARmJuy4QxKCkfT5xlZa3KsVAm6JfaNpdcGk8yx6y6eJMHEF65wJ3wI-jyjTET118E7FM-iy~9e3D3lQK-sVHpIpg__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA
 showlink: (N=0)
 playcount: 0
 lastPlayed: <not set or invalid>

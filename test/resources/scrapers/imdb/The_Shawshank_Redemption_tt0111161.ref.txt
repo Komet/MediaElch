@@ -225,8 +225,9 @@ outline:
 movie set: tmdbid= | name=
 movie set overview: 
 tagline: Fear can hold you prisoner. Hope can set you free.
-ratings (N=1)
+ratings (N<6)
   source=imdb | rating=9.2 | votes=3100000 | min=0 | max=10
+  source=metacritic | rating=82 | votes=0 | min=0 | max=100
 userRating: 0
 imdbTop250: 1
 released: 1994-10-14
@@ -327,7 +328,7 @@ countries: (N=1)
   - US
 studios: (N=1)
   - Castle Rock Entertainment
-trailer: https://imdb-video.media-imdb.com/vi3877612057/1434659454657-dx9ykf-1616202333253.mp4?Expires=1767275629&Signature=cGf32v9gJJnEq3wLzrUSIGYdSXBhpW54y6TcJUIwPyXQ9cn7UO6vSZ~P3YrXidhF4nzizG5m2L~wAGWaQ9zi4QUext855d1BgJsnTfzNwB9LDjjcGBUA8zR~gJVdm9tsy02keyJTa8jbL-oZjEslAmQAB2q1pDe5PHppo9kXPfNOs9bEW88E~4oQfMmOYsNqLQf3XsOlldc4KrYfYS6O8VLQY~M8dKbg~yjU9pO8E5YCG7xXaS4BVOvUhFT8zxukcc38Mm~iNmVdyZZbQA~bZ-PvFMlI8h1Ah5gyq-VQvWqawTCxxaK7BOC3t8P6vOSpC6zC1cd-I16KJlZSk-I8VQ__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA
+trailer: https://imdb-video.media-imdb.com/vi3877612057/1434659454657-dx9ykf-1616202333253.mp4?Expires=1773924163&Signature=CrzHn6x33iyrJlambQKB8kVCzGuf-kATfm2f7Mnse3A6dkL8IZYWIUF2tkgrRtStMmPx0jl~U5~tTHKB60pEn0I6OY1wXA5fFEqjHwST2FHoJhUSgY9c4dqjvt1EY1ZAFwhvae47g7Vj23WMF~wpiYPH4hZU1RAL0R9-jKOb2u53bwBIf9~0C3zsh2KEfDwzuomsSxGcNGeh8KgaxZrKVTijrj4StOKs12bt~bh40TZl0~YlRCLVh~yhvAbIiIYiy708Zim1twpudTr29o2KUqrIIxYLftJdMYNfpVZexB37QpfSGM4jar-eaJ60eJzOuK~nuLO15OxNh5N2z9E7Zw__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA
 showlink: (N=0)
 playcount: 0
 lastPlayed: <not set or invalid>

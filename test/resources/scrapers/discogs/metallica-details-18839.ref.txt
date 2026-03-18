@@ -94,8 +94,6 @@ discography: (N>100)
     year: 1987
   - title: Harvester Of Sorrow / Barbablù
     year: 1988
-  - title: 2 Of One
-    year: 1988
   - title: Eye Of The Beholder
     year: 1988
   - title: Harvester Of Sorrow
@@ -111,6 +109,8 @@ discography: (N>100)
   - title: One / More Than You Know
     year: 1989
   - title: One
+    year: 1989
+  - title: 2 Of One
     year: 1989
   - title: ...And Justice For All
     year: 1989
@@ -202,7 +202,9 @@ discography: (N>100)
     year: 1997
   - title: Reload / Load
     year: 1997
-  - title: Classic Concert
+  - title: Coca-Cola Planet Live - Classic Concert
+    year: 1997
+  - title: Get ‘Em All
     year: 1997
   - title: Recovery / MCM Interviews Oct 3 97
     year: 1997
@@ -257,8 +259,6 @@ discography: (N>100)
   - title: Did Die My Darling / I Finally Found My Way
     year: 1999
   - title: "S & M" Concert Special
-    year: 1999
-  - title: S & M Documentary
     year: 1999
 genres: (N=0)
 styles: (N=0)

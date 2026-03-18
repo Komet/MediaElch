@@ -41,7 +41,7 @@ actors: (N>800)
  - id: 26087
    name: Amanda Tapping
    role: Samantha Carter
-   thumb: https://image.tmdb.org/t/p/original/nywSL24aczcjI2CINyXGEY1Nn6D.jpg
+   thumb: https://image.tmdb.org/t/p/original/8ZiETPxUFtgrtWL0LgMwPP8ytuK.jpg
    order: 0
    imageHasChanged: false
  - id: 26088
@@ -77,7 +77,7 @@ actors: (N>800)
  - id: 51800
    name: Teryl Rothery
    role: Janet Fraiser
-   thumb: https://image.tmdb.org/t/p/original/16rUSnTH56cKatjd6kjEYEfU4cA.jpg
+   thumb: https://image.tmdb.org/t/p/original/fB3XmJ4PRMGo28LxbvTHuYyL3gi.jpg
    order: 6
    imageHasChanged: false
  - id: 385220
@@ -101,7 +101,7 @@ actors: (N>800)
  - id: 26054
    name: Claudia Black
    role: Vala Mal Doran
-   thumb: https://image.tmdb.org/t/p/original/7bwHbuv81Q1ytQkJL1g8JLHrdrN.jpg
+   thumb: https://image.tmdb.org/t/p/original/xDXr8E1DM1ibfR8K9E9ccjysM7P.jpg
    order: 10
    imageHasChanged: false
  - id: 34842
@@ -132,8 +132,8 @@ actors: (N>800)
    name: Peter DeLuise
    role:
     Director / Peter DeLuise, Airman, SF Guard (Uncredited), Tok'ra Guard, Lieutenan
-    t, Interviewer, Man Leaving Cafe, Screaming Villager, Young Urgo in Uniform, Fre
-    e Jaffa (Voice only) (Uncredited), Machine Gun Guard
+    t, Man Leaving Cafe, Interviewer, Screaming Villager, Young Urgo in Uniform, Mac
+    hine Gun Guard, Free Jaffa (Voice only) (Uncredited)
    thumb: https://image.tmdb.org/t/p/original/sLkSOm6HBLB4VCfshQLdSEq63tr.jpg
    order: 15
    imageHasChanged: false

@@ -107,7 +107,7 @@ actors: (N>10)
  - id: 
    name: George Lindsey
    role: Rabbit (voice)
-   thumb: http://image.tmdb.org/t/p/original/nWUSieNbrvClvbB8b03OU4dBfTY.jpg
+   thumb: http://image.tmdb.org/t/p/original/pwcJRFWslwflTJisLCjbuVTbG1v.jpg
    order: 12
    imageHasChanged: false
  - id: 
@@ -125,7 +125,7 @@ actors: (N>10)
  - id: 
    name: John Fiedler
    role: Owl (voice)
-   thumb: http://image.tmdb.org/t/p/original/6vfLLGeGuO6Ko0VRnyhgE2v6RUu.jpg
+   thumb: http://image.tmdb.org/t/p/original/27sXisLWQJQ49PD40j89miNhL73.jpg
    order: 15
    imageHasChanged: false
  - id: 
@@ -205,7 +205,7 @@ posters: (N>40)
     hint: 
     aspect: 
     season: SeasonNumber=xx
-  - ... and >40 more
+  - ... and >30 more
 backdrops: (N>10)
   - id: 
     originalUrl: http://image.tmdb.org/t/p/original/dSlofjxxcTSLmnH6602WsSSELU5.jpg
@@ -250,4 +250,45 @@ backdrops: (N>10)
   - ... and >10 more
 discArts: (N=0)
 clearArts: (N=0)
-logos: (N=0)
+logos: (N>5)
+  - id: 
+    originalUrl: http://image.tmdb.org/t/p/original/8kp2y87DjuPE3haWVVU5ocq8t9Z.png
+    thumbUrl: http://image.tmdb.org/t/p/w342/8kp2y87DjuPE3haWVVU5ocq8t9Z.png
+    originalSize: h=689 w=1344
+    language: de
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: http://image.tmdb.org/t/p/original/ctFIZyU7qXIfpipGRvIMEH7Ehal.png
+    thumbUrl: http://image.tmdb.org/t/p/w342/ctFIZyU7qXIfpipGRvIMEH7Ehal.png
+    originalSize: h=290 w=668
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: http://image.tmdb.org/t/p/original/2KE8N9UtKR2RuAi0v1TNGHrjxRZ.png
+    thumbUrl: http://image.tmdb.org/t/p/w342/2KE8N9UtKR2RuAi0v1TNGHrjxRZ.png
+    originalSize: h=295 w=568
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: http://image.tmdb.org/t/p/original/1DYe9M64L2rbDkEXEjk5nKLQyNj.png
+    thumbUrl: http://image.tmdb.org/t/p/w342/1DYe9M64L2rbDkEXEjk5nKLQyNj.png
+    originalSize: h=119 w=782
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - id: 
+    originalUrl: http://image.tmdb.org/t/p/original/3xJDl9xhN4Iu7k6b1SoJLUTtACS.png
+    thumbUrl: http://image.tmdb.org/t/p/w342/3xJDl9xhN4Iu7k6b1SoJLUTtACS.png
+    originalSize: h=740 w=1440
+    language: en
+    hint: 
+    aspect: 
+    season: SeasonNumber=xx
+  - ... and <6 more

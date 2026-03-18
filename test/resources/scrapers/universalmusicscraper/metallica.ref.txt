@@ -5,51 +5,173 @@ mbId: 65f4f0c5-ef9e-490c-aee3-909e7ae6b2ab
 allMusicId: mn0000446509
 name: Metallica
 biography:
-    Metallica is an American heavy metal band. It was formed in Los Angeles in 1981 
-    by vocalist/guitarist James Hetfield and drummer Lars Ulrich, and has been based
-     in San Francisco for most of its career. The band's fast tempos, instrumentals 
-    and aggressive musicianship made them one of the founding "big four" bands of th
-    rash metal, alongside Megadeth, Anthrax and Slayer. Metallica's current lineup c
-    omprises founding members and primary songwriters Hetfield and Ulrich, longtime 
-    lead guitarist Kirk Hammett and bassist Robert Trujillo. Guitarist Dave Mustaine
-    , who formed Megadeth after being fired from Metallica, and bassists Ron McGovne
-    y, Cliff Burton and Jason Newsted are former members of the band. 
-Metallica fir
-    st found commercial success with the release of its third album, Master of Puppe
-    ts (1986), which is often cited as one of the best metal albums of all time. The
-     band's next album, ...And Justice for All (1988), gave Metallica its first Gram
-    my Award nomination. Its fifth album, Metallica (1991), was a turning point for 
-    the band that saw it transition from its thrash metal roots; the album appealed 
-    to a more mainstream audience, achieving substantial commercial success and sell
-    ing more than 16 million copies in the United States to date, making it the best
-    -selling album of the SoundScan era. After experimenting with different genres a
-    nd directions in subsequent releases, Metallica returned to its thrash metal roo
-    ts with its ninth album, Death Magnetic (2008), which drew similar praise to tha
-    t of the band's earlier albums. The band's eleventh and most recent album, 72 Se
-    asons, was released in 2023. 
-In 2000, Metallica led the case against the peer-t
-    o-peer file sharing service Napster, in which the band and several other artists
-     filed lawsuits against the service for sharing their copyright-protected materi
-    al without consent, eventually reaching a settlement. Metallica was the subject 
-    of the acclaimed 2004 documentary film Metallica: Some Kind of Monster, which do
-    cumented the troubled production of the band's eighth album, St. Anger (2003), a
-    nd the internal struggles within the band at the time. In 2009, Metallica was in
-    ducted into the Rock and Roll Hall of Fame. The band co-wrote the screenplay for
-     and starred alongside Dane DeHaan in the 2013 concert film Metallica: Through t
-    he Never, in which the band performed live against a fictional thriller storylin
-    e. 
-Metallica is one of the most commercially successful bands of all time, havi
-    ng sold more than 163 million albums worldwide as of 2023, and is the third-best
-    -selling music artist since Nielsen SoundScan began tracking sales in 1991, havi
-    ng sold 58 million albums in the United States as of 2017. The band has released
-     eleven studio albums, four live albums (including two performances with the San
-     Francisco Symphony), twelve video albums, one cover album, two extended plays, 
-    37 singles and 39 music videos. Metallica has won ten Grammy Awards from 26 nomi
-    nations and had six consecutive studio albums, from Metallica through Hardwired.
-    .. to Self-Destruct (2016), debut at number one on the Billboard 200. Metallica 
-    has been listed as one of the greatest artists of all time by magazines such as 
-    Rolling Stone, which ranked the band in 61st place on its list of 100 greatest a
-    rtists of all time.
+    Metallica Biography by Stephen Thomas Erlewine 
+￼ Metallica is the definitive he
+    avy metal band, the group that brought the gnarly underground sounds of thrash m
+    etal into the mainstream, then reshaped the contours of heavy music and hard roc
+    k once they became the biggest rock band in the world after the release of their
+     self-titled "black album" in 1991. By that point, Metallica had already experie
+    nced enough upheaval for two careers. Emerging from the feverish metal undergrou
+    nd of the early '80s, Metallica became a word-of-mouth sensation with their indi
+    e releases Kill 'Em All and Ride the Lightning, records that helped them land a 
+    contract with Elektra. Master of Puppets, their major-label debut, found the ban
+    d marshaling their forces, but months after its release, the group suffered a tr
+    agic bus accident that killed bassist Cliff Burton. Vocalist/guitarist James Het
+    field, drummer Lars Ulrich, and guitarist Kirk Hammett forged ahead with Jason N
+    ewsted, who appeared on 1988's …And Justice for All, their first album to reach 
+    the Billboard Top Ten. Once Metallica turned the band into superstars in the ear
+    ly '90s, the group sustained their popularity as they explored new territory, st
+    reamlining their sound for Load and Re-Load, then recording the orchestral colla
+    boration S&M with the San Francisco Symphony. Despite their success, Metallica s
+    till had inner troubles, many of which they aired on Some Kind of Monster, a doc
+    umentary about the recording of St. Anger, their first album without Newsted. Wi
+    th bassist Robert Trujillo coming aboard in 2003, Metallica eventually reconnect
+    ed with the spirit of speed metal on 2008's Death Magnetic, then discovered ways
+     to mature metal on 2016's Hardwired…To Self-Destruct and 2023's 72 Seasons. The
+     latter yielded a 2025 live album, M72 World Tour: Mexico City. 
+Metallica was f
+    ormed in Los Angeles in 1981 by drummer Lars Ulrich. He put a call out for local
+     musicians to form a new band, and eventually an early lineup came together that
+     included guitarist/vocalist James Hetfield, bassist Ron McGovney, and lead guit
+    arist Dave Mustaine. In their earliest iteration, Metallica combined the speedy 
+    tempos of hardcore punk acts like Discharge with the influence of more obscure a
+    cts from the New Wave of British Heavy Metal that was unfolding around the same 
+    time, resulting in some of the earliest thrash metal. The band made a few demo r
+    ecordings with McGovney before asking him to leave the group when they met innov
+    ative bassist Cliff Burton. Burton eventually joined Metallica, and the quartet 
+    set out to record their first album in 1983. During the recording sessions, howe
+    ver, Mustaine's problems with drugs and alcohol led to him being fired from the 
+    band, and they quickly recruited new lead guitarist Kirk Hammett to complete the
+     album. Released in 1983 on independent thrash-focused label Megaforce Records, 
+    Metallica's debut long-player, Kill 'Em All, marked the beginning of the legitim
+    ization of heavy metal's underground, bringing new complexity and depth to thras
+    h metal. Second album Ride the Lightning followed quickly in 1984, deepening the
+     band's sound with the inclusion of classically themed guitar elements and the d
+    ark ballad "Fade to Black." 
+￼ Shortly after the release of Ride the Lightning, 
+    Metallica signed on with major-label Elektra Records. They worked with the label
+     toward the release of their third LP, Master of Puppets, which came out in Marc
+    h 1986. The album would prove to be a significant breakthrough for Metallica, re
+    aching mainstream audiences without diminishing the band's standing in the metal
+     community. It was their best-selling record up until that point, but also their
+     most innovative and boundary-pushing, going on to be heralded as one of the mos
+    t influential metal albums of all time. Tragedy struck the group later that year
+     when their tour bus crashed while traveling in Sweden. Burton died in the accid
+    ent. When the band decided to continue, Flotsam and Jetsom bassist Jason Newsted
+     was chosen to replace Burton. Newsted was touring with the band by 1987, and th
+    at year his first recorded material with Metallica was released on The $5.98 E.P
+    . - Garage Days Re-Revisited, a self-produced EP of ragged covers the band put t
+    ogether in a practice space. In 1987, Metallica also paid tribute to their depar
+    ted bassist with Cliff 'Em All, a video release that included unreleased live fo
+    otage and intimate home videos of Burton. 
+In 1988, the band returned with their
+     conceptually ambitious fourth studio album, ...And Justice for All. Before this
+     record, Metallica had been outspoken about rejecting aspects of the music indus
+    try that they found disingenuous, including pandering for mainstream acceptance 
+    by making their music more accessible or making music videos, which were a relat
+    ively new medium in the 1980s. This changed with Justice, as the group released 
+    their first-ever video for the song "One." Despite minimal support from MTV or m
+    ainstream radio, the album hit the Top Ten and sold over a million copies within
+     weeks of its release. But the band completely crossed over into the mainstream 
+    with 1991's Metallica, a self-titled effort that found the group trading in thei
+    r long compositions for more concise song structures. With slick, layered produc
+    tion from Bob Rock and a shift from the thrash of the band's early days for more
+     digestible, almost pop-leaning hard rock hits like "Wherever I May Roam" and "E
+    nter Sandman," it resulted in a number one album that sold over seven million co
+    pies in the U.S. alone. To support the record, Metallica launched a long tour th
+    at kept the musicians on the road for nearly two years. 
+By the '90s, Metallica 
+    had changed the rules for all heavy metal bands; they were the leaders of the ge
+    nre, respected not only by headbangers but by mainstream record buyers and criti
+    cs. No other heavy metal band has ever been able to pull off such a feat. Howeve
+    r, the group lost a portion of their core audience with their long-awaited follo
+    w-up to Metallica, 1996's Load. The album moved the band toward alternative rock
+     in terms of image -- the bandmembers cut their hair and had their picture taken
+     by Anton Corbijn. Although the record was a hit upon its summer release, enteri
+    ng the charts at number one and selling three million copies within two months, 
+    certain members of the Metallica fan base complained about the shift in image, a
+    s well as the group's decision to headline the sixth Lollapalooza. Re-Load, whic
+    h combined new material with songs left off the original Load record, appeared i
+    n 1997; despite poor reviews, it sold at a typically brisk pace and spun off sev
+    eral successful singles, including "Fuel" and "The Memory Remains." Garage Inc.,
+     a double-disc collection of B-sides, rarities, and newly recorded covers, follo
+    wed in 1998. Metallica's take on Bob Seger's "Turn the Page" helped maintain the
+    ir presence in the charts, and the band continued their flood of product with 19
+    99's S&M, which documented a live concert with the San Francisco Symphony. It de
+    buted at number two, reconfirming the group's immense popularity. 
+Metallica spe
+    nt most of 2000 embroiled in controversy by spearheading a legal assault against
+     Napster, a file-sharing service that allowed users to download music files from
+     each other's computers. Aggressively targeting copyright infringement of their 
+    own material, Metallica notoriously had over 300,000 users kicked off the servic
+    e, creating a widespread debate over the availability of digital music that rage
+    d for most of the year. In January 2001, bassist Jason Newsted announced his ami
+    cable departure from the band. Shortly after the group appeared at the ESPN Awar
+    ds in April of the same year, Hetfield, Hammett, and Ulrich entered the recordin
+    g studio to begin work on their next album, with producer Bob Rock lined up to h
+    andle bass duties for the sessions (meanwhile, rumors swirled of former Ozzy Osb
+    ourne/Alice in Chains bassist Mike Inez being considered for the vacated positio
+    n). In July, Metallica surprisingly dropped their lawsuit against Napster, perha
+    ps sensing that their controversial stance did more harm than good to their "ban
+    d of the people" image. That same summer, the group's recording sessions (and al
+    l other band-related matters) were put on hold as Hetfield entered an undisclose
+    d rehab facility for alcoholism and other addictions. He completed treatment and
+     rejoined Metallica as they headed back into the studio in 2002 to record St. An
+    ger, which was released in mid-2003. 
+The recording of St. Anger was capped with
+     the search for a permanent replacement for Newsted. After a long audition proce
+    ss, former Ozzy Osbourne/Suicidal Tendencies bass player Robert Trujillo was sel
+    ected and joined Metallica for their 2003-2004 world tour. The growing pains tha
+    t the band experienced during the recording of St. Anger were captured in the ce
+    lebrated documentary Some Kind of Monster, which saw theatrical release in 2004.
+     Four years later, Metallica returned with Death Magnetic, an energized album th
+    at returned the group to their early-'80s roots. Former Slayer producer Rick Rub
+    in helmed the album, having replaced the band's longtime producer Bob Rock, whil
+    e Kirk Hammett (who was forbidden to play guitar solos on St. Anger) peppered th
+    e record with metallic riffs and frenetic solos. 
+￼ Death Magnetic spent three w
+    eeks at number one on the Billboard charts and the band supported it with an ext
+    ensive international tour that included a festival gig with Slayer, Megadeth, an
+    d Anthrax. Metallica closed out their Warner contract with Death Magnetic -- out
+    takes from the sessions appeared as the Beyond Magnetic EP in late 2011 -- and w
+    hile they were exploring their options, they struck up a collaboration with Lou 
+    Reed, releasing the ambitious, arty Lulu in the fall of 2011. In 2012, Metallica
+     launched their own label, Blackened, which would be distributed by Universal. T
+    he following year, they announced the release of their second motion picture, Th
+    rough the Never, which combined spectacular concert footage of them blasting thr
+    ough gems from their back catalog with a surreal road-trip odyssey starring Dane
+     DeHaan. The film and its accompanying soundtrack album were released in Septemb
+    er 2013. 
+Over the next few years, Metallica played the occasional high-profile 
+    concert as they worked on a new studio album. In 2016, the band launched a serie
+    s of expanded reissues, starting with deluxe editions of Kill 'Em All and Ride t
+    he Lightning. These reissues were the preamble to the November release of Hardwi
+    red...To Self-Destruct, a double album that was the group's first new music in e
+    ight years. Produced by Greg Fidelman, James Hetfield, and Lars Ulrich, Hardwire
+    d...To Self-Destruct debuted at number one throughout the world upon its Novembe
+    r 2016 release. The following year saw the group release a massive, expanded edi
+    tion of their landmark 1986 LP, Master of Puppets. 
+￼ In 2019, Metallica celebra
+    ted the 20th anniversary of S&M by reuniting with the San Francisco Symphony for
+     another pair of concerts of orchestral arrangements of their original songs. Th
+    is provided the source material for 2020's S&M2, a double-live album released in
+     August 2020. Metallica spent 2021 celebrating the 30th anniversary of The Black
+     Album, masterminding a lavish deluxe box set reissue that was accompanied by Th
+    e Metallica Blacklist, a four-disc tribute album featuring multiple covers of ev
+    ery song on the record. Deliberately eclectic -- the 53-track tribute had contri
+    butions by Mac Demarco, Weezer, Jason Isbell, St. Vincent, the Neptunes, Jon Par
+    di, Phoebe Bridgers, Imelda May and Kamasi Washington -- The Metallica Blacklist
+     was released separately from the big box; it charted at 103 on Billboard's Top 
+    200. 
+Metallica returned with "Lux Æterna," their first new music in nearly seve
+    n years, in November 2022, heralding the April 2023 release of their 11th studio
+     album, 72 Seasons. Reuniting with Greg Fidelman, the co-producer of Hardwired…T
+    o Self-Destruct, the band explored concepts of youth and maturity on the muscula
+    r, ballad-less album. The LP earned Metallica the prize for Best Metal Performan
+    ce at the 66th Grammy Awards. During the extensive world tour that followed, the
+     band recorded their show at Mexico's Estadio GNP Seguros, which they released i
+    n March 2025 as M72 World Tour: Mexico City, a concert album and accompanying fi
+    lm.
 discography: (N>100)
   - title: Live Metal Up Your Ass / No Life 'Til Leather
     year: 1982
@@ -85,8 +207,6 @@ discography: (N>100)
     year: 1987
   - title: Harvester Of Sorrow / Barbablù
     year: 1988
-  - title: 2 Of One
-    year: 1988
   - title: Eye Of The Beholder
     year: 1988
   - title: Harvester Of Sorrow
@@ -102,6 +222,8 @@ discography: (N>100)
   - title: One / More Than You Know
     year: 1989
   - title: One
+    year: 1989
+  - title: 2 Of One
     year: 1989
   - title: ...And Justice For All
     year: 1989
@@ -193,7 +315,9 @@ discography: (N>100)
     year: 1997
   - title: Reload / Load
     year: 1997
-  - title: Classic Concert
+  - title: Coca-Cola Planet Live - Classic Concert
+    year: 1997
+  - title: Get ‘Em All
     year: 1997
   - title: Recovery / MCM Interviews Oct 3 97
     year: 1997
@@ -248,8 +372,6 @@ discography: (N>100)
   - title: Did Die My Darling / I Finally Found My Way
     year: 1999
   - title: "S & M" Concert Special
-    year: 1999
-  - title: S & M Documentary
     year: 1999
 genres: (N=1)
   - Pop/Rock

@@ -139,8 +139,9 @@ outline:
 movie set: tmdbid= | name=
 movie set overview: 
 tagline: Go big or go extinct
-ratings (N=1)
+ratings (N<6)
   source=imdb | rating=6.8 | votes=500000 | min=0 | max=10
+  source=metacritic | rating=65 | votes=0 | min=0 | max=100
 userRating: 0
 imdbTop250: -1
 released: 2013-07-12
@@ -200,8 +201,8 @@ actors: (N>5)
    name: Max Martini
    role: Herc Hansen
    thumb:
-    https://m.media-amazon.com/images/M/MV5BNDJjZmNkYjItMGQ3ZS00MDIxLWE4MTYtNGVmNTg2
-    ZDA3ZTVlXkEyXkFqcGc@.jpg
+    https://m.media-amazon.com/images/M/MV5BMDk4OTU1YTAtMjY2Mi00YjY0LTkxNjctZTAwMDU5
+    MGFlMmUzXkEyXkFqcGc@.jpg
    order: 6
    imageHasChanged: false
  - id: 
@@ -234,18 +235,18 @@ genres: (N<6)
   - Action
   - Adventure
 tags: (N<6)
-  - apocalypse
   - human piloted robot
-  - human versus monster
-  - ocean
+  - pilot
+  - surrealism
+  - 2020s
   - kaiju
 countries: (N=1)
-  - US
+  - MX
 studios: (N<6)
   - Warner Bros.
   - Legendary Entertainment
   - Legendary Pictures
-trailer: https://imdb-video.media-imdb.com/vi1369752345/1434659529640-260ouz-1632281728566.mp4?Expires=1767274992&Signature=I9cA54nWqVvQpQ0tJF4c9DwhVS-NwXU3Xi3tJILg4-mvF8Saq7pqOFGG-vPu09SZln0~yfNCgnTqNmpER1jEMsYJbFogHtYPAOEevCEX2Fmx6X6F8Zt3nKgwOtbj29lqTVVrA9xqWS28zttkKP2WdShm5l5WOvD-n~L-K~YsBxG74bu7pihAiwvz9M6zRj9fZDDK-4glvoXQxkjYYoL-~NNHFLShqcJwP5DpKy~ZWKYagpks-aIEywPOBTOVE1kpm74nOV1iYvhTvYW3DNPCCQM4cuaz6T~NYgDg1VCOKZJnilKaJSaNL0cVBCSF5ZaTDOL-omcxRS-cBZMIEe2bKA__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA
+trailer: https://imdb-video.media-imdb.com/vi1369752345/1434659529640-260ouz-1632281728566.mp4?Expires=1773924298&Signature=lwCav3JaQQYkIY48K323pYYZkpXKRstICaMNX2ZKvBVdKGbdB8lFTWYkFVAcerRQWXapCwLVaRyI8cIfKcU1~cLVXePnwsmoS82CJ7zu75Xt57PCzMX8njnp-5qjuYlwUXwkc6BIPBVlRnn3ZZ9ZMGxT9AnS3SugS1Ar07wPDbH8e1baxe0BU7L2~EzhtFn5PfA5mVqoOmScOV83P7zfwHjFkHIPJM604HY4mglzGFU8IFByDEdwuliTphHBwVWWhmCVXTb2Jvd6xe2iYGqEbzGgpO6D51Kqt2aPjB3eAILab3yEyhgONCuBXxoxAr5bQI5RnoVJCY0qQ214VkLaoQ__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA
 showlink: (N=0)
 playcount: 0
 lastPlayed: <not set or invalid>

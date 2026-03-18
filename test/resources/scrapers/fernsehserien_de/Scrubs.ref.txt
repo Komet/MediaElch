@@ -32,6 +32,7 @@ runtime: 0min
 genres: (N<6)
   - Comedyserien
   - Comedy
+  - Krankenhausserie
 tags: (N=0)
 certification: 
 networks: (N=0)

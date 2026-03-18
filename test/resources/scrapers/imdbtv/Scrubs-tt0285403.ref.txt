@@ -17,7 +17,7 @@ ratings (N=1)
 userRating: 0
 imdbTop250: -1
 firstAired: 2001-10-02
-runtime: 22min
+runtime: 30min
 genres: (N<6)
   - Comedy
   - Drama
@@ -131,8 +131,8 @@ actors: (N>50)
    name: Travis Schuldt
    role: Keith
    thumb:
-    https://m.media-amazon.com/images/M/MV5BMjEzYTk1NjQtZDM0Zi00YzMzLWFhNmUtZjY5MDQx
-    NDU0ZjZiXkEyXkFqcGc@.jpg
+    https://m.media-amazon.com/images/M/MV5BYTUxYWViODAtZGMzOS00YzFmLThjYjItYTFlMjE0
+    MDA5ZDZhXkEyXkFqcGc@.jpg
    order: 12
    imageHasChanged: false
  - id: 
@@ -190,8 +190,8 @@ actors: (N>50)
   - ... and >30 more
 posters: (N=1)
   - id: 
-    originalUrl: https://m.media-amazon.com/images/M/MV5BZDYwNTk4YzEtMTRjNS00YWZjLTlkOWYtYzFlYWQyMjU2ZjkwXkEyXkFqcGc@.jpg
-    thumbUrl: https://m.media-amazon.com/images/M/MV5BZDYwNTk4YzEtMTRjNS00YWZjLTlkOWYtYzFlYWQyMjU2ZjkwXkEyXkFqcGc@.jpg
+    originalUrl: https://m.media-amazon.com/images/M/MV5BMWQ3ZmEwYmUtYWRhMS00OTllLTlkMzgtM2Q3MWFjOTI4MDE5XkEyXkFqcGc@.jpg
+    thumbUrl: https://m.media-amazon.com/images/M/MV5BMWQ3ZmEwYmUtYWRhMS00OTllLTlkMzgtM2Q3MWFjOTI4MDE5XkEyXkFqcGc@.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 

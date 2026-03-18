@@ -13,7 +13,7 @@ overview:
     Cruise into the crazy adventures of Tow Mater as you watch him be a fire truck, 
     daredevil, import drifter, and even an astronaut.
 ratings (N=1)
-  source=imdb | rating=6.8 | votes=4000 | min=0 | max=10
+  source=imdb | rating=6.8 | votes=5000 | min=0 | max=10
 userRating: 0
 imdbTop250: -1
 firstAired: 2008-10-27
@@ -104,16 +104,6 @@ actors: (N>30)
    order: 7
    imageHasChanged: false
  - id: 
-   name: Jess Harnell
-   role:
-    Additional Voice Talent / Announcer / Announcer #2 / Mission Control Pitty / Boo
-    st / Broken Down Ford Model T
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMTU3YTIzYmYtMGYwZi00ZDEyLTg2Y2EtYjk3ZWQx
-    MzBlN2RhXkEyXkFqcGc@.jpg
-   order: 8
-   imageHasChanged: false
- - id: 
    name: Lori Alan
    role:
     Additional Voice Talent / Blue Hawk / Red Car / Area 51 PA Announcer / Ford Mode
@@ -121,6 +111,16 @@ actors: (N>30)
    thumb:
     https://m.media-amazon.com/images/M/MV5BMjk4ODUwZmQtNTJkOS00YzIzLWJlYzItMDhjNjJi
     ODFmNDRlXkEyXkFqcGc@.jpg
+   order: 8
+   imageHasChanged: false
+ - id: 
+   name: Jess Harnell
+   role:
+    Additional Voice Talent / Announcer / Announcer #2 / Mission Control Pitty / Boo
+    st / Broken Down Ford Model T
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTU3YTIzYmYtMGYwZi00ZDEyLTg2Y2EtYjk3ZWQx
+    MzBlN2RhXkEyXkFqcGc@.jpg
    order: 9
    imageHasChanged: false
  - id: 
