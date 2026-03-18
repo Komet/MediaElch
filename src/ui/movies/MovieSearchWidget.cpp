@@ -96,7 +96,10 @@ void MovieSearchWidget::startSearch()
     emit sigMovieSelectionChanged(false);
 
     abortAndClearResults();
-    ui->comboScraper->setEnabled(false);
+    // Only disable the scraper combobox during custom scraper workflows.
+    // For normal searches, keep it enabled so users can switch scrapers
+    // even while a search is in progress (e.g. if the current scraper is broken).
+    ui->comboScraper->setEnabled(!isCustomScrapingInProgress());
     ui->comboLanguage->setEnabled(false);
     ui->searchString->setLoading(true);
 
@@ -219,6 +222,11 @@ void MovieSearchWidget::onShowResults(mediaelch::scraper::MovieSearchJob* search
 {
     using namespace mediaelch::scraper;
     auto dls = makeDeleteLaterScope(searchJob);
+
+    if (searchJob != m_currentSearchJob) {
+        // A newer search has been started; discard these stale results.
+        return;
+    }
 
     if (searchJob->wasKilled()) {
         // If it was killed, don't report anything, but reset the search bar.
