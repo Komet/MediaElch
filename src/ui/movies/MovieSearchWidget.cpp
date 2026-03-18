@@ -227,7 +227,6 @@ void MovieSearchWidget::onShowResults(mediaelch::scraper::MovieSearchJob* search
         // A newer search has been started; discard these stale results.
         return;
     }
-    m_currentSearchJob = nullptr;
 
     if (searchJob->wasKilled()) {
         // If it was killed, don't report anything, but reset the search bar.
