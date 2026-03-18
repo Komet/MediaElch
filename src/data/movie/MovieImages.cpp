@@ -35,6 +35,7 @@ void MovieImages::clear(QSet<MovieScraperInfo> infos)
         m_logos.clear();
         m_images.insert(ImageType::MovieLogo, QByteArray());
         m_hasImageChanged.insert(ImageType::MovieLogo, false);
+        m_numPrimaryLangLogos = 0;
         m_imagesToRemove.remove(ImageType::MovieLogo);
     }
     if (infos.contains(MovieScraperInfo::Poster)) {
@@ -112,24 +113,6 @@ QSet<ImageType> MovieImages::imagesToRemove() const
     return m_imagesToRemove;
 }
 
-/**
- * \brief Returns how many of the posters were scraped in the primary language
- * \return Number of primary language posters
- */
-int MovieImages::numPrimaryLangPosters() const
-{
-    return m_numPrimaryLangPosters;
-}
-
-/**
- * \brief Sets the number of primary language posters
- * \param numberPrimaryLangPosters Number of primary language posters
- */
-void MovieImages::setNumPrimaryLangPosters(int numberPrimaryLangPosters)
-{
-    m_numPrimaryLangPosters = numberPrimaryLangPosters;
-}
-
 void MovieImages::addPoster(Poster poster, bool primaryLang)
 {
     if (primaryLang) {
@@ -159,9 +142,15 @@ void MovieImages::addClearArt(Poster clearArt)
     m_movie.setChanged(true);
 }
 
-void MovieImages::addLogo(Poster logo)
+void MovieImages::addLogo(Poster logo, bool primaryLang)
 {
-    m_logos.append(logo);
+    if (primaryLang) {
+        m_logos.insert(m_numPrimaryLangLogos, logo);
+
+        m_numPrimaryLangLogos++;
+    } else {
+        m_logos.append(logo);
+    }
     m_movie.setChanged(true);
 }
 

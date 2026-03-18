@@ -34,17 +34,13 @@ public:
     void addBackdrop(Poster backdrop);
     void addDiscArt(Poster discArt);
     void addClearArt(Poster clearArt);
-    void addLogo(Poster logo);
+    void addLogo(Poster logo, bool primaryLang = false);
     void addExtraFanart(QByteArray fanart);
     void removeExtraFanart(QByteArray fanart);
     void removeExtraFanart(QString file);
     void clearExtraFanartData();
     void clearImages();
     void removeImage(ImageType type);
-
-    int numPrimaryLangPosters() const;
-
-    void setNumPrimaryLangPosters(int numberPrimaryLangPosters);
 
     // Images
     bool hasExtraFanarts() const;
@@ -65,6 +61,7 @@ private:
     QStringList m_extraFanartsToRemove;
     QStringList m_extraFanarts;
     int m_numPrimaryLangPosters{0};
+    int m_numPrimaryLangLogos{0};
     bool m_hasExtraFanarts{false};
 
     QMap<ImageType, QByteArray> m_images;
