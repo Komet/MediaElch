@@ -360,7 +360,7 @@ QVector<ShowSearchJob::Result> FernsehserienDeShowSearchJob::parseSearch(const Q
 
     static QRegularExpression resultList(
         R"(<ul\s+[^>]*\bid="?ul-infinite-scroll\b"?[^>]*>.*?</ul>)", QRegularExpression::DotMatchesEverythingOption);
-    static QRegularExpression resultEntry(R"(<li\b[^>]*>.*?</li>)", QRegularExpression::DotMatchesEverythingOption);
+    static QRegularExpression resultEntry(R"(<a\s+[^>]*\bdata-event-category="?liste-serien\b"?[^>]*>.*?</a>)", QRegularExpression::DotMatchesEverythingOption);
     static QRegularExpression resultTitle(R"(<dt\b[^>]*>(.*?)</dt>)", QRegularExpression::DotMatchesEverythingOption);
     static QRegularExpression resultYear(
         R"(<dd\b[^>]*>.*?(\d{4})[-–\s].*?</dd>)", QRegularExpression::DotMatchesEverythingOption);
@@ -511,9 +511,13 @@ void FernsehserienDeShowScrapeJob::parseTvShow(const QString& html)
     MediaElch_Debug_Ensures(posterRegEx.isValid());
     MediaElch_Debug_Ensures(bannerRegEx.isValid());
 
-    // Add a dash between title and addendum. Typical German thing.  For example, "Scrubs"
-    // is "Scrubs - Die Anfänger". "Die Anfänger" is in the second row on fernsehserien.de.
     QString seriesTitle = titleRegEx.match(html).captured(1);
+    if (seriesTitle.isEmpty()) {
+        // It is unlikely that a TV show has no title.
+        return;
+    }
+    // Add a dash between title and addendum. Typical German thing. For example, "Scrubs"
+    // is "Scrubs - Die Anfänger". "Die Anfänger" is in the second row on fernsehserien.de.
     seriesTitle.replace("<span>", "<span> – ");
 
     tvShow().setTitle(normalizeFromHtml(seriesTitle));
@@ -942,7 +946,6 @@ void FernsehserienDeEpisodeScrapeJob::parseEpisode(const QString& html)
             episode().setEpisode(EpisodeNumber(episodeNumber));
         }
     }
-//    episode().setTitle(normalizeFromHtml(titleRegEx.match(html).captured(1)));
     QString episodeTitle = titleRegEx.match(html).captured(1);
     episodeTitle = normalizeFromHtml(episodeTitle);
     // If the title is enclosed in round brackets, the brackets should be removed.
