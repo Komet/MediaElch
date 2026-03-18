@@ -63,7 +63,7 @@ actors: (N>5)
  - id: 200
    name: Nancy Cartwright
    role: Bart Simpson / Nelson Muntz / Ralph Wiggum (voice)
-   thumb: https://image.tmdb.org/t/p/original/40qNhyYJhSE2Yiy4pnXSZhdufO6.jpg
+   thumb: https://image.tmdb.org/t/p/original/kJQEz3NAwHGdb2sQzAnBf1RmMV4.jpg
    order: 3
    imageHasChanged: false
  - id: 5586
@@ -75,7 +75,7 @@ actors: (N>5)
  - id: 5587
    name: Hank Azaria
    role: Moe Szyslak / Chief Wiggum / Apu / Comic Book Guy / Carl (voice)
-   thumb: https://image.tmdb.org/t/p/original/yFDw4b0jucuFWNnGcBPfpYUtn16.jpg
+   thumb: https://image.tmdb.org/t/p/original/uON3TWSySIy8wbDhkSzmFTDM6XO.jpg
    order: 5
    imageHasChanged: false
  - id: 6008
@@ -128,13 +128,13 @@ actors: (N>10)
  - id: 75341
    name: Gary Coleman
    role: Gary Coleman (voice)
-   thumb: https://image.tmdb.org/t/p/original/77YIEd2tastsT3fjEraKOjCvgyD.jpg
+   thumb: https://image.tmdb.org/t/p/original/ua9Xzu1yp3eFMxB2h6H0cePQkeA.jpg
    order: 0
    imageHasChanged: false
  - id: 47096
    name: Roger Daltrey
    role: Roger Daltrey (voice)
-   thumb: https://image.tmdb.org/t/p/original/wQUIoUytxAoqaMpq2jW51v4CLhJ.jpg
+   thumb: https://image.tmdb.org/t/p/original/5hXMDGmnHLYrbSZp82CECz0m1I8.jpg
    order: 1
    imageHasChanged: false
  - id: 47098
@@ -146,7 +146,7 @@ actors: (N>10)
  - id: 89656
    name: John Entwistle
    role: John Entwistle (voice)
-   thumb: https://image.tmdb.org/t/p/original/imepW0WY82SgtnL2mkddd0Q5b8U.jpg
+   thumb: https://image.tmdb.org/t/p/original/p8E67MwcZUlrVQ4xV3ReyDIBb7D.jpg
    order: 3
    imageHasChanged: false
  - id: 6036
@@ -170,7 +170,7 @@ actors: (N>10)
  - id: 200
    name: Nancy Cartwright
    role: Bart Simpson / Nelson Muntz / Ralph Wiggum (voice)
-   thumb: https://image.tmdb.org/t/p/original/40qNhyYJhSE2Yiy4pnXSZhdufO6.jpg
+   thumb: https://image.tmdb.org/t/p/original/kJQEz3NAwHGdb2sQzAnBf1RmMV4.jpg
    order: 7
    imageHasChanged: false
  - id: 5586
@@ -182,7 +182,7 @@ actors: (N>10)
  - id: 5587
    name: Hank Azaria
    role: Moe Szyslak / Chief Wiggum / Apu / Comic Book Guy / Carl (voice)
-   thumb: https://image.tmdb.org/t/p/original/yFDw4b0jucuFWNnGcBPfpYUtn16.jpg
+   thumb: https://image.tmdb.org/t/p/original/uON3TWSySIy8wbDhkSzmFTDM6XO.jpg
    order: 9
    imageHasChanged: false
  - id: 6008
@@ -284,7 +284,7 @@ actors: (N>10)
  - id: 200
    name: Nancy Cartwright
    role: Bart Simpson / Nelson Muntz / Ralph Wiggum (voice)
-   thumb: https://image.tmdb.org/t/p/original/40qNhyYJhSE2Yiy4pnXSZhdufO6.jpg
+   thumb: https://image.tmdb.org/t/p/original/kJQEz3NAwHGdb2sQzAnBf1RmMV4.jpg
    order: 8
    imageHasChanged: false
  - id: 5586
@@ -296,7 +296,7 @@ actors: (N>10)
  - id: 5587
    name: Hank Azaria
    role: Moe Szyslak / Chief Wiggum / Apu / Comic Book Guy / Carl (voice)
-   thumb: https://image.tmdb.org/t/p/original/yFDw4b0jucuFWNnGcBPfpYUtn16.jpg
+   thumb: https://image.tmdb.org/t/p/original/uON3TWSySIy8wbDhkSzmFTDM6XO.jpg
    order: 10
    imageHasChanged: false
  - id: 6008
@@ -385,7 +385,7 @@ actors: (N>5)
  - id: 200
    name: Nancy Cartwright
    role: Bart Simpson / Nelson Muntz / Ralph Wiggum (voice)
-   thumb: https://image.tmdb.org/t/p/original/40qNhyYJhSE2Yiy4pnXSZhdufO6.jpg
+   thumb: https://image.tmdb.org/t/p/original/kJQEz3NAwHGdb2sQzAnBf1RmMV4.jpg
    order: 6
    imageHasChanged: false
  - id: 5586
@@ -397,7 +397,7 @@ actors: (N>5)
  - id: 5587
    name: Hank Azaria
    role: Moe Szyslak / Chief Wiggum / Apu / Comic Book Guy / Carl (voice)
-   thumb: https://image.tmdb.org/t/p/original/yFDw4b0jucuFWNnGcBPfpYUtn16.jpg
+   thumb: https://image.tmdb.org/t/p/original/uON3TWSySIy8wbDhkSzmFTDM6XO.jpg
    order: 8
    imageHasChanged: false
  - id: 6008
@@ -423,7 +423,7 @@ tvmazeId:
 title: Homer vs. Dignity
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=6.8 | votes=20 | min=0 | max=10
+  source=tmdb | rating=7 | votes=20 | min=0 | max=10
 userRating: 0
 imdbTop250: -1
 season: SeasonNumber=12
@@ -474,7 +474,7 @@ actors: (N>5)
  - id: 200
    name: Nancy Cartwright
    role: Bart Simpson / Nelson Muntz / Ralph Wiggum (voice)
-   thumb: https://image.tmdb.org/t/p/original/40qNhyYJhSE2Yiy4pnXSZhdufO6.jpg
+   thumb: https://image.tmdb.org/t/p/original/kJQEz3NAwHGdb2sQzAnBf1RmMV4.jpg
    order: 4
    imageHasChanged: false
  - id: 5586
@@ -486,7 +486,7 @@ actors: (N>5)
  - id: 5587
    name: Hank Azaria
    role: Moe Szyslak / Chief Wiggum / Apu / Comic Book Guy / Carl (voice)
-   thumb: https://image.tmdb.org/t/p/original/yFDw4b0jucuFWNnGcBPfpYUtn16.jpg
+   thumb: https://image.tmdb.org/t/p/original/uON3TWSySIy8wbDhkSzmFTDM6XO.jpg
    order: 6
    imageHasChanged: false
  - id: 6008
@@ -512,7 +512,7 @@ tvmazeId:
 title: The Computer Wore Menace Shoes
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=7.6 | votes=20 | min=0 | max=10
+  source=tmdb | rating=7.8 | votes=20 | min=0 | max=10
 userRating: 0
 imdbTop250: -1
 season: SeasonNumber=12
@@ -566,7 +566,7 @@ actors: (N>5)
  - id: 200
    name: Nancy Cartwright
    role: Bart Simpson / Nelson Muntz / Ralph Wiggum (voice)
-   thumb: https://image.tmdb.org/t/p/original/40qNhyYJhSE2Yiy4pnXSZhdufO6.jpg
+   thumb: https://image.tmdb.org/t/p/original/kJQEz3NAwHGdb2sQzAnBf1RmMV4.jpg
    order: 4
    imageHasChanged: false
  - id: 5586
@@ -578,7 +578,7 @@ actors: (N>5)
  - id: 5587
    name: Hank Azaria
    role: Moe Szyslak / Chief Wiggum / Apu / Comic Book Guy / Carl (voice)
-   thumb: https://image.tmdb.org/t/p/original/yFDw4b0jucuFWNnGcBPfpYUtn16.jpg
+   thumb: https://image.tmdb.org/t/p/original/uON3TWSySIy8wbDhkSzmFTDM6XO.jpg
    order: 6
    imageHasChanged: false
  - id: 6008
@@ -649,7 +649,7 @@ actors: (N>5)
  - id: 200
    name: Nancy Cartwright
    role: Bart Simpson / Nelson Muntz / Ralph Wiggum (voice)
-   thumb: https://image.tmdb.org/t/p/original/40qNhyYJhSE2Yiy4pnXSZhdufO6.jpg
+   thumb: https://image.tmdb.org/t/p/original/kJQEz3NAwHGdb2sQzAnBf1RmMV4.jpg
    order: 3
    imageHasChanged: false
  - id: 5586
@@ -661,7 +661,7 @@ actors: (N>5)
  - id: 5587
    name: Hank Azaria
    role: Moe Szyslak / Chief Wiggum / Apu / Comic Book Guy / Carl (voice)
-   thumb: https://image.tmdb.org/t/p/original/yFDw4b0jucuFWNnGcBPfpYUtn16.jpg
+   thumb: https://image.tmdb.org/t/p/original/uON3TWSySIy8wbDhkSzmFTDM6XO.jpg
    order: 5
    imageHasChanged: false
  - id: 6008
@@ -687,7 +687,7 @@ tvmazeId:
 title: Skinner's Sense of Snow
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=7.4 | votes=20 | min=0 | max=10
+  source=tmdb | rating=7.6 | votes=20 | min=0 | max=10
 userRating: 0
 imdbTop250: -1
 season: SeasonNumber=12
@@ -756,7 +756,7 @@ actors: (N>10)
  - id: 200
    name: Nancy Cartwright
    role: Bart Simpson / Nelson Muntz / Ralph Wiggum (voice)
-   thumb: https://image.tmdb.org/t/p/original/40qNhyYJhSE2Yiy4pnXSZhdufO6.jpg
+   thumb: https://image.tmdb.org/t/p/original/kJQEz3NAwHGdb2sQzAnBf1RmMV4.jpg
    order: 7
    imageHasChanged: false
  - id: 5586
@@ -768,7 +768,7 @@ actors: (N>10)
  - id: 5587
    name: Hank Azaria
    role: Moe Szyslak / Chief Wiggum / Apu / Comic Book Guy / Carl (voice)
-   thumb: https://image.tmdb.org/t/p/original/yFDw4b0jucuFWNnGcBPfpYUtn16.jpg
+   thumb: https://image.tmdb.org/t/p/original/uON3TWSySIy8wbDhkSzmFTDM6XO.jpg
    order: 9
    imageHasChanged: false
  - id: 6008
@@ -835,7 +835,7 @@ actors: (N>5)
  - id: 200
    name: Nancy Cartwright
    role: Bart Simpson / Nelson Muntz / Ralph Wiggum (voice)
-   thumb: https://image.tmdb.org/t/p/original/40qNhyYJhSE2Yiy4pnXSZhdufO6.jpg
+   thumb: https://image.tmdb.org/t/p/original/kJQEz3NAwHGdb2sQzAnBf1RmMV4.jpg
    order: 2
    imageHasChanged: false
  - id: 5586
@@ -847,7 +847,7 @@ actors: (N>5)
  - id: 5587
    name: Hank Azaria
    role: Moe Szyslak / Chief Wiggum / Apu / Comic Book Guy / Carl (voice)
-   thumb: https://image.tmdb.org/t/p/original/yFDw4b0jucuFWNnGcBPfpYUtn16.jpg
+   thumb: https://image.tmdb.org/t/p/original/uON3TWSySIy8wbDhkSzmFTDM6XO.jpg
    order: 4
    imageHasChanged: false
  - id: 6008
@@ -941,7 +941,7 @@ actors: (N>10)
  - id: 200
    name: Nancy Cartwright
    role: Bart Simpson / Nelson Muntz / Ralph Wiggum (voice)
-   thumb: https://image.tmdb.org/t/p/original/40qNhyYJhSE2Yiy4pnXSZhdufO6.jpg
+   thumb: https://image.tmdb.org/t/p/original/kJQEz3NAwHGdb2sQzAnBf1RmMV4.jpg
    order: 7
    imageHasChanged: false
  - id: 5586
@@ -953,7 +953,7 @@ actors: (N>10)
  - id: 5587
    name: Hank Azaria
    role: Moe Szyslak / Chief Wiggum / Apu / Comic Book Guy / Carl (voice)
-   thumb: https://image.tmdb.org/t/p/original/yFDw4b0jucuFWNnGcBPfpYUtn16.jpg
+   thumb: https://image.tmdb.org/t/p/original/uON3TWSySIy8wbDhkSzmFTDM6XO.jpg
    order: 9
    imageHasChanged: false
  - id: 6008
@@ -979,7 +979,7 @@ tvmazeId:
 title: Worst Episode Ever
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=6.8 | votes=20 | min=0 | max=10
+  source=tmdb | rating=7 | votes=20 | min=0 | max=10
 userRating: 0
 imdbTop250: -1
 season: SeasonNumber=12
@@ -1031,7 +1031,7 @@ actors: (N>5)
  - id: 200
    name: Nancy Cartwright
    role: Bart Simpson / Nelson Muntz / Ralph Wiggum (voice)
-   thumb: https://image.tmdb.org/t/p/original/40qNhyYJhSE2Yiy4pnXSZhdufO6.jpg
+   thumb: https://image.tmdb.org/t/p/original/kJQEz3NAwHGdb2sQzAnBf1RmMV4.jpg
    order: 4
    imageHasChanged: false
  - id: 5586
@@ -1043,7 +1043,7 @@ actors: (N>5)
  - id: 5587
    name: Hank Azaria
    role: Moe Szyslak / Chief Wiggum / Apu / Comic Book Guy / Carl (voice)
-   thumb: https://image.tmdb.org/t/p/original/yFDw4b0jucuFWNnGcBPfpYUtn16.jpg
+   thumb: https://image.tmdb.org/t/p/original/uON3TWSySIy8wbDhkSzmFTDM6XO.jpg
    order: 6
    imageHasChanged: false
  - id: 6008
@@ -1069,7 +1069,7 @@ tvmazeId:
 title: Tennis the Menace
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=6.2 | votes=20 | min=0 | max=10
+  source=tmdb | rating=6.4 | votes=20 | min=0 | max=10
 userRating: 0
 imdbTop250: -1
 season: SeasonNumber=12
@@ -1148,7 +1148,7 @@ actors: (N>10)
  - id: 200
    name: Nancy Cartwright
    role: Bart Simpson / Nelson Muntz / Ralph Wiggum (voice)
-   thumb: https://image.tmdb.org/t/p/original/40qNhyYJhSE2Yiy4pnXSZhdufO6.jpg
+   thumb: https://image.tmdb.org/t/p/original/kJQEz3NAwHGdb2sQzAnBf1RmMV4.jpg
    order: 8
    imageHasChanged: false
  - id: 5586
@@ -1160,7 +1160,7 @@ actors: (N>10)
  - id: 5587
    name: Hank Azaria
    role: Moe Szyslak / Chief Wiggum / Apu / Comic Book Guy / Carl (voice)
-   thumb: https://image.tmdb.org/t/p/original/yFDw4b0jucuFWNnGcBPfpYUtn16.jpg
+   thumb: https://image.tmdb.org/t/p/original/uON3TWSySIy8wbDhkSzmFTDM6XO.jpg
    order: 10
    imageHasChanged: false
  - id: 6008
@@ -1186,7 +1186,7 @@ tvmazeId:
 title: Day of the Jackanapes
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=6.4 | votes=20 | min=0 | max=10
+  source=tmdb | rating=6.6 | votes=20 | min=0 | max=10
 userRating: 0
 imdbTop250: -1
 season: SeasonNumber=12
@@ -1215,7 +1215,7 @@ actors: (N>5)
  - id: 75341
    name: Gary Coleman
    role: Gary Coleman (voice)
-   thumb: https://image.tmdb.org/t/p/original/77YIEd2tastsT3fjEraKOjCvgyD.jpg
+   thumb: https://image.tmdb.org/t/p/original/ua9Xzu1yp3eFMxB2h6H0cePQkeA.jpg
    order: 0
    imageHasChanged: false
  - id: 7090
@@ -1239,7 +1239,7 @@ actors: (N>5)
  - id: 200
    name: Nancy Cartwright
    role: Bart Simpson / Nelson Muntz / Ralph Wiggum (voice)
-   thumb: https://image.tmdb.org/t/p/original/40qNhyYJhSE2Yiy4pnXSZhdufO6.jpg
+   thumb: https://image.tmdb.org/t/p/original/kJQEz3NAwHGdb2sQzAnBf1RmMV4.jpg
    order: 4
    imageHasChanged: false
  - id: 5586
@@ -1251,7 +1251,7 @@ actors: (N>5)
  - id: 5587
    name: Hank Azaria
    role: Moe Szyslak / Chief Wiggum / Apu / Comic Book Guy / Carl (voice)
-   thumb: https://image.tmdb.org/t/p/original/yFDw4b0jucuFWNnGcBPfpYUtn16.jpg
+   thumb: https://image.tmdb.org/t/p/original/uON3TWSySIy8wbDhkSzmFTDM6XO.jpg
    order: 6
    imageHasChanged: false
  - id: 6008
@@ -1345,7 +1345,7 @@ actors: (N>10)
  - id: 200
    name: Nancy Cartwright
    role: Bart Simpson / Nelson Muntz / Ralph Wiggum (voice)
-   thumb: https://image.tmdb.org/t/p/original/40qNhyYJhSE2Yiy4pnXSZhdufO6.jpg
+   thumb: https://image.tmdb.org/t/p/original/kJQEz3NAwHGdb2sQzAnBf1RmMV4.jpg
    order: 7
    imageHasChanged: false
  - id: 5586
@@ -1357,7 +1357,7 @@ actors: (N>10)
  - id: 5587
    name: Hank Azaria
    role: Moe Szyslak / Chief Wiggum / Apu / Comic Book Guy / Carl (voice)
-   thumb: https://image.tmdb.org/t/p/original/yFDw4b0jucuFWNnGcBPfpYUtn16.jpg
+   thumb: https://image.tmdb.org/t/p/original/uON3TWSySIy8wbDhkSzmFTDM6XO.jpg
    order: 9
    imageHasChanged: false
  - id: 6008
@@ -1383,7 +1383,7 @@ tvmazeId:
 title: Hungry Hungry Homer
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=6.8 | votes=20 | min=0 | max=10
+  source=tmdb | rating=7 | votes=20 | min=0 | max=10
 userRating: 0
 imdbTop250: -1
 season: SeasonNumber=12
@@ -1453,7 +1453,7 @@ actors: (N>10)
  - id: 200
    name: Nancy Cartwright
    role: Bart Simpson / Nelson Muntz / Ralph Wiggum (voice)
-   thumb: https://image.tmdb.org/t/p/original/40qNhyYJhSE2Yiy4pnXSZhdufO6.jpg
+   thumb: https://image.tmdb.org/t/p/original/kJQEz3NAwHGdb2sQzAnBf1RmMV4.jpg
    order: 7
    imageHasChanged: false
  - id: 5586
@@ -1465,7 +1465,7 @@ actors: (N>10)
  - id: 5587
    name: Hank Azaria
    role: Moe Szyslak / Chief Wiggum / Apu / Comic Book Guy / Carl (voice)
-   thumb: https://image.tmdb.org/t/p/original/yFDw4b0jucuFWNnGcBPfpYUtn16.jpg
+   thumb: https://image.tmdb.org/t/p/original/uON3TWSySIy8wbDhkSzmFTDM6XO.jpg
    order: 9
    imageHasChanged: false
  - id: 6008
@@ -1491,7 +1491,7 @@ tvmazeId:
 title: Bye Bye Nerdy
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=6.2 | votes=20 | min=0 | max=10
+  source=tmdb | rating=6.4 | votes=20 | min=0 | max=10
 userRating: 0
 imdbTop250: -1
 season: SeasonNumber=12
@@ -1574,7 +1574,7 @@ actors: (N>10)
  - id: 200
    name: Nancy Cartwright
    role: Bart Simpson / Nelson Muntz / Ralph Wiggum (voice)
-   thumb: https://image.tmdb.org/t/p/original/40qNhyYJhSE2Yiy4pnXSZhdufO6.jpg
+   thumb: https://image.tmdb.org/t/p/original/kJQEz3NAwHGdb2sQzAnBf1RmMV4.jpg
    order: 9
    imageHasChanged: false
  - id: 5586
@@ -1586,7 +1586,7 @@ actors: (N>10)
  - id: 5587
    name: Hank Azaria
    role: Moe Szyslak / Chief Wiggum / Apu / Comic Book Guy / Carl (voice)
-   thumb: https://image.tmdb.org/t/p/original/yFDw4b0jucuFWNnGcBPfpYUtn16.jpg
+   thumb: https://image.tmdb.org/t/p/original/uON3TWSySIy8wbDhkSzmFTDM6XO.jpg
    order: 11
    imageHasChanged: false
  - id: 6008
@@ -1612,7 +1612,7 @@ tvmazeId:
 title: Simpson Safari
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=6 | votes=20 | min=0 | max=10
+  source=tmdb | rating=6.2 | votes=20 | min=0 | max=10
 userRating: 0
 imdbTop250: -1
 season: SeasonNumber=12
@@ -1651,7 +1651,7 @@ actors: (N>5)
  - id: 200
    name: Nancy Cartwright
    role: Bart Simpson / Nelson Muntz / Ralph Wiggum (voice)
-   thumb: https://image.tmdb.org/t/p/original/40qNhyYJhSE2Yiy4pnXSZhdufO6.jpg
+   thumb: https://image.tmdb.org/t/p/original/kJQEz3NAwHGdb2sQzAnBf1RmMV4.jpg
    order: 2
    imageHasChanged: false
  - id: 5586
@@ -1663,7 +1663,7 @@ actors: (N>5)
  - id: 5587
    name: Hank Azaria
    role: Moe Szyslak / Chief Wiggum / Apu / Comic Book Guy / Carl (voice)
-   thumb: https://image.tmdb.org/t/p/original/yFDw4b0jucuFWNnGcBPfpYUtn16.jpg
+   thumb: https://image.tmdb.org/t/p/original/uON3TWSySIy8wbDhkSzmFTDM6XO.jpg
    order: 4
    imageHasChanged: false
  - id: 6008
@@ -1770,7 +1770,7 @@ actors: (N>10)
  - id: 200
    name: Nancy Cartwright
    role: Bart Simpson / Nelson Muntz / Ralph Wiggum (voice)
-   thumb: https://image.tmdb.org/t/p/original/40qNhyYJhSE2Yiy4pnXSZhdufO6.jpg
+   thumb: https://image.tmdb.org/t/p/original/kJQEz3NAwHGdb2sQzAnBf1RmMV4.jpg
    order: 9
    imageHasChanged: false
  - id: 5586
@@ -1782,7 +1782,7 @@ actors: (N>10)
  - id: 5587
    name: Hank Azaria
    role: Moe Szyslak / Chief Wiggum / Apu / Comic Book Guy / Carl (voice)
-   thumb: https://image.tmdb.org/t/p/original/yFDw4b0jucuFWNnGcBPfpYUtn16.jpg
+   thumb: https://image.tmdb.org/t/p/original/uON3TWSySIy8wbDhkSzmFTDM6XO.jpg
    order: 11
    imageHasChanged: false
  - id: 6008
@@ -1864,7 +1864,7 @@ actors: (N>5)
  - id: 200
    name: Nancy Cartwright
    role: Bart Simpson / Nelson Muntz / Ralph Wiggum (voice)
-   thumb: https://image.tmdb.org/t/p/original/40qNhyYJhSE2Yiy4pnXSZhdufO6.jpg
+   thumb: https://image.tmdb.org/t/p/original/kJQEz3NAwHGdb2sQzAnBf1RmMV4.jpg
    order: 5
    imageHasChanged: false
  - id: 5586
@@ -1876,7 +1876,7 @@ actors: (N>5)
  - id: 5587
    name: Hank Azaria
    role: Moe Szyslak / Chief Wiggum / Apu / Comic Book Guy / Carl (voice)
-   thumb: https://image.tmdb.org/t/p/original/yFDw4b0jucuFWNnGcBPfpYUtn16.jpg
+   thumb: https://image.tmdb.org/t/p/original/uON3TWSySIy8wbDhkSzmFTDM6XO.jpg
    order: 7
    imageHasChanged: false
  - id: 6008
@@ -1902,7 +1902,7 @@ tvmazeId:
 title: Children of a Lesser Clod
 showTitle: 
 ratings (N=1)
-  source=tmdb | rating=6.4 | votes=20 | min=0 | max=10
+  source=tmdb | rating=6.8 | votes=20 | min=0 | max=10
 userRating: 0
 imdbTop250: -1
 season: SeasonNumber=12
@@ -1941,7 +1941,7 @@ actors: (N>5)
  - id: 200
    name: Nancy Cartwright
    role: Bart Simpson / Nelson Muntz / Ralph Wiggum (voice)
-   thumb: https://image.tmdb.org/t/p/original/40qNhyYJhSE2Yiy4pnXSZhdufO6.jpg
+   thumb: https://image.tmdb.org/t/p/original/kJQEz3NAwHGdb2sQzAnBf1RmMV4.jpg
    order: 2
    imageHasChanged: false
  - id: 5586
@@ -1953,7 +1953,7 @@ actors: (N>5)
  - id: 5587
    name: Hank Azaria
    role: Moe Szyslak / Chief Wiggum / Apu / Comic Book Guy / Carl (voice)
-   thumb: https://image.tmdb.org/t/p/original/yFDw4b0jucuFWNnGcBPfpYUtn16.jpg
+   thumb: https://image.tmdb.org/t/p/original/uON3TWSySIy8wbDhkSzmFTDM6XO.jpg
    order: 4
    imageHasChanged: false
  - id: 6008
@@ -2029,7 +2029,7 @@ actors: (N>5)
  - id: 200
    name: Nancy Cartwright
    role: Bart Simpson / Nelson Muntz / Ralph Wiggum (voice)
-   thumb: https://image.tmdb.org/t/p/original/40qNhyYJhSE2Yiy4pnXSZhdufO6.jpg
+   thumb: https://image.tmdb.org/t/p/original/kJQEz3NAwHGdb2sQzAnBf1RmMV4.jpg
    order: 3
    imageHasChanged: false
  - id: 5586
@@ -2041,7 +2041,7 @@ actors: (N>5)
  - id: 5587
    name: Hank Azaria
    role: Moe Szyslak / Chief Wiggum / Apu / Comic Book Guy / Carl (voice)
-   thumb: https://image.tmdb.org/t/p/original/yFDw4b0jucuFWNnGcBPfpYUtn16.jpg
+   thumb: https://image.tmdb.org/t/p/original/uON3TWSySIy8wbDhkSzmFTDM6XO.jpg
    order: 5
    imageHasChanged: false
  - id: 6008

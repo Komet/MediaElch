@@ -129,6 +129,8 @@ discography: (N>90)
     year: 2003
   - title: Master Collection
     year: 2003
+  - title: Industrial Angels
+    year: 2003
   - title: Lichtspielhaus
     year: 2003
   - title: Reise, Reise Videospecial
@@ -227,8 +229,6 @@ discography: (N>90)
     year: 2022
   - title: Adieu
     year: 2022
-  - title: XXXIII
-    year: 2025
 genres: (N=0)
 styles: (N=0)
 moods: (N=0)

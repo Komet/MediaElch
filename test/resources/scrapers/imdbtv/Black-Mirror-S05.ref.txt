@@ -32,9 +32,9 @@ lastPlayed: <not set or invalid>
 firstAired: 2019-06-05
 tags: (N<6)
   - virtual reality addiction
-  - unexpected
   - gender roles
-  - love
+  - virtual reality
+  - sexuality
   - confusion
 epBookmark: <not set or invalid>
 certification: TV-MA
@@ -197,9 +197,7 @@ actors: (N>5)
  - id: 
    name: Amanda Drew
    role: Hayley
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BNzI2NmM3ZmUtYjI4Mi00ZmQ1LTgyZWUtMWJkM2Yx
-    MzYzZDkzXkEyXkFqcGc@.jpg
+   thumb: 
    order: 4
    imageHasChanged: false
  - id: 
@@ -222,8 +220,8 @@ actors: (N>5)
    name: Ambreen Razia
    role: WPC Najma Haque
    thumb:
-    https://m.media-amazon.com/images/M/MV5BODYwMWQ4ZjYtNWFjZS00MGY5LTkyMTUtMGM0NWVm
-    ZjJmMzdkXkEyXkFqcGc@.jpg
+    https://m.media-amazon.com/images/M/MV5BNmY0ZTQ5ZDUtZDAyZS00NjFjLTg4OTMtMDJjNDY0
+    N2M2ODY1XkEyXkFqcGc@.jpg
    order: 7
    imageHasChanged: false
  - id: 

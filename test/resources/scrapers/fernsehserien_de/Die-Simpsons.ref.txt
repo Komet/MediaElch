@@ -17,13 +17,18 @@ overview:
     liebsten ist er bei Moe’s Taverne, seiner Stammkneipe, in der er mit seinen Sauf
     kumpanen sein geliebtes Duff-Bier trinkt. Ansonsten sitzt er nur vorm Fernseher 
     und isst Chips oder sonst was ungesundes. Er arbeitet – naja, eher sitzt er nur 
-    rum und tut nichts – im Atomkraftwerk. Marge arbeitet sehr viel im Haushalt. Auf
+    rum und tut nichts – im Atomkraftwerk.
+Marge arbeitet sehr viel im Haushalt. Auf
     fällig an ihr sind ihre blauen Haare, die sie zu einer Turmfrisur hochgesteckt h
-    at und ihre krächzende Stimme. Bart ist frech und hat immer einen passenden Spru
+    at und ihre krächzende Stimme.
+Bart ist frech und hat immer einen passenden Spru
     ch auf Lager, was aber auch zu Folge hat, dass er schlecht in der Schule ist und
-     immer nur das macht, was er eigentlich nicht tun sollte. Lisa ist sehr begabt, 
-    spielt Saxophon und schreibt nur 1er. Maggie, das kleine Baby, kann noch nicht r
-    eden und nuckelt immer nur an ihrem Schnuller. Es gibt aber auch noch viele Nebe
+     immer nur das macht, was er eigentlich nicht tun sollte.
+Lisa ist sehr begabt, 
+    spielt Saxophon und schreibt nur 1er.
+Maggie, das kleine Baby, kann noch nicht r
+    eden und nuckelt immer nur an ihrem Schnuller.
+Es gibt aber auch noch viele Nebe
     nfiguren, die immer wieder auftauchen, so z.B. Abraham, genannt Grampa Simpson, 
     der oft ins Koma fällt und wieder aufwacht, Moe den Barkeeper, der Probleme mit 
     Frauen hat und dessen bester Kunde Barney Gumble ist, der Säufer, der absolut ni
@@ -43,6 +48,7 @@ firstAired: 1991-02-28
 runtime: 0min
 genres: (N<6)
   - Animationsserien
+  - Animation
   - Comedy
   - Zeichentrick
 tags: (N=0)

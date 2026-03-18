@@ -15,7 +15,7 @@ overview:
 ratings (N=1)
   source=imdb | rating=8.6 | votes=400000 | min=0 | max=10
 userRating: 0
-imdbTop250: 112
+imdbTop250: 113
 firstAired: 1989-12-17
 runtime: 22min
 genres: (N<6)
@@ -211,10 +211,10 @@ actors: (N>50)
     jula / Dubya Spuckler / Shauna / Lunchlady Dora / Dolph Shapiro / Mrs. Glick / L
     ewis / Woman / Miss Springfield / Various People / Waitress / Socialite / Mrs. V
     anderbilt / Jimbo Jones / Old Lady / Cora / Myra / Lindsey Neagle / Boy / Lady /
-     Booberella / Tour Guide / Plopper / Whitney Spuckler / Crowd Members / Brunella
-     Pommelhorst / Cosine / Librarian / Lindsay Neagle / Additional Voices / Martha 
-    / Maya / Opal / Teacher / Little Boy / Poor Violet / Witch / Brandine Del Roy / 
-    Mother / Kumiko / Virgin Mary / Amazon Alexa / Children / Alexa / Belle / Woman 
+     Booberella / Tour Guide / Plopper / Whitney Spuckler / Crowd Members / Alexa / 
+    Brunella Pommelhorst / Cosine / Librarian / Lindsay Neagle / Additional Voices /
+     Martha / Maya / Opal / Teacher / Little Boy / Poor Violet / Witch / Brandine De
+    l Roy / Mother / Kumiko / Virgin Mary / Amazon Alexa / Children / Belle / Woman 
     on Street / Pigs / Aide / Gov. Mary Bailey / Queen Elizabeth II / Actress / Gyps
     y / Medicine Woman / Brenda / Mom / Others / Inga / Old Woman / Clara / Operator
      / Wife / Noah's Mother / Kenny / Gino Terwilliger / TV Executive / Producer / L
@@ -369,7 +369,8 @@ actors: (N>50)
    role:
     Carl Carlson / Lou / Security Guard / Fausto / Audrey II / FBI Officer #1 / Empl
     oyee Praising Dance Moves / Partygoer #2 / Gamer / Hockey Player / Wyatt / Fathe
-    r / Chunk Mafia / New York Yankees Player / Male Scientist / Judge
+    r / H.O.A.G.I.E. Man / Chunk Mafia / New York Yankees Player / Male Scientist / 
+    Judge
    thumb:
     https://m.media-amazon.com/images/M/MV5BMTY1ODM2NDMzNF5BMl5BanBnXkFtZTcwNzkzMTgy
     Mg@@.jpg
@@ -383,8 +384,9 @@ actors: (N>50)
     's Bar Customer / Airport Passerby #2 / Airport Passerby #4 / Angry Crowd / Taxi
     dermy Teacher / French Fry / Francine / Little Girl in Commercial / Parking Enfo
     rcement Leader / Riley / Gloria Prince / Crowd Members / Iris Dalrymple / Malibu
-     Stacy / Mr. Tumnus / Derren Brown Emplyoee / Üter Zörker / Sherri and Terri Mac
-    kleberry / Hub's Mother / Golf Commentator / She-E-O Journalist / Amber
+     Stacy / Mr. Tumnus / Derren Brown Emplyoee / Üter Zörker / Laney / Sherri and T
+    erri Mackleberry / Hub's Mother / Golf Commentator / Harper Poppyseed / She-E-O 
+    Journalist / Amber
    thumb:
     https://m.media-amazon.com/images/M/MV5BMjg2MTQxOTUyMl5BMl5BanBnXkFtZTcwMTgxNTEx
     OA@@.jpg
@@ -421,8 +423,8 @@ actors: (N>50)
     wyer / Cannabis Influencer / Flight Attendant / Texxon Customer / Female Firefig
     hter / Daly Night / Etta Pryor / Mrs. McBride / Allergy Doctor / Court Bailiff /
      Female Criticizing Workforce / Naima / Grocery Store Clerk / Flight Attendance 
-    #2 / Morher / Karate Kids / Ursula / Party guest / Pam / Perimenopause: The Musi
-    cal Singer
+    #2 / Morher / Karate Kids / Ursula / Party guest / Sarah Wiggum / Pam / Perimeno
+    pause: The Musical Singer
    thumb:
     https://m.media-amazon.com/images/M/MV5BMTYwNTk1NTA3Nl5BMl5BanBnXkFtZTYwNTAyMTM1
     .jpg
