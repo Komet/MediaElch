@@ -432,8 +432,7 @@ QVector<EpisodeNumber> TvShowFileSearcher::getEpisodeNumbers(QStringList files)
         bool mayBeAmbiguous = false;
     };
 
-    QVector<EpisodeNumberPattern> patterns{
-        {R"([Ss]\d+[ ._-x]?[Ee](\d+))", false},
+    QVector<EpisodeNumberPattern> patterns{{R"([Ss]\d+[ ._-x]?[Ee](\d+))", false},
         {R"([Ss]\d+[ ._-x]?[Ee][Pp](\d+))", false},
         {R"([Ss]eason[ ._-x]?\d+[._ -]?[Ee]pisode[ ._-]?(\d+))", false},
         {R"(ep_?(\d+))", false},
@@ -442,8 +441,7 @@ QVector<EpisodeNumber> TvShowFileSearcher::getEpisodeNumbers(QStringList files)
         // {R"((?:part|pt).((?=[MDCLXVI])M*(?:C[MD]|D?C{0,3})(?:X[CL]|L?X{0,3})(?:I[XV]|V?I{0,3}))\b)", false},
         // {R"(pt_((?=[MDCLXVI])M*(?:C[MD]|D?C{0,3})(?:X[CL]|L?X{0,3})(?:I[XV]|V?I{0,3}))\b)", false},
         {R"(\d+x(\d+))", true},
-        {R"(\d+.(\d){2,4})", true}
-    };
+        {R"(\d+.(\d){2,4})", true}};
 
     for (const auto& pattern : patterns) {
         if (scanWithPattern(pattern.regex, pattern.mayBeAmbiguous)) {

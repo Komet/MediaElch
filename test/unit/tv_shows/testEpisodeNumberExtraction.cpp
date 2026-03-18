@@ -93,7 +93,7 @@ TEST_CASE("TvShowFileSearcher parses episode data", "[show][utils]")
         // See https://github.com/Komet/MediaElch/pull/1302
         CHECK(getEpisodeNumber("Oz/Oz.S01E01.Emerald City (720p)") == EpisodeNumber(1));
 
-		// Check for TV show without season number
+        // Check for TV show without season number
         CHECK(getEpisodeNumber("dir/ep4.mov") == EpisodeNumber(4));
         CHECK(getEpisodeNumber("dir/ep04.mov") == EpisodeNumber(4));
         CHECK(getEpisodeNumber("dir/ep004.mov") == EpisodeNumber(4));
@@ -164,7 +164,7 @@ TEST_CASE("TvShowFileSearcher parses episode data", "[show][utils]")
 
         CHECK(getEpisodeNumbers("Oz/Oz.S01E01E02.Emerald City (720p)") == episodeList({1, 2}));
 
-		// Check for TV show without season number
+        // Check for TV show without season number
         CHECK(getEpisodeNumbers("dir/ep4-ep5.mov") == episodeList({4, 5}));
         CHECK(getEpisodeNumbers("dir/ep04-ep5.mov") == episodeList({4, 5}));
         CHECK(getEpisodeNumbers("dir/ep4-ep05.mov") == episodeList({4, 5}));

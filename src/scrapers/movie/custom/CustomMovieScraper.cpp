@@ -99,8 +99,8 @@ MovieScrapeJob* CustomMovieScraper::loadMovie(MovieScrapeJob::Config config)
             // configuration is found (e.g. for image-only scrapers).
             mediaelch::ScraperConfiguration* scraperSettings =
                 Manager::instance()->scrapers().movieScraperConfig(detailScraper->meta().identifier);
-            scraperConfig.locale = (scraperSettings != nullptr) ? scraperSettings->language()
-                                                                : detailScraper->meta().defaultLocale;
+            scraperConfig.locale =
+                (scraperSettings != nullptr) ? scraperSettings->language() : detailScraper->meta().defaultLocale;
             scraperConfig.details = {};
             scraperMap.insert(detailScraper, scraperConfig);
         }

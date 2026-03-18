@@ -66,13 +66,13 @@ public:
         // 4. URL:   /schaetze-der-welt/folgen/5-alhambra-residenz-der-mauren-spanien-551431
         //    Title: 0.005 Alhambra - Residenz der Mauren (Spanien)
         //    File name: "Schätze der Welt ep5.mp4"
-        //    Comment: The one-digit episode number has two leading zeros. The TV show has a three-digit number of episodes.
-        //    Comment: Kodi and MediaElch support this combination.
+        //    Comment: The one-digit episode number has two leading zeros. The TV show has a three-digit number of
+        //    episodes. Comment: Kodi and MediaElch support this combination.
         // The following TV show has other special features:
         // 1. SRF bi de Lüt - Hüttengeschichten (https://www.fernsehserien.de/huettengeschichten/episodenguide)
         //    has seasons 1 to 6 twice as of 2026-01-27.
-        //    Kodi and MediaElch cannot assign an episode of Winterhüttengeschichten (seasons 1 to 6) based on the season
-        //    and episode numbers of one of the six seasons.
+        //    Kodi and MediaElch cannot assign an episode of Winterhüttengeschichten (seasons 1 to 6) based on the
+        //    season and episode numbers of one of the six seasons.
 
         static QRegularExpression episodeSeason(R"(\/0*(\d+)x0*(\d+)-)");
         static QRegularExpression episodeWithoutSeason(R"(\/(\d+)-)");
@@ -110,8 +110,7 @@ public:
                         // The episode has not a season but an episode number.
                         m_next = Result{SeasonNumber::NoSeason, episode, id};
                     }
-                }
-                else {
+                } else {
                     // The episode has neither a season nor an episode number.
                     m_next = Result{SeasonNumber::NoSeason, EpisodeNumber::NoEpisode, id};
                 }
@@ -360,7 +359,8 @@ QVector<ShowSearchJob::Result> FernsehserienDeShowSearchJob::parseSearch(const Q
 
     static QRegularExpression resultList(
         R"(<ul\s+[^>]*\bid="?ul-infinite-scroll\b"?[^>]*>.*?</ul>)", QRegularExpression::DotMatchesEverythingOption);
-    static QRegularExpression resultEntry(R"(<a\s+[^>]*\bdata-event-category="?liste-serien\b"?[^>]*>.*?</a>)", QRegularExpression::DotMatchesEverythingOption);
+    static QRegularExpression resultEntry(R"(<a\s+[^>]*\bdata-event-category="?liste-serien\b"?[^>]*>.*?</a>)",
+        QRegularExpression::DotMatchesEverythingOption);
     static QRegularExpression resultTitle(R"(<dt\b[^>]*>(.*?)</dt>)", QRegularExpression::DotMatchesEverythingOption);
     static QRegularExpression resultYear(
         R"(<dd\b[^>]*>.*?(\d{4})[-–\s].*?</dd>)", QRegularExpression::DotMatchesEverythingOption);
@@ -398,10 +398,9 @@ ShowSearchJob::Result FernsehserienDeShowSearchJob::parseResultFromEpisodePage(c
 {
     static QRegularExpression resultTitle(
         R"(<div\s+[^>]*\bclass="?seriestitle\b"?[^>]*>(.*?)</div>)", QRegularExpression::DotMatchesEverythingOption);
-    static QRegularExpression resultYearDiv(
-        R"(<div\s+[^>]*\bclass="?serie-produktionsjahre\b"?[^>]*>(.*?)</div>)", QRegularExpression::DotMatchesEverythingOption);
-    static QRegularExpression resultYear(
-        R"((\d{2,4}))");
+    static QRegularExpression resultYearDiv(R"(<div\s+[^>]*\bclass="?serie-produktionsjahre\b"?[^>]*>(.*?)</div>)",
+        QRegularExpression::DotMatchesEverythingOption);
+    static QRegularExpression resultYear(R"((\d{2,4}))");
 
     MediaElch_Debug_Ensures(resultTitle.isValid());
     MediaElch_Debug_Ensures(resultYearDiv.isValid());
@@ -477,18 +476,20 @@ void FernsehserienDeShowScrapeJob::parseTvShow(const QString& html)
         QRegularExpression::DotMatchesEverythingOption);
     static QRegularExpression overviewRegEx(
         R"(\bitemprop="?description\b"?[^>]*>(.*?)</div><)", QRegularExpression::DotMatchesEverythingOption);
-    static QRegularExpression brRegEx(
-        R"(\s*<br\s*/?>\s*)");
+    static QRegularExpression brRegEx(R"(\s*<br\s*/?>\s*)");
     // Note: There are possibly multiple "first aired"-dates ("Premiere"). Take the first, which
     //       is most likely the German one.
-    static QRegularExpression firstAiredRegEx(R"re(<ea-angabe-datum\b[^>]*>\s*<time\s+[^>]*\bdatetime="?(\d{4}-\d{2}-\d{2})"?[^>]*>)re");
-    static QRegularExpression genresRegEx(R"re(<meta\s+(?=[^>]*\bitemprop="?genre\b"?)(?=[^>]*\bcontent="([^"]+?)")[^>]*>)re");
+    static QRegularExpression firstAiredRegEx(
+        R"re(<ea-angabe-datum\b[^>]*>\s*<time\s+[^>]*\bdatetime="?(\d{4}-\d{2}-\d{2})"?[^>]*>)re");
+    static QRegularExpression genresRegEx(
+        R"re(<meta\s+(?=[^>]*\bitemprop="?genre\b"?)(?=[^>]*\bcontent="([^"]+?)")[^>]*>)re");
 
     static QRegularExpression actorsRegEx(
         R"re(\bdata-event-category="?liste-cast-crew\b"?.*?</a>)re", QRegularExpression::DotMatchesEverythingOption);
     static QRegularExpression actorNameRegEx(
         R"re(<dt\s+[^>]*\bitemprop="?name\b"?[^>]*>(.*?)</dt>)re", QRegularExpression::DotMatchesEverythingOption);
-    static QRegularExpression actorRoleRegEx(R"re(<dd\b[^>]*>(.*?)</dd>)re", QRegularExpression::DotMatchesEverythingOption);
+    static QRegularExpression actorRoleRegEx(
+        R"re(<dd\b[^>]*>(.*?)</dd>)re", QRegularExpression::DotMatchesEverythingOption);
     static QRegularExpression actorImageRegEx(
         R"re(\bdata-src="(https://bilder.fernsehserien.de/[^"]+?)")re", QRegularExpression::DotMatchesEverythingOption);
 
@@ -888,8 +889,7 @@ void FernsehserienDeEpisodeScrapeJob::parseEpisode(const QString& html)
     // TODO: With a proper HTML parser, we wouldn't need to do this!
     static QRegularExpression titleRegEx(
         R"(<span\s+[^>]*\bitemprop="?name\b"?[^>]*>(.*?)</span>)", QRegularExpression::DotMatchesEverythingOption);
-    static QRegularExpression titleBracketsRegEx(
-        R"(^\((.*)\)$)", QRegularExpression::DotMatchesEverythingOption);
+    static QRegularExpression titleBracketsRegEx(R"(^\((.*)\)$)", QRegularExpression::DotMatchesEverythingOption);
     // Not supported by episodes, yet:
     // static QRegularExpression originalTitleRegEx(R"re(<span class="episode-output-originaltitel"
     //    lang="[^"]+?">[(]?(.*?)[)]?</span>)re");
@@ -897,26 +897,29 @@ void FernsehserienDeEpisodeScrapeJob::parseEpisode(const QString& html)
     static QRegularExpression seasonEpisodeRegEx(
         R"re(<div\s+(?=[^>]*\bitemprop="?episodeNumber\b"?)(?=[^>]*\bcontent="?\d+"?)[^>]*>Staffel\s+(\d+),\s+Folge\s+(\d+)\s+)re");
     static QRegularExpression overviewRegEx(
-        R"(<div\s+[^>]*\bclass="?episode-output-inhalt-inner\b"?[^>]*>(.*?)</div>\s*<ea)", QRegularExpression::DotMatchesEverythingOption);
+        R"(<div\s+[^>]*\bclass="?episode-output-inhalt-inner\b"?[^>]*>(.*?)</div>\s*<ea)",
+        QRegularExpression::DotMatchesEverythingOption);
     static QRegularExpression brRegEx(
         R"(\s*<span\s+[^>]*\bclass="?br"?[^>]*>.*?</span>\s*)", QRegularExpression::DotMatchesEverythingOption);
     // Note: There are possibly multiple "first aired"-dates ("Premiere"). Take the first, which
     //       is most likely the German one.
     static QRegularExpression firstAiredRegEx(R"re(<ea-angabe-datum\b[^>]*>.*?(\d{2}[.]\d{2}[.]\d{4})<)re");
-    static QRegularExpression thumbDivRegEx(
-        R"re(<div\s+[^>]*\bclass="?episode-output-inhalt\b"?[^>]*>.*?</picture>)re", QRegularExpression::DotMatchesEverythingOption);
-    static QRegularExpression thumbRegEx(
-        R"re(<img\s+[^>]*\bsrc="(https://bilder.fernsehserien.de/[^"]+?)")re", QRegularExpression::DotMatchesEverythingOption);
+    static QRegularExpression thumbDivRegEx(R"re(<div\s+[^>]*\bclass="?episode-output-inhalt\b"?[^>]*>.*?</picture>)re",
+        QRegularExpression::DotMatchesEverythingOption);
+    static QRegularExpression thumbRegEx(R"re(<img\s+[^>]*\bsrc="(https://bilder.fernsehserien.de/[^"]+?)")re",
+        QRegularExpression::DotMatchesEverythingOption);
 
     static QRegularExpression actorsRegEx(
         R"re(\bitemprop="?actor\b"?[^>]*>.*?</a>)re", QRegularExpression::DotMatchesEverythingOption);
     static QRegularExpression actorNameRegEx(
         R"re(<dt\s+[^>]*\bitemprop="?name\b"?[^>]*>(.*?)</dt>)re", QRegularExpression::DotMatchesEverythingOption);
-    static QRegularExpression actorRoleRegEx(R"re(<dd\b[^>]*>(.*?)</dd>)re", QRegularExpression::DotMatchesEverythingOption);
+    static QRegularExpression actorRoleRegEx(
+        R"re(<dd\b[^>]*>(.*?)</dd>)re", QRegularExpression::DotMatchesEverythingOption);
     static QRegularExpression actorImageRegEx(
         R"re(\bdata-src="(https://bilder.fernsehserien.de/[^"]+?)")re", QRegularExpression::DotMatchesEverythingOption);
 
-    static QRegularExpression directorsRegEx(R"re(\bitemprop="?director\b"?[^>]*>\s*<a\s+[^>]*\btitle="([^"]+?)"[^>]*>)re");
+    static QRegularExpression directorsRegEx(
+        R"re(\bitemprop="?director\b"?[^>]*>\s*<a\s+[^>]*\btitle="([^"]+?)"[^>]*>)re");
 
     static QRegularExpression writersRegEx(R"re(\bitemprop="?author\b"?[^>]*>\s*<a\s+[^>]*\btitle="([^"]+?)"[^>]*>)re");
 
