@@ -338,6 +338,24 @@ void TmdbMovieScrapeJob::parseAndAssignInfos(const QJsonDocument& json)
             m_movie->images().addPoster(b, primaryLang);
         }
     }
+    if (parsedJson.value("logos").isArray()) {
+        const auto logos = parsedJson.value("logos").toArray();
+        for (const auto& it : logos) {
+            const auto logos = it.toObject();
+            const QString filePath = logos.value("file_path").toString();
+            if (filePath.isEmpty()) {
+                continue;
+            }
+            Poster b;
+            b.thumbUrl = m_api.config().imageBaseUrl + "w342" + filePath;
+            b.originalUrl = m_api.config().imageBaseUrl + "original" + filePath;
+            b.originalSize.setWidth(logos.value("width").toInt());
+            b.originalSize.setHeight(logos.value("height").toInt());
+            b.language = logos.value("iso_639_1").toString();
+            bool primaryLang = (b.language == config().locale.language());
+            m_movie->images().addLogo(b, primaryLang);
+        }
+    }
 
     // Releases
     if (parsedJson.value("countries").isArray()) {

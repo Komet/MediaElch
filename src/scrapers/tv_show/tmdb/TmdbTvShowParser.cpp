@@ -104,9 +104,9 @@ void TmdbTvShowParser::parseInfos(const QJsonDocument& json, const Locale& local
         }
     }
 
-    QJsonObject images = data["images"].toObject();
+    QJsonObject images = data.value("images").toObject();
     {
-        QJsonArray posters = images["posters"].toArray();
+        QJsonArray posters = images.value("posters").toArray();
         for (QJsonValueRef posterVal : posters) {
             QJsonObject posterObj = posterVal.toObject();
             if (!posterObj.value("file_path").toString().isEmpty()) {
@@ -114,16 +114,16 @@ void TmdbTvShowParser::parseInfos(const QJsonDocument& json, const Locale& local
                 poster.id = m_api.makeImageUrl(posterObj.value("file_path").toString()).toString();
                 poster.thumbUrl = poster.id;
                 poster.originalUrl = poster.id;
-                poster.language = posterObj["iso_639_1"].toString();
-                poster.aspect = QString::number(posterObj["aspect"].toDouble());
-                poster.originalSize = {posterObj["width"].toInt(), posterObj["height"].toInt()};
+                poster.language = posterObj.value("iso_639_1").toString();
+                poster.aspect = QString::number(posterObj.value("aspect").toDouble());
+                poster.originalSize = {posterObj.value("width").toInt(), posterObj.value("height").toInt()};
 
                 m_show.addPoster(poster);
             }
         }
     }
     {
-        QJsonArray backdrops = images["backdrops"].toArray();
+        QJsonArray backdrops = images.value("backdrops").toArray();
         for (QJsonValueRef backdropVal : backdrops) {
             QJsonObject backdropObj = backdropVal.toObject();
             if (!backdropObj.value("file_path").toString().isEmpty()) {
@@ -131,9 +131,9 @@ void TmdbTvShowParser::parseInfos(const QJsonDocument& json, const Locale& local
                 backdrop.id = m_api.makeImageUrl(backdropObj.value("file_path").toString()).toString();
                 backdrop.thumbUrl = backdrop.id;
                 backdrop.originalUrl = backdrop.id;
-                backdrop.language = backdropObj["iso_639_1"].toString();
-                backdrop.aspect = QString::number(backdropObj["aspect"].toDouble());
-                backdrop.originalSize = {backdropObj["width"].toInt(), backdropObj["height"].toInt()};
+                backdrop.language = backdropObj.value("iso_639_1").toString();
+                backdrop.aspect = QString::number(backdropObj.value("aspect").toDouble());
+                backdrop.originalSize = {backdropObj.value("width").toInt(), backdropObj.value("height").toInt()};
 
                 m_show.addBackdrop(backdrop);
             }
