@@ -23,6 +23,7 @@ TmdbImages::TmdbImages(QObject* parent) : ImageProvider(parent)
     m_meta.privacyPolicy = "https://www.themoviedb.org/privacy-policy";
     m_meta.help = "https://www.themoviedb.org/talk";
     m_meta.supportedImageTypes = {  //
+        ImageType::MovieLogo,       //
         ImageType::MovieBackdrop,   //
         ImageType::MoviePoster,     //
         ImageType::ConcertBackdrop, //
@@ -138,6 +139,9 @@ void TmdbImages::onMovieLoadImagesFinished(mediaelch::scraper::MovieScrapeJob* j
 
     } else if (details.contains(MovieScraperInfo::Poster)) {
         posters = job->movie().images().posters();
+
+    } else if (details.contains(MovieScraperInfo::Logo)) {
+        posters = job->movie().images().logos();
     }
 
     emit sigImagesLoaded(posters, {});
@@ -156,7 +160,16 @@ void TmdbImages::movieImages(Movie* movie, TmdbId tmdbId, QSet<ImageType> types)
  */
 void TmdbImages::movieLogos(TmdbId tmdbId)
 {
-    Q_UNUSED(tmdbId);
+    using namespace mediaelch::scraper;
+
+    MovieScrapeJob::Config config;
+    config.identifier = MovieIdentifier(tmdbId);
+    config.details = {MovieScraperInfo::Logo};
+    config.locale = m_tmdb->meta().defaultLocale;
+
+    auto* scrapeJob = m_tmdb->loadMovie(config);
+    connect(scrapeJob, &MovieScrapeJob::loadFinished, this, &TmdbImages::onMovieLoadImagesFinished);
+    scrapeJob->start();
 }
 
 void TmdbImages::movieBanners(TmdbId tmdbId)
