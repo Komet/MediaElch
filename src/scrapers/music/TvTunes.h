@@ -4,8 +4,10 @@
 #include "network/NetworkManager.h"
 #include "scrapers/ScraperResult.h"
 
+#include <QNetworkReply>
 #include <QObject>
 #include <QQueue>
+#include <QUrl>
 
 namespace mediaelch {
 namespace scraper {
@@ -14,8 +16,10 @@ class TvTunes : public QObject
 {
     Q_OBJECT
 public:
-    explicit TvTunes(QObject* parent = nullptr);
+    explicit TvTunes(mediaelch::network::NetworkManager& network, QObject* parent = nullptr);
+
     void search(QString searchStr);
+    QNetworkReply* downloadTune(const QUrl& tuneUrl);
 
 signals:
     void sigSearchDone(QVector<ScraperSearchResult>);
@@ -25,7 +29,7 @@ private slots:
     void onDownloadUrlFinished();
 
 private:
-    mediaelch::network::NetworkManager m_network;
+    mediaelch::network::NetworkManager& m_network;
     QVector<ScraperSearchResult> m_results;
     QQueue<ScraperSearchResult> m_queue;
     QString m_searchStr;

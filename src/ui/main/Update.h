@@ -1,8 +1,8 @@
 #pragma once
 
-#include "network/NetworkManager.h"
-
 #include <QObject>
+
+#include "settings/UpdateCheck.h"
 
 class Update : public QObject
 {
@@ -16,9 +16,8 @@ public slots:
     void checkForUpdate();
 
 private slots:
-    void onCheckFinished();
+    void onUpdateCheckFinished(mediaelch::UpdateCheck::Result result);
 
 private:
-    mediaelch::network::NetworkManager m_network;
-    bool checkIfNewVersion(QString xmlString, QString& version, QString& downloadUrl);
+    mediaelch::UpdateCheck m_updateCheck;
 };

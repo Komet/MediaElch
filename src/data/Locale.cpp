@@ -18,7 +18,7 @@ Locale::Locale(const QString& locale)
     if (split.length() > 1) {
         m_country = split[1];
     }
-    if (split.size() > 2) {
+    if (split.size() > 2 || locale.length() > 10) {
         qCWarning(generic) << "[Locale] Invalid locale format:" << locale;
     }
 }
@@ -141,18 +141,6 @@ QString Locale::languageTranslated() const
     return locale;
 }
 
-std::ostream& operator<<(std::ostream& os, const Locale& id)
-{
-    return os << id.toString().toStdString();
-}
-
-QDebug operator<<(QDebug debug, const Locale& id)
-{
-    QDebugStateSaver saver(debug);
-    debug.nospace() << "Locale(" << id.toString() << ')';
-    return debug;
-}
-
 bool operator==(const Locale& lhs, const Locale& rhs)
 {
     return lhs.toString() == rhs.toString();
@@ -163,5 +151,17 @@ bool operator!=(const Locale& lhs, const Locale& rhs)
     return !(lhs == rhs);
 }
 
-// no-op
+
 } // namespace mediaelch
+
+std::ostream& operator<<(std::ostream& os, const mediaelch::Locale& id)
+{
+    return os << id.toString().toStdString();
+}
+
+QDebug operator<<(QDebug debug, const mediaelch::Locale& id)
+{
+    QDebugStateSaver saver(debug);
+    debug.nospace() << "Locale(" << id.toString() << ')';
+    return debug;
+}

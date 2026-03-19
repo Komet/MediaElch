@@ -17,7 +17,7 @@ enum class HttpStatusCode : int
     TooManyRequests = 429
 };
 
-/// \brief Translates the given NetworkError to a human readable error string.
+/// \brief Translates the given NetworkError to a human-readable error string.
 QString translateNetworkError(QNetworkReply::NetworkError error);
 
 } // namespace mediaelch

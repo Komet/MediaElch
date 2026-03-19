@@ -387,6 +387,7 @@ SOURCES += \
     src/settings/KodiSettings.cpp \
     src/settings/NetworkSettings.cpp \
     src/settings/Settings.cpp \
+    src/settings/UpdateCheck.cpp \
     src/ui/concerts/ConcertFilesWidget.cpp \
     src/ui/concerts/ConcertInfoWidget.cpp \
     src/ui/concerts/ConcertSearch.cpp \
@@ -793,6 +794,7 @@ HEADERS += Version.h \
     src/settings/KodiSettings.h \
     src/settings/NetworkSettings.h \
     src/settings/Settings.h \
+    src/settings/UpdateCheck.h \
     src/ui/concerts/ConcertFilesWidget.h \
     src/ui/concerts/ConcertInfoWidget.h \
     src/ui/concerts/ConcertSearch.h \

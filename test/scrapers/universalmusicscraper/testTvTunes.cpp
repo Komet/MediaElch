@@ -24,7 +24,8 @@ static QVector<ScraperSearchResult> loadTvTunesDataSync(scraper::TvTunes& scrape
 
 TEST_CASE("TvTunes search", "[music][TvTunes][search]")
 {
-    scraper::TvTunes tvTunes;
+    network::NetworkManager networkManager;
+    scraper::TvTunes tvTunes{networkManager, nullptr};
     QVector<ScraperSearchResult> results;
 
     results = loadTvTunesDataSync(tvTunes, "The Simpsons");

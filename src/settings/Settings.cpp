@@ -1188,7 +1188,7 @@ void Settings::onSettingChanged(Settings::Key key, QObject* context, std::functi
 void Settings::beginTransaction()
 {
     if (m_isTransactionInProgress) {
-        qCWarning(generic) << "[Settings] beginTransaction(): already in progress!";
+        qCCritical(generic) << "[Settings] beginTransaction(): already in progress!";
         MediaElch_Debug_Expects(!m_isTransactionInProgress);
         return;
     }
@@ -1200,7 +1200,7 @@ void Settings::beginTransaction()
 void Settings::commitTransaction()
 {
     if (!m_isTransactionInProgress) {
-        qCWarning(generic) << "[Settings] commitTransaction(): was not in progress!";
+        qCCritical(generic) << "[Settings] commitTransaction(): was not in progress!";
         MediaElch_Debug_Expects(m_isTransactionInProgress);
         return;
     }

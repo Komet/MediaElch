@@ -11,7 +11,7 @@
 namespace mediaelch {
 namespace scraper {
 
-TvTunes::TvTunes(QObject* parent) : QObject(parent)
+TvTunes::TvTunes(mediaelch::network::NetworkManager& network, QObject* parent) : QObject(parent), m_network{network}
 {
 }
 
@@ -32,6 +32,12 @@ void TvTunes::search(QString searchStr)
     reply->setProperty("searchStr", searchStr);
     connect(reply, &QNetworkReply::finished, this, &TvTunes::onSearchFinished);
 }
+
+QNetworkReply* TvTunes::downloadTune(const QUrl& tuneUrl)
+{
+    return m_network.get(mediaelch::network::requestWithDefaults(tuneUrl));
+}
+
 
 void TvTunes::onSearchFinished()
 {

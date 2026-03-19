@@ -1,4 +1,5 @@
 #include "Version.h"
+#include "checkVersionUpdate.h"
 #include "cli/common.h"
 #include "cli/info.h"
 #include "cli/list.h"
@@ -30,7 +31,8 @@ enum class Command
     Settings,
     Info,
     Help,
-    Version
+    Version,
+    CheckVersionUpdate
 };
 
 static Command commandFromString(const QString& command)
@@ -62,6 +64,9 @@ static Command commandFromString(const QString& command)
     if ("version" == command) {
         return Command::Version;
     }
+    if ("check-update" == command) {
+        return Command::CheckVersionUpdate;
+    }
     return Command::Unknown;
 }
 
@@ -74,16 +79,17 @@ Options:
  --verbose=<level> Verbosity level (0: only errors, 4: everything)
 
 commands:
-   list        List all media entries.
-   reload      Reload all media files.
-   add <path>  Add given path to MediaElch's directory settings.
-   show <id>   Show an entry with the identifier <id>. <id> can be either
-               MediaElch's media id, IMDb, TMDB or TVmaze id for TV shows.
-   sync        Sync MediaElch with Kodi. Uses parameters set in settings.
-   settings    Get or set MediaElch's settings.
-   info        Get various details about MediaElch.
-   help        Same as `--help`.
-   version     Same as `--version`.
+   list          List all media entries.
+   reload        Reload all media files.
+   add <path>    Add given path to MediaElch's directory settings.
+   show <id>     Show an entry with the identifier <id>. <id> can be either
+                 MediaElch's media id, IMDb, TMDB or TVmaze id for TV shows.
+   sync          Sync MediaElch with Kodi. Uses parameters set in settings.
+   settings      Get or set MediaElch's settings.
+   info          Get various details about MediaElch.
+   help          Same as `--help`.
+   version       Same as `--version`.
+   check-update  Check for version updates.
 )";
 
 static void printHelp()
@@ -135,6 +141,7 @@ static int parseArguments(QApplication& app)
     case Command::Add: printUnsupported(command); return 1;
     case Command::Show: return mediaelch::cli::show(app, parser);
     case Command::Info: return mediaelch::cli::info(app, parser);
+    case Command::CheckVersionUpdate: return mediaelch::cli::checkVersionUpdate(app, parser);
     case Command::Unknown:
         // do not process arguments so that we can show our custom help command
         if (command.isEmpty() && parser.isSet("help")) {

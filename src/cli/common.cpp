@@ -10,6 +10,11 @@
 //   4  also debug messages
 static int s_verbosityLevel = 0;
 
+std::ostream& operator<<(std::ostream& os, const QString& id)
+{
+    return os << id.toStdString();
+}
+
 namespace mediaelch {
 namespace cli {
 

@@ -45,6 +45,7 @@ public:
 
 signals:
     void authenticationRequired(QNetworkReply* reply, QAuthenticator* authenticator);
+    /// \brief Called whenever a network request is finished.
     void finished(QNetworkReply* reply);
 
 private:

@@ -34,7 +34,7 @@ public:
 
     bool hasCountry() const { return !m_country.isEmpty(); }
 
-    /// \brief Return a human readable, translated language name for the locale.
+    /// \brief Return a human-readable, translated language name for the locale.
     /// \details If the locale, e.g. en-US, is not translated, it is checked whether "en" is available.
     ///          If so, then the country is appended in parentheses in a country is available.
     ///          If the language is still not found then simply the locale in string representation is returned.
@@ -48,7 +48,7 @@ private:
 bool operator==(const Locale& lhs, const Locale& rhs);
 bool operator!=(const Locale& lhs, const Locale& rhs);
 
-std::ostream& operator<<(std::ostream& os, const Locale& id);
-QDebug operator<<(QDebug debug, const Locale& id);
-
 } // namespace mediaelch
+
+std::ostream& operator<<(std::ostream& os, const mediaelch::Locale& id);
+QDebug operator<<(QDebug debug, const mediaelch::Locale& id);

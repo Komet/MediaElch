@@ -15,7 +15,7 @@ class StreamDetails;
 namespace mediaelch {
 
 /// Default export engine for MediaElch. Simple find&replace semantics,
-/// only basic functionality (e.g. condintional block)
+/// only basic functionality (e.g. conditional block)
 class SimpleEngine : public QObject
 {
     Q_OBJECT

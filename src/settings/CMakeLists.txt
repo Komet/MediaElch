@@ -8,6 +8,7 @@ add_library(
   Settings.cpp
   AdvancedSettingsXmlReader.cpp
   NetworkSettings.cpp
+  UpdateCheck.cpp
 )
 
 target_link_libraries(
