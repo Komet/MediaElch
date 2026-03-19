@@ -827,7 +827,6 @@ void FernsehserienDeEpisodeScrapeJob::parseAndLoadEpisodeIdFromSeason(const QStr
 {
     QString episodeId;
     EpisodeListParser parser = EpisodeListParser::forHtml(html);
-    qCDebug(generic) << "[parseAndLoadEpisodeIdFromSeason] parser.hasNext(): " << parser.hasNext();
     while (parser.hasNext()) {
         EpisodeListParser::Result next = parser.next();
 

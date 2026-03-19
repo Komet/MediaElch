@@ -185,7 +185,7 @@ studios: (N<6)
   - Albert S. Ruddy Productions
   - Paramount Pictures
   - Alfran Productions
-trailer: https://imdb-video.media-imdb.com/vi1348706585/1434659529640-260ouz-1616202346191.mp4?Expires=1773924306&Signature=YXU7RVZc11EYu6Esjl4gWVMBBrsT514Rjjif5tDDKahTJwo~7taTYuk0kCrC9PemzddXTT-QvOafbmczoIlqytqf-aP4oU2Fe4yiNW2YSG7I5LDQfjqTaeM5dV~PDRtDlmdcb8Hc4s5hcouVB5Ip0epJdUrgwjwGvlC3Z-5zvEA7TZR7YorAAxCtavcBzJXS4xV5hY0YvUy~-bRxJF0RXiu3sukrXCBAD1NzteZUOVW4mP9mzTuVSLLuRvT6Huz9CVe4e2R4oFxhfe9LYXtRRfeVmyc7bZELBoPdeaIXNDPvTjLKVxvjF~x3bqtikdM2f7QngD36d0buE260sKv9JA__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA
+trailer: https://imdb-video.media-imdb.com/vi1348706585/1434659529640-260ouz-1616202346191.mp4?Expires=1774010702&Signature=TGCxYbplTX2nAH5ntUSlLyFmVazEcrr5gDAYeoKel2XhHBYSdMn93f~Uda~oygC3D6jDd-YjLWlQXqvwbXM6WMglD9F66BSpXJdVTXGkknfAZye9pFsRVt2nuUR5uXKx6iot0Kc7jDNu6X60X9BK7OO1HASfApc4LyVyEy-dRSRQ1ukZSPCrwzsPEQEfNXJ7uhl3aPJAyTL2agTW-oRFPaM5NwxbaKPwPfvKk-7CoVchDHEC~57hxJ9va22NJ2Jwdf4h2gaCtlP1Qa53ENiJT8pkLnBBl7FU~Of-GE6W7bFSANxSwDjm5u2Q7-~Xmhn5EW-HKVQHJrQWBrQmyJ5AYw__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA
 showlink: (N=0)
 playcount: 0
 lastPlayed: <not set or invalid>

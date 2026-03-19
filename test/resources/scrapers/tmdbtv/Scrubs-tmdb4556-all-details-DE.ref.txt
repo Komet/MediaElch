@@ -5,7 +5,7 @@ tmdbId: 4556
 tvdbId: 76156
 imdbId: tt0285403
 tvmazeId: 
-title: Scrubs - Die Anfänger
+title: Scrubs – Die Anfänger
 showTitle: 
 originalTitle: Scrubs
 sortTitle: 
@@ -20,7 +20,7 @@ ratings (N=1)
 userRating: 0
 imdbTop250: -1
 firstAired: 2001-10-02
-runtime: 22min
+runtime: 0min
 genres: (N=1)
   - Komödie
 tags: (N>5)

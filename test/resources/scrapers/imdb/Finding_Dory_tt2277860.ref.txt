@@ -299,7 +299,7 @@ countries: (N=1)
 studios: (N<6)
   - Walt Disney Pictures
   - Pixar Animation Studios
-trailer: https://imdb-video.media-imdb.com/vi2669917209/1434659454657-dx9ykf-1464098554017.mp4?Expires=1773924286&Signature=LMEW-aqA3zd-~PNRpt5F-1Hno9lyVXl1RMnpH1CyPci6n9m7gJ6fODnBFDVXNiCKrT~M-N0oARGOUrAKkLjBGqFWHM8g0Yj3jlLbtwXCUY5B2Wn~q468HEofVKc4G3KBdaFQPeJ5ecjuuEYSa02FgtT93rJHaVBf9shlp3zF38yz9s5y9xWzERwsrD~ePyN22PBA3pK75Thw5imsJWFTgjGvE6s1Syq3GkLLUon5neM7krTYlbSeyKKlWgSjpCARmJuy4QxKCkfT5xlZa3KsVAm6JfaNpdcGk8yx6y6eJMHEF65wJ3wI-jyjTET118E7FM-iy~9e3D3lQK-sVHpIpg__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA
+trailer: https://imdb-video.media-imdb.com/vi2669917209/1434659454657-dx9ykf-1464098554017.mp4?Expires=1774010682&Signature=QORVKTDOsjazLU8fTevIduj3ja3EGwdu6i89FIVjS9pPXNuX1x4jlj1NrSgOS7FBC1eEEd-xelPdvqShM7F8gyoiXIQoCUO3ElLnAH2NCZO5UCf8XGEVBAT2zcQNvgomA~72xnMX1PbhcI-kcIHhvVzsOyY0Ni15pKt6GjZSd4uV7Rgq70nPxuLi0aiDSG2k-ezYg8WDrwwxHql9Eex0taFFxYJURGE-fO~oQUKWYJAWQkfNQWp6~1wQXAiELZzzpodObnPIsyDn86loGaO2Sn3sfDvm8bAzCiQx5GKn1gar7bhTPVctWA6HeEVsTbwCcJKO~fSu5lq7W3y0hFNQSg__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA
 showlink: (N=0)
 playcount: 0
 lastPlayed: <not set or invalid>

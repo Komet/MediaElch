@@ -28,10 +28,11 @@ TEST_CASE("ImdbTv returns valid search results", "[tv][ImdbTv][search]")
         auto* searchJob = new ImdbTvShowSearchJob(getImdbApi(), config);
         const auto scraperResults = test::searchTvScraperSync(searchJob).first;
 
-        REQUIRE(scraperResults.length() >= 3);
-        CHECK(scraperResults[0].title == "Scrubs: Die Anfänger");
-        CHECK(scraperResults[0].identifier.str() == "tt0285403");
-        CHECK(scraperResults[0].released == QDate(2001, 1, 1)); // only year is set
+        REQUIRE(scraperResults.length() >= 3); // original + 2026 version
+        const int i = scraperResults[0].released.year() != 2026 ? 0 : 1;
+        CHECK(scraperResults[i].title == "Scrubs: Die Anfänger");
+        CHECK(scraperResults[i].identifier.str() == "tt0285403");
+        CHECK(scraperResults[i].released == QDate(2001, 1, 1)); // only year is set
     }
 
     SECTION("Search by IMDb ID returns exactly one result")

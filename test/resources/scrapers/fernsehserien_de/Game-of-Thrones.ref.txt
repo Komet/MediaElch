@@ -5,7 +5,7 @@ tmdbId:
 tvdbId: 
 imdbId: 
 tvmazeId: 
-title: Game of Thrones - Das Lied von Eis und Feuer
+title: Game of Thrones – Das Lied von Eis und Feuer
 showTitle: 
 originalTitle: Game of Thrones
 sortTitle: 

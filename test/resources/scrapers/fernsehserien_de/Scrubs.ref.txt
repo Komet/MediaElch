@@ -5,7 +5,7 @@ tmdbId:
 tvdbId: 
 imdbId: 
 tvmazeId: 
-title: Scrubs - Die Anfänger
+title: Scrubs – Die Anfänger
 showTitle: 
 originalTitle: Scrubs
 sortTitle: 

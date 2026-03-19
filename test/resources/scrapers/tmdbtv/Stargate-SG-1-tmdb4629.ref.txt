@@ -131,9 +131,9 @@ actors: (N>800)
  - id: 118463
    name: Peter DeLuise
    role:
-    Director / Peter DeLuise, Airman, SF Guard (Uncredited), Tok'ra Guard, Lieutenan
-    t, Man Leaving Cafe, Interviewer, Screaming Villager, Young Urgo in Uniform, Mac
-    hine Gun Guard, Free Jaffa (Voice only) (Uncredited)
+    Director / Peter DeLuise, Airman, SF Guard (Uncredited), Machine Gun Guard, Free
+     Jaffa (Voice only) (Uncredited), Young Urgo in Uniform, Tok'ra Guard, Screaming
+     Villager, Man Leaving Cafe, Lieutenant, Interviewer
    thumb: https://image.tmdb.org/t/p/original/sLkSOm6HBLB4VCfshQLdSEq63tr.jpg
    order: 15
    imageHasChanged: false
@@ -157,7 +157,7 @@ actors: (N>800)
    imageHasChanged: false
  - id: 59245
    name: Laara Sadiq
-   role: Technician #2, Technician Davis, Technician, Technican
+   role: Technician #2, Technician, Technician Davis, Technican
    thumb: https://image.tmdb.org/t/p/original/l7MkydwslaXo1EmYrRpJARnaFKs.jpg
    order: 19
    imageHasChanged: false

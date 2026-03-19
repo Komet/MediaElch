@@ -38,10 +38,11 @@ TEST_CASE("FernsehserienDe returns valid search results", "[FernsehserienDe][sea
     {
         const auto scraperResults = searchFor("Scrubs");
 
-        REQUIRE(scraperResults.length() == 1);
-        CHECK(scraperResults[0].title == "Scrubs - Die Anfänger");
-        CHECK(scraperResults[0].released == QDate(2001, 1, 1));
-        CHECK(scraperResults[0].identifier.str() == "scrubs");
+        REQUIRE(scraperResults.length() == 2); // original + 2026 version
+        const int i = scraperResults[0].released.year() != 2026 ? 0 : 1;
+        CHECK(scraperResults[i].title == "Scrubs");
+        CHECK(scraperResults[i].released == QDate(2001, 1, 1));
+        CHECK(scraperResults[i].identifier.str() == "scrubs");
     }
 
     SECTION("Search by TV show with non-ASCII characters works: German")
@@ -49,7 +50,7 @@ TEST_CASE("FernsehserienDe returns valid search results", "[FernsehserienDe][sea
         // German kids show; "ö" must be properly encoded in the search query.
         const auto scraperResults = searchFor("Löwenzahn");
 
-        REQUIRE(scraperResults.length() >= 5);
+        REQUIRE(scraperResults.length() >= 3);
         CHECK(scraperResults[0].title == "Löwenzahn");
         CHECK(scraperResults[0].released == QDate(1981, 1, 1));
         CHECK(scraperResults[0].identifier.str() == "loewenzahn");

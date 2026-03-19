@@ -246,7 +246,7 @@ studios: (N<6)
   - Warner Bros.
   - Legendary Entertainment
   - Legendary Pictures
-trailer: https://imdb-video.media-imdb.com/vi1369752345/1434659529640-260ouz-1632281728566.mp4?Expires=1773924298&Signature=lwCav3JaQQYkIY48K323pYYZkpXKRstICaMNX2ZKvBVdKGbdB8lFTWYkFVAcerRQWXapCwLVaRyI8cIfKcU1~cLVXePnwsmoS82CJ7zu75Xt57PCzMX8njnp-5qjuYlwUXwkc6BIPBVlRnn3ZZ9ZMGxT9AnS3SugS1Ar07wPDbH8e1baxe0BU7L2~EzhtFn5PfA5mVqoOmScOV83P7zfwHjFkHIPJM604HY4mglzGFU8IFByDEdwuliTphHBwVWWhmCVXTb2Jvd6xe2iYGqEbzGgpO6D51Kqt2aPjB3eAILab3yEyhgONCuBXxoxAr5bQI5RnoVJCY0qQ214VkLaoQ__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA
+trailer: https://imdb-video.media-imdb.com/vi1369752345/1434659529640-260ouz-1632281728566.mp4?Expires=1774010695&Signature=okyiMQqUnXOb3ePwJJIZAzOfAzksoKsuM9f~zefavZqx00BoPNVD2lpuIzvocgRhUfHIgIRNDwtmPUQGpCRLvf02T8iVUEquFQ4Nmyjcml7WWtzpJg-i4bDH5HMMuTbETgD6FVQxY7jF-6Eg6eYdRBz4rA-JXlCnZkgrOnvXa2HzetM6kvmWk22~Y127cuS46-svj1PrfPDyJjY7OUpkb7lWafD3P2BVhZIHfUA~I~ntJqKjQwxxK3ojTlquL3vW-XgGXqLHQMCyn3v7-KdjfDpa1E-FRWHd-wGa~0ppH0uOhk-GgEvVUw4y6WiDh7X4SV7M~bXRGtx9Yp2mYwRI7g__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA
 showlink: (N=0)
 playcount: 0
 lastPlayed: <not set or invalid>

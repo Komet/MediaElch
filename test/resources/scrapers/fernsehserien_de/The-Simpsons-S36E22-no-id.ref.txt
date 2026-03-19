@@ -1,0 +1,126 @@
+TvShowEpisode Reference File
+------------------
+
+tmdbId: 
+imdbId: 
+tvdbId: 
+tvmazeId: 
+title: Was vom Tage übrig blieb
+showTitle: 
+ratings (N=0)
+userRating: 0
+imdbTop250: -1
+season: SeasonNumber=36
+episode: EpisodeNumber=22
+displaySeason: SeasonNumber=xx
+displayEpisode: EpisodeNumber=xx
+overview:
+    Bart und Lisa schauen jeden Tag gemeinsam „Itchy & Scratchy“. Als sie eines Tage
+    s feststellen, dass sie zu alt für die Serie sind, befürchtet Marge, dass ihre K
+    inder sich irgendwann voneinander entfernen. Eindringlich beschwört sie die beid
+    en, immer zueinanderzuhalten. Ein Blick in die Zukunft zeigt jedoch, dass ihr Wu
+    nsch nicht in Erfüllung geht: Während Lisa als Präsidentin der Frauen-Basketball
+    liga in der großen weiten Welt etabliert ist, hängt Bart nur zu Hause herum. (Te
+    xt: ProSieben)
+writers: (N<6)
+  - Tim Long
+  - Nick Dahan
+directors: (N=1)
+  - Matthew Nastuk
+playCount: 0
+lastPlayed: <not set or invalid>
+firstAired: 2025-10-08
+tags: (N=0)
+epBookmark: <not set or invalid>
+certification: 
+networks: (N=0)
+thumbnail: https://bilder.fernsehserien.de/epg/epg-archiv/2025/10/20/b631d871c0b3417fbbdc3b3aa30aa467_b-w-970.jpg.jpg
+actors: (N>10)
+ - id: 
+   name: Dan Castellaneta
+   role: Homer Simpson
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/d/dan-castellaneta.jpg
+   order: 0
+   imageHasChanged: false
+ - id: 
+   name: Julie Kavner
+   role: Marge Simpson
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/j/julie-kavner.jpg
+   order: 1
+   imageHasChanged: false
+ - id: 
+   name: Nancy Cartwright
+   role: Nelson Muntz, Bart Simpson
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/n/nancy-cartwright.jpg
+   order: 2
+   imageHasChanged: false
+ - id: 
+   name: Yeardley Smith
+   role: Lisa Simpson
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/y/yeardley-smith-1619199809.jpg
+   order: 3
+   imageHasChanged: false
+ - id: 
+   name: Hank Azaria
+   role: Raphael, Dr. Nick, Duffman, Comic Book Guy, Moe Szyslak, Kirk Van Houten
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/h/hank-azaria.jpg
+   order: 4
+   imageHasChanged: false
+ - id: 
+   name: Harry Shearer
+   role: Scratchy, Waylon Smithers, Mr. Burns, Principal Skinner
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/h/harry-shearer.jpg
+   order: 5
+   imageHasChanged: false
+ - id: 
+   name: Zooey Deschanel
+   role: Quirk Girl
+   thumb:
+    https://bilder.fernsehserien.de/gfx/person_1000/z/zooey-deschanel-26972-16385245
+    29.jpg
+   order: 6
+   imageHasChanged: false
+ - id: 
+   name: Max Greenfield
+   role: Schultz
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/m/max-greenfield-1617075652.jpg
+   order: 7
+   imageHasChanged: false
+ - id: 
+   name: Sarah McLachlan
+   role: 
+   thumb: 
+   order: 8
+   imageHasChanged: false
+ - id: 
+   name: Tress MacNeille
+   role: 
+   thumb: 
+   order: 9
+   imageHasChanged: false
+ - id: 
+   name: Grey DeLisle
+   role: 
+   thumb: https://bilder.fernsehserien.de/gfx/person_1000/g/grey-delisle.jpg
+   order: 10
+   imageHasChanged: false
+ - id: 
+   name: Alex Désert
+   role: Carl Carlson
+   thumb: 
+   order: 11
+   imageHasChanged: false
+ - id: 
+   name: Chris Edgerly
+   role: 
+   thumb: 
+   order: 12
+   imageHasChanged: false
+ - id: 
+   name: Kelly Macleod
+   role: Milhouse Van Houten
+   thumb: 
+   order: 13
+   imageHasChanged: false
+streamDetails: <not loaded>
+files: (N=0)

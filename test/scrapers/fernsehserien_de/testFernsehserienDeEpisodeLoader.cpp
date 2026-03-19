@@ -15,8 +15,8 @@ TEST_CASE("FernsehserienDe scrapes episode details", "[episode][FernsehserienDe]
 
     SECTION("Loads all details with episode FernsehserienDe ID")
     {
-        // https://www.fernsehserien.de/die-simpsons/folgen/12x19-wunder-gibt-es-immer-wieder-62300
-        QString episodeId("die-simpsons/folgen/12x19-wunder-gibt-es-immer-wieder-62300");
+        // https://www.fernsehserien.de/die-simpsons/folgen/36x22-was-vom-tage-uebrig-blieb-1802061
+        QString episodeId("die-simpsons/folgen/36x22-was-vom-tage-uebrig-blieb-1802061");
         EpisodeIdentifier id(episodeId);
         EpisodeScrapeJob::Config config{id, Locale("de-DE"), allEpisodeScraperInfos()};
 
@@ -25,7 +25,7 @@ TEST_CASE("FernsehserienDe scrapes episode details", "[episode][FernsehserienDe]
         auto& episode = scrapeJob->episode();
 
         REQUIRE_FALSE(episode.title().isEmpty());
-        test::scraper::compareAgainstReference(episode, "scrapers/fernsehserien_de/The-Simpsons-S12E19-with-id");
+        test::scraper::compareAgainstReference(episode, "scrapers/fernsehserien_de/The-Simpsons-S36E22-with-id");
     }
 
     SECTION("Loads all details of episode with thumbnail")
@@ -45,10 +45,10 @@ TEST_CASE("FernsehserienDe scrapes episode details", "[episode][FernsehserienDe]
 
     SECTION("Loads details with season and episode number of show with >10 seasons")
     {
-        // https://www.fernsehserien.de/die-simpsons/folgen/12x19-wunder-gibt-es-immer-wieder-62300
+        // https://www.fernsehserien.de/die-simpsons/folgen/36x22-was-vom-tage-uebrig-blieb-1802061
         QString showId("die-simpsons");
-        SeasonNumber season(12);
-        EpisodeNumber episodeNumber(19);
+        SeasonNumber season(36);
+        EpisodeNumber episodeNumber(22);
         EpisodeIdentifier id(showId, season, episodeNumber, SeasonOrder::Aired);
         EpisodeScrapeJob::Config config{id, Locale("de-DE"), allEpisodeScraperInfos()};
 
@@ -57,7 +57,7 @@ TEST_CASE("FernsehserienDe scrapes episode details", "[episode][FernsehserienDe]
         auto& episode = scrapeJob->episode();
 
         REQUIRE_FALSE(episode.title().isEmpty());
-        test::scraper::compareAgainstReference(episode, "scrapers/fernsehserien_de/The-Simpsons-S12E19-no-id");
+        test::scraper::compareAgainstReference(episode, "scrapers/fernsehserien_de/The-Simpsons-S36E22-no-id");
     }
 
     SECTION("Loads details with season and episode number of show with <10 seasons")
