@@ -18,7 +18,7 @@ bin/libharfbuzz-0.dll
 bin/libiconv-2.dll
 bin/libintl-8.dll
 # If missing: No error, but some images don't load.
-bin/libjpeg-9.dll
+bin/libjpeg-10.dll
 bin/libpcre2-16-0.dll
 bin/libpcre2-8-0.dll
 bin/libpng16-16.dll

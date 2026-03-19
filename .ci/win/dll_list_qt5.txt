@@ -16,7 +16,7 @@ bin/libglib-2.0-0.dll
 bin/libharfbuzz-0.dll
 bin/libiconv-2.dll
 bin/libintl-8.dll
-bin/libjpeg-9.dll
+bin/libjpeg-10.dll
 bin/libpcre2-16-0.dll
 bin/libpcre2-8-0.dll
 bin/libcrypto-3-x64.dll
