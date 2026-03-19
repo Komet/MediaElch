@@ -10,7 +10,7 @@ tx status
 tx pull -a -f
 
 # This is specific to the current maintainer's system
-export PATH="$HOME/Qt/6.8.1/gcc_64/bin/:$PATH"
+export PATH="$HOME/Qt/6.10.1/gcc_64/bin/:$PATH"
 
 # Run it twice. Sometimes strings are updated on the
 # second run.

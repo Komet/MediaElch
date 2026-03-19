@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="et">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="et">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -34,7 +34,7 @@
     <message>
         <location line="+26"/>
         <source>About Qt</source>
-        <translation type="unfinished"/>
+        <translation>Qt info</translation>
     </message>
     <message>
         <location line="+19"/>
@@ -173,12 +173,12 @@
     <message>
         <location filename="../../src/ui/movies/CertificationWidget.ui" line="+52"/>
         <source>Certification</source>
-        <translation type="unfinished"/>
+        <translation>Sertifikaat</translation>
     </message>
     <message>
         <location line="+27"/>
         <source>TextLabel</source>
-        <translation type="unfinished"/>
+        <translation>Tekstimärgis</translation>
     </message>
     <message>
         <location line="+37"/>
@@ -367,7 +367,7 @@
     <message>
         <location line="+10"/>
         <source>Tagline</source>
-        <translation type="unfinished"/>
+        <translation>Reklaamlause</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -397,7 +397,7 @@
     <message>
         <location line="+10"/>
         <source>Certification</source>
-        <translation type="unfinished"/>
+        <translation>Sertifikaat</translation>
     </message>
     <message>
         <location line="+17"/>
@@ -461,7 +461,7 @@
     <message>
         <location line="+18"/>
         <source>&lt;b&gt;Concert&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Kontserti&lt;/b&gt; &quot;%1&quot; ei nimetatud ümber: Seda on muudetud, aga pole salvestatud</translation>
     </message>
 </context>
 <context>
@@ -570,7 +570,7 @@
     <message>
         <location line="+7"/>
         <source>Tagline</source>
-        <translation type="unfinished"/>
+        <translation>Reklaamlause</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -590,7 +590,7 @@
     <message>
         <location line="+7"/>
         <source>Certification</source>
-        <translation type="unfinished"/>
+        <translation>Sertifikaat</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -655,7 +655,7 @@
     <message>
         <location line="+89"/>
         <source>Internal inconsistency: Cannot set language dropdown in concert search widget!</source>
-        <translation type="unfinished"/>
+        <translation>Sisemine vastuolu: kontserdi otsingu vidinas ei saa keele rippmenüüd määrata!</translation>
     </message>
 </context>
 <context>
@@ -743,7 +743,7 @@
     <message>
         <location line="-115"/>
         <source>HDR Type</source>
-        <translation type="unfinished"/>
+        <translation>HDR tüüp</translation>
     </message>
     <message>
         <location line="+26"/>
@@ -763,7 +763,7 @@
     <message>
         <location filename="../../src/ui/concerts/ConcertStreamDetailsWidget.cpp" line="-72"/>
         <source>Stream details could not be loaded!</source>
-        <translation type="unfinished"/>
+        <translation>Voo üksikasjade laadimine nurjus!</translation>
     </message>
     <message>
         <location line="+62"/>
@@ -811,7 +811,7 @@
     <message>
         <location line="+3"/>
         <source>...</source>
-        <translation type="unfinished"/>
+        <translation>...</translation>
     </message>
     <message>
         <location line="+39"/>
@@ -1083,7 +1083,7 @@
         <location line="+54"/>
         <location line="+80"/>
         <source>TMDB ID</source>
-        <translation type="unfinished"/>
+        <translation>TMDB ID</translation>
     </message>
     <message>
         <location line="-105"/>
@@ -1118,7 +1118,7 @@
     <message>
         <location line="-175"/>
         <source>Streamdetails - Video Aspect Ratio</source>
-        <translation type="unfinished"/>
+        <translation>Voo üksikasjad - video kuvasuhe</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -1177,7 +1177,7 @@
     <message>
         <location line="-134"/>
         <source>Wikidata ID</source>
-        <translation type="unfinished"/>
+        <translation>Wikidata ID</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1227,7 +1227,7 @@
         <location line="-132"/>
         <location line="+59"/>
         <source>IMDb Top 250</source>
-        <translation type="unfinished"/>
+        <translation>IMDb top 250</translation>
     </message>
     <message>
         <location line="-58"/>
@@ -1239,19 +1239,19 @@
         <location line="-131"/>
         <location line="+132"/>
         <source>Tagline</source>
-        <translation type="unfinished"/>
+        <translation>Reklaamlause</translation>
     </message>
     <message>
         <location line="-131"/>
         <source>Runtime in minutes</source>
-        <translation type="unfinished"/>
+        <translation>Kestus minutites</translation>
     </message>
     <message>
         <location line="+1"/>
         <location line="+50"/>
         <location line="+82"/>
         <source>Certification</source>
-        <translation type="unfinished"/>
+        <translation>Sertifikaat</translation>
     </message>
     <message>
         <location line="-131"/>
@@ -1291,7 +1291,7 @@
     <message>
         <location line="-127"/>
         <source>Trailers</source>
-        <translation type="unfinished"/>
+        <translation>Filmireilerid</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1303,17 +1303,17 @@
         <location line="-48"/>
         <location line="+127"/>
         <source>Playcount</source>
-        <translation type="unfinished"/>
+        <translation>Esituste arv</translation>
     </message>
     <message>
         <location line="-126"/>
         <source>Last played</source>
-        <translation type="unfinished"/>
+        <translation>Viimati esitatud</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Movie Set</source>
-        <translation type="unfinished"/>
+        <translation>Filmikomplekt</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -1321,24 +1321,24 @@
         <location line="+80"/>
         <location line="+38"/>
         <source>Directory</source>
-        <translation type="unfinished"/>
+        <translation>Kataloog</translation>
     </message>
     <message>
         <location line="-163"/>
         <location line="+126"/>
         <source>Filename(s)</source>
-        <translation type="unfinished"/>
+        <translation>Faili nimi</translation>
     </message>
     <message>
         <location line="-125"/>
         <location line="+123"/>
         <source>Last Modified Date</source>
-        <translation type="unfinished"/>
+        <translation>Viimati muudetud</translation>
     </message>
     <message>
         <location line="-95"/>
         <source>TheTvDb ID</source>
-        <translation type="unfinished"/>
+        <translation>TheTvDb ID</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1370,7 +1370,7 @@
     <message>
         <location line="-50"/>
         <source>TV Show - TMDB ID</source>
-        <translation type="unfinished"/>
+        <translation>Sari - TMDB ID</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1390,7 +1390,7 @@
     <message>
         <location line="+4"/>
         <source>Episode - TMDB ID</source>
-        <translation type="unfinished"/>
+        <translation>Episood - TMDB ID</translation>
     </message>
     <message>
         <location line="+40"/>
@@ -1405,7 +1405,7 @@
     <message>
         <location line="+10"/>
         <source>Trailer URL</source>
-        <translation type="unfinished"/>
+        <translation>Treileri URL</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -1459,13 +1459,13 @@
     </message>
     <message>
         <location line="+1"/>
-        <source>MusicBrainz Artist ID</source>
-        <translation>MusicBrainz Artist ID</translation>
+        <source>MusicBrainz ID</source>
+        <translation>MusicBrainz ID</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>AllMusic ID</source>
-        <translation type="unfinished"/>
+        <translation>AllMusic ID</translation>
     </message>
     <message>
         <location line="-95"/>
@@ -1475,7 +1475,7 @@
     <message>
         <location line="-69"/>
         <source>TV Show Links</source>
-        <translation type="unfinished"/>
+        <translation>Sarja lingid</translation>
     </message>
     <message>
         <location line="+70"/>
@@ -2026,7 +2026,7 @@
         <location line="-6"/>
         <location line="+75"/>
         <source>Certification</source>
-        <translation type="unfinished"/>
+        <translation>Sertifikaat</translation>
     </message>
     <message>
         <location line="-315"/>
@@ -2081,22 +2081,22 @@
     <message>
         <location line="+3"/>
         <source>Wikidata ID</source>
-        <translation type="unfinished"/>
+        <translation>Wikidata ID</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Movie has no Wikidata ID</source>
-        <translation type="unfinished"/>
+        <translation>Filmil puudub Wikidata ID</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>No Wikidata ID</source>
-        <translation type="unfinished"/>
+        <translation>Wikidata ID puudub</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>Wikidata</source>
-        <translation type="unfinished"/>
+        <translation>Wikidata</translation>
     </message>
     <message>
         <location line="+26"/>
@@ -2510,7 +2510,7 @@
     <message>
         <location line="-288"/>
         <source>TMDB ID &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>TMDB ID &quot;%1&quot;</translation>
     </message>
     <message>
         <location line="+288"/>
@@ -2520,22 +2520,22 @@
     <message>
         <location line="+1"/>
         <source>TMDB ID</source>
-        <translation type="unfinished"/>
+        <translation>TMDB ID</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Movie has no TMDB ID</source>
-        <translation type="unfinished"/>
+        <translation>Filmil puudub TMDB ID</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>No TMDB ID</source>
-        <translation type="unfinished"/>
+        <translation>TMDB ID puudub</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>TMDB</source>
-        <translation type="unfinished"/>
+        <translation>TMDB</translation>
     </message>
     <message>
         <location line="+52"/>
@@ -2729,7 +2729,7 @@
     <message>
         <location line="+27"/>
         <source>TextLabel</source>
-        <translation type="unfinished"/>
+        <translation>Tekstimärgis</translation>
     </message>
     <message>
         <location line="+37"/>
@@ -2788,7 +2788,7 @@
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.ui" line="+21"/>
         <source>Directories</source>
-        <translation type="unfinished"/>
+        <translation>Kataloogid</translation>
     </message>
     <message>
         <location line="+36"/>
@@ -2888,7 +2888,7 @@ Muusikat sisaldavad kataloogid peavad sisaldama iga esitaja alamkatalooge, mis s
         <location line="+14"/>
         <location line="+19"/>
         <source>Words to exclude from media names (separated by commas and non case-sensitive)</source>
-        <translation type="unfinished"/>
+        <translation>Meedianimedest väljajäetavad sõnad (komaga eraldatud ja tõusutundetud)</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -2898,12 +2898,12 @@ Muusikat sisaldavad kataloogid peavad sisaldama iga esitaja alamkatalooge, mis s
     <message>
         <location line="+30"/>
         <source>Appearance</source>
-        <translation type="unfinished"/>
+        <translation>Välimus</translation>
     </message>
     <message>
         <location line="+11"/>
         <source>Main Window Theme</source>
-        <translation type="unfinished"/>
+        <translation>Peaakna teema</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/GlobalSettingsWidget.cpp" line="+42"/>
@@ -2937,17 +2937,17 @@ Muusikat sisaldavad kataloogid peavad sisaldama iga esitaja alamkatalooge, mis s
     <message>
         <location line="+2"/>
         <source>Auto</source>
-        <translation type="unfinished"/>
+        <translation>Automaatne</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Light</source>
-        <translation type="unfinished"/>
+        <translation>Hele</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Dark</source>
-        <translation type="unfinished"/>
+        <translation>Tume</translation>
     </message>
     <message>
         <location line="+16"/>
@@ -2972,7 +2972,7 @@ Muusikat sisaldavad kataloogid peavad sisaldama iga esitaja alamkatalooge, mis s
     <message>
         <location line="+2"/>
         <source>This operation sorts all movies in this directory to separate sub-directories based on the file name. Click &quot;Ok&quot;, if that&apos;s, what you want to do. </source>
-        <translation type="unfinished"/>
+        <translation>See toiming sorteerib kõik selles kataloogis olevad filmid failinime järgi alamkataloogidesse. Kui soovid seda, klõpsa nuppu &quot;OK&quot;.</translation>
     </message>
 </context>
 <context>
@@ -3528,7 +3528,7 @@ Muusikat sisaldavad kataloogid peavad sisaldama iga esitaja alamkatalooge, mis s
     <message>
         <location line="+22"/>
         <source>Error: %1</source>
-        <translation type="unfinished"/>
+        <translation>Viga: %1</translation>
     </message>
     <message>
         <location line="+5"/>
@@ -4139,7 +4139,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location filename="../../src/ui/import/MakeMkvDialog.ui" line="+50"/>
         <source>Scan</source>
-        <translation type="unfinished"/>
+        <translation>Skaneeri</translation>
     </message>
     <message>
         <location line="+42"/>
@@ -4169,7 +4169,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location line="+22"/>
         <source>Placeholders</source>
-        <translation type="unfinished"/>
+        <translation>Kohatäited</translation>
     </message>
     <message>
         <location line="+8"/>
@@ -4194,7 +4194,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location line="+15"/>
         <source>Placeholder</source>
-        <translation type="unfinished"/>
+        <translation>Kohatäide</translation>
     </message>
     <message>
         <location line="+23"/>
@@ -4598,7 +4598,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location line="+70"/>
         <source>Certification</source>
-        <translation type="unfinished"/>
+        <translation>Sertifikaat</translation>
     </message>
     <message>
         <location line="+40"/>
@@ -4638,7 +4638,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location line="-60"/>
         <source>Tagline</source>
-        <translation type="unfinished"/>
+        <translation>Reklaamlause</translation>
     </message>
     <message>
         <location line="+100"/>
@@ -4741,7 +4741,7 @@ Main menu entry (tooltip)</extracomment>
     <message>
         <location line="+18"/>
         <source>&lt;b&gt;Movie&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Filmi&lt;/b&gt; &quot;%1&quot; ei nimetatud ümber: Seda on muudetud, aga pole salvestatud</translation>
     </message>
 </context>
 <context>
@@ -4862,7 +4862,7 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
     <message>
         <location line="+7"/>
         <source>Tagline</source>
-        <translation type="unfinished"/>
+        <translation>Reklaamlause</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -4892,7 +4892,7 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
     <message>
         <location line="+7"/>
         <source>Certification</source>
-        <translation type="unfinished"/>
+        <translation>Sertifikaat</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -4987,7 +4987,7 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
     <message>
         <location line="+66"/>
         <source>The following scrapers need a search result before MediaElch can load all details:</source>
-        <translation type="unfinished"/>
+        <translation>Järgmised kaabitsad vajavad otsingutulemust enne, kui MediaElch saab laadida kõik üksikasjad:</translation>
     </message>
 </context>
 <context>
@@ -5123,7 +5123,7 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
     <message>
         <location line="+3"/>
         <source>...</source>
-        <translation type="unfinished"/>
+        <translation>...</translation>
     </message>
     <message>
         <location line="+44"/>
@@ -5159,7 +5159,7 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
     <message>
         <location line="+26"/>
         <source>Tagline</source>
-        <translation type="unfinished"/>
+        <translation>Reklaamlause</translation>
     </message>
     <message>
         <location line="+17"/>
@@ -5179,7 +5179,7 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
     <message>
         <location line="+10"/>
         <source>Certification</source>
-        <translation type="unfinished"/>
+        <translation>Sertifikaat</translation>
     </message>
     <message>
         <location line="+20"/>
@@ -5384,7 +5384,7 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
     <message>
         <location line="+144"/>
         <source>HDR Type</source>
-        <translation type="unfinished"/>
+        <translation>HDR tüüp</translation>
     </message>
     <message>
         <location line="+28"/>
@@ -5501,12 +5501,12 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
     <message>
         <location line="+5"/>
         <source>TV Show Links</source>
-        <translation type="unfinished"/>
+        <translation>Sarja lingid</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Add TV Show</source>
-        <translation type="unfinished"/>
+        <translation>Lisa sari</translation>
     </message>
     <message>
         <location line="+378"/>
@@ -5547,7 +5547,7 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
     <message>
         <location line="+44"/>
         <source>Stream details could not be loaded!</source>
-        <translation type="unfinished"/>
+        <translation>Voo üksikasjade laadimine nurjus!</translation>
     </message>
     <message>
         <location line="+72"/>
@@ -6277,8 +6277,8 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
     </message>
     <message>
         <location line="+7"/>
-        <source>MusicBrainz Artist ID</source>
-        <translation>MusicBrainz Artist ID</translation>
+        <source>MusicBrainz ID</source>
+        <translation>MusicBrainz ID</translation>
     </message>
     <message>
         <location line="+20"/>
@@ -6551,7 +6551,7 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
     <message>
         <location line="+18"/>
         <source>Insert placeholder</source>
-        <translation type="unfinished"/>
+        <translation>Lisa kohatäide</translation>
     </message>
 </context>
 <context>
@@ -6742,12 +6742,12 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
     <message>
         <location filename="../../src/ui/scrapers/movie/AebnConfigurationView.cpp" line="+18"/>
         <source>Straight</source>
-        <translation type="unfinished"/>
+        <translation>Hetero</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Gay</source>
-        <translation type="unfinished"/>
+        <translation>Gei</translation>
     </message>
     <message>
         <location line="+6"/>
@@ -6952,7 +6952,7 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
     <message>
         <location line="+47"/>
         <source>Results</source>
-        <translation type="unfinished"/>
+        <translation>Tulemused</translation>
     </message>
     <message>
         <location line="+96"/>
@@ -6973,7 +6973,7 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
     <message>
         <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="-153"/>
         <source>Please see %1 for help and examples on how to use the renamer.</source>
-        <translation type="unfinished"/>
+        <translation>Abi ja ümbernimetaja kasutamise näidete saamiseks vaata palun %1.</translation>
     </message>
     <message>
         <location line="+151"/>
@@ -6991,7 +6991,7 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
     <message>
         <location filename="../../src/ui/renamer/RenamerPlaceholdersWidget.ui" line="+35"/>
         <source>Placeholders</source>
-        <translation type="unfinished"/>
+        <translation>Kohatäited</translation>
     </message>
     <message>
         <location line="+33"/>
@@ -7036,7 +7036,7 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
     <message>
         <location line="+12"/>
         <source>Episode has a season name</source>
-        <translation type="unfinished"/>
+        <translation>Episoodil on hooaja nimi</translation>
     </message>
     <message>
         <location line="+27"/>
@@ -7046,7 +7046,7 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
     <message>
         <location line="+50"/>
         <source>Placeholder</source>
-        <translation type="unfinished"/>
+        <translation>Kohatäide</translation>
     </message>
     <message>
         <location line="+61"/>
@@ -7175,7 +7175,7 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
         <location line="+1"/>
         <location line="+29"/>
         <source>Certification</source>
-        <translation type="unfinished"/>
+        <translation>Sertifikaat</translation>
     </message>
     <message>
         <location line="-28"/>
@@ -7300,7 +7300,7 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
     <message>
         <location filename="../../src/ui/settings/ScraperSettingsTable.ui" line="+41"/>
         <source>Enable adult scrapers</source>
-        <translation type="unfinished"/>
+        <translation>Luba täiskasvanute sisu kaabitsad</translation>
     </message>
     <message>
         <location filename="../../src/ui/settings/ScraperSettingsTable.cpp" line="+60"/>
@@ -7318,7 +7318,7 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
     <message>
         <location line="-53"/>
         <source>Scrapers</source>
-        <translation type="unfinished"/>
+        <translation>Kaabitsad</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -7348,17 +7348,17 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
     <message>
         <location line="+0"/>
         <source>Select a movie scraper in the list.</source>
-        <translation type="unfinished"/>
+        <translation>Vali loendist filmikaabits.</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>TV shows</source>
-        <translation type="unfinished"/>
+        <translation>Sarjad</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>Select a TV show scraper in the list.</source>
-        <translation type="unfinished"/>
+        <translation>Vali loendist sarjakaabits.</translation>
     </message>
     <message>
         <location line="+4"/>
@@ -7368,7 +7368,7 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
     <message>
         <location line="+0"/>
         <source>Select a concert scraper in the list.</source>
-        <translation type="unfinished"/>
+        <translation>Vali loendist kontserdikaabits.</translation>
     </message>
     <message>
         <location line="+4"/>
@@ -7378,17 +7378,17 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
     <message>
         <location line="+0"/>
         <source>Select a music scraper in the list.</source>
-        <translation type="unfinished"/>
+        <translation>Vali loendist muusikakaabits.</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Images</source>
-        <translation type="unfinished"/>
+        <translation>Pildid</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>Select an image provider in the list.</source>
-        <translation type="unfinished"/>
+        <translation>Vali loendist pildipakkuja.</translation>
     </message>
     <message>
         <location line="+94"/>
@@ -7403,7 +7403,7 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
     <message>
         <location line="+1"/>
         <source>Tagline</source>
-        <translation type="unfinished"/>
+        <translation>Reklaamlause</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -7423,7 +7423,7 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
     <message>
         <location line="+1"/>
         <source>Certification</source>
-        <translation type="unfinished"/>
+        <translation>Sertifikaat</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -7513,7 +7513,7 @@ Kui soovid otsida TMDb id-i järgi, lisa &quot;id&quot; eesliitena. </translatio
     <message>
         <location line="+1"/>
         <source>TV Show Links</source>
-        <translation type="unfinished"/>
+        <translation>Sarja lingid</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -8186,7 +8186,7 @@ Afterwards MediaElch will check automatically for new episodes on startup.</sour
         <location line="-313"/>
         <location line="+251"/>
         <source>Certification</source>
-        <translation type="unfinished"/>
+        <translation>Sertifikaat</translation>
     </message>
     <message>
         <location line="+49"/>
@@ -8489,7 +8489,7 @@ pärast kaapimist automaatselt</translation>
         <location line="+10"/>
         <location line="+299"/>
         <source>Certification</source>
-        <translation type="unfinished"/>
+        <translation>Sertifikaat</translation>
     </message>
     <message>
         <location line="-289"/>
@@ -8815,7 +8815,7 @@ pärast kaapimist automaatselt</translation>
     <message>
         <location line="+3"/>
         <source>...</source>
-        <translation type="unfinished"/>
+        <translation>...</translation>
     </message>
     <message>
         <location line="+111"/>
@@ -8871,7 +8871,7 @@ pärast kaapimist automaatselt</translation>
     <message>
         <location line="+48"/>
         <source>Certification</source>
-        <translation type="unfinished"/>
+        <translation>Sertifikaat</translation>
     </message>
     <message>
         <location line="+23"/>
@@ -9076,7 +9076,7 @@ pärast kaapimist automaatselt</translation>
     <message>
         <location line="+55"/>
         <source>HDR Type</source>
-        <translation type="unfinished"/>
+        <translation>HDR tüüp</translation>
     </message>
     <message>
         <location line="+31"/>
@@ -9131,7 +9131,7 @@ pärast kaapimist automaatselt</translation>
     <message>
         <location line="+42"/>
         <source>Stream details could not be loaded!</source>
-        <translation type="unfinished"/>
+        <translation>Voo üksikasjade laadimine nurjus!</translation>
     </message>
     <message>
         <location line="+34"/>
@@ -9294,7 +9294,7 @@ pärast kaapimist automaatselt</translation>
     <message>
         <location line="+37"/>
         <source>Certification</source>
-        <translation type="unfinished"/>
+        <translation>Sertifikaat</translation>
     </message>
     <message>
         <location line="+23"/>
@@ -9351,7 +9351,7 @@ pärast kaapimist automaatselt</translation>
     <message>
         <location line="+20"/>
         <source>TMDB</source>
-        <translation type="unfinished"/>
+        <translation>TMDB</translation>
     </message>
     <message>
         <location line="+10"/>

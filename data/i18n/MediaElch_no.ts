@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
 <TS version="2.1" language="no">
 <context>
@@ -289,7 +289,7 @@
     <name>ConcertFilesWidget</name>
     <message numerus="yes">
         <location filename="../../src/ui/concerts/ConcertFilesWidget.cpp" line="+22"/>
-        <location line="+341"/>
+        <location line="+346"/>
         <source>%n concerts</source>
         <translation>
             <numerusform> %n konserter</numerusform>
@@ -297,7 +297,7 @@
         </translation>
     </message>
     <message>
-        <location line="-321"/>
+        <location line="-326"/>
         <source>Mark as watched</source>
         <translation>Merk som sett</translation>
     </message>
@@ -337,7 +337,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location line="+316"/>
+        <location line="+321"/>
         <source>%1 of %n concerts</source>
         <translation>
             <numerusform>%1 av %n koncertene</numerusform>
@@ -470,7 +470,7 @@
         </translation>
     </message>
     <message>
-        <location line="+18"/>
+        <location line="+24"/>
         <source>&lt;b&gt;Concert&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1472,12 +1472,7 @@
         <translation>Oppløst</translation>
     </message>
     <message>
-        <location line="+1"/>
-        <source>MusicBrainz Artist ID</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+1"/>
+        <location line="+2"/>
         <source>AllMusic ID</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1557,7 +1552,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+98"/>
+        <location line="+80"/>
+        <source>MusicBrainz Artist ID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+18"/>
         <source>Artist - Name</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3277,7 +3277,7 @@ The directories containing your music must contain subdirectories for each artis
         <translation>Importere</translation>
     </message>
     <message>
-        <location filename="../../src/ui/import/ImportDialog.cpp" line="+281"/>
+        <location filename="../../src/ui/import/ImportDialog.cpp" line="+290"/>
         <source>Loading movie information...</source>
         <translation>Laster film informasjon ...</translation>
     </message>
@@ -3292,7 +3292,7 @@ The directories containing your music must contain subdirectories for each artis
         <translation>Laster episode informasjon ...</translation>
     </message>
     <message>
-        <location line="+70"/>
+        <location line="+71"/>
         <source>Movie information was loaded</source>
         <translation>Film informasjon ble lastet</translation>
     </message>
@@ -3318,29 +3318,29 @@ The directories containing your music must contain subdirectories for each artis
         <translation>Fyll inn alle navngi mønstre</translation>
     </message>
     <message>
-        <location line="+30"/>
-        <location line="+94"/>
+        <location line="+26"/>
+        <location line="+74"/>
         <source>Creating destination directory failed</source>
         <translation>Opprette målmappe mislyktes</translation>
     </message>
     <message>
-        <location line="-93"/>
-        <location line="+94"/>
+        <location line="-73"/>
+        <location line="+74"/>
         <source>The destination directory %1 could not be created</source>
         <translation>Målmappen %1 kunne ikke opprettes</translation>
     </message>
     <message>
-        <location line="-65"/>
+        <location line="-55"/>
         <source>Importing movie...</source>
         <translation>Importere film ...</translation>
     </message>
     <message>
-        <location line="+39"/>
+        <location line="+32"/>
         <source>Importing episode...</source>
         <translation>Importere episode ...</translation>
     </message>
     <message>
-        <location line="+53"/>
+        <location line="+42"/>
         <source>Importing concert...</source>
         <translation>Importere Konsert ...</translation>
     </message>
@@ -4130,7 +4130,7 @@ Main menu entry (tooltip)</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+465"/>
+        <location line="+473"/>
         <source>Reload all Movies (%1)</source>
         <translation>Oppdater alle filmer (%1)</translation>
     </message>
@@ -4772,7 +4772,7 @@ Operasjon kansellert.</translation>
         </translation>
     </message>
     <message>
-        <location line="+18"/>
+        <location line="+23"/>
         <source>&lt;b&gt;Movie&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5002,12 +5002,12 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation>(Un) Sjekk alle</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.cpp" line="+200"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.cpp" line="+202"/>
         <source>Internal inconsistency: Cannot set language dropdown in movie search widget!</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location line="+35"/>
+        <location line="+41"/>
         <source>Found %n results</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -5093,6 +5093,11 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation>Sammlingen-Artwork</translation>
     </message>
     <message>
+        <location line="+47"/>
+        <source>Movie Set Fanart Filename</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../src/ui/settings/MovieSettingsWidget.cpp" line="+21"/>
         <source>Artwork next to movies</source>
         <translation>Artwork ved siden av filmer</translation>
@@ -5103,17 +5108,12 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation>Separate artwork mappe</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="+10"/>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="-37"/>
         <source>Movie Set Poster Filename</source>
         <translation>Sammling poster filenavn</translation>
     </message>
     <message>
-        <location line="+37"/>
-        <source>Movie Set Fanart Filname</source>
-        <translation>Sammling Fanart filenavn</translation>
-    </message>
-    <message>
-        <location line="+37"/>
+        <location line="+74"/>
         <source>Artwork directory</source>
         <translation>Artwork mappe</translation>
     </message>
@@ -6094,7 +6094,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
 <context>
     <name>MusicTreeView</name>
     <message numerus="yes">
-        <location filename="../../src/ui/small_widgets/MusicTreeView.cpp" line="+124"/>
+        <location filename="../../src/ui/small_widgets/MusicTreeView.cpp" line="+125"/>
         <source>%n albums</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -6608,13 +6608,13 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     <name>QObject</name>
     <message>
         <location filename="../../src/main.cpp" line="+33"/>
-        <source>Logfile could not be openened</source>
-        <translation>Logfile kunne ikke åpnes</translation>
+        <source>Logfile could not be opened</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>The logfile %1 could not be openend for writing.</source>
-        <translation>Loggfilen %1 kunne ikke åpnes for skriving.</translation>
+        <source>The logfile %1 could not be opened for writing.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+42"/>
@@ -6697,7 +6697,32 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/renamer/MovieRenamer.cpp" line="+362"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="+30"/>
+        <source>Original Title</source>
+        <translation type="unfinished">Orginaltittel</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Sort Title</source>
+        <translation type="unfinished">Tittel til sortering</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Director(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Studio(s) (separated by a comma)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+9"/>
+        <source>Movie set name</source>
+        <translation type="unfinished">Filmsetnavn</translation>
+    </message>
+    <message>
+        <location line="+418"/>
         <source>&lt;b&gt;Move File&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6849,6 +6874,151 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     <message>
         <location line="+7"/>
         <source>Missing &apos;%1&apos; for placeholder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/renamer/ConcertRenamer.cpp" line="+22"/>
+        <location filename="../../src/renamer/EpisodeRenamer.cpp" line="+37"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="-435"/>
+        <source>File extension</source>
+        <translation type="unfinished">Filtype</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location filename="../../src/renamer/EpisodeRenamer.cpp" line="+1"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="+3"/>
+        <source>Part number of the current file</source>
+        <translation type="unfinished">Delenummer for den gjeldende filen</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location filename="../../src/renamer/EpisodeRenamer.cpp" line="-16"/>
+        <location line="+17"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="+1"/>
+        <source>Title</source>
+        <translation type="unfinished">Tittel</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location filename="../../src/renamer/EpisodeRenamer.cpp" line="-14"/>
+        <location line="+19"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="+5"/>
+        <source>Year</source>
+        <translation type="unfinished">År</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location filename="../../src/renamer/EpisodeRenamer.cpp" line="+4"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="+4"/>
+        <source>Audio Codec</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Artist</source>
+        <translation type="unfinished">Kunstner</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Album</source>
+        <translation type="unfinished">Album</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location filename="../../src/renamer/EpisodeRenamer.cpp" line="+7"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="+2"/>
+        <source>Resolution (1080p, 720p, ...)</source>
+        <translation type="unfinished">Oppløsning (1080p, 720p, ...)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location filename="../../src/renamer/EpisodeRenamer.cpp" line="-3"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="-1"/>
+        <source>Number of audio channels</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location filename="../../src/renamer/EpisodeRenamer.cpp" line="-1"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="-2"/>
+        <source>Subtitle Language(s) (separated by a minus)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location filename="../../src/renamer/EpisodeRenamer.cpp" line="-2"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="-2"/>
+        <source>Video Codec</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location filename="../../src/renamer/EpisodeRenamer.cpp" line="+1"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="+1"/>
+        <source>Audio Language(s) (separated by a minus)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location filename="../../src/renamer/EpisodeRenamer.cpp" line="-5"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="+5"/>
+        <source>File is 3D</source>
+        <translation type="unfinished">Filen er 3D</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="-15"/>
+        <source>File/directory is BluRay</source>
+        <translation type="unfinished">Filen/mappen er en BluRay</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="+1"/>
+        <source>File/directory is DVD</source>
+        <translation type="unfinished">Filen/mappen er en DVD</translation>
+    </message>
+    <message>
+        <location filename="../../src/renamer/EpisodeRenamer.cpp" line="-22"/>
+        <location line="+20"/>
+        <source>Show Title</source>
+        <translation type="unfinished">Vis tittelen</translation>
+    </message>
+    <message>
+        <location line="-19"/>
+        <location line="+29"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="+17"/>
+        <source>TMDB ID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-13"/>
+        <source>Episode</source>
+        <translation type="unfinished">Episode</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Season</source>
+        <translation type="unfinished">Sesong</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Season Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>File is BluRay</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>File is DVD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="-1"/>
+        <source>IMDb ID</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -7016,7 +7186,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     </message>
     <message>
         <location line="+10"/>
-        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="+188"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="+189"/>
         <source>Rename</source>
         <translation>Endre navn</translation>
     </message>
@@ -7042,151 +7212,6 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <location filename="../../src/ui/renamer/RenamerPlaceholdersWidget.ui" line="+35"/>
         <source>Placeholders</source>
         <translation>Plassholdere</translation>
-    </message>
-    <message>
-        <location line="+33"/>
-        <source>File/directory is DVD</source>
-        <translation>Filen/mappen er en DVD</translation>
-    </message>
-    <message>
-        <location line="+13"/>
-        <source>Title of the show</source>
-        <translation>Tittelen på showet</translation>
-    </message>
-    <message>
-        <location line="+12"/>
-        <source>File extension</source>
-        <translation>Filtype</translation>
-    </message>
-    <message>
-        <location line="+14"/>
-        <source>Title</source>
-        <translation>Tittel</translation>
-    </message>
-    <message>
-        <location line="+14"/>
-        <source>Movie set name</source>
-        <translation>Filmsetnavn</translation>
-    </message>
-    <message>
-        <location line="+17"/>
-        <source>Description</source>
-        <translation>Beskrivelse</translation>
-    </message>
-    <message>
-        <location line="+25"/>
-        <source>Resolution (1080p, 720p, ...)</source>
-        <translation>Oppløsning (1080p, 720p, ...)</translation>
-    </message>
-    <message>
-        <location line="+29"/>
-        <source>Album</source>
-        <translation>Album</translation>
-    </message>
-    <message>
-        <location line="+12"/>
-        <source>Episode has a season name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+27"/>
-        <source>File/directory is BluRay</source>
-        <translation>Filen/mappen er en BluRay</translation>
-    </message>
-    <message>
-        <location line="+50"/>
-        <source>Placeholder</source>
-        <translation>Plassholder</translation>
-    </message>
-    <message>
-        <location line="+61"/>
-        <source>Audio Codec</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+43"/>
-        <source>Video Codec</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+29"/>
-        <source>IMDb ID</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+12"/>
-        <source>Subtitle Language(s) (separated by a minus)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+37"/>
-        <source>Original Title</source>
-        <translation>Orginaltittel</translation>
-    </message>
-    <message>
-        <location line="+12"/>
-        <source>File is 3D</source>
-        <translation>Filen er 3D</translation>
-    </message>
-    <message>
-        <location line="+14"/>
-        <source>Season Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+12"/>
-        <source>Director(s)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+29"/>
-        <source>Episode Number</source>
-        <translation>Episode nummer</translation>
-    </message>
-    <message>
-        <location line="+36"/>
-        <source>Number of audio channels</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+29"/>
-        <source>Sort Title</source>
-        <translation>Tittel til sortering</translation>
-    </message>
-    <message>
-        <location line="+42"/>
-        <source>Audio Language(s) (separated by a minus)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+7"/>
-        <source>Artist</source>
-        <translation>Kunstner</translation>
-    </message>
-    <message>
-        <location line="+29"/>
-        <source>Studio(s) (separated by a comma)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+24"/>
-        <source>Part number of the current file</source>
-        <translation>Delenummer for den gjeldende filen</translation>
-    </message>
-    <message>
-        <location line="+76"/>
-        <source>Season Number</source>
-        <translation>Sesong nummer</translation>
-    </message>
-    <message>
-        <location line="+26"/>
-        <source>Year</source>
-        <translation>År</translation>
-    </message>
-    <message>
-        <location line="+30"/>
-        <source>TMDb ID</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -8455,7 +8480,7 @@ episode after scraping</source>
 <context>
     <name>TvShowRenamerDialog</name>
     <message>
-        <location filename="../../src/ui/renamer/TvShowRenamerDialog.cpp" line="+55"/>
+        <location filename="../../src/ui/renamer/TvShowRenamerDialog.cpp" line="+56"/>
         <source>Finished</source>
         <translation>Ferdig</translation>
     </message>
@@ -8481,7 +8506,7 @@ episode after scraping</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+25"/>
+        <location line="+24"/>
         <source>&lt;b&gt;TV Show&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8711,7 +8736,7 @@ episode after scraping</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location line="+40"/>
+        <location line="+41"/>
         <source>Found %n results</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -8810,7 +8835,7 @@ episode after scraping</source>
 <context>
     <name>TvShowTreeView</name>
     <message numerus="yes">
-        <location filename="../../src/ui/small_widgets/TvShowTreeView.cpp" line="+130"/>
+        <location filename="../../src/ui/small_widgets/TvShowTreeView.cpp" line="+131"/>
         <source>%n episodes</source>
         <translation type="unfinished">
             <numerusform>%n episoder</numerusform>
@@ -9112,7 +9137,7 @@ episode after scraping</source>
     </message>
     <message>
         <location line="+158"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="+564"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="+569"/>
         <location line="+3"/>
         <source>Codec</source>
         <translation>Kodek</translation>
@@ -9224,7 +9249,7 @@ episode after scraping</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+150"/>
+        <location line="+153"/>
         <source>Unknown Director</source>
         <translation>Ukjent regissør</translation>
     </message>
@@ -9761,7 +9786,7 @@ episode after scraping</source>
 <context>
     <name>Update</name>
     <message>
-        <location filename="../../src/ui/main/Update.cpp" line="+63"/>
+        <location filename="../../src/ui/main/Update.cpp" line="+41"/>
         <source>Updates available</source>
         <translation>Oppdateringer tilgjengelig</translation>
     </message>
@@ -9821,7 +9846,7 @@ episode after scraping</source>
 <context>
     <name>mediaelch::MovieDiskLoader</name>
     <message>
-        <location filename="../../src/file_search/movie/MovieDirectorySearcher.cpp" line="+387"/>
+        <location filename="../../src/file_search/movie/MovieDirectorySearcher.cpp" line="+408"/>
         <source>Storing movies in database...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9850,8 +9875,16 @@ episode after scraping</source>
 <context>
     <name>mediaelch::scraper::AdultDvdEmpire</name>
     <message>
-        <location filename="../../src/scrapers/movie/adultdvdempire/AdultDvdEmpire.cpp" line="+19"/>
+        <location filename="../../src/scrapers/movie/adultdvdempire/AdultDvdEmpire.cpp" line="+21"/>
         <source>Adult DVD Empire is a video database for adult content.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>mediaelch::scraper::AdultDvdEmpireConfigurationView</name>
+    <message>
+        <location filename="../../src/ui/scrapers/movie/AdultDvdEmpireConfigurationView.cpp" line="+13"/>
+        <source>Store back cover as fanart and poster</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9897,7 +9930,7 @@ episode after scraping</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+261"/>
+        <location line="+264"/>
         <source>Movie not found on Fanart.tv</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9954,7 +9987,7 @@ episode after scraping</source>
 <context>
     <name>mediaelch::scraper::FernsehserienDe</name>
     <message>
-        <location filename="../../src/scrapers/tv_show/fernsehserien_de/FernsehserienDe.cpp" line="+132"/>
+        <location filename="../../src/scrapers/tv_show/fernsehserien_de/FernsehserienDe.cpp" line="+181"/>
         <source>fernsehserien.de is a German TV show catalog and news portal.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9970,7 +10003,7 @@ episode after scraping</source>
 <context>
     <name>mediaelch::scraper::FernsehserienDeEpisodeScrapeJob</name>
     <message>
-        <location filename="../../src/scrapers/tv_show/fernsehserien_de/FernsehserienDe.cpp" line="+641"/>
+        <location filename="../../src/scrapers/tv_show/fernsehserien_de/FernsehserienDe.cpp" line="+663"/>
         <source>Could not load ID for episode from season overview page. Can&apos;t scrape requested TV show episode.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10023,7 +10056,7 @@ episode after scraping</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+24"/>
+        <location line="+25"/>
         <source>IMDb ID could not be loaded from season page! Cannot load requested episode.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10047,24 +10080,6 @@ episode after scraping</source>
     </message>
 </context>
 <context>
-    <name>mediaelch::scraper::ImdbTvShowParser</name>
-    <message>
-        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowParser.cpp" line="+92"/>
-        <source>Could not extract JSON details from IMDb page!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+10"/>
-        <source>Could not parse JSON from IMDb page!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+6"/>
-        <source>Expected parsed IMDb JSON to be an object!</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>mediaelch::scraper::ImdbTvShowScrapeJob</name>
     <message>
         <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowScrapeJob.cpp" line="+34"/>
@@ -10075,7 +10090,7 @@ episode after scraping</source>
 <context>
     <name>mediaelch::scraper::ImdbTvShowSearchJob</name>
     <message>
-        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowSearchJob.cpp" line="+59"/>
+        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowSearchJob.cpp" line="+61"/>
         <source>Loaded IMDb web page content is empty. Cannot scrape requested TV show.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10266,7 +10281,7 @@ episode after scraping</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+27"/>
+        <location line="+36"/>
         <source>TVmaze ID is invalid! Cannot load requested episode.</source>
         <translation type="unfinished"></translation>
     </message>

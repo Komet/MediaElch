@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_CN">
 <context>
@@ -289,14 +289,14 @@
     <name>ConcertFilesWidget</name>
     <message numerus="yes">
         <location filename="../../src/ui/concerts/ConcertFilesWidget.cpp" line="+22"/>
-        <location line="+341"/>
+        <location line="+346"/>
         <source>%n concerts</source>
         <translation>
             <numerusform>%n音乐会</numerusform>
         </translation>
     </message>
     <message>
-        <location line="-321"/>
+        <location line="-326"/>
         <source>Mark as watched</source>
         <translation>标记为已观看</translation>
     </message>
@@ -336,7 +336,7 @@
         <translation>播放音乐会</translation>
     </message>
     <message numerus="yes">
-        <location line="+316"/>
+        <location line="+321"/>
         <source>%1 of %n concerts</source>
         <translation>
             <numerusform>%1 of %n 音乐会</numerusform>
@@ -467,7 +467,7 @@
         </translation>
     </message>
     <message>
-        <location line="+18"/>
+        <location line="+24"/>
         <source>&lt;b&gt;Concert&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
         <translation>&lt;b&gt;音乐会&lt;/b&gt; &quot;%1&quot; 未重命名：已编辑，但未保存</translation>
     </message>
@@ -753,7 +753,7 @@
     <message>
         <location line="-115"/>
         <source>HDR Type</source>
-        <translation type="unfinished"></translation>
+        <translation>HDR 类型</translation>
     </message>
     <message>
         <location line="+26"/>
@@ -1468,12 +1468,7 @@
         <translation>解散</translation>
     </message>
     <message>
-        <location line="+1"/>
-        <source>MusicBrainz Artist ID</source>
-        <translation>MusicBrainz Artist ID</translation>
-    </message>
-    <message>
-        <location line="+1"/>
+        <location line="+2"/>
         <source>AllMusic ID</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1553,7 +1548,12 @@
         <translation>集 - 文件名</translation>
     </message>
     <message>
-        <location line="+98"/>
+        <location line="+80"/>
+        <source>MusicBrainz Artist ID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+18"/>
         <source>Artist - Name</source>
         <translation>艺术家 - 名称</translation>
     </message>
@@ -3273,7 +3273,7 @@ The directories containing your music must contain subdirectories for each artis
         <translation>导入</translation>
     </message>
     <message>
-        <location filename="../../src/ui/import/ImportDialog.cpp" line="+281"/>
+        <location filename="../../src/ui/import/ImportDialog.cpp" line="+290"/>
         <source>Loading movie information...</source>
         <translation>正在加载电影信息...</translation>
     </message>
@@ -3288,7 +3288,7 @@ The directories containing your music must contain subdirectories for each artis
         <translation>正在加载剧集资料...</translation>
     </message>
     <message>
-        <location line="+70"/>
+        <location line="+71"/>
         <source>Movie information was loaded</source>
         <translation>已加载电影信息</translation>
     </message>
@@ -3314,29 +3314,29 @@ The directories containing your music must contain subdirectories for each artis
         <translation>请输入所有命名模式</translation>
     </message>
     <message>
-        <location line="+30"/>
-        <location line="+94"/>
+        <location line="+26"/>
+        <location line="+74"/>
         <source>Creating destination directory failed</source>
         <translation>创建目标目录失败</translation>
     </message>
     <message>
-        <location line="-93"/>
-        <location line="+94"/>
+        <location line="-73"/>
+        <location line="+74"/>
         <source>The destination directory %1 could not be created</source>
         <translation>无法创建目标目录 %1</translation>
     </message>
     <message>
-        <location line="-65"/>
+        <location line="-55"/>
         <source>Importing movie...</source>
         <translation>正在导入电影...</translation>
     </message>
     <message>
-        <location line="+39"/>
+        <location line="+32"/>
         <source>Importing episode...</source>
         <translation>正在导入剧集...</translation>
     </message>
     <message>
-        <location line="+53"/>
+        <location line="+42"/>
         <source>Importing concert...</source>
         <translation>正在导入音乐会...</translation>
     </message>
@@ -4125,7 +4125,7 @@ Main menu entry (tooltip)</extracomment>
         <translation>&amp;快速打开</translation>
     </message>
     <message>
-        <location line="+465"/>
+        <location line="+473"/>
         <source>Reload all Movies (%1)</source>
         <translation>重新加载所有电影 (%1)</translation>
     </message>
@@ -4763,7 +4763,7 @@ Main menu entry (tooltip)</extracomment>
         </translation>
     </message>
     <message>
-        <location line="+18"/>
+        <location line="+23"/>
         <source>&lt;b&gt;Movie&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
         <translation>&lt;b&gt;电影&lt;/b&gt; &quot;%1&quot; 未重命名：已编辑，但未保存</translation>
     </message>
@@ -4994,12 +4994,12 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation>全部选中</translation>
     </message>
     <message>
-        <location filename="../../src/ui/movies/MovieSearchWidget.cpp" line="+200"/>
+        <location filename="../../src/ui/movies/MovieSearchWidget.cpp" line="+202"/>
         <source>Internal inconsistency: Cannot set language dropdown in movie search widget!</source>
         <translation>内部不一致：无法在电影搜索窗口小部件中设置语言下拉列表！</translation>
     </message>
     <message numerus="yes">
-        <location line="+35"/>
+        <location line="+41"/>
         <source>Found %n results</source>
         <translation>
             <numerusform>找到 %n 个结果</numerusform>
@@ -5084,6 +5084,11 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation>系列电影艺术图</translation>
     </message>
     <message>
+        <location line="+47"/>
+        <source>Movie Set Fanart Filename</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../src/ui/settings/MovieSettingsWidget.cpp" line="+21"/>
         <source>Artwork next to movies</source>
         <translation>艺术图与电影同目录</translation>
@@ -5094,17 +5099,12 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation>艺术图独立存储目录</translation>
     </message>
     <message>
-        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="+10"/>
+        <location filename="../../src/ui/settings/MovieSettingsWidget.ui" line="-37"/>
         <source>Movie Set Poster Filename</source>
         <translation>系列电影海报文件名</translation>
     </message>
     <message>
-        <location line="+37"/>
-        <source>Movie Set Fanart Filname</source>
-        <translation>系列电影海报文件名</translation>
-    </message>
-    <message>
-        <location line="+37"/>
+        <location line="+74"/>
         <source>Artwork directory</source>
         <translation>艺术图目录</translation>
     </message>
@@ -5410,7 +5410,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     <message>
         <location line="+144"/>
         <source>HDR Type</source>
-        <translation type="unfinished"></translation>
+        <translation>HDR 类型</translation>
     </message>
     <message>
         <location line="+28"/>
@@ -6081,7 +6081,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
 <context>
     <name>MusicTreeView</name>
     <message numerus="yes">
-        <location filename="../../src/ui/small_widgets/MusicTreeView.cpp" line="+124"/>
+        <location filename="../../src/ui/small_widgets/MusicTreeView.cpp" line="+125"/>
         <source>%n albums</source>
         <translation>
             <numerusform>%n 专辑</numerusform>
@@ -6314,7 +6314,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     <message>
         <location line="+7"/>
         <source>MusicBrainz Artist ID</source>
-        <translation>MusicBrainz Artist ID</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+20"/>
@@ -6582,7 +6582,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     <message>
         <location filename="../../src/ui/small_widgets/PlaceholderLineEdit.cpp" line="+31"/>
         <source>Errors in naming pattern: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>命名模式错误：%1</translation>
     </message>
     <message>
         <location line="+18"/>
@@ -6594,13 +6594,13 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     <name>QObject</name>
     <message>
         <location filename="../../src/main.cpp" line="+33"/>
-        <source>Logfile could not be openened</source>
-        <translation>无法打开日志文件</translation>
+        <source>Logfile could not be opened</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>The logfile %1 could not be openend for writing.</source>
-        <translation>无法打开日志文件 %1 进行写入。</translation>
+        <source>The logfile %1 could not be opened for writing.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+42"/>
@@ -6683,7 +6683,32 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation>xml标记的值无效：</translation>
     </message>
     <message>
-        <location filename="../../src/renamer/MovieRenamer.cpp" line="+362"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="+30"/>
+        <source>Original Title</source>
+        <translation type="unfinished">原始片名</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Sort Title</source>
+        <translation type="unfinished">排序片名</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Director(s)</source>
+        <translation type="unfinished">导演</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Studio(s) (separated by a comma)</source>
+        <translation type="unfinished">制片公司（用逗号分隔）</translation>
+    </message>
+    <message>
+        <location line="+9"/>
+        <source>Movie set name</source>
+        <translation type="unfinished">系列电影名称</translation>
+    </message>
+    <message>
+        <location line="+418"/>
         <source>&lt;b&gt;Move File&lt;/b&gt; &quot;%1&quot; to &quot;%2&quot;</source>
         <translation>&lt;b&gt;移动文件&lt;/b&gt; &quot;%1&quot; 改为 &quot;%2&quot;</translation>
     </message>
@@ -6799,43 +6824,188 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <location filename="../../src/renamer/PlaceholderParser.cpp" line="+23"/>
         <location line="+9"/>
         <source>Unexpected closing &apos;%1&apos;, without opening &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>意外关闭 &apos;%1&apos;，但未打开 &apos;%2&apos;</translation>
     </message>
     <message>
         <location line="+12"/>
         <source>Missing closing tag for &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>缺少 &apos;%1&apos; 的结束标记</translation>
     </message>
     <message>
         <location line="+23"/>
         <source>Unexpected empty condition &apos;{}&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>意外的空条件 &apos;{}&apos;</translation>
     </message>
     <message>
         <location line="+7"/>
         <location line="+39"/>
         <source>Missing closing &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>缺少结束符 &apos;%1&apos;</translation>
     </message>
     <message>
         <location line="-18"/>
         <source>Unexpected closing tag &apos;{/%1}&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>意外的结束标记 &apos;{/%1}&apos;.</translation>
     </message>
     <message>
         <location line="+11"/>
         <source>Expected closing tag &apos;{/%1}&apos;, but found &apos;{/%2}&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>预期结束标记是 &apos;{/%1}&apos;，但得到的却是 &apos;{/%2}&apos;。</translation>
     </message>
     <message>
         <location line="+29"/>
         <source>Unexpected empty value &apos;&lt;&gt;&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>意外的空值 &apos;&lt;&gt;&apos;</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Missing &apos;%1&apos; for placeholder</source>
+        <translation>缺少占位符 &apos;%1&apos; </translation>
+    </message>
+    <message>
+        <location filename="../../src/renamer/ConcertRenamer.cpp" line="+22"/>
+        <location filename="../../src/renamer/EpisodeRenamer.cpp" line="+37"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="-435"/>
+        <source>File extension</source>
+        <translation type="unfinished">扩展名</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location filename="../../src/renamer/EpisodeRenamer.cpp" line="+1"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="+3"/>
+        <source>Part number of the current file</source>
+        <translation type="unfinished">多文件视频重命名序号</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location filename="../../src/renamer/EpisodeRenamer.cpp" line="-16"/>
+        <location line="+17"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="+1"/>
+        <source>Title</source>
+        <translation type="unfinished">片名</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location filename="../../src/renamer/EpisodeRenamer.cpp" line="-14"/>
+        <location line="+19"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="+5"/>
+        <source>Year</source>
+        <translation type="unfinished">年份</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location filename="../../src/renamer/EpisodeRenamer.cpp" line="+4"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="+4"/>
+        <source>Audio Codec</source>
+        <translation type="unfinished">音频编码</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Artist</source>
+        <translation type="unfinished">艺术家</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Album</source>
+        <translation type="unfinished">专辑</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location filename="../../src/renamer/EpisodeRenamer.cpp" line="+7"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="+2"/>
+        <source>Resolution (1080p, 720p, ...)</source>
+        <translation type="unfinished">分辨率(1080p, 720p, ...)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location filename="../../src/renamer/EpisodeRenamer.cpp" line="-3"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="-1"/>
+        <source>Number of audio channels</source>
+        <translation type="unfinished">音频声道数</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location filename="../../src/renamer/EpisodeRenamer.cpp" line="-1"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="-2"/>
+        <source>Subtitle Language(s) (separated by a minus)</source>
+        <translation type="unfinished">字幕语言（以减号分隔）</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location filename="../../src/renamer/EpisodeRenamer.cpp" line="-2"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="-2"/>
+        <source>Video Codec</source>
+        <translation type="unfinished">视频编码</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location filename="../../src/renamer/EpisodeRenamer.cpp" line="+1"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="+1"/>
+        <source>Audio Language(s) (separated by a minus)</source>
+        <translation type="unfinished">音频语言（以减号分隔）</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location filename="../../src/renamer/EpisodeRenamer.cpp" line="-5"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="+5"/>
+        <source>File is 3D</source>
+        <translation type="unfinished">文件是3D</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="-15"/>
+        <source>File/directory is BluRay</source>
+        <translation type="unfinished">文件/目录是BluRay</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="+1"/>
+        <source>File/directory is DVD</source>
+        <translation type="unfinished">文件/目录是DVD</translation>
+    </message>
+    <message>
+        <location filename="../../src/renamer/EpisodeRenamer.cpp" line="-22"/>
+        <location line="+20"/>
+        <source>Show Title</source>
+        <translation type="unfinished">片名</translation>
+    </message>
+    <message>
+        <location line="-19"/>
+        <location line="+29"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="+17"/>
+        <source>TMDB ID</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-13"/>
+        <source>Episode</source>
+        <translation type="unfinished">剧集</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Season</source>
+        <translation type="unfinished">季</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Season Name</source>
+        <translation type="unfinished">季名称</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>File is BluRay</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>File is DVD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <location filename="../../src/renamer/MovieRenamer.cpp" line="-1"/>
+        <source>IMDb ID</source>
+        <translation type="unfinished">IMDb ID</translation>
     </message>
 </context>
 <context>
@@ -6943,7 +7113,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     <message>
         <location line="+158"/>
         <source>Replace Spaces with</source>
-        <translation type="unfinished"></translation>
+        <translation>用以下方式替换空格</translation>
     </message>
     <message>
         <location line="+41"/>
@@ -6953,7 +7123,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     <message>
         <location line="+10"/>
         <source>Replace Space Delimiter</source>
-        <translation type="unfinished"></translation>
+        <translation>替换空格分隔符</translation>
     </message>
     <message>
         <location line="-17"/>
@@ -7002,7 +7172,7 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     </message>
     <message>
         <location line="+10"/>
-        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="+188"/>
+        <location filename="../../src/ui/renamer/RenamerDialog.cpp" line="+189"/>
         <source>Rename</source>
         <translation>更名</translation>
     </message>
@@ -7028,151 +7198,6 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <location filename="../../src/ui/renamer/RenamerPlaceholdersWidget.ui" line="+35"/>
         <source>Placeholders</source>
         <translation>占位符</translation>
-    </message>
-    <message>
-        <location line="+33"/>
-        <source>File/directory is DVD</source>
-        <translation>文件/目录是DVD</translation>
-    </message>
-    <message>
-        <location line="+13"/>
-        <source>Title of the show</source>
-        <translation>节目名称</translation>
-    </message>
-    <message>
-        <location line="+12"/>
-        <source>File extension</source>
-        <translation>扩展名</translation>
-    </message>
-    <message>
-        <location line="+14"/>
-        <source>Title</source>
-        <translation>片名</translation>
-    </message>
-    <message>
-        <location line="+14"/>
-        <source>Movie set name</source>
-        <translation>系列电影名称</translation>
-    </message>
-    <message>
-        <location line="+17"/>
-        <source>Description</source>
-        <translation>说明</translation>
-    </message>
-    <message>
-        <location line="+25"/>
-        <source>Resolution (1080p, 720p, ...)</source>
-        <translation>分辨率(1080p, 720p, ...)</translation>
-    </message>
-    <message>
-        <location line="+29"/>
-        <source>Album</source>
-        <translation>专辑</translation>
-    </message>
-    <message>
-        <location line="+12"/>
-        <source>Episode has a season name</source>
-        <translation>剧集有一个季名称</translation>
-    </message>
-    <message>
-        <location line="+27"/>
-        <source>File/directory is BluRay</source>
-        <translation>文件/目录是BluRay</translation>
-    </message>
-    <message>
-        <location line="+50"/>
-        <source>Placeholder</source>
-        <translation>占位符</translation>
-    </message>
-    <message>
-        <location line="+61"/>
-        <source>Audio Codec</source>
-        <translation>音频编码</translation>
-    </message>
-    <message>
-        <location line="+43"/>
-        <source>Video Codec</source>
-        <translation>视频编码</translation>
-    </message>
-    <message>
-        <location line="+29"/>
-        <source>IMDb ID</source>
-        <translation>IMDb ID</translation>
-    </message>
-    <message>
-        <location line="+12"/>
-        <source>Subtitle Language(s) (separated by a minus)</source>
-        <translation>字幕语言（以减号分隔）</translation>
-    </message>
-    <message>
-        <location line="+37"/>
-        <source>Original Title</source>
-        <translation>原始片名</translation>
-    </message>
-    <message>
-        <location line="+12"/>
-        <source>File is 3D</source>
-        <translation>文件是3D</translation>
-    </message>
-    <message>
-        <location line="+14"/>
-        <source>Season Name</source>
-        <translation>季名称</translation>
-    </message>
-    <message>
-        <location line="+12"/>
-        <source>Director(s)</source>
-        <translation>导演</translation>
-    </message>
-    <message>
-        <location line="+29"/>
-        <source>Episode Number</source>
-        <translation>剧集序号</translation>
-    </message>
-    <message>
-        <location line="+36"/>
-        <source>Number of audio channels</source>
-        <translation>音频声道数</translation>
-    </message>
-    <message>
-        <location line="+29"/>
-        <source>Sort Title</source>
-        <translation>排序片名</translation>
-    </message>
-    <message>
-        <location line="+42"/>
-        <source>Audio Language(s) (separated by a minus)</source>
-        <translation>音频语言（以减号分隔）</translation>
-    </message>
-    <message>
-        <location line="+7"/>
-        <source>Artist</source>
-        <translation>艺术家</translation>
-    </message>
-    <message>
-        <location line="+29"/>
-        <source>Studio(s) (separated by a comma)</source>
-        <translation>制片公司（用逗号分隔）</translation>
-    </message>
-    <message>
-        <location line="+24"/>
-        <source>Part number of the current file</source>
-        <translation>多文件视频重命名序号</translation>
-    </message>
-    <message>
-        <location line="+76"/>
-        <source>Season Number</source>
-        <translation>季序号</translation>
-    </message>
-    <message>
-        <location line="+26"/>
-        <source>Year</source>
-        <translation>年份</translation>
-    </message>
-    <message>
-        <location line="+30"/>
-        <source>TMDb ID</source>
-        <translation>TMDb ID</translation>
     </message>
 </context>
 <context>
@@ -8439,7 +8464,7 @@ episode after scraping</source>
 <context>
     <name>TvShowRenamerDialog</name>
     <message>
-        <location filename="../../src/ui/renamer/TvShowRenamerDialog.cpp" line="+55"/>
+        <location filename="../../src/ui/renamer/TvShowRenamerDialog.cpp" line="+56"/>
         <source>Finished</source>
         <translation>完成</translation>
     </message>
@@ -8463,7 +8488,7 @@ episode after scraping</source>
         <translation>&lt;b&gt;剧集&lt;/b&gt; &quot;%1&quot; 未重命名：已编辑，但未保存</translation>
     </message>
     <message>
-        <location line="+25"/>
+        <location line="+24"/>
         <source>&lt;b&gt;TV Show&lt;/b&gt; &quot;%1&quot; not renamed: It has been edited but is not saved</source>
         <translation>&lt;b&gt;电视节目&lt;/b&gt; &quot;%1&quot; 未重命名：已编辑，但未保存</translation>
     </message>
@@ -8693,7 +8718,7 @@ episode after scraping</source>
         <translation>请输入搜索字符串！</translation>
     </message>
     <message numerus="yes">
-        <location line="+40"/>
+        <location line="+41"/>
         <source>Found %n results</source>
         <translation>
             <numerusform>找到 %n 个结果</numerusform>
@@ -8791,7 +8816,7 @@ episode after scraping</source>
 <context>
     <name>TvShowTreeView</name>
     <message numerus="yes">
-        <location filename="../../src/ui/small_widgets/TvShowTreeView.cpp" line="+130"/>
+        <location filename="../../src/ui/small_widgets/TvShowTreeView.cpp" line="+131"/>
         <source>%n episodes</source>
         <translation>
             <numerusform>第 %n 集</numerusform>
@@ -9092,7 +9117,7 @@ episode after scraping</source>
     </message>
     <message>
         <location line="+158"/>
-        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="+564"/>
+        <location filename="../../src/ui/tv_show/TvShowWidgetEpisode.cpp" line="+569"/>
         <location line="+3"/>
         <source>Codec</source>
         <translation>编码</translation>
@@ -9131,7 +9156,7 @@ episode after scraping</source>
     <message>
         <location line="+55"/>
         <source>HDR Type</source>
-        <translation type="unfinished"></translation>
+        <translation>HDR 类型</translation>
     </message>
     <message>
         <location line="+31"/>
@@ -9204,7 +9229,7 @@ episode after scraping</source>
         <translation>刮削剧集...</translation>
     </message>
     <message>
-        <location line="+150"/>
+        <location line="+153"/>
         <source>Unknown Director</source>
         <translation>未知导演</translation>
     </message>
@@ -9741,7 +9766,7 @@ episode after scraping</source>
 <context>
     <name>Update</name>
     <message>
-        <location filename="../../src/ui/main/Update.cpp" line="+63"/>
+        <location filename="../../src/ui/main/Update.cpp" line="+41"/>
         <source>Updates available</source>
         <translation>有更新</translation>
     </message>
@@ -9801,7 +9826,7 @@ episode after scraping</source>
 <context>
     <name>mediaelch::MovieDiskLoader</name>
     <message>
-        <location filename="../../src/file_search/movie/MovieDirectorySearcher.cpp" line="+387"/>
+        <location filename="../../src/file_search/movie/MovieDirectorySearcher.cpp" line="+408"/>
         <source>Storing movies in database...</source>
         <translation>将电影存储在数据库中...</translation>
     </message>
@@ -9830,9 +9855,17 @@ episode after scraping</source>
 <context>
     <name>mediaelch::scraper::AdultDvdEmpire</name>
     <message>
-        <location filename="../../src/scrapers/movie/adultdvdempire/AdultDvdEmpire.cpp" line="+19"/>
+        <location filename="../../src/scrapers/movie/adultdvdempire/AdultDvdEmpire.cpp" line="+21"/>
         <source>Adult DVD Empire is a video database for adult content.</source>
         <translation>Adult DVD Empire 是成人内容的视频数据库。</translation>
+    </message>
+</context>
+<context>
+    <name>mediaelch::scraper::AdultDvdEmpireConfigurationView</name>
+    <message>
+        <location filename="../../src/ui/scrapers/movie/AdultDvdEmpireConfigurationView.cpp" line="+13"/>
+        <source>Store back cover as fanart and poster</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -9877,7 +9910,7 @@ episode after scraping</source>
         <translation>FanartTV是社区驱动的图像提供商。</translation>
     </message>
     <message>
-        <location line="+261"/>
+        <location line="+264"/>
         <source>Movie not found on Fanart.tv</source>
         <translation>在Fanart.tv上找不到电影</translation>
     </message>
@@ -9934,7 +9967,7 @@ episode after scraping</source>
 <context>
     <name>mediaelch::scraper::FernsehserienDe</name>
     <message>
-        <location filename="../../src/scrapers/tv_show/fernsehserien_de/FernsehserienDe.cpp" line="+132"/>
+        <location filename="../../src/scrapers/tv_show/fernsehserien_de/FernsehserienDe.cpp" line="+181"/>
         <source>fernsehserien.de is a German TV show catalog and news portal.</source>
         <translation>fernsehserien.de 是德国电视节目目录和新闻门户网站。</translation>
     </message>
@@ -9950,7 +9983,7 @@ episode after scraping</source>
 <context>
     <name>mediaelch::scraper::FernsehserienDeEpisodeScrapeJob</name>
     <message>
-        <location filename="../../src/scrapers/tv_show/fernsehserien_de/FernsehserienDe.cpp" line="+641"/>
+        <location filename="../../src/scrapers/tv_show/fernsehserien_de/FernsehserienDe.cpp" line="+663"/>
         <source>Could not load ID for episode from season overview page. Can&apos;t scrape requested TV show episode.</source>
         <translation>无法从季概述页面加载剧集 ID。无法抓取请求的电视节目剧集。</translation>
     </message>
@@ -10003,7 +10036,7 @@ episode after scraping</source>
         <translation>IMDb节目ID和剧集ID均无效！无法加载请求的剧集。</translation>
     </message>
     <message>
-        <location line="+24"/>
+        <location line="+25"/>
         <source>IMDb ID could not be loaded from season page! Cannot load requested episode.</source>
         <translation>无法从季页面加载IMDb ID！无法加载请求的剧集。</translation>
     </message>
@@ -10027,24 +10060,6 @@ episode after scraping</source>
     </message>
 </context>
 <context>
-    <name>mediaelch::scraper::ImdbTvShowParser</name>
-    <message>
-        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowParser.cpp" line="+92"/>
-        <source>Could not extract JSON details from IMDb page!</source>
-        <translation>无法从IMDb页面提取JSON详细信息！</translation>
-    </message>
-    <message>
-        <location line="+10"/>
-        <source>Could not parse JSON from IMDb page!</source>
-        <translation>无法从IMDb页面解析JSON！</translation>
-    </message>
-    <message>
-        <location line="+6"/>
-        <source>Expected parsed IMDb JSON to be an object!</source>
-        <translation>应将已解析的IMDb JSON作为对象！</translation>
-    </message>
-</context>
-<context>
     <name>mediaelch::scraper::ImdbTvShowScrapeJob</name>
     <message>
         <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowScrapeJob.cpp" line="+34"/>
@@ -10055,7 +10070,7 @@ episode after scraping</source>
 <context>
     <name>mediaelch::scraper::ImdbTvShowSearchJob</name>
     <message>
-        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowSearchJob.cpp" line="+59"/>
+        <location filename="../../src/scrapers/tv_show/imdb/ImdbTvShowSearchJob.cpp" line="+61"/>
         <source>Loaded IMDb web page content is empty. Cannot scrape requested TV show.</source>
         <translation>加载的IMDb网页内容为空。无法刮削请求的电视节目。</translation>
     </message>
@@ -10246,7 +10261,7 @@ episode after scraping</source>
         <translation>TVmaze节目ID有效！无法加载请求的剧集。</translation>
     </message>
     <message>
-        <location line="+27"/>
+        <location line="+36"/>
         <source>TVmaze ID is invalid! Cannot load requested episode.</source>
         <translation>TVmaze ID无效！无法加载请求的剧集。</translation>
     </message>
