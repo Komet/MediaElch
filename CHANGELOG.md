@@ -45,6 +45,7 @@
   - TvMaze can now load episodes' guest cast (actors) for single-episode scraping (#1801)
   - TVMaze can now load episodes' guest crew (directors, writers) for single-episode scraping (#1877)
 - NFO: `<hdrtype>` is now supported (#1810)
+- TMDB: Movie logos can now be scraped (#1950)
 - Renamer:
   - Placeholder `<tmdbId>` is now also available for TV shows and episodes (#1814)
   - Spaces in file names can be replaced by `_` or `-` (#1827)
