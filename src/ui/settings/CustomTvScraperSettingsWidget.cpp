@@ -5,6 +5,7 @@
 #include "log/Log.h"
 #include "scrapers/ScraperInfos.h"
 #include "scrapers/tv_show/custom/CustomTvScraper.h"
+#include "scrapers/tv_show/omdb/OmdbTv.h"
 #include "settings/Settings.h"
 
 CustomTvScraperSettingsWidget::CustomTvScraperSettingsWidget(QWidget* parent) :
@@ -19,6 +20,17 @@ CustomTvScraperSettingsWidget::CustomTvScraperSettingsWidget(QWidget* parent) :
     ui->customTvScraperEpisodeDetails->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
     ui->customTvScraperEpisodeDetails->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
     ui->customTvScraperEpisodeDetails->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+
+    auto createWarningLabel = [](QTableWidget* table) {
+        auto* label = new QLabel(table->parentWidget());
+        label->setStyleSheet("QLabel { color: #e8a631; }");
+        label->setWordWrap(true);
+        label->hide();
+        table->parentWidget()->layout()->addWidget(label);
+        return label;
+    };
+    m_omdbShowWarningLabel = createWarningLabel(ui->customTvScraperShowDetails);
+    m_omdbEpisodeWarningLabel = createWarningLabel(ui->customTvScraperEpisodeDetails);
 }
 
 CustomTvScraperSettingsWidget::~CustomTvScraperSettingsWidget()
@@ -99,6 +111,8 @@ void CustomTvScraperSettingsWidget::loadSettings()
             row, 0, new QTableWidgetItem(mediaelch::scraperInfoToTranslatedString(info)));
         ui->customTvScraperEpisodeDetails->setCellWidget(row, 1, comboForEpisodeInfo(info));
     }
+
+    updateOmdbApiKeyWarning();
 }
 
 void CustomTvScraperSettingsWidget::saveSettings()
@@ -166,6 +180,10 @@ QComboBox* CustomTvScraperSettingsWidget::comboForTvScraperInfo(ShowScraperInfo 
     index = index > 0 ? index : 0;
     box->setCurrentIndex(index);
 
+    connect(box, elchOverload<int>(&QComboBox::activated), this, [this](int /*idx*/) {
+        updateOmdbApiKeyWarning();
+    });
+
     return box;
 }
 
@@ -200,5 +218,37 @@ QComboBox* CustomTvScraperSettingsWidget::comboForEpisodeInfo(EpisodeScraperInfo
     index = index > 0 ? index : 0;
     box->setCurrentIndex(index);
 
+    connect(box, elchOverload<int>(&QComboBox::activated), this, [this](int /*idx*/) {
+        updateOmdbApiKeyWarning();
+    });
+
     return box;
+}
+
+void CustomTvScraperSettingsWidget::updateOmdbApiKeyWarning()
+{
+    using namespace mediaelch::scraper;
+
+    const QString apiKey = m_settings->value(Settings::Key("scrapers", "Scrapers/omdb/ApiKey")).toString();
+    const QString warningText = tr("OMDb requires a personal API key. Please enter your key under Scraper → OMDb.");
+
+    auto updateLabel = [&apiKey, &warningText](QTableWidget* table, QLabel* label) {
+        bool omdbUsed = false;
+        for (int row = 0; row < table->rowCount(); ++row) {
+            auto* box = dynamic_cast<QComboBox*>(table->cellWidget(row, 1));
+            if (box != nullptr && box->currentData().toString() == OmdbTv::ID) {
+                omdbUsed = true;
+                break;
+            }
+        }
+        if (omdbUsed && apiKey.isEmpty()) {
+            label->setText(warningText);
+            label->show();
+        } else {
+            label->hide();
+        }
+    };
+
+    updateLabel(ui->customTvScraperShowDetails, m_omdbShowWarningLabel);
+    updateLabel(ui->customTvScraperEpisodeDetails, m_omdbEpisodeWarningLabel);
 }
