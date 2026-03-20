@@ -16,6 +16,8 @@ add_executable(
   testAEBN.cpp
   testHotMovies.cpp
   testImdbMovie.cpp
+  testOmdbMovie.cpp
+  testOmdbTv.cpp
   testTmdbMovie.cpp
   testVideoBuster.cpp
   thetvdb/testTheTvDbEpisodeLoader.cpp
