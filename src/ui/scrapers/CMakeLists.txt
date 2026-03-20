@@ -8,6 +8,7 @@ add_library(
   tv_show/FernsehserienDeConfigurationView.cpp
   tv_show/ImdbTvConfigurationView.cpp
   tv_show/TheTvDbConfigurationView.cpp
+  tv_show/OmdbTvConfigurationView.cpp
   tv_show/TmdbTvConfigurationView.cpp
   tv_show/TvMazeConfigurationView.cpp
   music/UniversalMusicConfigurationView.cpp

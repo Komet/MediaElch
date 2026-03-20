@@ -34,6 +34,8 @@
 #include "scrapers/tv_show/custom/CustomTvScraper.h"
 #include "scrapers/tv_show/fernsehserien_de/FernsehserienDe.h"
 #include "scrapers/tv_show/imdb/ImdbTv.h"
+#include "scrapers/tv_show/omdb/OmdbTv.h"
+#include "scrapers/tv_show/omdb/OmdbTvConfiguration.h"
 #include "scrapers/tv_show/thetvdb/TheTvDb.h"
 #include "scrapers/tv_show/tmdb/TmdbTv.h"
 #include "scrapers/tv_show/tmdb/TmdbTvConfiguration.h"
@@ -51,6 +53,7 @@
 #include "ui/scrapers/tv_show/FernsehserienDeConfigurationView.h"
 #include "ui/scrapers/tv_show/ImdbTvConfigurationView.h"
 #include "ui/scrapers/tv_show/TheTvDbConfigurationView.h"
+#include "ui/scrapers/tv_show/OmdbTvConfigurationView.h"
 #include "ui/scrapers/tv_show/TmdbTvConfigurationView.h"
 #include "ui/scrapers/tv_show/TvMazeConfigurationView.h"
 
@@ -285,6 +288,7 @@ void ScraperManager::initTvScrapers()
 
     TmdbTv* tmdbPtr = nullptr;
     ImdbTv* imdbPtr = nullptr;
+    OmdbTv* omdbPtr = nullptr;
 
     {
         ManagedTvScraper tmdb;
@@ -352,6 +356,21 @@ void ScraperManager::initTvScrapers()
 
         m_scraperTv.push_back(std::move(fernsehserienDe));
     }
+    {
+        ManagedTvScraper omdbTv;
+        auto omdbTvConfig = std::make_unique<OmdbTvConfiguration>(m_settings);
+        omdbTvConfig->init();
+        omdbTv.m_scraper = std::make_unique<OmdbTv>(*omdbTvConfig, nullptr);
+        omdbTv.m_viewFactory = [config = omdbTvConfig.get()]() { //
+            return new OmdbTvConfigurationView(*config);
+        };
+        omdbTv.m_config = std::move(omdbTvConfig);
+
+        omdbPtr = dynamic_cast<OmdbTv*>(omdbTv.scraper());
+        MediaElch_Assert(omdbPtr != nullptr);
+
+        m_scraperTv.push_back(std::move(omdbTv));
+    }
 
 
     for (auto& managed : asConst(m_scraperTv)) {
@@ -376,6 +395,7 @@ void ScraperManager::initTvScrapers()
         auto customConfig = std::make_unique<CustomTvScraperConfiguration>(m_settings,
             *tmdbPtr,
             *imdbPtr,
+            *omdbPtr,
             CustomTvScraperConfiguration::ScraperForShowDetails{},
             CustomTvScraperConfiguration::ScraperForEpisodeDetails{});
         customConfig->init();

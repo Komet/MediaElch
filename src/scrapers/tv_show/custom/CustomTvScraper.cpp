@@ -4,6 +4,7 @@
 #include "scrapers/tv_show/custom/CustomSeasonScrapeJob.h"
 #include "scrapers/tv_show/custom/CustomShowScrapeJob.h"
 #include "scrapers/tv_show/imdb/ImdbTv.h"
+#include "scrapers/tv_show/omdb/OmdbTv.h"
 #include "scrapers/tv_show/tmdb/TmdbTv.h"
 #include "scrapers/tv_show/tmdb/TmdbTvShowSearchJob.h"
 #include "settings/Settings.h"
@@ -19,7 +20,7 @@ QString CustomTvScraper::ID = "customtvscraper";
 
 QVector<QString> CustomTvScraper::supportedScraperIds()
 {
-    return {TmdbTv::ID, ImdbTv::ID};
+    return {TmdbTv::ID, ImdbTv::ID, OmdbTv::ID};
 }
 
 CustomTvScraper::CustomTvScraper(CustomTvScraperConfiguration& config, QObject* parent) :

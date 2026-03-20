@@ -13,6 +13,7 @@ namespace scraper {
 
 class TmdbTv;
 class ImdbTv;
+class OmdbTv;
 class TvScraper;
 
 class CustomTvScraperConfiguration : public QObject, public ScraperConfiguration
@@ -25,6 +26,7 @@ public:
     CustomTvScraperConfiguration(Settings& settings,
         TmdbTv& _tmdbTv,
         ImdbTv& _imdbTv,
+        OmdbTv& _omdbTv,
         ScraperForShowDetails _scraperForShowDetails,
         ScraperForEpisodeDetails _scraperForEpisodeDetails);
     ~CustomTvScraperConfiguration() override = default;
@@ -41,6 +43,7 @@ private:
 public:
     TmdbTv* tmdbTv = nullptr;
     ImdbTv* imdbTv = nullptr;
+    OmdbTv* omdbTv = nullptr;
 
     ScraperForShowDetails scraperForShowDetails;
     ScraperForEpisodeDetails scraperForEpisodeDetails;

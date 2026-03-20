@@ -2,6 +2,7 @@
 
 #include "scrapers/tv_show/custom/CustomTvScraper.h"
 #include "scrapers/tv_show/imdb/ImdbTv.h"
+#include "scrapers/tv_show/omdb/OmdbTv.h"
 #include "scrapers/tv_show/tmdb/TmdbTv.h"
 
 namespace mediaelch {
@@ -10,12 +11,14 @@ namespace scraper {
 CustomTvScraperConfiguration::CustomTvScraperConfiguration(Settings& settings,
     TmdbTv& _tmdbTv,
     ImdbTv& _imdbTv,
+    OmdbTv& _omdbTv,
     CustomTvScraperConfiguration::ScraperForShowDetails _scraperForShowDetails,
     CustomTvScraperConfiguration::ScraperForEpisodeDetails _scraperForEpisodeDetails) :
     ScraperConfiguration(CustomTvScraper::ID, settings),
     m_settings{settings},
     tmdbTv{&_tmdbTv},
     imdbTv{&_imdbTv},
+    omdbTv{&_omdbTv},
     scraperForShowDetails{std::move(_scraperForShowDetails)},
     scraperForEpisodeDetails{std::move(_scraperForEpisodeDetails)}
 {
@@ -29,6 +32,9 @@ TvScraper* CustomTvScraperConfiguration::scraperForId(const QString& id) const
     }
     if (id == ImdbTv::ID) {
         return imdbTv;
+    }
+    if (id == OmdbTv::ID) {
+        return omdbTv;
     }
     return nullptr;
 }
