@@ -63,6 +63,7 @@ target_link_libraries(
     mediaelch_scraper_tv_custom
     mediaelch_scraper_tv_fernsehserien
     mediaelch_scraper_tv_imdb
+    mediaelch_scraper_tv_omdb
     mediaelch_scraper_tv_thetvdb
     mediaelch_scraper_tv_tmdb
     mediaelch_scraper_tv_tvmaze

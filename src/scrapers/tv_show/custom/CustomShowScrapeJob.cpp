@@ -4,6 +4,7 @@
 #include "log/Log.h"
 #include "scrapers/tv_show/ShowMerger.h"
 #include "scrapers/tv_show/imdb/ImdbTv.h"
+#include "scrapers/tv_show/omdb/OmdbTv.h"
 #include "scrapers/tv_show/imdb/ImdbTvShowScrapeJob.h"
 #include "scrapers/tv_show/tmdb/TmdbTv.h"
 #include "scrapers/tv_show/tmdb/TmdbTvShowScrapeJob.h"
@@ -48,15 +49,22 @@ void CustomShowScrapeJob::onTmdbLoaded(ShowScrapeJob* job)
 
     const QStringList scrapersToUse = m_customConfig.scraperForShowDetails.values();
     const bool loadImdb = tvShow().imdbId().isValid() && scrapersToUse.contains(ImdbTv::ID);
+    const bool loadOmdb = tvShow().imdbId().isValid() && scrapersToUse.contains(OmdbTv::ID);
 
     m_loadCounter = 1;
 
     if (loadImdb) {
         ++m_loadCounter;
     }
+    if (loadOmdb) {
+        ++m_loadCounter;
+    }
 
     if (loadImdb) {
         loadWithScraper(ImdbTv::ID, ShowIdentifier(tvShow().imdbId()));
+    }
+    if (loadOmdb) {
+        loadWithScraper(OmdbTv::ID, ShowIdentifier(tvShow().imdbId()));
     }
 
     decreaseCounterAndCheckIfFinished();
