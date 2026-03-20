@@ -8,11 +8,13 @@
 #include "scrapers/movie/MovieSearchJob.h"
 
 #include <QMap>
+#include <QNetworkAccessManager>
 #include <QPointer>
 #include <QString>
 #include <QTableWidgetItem>
 #include <QVector>
 #include <QWidget>
+#include <functional>
 
 namespace Ui {
 class MovieSearchWidget;
@@ -89,6 +91,8 @@ private:
     void showSuccess(const QString& message);
     /// \brief Re-enable the search boxes; stop loading animation
     void enableSearch();
+    /// \brief Resolve the IMDB ID for a TMDb movie ID via the TMDb API, then call onResolved.
+    void resolveImdbIdFromTmdb(const QString& tmdbId, std::function<void()> onResolved);
 
 private:
     Ui::MovieSearchWidget* ui{nullptr};
