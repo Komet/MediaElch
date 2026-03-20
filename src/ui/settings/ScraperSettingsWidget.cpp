@@ -230,6 +230,7 @@ void ScraperSettingsWidget::loadSettings()
         MovieScraperInfo::Certification,
         MovieScraperInfo::Trailer,
         MovieScraperInfo::Overview,
+        MovieScraperInfo::Outline,
         MovieScraperInfo::Poster,
         MovieScraperInfo::Backdrop,
         MovieScraperInfo::Actors,
@@ -345,6 +346,7 @@ QString ScraperSettingsWidget::titleForMovieScraperInfo(MovieScraperInfo info)
     case MovieScraperInfo::Certification: return tr("Certification");
     case MovieScraperInfo::Trailer: return tr("Trailer");
     case MovieScraperInfo::Overview: return tr("Plot");
+    case MovieScraperInfo::Outline: return tr("Outline");
     case MovieScraperInfo::Poster: return tr("Poster");
     case MovieScraperInfo::Backdrop: return tr("Fanart");
     case MovieScraperInfo::Actors: return tr("Actors");

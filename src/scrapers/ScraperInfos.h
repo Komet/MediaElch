@@ -40,8 +40,9 @@ enum class MovieScraperInfo : int
     Banner = 24,
     Thumb = 25,
     TvShowLinks = 26, // not used for scraping
+    Outline = 27,
     First = 1,
-    Last = 26
+    Last = 27
 };
 
 namespace mediaelch {
