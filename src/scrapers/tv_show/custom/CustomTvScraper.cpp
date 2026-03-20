@@ -4,6 +4,7 @@
 #include "scrapers/tv_show/custom/CustomSeasonScrapeJob.h"
 #include "scrapers/tv_show/custom/CustomShowScrapeJob.h"
 #include "scrapers/tv_show/imdb/ImdbTv.h"
+#include "scrapers/tv_show/thetvdb/TheTvDb.h"
 #include "scrapers/tv_show/tmdb/TmdbTv.h"
 #include "scrapers/tv_show/tmdb/TmdbTvShowSearchJob.h"
 #include "settings/Settings.h"
@@ -19,7 +20,7 @@ QString CustomTvScraper::ID = "customtvscraper";
 
 QVector<QString> CustomTvScraper::supportedScraperIds()
 {
-    return {TmdbTv::ID, ImdbTv::ID};
+    return {TmdbTv::ID, ImdbTv::ID, TheTvDb::ID};
 }
 
 CustomTvScraper::CustomTvScraper(CustomTvScraperConfiguration& config, QObject* parent) :
@@ -49,6 +50,7 @@ void CustomTvScraper::initialize()
     // Simply (re-)initialize the used scrapers.
     m_customConfig.imdbTv->initialize();
     m_customConfig.tmdbTv->initialize();
+    m_customConfig.theTvDb->initialize();
 }
 
 bool CustomTvScraper::isInitialized() const
@@ -83,7 +85,7 @@ EpisodeScrapeJob* CustomTvScraper::loadEpisode(EpisodeScrapeJob::Config config)
 
 QVector<TvScraper*> CustomTvScraper::supportedScrapers() const
 {
-    return {m_customConfig.tmdbTv, m_customConfig.imdbTv};
+    return {m_customConfig.tmdbTv, m_customConfig.imdbTv, m_customConfig.theTvDb};
 }
 
 void CustomTvScraper::updateScraperDetails(const QSet<ShowScraperInfo>& details)

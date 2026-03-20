@@ -271,6 +271,7 @@ void ScraperManager::initTvScrapers()
 
     TmdbTv* tmdbPtr = nullptr;
     ImdbTv* imdbPtr = nullptr;
+    TheTvDb* theTvDbPtr = nullptr;
 
     {
         ManagedTvScraper tmdb;
@@ -296,6 +297,9 @@ void ScraperManager::initTvScrapers()
             return new TheTvDbConfigurationView(*config);
         };
         theTvDb.m_config = std::move(theTvDbConfig);
+
+        theTvDbPtr = dynamic_cast<TheTvDb*>(theTvDb.scraper());
+        MediaElch_Assert(theTvDbPtr != nullptr);
 
         m_scraperTv.push_back(std::move(theTvDb));
     }
@@ -362,6 +366,7 @@ void ScraperManager::initTvScrapers()
         auto customConfig = std::make_unique<CustomTvScraperConfiguration>(m_settings,
             *tmdbPtr,
             *imdbPtr,
+            *theTvDbPtr,
             CustomTvScraperConfiguration::ScraperForShowDetails{},
             CustomTvScraperConfiguration::ScraperForEpisodeDetails{});
         customConfig->init();

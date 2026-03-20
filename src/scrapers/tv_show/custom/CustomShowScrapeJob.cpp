@@ -5,6 +5,7 @@
 #include "scrapers/tv_show/ShowMerger.h"
 #include "scrapers/tv_show/imdb/ImdbTv.h"
 #include "scrapers/tv_show/imdb/ImdbTvShowScrapeJob.h"
+#include "scrapers/tv_show/thetvdb/TheTvDb.h"
 #include "scrapers/tv_show/tmdb/TmdbTv.h"
 #include "scrapers/tv_show/tmdb/TmdbTvShowScrapeJob.h"
 #include "utils/Containers.h"
@@ -48,15 +49,22 @@ void CustomShowScrapeJob::onTmdbLoaded(ShowScrapeJob* job)
 
     const QStringList scrapersToUse = m_customConfig.scraperForShowDetails.values();
     const bool loadImdb = tvShow().imdbId().isValid() && scrapersToUse.contains(ImdbTv::ID);
+    const bool loadTheTvDb = tvShow().tvdbId().isValid() && scrapersToUse.contains(TheTvDb::ID);
 
     m_loadCounter = 1;
 
     if (loadImdb) {
         ++m_loadCounter;
     }
+    if (loadTheTvDb) {
+        ++m_loadCounter;
+    }
 
     if (loadImdb) {
         loadWithScraper(ImdbTv::ID, ShowIdentifier(tvShow().imdbId()));
+    }
+    if (loadTheTvDb) {
+        loadWithScraper(TheTvDb::ID, ShowIdentifier(tvShow().tvdbId()));
     }
 
     decreaseCounterAndCheckIfFinished();
@@ -109,6 +117,16 @@ ShowScrapeJob::Config CustomShowScrapeJob::configFor(const QString& scraperId, c
 
     auto detailsForScraper = mediaelch::listToSet(m_customConfig.scraperForShowDetails.keys(scraperId));
     detailsForScraper.intersect(scraperConfig.details);
+
+    // Always collect ratings from every sub-scraper that supports them.
+    // The merge logic in ShowMerger uses the rating source as key, so
+    // ratings from different scrapers coexist without overwriting each other.
+    TvScraper* scraper = m_customConfig.scraperForId(scraperId);
+    if (scraper != nullptr && !detailsForScraper.contains(ShowScraperInfo::Rating)
+        && scraper->meta().supportedShowDetails.contains(ShowScraperInfo::Rating)) {
+        detailsForScraper.insert(ShowScraperInfo::Rating);
+    }
+
     scraperConfig.details = detailsForScraper;
 
     return scraperConfig;
