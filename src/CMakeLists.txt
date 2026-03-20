@@ -55,8 +55,10 @@ target_link_libraries(
     mediaelch_scraper_movie_custom
     mediaelch_scraper_movie_hotmovies
     mediaelch_scraper_movie_imdb
+    mediaelch_scraper_movie_omdb
     mediaelch_scraper_movie_tmdb
     mediaelch_scraper_movie_videobuster
+    mediaelch_scraper_omdb
     mediaelch_scraper_scraper_tmdb
     mediaelch_scraper_tv_custom
     mediaelch_scraper_tv_fernsehserien
