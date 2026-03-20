@@ -22,6 +22,8 @@
 #include "scrapers/movie/hotmovies/HotMovies.h"
 #include "scrapers/movie/imdb/ImdbMovie.h"
 #include "scrapers/movie/imdb/ImdbMovieConfiguration.h"
+#include "scrapers/movie/omdb/OmdbMovie.h"
+#include "scrapers/movie/omdb/OmdbMovieConfiguration.h"
 #include "scrapers/movie/tmdb/TmdbMovie.h"
 #include "scrapers/movie/tmdb/TmdbMovieConfiguration.h"
 #include "scrapers/movie/videobuster/VideoBuster.h"
@@ -43,6 +45,7 @@
 #include "ui/scrapers/movie/AdultDvdEmpireConfigurationView.h"
 #include "ui/scrapers/movie/AebnConfigurationView.h"
 #include "ui/scrapers/movie/ImdbMovieConfigurationView.h"
+#include "ui/scrapers/movie/OmdbMovieConfigurationView.h"
 #include "ui/scrapers/movie/TmdbMovieConfigurationView.h"
 #include "ui/scrapers/music/UniversalMusicConfigurationView.h"
 #include "ui/scrapers/tv_show/FernsehserienDeConfigurationView.h"
@@ -211,6 +214,17 @@ void ScraperManager::initMovieScrapers()
         imdb.m_config = std::move(config);
 
         m_scraperMovies.push_back(std::move(imdb));
+    }
+
+    {
+        ManagedMovieScraper omdb;
+        auto config = std::make_unique<OmdbMovieConfiguration>(m_settings);
+        config->init();
+        omdb.m_scraper = std::make_unique<OmdbMovie>(*config, nullptr);
+        omdb.m_viewFactory = [omdbConfig = config.get()]() { return new OmdbMovieConfigurationView(*omdbConfig); };
+        omdb.m_config = std::move(config);
+
+        m_scraperMovies.push_back(std::move(omdb));
     }
 
     {
