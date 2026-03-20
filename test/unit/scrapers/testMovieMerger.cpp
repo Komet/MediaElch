@@ -38,7 +38,9 @@ TEST_CASE("movies are correctly merged", "[movie][merger]")
     {
         Movie copy;
         original->setOutline("");
-        copyDetailsToMovie(copy, *original, allMovieScraperInfos(), false, true);
+        auto infos = allMovieScraperInfos();
+        infos.remove(MovieScraperInfo::Outline);
+        copyDetailsToMovie(copy, *original, infos, false, true);
 
         CHECK(copy.title() == original->title());
         CHECK(copy.originalTitle() == original->originalTitle());

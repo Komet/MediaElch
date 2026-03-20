@@ -28,6 +28,7 @@ AdultDvdEmpire::AdultDvdEmpire(AdultDvdEmpireConfiguration& settings, QObject* p
         MovieScraperInfo::Released,
         MovieScraperInfo::Runtime,
         MovieScraperInfo::Overview,
+        MovieScraperInfo::Outline,
         MovieScraperInfo::Poster,
         MovieScraperInfo::Actors,
         MovieScraperInfo::Genres,
