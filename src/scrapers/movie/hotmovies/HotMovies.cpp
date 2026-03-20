@@ -25,6 +25,7 @@ HotMovies::HotMovies(QObject* parent) : MovieScraper(parent)
         MovieScraperInfo::Released,
         MovieScraperInfo::Runtime,
         MovieScraperInfo::Overview,
+        MovieScraperInfo::Outline,
         MovieScraperInfo::Poster,
         MovieScraperInfo::Backdrop,
         MovieScraperInfo::Actors,

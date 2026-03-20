@@ -358,6 +358,11 @@ void MovieSearchWidget::updateInfoToLoad()
         }
     }
 
+    // Outline is loaded alongside Overview — no separate checkbox needed.
+    if (m_infosToLoad.contains(MovieScraperInfo::Overview)) {
+        m_infosToLoad.insert(MovieScraperInfo::Outline);
+    }
+
     bool allToggled = (m_infosToLoad.size() == enabledBoxCount);
     ui->chkUnCheckAll->setChecked(allToggled);
 

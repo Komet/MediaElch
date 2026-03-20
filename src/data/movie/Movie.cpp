@@ -82,7 +82,8 @@ void Movie::clear()
           << MovieScraperInfo::Banner        //
           << MovieScraperInfo::Thumb         //
           << MovieScraperInfo::ClearArt      //
-          << MovieScraperInfo::TvShowLinks;
+          << MovieScraperInfo::TvShowLinks
+          << MovieScraperInfo::Outline;
     clear(infos);
     m_nfoContent.clear();
 }
@@ -114,6 +115,8 @@ void Movie::clear(QSet<MovieScraperInfo> infos)
     }
     if (infos.contains(MovieScraperInfo::Overview)) {
         m_overview = "";
+    }
+    if (infos.contains(MovieScraperInfo::Outline)) {
         m_outline = "";
     }
     if (infos.contains(MovieScraperInfo::Rating)) {
