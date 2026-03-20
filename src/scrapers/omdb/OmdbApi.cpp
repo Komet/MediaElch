@@ -31,6 +31,14 @@ void OmdbApi::setApiKey(const QString& apiKey)
 
 void OmdbApi::sendGetRequest(const QUrl& url, OmdbApi::ApiCallback callback)
 {
+    if (m_apiKey.isEmpty()) {
+        ScraperError error;
+        error.error = ScraperError::Type::ConfigError;
+        error.message = tr("No OMDb API key configured. Please enter your API key in Settings → Scraper → OMDb.");
+        QTimer::singleShot(0, this, [cb = std::move(callback), error]() { cb({}, error); });
+        return;
+    }
+
     QNetworkRequest request = mediaelch::network::requestWithDefaults(url);
 
     if (m_network.cache().hasValidElement(request)) {

@@ -3,6 +3,7 @@
 #include "scrapers/ScraperInfos.h"
 
 #include <QComboBox>
+#include <QLabel>
 #include <QWidget>
 
 namespace Ui {
@@ -40,4 +41,7 @@ private:
 
     QComboBox* comboForMovieScraperInfo(MovieScraperInfo info);
     QString titleForMovieScraperInfo(MovieScraperInfo info);
+    void updateOmdbApiKeyWarning();
+
+    QLabel* m_omdbWarningLabel{nullptr};
 };
