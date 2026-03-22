@@ -11,14 +11,7 @@
 #include "ui/movies/MoviePreviewAdapter.h"
 #include "utils/Meta.h"
 
-#include "scrapers/tmdb/TmdbApi.h"
-
 #include "log/Log.h"
-
-#include <QJsonDocument>
-#include <QJsonObject>
-#include <QNetworkReply>
-#include <QNetworkRequest>
 
 MovieSearchWidget::MovieSearchWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieSearchWidget)
 {
@@ -334,22 +327,19 @@ void MovieSearchWidget::onResultDoubleClicked(QTableWidgetItem* item)
         emit sigResultClicked();
 
     } else {
-        const QString nextScraperId = m_customScrapersLeft.first();
-        // If the next scraper is IMDB and the title scraper was TMDb, resolve
-        // the IMDB ID via TMDb API so that the IMDB search can use it directly.
-        // This avoids forcing users to re-search with the English title.
-        if (nextScraperId == mediaelch::scraper::ImdbMovie::ID && custom.titleScraper() != nullptr
+        // If the title scraper was TMDb, resolve the IMDB ID so that subsequent
+        // scrapers that accept IMDB IDs (e.g. IMDB) can use it directly.
+        if (custom.titleScraper() != nullptr
             && custom.titleScraper()->meta().identifier == mediaelch::scraper::TmdbMovie::ID
             && !m_imdbId.isValid()) {
             resolveImdbIdFromTmdb(currentIdentifier.str(), [this]() {
                 createCustomScraperListLabel();
-                if (m_imdbId.isValid()) {
-                    ui->searchString->setText(m_imdbId.toString());
-                }
+                setSearchTextForScraper(m_customScrapersLeft.first());
                 changeScraperTo(m_customScrapersLeft.first());
             });
         } else {
             createCustomScraperListLabel();
+            setSearchTextForScraper(m_customScrapersLeft.first());
             changeScraperTo(m_customScrapersLeft.first());
         }
     }
@@ -590,29 +580,42 @@ void MovieSearchWidget::initializeCheckBoxes()
     connect(ui->chkUnCheckAll, &QAbstractButton::clicked, this, &MovieSearchWidget::toggleAllInfo);
 }
 
+void MovieSearchWidget::setSearchTextForScraper(const QString& scraperId)
+{
+    // Only pass the IMDB ID to scrapers that can search by it.
+    // Other scrapers (e.g. VideoBuster) need the original title.
+    if (m_imdbId.isValid() && scraperId == mediaelch::scraper::ImdbMovie::ID) {
+        ui->searchString->setText(m_imdbId.toString());
+    } else {
+        ui->searchString->setText(m_searchString);
+    }
+}
+
 void MovieSearchWidget::resolveImdbIdFromTmdb(const QString& tmdbId, std::function<void()> onResolved)
 {
     using namespace mediaelch::scraper;
 
-    QUrl url(QStringLiteral("https://api.themoviedb.org/3/movie/%1?api_key=%2").arg(tmdbId, TmdbApi::apiKey()));
-    QNetworkRequest request(url);
+    auto& custom = Manager::instance()->scrapers().customMovieScraper();
+    MovieScraper* titleScraper = custom.titleScraper();
+    if (titleScraper == nullptr) {
+        qCWarning(generic) << "[MovieSearch] No title scraper set, cannot resolve IMDB ID";
+        onResolved();
+        return;
+    }
 
-    auto* manager = new QNetworkAccessManager(this);
-    QNetworkReply* reply = manager->get(request);
+    MovieScrapeJob::Config config;
+    config.identifier = MovieIdentifier(tmdbId);
+    config.locale = m_currentLanguage;
+    config.details = {MovieScraperInfo::Title};
 
-    connect(reply, &QNetworkReply::finished, this, [this, reply, manager, onResolved]() {
-        reply->deleteLater();
-        manager->deleteLater();
-
-        if (reply->error() == QNetworkReply::NoError) {
-            QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
-            QString imdbIdStr = doc.object().value("imdb_id").toString();
-            if (ImdbId::isValidFormat(imdbIdStr)) {
-                m_imdbId = ImdbId(imdbIdStr);
-                qCDebug(generic) << "[MovieSearch] Resolved IMDB ID from TMDb:" << m_imdbId.toString();
-            }
+    auto* scrapeJob = titleScraper->loadMovie(std::move(config));
+    connect(scrapeJob, &MovieScrapeJob::loadFinished, this, [this, onResolved](MovieScrapeJob* job) {
+        job->deleteLater();
+        if (!job->hasError() && job->movie().imdbId().isValid()) {
+            m_imdbId = job->movie().imdbId();
+            qCDebug(generic) << "[MovieSearch] Resolved IMDB ID from TMDb:" << m_imdbId.toString();
         }
-
         onResolved();
     });
+    scrapeJob->start();
 }

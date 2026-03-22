@@ -8,7 +8,6 @@
 #include "scrapers/movie/MovieSearchJob.h"
 
 #include <QMap>
-#include <QNetworkAccessManager>
 #include <QPointer>
 #include <QString>
 #include <QTableWidgetItem>
@@ -93,6 +92,8 @@ private:
     void enableSearch();
     /// \brief Resolve the IMDB ID for a TMDb movie ID via the TMDb API, then call onResolved.
     void resolveImdbIdFromTmdb(const QString& tmdbId, std::function<void()> onResolved);
+    /// \brief Set the search text appropriate for the given scraper (IMDB ID or title).
+    void setSearchTextForScraper(const QString& scraperId);
 
 private:
     Ui::MovieSearchWidget* ui{nullptr};
