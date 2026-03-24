@@ -2,6 +2,7 @@
 
 #include <QDate>
 #include <QString>
+#include <QStringList>
 #include <QVector>
 
 namespace mediaelch {
@@ -23,6 +24,14 @@ public:
     };
 
 public:
+    /// \brief Parse search results from the IMDB Suggest API JSON response.
+    /// \param json The JSON response from v3.sg.media-imdb.com/suggestion/
+    /// \param typeFilter Comma-separated list of IMDB title types to include
+    ///        (e.g. "feature,tv_movie" for movies, "tvSeries,tvMiniSeries" for TV).
+    ///        If empty, all types are included.
+    static QVector<SearchResult> parseSuggestResponse(const QString& json, const QStringList& typeFilter = {});
+
+    /// \brief Parse search results from HTML (legacy, will be removed).
     static QVector<SearchResult> parseSearch(const QString& html);
 };
 } // namespace scraper
