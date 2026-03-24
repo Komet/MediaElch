@@ -42,6 +42,14 @@ public:
     QSet<QString> studios;
     QSet<QString> countries;
     QSet<QString> keywords;
+
+    // Localization fields
+    Optional<QString> localizedTitle;
+    Optional<Certification> localizedCertification;
+
+    // TV show specific
+    Optional<bool> isOngoing;
+    Optional<QString> network;
 };
 
 struct ImdbShortEpisodeData
@@ -51,9 +59,39 @@ struct ImdbShortEpisodeData
     int episodeNumber;
 };
 
+struct ImdbEpisodeData
+{
+    ImdbId imdbId;
+    int seasonNumber = -1;
+    int episodeNumber = -1;
+    Optional<QString> title;
+    Optional<QString> overview;
+    Optional<QDate> firstAired;
+    Optional<Poster> thumbnail;
+    QVector<Rating> ratings;
+    Optional<std::chrono::minutes> runtime;
+    Optional<Certification> certification;
+    QSet<QString> directors;
+    QSet<QString> writers;
+    QVector<Actor> actors;
+};
+
 class ImdbJsonParser
 {
 public:
+    // --- New GraphQL-based parsing ---
+
+    /// \brief Parse full title details from a GraphQL API response.
+    static ImdbData parseFromGraphQL(const QString& json, const mediaelch::Locale& locale);
+
+    /// \brief Parse episode list from a GraphQL episodes response.
+    static QVector<ImdbEpisodeData> parseEpisodesFromGraphQL(const QString& json);
+
+    /// \brief Parse season numbers from a GraphQL title details response.
+    static QVector<int> parseSeasonsFromGraphQL(const QString& json);
+
+    // --- Legacy HTML-based parsing (kept until Phase 6 cleanup) ---
+
     static ImdbData parseFromReferencePage(const QString& html, const mediaelch::Locale& preferredLocale);
     static Optional<QString> parseOverviewFromPlotSummaryPage(const QString& html);
     static QVector<int> parseSeasonNumbersFromEpisodesPage(const QString& html);
@@ -61,20 +99,24 @@ public:
 
     ~ImdbJsonParser() = default;
 
+    /// Sanitize the given URL. Return value is the same object as the input string.
+    static QString sanitizeAmazonMediaUrl(QString url);
+
 private:
     ImdbJsonParser() = default;
 
+    // GraphQL parsing helpers
+    void parseGraphQLTitle(const QJsonObject& title, const mediaelch::Locale& locale);
+    void parseGraphQLCredits(const QJsonObject& title);
+    void parseGraphQLActors(const QJsonObject& title);
+
+    // Legacy parsing helpers
     void parseAndAssignDetails(const QJsonDocument& json, const mediaelch::Locale& preferredLocale);
     void parseAndAssignDirectors(const QJsonDocument& json);
     void parseAndStoreActors(const QJsonDocument& json);
     void parseAndAssignWriters(const QJsonDocument& json);
-    /// \brief   Parse and assign the plot/overview from IMDB's `/plotsummary` page.
-    /// \details IMDB's `/reference` page does not include a movie's plot, only an outline.
-    ///          Hence, we use `/plotsummary` to get the full plot.
     void parseAndAssignOverviewFromPlotSummary(const QJsonDocument& json);
 
-    /// Sanitize the given URL. Return value is the same object as the input string.
-    static QString sanitizeAmazonMediaUrl(QString url);
     static QJsonDocument extractJsonFromHtml(const QString& html);
     static QJsonValue followJsonPath(const QJsonDocument& json, const QVector<QString>& paths);
     static QJsonValue followJsonPath(const QJsonObject& json, const QVector<QString>& paths);
