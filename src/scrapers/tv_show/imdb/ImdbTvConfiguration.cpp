@@ -36,12 +36,31 @@ void ImdbTvConfiguration::setLanguage(const Locale& value)
 
 mediaelch::Locale ImdbTvConfiguration::defaultLocale()
 {
-    return mediaelch::Locale::NoLocale;
+    return mediaelch::Locale{"en"};
 }
 
 QVector<Locale> ImdbTvConfiguration::supportedLanguages()
 {
-    return QVector<Locale>({Locale::NoLocale});
+    // With the GraphQL API migration, localization is supported via AKAs and
+    // country-specific certificates. Plots remain English-only.
+    return QVector<Locale>({
+        "en",
+        "de",
+        "fr",
+        "es",
+        "it",
+        "pt",
+        "ja",
+        "ko",
+        "zh",
+        "ru",
+        "nl",
+        "pl",
+        "sv",
+        "da",
+        "fi",
+        "no",
+    });
 }
 
 
