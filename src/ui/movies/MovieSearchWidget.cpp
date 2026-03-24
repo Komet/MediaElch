@@ -335,8 +335,21 @@ void MovieSearchWidget::onResultDoubleClicked(QTableWidgetItem* item)
         emit sigResultClicked();
 
     } else {
-        createCustomScraperListLabel();
-        changeScraperTo(m_customScrapersLeft.first());
+        // If the title scraper was TMDb, resolve the IMDB ID so that subsequent
+        // scrapers that accept IMDB IDs (e.g. IMDB) can use it directly.
+        if (custom.titleScraper() != nullptr
+            && custom.titleScraper()->meta().identifier == mediaelch::scraper::TmdbMovie::ID
+            && !m_imdbId.isValid()) {
+            resolveImdbIdFromTmdb(currentIdentifier.str(), [this]() {
+                createCustomScraperListLabel();
+                setSearchTextForScraper(m_customScrapersLeft.first());
+                changeScraperTo(m_customScrapersLeft.first());
+            });
+        } else {
+            createCustomScraperListLabel();
+            setSearchTextForScraper(m_customScrapersLeft.first());
+            changeScraperTo(m_customScrapersLeft.first());
+        }
     }
 }
 
@@ -573,4 +586,44 @@ void MovieSearchWidget::initializeCheckBoxes()
         connect(box, &QAbstractButton::clicked, this, &MovieSearchWidget::updateInfoToLoad);
     }
     connect(ui->chkUnCheckAll, &QAbstractButton::clicked, this, &MovieSearchWidget::toggleAllInfo);
+}
+
+void MovieSearchWidget::setSearchTextForScraper(const QString& scraperId)
+{
+    // Only pass the IMDB ID to scrapers that can search by it.
+    // Other scrapers (e.g. VideoBuster) need the original title.
+    if (m_imdbId.isValid() && scraperId == mediaelch::scraper::ImdbMovie::ID) {
+        ui->searchString->setText(m_imdbId.toString());
+    } else {
+        ui->searchString->setText(m_searchString);
+    }
+}
+
+void MovieSearchWidget::resolveImdbIdFromTmdb(const QString& tmdbId, std::function<void()> onResolved)
+{
+    using namespace mediaelch::scraper;
+
+    auto& custom = Manager::instance()->scrapers().customMovieScraper();
+    MovieScraper* titleScraper = custom.titleScraper();
+    if (titleScraper == nullptr) {
+        qCWarning(generic) << "[MovieSearch] No title scraper set, cannot resolve IMDB ID";
+        onResolved();
+        return;
+    }
+
+    MovieScrapeJob::Config config;
+    config.identifier = MovieIdentifier(tmdbId);
+    config.locale = m_currentLanguage;
+    config.details = {MovieScraperInfo::Title};
+
+    auto* scrapeJob = titleScraper->loadMovie(std::move(config));
+    connect(scrapeJob, &MovieScrapeJob::loadFinished, this, [this, onResolved](MovieScrapeJob* job) {
+        job->deleteLater();
+        if (!job->hasError() && job->movie().imdbId().isValid()) {
+            m_imdbId = job->movie().imdbId();
+            qCDebug(generic) << "[MovieSearch] Resolved IMDB ID from TMDb:" << m_imdbId.toString();
+        }
+        onResolved();
+    });
+    scrapeJob->start();
 }
