@@ -14,7 +14,11 @@ VideoBusterSearchJob::VideoBusterSearchJob(VideoBusterApi& api, MovieSearchJob::
 
 void VideoBusterSearchJob::doStart()
 {
-    m_api.searchForMovie(config().query, [this](QString data, ScraperError error) {
+    QString query = MovieSearchJob::extractTitleAndYear(config().query).first;
+    if (query.isEmpty()) {
+        query = config().query;
+    }
+    m_api.searchForMovie(query, [this](QString data, ScraperError error) {
         if (error.hasError()) {
             setScraperError(error);
 
