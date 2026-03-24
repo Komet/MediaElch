@@ -41,17 +41,6 @@ query TitleDetails($id: ID!) {
     akas(first: 50) {
       edges { node { text country { id text } language { id text } } }
     }
-    principalCredits {
-      category { text id }
-      credits(first: 50) {
-        edges {
-          node {
-            name { id nameText { text } primaryImage { url } }
-            ... on Cast { characters { name } }
-          }
-        }
-      }
-    }
     cast: credits(first: 250, filter: { categories: ["actor", "actress"] }) {
       edges {
         node {
@@ -86,7 +75,7 @@ query TitleDetails($id: ID!) {
     }
     episodes {
       isOngoing
-      seasons { edges { node { seasonNumber } } }
+      seasons { number }
     }
 
     # Future fields — included in query but not yet parsed by MediaElch
@@ -127,7 +116,51 @@ query SeasonEpisodes($id: ID!, $first: Int!) {
           node {
             id
             titleText { text }
-            series { displayableEpisodeNumber { episodeNumber { episodeNumber seasonNumber } } }
+            series { displayableEpisodeNumber { displayableSeason { text } episodeNumber { text } } }
+            plot { plotText { plainText } }
+            releaseDate { day month year }
+            ratingsSummary { aggregateRating voteCount }
+            runtime { seconds }
+            primaryImage { url width height }
+            certificate { rating }
+            certificates(first: 10) {
+              edges { node { rating country { id text } } }
+            }
+            directors: credits(first: 10, filter: { categories: ["director"] }) {
+              edges { node { name { nameText { text } } } }
+            }
+            writers: credits(first: 10, filter: { categories: ["writer"] }) {
+              edges { node { name { nameText { text } } } }
+            }
+            cast: credits(first: 50, filter: { categories: ["actor", "actress"] }) {
+              edges {
+                node {
+                  name { id nameText { text } primaryImage { url } }
+                  ... on Cast { characters { name } }
+                }
+              }
+            }
+          }
+        }
+        pageInfo { hasNextPage endCursor }
+      }
+    }
+  }
+}
+)");
+
+/// \brief Episode listing filtered by season number.
+/// Variables: $id (ID!), $first (Int!), $season (String!)
+inline const QString SEASON_EPISODES_FILTERED = QStringLiteral(R"(
+query SeasonEpisodesFiltered($id: ID!, $first: Int!, $season: String!) {
+  title(id: $id) {
+    episodes {
+      episodes(first: $first, filter: { includeSeasons: [$season] }) {
+        edges {
+          node {
+            id
+            titleText { text }
+            series { displayableEpisodeNumber { displayableSeason { text } episodeNumber { text } } }
             plot { plotText { plainText } }
             releaseDate { day month year }
             ratingsSummary { aggregateRating voteCount }

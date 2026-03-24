@@ -44,8 +44,9 @@ void ImdbTvEpisodeScrapeJob::loadFromSeason()
     episode().setSeason(config().identifier.seasonNumber);
     episode().setEpisode(config().identifier.episodeNumber);
 
-    // Load all episodes via GraphQL and find the one we need
-    m_api.loadEpisodesViaGraphQL(showId, 250, [this](QString data, ScraperError error) {
+    // Load episodes for the specific season via GraphQL and find the one we need
+    m_api.loadSeasonEpisodesViaGraphQL(
+        showId, config().identifier.seasonNumber.toInt(), 250, [this](QString data, ScraperError error) {
         if (error.hasError()) {
             setScraperError(error);
             emitFinished();

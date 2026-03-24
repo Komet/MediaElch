@@ -371,15 +371,21 @@ QVector<ImdbEpisodeData> ImdbJsonParser::parseEpisodesFromGraphQL(const QString&
 
         ep.imdbId = ImdbId(node.value("id").toString());
 
-        // Episode/season numbers
-        const QJsonObject epNum = node.value("series")
-                                      .toObject()
-                                      .value("displayableEpisodeNumber")
-                                      .toObject()
-                                      .value("episodeNumber")
-                                      .toObject();
-        ep.seasonNumber = epNum.value("seasonNumber").toInt(-1);
-        ep.episodeNumber = epNum.value("episodeNumber").toInt(-1);
+        // Episode/season numbers (returned as text strings from displayableEpisodeNumber)
+        const QJsonObject den = node.value("series")
+                                    .toObject()
+                                    .value("displayableEpisodeNumber")
+                                    .toObject();
+        bool seasonOk = false;
+        bool episodeOk = false;
+        ep.seasonNumber = den.value("displayableSeason").toObject().value("text").toString().toInt(&seasonOk);
+        ep.episodeNumber = den.value("episodeNumber").toObject().value("text").toString().toInt(&episodeOk);
+        if (!seasonOk) {
+            ep.seasonNumber = -1;
+        }
+        if (!episodeOk) {
+            ep.episodeNumber = -1;
+        }
 
         // Title
         const QString epTitle = node.value("titleText").toObject().value("text").toString().trimmed();
@@ -499,13 +505,11 @@ QVector<int> ImdbJsonParser::parseSeasonsFromGraphQL(const QString& json)
                                    .value("episodes")
                                    .toObject()
                                    .value("seasons")
-                                   .toObject()
-                                   .value("edges")
                                    .toArray();
 
     QVector<int> result;
     for (const auto& seasonEntry : seasons) {
-        const int num = seasonEntry.toObject().value("node").toObject().value("seasonNumber").toInt(-1);
+        const int num = seasonEntry.toObject().value("number").toInt(-1);
         if (num >= 0) {
             result.append(num);
         }

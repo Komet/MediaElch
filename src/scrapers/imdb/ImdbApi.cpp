@@ -159,5 +159,17 @@ void ImdbApi::loadEpisodesViaGraphQL(const ImdbId& showId, int limit, ImdbApi::A
     sendGraphQLRequest(ImdbGraphQLQueries::SEASON_EPISODES, variables, std::move(callback));
 }
 
+void ImdbApi::loadSeasonEpisodesViaGraphQL(const ImdbId& showId,
+    int season,
+    int limit,
+    ImdbApi::ApiCallback callback)
+{
+    QJsonObject variables;
+    variables["id"] = showId.toString();
+    variables["first"] = limit;
+    variables["season"] = QString::number(season);
+    sendGraphQLRequest(ImdbGraphQLQueries::SEASON_EPISODES_FILTERED, variables, std::move(callback));
+}
+
 } // namespace scraper
 } // namespace mediaelch

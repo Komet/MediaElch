@@ -42,6 +42,9 @@ public:
     /// \brief Load all episodes for a title via GraphQL.
     void loadEpisodesViaGraphQL(const ImdbId& showId, int limit, ApiCallback callback);
 
+    /// \brief Load episodes for a specific season via GraphQL.
+    void loadSeasonEpisodesViaGraphQL(const ImdbId& showId, int season, int limit, ApiCallback callback);
+
 signals:
     void initialized();
 
