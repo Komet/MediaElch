@@ -56,7 +56,8 @@ void ImdbJsonParser::parseGraphQLTitle(const QJsonObject& title, const Locale& l
 
     // Localized title from AKAs
     if (locale.language() != "en") {
-        const QString country = locale.country().toUpper();
+        // Locale may be "de" (no country) or "de-DE". Derive country from language if needed.
+        const QString country = locale.hasCountry() ? locale.country().toUpper() : locale.language().toUpper();
         const QJsonArray akas = title.value("akas").toObject().value("edges").toArray();
         for (const auto& akaEntry : akas) {
             const QJsonObject node = akaEntry.toObject().value("node").toObject();
@@ -170,7 +171,7 @@ void ImdbJsonParser::parseGraphQLTitle(const QJsonObject& title, const Locale& l
 
     // Localized release date (override if available)
     if (locale.language() != "en") {
-        const QString country = locale.country().toUpper();
+        const QString country = locale.hasCountry() ? locale.country().toUpper() : locale.language().toUpper();
         const QJsonArray releaseDates = title.value("releaseDates").toObject().value("edges").toArray();
         for (const auto& rdEntry : releaseDates) {
             const QJsonObject node = rdEntry.toObject().value("node").toObject();
@@ -230,7 +231,7 @@ void ImdbJsonParser::parseGraphQLTitle(const QJsonObject& title, const Locale& l
     const QJsonArray certificates = title.value("certificates").toObject().value("edges").toArray();
     Certification localeCert;
     Certification usCert;
-    const QString localeCountry = locale.country().toUpper();
+    const QString localeCountry = locale.hasCountry() ? locale.country().toUpper() : locale.language().toUpper();
     for (const auto& certEntry : certificates) {
         const QJsonObject node = certEntry.toObject().value("node").toObject();
         const QString certCountry = node.value("country").toObject().value("id").toString();
