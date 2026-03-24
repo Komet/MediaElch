@@ -270,6 +270,22 @@ void ImdbJsonParser::parseGraphQLTitle(const QJsonObject& title, const Locale& l
         }
     }
 
+    // Backdrops — from images list (excluding the primary poster image)
+    const QJsonArray imageEdges = title.value("images").toObject().value("edges").toArray();
+    for (const QJsonValue& edge : imageEdges) {
+        const QJsonObject node = edge.toObject().value("node").toObject();
+        const QString imgUrl = node.value("url").toString();
+        if (!imgUrl.isEmpty() && imgUrl != posterUrl) {
+            const QUrl url(sanitizeAmazonMediaUrl(imgUrl));
+            if (url.isValid()) {
+                Poster p;
+                p.thumbUrl = url;
+                p.originalUrl = url;
+                m_data.backdrops.append(p);
+            }
+        }
+    }
+
     // Trailer — store IMDB video page URL (works in browser, not in Kodi)
     const QJsonArray videos = title.value("primaryVideos").toObject().value("edges").toArray();
     if (!videos.isEmpty()) {

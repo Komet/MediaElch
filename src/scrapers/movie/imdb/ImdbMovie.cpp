@@ -35,7 +35,8 @@ ImdbMovie::ImdbMovie(ImdbMovieConfiguration& settings, QObject* parent) : MovieS
         MovieScraperInfo::Trailer,
         MovieScraperInfo::Countries,
         MovieScraperInfo::Actors,
-        MovieScraperInfo::Poster};
+        MovieScraperInfo::Poster,
+        MovieScraperInfo::Backdrop};
     m_meta.supportedLanguages = ImdbMovieConfiguration::supportedLanguages();
     m_meta.defaultLocale = ImdbMovieConfiguration::defaultLocale();
     m_meta.isAdult = false;

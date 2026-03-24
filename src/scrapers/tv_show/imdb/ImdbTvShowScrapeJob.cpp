@@ -89,6 +89,9 @@ void ImdbTvShowScrapeJob::parseAndAssignInfos(const QString& json)
     if (data.poster.hasValue()) {
         tvShow().addPoster(data.poster.value);
     }
+    for (const Poster& backdrop : data.backdrops) {
+        tvShow().addBackdrop(backdrop);
+    }
     if (data.network.hasValue()) {
         tvShow().addNetwork(data.network.value);
     }

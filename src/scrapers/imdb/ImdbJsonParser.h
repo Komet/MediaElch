@@ -33,6 +33,7 @@ public:
     Optional<int> top250;
     Optional<Certification> certification;
     Optional<Poster> poster;
+    QVector<Poster> backdrops;
     Optional<QUrl> trailer{};
     QVector<Actor> actors;
 

@@ -86,6 +86,9 @@ void ImdbMovieScrapeJob::parseAndAssignInfos(const QString& json)
     if (data.poster.hasValue()) {
         m_movie->images().addPoster(data.poster.value);
     }
+    for (const Poster& backdrop : data.backdrops) {
+        m_movie->images().addBackdrop(backdrop);
+    }
     if (data.trailer.hasValue()) {
         m_movie->setTrailer(data.trailer.value);
     }
