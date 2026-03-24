@@ -69,6 +69,7 @@ QUrl VideoBusterApi::makeMovieSearchUrl(const QString& searchStr) const
     QUrlQuery queries;
     queries.addQueryItem("tab_search_content", "movies");
     queries.addQueryItem("view", "title_list_view_option_list");
+    queries.addQueryItem("search_business_cases", "1");
     queries.addQueryItem("search_title", encodedSearch);
     return makeApiUrl("/titlesearch.php", queries);
 }
