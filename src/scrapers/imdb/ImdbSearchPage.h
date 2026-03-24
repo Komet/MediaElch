@@ -30,9 +30,6 @@ public:
     ///        (e.g. "feature,tv_movie" for movies, "tvSeries,tvMiniSeries" for TV).
     ///        If empty, all types are included.
     static QVector<SearchResult> parseSuggestResponse(const QString& json, const QStringList& typeFilter = {});
-
-    /// \brief Parse search results from HTML (legacy, will be removed).
-    static QVector<SearchResult> parseSearch(const QString& html);
 };
 } // namespace scraper
 

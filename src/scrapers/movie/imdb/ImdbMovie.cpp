@@ -1,6 +1,5 @@
 #include "scrapers/movie/imdb/ImdbMovie.h"
 
-#include "scrapers/imdb/ImdbReferencePage.h"
 #include "scrapers/movie/imdb/ImdbMovieConfiguration.h"
 #include "scrapers/movie/imdb/ImdbMovieScrapeJob.h"
 #include "scrapers/movie/imdb/ImdbMovieSearchJob.h"

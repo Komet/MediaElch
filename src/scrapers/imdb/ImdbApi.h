@@ -2,16 +2,11 @@
 
 #include "data/ImdbId.h"
 #include "data/Locale.h"
-#include "data/tv_show/EpisodeNumber.h"
-#include "data/tv_show/SeasonNumber.h"
-#include "data/tv_show/SeasonOrder.h"
 #include "network/NetworkManager.h"
 #include "scrapers/ScraperError.h"
-#include "scrapers/ScraperInfos.h"
+#include "utils/Meta.h"
 
-#include <QByteArray>
 #include <QJsonObject>
-#include <QNetworkRequest>
 #include <QObject>
 #include <QString>
 #include <QUrl>
@@ -20,7 +15,7 @@
 namespace mediaelch {
 namespace scraper {
 
-/// \brief API interface for TheTvDb
+/// \brief API interface for IMDB using the GraphQL and Suggest APIs.
 class ImdbApi : public QObject
 {
     Q_OBJECT
@@ -33,32 +28,7 @@ public:
     ELCH_NODISCARD bool isInitialized() const;
 
 public:
-    /// \brief What detail page of a movie should be loaded.
-    enum class PageKind
-    {
-        Main,
-        Reference,
-        PlotSummary,
-        ReleaseInfo,
-        Keywords,
-        Episodes,
-    };
-
-public:
     using ApiCallback = std::function<void(QString, ScraperError)>;
-
-    void sendGetRequest(const Locale& locale, const QUrl& url, ApiCallback callback);
-
-    void searchForMovie(const Locale& locale, const QString& query, bool includeAdult, ApiCallback callback);
-    void searchForShow(const Locale& locale, const QString& query, ApiCallback callback);
-
-    void loadTitle(const Locale& locale, const ImdbId& movieId, PageKind page, ApiCallback callback);
-
-    void loadDefaultEpisodesPage(const Locale& locale, const ImdbId& showId, ApiCallback callback);
-
-    void loadSeason(const Locale& locale, const ImdbId& showId, SeasonNumber season, ApiCallback callback);
-
-    // --- New GraphQL + Suggest API methods ---
 
     /// \brief Search using the IMDB Suggest API (JSON, no auth).
     void suggestSearch(const QString& query, ApiCallback callback);
@@ -80,20 +50,10 @@ public:
     ELCH_NODISCARD static QUrl makeFullAssetUrl(const QString& suffix);
 
 private:
-    /// \brief Add necessary headers for IMDb to the request object.
-    void addHeadersToRequest(const Locale& locale, QNetworkRequest& request);
-
-    ELCH_NODISCARD QUrl makeTitleUrl(const ImdbId& id, PageKind page) const;
-    ELCH_NODISCARD QUrl makeMovieSearchUrl(const QString& searchStr, bool includeAdult) const;
-    ELCH_NODISCARD QUrl makeShowSearchUrl(const QString& searchStr) const;
-    ELCH_NODISCARD QUrl makeSeasonUrl(const ImdbId& showId, SeasonNumber season) const;
-    ELCH_NODISCARD QUrl makeDefaultEpisodesUrl(const ImdbId& showId) const;
-
     ELCH_NODISCARD static QUrl makeSuggestUrl(const QString& query);
     ELCH_NODISCARD static QUrl makeGraphQLUrl();
 
 private:
-    const QString m_language;
     mediaelch::network::NetworkManager m_network;
 };
 
