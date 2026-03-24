@@ -361,7 +361,7 @@ void ImdbJsonParser::parseGraphQLActors(const QJsonObject& title)
     }
 }
 
-QVector<ImdbEpisodeData> ImdbJsonParser::parseEpisodesFromGraphQL(const QString& json)
+QVector<ImdbEpisodeData> ImdbJsonParser::parseEpisodesFromGraphQL(const QString& json, const Locale& locale)
 {
     QJsonParseError parseError{};
     const QJsonDocument doc = QJsonDocument::fromJson(json.toUtf8(), &parseError);
@@ -451,10 +451,33 @@ QVector<ImdbEpisodeData> ImdbJsonParser::parseEpisodesFromGraphQL(const QString&
             ep.thumbnail = p;
         }
 
-        // Certification
-        const QString certRating = node.value("certificate").toObject().value("rating").toString().trimmed();
-        if (!certRating.isEmpty()) {
-            ep.certification = helper::mapCertification(Certification(certRating));
+        // Certification — locale-specific, fallback to simple certificate
+        {
+            const QString localeCountry = locale.hasCountry() ? locale.country().toUpper() : locale.language().toUpper();
+            Certification localeCert;
+            Certification usCert;
+            const QJsonArray certs = node.value("certificates").toObject().value("edges").toArray();
+            for (const auto& certEntry : certs) {
+                const QJsonObject certNode = certEntry.toObject().value("node").toObject();
+                const QString certCountry = certNode.value("country").toObject().value("id").toString();
+                const Certification cert = Certification(certNode.value("rating").toString().trimmed());
+                if (certCountry == "US") {
+                    usCert = cert;
+                }
+                if (certCountry == localeCountry) {
+                    localeCert = cert;
+                }
+            }
+            if (localeCert.isValid()) {
+                ep.certification = helper::mapCertification(localeCert);
+            } else if (usCert.isValid()) {
+                ep.certification = helper::mapCertification(usCert);
+            } else {
+                const QString simpleCert = node.value("certificate").toObject().value("rating").toString().trimmed();
+                if (!simpleCert.isEmpty()) {
+                    ep.certification = helper::mapCertification(Certification(simpleCert));
+                }
+            }
         }
 
         // Directors

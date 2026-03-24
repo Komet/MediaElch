@@ -48,7 +48,7 @@ void ImdbTvSeasonScrapeJob::loadEpisodes()
 
 void ImdbTvSeasonScrapeJob::parseAndStoreEpisodes(const QString& json)
 {
-    const QVector<ImdbEpisodeData> episodes = ImdbJsonParser::parseEpisodesFromGraphQL(json);
+    const QVector<ImdbEpisodeData> episodes = ImdbJsonParser::parseEpisodesFromGraphQL(json, config().locale);
 
     for (const ImdbEpisodeData& epData : episodes) {
         const SeasonNumber season(epData.seasonNumber);

@@ -77,7 +77,7 @@ public:
     static ImdbData parseFromGraphQL(const QString& json, const mediaelch::Locale& locale);
 
     /// \brief Parse episode list from a GraphQL episodes response.
-    static QVector<ImdbEpisodeData> parseEpisodesFromGraphQL(const QString& json);
+    static QVector<ImdbEpisodeData> parseEpisodesFromGraphQL(const QString& json, const mediaelch::Locale& locale);
 
     /// \brief Parse season numbers from a GraphQL title details response.
     static QVector<int> parseSeasonsFromGraphQL(const QString& json);
