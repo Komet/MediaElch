@@ -10,6 +10,7 @@
 #include "scrapers/ScraperInfos.h"
 
 #include <QByteArray>
+#include <QJsonObject>
 #include <QNetworkRequest>
 #include <QObject>
 #include <QString>
@@ -57,6 +58,20 @@ public:
 
     void loadSeason(const Locale& locale, const ImdbId& showId, SeasonNumber season, ApiCallback callback);
 
+    // --- New GraphQL + Suggest API methods ---
+
+    /// \brief Search using the IMDB Suggest API (JSON, no auth).
+    void suggestSearch(const QString& query, ApiCallback callback);
+
+    /// \brief Send a GraphQL query to graphql.imdb.com.
+    void sendGraphQLRequest(const QString& query, const QJsonObject& variables, ApiCallback callback);
+
+    /// \brief Load full title details via GraphQL.
+    void loadTitleViaGraphQL(const ImdbId& id, ApiCallback callback);
+
+    /// \brief Load all episodes for a title via GraphQL.
+    void loadEpisodesViaGraphQL(const ImdbId& showId, int limit, ApiCallback callback);
+
 signals:
     void initialized();
 
@@ -73,6 +88,9 @@ private:
     ELCH_NODISCARD QUrl makeShowSearchUrl(const QString& searchStr) const;
     ELCH_NODISCARD QUrl makeSeasonUrl(const ImdbId& showId, SeasonNumber season) const;
     ELCH_NODISCARD QUrl makeDefaultEpisodesUrl(const ImdbId& showId) const;
+
+    ELCH_NODISCARD static QUrl makeSuggestUrl(const QString& query);
+    ELCH_NODISCARD static QUrl makeGraphQLUrl();
 
 private:
     const QString m_language;
