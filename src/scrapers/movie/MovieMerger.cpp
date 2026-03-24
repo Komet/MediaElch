@@ -69,7 +69,7 @@ void copyDetailToMovie(Movie& target,
     case MovieScraperInfo::Outline: {
         if (!source.outline().isEmpty()) {
             target.setOutline(source.outline());
-        } else if (!source.overview().isEmpty()) {
+        } else if (target.outline().isEmpty() && usePlotForOutline && !source.overview().isEmpty()) {
             target.setOutline(source.overview());
         }
         break;
@@ -201,18 +201,8 @@ void copyDetailsToMovie(Movie& target,
 {
     const bool wasBlocked = target.blockSignals(true);
     for (MovieScraperInfo detail : details) {
-        if (detail == MovieScraperInfo::Outline) {
-            continue; // handled below
-        }
         copyDetailToMovie(target, source, detail, usePlotForOutline, ignoreDuplicateOriginalTitle);
     }
-
-    if (details.contains(MovieScraperInfo::Outline)) {
-        copyDetailToMovie(target, source, MovieScraperInfo::Outline, usePlotForOutline, ignoreDuplicateOriginalTitle);
-    } else if (usePlotForOutline && target.outline().isEmpty() && !target.overview().isEmpty()) {
-        target.setOutline(target.overview());
-    }
-
     target.blockSignals(wasBlocked);
 }
 

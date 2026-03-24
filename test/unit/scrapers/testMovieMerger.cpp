@@ -48,6 +48,18 @@ TEST_CASE("movies are correctly merged", "[movie][merger]")
         CHECK(copy.outline().isEmpty()); // !
     }
 
+    SECTION("Does not set outline if outline is not requested even with usePlotForOutline")
+    {
+        Movie copy;
+        original->setOutline("");
+        auto infos = allMovieScraperInfos();
+        infos.remove(MovieScraperInfo::Outline);
+        copyDetailsToMovie(copy, *original, infos, true, true);
+
+        CHECK(copy.overview() == original->overview());
+        CHECK(copy.outline().isEmpty()); // Outline not requested — must not be set
+    }
+
     SECTION("Does not copy original title if it's the same")
     {
         Movie copy;

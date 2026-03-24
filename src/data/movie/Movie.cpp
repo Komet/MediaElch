@@ -82,7 +82,7 @@ void Movie::clear()
           << MovieScraperInfo::Banner        //
           << MovieScraperInfo::Thumb         //
           << MovieScraperInfo::ClearArt      //
-          << MovieScraperInfo::TvShowLinks
+          << MovieScraperInfo::TvShowLinks   //
           << MovieScraperInfo::Outline;
     clear(infos);
     m_nfoContent.clear();
