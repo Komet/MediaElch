@@ -110,8 +110,24 @@ void ImdbMovieScrapeJob::parseAndAssignInfos(const QString& json)
     for (const QString& country : data.countries) {
         m_movie->addCountry(country);
     }
-    for (const QString& keyword : data.keywords) {
-        m_movie->addTag(keyword);
+    if (!m_loadAllTags) {
+        // When "Load All Tags" is disabled, only add tags that are part of IMDB's
+        // default set (first ~20). The GraphQL query fetches up to 100 keywords.
+        // Since we can't distinguish "default" from "extended" keywords, we limit
+        // to the first 20 when the setting is off.
+        int tagLimit = 20;
+        int tagCount = 0;
+        for (const QString& keyword : data.keywords) {
+            if (tagCount >= tagLimit) {
+                break;
+            }
+            m_movie->addTag(keyword);
+            ++tagCount;
+        }
+    } else {
+        for (const QString& keyword : data.keywords) {
+            m_movie->addTag(keyword);
+        }
     }
 }
 

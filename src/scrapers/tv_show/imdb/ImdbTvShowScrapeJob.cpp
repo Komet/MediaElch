@@ -92,9 +92,8 @@ void ImdbTvShowScrapeJob::parseAndAssignInfos(const QString& json)
     for (const Poster& backdrop : data.backdrops) {
         tvShow().addBackdrop(backdrop);
     }
-    if (data.network.hasValue()) {
-        tvShow().addNetwork(data.network.value);
-    }
+    // Note: IMDB GraphQL API has no dedicated "network" field for TV shows.
+    // Use TMDb in the Custom TV Scraper for network information.
     if (data.isOngoing.hasValue()) {
         tvShow().setStatus(data.isOngoing.value ? "Continuing" : "Ended");
     }

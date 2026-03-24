@@ -50,7 +50,6 @@ public:
 
     // TV show specific
     Optional<bool> isOngoing;
-    Optional<QString> network;
 };
 
 struct ImdbEpisodeData

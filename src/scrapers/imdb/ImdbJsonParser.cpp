@@ -215,8 +215,9 @@ void ImdbJsonParser::parseGraphQLTitle(const QJsonObject& title, const Locale& l
         m_data.ratings.append(rating);
     }
 
-    // Top250 (via meterRanking — this is STARmeter, not Top250; kept for compatibility)
-    // Note: The actual Top250 is not directly available via GraphQL.
+    // Top250 is not available via IMDB's GraphQL API. The meterRanking field is
+    // STARmeter (popularity rank), which is a different metric. We leave top250
+    // unset (defaults to -1 in Movie/TvShow).
 
     // Keywords
     const QJsonArray keywords = title.value("keywords").toObject().value("edges").toArray();
