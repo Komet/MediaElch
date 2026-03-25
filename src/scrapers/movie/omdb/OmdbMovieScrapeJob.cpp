@@ -179,7 +179,7 @@ void OmdbMovieScrapeJob::parseRatings(const QJsonObject& obj)
         if (source == "Rotten Tomatoes") {
             // Format: "85%"
             Rating rtRating;
-            rtRating.source = "tomatometerallcritics"; // Kodi NFO standard source name
+            rtRating.source = "tomatometerallcritics";     // Kodi NFO standard source name
             rtRating.rating = value.chopped(1).toDouble(); // remove trailing '%'
             rtRating.maxRating = 100.0;
             m_movie->ratings().setOrAddRating(rtRating);

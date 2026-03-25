@@ -180,9 +180,7 @@ QComboBox* CustomTvScraperSettingsWidget::comboForTvScraperInfo(ShowScraperInfo 
     index = index > 0 ? index : 0;
     box->setCurrentIndex(index);
 
-    connect(box, elchOverload<int>(&QComboBox::activated), this, [this](int /*idx*/) {
-        updateOmdbApiKeyWarning();
-    });
+    connect(box, elchOverload<int>(&QComboBox::activated), this, [this](int /*idx*/) { updateOmdbApiKeyWarning(); });
 
     return box;
 }
@@ -218,9 +216,7 @@ QComboBox* CustomTvScraperSettingsWidget::comboForEpisodeInfo(EpisodeScraperInfo
     index = index > 0 ? index : 0;
     box->setCurrentIndex(index);
 
-    connect(box, elchOverload<int>(&QComboBox::activated), this, [this](int /*idx*/) {
-        updateOmdbApiKeyWarning();
-    });
+    connect(box, elchOverload<int>(&QComboBox::activated), this, [this](int /*idx*/) { updateOmdbApiKeyWarning(); });
 
     return box;
 }

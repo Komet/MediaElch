@@ -34,7 +34,7 @@ void Update::onUpdateCheckFinished(mediaelch::UpdateCheck::Result result)
         return; // nothing to do
     }
     const QString downloadLink = QStringLiteral("<a href=\"%1\">https://mediaelch.github.io</a>")
-                               .arg(result.downloadUrl.toString(QUrl::FullyEncoded));
+                                     .arg(result.downloadUrl.toString(QUrl::FullyEncoded));
 
     QMessageBox msgBox;
     msgBox.setIcon(QMessageBox::Information);

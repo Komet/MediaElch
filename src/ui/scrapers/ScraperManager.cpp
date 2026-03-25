@@ -52,8 +52,8 @@
 #include "ui/scrapers/music/UniversalMusicConfigurationView.h"
 #include "ui/scrapers/tv_show/FernsehserienDeConfigurationView.h"
 #include "ui/scrapers/tv_show/ImdbTvConfigurationView.h"
-#include "ui/scrapers/tv_show/TheTvDbConfigurationView.h"
 #include "ui/scrapers/tv_show/OmdbTvConfigurationView.h"
+#include "ui/scrapers/tv_show/TheTvDbConfigurationView.h"
 #include "ui/scrapers/tv_show/TmdbTvConfigurationView.h"
 #include "ui/scrapers/tv_show/TvMazeConfigurationView.h"
 

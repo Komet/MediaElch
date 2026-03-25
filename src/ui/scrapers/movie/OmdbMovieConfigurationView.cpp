@@ -17,9 +17,7 @@ OmdbMovieConfigurationView::OmdbMovieConfigurationView(OmdbMovieConfiguration& s
     layout->setColumnStretch(2, 1);
     layout->setContentsMargins(12, 0, 12, 12);
 
-    connect(m_apiKeyEdit, &QLineEdit::textChanged, this, [this](const QString& text) {
-        m_settings.setApiKey(text);
-    });
+    connect(m_apiKeyEdit, &QLineEdit::textChanged, this, [this](const QString& text) { m_settings.setApiKey(text); });
     connect(&m_settings, &OmdbMovieConfiguration::apiKeyChanged, this, [this](const QString& apiKey) {
         const bool blocked = m_apiKeyEdit->blockSignals(true);
         m_apiKeyEdit->setText(apiKey);

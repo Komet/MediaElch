@@ -344,9 +344,7 @@ QComboBox* ScraperSettingsWidget::comboForMovieScraperInfo(const MovieScraperInf
         }
     }
 
-    connect(box, elchOverload<int>(&QComboBox::activated), this, [this](int /*idx*/) {
-        updateOmdbApiKeyWarning();
-    });
+    connect(box, elchOverload<int>(&QComboBox::activated), this, [this](int /*idx*/) { updateOmdbApiKeyWarning(); });
 
     return box;
 }
