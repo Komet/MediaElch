@@ -1,11 +1,7 @@
 add_library(
   mediaelch_scraper_tv_omdb OBJECT
-  OmdbTv.cpp
-  OmdbTvShowSearchJob.cpp
-  OmdbTvShowScrapeJob.cpp
-  OmdbTvSeasonScrapeJob.cpp
-  OmdbTvEpisodeScrapeJob.cpp
-  OmdbTvConfiguration.cpp
+  OmdbTv.cpp OmdbTvShowSearchJob.cpp OmdbTvShowScrapeJob.cpp
+  OmdbTvSeasonScrapeJob.cpp OmdbTvEpisodeScrapeJob.cpp OmdbTvConfiguration.cpp
 )
 
 target_link_libraries(
