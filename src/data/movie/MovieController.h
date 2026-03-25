@@ -83,6 +83,9 @@ private slots:
     void onDownloadFinished(DownloadManagerElement elem);
 
 private:
+    void loadFanartTvImages(QSet<ImageType> images);
+    void resolveIdAndLoadFanartTv(QSet<ImageType> images);
+
     Movie* m_movie;
     bool m_infoLoaded;
     bool m_infoFromNfoLoaded;

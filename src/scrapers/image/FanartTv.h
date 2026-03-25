@@ -2,10 +2,13 @@
 
 #include "globals/Globals.h"
 #include "network/NetworkManager.h"
+#include "scrapers/ScraperResult.h"
 #include "scrapers/image/ImageProvider.h"
 #include "scrapers/movie/MovieScraper.h"
 #include "scrapers/movie/tmdb/TmdbMovieConfiguration.h"
+#include "scrapers/tmdb/TmdbApi.h"
 #include "scrapers/tv_show/TvScraper.h"
+#include "scrapers/tv_show/tmdb/TmdbTvConfiguration.h"
 
 #include <QMap>
 #include <QNetworkReply>
@@ -18,7 +21,6 @@
 namespace mediaelch {
 namespace scraper {
 
-class TheTvDb;
 class TmdbMovie;
 class FanartTvConfiguration;
 
@@ -104,11 +106,10 @@ private:
     QString m_apiKey;
     mediaelch::network::NetworkManager m_network;
     int m_searchResultLimit = 0;
-    mediaelch::scraper::TheTvDb* m_tvdb = nullptr;
-    mediaelch::scraper::ShowSearchJob* m_currentSearchJob = nullptr;
     std::unique_ptr<mediaelch::scraper::TmdbMovieConfiguration> m_tmdbConfig;
     mediaelch::scraper::TmdbMovie* m_tmdb;
-
+    std::unique_ptr<mediaelch::scraper::TmdbTvConfiguration> m_tmdbTvConfig;
+    TmdbApi m_tmdbApi;
 
     mediaelch::network::NetworkManager* network();
     QVector<Poster> parseMovieData(QString json, ImageType type);
@@ -118,6 +119,7 @@ private:
     QVector<Poster> parseTvShowData(QString json, ImageType type, SeasonNumber season = SeasonNumber::NoSeason);
     void loadTvShowData(TvDbId tvdbId, ImageType type, SeasonNumber season = SeasonNumber::NoSeason);
     void loadTvShowData(TvDbId tvdbId, QSet<ImageType> types, TvShow* show);
+    void resolveTvDbIds(QVector<ScraperSearchResult> results, const ScraperError& searchError);
     QString keyParameter();
 };
 

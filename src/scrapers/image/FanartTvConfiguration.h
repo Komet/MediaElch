@@ -36,6 +36,9 @@ public:
 
     ELCH_NODISCARD QString personalApiKey();
     void setPersonalApiKey(const QString& value);
+
+    ELCH_NODISCARD bool useAsFallback();
+    void setUseAsFallback(bool value);
 };
 
 } // namespace scraper

@@ -8,6 +8,9 @@
 #include "media/ImageCache.h"
 #include "media/ImageUtils.h"
 #include "scrapers/ScraperInfos.h"
+#include "scrapers/image/FanartTv.h"
+#include "scrapers/image/FanartTvConfiguration.h"
+#include "settings/Settings.h"
 #include "ui/UiUtils.h"
 #include "ui/image/ImageDialog.h"
 #include "ui/main/MainWindow.h"
@@ -537,13 +540,62 @@ void TvShowWidgetTvShow::onInfoLoadDone(TvShow* show, QSet<ShowScraperInfo> deta
         show->fillMissingEpisodes();
     }
 
-    QSet<ImageType> types{ImageType::TvShowClearArt,
-        ImageType::TvShowLogos,
-        ImageType::TvShowCharacterArt,
-        ImageType::TvShowThumb,
-        ImageType::TvShowSeasonThumb};
+    // Determine which image types FanartTv should load.
+    // Three triggers: 1) ExtraArts selected, 2) specific fields assigned to FanartTv
+    // in Custom TV Scraper settings, 3) global fallback checkbox.
+    QSet<ImageType> types;
+    bool needFanartTv = false;
 
-    if (show->tvdbId().isValid() && !types.isEmpty() && details.contains(ShowScraperInfo::ExtraArts)) {
+    // 1) ExtraArts: always load these art types from FanartTv (existing behavior)
+    if (details.contains(ShowScraperInfo::ExtraArts)) {
+        types.insert(ImageType::TvShowClearArt);
+        types.insert(ImageType::TvShowLogos);
+        types.insert(ImageType::TvShowCharacterArt);
+        types.insert(ImageType::TvShowThumb);
+        types.insert(ImageType::TvShowSeasonThumb);
+        needFanartTv = true;
+    }
+
+    // 2) Check Custom TV Scraper field assignments for FanartTv
+    // clang-format off
+    static const QMap<ShowScraperInfo, ImageType> infoToImageType{
+        {ShowScraperInfo::Banner,       ImageType::TvShowBanner},
+        {ShowScraperInfo::Fanart,       ImageType::TvShowBackdrop},
+        {ShowScraperInfo::Poster,       ImageType::TvShowPoster},
+        {ShowScraperInfo::Thumb,        ImageType::TvShowThumb},
+        {ShowScraperInfo::SeasonPoster, ImageType::TvShowSeasonPoster},
+        {ShowScraperInfo::SeasonBanner, ImageType::TvShowSeasonBanner},
+        {ShowScraperInfo::SeasonThumb,  ImageType::TvShowSeasonThumb},
+    };
+    // clang-format on
+
+    const auto customShowSettings = Settings::instance()->customTvScraperShow();
+    for (auto it = infoToImageType.constBegin(); it != infoToImageType.constEnd(); ++it) {
+        if (customShowSettings.value(it.key()) == mediaelch::scraper::FanartTv::ID && details.contains(it.key())) {
+            types.insert(it.value());
+            needFanartTv = true;
+        }
+    }
+
+    // 3) Global fallback: load ALL image types FanartTv supports
+    auto* ftConfig = dynamic_cast<mediaelch::scraper::FanartTvConfiguration*>(
+        Manager::instance()->scrapers().imageProviderConfig(mediaelch::scraper::FanartTv::ID));
+    const bool fanartTvFallback = (ftConfig != nullptr && ftConfig->useAsFallback());
+    if (fanartTvFallback) {
+        types.insert(ImageType::TvShowClearArt);
+        types.insert(ImageType::TvShowLogos);
+        types.insert(ImageType::TvShowCharacterArt);
+        types.insert(ImageType::TvShowThumb);
+        types.insert(ImageType::TvShowBanner);
+        types.insert(ImageType::TvShowPoster);
+        types.insert(ImageType::TvShowBackdrop);
+        types.insert(ImageType::TvShowSeasonPoster);
+        types.insert(ImageType::TvShowSeasonBanner);
+        types.insert(ImageType::TvShowSeasonThumb);
+        needFanartTv = true;
+    }
+
+    if (show->tvdbId().isValid() && !types.isEmpty() && needFanartTv) {
         Manager::instance()->fanartTv()->tvShowImages(show, show->tvdbId(), types, locale);
         connect(Manager::instance()->fanartTv(),
             &mediaelch::scraper::ImageProvider::sigTvShowImagesLoaded,
@@ -601,7 +653,10 @@ void TvShowWidgetTvShow::onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster
         }
     }
 
-    if (!show->banners().isEmpty() && show->infosToLoad().contains(ShowScraperInfo::Banner)) {
+    auto* ftCfg = dynamic_cast<mediaelch::scraper::FanartTvConfiguration*>(
+        Manager::instance()->scrapers().imageProviderConfig(mediaelch::scraper::FanartTv::ID));
+    const bool ftFallback = (ftCfg != nullptr && ftCfg->useAsFallback());
+    if (!show->banners().isEmpty() && (show->infosToLoad().contains(ShowScraperInfo::Banner) || ftFallback)) {
         emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
         DownloadManagerElement d;
         d.imageType = ImageType::TvShowBanner;
@@ -618,7 +673,39 @@ void TvShowWidgetTvShow::onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster
     QMapIterator<ImageType, QVector<Poster>> it(posters);
     while (it.hasNext()) {
         it.next();
-        if (it.key() == ImageType::TvShowClearArt && !it.value().isEmpty()) {
+        if (it.key() == ImageType::TvShowPoster && !it.value().isEmpty() && show->posters().isEmpty()) {
+            // FanartTv poster as fallback — only if the scraper didn't provide one
+            DownloadManagerElement d;
+            d.imageType = ImageType::TvShowPoster;
+            d.url = it.value().at(0).originalUrl;
+            d.show = show;
+            m_imageDownloadManager->addDownload(d);
+            if (m_show == show) {
+                ui->poster->setLoading(true);
+            }
+            downloadsSize++;
+        } else if (it.key() == ImageType::TvShowBackdrop && !it.value().isEmpty() && show->backdrops().isEmpty()) {
+            // FanartTv backdrop as fallback — only if the scraper didn't provide one
+            DownloadManagerElement d;
+            d.imageType = ImageType::TvShowBackdrop;
+            d.url = it.value().at(0).originalUrl;
+            d.show = show;
+            m_imageDownloadManager->addDownload(d);
+            if (m_show == show) {
+                ui->backdrop->setLoading(true);
+            }
+            downloadsSize++;
+        } else if (it.key() == ImageType::TvShowBanner && !it.value().isEmpty()) {
+            DownloadManagerElement d;
+            d.imageType = ImageType::TvShowBanner;
+            d.url = it.value().at(0).originalUrl;
+            d.show = show;
+            m_imageDownloadManager->addDownload(d);
+            if (m_show == show) {
+                ui->banner->setLoading(true);
+            }
+            downloadsSize++;
+        } else if (it.key() == ImageType::TvShowClearArt && !it.value().isEmpty()) {
             DownloadManagerElement d;
             d.imageType = ImageType::TvShowClearArt;
             d.url = it.value().at(0).originalUrl;
@@ -675,6 +762,44 @@ void TvShowWidgetTvShow::onLoadDone(TvShow* show, QMap<ImageType, QVector<Poster
                 m_imageDownloadManager->addDownload(d);
                 downloadsSize++;
                 thumbsForSeasons.append(p.season);
+            }
+        } else if (it.key() == ImageType::TvShowSeasonBanner && !it.value().isEmpty()) {
+            QVector<SeasonNumber> bannersForSeasons;
+            for (const Poster& p : it.value()) {
+                if (bannersForSeasons.contains(p.season)) {
+                    continue;
+                }
+                if (!show->seasons().contains(p.season)) {
+                    continue;
+                }
+
+                DownloadManagerElement d;
+                d.imageType = ImageType::TvShowSeasonBanner;
+                d.url = p.originalUrl;
+                d.show = show;
+                d.season = p.season;
+                m_imageDownloadManager->addDownload(d);
+                downloadsSize++;
+                bannersForSeasons.append(p.season);
+            }
+        } else if (it.key() == ImageType::TvShowSeasonPoster && !it.value().isEmpty()) {
+            QVector<SeasonNumber> postersForSeasons;
+            for (const Poster& p : it.value()) {
+                if (postersForSeasons.contains(p.season)) {
+                    continue;
+                }
+                if (!show->seasons().contains(p.season)) {
+                    continue;
+                }
+
+                DownloadManagerElement d;
+                d.imageType = ImageType::TvShowSeasonPoster;
+                d.url = p.originalUrl;
+                d.show = show;
+                d.season = p.season;
+                m_imageDownloadManager->addDownload(d);
+                downloadsSize++;
+                postersForSeasons.append(p.season);
             }
         }
     }
