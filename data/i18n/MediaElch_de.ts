@@ -9973,6 +9973,14 @@ automatisch nach dem Laden</translation>
         <source>Personal API key</source>
         <translation>Persönlicher API Schlüssel</translation>
     </message>
+    <message>
+        <source>Use as fallback for missing images</source>
+        <translation>Als Fallback für fehlende Bilder verwenden</translation>
+    </message>
+    <message>
+        <source>When enabled, Fanart.tv automatically fills in missing images after scraping, regardless of which scraper is configured for image fields.</source>
+        <translation>Wenn aktiviert, ergänzt Fanart.tv automatisch fehlende Bilder nach dem Scrapen, unabhängig davon welcher Scraper für Bildfelder konfiguriert ist.</translation>
+    </message>
 </context>
 <context>
     <name>mediaelch::scraper::FanartTvMusic</name>

@@ -1,5 +1,6 @@
 #include "ui/scrapers/image/FanartTvConfigurationView.h"
 
+#include <QCheckBox>
 #include <QGridLayout>
 #include <QLabel>
 
@@ -20,6 +21,11 @@ FanartTvConfigurationView::FanartTvConfigurationView(FanartTvConfiguration& sett
 
     m_personalApiKeyEdit = new QLineEdit(this);
 
+    m_fallbackCheckBox = new QCheckBox(tr("Use as fallback for missing images"), this);
+    m_fallbackCheckBox->setToolTip(tr("When enabled, Fanart.tv automatically fills in missing images after scraping, "
+                                      "regardless of which scraper is configured for image fields."));
+    m_fallbackCheckBox->setChecked(m_settings.useAsFallback());
+
     auto* layout = new QGridLayout(this);
     layout->addWidget(new QLabel(tr("Language")), 0, 0);
     layout->addWidget(m_languageBox, 0, 1);
@@ -27,6 +33,7 @@ FanartTvConfigurationView::FanartTvConfigurationView(FanartTvConfiguration& sett
     layout->addWidget(m_discBox, 1, 1);
     layout->addWidget(new QLabel(tr("Personal API key")), 2, 0);
     layout->addWidget(m_personalApiKeyEdit, 2, 1);
+    layout->addWidget(m_fallbackCheckBox, 3, 0, 1, 2);
     layout->setColumnStretch(2, 1);
     layout->setContentsMargins(12, 0, 12, 12);
 
@@ -58,6 +65,9 @@ FanartTvConfigurationView::FanartTvConfigurationView(FanartTvConfiguration& sett
         m_personalApiKeyEdit->setText(apiKey);
         m_personalApiKeyEdit->blockSignals(blocked);
     });
+
+    connect(
+        m_fallbackCheckBox, &QCheckBox::toggled, this, [this](bool checked) { m_settings.setUseAsFallback(checked); });
 }
 
 void FanartTvConfigurationView::setPreferredDiscType(const QString& discType)

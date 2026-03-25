@@ -8,8 +8,11 @@
 #include "media/NameFormatter.h"
 #include "media_center/MediaCenterInterface.h"
 #include "network/DownloadManager.h"
+#include "scrapers/image/FanartTv.h"
+#include "scrapers/image/FanartTvConfiguration.h"
 #include "scrapers/movie/MovieMerger.h"
 #include "scrapers/movie/MovieScraper.h"
+#include "scrapers/movie/MovieSearchJob.h"
 #include "scrapers/movie/custom/CustomMovieScrapeJob.h"
 #include "scrapers/movie/custom/CustomMovieScraper.h"
 #include "scrapers/movie/imdb/ImdbMovie.h"
@@ -336,17 +339,80 @@ void MovieController::scraperLoadDone(mediaelch::scraper::MovieScraper* scraper,
         images << ImageType::MovieThumb;
     }
 
-    if (!images.isEmpty() && (m_movie->tmdbId().isValid() || m_movie->imdbId().isValid())) {
-        connect(Manager::instance()->fanartTv(),
-            &mediaelch::scraper::ImageProvider::sigMovieImagesLoaded,
-            this,
-            &MovieController::onFanartLoadDone,
-            Qt::UniqueConnection);
-        Manager::instance()->fanartTv()->movieImages(
-            m_movie, (m_movie->tmdbId().isValid()) ? m_movie->tmdbId() : TmdbId(m_movie->imdbId().toString()), images);
-    } else {
-        onFanartLoadDone(m_movie, QMap<ImageType, QVector<Poster>>());
+    // When the FanartTv fallback setting is enabled, request ALL image types
+    // that FanartTv supports, regardless of what the user selected or what the
+    // scraper claims to support. This ensures maximum image coverage.
+    {
+        auto* ftConfig = dynamic_cast<mediaelch::scraper::FanartTvConfiguration*>(
+            Manager::instance()->scrapers().imageProviderConfig(mediaelch::scraper::FanartTv::ID));
+        if (ftConfig != nullptr && ftConfig->useAsFallback()) {
+            images << ImageType::MoviePoster << ImageType::MovieBackdrop << ImageType::MovieLogo
+                   << ImageType::MovieClearArt << ImageType::MovieCdArt << ImageType::MovieBanner
+                   << ImageType::MovieThumb;
+        }
     }
+
+    if (images.isEmpty()) {
+        onFanartLoadDone(m_movie, {});
+        return;
+    }
+
+    if (m_movie->tmdbId().isValid() || m_movie->imdbId().isValid()) {
+        loadFanartTvImages(images);
+    } else {
+        // No TMDb/IMDB ID available — try to resolve via TMDb title search
+        resolveIdAndLoadFanartTv(images);
+    }
+}
+
+void MovieController::loadFanartTvImages(QSet<ImageType> images)
+{
+    connect(Manager::instance()->fanartTv(),
+        &mediaelch::scraper::ImageProvider::sigMovieImagesLoaded,
+        this,
+        &MovieController::onFanartLoadDone,
+        Qt::UniqueConnection);
+    Manager::instance()->fanartTv()->movieImages(
+        m_movie, (m_movie->tmdbId().isValid()) ? m_movie->tmdbId() : TmdbId(m_movie->imdbId().toString()), images);
+}
+
+void MovieController::resolveIdAndLoadFanartTv(QSet<ImageType> images)
+{
+    using namespace mediaelch::scraper;
+
+    auto* tmdb = dynamic_cast<TmdbMovie*>(Manager::instance()->scrapers().movieScraper(TmdbMovie::ID));
+    if (tmdb == nullptr) {
+        qCDebug(generic) << "[MovieController] No TMDb scraper available for ID resolution";
+        onFanartLoadDone(m_movie, {});
+        return;
+    }
+
+    MovieSearchJob::Config searchConfig;
+    searchConfig.query = m_movie->title();
+    searchConfig.locale = mediaelch::Locale("en");
+    searchConfig.includeAdult = Settings::instance()->showAdultScrapers();
+
+    auto* searchJob = tmdb->search(searchConfig);
+    connect(searchJob, &MovieSearchJob::searchFinished, this, [this, images](MovieSearchJob* job) {
+        job->deleteLater();
+
+        if (job->hasError() || job->results().isEmpty()) {
+            qCDebug(generic) << "[MovieController] TMDb ID resolution failed for:" << m_movie->title();
+            onFanartLoadDone(m_movie, {});
+            return;
+        }
+
+        const TmdbId resolvedId(job->results().first().identifier.str());
+        if (resolvedId.isValid()) {
+            m_movie->setTmdbId(resolvedId);
+            qCDebug(generic) << "[MovieController] Resolved TMDb ID:" << resolvedId.toString()
+                             << "for:" << m_movie->title();
+            loadFanartTvImages(images);
+        } else {
+            onFanartLoadDone(m_movie, {});
+        }
+    });
+    searchJob->start();
 }
 
 void MovieController::onFanartLoadDone(Movie* movie, QMap<ImageType, QVector<Poster>> posters)

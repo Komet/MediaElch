@@ -3,6 +3,7 @@
 #include "scrapers/image/FanartTvConfiguration.h"
 #include "ui/small_widgets/LanguageCombo.h"
 
+#include <QCheckBox>
 #include <QComboBox>
 #include <QLineEdit>
 #include <QWidget>
@@ -26,6 +27,7 @@ private:
     LanguageCombo* m_languageBox{nullptr};
     QComboBox* m_discBox{nullptr};
     QLineEdit* m_personalApiKeyEdit{nullptr};
+    QCheckBox* m_fallbackCheckBox{nullptr};
 };
 
 } // namespace scraper

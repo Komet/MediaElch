@@ -8,6 +8,7 @@ static constexpr char moduleName[] = "scrapers";
 static const Settings::Key KEY_SCRAPERS_LANGUAGE(moduleName, "Scrapers/images.fanarttv/Language");
 static const Settings::Key KEY_SCRAPERS_DISC_TYPE(moduleName, "Scrapers/images.fanarttv/DiscType");
 static const Settings::Key KEY_SCRAPERS_PERSONAL_API_KEY(moduleName, "Scrapers/images.fanarttv/PersonalApiKey");
+static const Settings::Key KEY_SCRAPERS_IMAGE_FALLBACK(moduleName, "Scrapers/images.fanarttv/UseAsFallback");
 
 } // namespace
 
@@ -30,6 +31,7 @@ void FanartTvConfiguration::init()
     settings().setDefaultValue(KEY_SCRAPERS_LANGUAGE, defaultLocale().toString());
     settings().setDefaultValue(KEY_SCRAPERS_DISC_TYPE, QStringLiteral("BluRay"));
     settings().setDefaultValue(KEY_SCRAPERS_PERSONAL_API_KEY, QStringLiteral(""));
+    settings().setDefaultValue(KEY_SCRAPERS_IMAGE_FALLBACK, false);
 }
 
 mediaelch::Locale FanartTvConfiguration::defaultLocale()
@@ -98,6 +100,15 @@ void FanartTvConfiguration::setPersonalApiKey(const QString& value)
     settings().setValue(KEY_SCRAPERS_PERSONAL_API_KEY, value);
 }
 
+bool FanartTvConfiguration::useAsFallback()
+{
+    return settings().value(KEY_SCRAPERS_IMAGE_FALLBACK).toBool();
+}
+
+void FanartTvConfiguration::setUseAsFallback(bool value)
+{
+    settings().setValue(KEY_SCRAPERS_IMAGE_FALLBACK, value);
+}
 
 } // namespace scraper
 } // namespace mediaelch

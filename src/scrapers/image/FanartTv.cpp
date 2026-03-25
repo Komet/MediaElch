@@ -5,13 +5,16 @@
 #include "network/NetworkRequest.h"
 #include "scrapers/image/FanartTvConfiguration.h"
 #include "scrapers/movie/tmdb/TmdbMovie.h"
-#include "scrapers/tv_show/thetvdb/TheTvDb.h"
+#include "scrapers/tv_show/tmdb/TmdbTv.h"
+#include "scrapers/tv_show/tmdb/TmdbTvConfiguration.h"
 #include "ui/main/MainWindow.h"
 
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonValue>
+#include <QSharedPointer>
+#include <QUrlQuery>
 #include <QVariant>
 
 namespace mediaelch {
@@ -41,6 +44,7 @@ FanartTv::FanartTv(FanartTvConfiguration& settings, QObject* parent) : ImageProv
         ImageType::TvShowThumb,
         ImageType::TvShowSeasonThumb,
         ImageType::TvShowSeasonPoster,
+        ImageType::TvShowSeasonBanner,
         ImageType::TvShowLogos,
         ImageType::TvShowCharacterArt,
         ImageType::TvShowPoster,
@@ -58,6 +62,7 @@ FanartTv::FanartTv(FanartTvConfiguration& settings, QObject* parent) : ImageProv
     m_apiKey = "842f7a5d1cc7396f142b8dd47c4ba42b";
     m_tmdbConfig = std::make_unique<mediaelch::scraper::TmdbMovieConfiguration>(*Settings::instance());
     m_tmdb = new TmdbMovie(*m_tmdbConfig, this);
+    m_tmdbTvConfig = std::make_unique<mediaelch::scraper::TmdbTvConfiguration>(*Settings::instance());
 }
 
 const ImageProvider::ScraperMeta& FanartTv::meta() const
@@ -419,37 +424,96 @@ QVector<Poster> FanartTv::parseMovieData(QString json, ImageType type)
 }
 
 /**
- * \brief Searches for a TV show
+ * \brief Searches for a TV show using TMDb, then resolves TvDbIds for Fanart.tv
  * \param searchStr The TV show name/search string
  * \param limit Number of results, if zero, all results are returned
- * \see FanartTv::onSearchTvShowFinished
  */
 void FanartTv::searchTvShow(QString searchStr, mediaelch::Locale locale, int limit)
 {
-    using namespace mediaelch;
     using namespace mediaelch::scraper;
     m_searchResultLimit = limit;
 
-    auto* tvdb = dynamic_cast<TheTvDb*>(Manager::instance()->scrapers().tvScraper(TheTvDb::ID));
-    if (tvdb == nullptr) {
-        qFatal("[FanartTv] Cast to TheTvDb* failed!");
+    auto* tmdbTv = dynamic_cast<TmdbTv*>(Manager::instance()->scrapers().tvScraper(TmdbTv::ID));
+    if (tmdbTv == nullptr) {
+        qCCritical(generic) << "[FanartTv] Could not get TmdbTv scraper for TV show search";
+        emit sigSearchDone(
+            {}, {ScraperError::Type::InternalError, tr("TMDb scraper not available for TV show search")});
+        return;
     }
+
     ShowSearchJob::Config config{searchStr, locale, false};
-    auto* searchJob = tvdb->search(config);
+    auto* searchJob = tmdbTv->search(config);
     connect(searchJob, &ShowSearchJob::searchFinished, this, &FanartTv::onSearchTvShowFinished, Qt::UniqueConnection);
     searchJob->start();
 }
 
 void FanartTv::onSearchTvShowFinished(ShowSearchJob* searchJob)
 {
-    const auto results = toOldScraperSearchResult(searchJob->results());
+    auto results = toOldScraperSearchResult(searchJob->results());
     const ScraperError error = searchJob->scraperError();
     searchJob->deleteLater();
 
-    if (m_searchResultLimit == 0) {
-        emit sigSearchDone(results, error);
-    } else {
-        emit sigSearchDone(results.mid(0, m_searchResultLimit), error);
+    if (error.hasError()) {
+        emit sigSearchDone({}, error);
+        return;
+    }
+
+    if (m_searchResultLimit > 0) {
+        results = results.mid(0, m_searchResultLimit);
+    }
+
+    // TMDb search returns TMDb IDs, but Fanart.tv needs TvDb IDs.
+    // Resolve TvDbIds via TMDb external_ids for each result.
+    resolveTvDbIds(results, error);
+}
+
+/**
+ * \brief Resolves TvDbIds for TMDb search results via TMDb external_ids API.
+ * Fanart.tv's TV API only accepts TvDb IDs, so each TMDb search result needs
+ * an extra API call to get the corresponding TvDb ID.
+ */
+void FanartTv::resolveTvDbIds(QVector<ScraperSearchResult> results, const ScraperError& searchError)
+{
+    if (results.isEmpty()) {
+        emit sigSearchDone(results, searchError);
+        return;
+    }
+
+    struct ResolveState
+    {
+        QVector<ScraperSearchResult> resolved;
+        int pending = 0;
+    };
+    auto state = QSharedPointer<ResolveState>::create();
+    state->pending = results.size();
+
+    for (int i = 0; i < results.size(); ++i) {
+        const TmdbId tmdbId(results[i].id);
+        const QString name = results[i].name;
+        const QDate released = results[i].released;
+
+        m_tmdbApi.sendGetRequest(m_tmdbTvConfig->language(),
+            m_tmdbApi.makeApiUrl(
+                QStringLiteral("/tv/%1/external_ids").arg(tmdbId.toString()), m_tmdbTvConfig->language(), QUrlQuery()),
+            [this, state, name, released, searchError](QJsonDocument json, ScraperError error) {
+                ScraperSearchResult result;
+                result.name = name;
+                result.released = released;
+
+                if (!error.hasError()) {
+                    const int tvdbIdInt = json.object().value("tvdb_id").toInt(-1);
+                    if (tvdbIdInt > 0) {
+                        result.id = QStringLiteral("id%1").arg(tvdbIdInt);
+                    }
+                }
+
+                state->resolved.append(result);
+
+                state->pending--;
+                if (state->pending <= 0) {
+                    emit sigSearchDone(state->resolved, searchError);
+                }
+            });
     }
 }
 
@@ -620,9 +684,8 @@ void FanartTv::tvShowSeason(TvDbId tvdbId, SeasonNumber season, const mediaelch:
 
 void FanartTv::tvShowSeasonBanners(TvDbId tvdbId, SeasonNumber season, const mediaelch::Locale& locale)
 {
-    Q_UNUSED(tvdbId);
-    Q_UNUSED(season);
     Q_UNUSED(locale);
+    loadTvShowData(tvdbId, ImageType::TvShowSeasonBanner, season);
 }
 
 void FanartTv::tvShowSeasonBackdrops(TvDbId tvdbId, SeasonNumber season, const mediaelch::Locale& locale)
@@ -657,6 +720,7 @@ QVector<Poster> FanartTv::parseTvShowData(QString json, ImageType type, SeasonNu
     map.insert(ImageType::TvShowThumb,        QStringList() << "tvthumb");
     map.insert(ImageType::TvShowSeasonThumb,  QStringList() << "seasonthumb");
     map.insert(ImageType::TvShowSeasonPoster, QStringList() << "seasonposter");
+    map.insert(ImageType::TvShowSeasonBanner, QStringList() << "seasonbanner");
     map.insert(ImageType::TvShowPoster,       QStringList() << "tvposter");
     // clang-format on
 
@@ -681,7 +745,8 @@ QVector<Poster> FanartTv::parseTvShowData(QString json, ImageType type, SeasonNu
                 continue;
             }
 
-            if ((type == ImageType::TvShowSeasonThumb || type == ImageType::TvShowSeasonPoster)
+            if ((type == ImageType::TvShowSeasonThumb || type == ImageType::TvShowSeasonPoster
+                    || type == ImageType::TvShowSeasonBanner)
                 && season != SeasonNumber::NoSeason && !poster.value("season").toString().isEmpty()
                 && poster.value("season").toString().toInt() != season.toInt()) {
                 continue;
