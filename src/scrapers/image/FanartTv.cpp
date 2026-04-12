@@ -385,13 +385,13 @@ QVector<Poster> FanartTv::parseMovieData(QString json, ImageType type)
         const auto jsonPosters = parsedJson.value(section).toArray();
 
         for (const auto& it : jsonPosters) {
-            const auto poster = it.toObject();
-            Poster b;
-            b.thumbUrl = poster.value("url").toString().replace("/fanart/", "/preview/");
-            b.originalUrl = poster.value("url").toString();
+            const auto jsonPoster = it.toObject();
+            Poster poster;
+            poster.thumbUrl = jsonPoster.value("url").toString().replace("/fanart/", "/preview/");
+            poster.originalUrl = jsonPoster.value("url").toString();
 
-            const auto discType = poster.value("disc_type").toString();
-            b.hint = [&section, &discType] {
+            const auto discType = jsonPoster.value("disc_type").toString();
+            poster.hint = [&section, &discType] {
                 if (section == "hdmovielogo" || section == "hdmovieclearart") {
                     return QStringLiteral("HD");
                 }
@@ -410,8 +410,8 @@ QVector<Poster> FanartTv::parseMovieData(QString json, ImageType type)
                 return QStringLiteral("");
             }();
 
-            b.language = poster.value("lang").toString();
-            insertPoster(posters, b, m_meta.languagePriority, m_settings.preferredDiscType());
+            poster.language = jsonPoster.value("lang").toString();
+            insertPoster(posters, poster, m_meta.languagePriority, m_settings.preferredDiscType());
         }
     }
 
@@ -675,26 +675,26 @@ QVector<Poster> FanartTv::parseTvShowData(QString json, ImageType type, SeasonNu
         const auto jsonPosters = parsedJson.value(section).toArray();
 
         for (const auto& it : jsonPosters) {
-            const auto poster = it.toObject();
+            const auto jsonPoster = it.toObject();
 
-            if (poster.value("url").toString().isEmpty()) {
+            if (jsonPoster.value("url").toString().isEmpty()) {
                 continue;
             }
 
             if ((type == ImageType::TvShowSeasonThumb || type == ImageType::TvShowSeasonPoster)
-                && season != SeasonNumber::NoSeason && !poster.value("season").toString().isEmpty()
-                && poster.value("season").toString().toInt() != season.toInt()) {
+                && season != SeasonNumber::NoSeason && !jsonPoster.value("season").toString().isEmpty()
+                && jsonPoster.value("season").toString().toInt() != season.toInt()) {
                 continue;
             }
 
-            Poster b;
-            b.thumbUrl = poster.value("url").toString().replace("/fanart/", "/preview/");
-            b.originalUrl = poster.value("url").toString();
-            b.season = SeasonNumber(poster.value("season").toString().toInt());
+            Poster poster;
+            poster.thumbUrl = jsonPoster.value("url").toString().replace("/fanart/", "/preview/");
+            poster.originalUrl = jsonPoster.value("url").toString();
+            poster.season = SeasonNumber(jsonPoster.value("season").toString().toInt());
 
-            const auto discType = poster.value("disc_type").toString();
+            const auto discType = jsonPoster.value("disc_type").toString();
 
-            b.hint = [&section, &discType] {
+            poster.hint = [&section, &discType] {
                 if (section == "hdtvlogo" || section == "hdclearart") {
                     return QStringLiteral("HD");
                 }
@@ -712,72 +712,82 @@ QVector<Poster> FanartTv::parseTvShowData(QString json, ImageType type, SeasonNu
                 }
                 return QStringLiteral("");
             }();
-            b.language = poster.value("lang").toString();
-            insertPoster(posters, b, m_meta.languagePriority, m_settings.preferredDiscType());
+
+            poster.language = jsonPoster.value("lang").toString();
+            insertPoster(posters, poster, m_meta.languagePriority, m_settings.preferredDiscType());
         }
     }
 
     return posters;
 }
 
-void FanartTv::insertPoster(QVector<Poster>& posters,
-    const Poster& b,
-    const QVector<QString>& languagePriority,
-    const QString& preferredDiscType)
+int FanartTv::findInsertPos(const Poster& poster, const QVector<Poster>& posters,
+    const QVector<QString>& languagePriority, const QString& preferredDiscType)
 {
-    struct InsertionPoints
-    {
-        int lastInLangAndHd = -1;
-        int lastInLang = -1;
-    };
-
-    QHash<QString, InsertionPoints> langMap;
-    langMap.reserve(languagePriority.size());
-
-    int lastHd = -1;
-    const int n = posters.size();
-
-    for (int i = 0; i < n; ++i) {
-        const Poster& p = posters.at(i);
-
-        const bool isHdOrPreferred = (p.hint == QLatin1String("HD") || p.hint == preferredDiscType);
-        if (isHdOrPreferred)
-            lastHd = i;
-
-        for (const QString& lang : languagePriority) {
-            if (p.language == lang) {
-                InsertionPoints& pts = langMap[lang];
-                pts.lastInLang = i;
-                if (isHdOrPreferred)
-                    pts.lastInLangAndHd = i;
-            } else if (p.language.isEmpty()) {
-                InsertionPoints& pts = langMap[lang];
-                pts.lastInLang = i;
-            }
+    for (int i = 0; i < posters.size(); ++i) {
+        if (posterLessThan(poster, posters[i], languagePriority, preferredDiscType)) {
+            return i;
         }
     }
 
-    const bool bIsHdOrPreferred = (b.hint == QLatin1String("HD") || b.hint == preferredDiscType);
+    return -1;
+}
 
-    // Insert according to priority
-    for (const QString& lang : languagePriority) {
-        const InsertionPoints pts = langMap.value(lang);
-        if (b.language == lang && bIsHdOrPreferred) {
-            posters.insert(pts.lastInLangAndHd + 1, b);
-            return;
-        }
-        if (b.language == lang) {
-            posters.insert(pts.lastInLang + 1, b);
-            return;
-        }
+void FanartTv::insertPoster(QVector<Poster>& posters, const Poster& poster,
+    const QVector<QString>& languagePriority, const QString& preferredDiscType)
+{
+    int pos = findInsertPos(poster, posters, languagePriority, preferredDiscType);
+
+    if (pos >= 0) {
+        posters.insert(pos, poster);
+    }
+    else {
+        posters.append(poster);
+    }
+}
+
+int FanartTv::languageRank(const QString& lang, const QVector<QString>& languagePriority)
+{
+    int idx = languagePriority.indexOf(lang);
+
+    if (idx >= 0) {
+        return idx;
     }
 
-    // Fallback to HD/disc placement or append
-    if (bIsHdOrPreferred) {
-        posters.insert(lastHd + 1, b);
-    } else {
-        posters.append(b);
+    if (lang.isEmpty()) {
+        return languagePriority.size();
     }
+
+    return languagePriority.size() + 1;
+}
+
+int FanartTv::hdRank(const Poster& p, const QString& preferredDiscType)
+{
+    if (p.hint == "HD" || p.hint == preferredDiscType) {
+        return 0;
+    }
+
+    return 1;
+}
+
+bool FanartTv::posterLessThan(const Poster& a, const Poster& b,
+    const QVector<QString>& languagePriority, const QString& preferredDiscType)
+{
+    const int langA = languageRank(a.language, languagePriority);
+    const int langB = languageRank(b.language, languagePriority);
+
+    if (langA != langB) {
+        return langA < langB;
+    }
+
+    const int hdA = hdRank(a, preferredDiscType);
+    const int hdB = hdRank(b, preferredDiscType);
+
+    if (hdA != hdB) {
+        return hdA < hdB;
+    }
+
+    return false;
 }
 
 QString FanartTv::keyParameter()

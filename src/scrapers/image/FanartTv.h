@@ -76,10 +76,14 @@ public:
     void albumImages(Album* album, MusicBrainzId mbId, QSet<ImageType> types) override;
     void albumBooklets(MusicBrainzId mbId) override;
 
-    static void insertPoster(QVector<Poster>& posters,
-        const Poster& b,
-        const QVector<QString>& languagePriority,
-        const QString& preferredDiscType);
+    static void insertPoster(QVector<Poster>& posters, const Poster& poster,
+        const QVector<QString>& languagePriority, const QString& preferredDiscType);
+    static int findInsertPos(const Poster& poster, const QVector<Poster>& posters,
+        const QVector<QString>& languagePriority, const QString& preferredDiscType);
+    static int languageRank(const QString& lang, const QVector<QString>& languagePriority);
+    static bool posterLessThan(const Poster& a, const Poster& b,
+        const QVector<QString>& languagePriority, const QString& preferredDiscType);
+    static int hdRank(const Poster& p, const QString& preferredDiscType);
 
 public slots:
     void searchMovie(QString searchStr, int limit = 0) override;
