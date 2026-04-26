@@ -34,6 +34,7 @@ VideoBuster::VideoBuster(QObject* parent) : MovieScraper(parent)
         MovieScraperInfo::Genres,
         MovieScraperInfo::Tagline,
         MovieScraperInfo::Overview,
+        MovieScraperInfo::Outline,
         MovieScraperInfo::Poster,
         MovieScraperInfo::Backdrop,
         MovieScraperInfo::Tags,

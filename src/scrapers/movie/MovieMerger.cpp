@@ -64,9 +64,12 @@ void copyDetailToMovie(Movie& target,
     }
     case MovieScraperInfo::Overview: {
         target.setOverview(source.overview());
+        break;
+    }
+    case MovieScraperInfo::Outline: {
         if (!source.outline().isEmpty()) {
             target.setOutline(source.outline());
-        } else if (usePlotForOutline) {
+        } else if (target.outline().isEmpty() && usePlotForOutline && !source.overview().isEmpty()) {
             target.setOutline(source.overview());
         }
         break;

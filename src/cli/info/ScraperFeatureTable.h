@@ -28,6 +28,7 @@ private:
         {MovieScraperInfo::Certification, "Certification"},
         {MovieScraperInfo::Trailer, "Trailer"},
         {MovieScraperInfo::Overview, "Overview"},
+        {MovieScraperInfo::Outline, "Outline"},
         {MovieScraperInfo::Poster, "Poster"},
         {MovieScraperInfo::Backdrop, "Backdrop"},
         {MovieScraperInfo::Actors, "Actors"},
