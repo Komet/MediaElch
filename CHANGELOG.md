@@ -20,6 +20,7 @@
   - After scraping a single episode, the UI did not allow saving.
     You had to select another episode again (#1896)
   - TV shows are sorted according to their sort-title (#1927)
+  - Custom movie scraper can now skip scrapers without any result (#1979)
 - HotMovies/AdultDvdEmpire: Search works again (#1811)
 - IMDb:
   - Scraping of was completely broken; it is fixed again (#1889)
@@ -40,6 +41,7 @@
 
 ### Added
 
+- OMDb: New scraper for OMDb movies + TV shows was added (#1970)
 - IMDb: Actors can now be loaded for TV shows and episodes (#1898)
 - TVMaze:
   - TvMaze can now load episodes' guest cast (actors) for single-episode scraping (#1801)
@@ -51,6 +53,8 @@
   - Spaces in file names can be replaced by `_` or `-` (#1827)
   - If there is a syntax error in the `<value>`s or `{conditions}`, the field will by
     highlighted red and the tooltip will tell you what the issue is (#1840)
+- Custom Movie Scraper:
+  - Outline can now be scraped separately from overview (#1975)
 
 ## 2.12.0 - 2024-10-13
 
