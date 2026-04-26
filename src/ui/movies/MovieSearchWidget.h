@@ -39,6 +39,8 @@ public slots:
     /// \brief Used by the surrounding dialog when "scrape" button is clicked.
     /// \todo Remove; breaks dependency chain; move buttons to widget?
     void onScrapeSelectedMovie();
+    /// \brief Skip the current sub-scraper in the custom movie scraper workflow.
+    void onSkipCurrentScraper();
 
 public:
     QString scraperId();
@@ -50,6 +52,8 @@ signals:
     void sigResultClicked();
     /// \brief Emitted when a different movie is selected. \p isSelected is false if there is no movie selected.
     void sigMovieSelectionChanged(bool isSelected);
+    /// \brief Emitted when the active scraper changes. \p isCustomScraper is true if the custom movie scraper is active.
+    void sigScraperChanged(bool isCustomScraper);
 
 private slots:
     void startSearch();

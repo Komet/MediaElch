@@ -33,6 +33,8 @@ public slots:
     int execWithSearch(QString searchString, ImdbId id, TmdbId tmdbId);
     /// \brief Called when a movie is (de-)selected in the movie search widget.
     void onMovieSelectionChanged(bool isSelected);
+    /// \brief Show/hide the Skip button based on whether the custom scraper is active.
+    void onScraperChanged(bool isCustomScraper);
 
 public:
     /// \brief Returns the selected locale.

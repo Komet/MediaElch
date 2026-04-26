@@ -4854,6 +4854,10 @@ Operation abgebrochen.</translation>
         <translation>Schließen</translation>
     </message>
     <message>
+        <source>Skip</source>
+        <translation>Überspringen</translation>
+    </message>
+    <message>
         <location line="+13"/>
         <source>Scrape</source>
         <translation>Laden</translation>

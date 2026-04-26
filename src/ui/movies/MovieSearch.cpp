@@ -16,11 +16,16 @@ MovieSearch::MovieSearch(QWidget* parent) : QDialog(parent), ui(new Ui::MovieSea
 #endif
     connect(ui->buttonClose, &QAbstractButton::clicked, this, &MovieSearch::reject);
     connect(ui->buttonScrape, &QAbstractButton::clicked, this, &MovieSearch::onScrapeClicked);
+    connect(ui->buttonSkip, &QAbstractButton::clicked, ui->movieSearchWidget, &MovieSearchWidget::onSkipCurrentScraper);
     connect(ui->movieSearchWidget, &MovieSearchWidget::sigResultClicked, this, &MovieSearch::accept);
     connect(ui->movieSearchWidget,
         &MovieSearchWidget::sigMovieSelectionChanged,
         this,
         &MovieSearch::onMovieSelectionChanged);
+    connect(ui->movieSearchWidget,
+        &MovieSearchWidget::sigScraperChanged,
+        this,
+        &MovieSearch::onScraperChanged);
 }
 
 MovieSearch::~MovieSearch()
@@ -90,4 +95,10 @@ QHash<mediaelch::scraper::MovieScraper*, mediaelch::scraper::MovieIdentifier> Mo
 void MovieSearch::onMovieSelectionChanged(bool isSelected)
 {
     ui->buttonScrape->setEnabled(isSelected);
+}
+
+void MovieSearch::onScraperChanged(bool isCustomScraper)
+{
+    ui->buttonSkip->setVisible(isCustomScraper);
+    ui->buttonSkip->setEnabled(isCustomScraper);
 }
