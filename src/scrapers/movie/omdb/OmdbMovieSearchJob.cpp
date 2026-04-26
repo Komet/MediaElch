@@ -14,7 +14,7 @@ namespace {
 ///          MediaElch adds the year separately, so we remove it to avoid duplication.
 QString stripYearSuffix(const QString& title)
 {
-    static const QRegularExpression yearSuffix(R"(\s*\(\d{4}\)$)");
+    static const QRegularExpression yearSuffix(R"(\s\(\d{4}\)$)");
     return QString(title).remove(yearSuffix).trimmed();
 }
 
