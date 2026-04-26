@@ -1,6 +1,6 @@
-add_executable(mediaelch_cli main.cpp
-        checkVersionUpdate.cpp
-        checkVersionUpdate.h)
+add_executable(
+  mediaelch_cli checkVersionUpdate.cpp checkVersionUpdate.h main.cpp
+)
 
 target_link_libraries(mediaelch_cli PRIVATE libmediaelch)
 

@@ -3,6 +3,7 @@
 #include "scrapers/ScraperInfos.h"
 
 #include <QComboBox>
+#include <QLabel>
 #include <QWidget>
 
 namespace Ui {
@@ -35,4 +36,8 @@ private:
 
     QComboBox* comboForTvScraperInfo(ShowScraperInfo info);
     QComboBox* comboForEpisodeInfo(EpisodeScraperInfo info);
+    void updateOmdbApiKeyWarning();
+
+    QLabel* m_omdbShowWarningLabel{nullptr};
+    QLabel* m_omdbEpisodeWarningLabel{nullptr};
 };

@@ -338,8 +338,7 @@ void MovieSearchWidget::onResultDoubleClicked(QTableWidgetItem* item)
         // If the title scraper was TMDb, resolve the IMDB ID so that subsequent
         // scrapers that accept IMDB IDs (e.g. IMDB) can use it directly.
         if (custom.titleScraper() != nullptr
-            && custom.titleScraper()->meta().identifier == mediaelch::scraper::TmdbMovie::ID
-            && !m_imdbId.isValid()) {
+            && custom.titleScraper()->meta().identifier == mediaelch::scraper::TmdbMovie::ID && !m_imdbId.isValid()) {
             resolveImdbIdFromTmdb(currentIdentifier.str(), [this]() {
                 createCustomScraperListLabel();
                 setSearchTextForScraper(m_customScrapersLeft.first());

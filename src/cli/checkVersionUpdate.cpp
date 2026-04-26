@@ -1,7 +1,7 @@
 #include "checkVersionUpdate.h"
 
-#include "settings/UpdateCheck.h"
 #include "common.h"
+#include "settings/UpdateCheck.h"
 
 #include <iostream>
 

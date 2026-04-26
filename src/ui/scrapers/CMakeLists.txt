@@ -4,9 +4,11 @@ add_library(
   movie/AebnConfigurationView.cpp
   movie/TmdbMovieConfigurationView.cpp
   movie/ImdbMovieConfigurationView.cpp
+  movie/OmdbMovieConfigurationView.cpp
   tv_show/FernsehserienDeConfigurationView.cpp
   tv_show/ImdbTvConfigurationView.cpp
   tv_show/TheTvDbConfigurationView.cpp
+  tv_show/OmdbTvConfigurationView.cpp
   tv_show/TmdbTvConfigurationView.cpp
   tv_show/TvMazeConfigurationView.cpp
   music/UniversalMusicConfigurationView.cpp

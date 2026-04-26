@@ -22,6 +22,8 @@
 #include "scrapers/movie/hotmovies/HotMovies.h"
 #include "scrapers/movie/imdb/ImdbMovie.h"
 #include "scrapers/movie/imdb/ImdbMovieConfiguration.h"
+#include "scrapers/movie/omdb/OmdbMovie.h"
+#include "scrapers/movie/omdb/OmdbMovieConfiguration.h"
 #include "scrapers/movie/tmdb/TmdbMovie.h"
 #include "scrapers/movie/tmdb/TmdbMovieConfiguration.h"
 #include "scrapers/movie/videobuster/VideoBuster.h"
@@ -32,6 +34,8 @@
 #include "scrapers/tv_show/custom/CustomTvScraper.h"
 #include "scrapers/tv_show/fernsehserien_de/FernsehserienDe.h"
 #include "scrapers/tv_show/imdb/ImdbTv.h"
+#include "scrapers/tv_show/omdb/OmdbTv.h"
+#include "scrapers/tv_show/omdb/OmdbTvConfiguration.h"
 #include "scrapers/tv_show/thetvdb/TheTvDb.h"
 #include "scrapers/tv_show/tmdb/TmdbTv.h"
 #include "scrapers/tv_show/tmdb/TmdbTvConfiguration.h"
@@ -43,10 +47,12 @@
 #include "ui/scrapers/movie/AdultDvdEmpireConfigurationView.h"
 #include "ui/scrapers/movie/AebnConfigurationView.h"
 #include "ui/scrapers/movie/ImdbMovieConfigurationView.h"
+#include "ui/scrapers/movie/OmdbMovieConfigurationView.h"
 #include "ui/scrapers/movie/TmdbMovieConfigurationView.h"
 #include "ui/scrapers/music/UniversalMusicConfigurationView.h"
 #include "ui/scrapers/tv_show/FernsehserienDeConfigurationView.h"
 #include "ui/scrapers/tv_show/ImdbTvConfigurationView.h"
+#include "ui/scrapers/tv_show/OmdbTvConfigurationView.h"
 #include "ui/scrapers/tv_show/TheTvDbConfigurationView.h"
 #include "ui/scrapers/tv_show/TmdbTvConfigurationView.h"
 #include "ui/scrapers/tv_show/TvMazeConfigurationView.h"
@@ -214,6 +220,17 @@ void ScraperManager::initMovieScrapers()
     }
 
     {
+        ManagedMovieScraper omdb;
+        auto config = std::make_unique<OmdbMovieConfiguration>(m_settings);
+        config->init();
+        omdb.m_scraper = std::make_unique<OmdbMovie>(*config, nullptr);
+        omdb.m_viewFactory = [omdbConfig = config.get()]() { return new OmdbMovieConfigurationView(*omdbConfig); };
+        omdb.m_config = std::move(config);
+
+        m_scraperMovies.push_back(std::move(omdb));
+    }
+
+    {
         ManagedMovieScraper videoBuster;
         auto config = std::make_unique<ScraperConfigurationStub>(VideoBuster::ID, m_settings);
         config->init();
@@ -271,6 +288,7 @@ void ScraperManager::initTvScrapers()
 
     TmdbTv* tmdbPtr = nullptr;
     ImdbTv* imdbPtr = nullptr;
+    OmdbTv* omdbPtr = nullptr;
 
     {
         ManagedTvScraper tmdb;
@@ -338,6 +356,21 @@ void ScraperManager::initTvScrapers()
 
         m_scraperTv.push_back(std::move(fernsehserienDe));
     }
+    {
+        ManagedTvScraper omdbTv;
+        auto omdbTvConfig = std::make_unique<OmdbTvConfiguration>(m_settings);
+        omdbTvConfig->init();
+        omdbTv.m_scraper = std::make_unique<OmdbTv>(*omdbTvConfig, nullptr);
+        omdbTv.m_viewFactory = [config = omdbTvConfig.get()]() { //
+            return new OmdbTvConfigurationView(*config);
+        };
+        omdbTv.m_config = std::move(omdbTvConfig);
+
+        omdbPtr = dynamic_cast<OmdbTv*>(omdbTv.scraper());
+        MediaElch_Assert(omdbPtr != nullptr);
+
+        m_scraperTv.push_back(std::move(omdbTv));
+    }
 
 
     for (auto& managed : asConst(m_scraperTv)) {
@@ -362,6 +395,7 @@ void ScraperManager::initTvScrapers()
         auto customConfig = std::make_unique<CustomTvScraperConfiguration>(m_settings,
             *tmdbPtr,
             *imdbPtr,
+            *omdbPtr,
             CustomTvScraperConfiguration::ScraperForShowDetails{},
             CustomTvScraperConfiguration::ScraperForEpisodeDetails{});
         customConfig->init();
