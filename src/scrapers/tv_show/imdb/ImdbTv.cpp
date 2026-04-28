@@ -33,7 +33,8 @@ ImdbTv::ImdbTv(ImdbTvConfiguration& settings, QObject* parent) : TvScraper(paren
         ShowScraperInfo::Tags,
         ShowScraperInfo::Runtime,
         ShowScraperInfo::FirstAired,
-        ShowScraperInfo::Poster};
+        ShowScraperInfo::Poster,
+        ShowScraperInfo::Fanart};
     m_meta.supportedEpisodeDetails = {EpisodeScraperInfo::Title,
         EpisodeScraperInfo::Actors,
         EpisodeScraperInfo::Overview,
