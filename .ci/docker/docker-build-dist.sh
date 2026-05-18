@@ -21,6 +21,7 @@ DISTROS=(
 	"ubuntu-20.04"
 	"ubuntu-22.04"
 	"ubuntu-24.04"
+	"ubuntu-26.04"
 	"opensuse-leap-15"
 	"opensuse-tumbleweed"
 )
