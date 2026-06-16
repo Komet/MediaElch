@@ -37,7 +37,9 @@ public:
 
     struct Key
     {
+        /// Module Name. Only used for UI-grouping, not in settings.
         QString moduleName;
+        /// Unique key for settings entry.
         QString key;
 
         Key() = default;
@@ -63,7 +65,7 @@ public:
 
     /// Get the value under the given key.
     /// Use in type-safe interfaces built on top of Settings.
-    ELCH_NODISCARD virtual Value value(const Key& key);
+    ELCH_NODISCARD virtual Value value(const Key& key) const;
     virtual void setValue(const Key& key, const Value& value);
     virtual void setDefaultValue(const Key& key, const Value& value);
 
@@ -77,6 +79,7 @@ public:
 
 private:
     ELCH_NODISCARD Item& findItem(const Key& key);
+    ELCH_NODISCARD const Item& findItem(const Key& key) const;
     void addItem(Item item);
     void emitChangeFor(const Settings::Key& key) const;
     void writeValueToDisk(const Key& key, const Value& value);
@@ -122,8 +125,8 @@ public:
     const QMap<ShowScraperInfo, QString>& customTvScraperShow() const;
     const QMap<EpisodeScraperInfo, QString>& customTvScraperEpisode() const;
     int currentMovieScraper() const;
-    const QString& currentTvShowScraper() const;
-    const QString& currentConcertScraper() const;
+    QString currentTvShowScraper() const;
+    QString currentConcertScraper() const;
     bool keepDownloadSource() const;
     bool checkForUpdates() const;
     bool showMissingEpisodesHint() const;
@@ -215,43 +218,19 @@ private:
     DirectorySettings m_directorySettings;
     NetworkSettings m_networkSettings;
 
-    QStringList m_excludeWords;
     QSize m_importDialogSize;
     QPoint m_importDialogPosition;
     QSize m_makeMkvDialogSize;
     QPoint m_makeMkvDialogPosition;
     QByteArray m_movieDuplicatesSplitterState;
-    bool m_youtubePluginUrls = false;
-    bool m_downloadActorImages = false;
-    bool m_autoLoadStreamDetails = false;
 
     QVector<DataFile> m_dataFiles;
     QVector<DataFile> m_initialDataFilesFrodo;
-    bool m_usePlotForOutline = false;
-    bool m_ignoreDuplicateOriginalTitle = true;
-    bool m_ignoreArticlesWhenSorting = false;
-    MovieSetArtworkType m_movieSetArtworkType = MovieSetArtworkType::ArtworkNextToMovies;
-    mediaelch::DirectoryPath m_movieSetArtworkDirectory;
+
     QVector<MediaStatusColumn> m_mediaStatusColumns;
-    SeasonOrder m_seasonOrder = SeasonOrder::Aired;
-    bool m_dontShowDeleteImageConfirm = false;
     QMap<MovieScraperInfo, QString> m_customMovieScraper;
     QMap<ShowScraperInfo, QString> m_customTvScraperShow;
     QMap<EpisodeScraperInfo, QString> m_customTvScraperEpisode;
-    int m_currentMovieScraper = 0;
-    QString m_currentTvShowScraper;
-    QString m_currentConcertScraper;
-    bool m_keepDownloadSource = false;
-    bool m_checkForUpdates = false;
-    bool m_showMissingEpisodesHint = false;
-    bool m_multiScrapeOnlyWithId = false;
-    bool m_multiScrapeSaveEach = false;
-    bool m_showAdultScrapers = false;
-    QString m_startupSection;
-    QString m_theme;
-    bool m_donated = false;
-    mediaelch::DirectoryPath m_lastImagePath;
-    int m_extraFanartsMusicArtists = 0;
 
 private:
     Items m_items;

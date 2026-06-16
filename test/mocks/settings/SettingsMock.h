@@ -12,7 +12,7 @@ public:
     explicit SettingsMock() : Settings(nullptr) {}
     virtual ~SettingsMock() override = default;
 
-    ELCH_NODISCARD Value value(const Key& key) override;
+    ELCH_NODISCARD Value value(const Key& key) const override;
     void setValue(const Key& key, const Value& value) override;
     void setDefaultValue(const Key& key, const Value& value) override;
 

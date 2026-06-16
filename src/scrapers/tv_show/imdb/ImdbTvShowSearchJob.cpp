@@ -28,7 +28,7 @@ void ImdbTvShowSearchJob::doStart()
 
 void ImdbTvShowSearchJob::searchViaImdbId()
 {
-    MediaElch_Debug_Ensures(ImdbId::isValidFormat(config().query));
+    MediaElch_Debug_Expects(ImdbId::isValidFormat(config().query));
 
     ImdbId id = ImdbId(config().query);
     m_api.loadTitle(config().locale, id, ImdbApi::PageKind::Reference, [this](QString html, ScraperError error) {
@@ -51,7 +51,7 @@ void ImdbTvShowSearchJob::searchViaImdbId()
 
 void ImdbTvShowSearchJob::searchViaQuery()
 {
-    MediaElch_Debug_Ensures(!ImdbId::isValidFormat(config().query));
+    MediaElch_Debug_Expects(!ImdbId::isValidFormat(config().query));
 
     m_api.searchForShow(config().locale, config().query, [this](QString html, ScraperError error) {
         if (error.hasError()) {
