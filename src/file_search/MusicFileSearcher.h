@@ -1,5 +1,6 @@
 #pragma once
 
+#include "database/MusicPersistence.h"
 #include "globals/MediaDirectory.h"
 
 #include <QObject>
@@ -13,7 +14,7 @@ class MusicFileSearcher : public QObject
 {
     Q_OBJECT
 public:
-    explicit MusicFileSearcher(QObject* parent = nullptr);
+    explicit MusicFileSearcher(mediaelch::MusicPersistence& persistence, QObject* parent = nullptr);
     ~MusicFileSearcher() override = default;
 
     void setMusicDirectories(QVector<mediaelch::MediaDirectory> directories);
@@ -34,4 +35,5 @@ private:
     QVector<mediaelch::MediaDirectory> m_directories;
     int m_progressMessageId;
     bool m_aborted;
+    mediaelch::MusicPersistence& m_persistence;
 };

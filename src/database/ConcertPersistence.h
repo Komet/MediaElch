@@ -14,14 +14,14 @@ class ConcertPersistence
 {
 public:
     explicit ConcertPersistence(Database& db);
+    virtual ~ConcertPersistence() = default;
     QSqlDatabase db();
 
-    void clearAllConcerts();
-    void clearConcertsInDirectory(DirectoryPath path);
-    void add(Concert* concert, DirectoryPath path);
-    void update(Concert* concert);
-    QVector<Concert*> concertsInDirectory(DirectoryPath path);
-
+    virtual void clearAllConcerts();
+    virtual void clearConcertsInDirectory(DirectoryPath path);
+    virtual void add(Concert* concert, DirectoryPath path);
+    virtual void update(Concert* concert);
+    virtual QVector<Concert*> concertsInDirectory(DirectoryPath path);
 
 private:
     Database& m_db;

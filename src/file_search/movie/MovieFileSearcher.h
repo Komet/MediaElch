@@ -1,5 +1,6 @@
 #pragma once
 
+#include "database/MoviePersistence.h"
 #include "globals/MediaDirectory.h"
 
 #include <QDir>
@@ -19,7 +20,6 @@ class Job;
 
 class MovieLoader;
 class MovieLoaderStore;
-class MoviePersistence;
 
 /// \brief Class responsible for (re-)loading all movies inside given directories.
 ///
@@ -33,7 +33,7 @@ class MovieFileSearcher : public QObject
 {
     Q_OBJECT
 public:
-    explicit MovieFileSearcher(QObject* parent = nullptr);
+    explicit MovieFileSearcher(mediaelch::MoviePersistence& persistence, QObject* parent = nullptr);
     ~MovieFileSearcher() override;
 
     /// \brief Sets the directories to scan for movies. Not readable directories are skipped.
@@ -72,6 +72,7 @@ private:
 
     bool m_running = false;
     bool m_aborted = false;
+    mediaelch::MoviePersistence& m_persistence;
 };
 
 } // namespace mediaelch

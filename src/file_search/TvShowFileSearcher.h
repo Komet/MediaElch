@@ -1,6 +1,7 @@
 #pragma once
 
 #include "data/tv_show/TvShowEpisode.h"
+#include "database/TvShowPersistence.h"
 #include "globals/MediaDirectory.h"
 #include "media/Path.h"
 
@@ -11,7 +12,7 @@ class TvShowFileSearcher : public QObject
 {
     Q_OBJECT
 public:
-    explicit TvShowFileSearcher(QObject* parent = nullptr);
+    explicit TvShowFileSearcher(mediaelch::TvShowPersistence& persistence, QObject* parent = nullptr);
     void setTvShowDirectories(QVector<mediaelch::MediaDirectory> directories);
     static SeasonNumber getSeasonNumber(QStringList files);
     static QVector<EpisodeNumber> getEpisodeNumbers(QStringList files);
@@ -46,4 +47,6 @@ private:
     QVector<TvShow*> getShowsFromDatabase(bool forceReload);
     void setupShows(QMap<QString, QVector<QStringList>>& contents, int& episodeCounter, int episodeSum);
     void setupShowsFromDatabase(QVector<TvShow*>& dbShows, int episodeCounter, int episodeSum);
+
+    mediaelch::TvShowPersistence& m_persistence;
 };

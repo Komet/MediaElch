@@ -3,6 +3,10 @@
 #include "data/concert/Concert.h"
 #include "data/music/Album.h"
 #include "data/music/Artist.h"
+#include "database/ConcertPersistence.h"
+#include "database/MoviePersistence.h"
+#include "database/MusicPersistence.h"
+#include "database/TvShowPersistence.h"
 #include "media_center/MediaCenterInterface.h"
 #include "settings/KodiSettings.h"
 
@@ -22,7 +26,15 @@ class KodiXml : public MediaCenterInterface
 {
     Q_OBJECT
 public:
-    explicit KodiXml(mediaelch::KodiSettings& settings, QObject* parent = nullptr);
+    struct MediaPersistence
+    {
+        mediaelch::MoviePersistence& movies;
+        mediaelch::TvShowPersistence& tvShows;
+        mediaelch::ConcertPersistence& concerts;
+        mediaelch::MusicPersistence& music;
+    };
+
+    explicit KodiXml(mediaelch::KodiSettings& settings, MediaPersistence persistence, QObject* parent = nullptr);
     ~KodiXml() override;
 
     // movies
@@ -123,4 +135,5 @@ private:
 
 private:
     mediaelch::KodiSettings& m_settings;
+    MediaPersistence m_persistence;
 };

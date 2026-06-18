@@ -14,13 +14,14 @@ class MoviePersistence
 {
 public:
     explicit MoviePersistence(Database& db);
+    virtual ~MoviePersistence() = default;
     QSqlDatabase db();
 
-    void clearAllMovies();
-    void clearMoviesInDirectory(DirectoryPath path);
-    void addMovie(Movie* movie, DirectoryPath path);
-    void update(Movie* movie);
-    QVector<Movie*> moviesInDirectory(DirectoryPath path, QObject* movieParent);
+    virtual void clearAllMovies();
+    virtual void clearMoviesInDirectory(DirectoryPath path);
+    virtual void addMovie(Movie* movie, DirectoryPath path);
+    virtual void update(Movie* movie);
+    virtual QVector<Movie*> moviesInDirectory(DirectoryPath path, QObject* movieParent);
 
 private:
     Database& m_db;

@@ -1,6 +1,5 @@
 #include "MovieFileSearcher.h"
 
-#include "database/MoviePersistence.h"
 #include "globals/Manager.h"
 #include "globals/MessageIds.h"
 #include "log/Log.h"
@@ -14,7 +13,8 @@
 
 namespace mediaelch {
 
-MovieFileSearcher::MovieFileSearcher(QObject* parent) : QObject(parent), m_store{new MovieLoaderStore(this)}
+MovieFileSearcher::MovieFileSearcher(mediaelch::MoviePersistence& persistence, QObject* parent) :
+    QObject(parent), m_store{new MovieLoaderStore(this)}, m_persistence{persistence}
 {
     connect(this, &MovieFileSearcher::started, this, [this]() { m_reloadTimer.start(); });
     connect(this, &MovieFileSearcher::finished, this, [this]() {
@@ -69,9 +69,8 @@ void MovieFileSearcher::reload(bool reloadFromDisk)
         return;
     }
 
-    MoviePersistence persistence{*Manager::instance()->database()};
     if (reloadFromDisk) {
-        persistence.clearAllMovies();
+        m_persistence.clearAllMovies();
     }
 
     Manager::instance()->movieModel()->clear();
@@ -89,7 +88,7 @@ void MovieFileSearcher::reload(bool reloadFromDisk)
         // was cleared above.  If the directory is disabled, we also clear the cache if
         // autoReload is on.
         if (movieDir.autoReload && !reloadFromDisk) {
-            persistence.clearMoviesInDirectory(movieDir.path);
+            m_persistence.clearMoviesInDirectory(movieDir.path);
         }
         if (!movieDir.disabled) {
             movieDir.autoReload = movieDir.autoReload || reloadFromDisk;

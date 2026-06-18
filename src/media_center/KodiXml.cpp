@@ -1,13 +1,6 @@
 #include "KodiXml.h"
 
 #include "data/Image.h"
-#include "data/movie/Movie.h"
-#include "data/tv_show/TvShow.h"
-#include "data/tv_show/TvShowEpisode.h"
-#include "database/ConcertPersistence.h"
-#include "database/MoviePersistence.h"
-#include "database/MusicPersistence.h"
-#include "database/TvShowPersistence.h"
 #include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
@@ -34,8 +27,8 @@
 #include <array>
 #include <memory>
 
-KodiXml::KodiXml(mediaelch::KodiSettings& settings, QObject* parent) :
-    MediaCenterInterface(parent), m_settings{settings}
+KodiXml::KodiXml(mediaelch::KodiSettings& settings, MediaPersistence persistence, QObject* parent) :
+    MediaCenterInterface(parent), m_settings{settings}, m_persistence{persistence}
 {
 }
 
@@ -183,8 +176,7 @@ bool KodiXml::saveMovie(Movie* movie)
     }
 
     // TODO: Multithreaded?
-    mediaelch::MoviePersistence persistence{*Manager::instance()->database()};
-    persistence.update(movie);
+    m_persistence.movies.update(movie);
 
     return true;
 }
@@ -627,8 +619,7 @@ bool KodiXml::saveConcert(Concert* concert)
     }
 
     concert->setNfoContent(xmlContent);
-    mediaelch::ConcertPersistence persistence{*Manager::instance()->database()};
-    persistence.update(concert);
+    m_persistence.concerts.update(concert);
 
     bool saved = false;
     QFileInfo fi(concert->files().first().toString());
@@ -933,8 +924,7 @@ bool KodiXml::saveTvShow(TvShow* show)
     }
 
     show->setNfoContent(xmlContent);
-    mediaelch::TvShowPersistence persistence{*Manager::instance()->database()};
-    persistence.update(show);
+    m_persistence.tvShows.update(show);
 
     for (DataFile dataFile : Settings::instance()->dataFiles(DataFileType::TvShowNfo)) {
         QString saveFilePath = show->dir().filePath(dataFile.saveFileName(""));
@@ -1042,12 +1032,11 @@ bool KodiXml::saveTvShowEpisode(TvShowEpisode* episode)
     }
 
     const QByteArray xmlContent = getEpisodeXml(episodes);
-    mediaelch::TvShowPersistence persistence{*Manager::instance()->database()};
     for (TvShowEpisode* subEpisode : episodes) {
         subEpisode->setNfoContent(xmlContent);
         subEpisode->setSyncNeeded(true);
         subEpisode->setChanged(false);
-        persistence.update(subEpisode);
+        m_persistence.tvShows.update(subEpisode);
     }
 
     QFileInfo fi(episode->files().first().toString());
@@ -1665,8 +1654,7 @@ bool KodiXml::saveArtist(Artist* artist)
     }
 
     artist->setNfoContent(xmlContent);
-    mediaelch::MusicPersistence persistence{*Manager::instance()->database()};
-    persistence.update(artist);
+    m_persistence.music.update(artist);
 
     QString fileName = nfoFilePath(artist);
     if (fileName.isEmpty()) {
@@ -1733,8 +1721,7 @@ bool KodiXml::saveAlbum(Album* album)
     }
 
     album->setNfoContent(xmlContent);
-    mediaelch::MusicPersistence persistence{*Manager::instance()->database()};
-    persistence.update(album);
+    m_persistence.music.update(album);
 
     QString nfoFileName = nfoFilePath(album);
     if (nfoFileName.isEmpty()) {

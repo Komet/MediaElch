@@ -1,6 +1,11 @@
 #pragma once
 
+#include "database/ConcertPersistence.h"
 #include "database/Database.h"
+#include "database/MoviePersistence.h"
+#include "database/MusicPersistence.h"
+#include "database/TvShowPersistence.h"
+
 #include "file_search/ConcertFileSearcher.h"
 #include "file_search/MusicFileSearcher.h"
 #include "file_search/TvShowFileSearcher.h"
@@ -21,6 +26,7 @@
 #include "ui/music/MusicFilesWidget.h"
 #include "ui/scrapers/ScraperManager.h"
 #include "ui/tv_show/TvShowFilesWidget.h"
+#include <memory>
 
 #include <QString>
 #include <QVector>
@@ -87,6 +93,10 @@ private:
     ConcertModel* m_concertModel = nullptr;
     MusicModel* m_musicModel = nullptr;
     Database* m_database = nullptr;
+    std::unique_ptr<mediaelch::MoviePersistence> m_moviePersistence;
+    std::unique_ptr<mediaelch::TvShowPersistence> m_tvShowPersistence;
+    std::unique_ptr<mediaelch::ConcertPersistence> m_concertPersistence;
+    std::unique_ptr<mediaelch::MusicPersistence> m_musicPersistence;
     TvShowFilesWidget* m_tvShowFilesWidget = nullptr;
     MusicFilesWidget* m_musicFilesWidget = nullptr;
     FileScannerDialog* m_fileScannerDialog = nullptr;

@@ -2,7 +2,6 @@
 
 #include "data/music/Album.h"
 #include "data/music/Artist.h"
-#include "database/MusicPersistence.h"
 #include "globals/Manager.h"
 #include "globals/MessageIds.h"
 #include "log/Log.h"
@@ -11,8 +10,11 @@
 #include <QFileInfo>
 #include <QtConcurrent>
 
-MusicFileSearcher::MusicFileSearcher(QObject* parent) :
-    QObject(parent), m_progressMessageId{Constants::MusicFileSearcherProgressMessageId}, m_aborted{false}
+MusicFileSearcher::MusicFileSearcher(mediaelch::MusicPersistence& persistence, QObject* parent) :
+    QObject(parent),
+    m_progressMessageId{Constants::MusicFileSearcherProgressMessageId},
+    m_aborted{false},
+    m_persistence{persistence}
 {
 }
 
@@ -50,10 +52,8 @@ void MusicFileSearcher::reload(bool force)
     QVector<Album*> albums;
     QVector<Album*> albumsFromDb;
 
-    mediaelch::MusicPersistence persistence{*Manager::instance()->database()};
-
     if (force) {
-        persistence.clearAllArtists();
+        m_persistence.clearAllArtists();
     }
 
     QMap<Artist*, mediaelch::DirectoryPath> artistPaths;
@@ -67,7 +67,7 @@ void MusicFileSearcher::reload(bool force)
         }
 
         if (dir.autoReload) {
-            persistence.clearArtistsInDirectory(mediaelch::DirectoryPath(dir.path));
+            m_persistence.clearArtistsInDirectory(mediaelch::DirectoryPath(dir.path));
         }
 
         if (dir.autoReload || force) {
@@ -113,12 +113,12 @@ void MusicFileSearcher::reload(bool force)
                 }
             }
         } else {
-            QVector<Artist*> artistsInPath = persistence.artistsInDirectory(mediaelch::DirectoryPath(dir.path));
+            QVector<Artist*> artistsInPath = m_persistence.artistsInDirectory(mediaelch::DirectoryPath(dir.path));
             for (Artist* artist : artistsInPath) {
                 if (artistsFromDb.count() % 20 == 0) {
                     emit currentDir(artist->path().toString().mid(dir.path.path().length()));
                 }
-                QVector<Album*> albumsOfArtist = persistence.albums(artist);
+                QVector<Album*> albumsOfArtist = m_persistence.albums(artist);
                 artistsFromDb.append(artist);
                 albumsFromDb.append(albumsOfArtist);
             }
@@ -142,7 +142,7 @@ void MusicFileSearcher::reload(bool force)
             emit currentDir(artist->name());
         }
         emit progress(++current, max, m_progressMessageId);
-        persistence.add(artist, artistPaths.value(artist));
+        m_persistence.add(artist, artistPaths.value(artist));
     }
     for (Album* album : albums) {
         if (m_aborted) {
@@ -154,7 +154,7 @@ void MusicFileSearcher::reload(bool force)
             emit currentDir(album->artist() + "/" + album->title());
         }
         emit progress(++current, max, m_progressMessageId);
-        persistence.add(album, albumPaths.value(album));
+        m_persistence.add(album, albumPaths.value(album));
     }
     Manager::instance()->database()->db().commit();
 

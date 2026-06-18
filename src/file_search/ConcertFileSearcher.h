@@ -1,6 +1,6 @@
 #pragma once
 
-#include "database/Database.h"
+#include "database/ConcertPersistence.h"
 #include "globals/MediaDirectory.h"
 
 #include <QDir>
@@ -14,7 +14,7 @@ class ConcertFileSearcher : public QObject
 {
     Q_OBJECT
 public:
-    explicit ConcertFileSearcher(QObject* parent = nullptr);
+    explicit ConcertFileSearcher(mediaelch::ConcertPersistence& persistence, QObject* parent = nullptr);
     void setConcertDirectories(QVector<mediaelch::MediaDirectory> directories);
 
 public slots:
@@ -31,6 +31,7 @@ private:
     QVector<mediaelch::MediaDirectory> m_directories;
     int m_progressMessageId;
     bool m_aborted = false;
+    mediaelch::ConcertPersistence& m_persistence;
 
 private:
     void clearOldConcerts(bool forceClear);

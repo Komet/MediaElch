@@ -21,22 +21,28 @@ Manager::Manager(QObject* parent) : QObject(parent)
 
     m_settings = Settings::instance();
     m_scraperManager = new mediaelch::ScraperManager(*m_settings, this);
+    m_database = new Database(this);
 
-    m_movieFileSearcher = new mediaelch::MovieFileSearcher(this);
-    m_tvShowFileSearcher = new TvShowFileSearcher(this);
-    m_concertFileSearcher = new ConcertFileSearcher(this);
-    m_musicFileSearcher = new MusicFileSearcher(this);
+    m_moviePersistence = std::make_unique<mediaelch::MoviePersistence>(*m_database);
+    m_tvShowPersistence = std::make_unique<mediaelch::TvShowPersistence>(*m_database);
+    m_concertPersistence = std::make_unique<mediaelch::ConcertPersistence>(*m_database);
+    m_musicPersistence = std::make_unique<mediaelch::MusicPersistence>(*m_database);
+    m_movieFileSearcher = new mediaelch::MovieFileSearcher(*m_moviePersistence, this);
+    m_tvShowFileSearcher = new TvShowFileSearcher(*m_tvShowPersistence, this);
+    m_concertFileSearcher = new ConcertFileSearcher(*m_concertPersistence, this);
+    m_musicFileSearcher = new MusicFileSearcher(*m_musicPersistence, this);
     m_movieModel = new MovieModel(this);
     m_tvShowModel = new TvShowModel(this);
     m_concertModel = new ConcertModel(this);
     m_musicModel = new MusicModel(this);
-    m_database = new Database(this);
 
     m_kodiSettings = new mediaelch::KodiSettings(*m_settings, this);
     m_kodiSettings->init();
-    m_mediaCenters.append(new KodiXml(*m_kodiSettings, this));
-    m_mediaCentersTvShow.append(new KodiXml(*m_kodiSettings, this));
-    m_mediaCentersConcert.append(new KodiXml(*m_kodiSettings, this));
+    KodiXml::MediaPersistence persistence{
+        *m_moviePersistence, *m_tvShowPersistence, *m_concertPersistence, *m_musicPersistence};
+    m_mediaCenters.append(new KodiXml(*m_kodiSettings, persistence, this));
+    m_mediaCentersTvShow.append(new KodiXml(*m_kodiSettings, persistence, this));
+    m_mediaCentersConcert.append(new KodiXml(*m_kodiSettings, persistence, this));
 
     m_trailerProviders.append(new HdTrailers(this));
 

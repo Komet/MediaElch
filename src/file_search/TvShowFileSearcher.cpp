@@ -2,7 +2,6 @@
 
 #include "data/tv_show/TvShow.h"
 #include "data/tv_show/TvShowEpisode.h"
-#include "database/TvShowPersistence.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "globals/MessageIds.h"
@@ -15,8 +14,11 @@
 #include <QSqlRecord>
 #include <QtConcurrent/QtConcurrentMap>
 
-TvShowFileSearcher::TvShowFileSearcher(QObject* parent) :
-    QObject(parent), m_progressMessageId{Constants::TvShowSearcherProgressMessageId}, m_aborted{false}
+TvShowFileSearcher::TvShowFileSearcher(mediaelch::TvShowPersistence& persistence, QObject* parent) :
+    QObject(parent),
+    m_progressMessageId{Constants::TvShowSearcherProgressMessageId},
+    m_aborted{false},
+    m_persistence{persistence}
 {
 }
 
@@ -57,8 +59,7 @@ void TvShowFileSearcher::reload(bool force)
     emit searchStarted(tr("Loading TV Shows..."));
     int episodeCounter = 0;
 
-    mediaelch::TvShowPersistence persistence{*Manager::instance()->database()};
-    const int episodeSum = persistence.episodeCount();
+    const int episodeSum = m_persistence.episodeCount();
 
     QVector<TvShow*> dbShows = getShowsFromDatabase(force);
     setupShows(files, episodeCounter, episodeSum);
@@ -84,8 +85,7 @@ TvShowEpisode* TvShowFileSearcher::loadEpisodeData(TvShowEpisode* episode)
 
 void TvShowFileSearcher::reloadEpisodes(const mediaelch::DirectoryPath& showDir)
 {
-    mediaelch::TvShowPersistence persistence{*Manager::instance()->database()};
-    persistence.clearTvShowInDirectory(showDir);
+    m_persistence.clearTvShowInDirectory(showDir);
     emit searchStarted(tr("Searching for Episodes..."));
 
     // remove old show object
@@ -123,7 +123,7 @@ void TvShowFileSearcher::reloadEpisodes(const mediaelch::DirectoryPath& showDir)
     scanTvShowDir(path, showDir, contents);
     auto* show = new TvShow(showDir, this);
     show->loadData(Manager::instance()->mediaCenterInterfaceTvShow());
-    persistence.add(show, path);
+    m_persistence.add(show, path);
 
     emit searchStarted(tr("Loading Episodes..."));
     emit currentDir(show->title());
@@ -149,7 +149,7 @@ void TvShowFileSearcher::reloadEpisodes(const mediaelch::DirectoryPath& showDir)
     QtConcurrent::blockingMapped(episodes, TvShowFileSearcher::reloadEpisodeData);
 
     for (TvShowEpisode* episode : episodes) {
-        persistence.add(episode, path, show->databaseId());
+        m_persistence.add(episode, path, show->databaseId());
         show->addEpisode(episode);
         emit progress(++episodeCounter, episodeSum, m_progressMessageId);
         QApplication::processEvents();
@@ -457,16 +457,15 @@ void TvShowFileSearcher::clearOldTvShows(bool forceClear)
     // clear gui
     Manager::instance()->tvShowModel()->clear();
 
-    mediaelch::TvShowPersistence persistence{*Manager::instance()->database()};
     if (forceClear) {
         // Simply delete all shows
-        persistence.clearAllTvShows();
+        m_persistence.clearAllTvShows();
 
     } else {
         // Otherwise, only clear disabled directories and those with autoReload.
         for (const mediaelch::MediaDirectory& dir : asConst(m_directories)) {
             if (dir.autoReload || dir.disabled) {
-                persistence.clearTvShowsInDirectory(mediaelch::DirectoryPath(dir.path));
+                m_persistence.clearTvShowsInDirectory(mediaelch::DirectoryPath(dir.path));
             }
         }
     }
@@ -474,7 +473,6 @@ void TvShowFileSearcher::clearOldTvShows(bool forceClear)
 
 void TvShowFileSearcher::setupShowsFromDatabase(QVector<TvShow*>& dbShows, int episodeCounter, int episodeSum)
 {
-    mediaelch::TvShowPersistence persistence{*Manager::instance()->database()};
     for (TvShow* show : dbShows) {
         if (m_aborted) {
             return;
@@ -482,7 +480,7 @@ void TvShowFileSearcher::setupShowsFromDatabase(QVector<TvShow*>& dbShows, int e
 
         show->loadData(Manager::instance()->mediaCenterInterfaceTvShow(), false);
 
-        QVector<TvShowEpisode*> episodes = persistence.episodes(show->databaseId());
+        QVector<TvShowEpisode*> episodes = m_persistence.episodes(show->databaseId());
         QtConcurrent::blockingMapped(episodes, TvShowFileSearcher::loadEpisodeData);
         for (TvShowEpisode* episode : episodes) {
             if (episode == nullptr) {
@@ -502,8 +500,6 @@ void TvShowFileSearcher::setupShowsFromDatabase(QVector<TvShow*>& dbShows, int e
 
 void TvShowFileSearcher::setupShows(QMap<QString, QVector<QStringList>>& contents, int& episodeCounter, int episodeSum)
 {
-    mediaelch::TvShowPersistence persistence{*Manager::instance()->database()};
-
     QMapIterator<QString, QVector<QStringList>> it(contents);
     while (it.hasNext()) {
         it.next();
@@ -538,7 +534,7 @@ void TvShowFileSearcher::setupShows(QMap<QString, QVector<QStringList>>& content
         auto* show = new TvShow(mediaelch::DirectoryPath(it.key()), this);
         show->loadData(Manager::instance()->mediaCenterInterfaceTvShow());
         emit currentDir(show->title());
-        persistence.add(show, path);
+        m_persistence.add(show, path);
 
         Manager::instance()->database()->db().transaction();
         QVector<TvShowEpisode*> episodes;
@@ -559,7 +555,7 @@ void TvShowFileSearcher::setupShows(QMap<QString, QVector<QStringList>>& content
 
         // Add episodes to model
         for (TvShowEpisode* episode : asConst(episodes)) {
-            persistence.add(episode, path, show->databaseId());
+            m_persistence.add(episode, path, show->databaseId());
             show->addEpisode(episode);
             emit progress(++episodeCounter, episodeSum, m_progressMessageId);
         }
@@ -573,7 +569,6 @@ void TvShowFileSearcher::setupShows(QMap<QString, QVector<QStringList>>& content
 
 QMap<QString, QVector<QStringList>> TvShowFileSearcher::readTvShowContent(bool forceReload)
 {
-    mediaelch::TvShowPersistence persistence{*Manager::instance()->database()};
     QMap<QString, QVector<QStringList>> contents;
     for (const mediaelch::MediaDirectory& dir : asConst(m_directories)) {
         if (m_aborted) {
@@ -590,7 +585,7 @@ QMap<QString, QVector<QStringList>> TvShowFileSearcher::readTvShowContent(bool f
         // TODO: Check if necessary?
         // If there are no shows in the database for the directory, reload
         // all shows regardless of forceReload.
-        const int showsFromDatabase = persistence.showCount(mediaelch::DirectoryPath(dir.path));
+        const int showsFromDatabase = m_persistence.showCount(mediaelch::DirectoryPath(dir.path));
         if (showsFromDatabase == 0) {
             getTvShows(mediaelch::DirectoryPath(dir.path), contents);
             continue;
@@ -606,7 +601,6 @@ QVector<TvShow*> TvShowFileSearcher::getShowsFromDatabase(bool forceReload)
         return {};
     }
 
-    mediaelch::TvShowPersistence persistence{*Manager::instance()->database()};
     QVector<TvShow*> dbShows;
     for (const mediaelch::MediaDirectory& dir : asConst(m_directories)) {
         if (dir.autoReload) { // Those directories are not read from database.
@@ -615,7 +609,7 @@ QVector<TvShow*> TvShowFileSearcher::getShowsFromDatabase(bool forceReload)
         if (dir.disabled) {
             continue;
         }
-        QVector<TvShow*> showsFromDatabase = persistence.showsInDirectory(mediaelch::DirectoryPath(dir.path));
+        QVector<TvShow*> showsFromDatabase = m_persistence.showsInDirectory(mediaelch::DirectoryPath(dir.path));
         if (!showsFromDatabase.isEmpty()) {
             dbShows.append(showsFromDatabase);
         }

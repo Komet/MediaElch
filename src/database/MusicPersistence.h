@@ -15,19 +15,20 @@ class MusicPersistence
 {
 public:
     explicit MusicPersistence(Database& db);
+    virtual ~MusicPersistence() = default;
     QSqlDatabase db();
 
-    void clearAllArtists();
-    void clearArtistsInDirectory(DirectoryPath path);
-    void add(Artist* artist, DirectoryPath path);
-    void update(Artist* artist);
-    QVector<Artist*> artistsInDirectory(DirectoryPath path);
+    virtual void clearAllArtists();
+    virtual void clearArtistsInDirectory(DirectoryPath path);
+    virtual void add(Artist* artist, DirectoryPath path);
+    virtual void update(Artist* artist);
+    virtual QVector<Artist*> artistsInDirectory(DirectoryPath path);
 
-    void clearAllAlbums();
-    void clearAlbumsInDirectory(DirectoryPath path);
-    void add(Album* album, DirectoryPath path);
-    void update(Album* album);
-    QVector<Album*> albums(Artist* artist);
+    virtual void clearAllAlbums();
+    virtual void clearAlbumsInDirectory(DirectoryPath path);
+    virtual void add(Album* album, DirectoryPath path);
+    virtual void update(Album* album);
+    virtual QVector<Album*> albums(Artist* artist);
 
 private:
     Database& m_db;
