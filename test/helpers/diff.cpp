@@ -36,12 +36,14 @@ QDomDocument parseXml(const QString& content)
 
 #else
     QDomDocument::ParseResult result = doc.setContent(content, QDomDocument::ParseOption::Default);
-    CAPTURE(result.errorMessage);
-    CAPTURE(result.errorLine);
-    CAPTURE(result.errorColumn);
+    if (!result) {
+        CAPTURE(result.errorMessage);
+        CAPTURE(result.errorLine);
+        CAPTURE(result.errorColumn);
 
-    REQUIRE(result.errorLine == -1);
-    REQUIRE(result.errorColumn == -1);
+        REQUIRE(result.errorLine == -1);
+        REQUIRE(result.errorColumn == -1);
+    }
 #endif
 
     return doc;
