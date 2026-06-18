@@ -4,16 +4,29 @@ target_sources(
   mediaelch_unit_test
   PRIVATE
     main.cpp
-    testModels.cpp
     data/testImdbId.cpp
     data/testLocale.cpp
     data/testTmdbId.cpp
     data/testCertification.cpp
+    data/testRating.cpp
+    data/testResumeTime.cpp
     export/test.ExportTemplateLoader.cpp
+    export/testCsvExport.cpp
+    export/testTableWriter.cpp
     file/testNameFormatter.cpp
     file/testStackedBaseName.cpp
     globals/testVersionInfo.cpp
     globals/testTime.cpp
+    globals/testHelper.cpp
+    media/testFilenameUtils.cpp
+    media/testPath.cpp
+    model/testMovieModel.cpp
+    model/testTvShowModel.cpp
+    model/testConcertModel.cpp
+    model/testMusicModel.cpp
+    model/testActorModel.cpp
+    model/testRatingModel.cpp
+    model/testImageModel.cpp
     movie/testMovieFileSearcher.cpp
     renamer/testPlaceholderParser.cpp
     renamer/testRenamer.cpp
@@ -26,6 +39,10 @@ target_sources(
     tv_shows/testSeasonNumberExtraction.cpp
     tv_shows/testTvDbId.cpp
     tv_shows/testTvMazeId.cpp
+    tv_shows/testEpisodeNumber.cpp
+    tv_shows/testSeasonNumber.cpp
+    utils/testMath.cpp
+    utils/testContainers.cpp
 )
 
 target_link_libraries(

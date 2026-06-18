@@ -1,3 +1,20 @@
+# Hide all dot files/folders by default.
+/.*
+!/.ci/
+!/.github/
+!/.tx/
+!/.clang-format
+!/.cmake-format
+!/.clang-tidy
+!/.git-blame-ignore-revs
+!/.gitmodules
+!/.editorconfig
+
+/*.md
+!/README.md
+!/CHANGELOG.md
+!/CONTRIBUTING.md
+
 CMakeLists.txt.user*
 CMakeUserPresets.json
 
@@ -8,9 +25,9 @@ MediaInfo/
 ffmpeg
 *.7z
 *.zip
-third_party/packaging_macOS
-third_party/packaging_linux
-third_party/packaging_win
+third_party/packaging_macOS/
+third_party/packaging_linux/
+third_party/packaging_win/
 *.qm
 *.log
 
@@ -23,12 +40,8 @@ tmp/
 .DS_Store
 
 # IDEs / Debuggers
-.vscode
-.idea
 cmake-build-debug
 *.autosave
-.gdb/
-.gdbinit
 
 # Fake data
 scripts/generated_media

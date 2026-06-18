@@ -14,7 +14,7 @@ const EpisodeNumber EpisodeNumber::NoEpisode = EpisodeNumber(-2);
 
 bool EpisodeNumber::operator==(const EpisodeNumber& other) const
 {
-    // Only valid IMDb id's are comparable
+    // Only valid IMDb ids are comparable
     return m_episodeNumber == other.m_episodeNumber;
 }
 

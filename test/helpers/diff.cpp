@@ -17,11 +17,13 @@ namespace test {
 
 QDomDocument parseXml(const QString& content)
 {
+    QDomDocument doc;
+
+#if QT_VERSION < QT_VERSION_CHECK(6, 8, 0)
     QString errorMsg;
     int errorLine = -1;
     int errorColumn = -1;
 
-    QDomDocument doc;
     doc.setContent(content, false, &errorMsg, &errorLine, &errorColumn);
 
     // CAPTURE(content);
@@ -31,6 +33,16 @@ QDomDocument parseXml(const QString& content)
 
     REQUIRE(errorLine == -1);
     REQUIRE(errorColumn == -1);
+
+#else
+    QDomDocument::ParseResult result = doc.setContent(content, QDomDocument::ParseOption::Default);
+    CAPTURE(result.errorMessage);
+    CAPTURE(result.errorLine);
+    CAPTURE(result.errorColumn);
+
+    REQUIRE(result.errorLine == -1);
+    REQUIRE(result.errorColumn == -1);
+#endif
 
     return doc;
 }
