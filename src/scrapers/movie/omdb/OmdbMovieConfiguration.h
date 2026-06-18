@@ -18,7 +18,7 @@ public:
     explicit OmdbMovieConfiguration(Settings& settings, QObject* parent = nullptr);
     ~OmdbMovieConfiguration() override = default;
 
-    void init();
+    void init() override;
 
     ELCH_NODISCARD Locale language() override;
     void setLanguage(const Locale& value) override;

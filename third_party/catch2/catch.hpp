@@ -12,6 +12,7 @@
 #define TWOBLUECUBES_SINGLE_INCLUDE_CATCH_HPP_INCLUDED
 // start catch.hpp
 
+#pragma clang diagnostic ignored "-Wc2y-extensions"
 
 #define CATCH_VERSION_MAJOR 2
 #define CATCH_VERSION_MINOR 13

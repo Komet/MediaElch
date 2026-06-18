@@ -17,7 +17,7 @@ public:
     explicit OmdbTvConfiguration(Settings& settings, QObject* parent = nullptr);
     ~OmdbTvConfiguration() override = default;
 
-    void init();
+    void init() override;
 
     ELCH_NODISCARD Locale language() override;
     void setLanguage(const Locale& value) override;
