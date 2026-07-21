@@ -18,6 +18,8 @@ MovieSearchWidget::MovieSearchWidget(QWidget* parent) : QWidget(parent), ui(new 
     ui->setupUi(this);
     ui->results->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->searchString->setType(MyLineEdit::TypeLoading);
+    ui->btnTryNextScraper->hide();
+    ui->btnCancelSearch->hide();
 
     // clang-format off
     const auto indexChanged = elchOverload<int>(&QComboBox::currentIndexChanged);
@@ -27,6 +29,8 @@ MovieSearchWidget::MovieSearchWidget(QWidget* parent) : QWidget(parent), ui(new 
     connect(ui->results,       &QTableWidget::itemDoubleClicked,      this, &MovieSearchWidget::onResultDoubleClicked);
     connect(ui->results,       &QTableWidget::currentItemChanged,     this, &MovieSearchWidget::onSelectedResultChanged);
     connect(ui->searchString,  &MyLineEdit::returnPressed,      this, &MovieSearchWidget::startSearch);
+    connect(ui->btnTryNextScraper, &QPushButton::clicked,       this, &MovieSearchWidget::onTryNextScraper);
+    connect(ui->btnCancelSearch,   &QPushButton::clicked,       this, &MovieSearchWidget::onCancelSearch);
     // clang-format on
 
     connect(ui->searchString, &QLineEdit::textEdited, this, [this](QString searchString) {
@@ -96,6 +100,8 @@ void MovieSearchWidget::startSearch()
     emit sigMovieSelectionChanged(false);
 
     abortAndClearResults();
+    ui->btnTryNextScraper->hide();
+    ui->btnCancelSearch->show();
     // Only disable the scraper combobox during custom scraper workflows.
     // For normal searches, keep it enabled so users can switch scrapers
     // even while a search is in progress (e.g. if the current scraper is broken).
@@ -172,12 +178,16 @@ void MovieSearchWidget::showError(const QString& message)
     ui->lblSuccessMessage->hide();
     ui->lblErrorMessage->setText(message);
     ui->lblErrorMessage->show();
+    ui->btnTryNextScraper->setVisible(!isCustomScrapingInProgress() && hasNextScraper());
+    ui->btnCancelSearch->hide();
     enableSearch();
 }
 
 void MovieSearchWidget::showSuccess(const QString& message)
 {
     ui->lblErrorMessage->hide();
+    ui->btnTryNextScraper->hide();
+    ui->btnCancelSearch->hide();
     ui->lblSuccessMessage->setText(message);
     ui->lblSuccessMessage->show();
     enableSearch();
@@ -677,4 +687,53 @@ void MovieSearchWidget::onSkipCurrentScraper()
             changeScraperTo(m_customScrapersLeft.first());
         }
     }
+}
+
+bool MovieSearchWidget::hasNextScraper() const
+{
+    return getNextScraperIndex() >= 0;
+}
+
+int MovieSearchWidget::getNextScraperIndex() const
+{
+    if (m_currentScraper == nullptr) {
+        return -1;
+    }
+
+    const int currentIndex = ui->comboScraper->currentIndex();
+    const int scraperCount = ui->comboScraper->count();
+
+    if (scraperCount <= 1 || currentIndex < 0) {
+        return -1;
+    }
+
+    int nextIndex = (currentIndex + 1) % scraperCount;
+    return (nextIndex != currentIndex) ? nextIndex : -1;
+}
+
+void MovieSearchWidget::onTryNextScraper()
+{
+    const int nextIndex = getNextScraperIndex();
+    if (nextIndex < 0) {
+        return;
+    }
+
+    qCInfo(generic) << "[MovieSearch] Trying next scraper due to previous failure";
+    ui->btnTryNextScraper->hide();
+    ui->comboScraper->setCurrentIndex(nextIndex);
+}
+
+void MovieSearchWidget::onCancelSearch()
+{
+    qCInfo(generic) << "[MovieSearch] User cancelled search";
+    abortCurrentJobs();
+    ui->btnCancelSearch->hide();
+    ui->searchString->setLoading(false);
+    ui->searchString->setFocus();
+
+    if (!isCustomScrapingInProgress()) {
+        ui->comboScraper->setEnabled(true);
+    }
+    ui->comboLanguage->setEnabled(m_currentScraper != nullptr
+                                  && m_currentScraper->meta().supportedLanguages.size() > 1);
 }
