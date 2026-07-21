@@ -54,6 +54,8 @@ private slots:
     void onChkAllConcertInfosToggled();
     void onScraperChanged(int index);
     void onLanguageChanged();
+    void onTryNextScraper();
+    void onCancelSearch();
 
 private:
     void setupScraperDropdown();
@@ -62,6 +64,8 @@ private:
     void showSuccess(const QString& message);
     void clearResultTable();
     void updateCheckBoxes();
+    bool hasNextScraper() const;
+    int getNextScraperIndex() const;
 
 private:
     Ui::ConcertSearchWidget* ui = nullptr;
