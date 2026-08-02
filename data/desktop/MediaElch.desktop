@@ -6,3 +6,4 @@ Terminal=false
 Exec=MediaElch
 Categories=AudioVideo;AudioVideoEditing;Database;Qt;
 GenericName=Media Manager
+GenericName[ru]=Менеджер медиатеки

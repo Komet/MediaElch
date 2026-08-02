@@ -3,6 +3,7 @@
   <id>com.kvibes.MediaElch</id>
   <name>MediaElch</name>
   <summary>MediaElch is a MediaManager for Kodi</summary>
+  <summary xml:lang="ru">Менеджер медиатеки для Kodi</summary>
   <developer_name>MediaElch Team</developer_name>
   <metadata_license>CC-BY-4.0</metadata_license>
   <project_license>LGPL-3.0-only</project_license>
@@ -10,6 +11,9 @@
   <description>
     <p>
       MediaElch is a MediaManager for Kodi. Information about Movies, TV Shows, Concerts and Music are stored as nfo files. Fanarts are downloaded automatically from fanart.tv. Using the nfo generator, MediaElch can be used with other MediaCenters as well.
+    </p>
+    <p xml:lang="ru">
+      MediaElch — менеджер медиатеки для Kodi. Сведения о фильмах, сериалах, концертах и музыке он хранит в файлах NFO, а фан-арт скачивает с fanart.tv сам. Генератор NFO позволяет работать и с другими медиацентрами, не только с Kodi.
     </p>
   </description>
 
@@ -25,6 +29,7 @@
     <screenshot type="default">
       <image>https://mediaelch.github.io/mediaelch-doc/_images/movie-main.png</image>
       <caption>Manage your movies</caption>
+      <caption xml:lang="ru">Управление фильмами</caption>
     </screenshot>
   </screenshots>
 </component>
