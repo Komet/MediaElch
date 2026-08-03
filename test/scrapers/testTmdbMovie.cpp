@@ -74,6 +74,7 @@ TEST_CASE("TmdbMovie scrapes correct movie details", "[movie][TMDB][TmdbMovie][l
 
         REQUIRE(m.imdbId() == ImdbId("tt2277860"));
         REQUIRE(m.tmdbId() == TmdbId("127380"));
+        CHECK(m.englishTitle() == "Finding Dory");
 
         test::scraper::compareAgainstReference(m, "scrapers/tmdb/Finding_Dory_tt2277860");
     }
@@ -86,6 +87,7 @@ TEST_CASE("TmdbMovie scrapes correct movie details", "[movie][TMDB][TmdbMovie][l
 
         REQUIRE(m.imdbId() == ImdbId("tt2277860"));
         REQUIRE(m.tmdbId() == TmdbId("127380"));
+        CHECK(m.englishTitle() == "Finding Dory");
 
         test::scraper::compareAgainstReference(m, "scrapers/tmdb/Finding_Dory_tmdb127380");
     }
@@ -102,7 +104,25 @@ TEST_CASE("TmdbMovie scrapes correct movie details", "[movie][TMDB][TmdbMovie][l
 
         // Must not be "U"; see https://github.com/Komet/MediaElch/issues/1641
         REQUIRE(m.certification() == Certification("0"));
+        // English title comes from original_title when original_language is en
+        CHECK(m.englishTitle() == "The Rescuers");
 
         test::scraper::compareAgainstReference(m, "scrapers/tmdb/The_Rescuers_de-DE_tmdb11319");
+    }
+
+    SECTION("English title via extra EN request when original language is not en")
+    {
+        // Amélie (2001), original_language=fr — requires loadEnglishTitle()
+        auto scrapeJob = makeScrapeJobWithLocale("194", "de-DE");
+        test::scrapeMovieScraperSync(scrapeJob.get(), false);
+        auto& m = scrapeJob->movie();
+
+        REQUIRE(m.tmdbId() == TmdbId("194"));
+        REQUIRE(m.imdbId() == ImdbId("tt0211915"));
+        // TMDb strings can drift; assert the EN-request path filled a distinct english title.
+        REQUIRE_FALSE(m.englishTitle().isEmpty());
+        CHECK(m.englishTitle() != m.originalTitle());
+        CHECK(m.englishTitle() != m.title());
+        CHECK(m.englishTitle() == "Amélie");
     }
 }

@@ -46,6 +46,15 @@ TEST_CASE("Movie XML writer for Kodi v18", "[data][movie][kodi][nfo]")
         test::compareXmlAgainstResourceFile(actual, filename);
     }
 
+    SECTION("read / write TMM english_title tag")
+    {
+        createAndCompareMovie("movie/kodi_v18_movie_english_title.nfo", [](Movie& movie) {
+            CHECK(movie.title() == QStringLiteral("Название"));
+            CHECK(movie.originalTitle() == "Original Name");
+            CHECK(movie.englishTitle() == "English Title");
+        });
+    }
+
     SECTION("read / write details: Alien 1979")
     {
         createAndCompareMovie("movie/kodi_v18_Alien_1979.nfo", [](Movie& movie) {
@@ -97,6 +106,7 @@ TEST_CASE("Movie XML writer for Kodi v18", "[data][movie][kodi][nfo]")
 
         movie.setTitle("Allegiant");
         movie.setOriginalTitle("AllegiantOriginal");
+        movie.setEnglishTitle("Allegiant");
         movie.setSortTitle("TmovieFc10");
 
         {

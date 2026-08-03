@@ -1204,6 +1204,10 @@
         <translation>原始片名</translation>
     </message>
     <message>
+        <source>English Title</source>
+        <translation>英文标题</translation>
+    </message>
+    <message>
         <location line="-132"/>
         <location line="+55"/>
         <source>Sort Title</source>
@@ -5181,6 +5185,12 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <location line="+10"/>
         <source>Original Name</source>
         <translation>原始片名</translation>
+    </message>
+    
+    <message>
+        <location line="+10"/>
+        <source>English Name</source>
+        <translation>英文名</translation>
     </message>
     <message>
         <location line="+10"/>

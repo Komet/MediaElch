@@ -268,7 +268,8 @@ enum class ScraperData : int
     Casts,
     Trailers,
     Images,
-    Releases
+    Releases,
+    EnglishTitle
 };
 
 struct ExtraFanart

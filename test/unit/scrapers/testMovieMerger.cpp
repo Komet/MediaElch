@@ -18,6 +18,7 @@ TEST_CASE("movies are correctly merged", "[movie][merger]")
 
         CHECK(copy.title() == original->title());
         CHECK(copy.originalTitle() == original->originalTitle());
+        CHECK(copy.englishTitle() == original->englishTitle());
         CHECK(copy.overview() == original->overview());
         CHECK(copy.outline() == original->outline());
     }
@@ -30,6 +31,7 @@ TEST_CASE("movies are correctly merged", "[movie][merger]")
 
         CHECK(copy.title() == original->title());
         CHECK(copy.originalTitle() == original->originalTitle());
+        CHECK(copy.englishTitle() == original->englishTitle());
         CHECK(copy.overview() == original->overview());
         CHECK(copy.outline() == original->overview()); // !
     }
@@ -44,6 +46,7 @@ TEST_CASE("movies are correctly merged", "[movie][merger]")
 
         CHECK(copy.title() == original->title());
         CHECK(copy.originalTitle() == original->originalTitle());
+        CHECK(copy.englishTitle() == original->englishTitle());
         CHECK(copy.overview() == original->overview());
         CHECK(copy.outline().isEmpty()); // !
     }
@@ -68,7 +71,39 @@ TEST_CASE("movies are correctly merged", "[movie][merger]")
 
         CHECK(copy.title() == original->title());
         CHECK(copy.originalTitle().isEmpty());
+        CHECK(copy.englishTitle() == original->englishTitle());
         CHECK(copy.overview() == original->overview());
         CHECK(copy.outline() == original->outline());
+    }
+
+    SECTION("Overwrites english title when Title is requested and source has a value")
+    {
+        Movie copy;
+        copy.setEnglishTitle("Manual English Title");
+        copyDetailsToMovie(copy, *original, {MovieScraperInfo::Title}, true, false);
+
+        CHECK(copy.title() == original->title());
+        CHECK(copy.englishTitle() == original->englishTitle());
+    }
+
+    SECTION("Keeps english title when source english title is empty")
+    {
+        Movie copy;
+        copy.setEnglishTitle("Manual English Title");
+        original->setEnglishTitle("");
+        copyDetailsToMovie(copy, *original, {MovieScraperInfo::Title}, true, false);
+
+        CHECK(copy.englishTitle() == "Manual English Title");
+    }
+
+    SECTION("Does not copy english title if Title is not requested")
+    {
+        Movie copy;
+        copy.setEnglishTitle("Manual English Title");
+        auto infos = allMovieScraperInfos();
+        infos.remove(MovieScraperInfo::Title);
+        copyDetailsToMovie(copy, *original, infos, true, false);
+
+        CHECK(copy.englishTitle() == "Manual English Title");
     }
 }

@@ -1208,6 +1208,10 @@
         <translation>Original Titel</translation>
     </message>
     <message>
+        <source>English Title</source>
+        <translation>Englischer Titel</translation>
+    </message>
+    <message>
         <location line="-132"/>
         <location line="+55"/>
         <source>Sort Title</source>
@@ -5192,6 +5196,12 @@ Wenn du bei TMDb nach einer ID suchen möchtest, stelle bitte &quot;id&quot; vor
         <location line="+10"/>
         <source>Original Name</source>
         <translation>Original Titel</translation>
+    </message>
+    
+    <message>
+        <location line="+10"/>
+        <source>English Name</source>
+        <translation>Englischer Titel</translation>
     </message>
     <message>
         <location line="+10"/>

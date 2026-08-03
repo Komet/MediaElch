@@ -109,6 +109,8 @@ void Movie::clear(QSet<MovieScraperInfo> infos)
     }
     if (infos.contains(MovieScraperInfo::Title)) {
         m_originalTitle = "";
+        // Cleared with Title; MovieMerger only restores englishTitle when source has a value.
+        m_englishTitle = "";
     }
     if (infos.contains(MovieScraperInfo::Set)) {
         m_set = MovieSet{};
@@ -172,6 +174,7 @@ void Movie::exportTo(Movie::Exporter& exporter) const
     exporter.exportTitle(m_name);
     exporter.exportSortTitle(m_sortTitle);
     exporter.exportOriginalTitle(m_originalTitle);
+    exporter.exportEnglishTitle(m_englishTitle);
 
     exporter.exportOverview(m_overview);
     exporter.exportOutline(m_outline);
@@ -220,6 +223,11 @@ QString Movie::sortTitle() const
 QString Movie::originalTitle() const
 {
     return m_originalTitle;
+}
+
+QString Movie::englishTitle() const
+{
+    return m_englishTitle;
 }
 
 MovieImages& Movie::images()
@@ -601,6 +609,16 @@ void Movie::setSortTitle(QString sortTitle)
 void Movie::setOriginalTitle(QString originalTitle)
 {
     m_originalTitle = std::move(originalTitle);
+    setChanged(true);
+}
+
+/**
+ * \brief Sets the movie's English title (TMM-compatible NFO field).
+ * \see Movie::englishTitle
+ */
+void Movie::setEnglishTitle(QString englishTitle)
+{
+    m_englishTitle = std::move(englishTitle);
     setChanged(true);
 }
 
@@ -1174,6 +1192,7 @@ QDebug operator<<(QDebug dbg, const Movie& movie)
     }
     out.append(QString("  Name:          ").append(movie.title()).append(nl));
     out.append(QString("  Original-Name: ").append(movie.originalTitle()).append(nl));
+    out.append(QString("  English-Title: ").append(movie.englishTitle()).append(nl));
     out.append(QString("  Ratings:").append(nl));
     for (const Rating& rating : movie.ratings()) {
         out.append(

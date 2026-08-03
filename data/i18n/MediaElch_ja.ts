@@ -1204,6 +1204,10 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>English Title</source>
+        <translation>英語タイトル</translation>
+    </message>
+    <message>
         <location line="-132"/>
         <location line="+55"/>
         <source>Sort Title</source>
@@ -5177,6 +5181,11 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <location line="+10"/>
         <source>Original Name</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>English Name</source>
+        <translation>英語名</translation>
     </message>
     <message>
         <location line="+10"/>

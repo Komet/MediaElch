@@ -78,6 +78,7 @@ public:
         LastModified, // @since 2.8.17
         WikidataId,   // @since 2.10.1
         TvShowLinks,  // @since 2.10.8
+        EnglishTitle,
     };
 
 public:

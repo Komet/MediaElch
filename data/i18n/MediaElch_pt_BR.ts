@@ -1214,6 +1214,10 @@ Por exemplo:  &lt;baseFileName&gt;-poster.jpg,folder.jpg</translation>
         <translation>Título Original</translation>
     </message>
     <message>
+        <source>English Title</source>
+        <translation>Título em inglês</translation>
+    </message>
+    <message>
         <location line="-132"/>
         <location line="+55"/>
         <source>Sort Title</source>
@@ -5216,6 +5220,12 @@ Por exemplo:  &lt;baseFileName&gt;-poster.jpg,folder.jpg</translation>
         <location line="+10"/>
         <source>Original Name</source>
         <translation>Título Original</translation>
+    </message>
+    
+    <message>
+        <location line="+10"/>
+        <source>English Name</source>
+        <translation>Título Inglês</translation>
     </message>
     <message>
         <location line="+10"/>

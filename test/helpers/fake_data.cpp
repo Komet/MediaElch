@@ -11,6 +11,7 @@ std::unique_ptr<Movie> movieWithAllDetails()
     auto movie = std::make_unique<Movie>();
     movie->setTitle("Allegiant");
     movie->setOriginalTitle("AllegiantOriginal");
+    movie->setEnglishTitle("Allegiant");
     movie->setSortTitle("TmovieFc10");
 
     {

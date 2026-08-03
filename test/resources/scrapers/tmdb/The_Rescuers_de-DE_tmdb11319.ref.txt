@@ -8,6 +8,7 @@ mediaCenterId: -1
 title: Bernard & Bianca - Die Mäusepolizei
 sortTitle: 
 originalTitle: The Rescuers
+englishTitle: The Rescuers
 overview:
     Die Vollwaise Penny wird von der bösen Madame Medusa entführt. Mit Hilfe des Mäd
     chens plant die gierige Alte, in den Besitz des größten Diamanten der Welt zu ge
@@ -35,7 +36,7 @@ actors: (N>10)
  - id: 
    name: Bob Newhart
    role: Bernard (voice)
-   thumb: http://image.tmdb.org/t/p/original/tJUSKC5991cOgk6K7OTLJCzxHni.jpg
+   thumb: http://image.tmdb.org/t/p/original/wnhoM8iS6LOZ1qymFMXKYZBbVy8.jpg
    order: 0
    imageHasChanged: false
  - id: 
