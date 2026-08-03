@@ -6728,6 +6728,11 @@ Vérifiez les paramètres si vous avez déjà stocké vos films dans des dossier
     </message>
     <message>
         <location line="+1"/>
+        <source>English Title</source>
+        <translation>Titre anglais</translation>
+    </message>
+    <message>
+        <location line="+1"/>
         <source>Sort Title</source>
         <translation>Odre de tri</translation>
     </message>

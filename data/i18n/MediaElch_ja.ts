@@ -6704,6 +6704,11 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     </message>
     <message>
         <location line="+1"/>
+        <source>English Title</source>
+        <translation>英語タイトル</translation>
+    </message>
+    <message>
+        <location line="+1"/>
         <source>Sort Title</source>
         <translation type="unfinished"></translation>
     </message>

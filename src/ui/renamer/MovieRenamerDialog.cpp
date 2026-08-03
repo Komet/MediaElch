@@ -92,6 +92,7 @@ QStringList MovieRenamerDialog::fileNameDefaults()
     return {
         "<title>.<extension>",
         "<originalTitle>.<extension>",
+        "<englishTitle>.<extension>",
         "<title>{tmdbId} tmdbId-<tmdbId>{/tmdbId}{imdbId} imdbId-<imdbId>{/imdbId} (<year>).<extension>",
     };
 }
@@ -101,6 +102,7 @@ QStringList MovieRenamerDialog::fileNameMultiDefaults()
     return {
         "<title>-part<partNo>.<extension>",
         "<originalTitle>-part<partNo>.<extension>",
+        "<englishTitle>-part<partNo>.<extension>",
     };
 }
 
@@ -110,6 +112,7 @@ QStringList MovieRenamerDialog::directoryNameDefaults()
         "<title> (<year>)",
         "{movieset}<movieset> - {/movieset}<title> (<year>)",
         "<originalTitle> (<year>)",
+        "<englishTitle> (<year>)",
         "<sortTitle>{imdbId} [<imdbId>]{/imdbId} (<year>)",
         "<sortTitle>{tmdbId} tmdbId-<tmdbId>{/tmdbId} (<year>)",
     };

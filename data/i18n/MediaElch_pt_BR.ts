@@ -6752,6 +6752,11 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
     </message>
     <message>
         <location line="+1"/>
+        <source>English Title</source>
+        <translation>Título em inglês</translation>
+    </message>
+    <message>
+        <location line="+1"/>
         <source>Sort Title</source>
         <translation>Título para Ordenar</translation>
     </message>

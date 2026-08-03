@@ -7,6 +7,8 @@
 #include "renamer/EpisodeRenamer.h"
 #include "renamer/MovieRenamer.h"
 
+#include <algorithm>
+
 /// Ensure that we can access all data/conditions that are provided as placeholders.
 /// This should catch cases where we access nullptr, etc.
 void loadDataForAllPlaceholders(mediaelch::RenamerPlaceholders& placeholderProvider, mediaelch::RenamerData& data)
@@ -51,6 +53,45 @@ TEST_CASE("Movie Renamer works", "[renamer][movie]")
         Movie movie;
         mediaelch::MovieRenamerData data{movie};
         loadDataForAllPlaceholders(placeholders, data);
+    }
+
+    SECTION("englishTitle falls back to title when empty")
+    {
+        Movie movie;
+        movie.setTitle("Amélie");
+        movie.setEnglishTitle("");
+        mediaelch::MovieRenamerData data{movie};
+        CHECK(data.value("englishTitle") == QStringLiteral("Amélie"));
+        CHECK(data.value("title") == QStringLiteral("Amélie"));
+    }
+
+    SECTION("englishTitle uses its own value when set")
+    {
+        Movie movie;
+        movie.setTitle("Амели");
+        movie.setEnglishTitle("Amélie");
+        mediaelch::MovieRenamerData data{movie};
+        CHECK(data.value("englishTitle") == QStringLiteral("Amélie"));
+        CHECK(data.value("title") == QStringLiteral("Амели"));
+    }
+
+    SECTION("englishTitle placeholder is listed and replaceable")
+    {
+        Movie movie;
+        movie.setTitle("Fallback");
+        movie.setEnglishTitle("English Name");
+        mediaelch::MovieRenamerData data{movie};
+        data.setExtension("mkv");
+
+        const auto all = placeholders.placeholders();
+        const bool hasEnglishTitle = std::any_of(all.cbegin(), all.cend(), [](const mediaelch::Placeholder& p) {
+            return p.name == QLatin1String("englishTitle") && p.isValue;
+        });
+        REQUIRE(hasEnglishTitle);
+
+        CHECK(placeholders.replace("<englishTitle>.<extension>", data) == QStringLiteral("English Name.mkv"));
+        movie.setEnglishTitle("");
+        CHECK(placeholders.replace("<englishTitle>.<extension>", data) == QStringLiteral("Fallback.mkv"));
     }
 }
 

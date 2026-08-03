@@ -6723,6 +6723,11 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     </message>
     <message>
         <location line="+1"/>
+        <source>English Title</source>
+        <translation>Английско заглавие</translation>
+    </message>
+    <message>
+        <location line="+1"/>
         <source>Sort Title</source>
         <translation>Кратко заглавие</translation>
     </message>

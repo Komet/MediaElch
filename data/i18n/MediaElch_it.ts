@@ -6726,6 +6726,11 @@ Se vuoi cercare per un ID di TMDb inizia la stringa con &quot;id&quot;.</transla
     </message>
     <message>
         <location line="+1"/>
+        <source>English Title</source>
+        <translation>Titolo inglese</translation>
+    </message>
+    <message>
+        <location line="+1"/>
         <source>Sort Title</source>
         <translation>Titolo per ordinamento</translation>
     </message>
