@@ -207,7 +207,8 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode& episode
     QString fiCanonicalPath = episodeFileinfo.canonicalPath();
     mediaelch::FileList episodeFiles = episode.files();
     MediaCenterInterface* mediaCenter = Manager::instance()->mediaCenterInterface();
-    QString nfo = mediaCenter->nfoFilePath(&episode);
+    // Strict lookup: keep rename targets aligned with primary sidecar patterns only.
+    QString nfo = mediaCenter->nfoFilePath(&episode, false);
     QString newNfoFileName = nfo;
     QString thumbnail = mediaCenter->imageFileName(&episode, ImageType::TvShowEpisodeThumb);
     QString newThumbnailFileName = thumbnail;
