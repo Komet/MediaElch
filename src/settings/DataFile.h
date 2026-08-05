@@ -60,7 +60,9 @@ public:
     DataFileType type() const;
     QString fileName() const;
     int pos() const;
-    QString saveFileName(const QString& fileName, SeasonNumber season = SeasonNumber::NoSeason, bool stacked = false);
+    QString saveFileName(const QString& fileName,
+        SeasonNumber season = SeasonNumber::NoSeason,
+        bool stacked = false) const;
     static bool lessThan(DataFile a, DataFile b);
     void setFileName(QString fileName);
 

@@ -47,7 +47,7 @@ int DataFile::pos() const
  * \param fileName File name
  * \param season Season number
  */
-QString DataFile::saveFileName(const QString& fileName, SeasonNumber season, bool stacked)
+QString DataFile::saveFileName(const QString& fileName, SeasonNumber season, bool stacked) const
 {
     if (type() == DataFileType::MovieSetBackdrop || type() == DataFileType::MovieSetPoster) {
         QString newFileName = m_fileName;
