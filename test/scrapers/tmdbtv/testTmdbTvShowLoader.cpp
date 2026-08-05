@@ -28,6 +28,8 @@ TEST_CASE("TmdbTv scrapes show details", "[show][TmdbTv][load_data]")
         auto& show = scrapeJob->tvShow();
 
         REQUIRE(show.tmdbId() == TmdbId("456"));
+        // Scrape locale is English → title is the English title.
+        CHECK(show.englishTitle() == "The Simpsons");
         test::scraper::compareAgainstReference(show, "scrapers/tmdbtv/The-Simpsons-tmdb456-minimal-details");
     }
 
@@ -40,6 +42,8 @@ TEST_CASE("TmdbTv scrapes show details", "[show][TmdbTv][load_data]")
         auto& show = scrapeJob->tvShow();
 
         REQUIRE(show.tmdbId() == TmdbId("4556"));
+        // original_language=en → english title from original_name (no extra EN request).
+        CHECK(show.englishTitle() == "Scrubs");
         test::scraper::compareAgainstReference(show, "scrapers/tmdbtv/Scrubs-tmdb4556-minimal-details-DE");
     }
 
@@ -55,6 +59,7 @@ TEST_CASE("TmdbTv scrapes show details", "[show][TmdbTv][load_data]")
         auto& show = scrapeJob->tvShow();
 
         REQUIRE(show.tmdbId() == TmdbId("4556"));
+        CHECK(show.englishTitle() == "Scrubs");
         test::scraper::compareAgainstReference(show, "scrapers/tmdbtv/Scrubs-tmdb4556-all-details");
     }
 
@@ -70,7 +75,25 @@ TEST_CASE("TmdbTv scrapes show details", "[show][TmdbTv][load_data]")
         auto& show = scrapeJob->tvShow();
 
         REQUIRE(show.tmdbId() == TmdbId("4556"));
+        CHECK(show.englishTitle() == "Scrubs");
         test::scraper::compareAgainstReference(show, "scrapers/tmdbtv/Scrubs-tmdb4556-all-details-DE");
+    }
+
+    SECTION("English title via extra EN request when original language is not en")
+    {
+        // Money Heist / La casa de papel (original_language=es) — requires loadEnglishTitle()
+        ShowScrapeJob::Config config{ShowIdentifier("71446"), Locale("de-DE"), {ShowScraperInfo::Title}};
+
+        auto scrapeJob = std::make_unique<TmdbTvShowScrapeJob>(getTmdbApi(), config);
+        test::scrapeTvScraperSync(scrapeJob.get());
+        auto& show = scrapeJob->tvShow();
+
+        REQUIRE(show.tmdbId() == TmdbId("71446"));
+        // TMDb strings can drift; assert the EN-request path filled a distinct english title.
+        REQUIRE_FALSE(show.englishTitle().isEmpty());
+        CHECK(show.englishTitle() != show.originalTitle());
+        CHECK(show.englishTitle() != show.title());
+        CHECK(show.englishTitle() == "Money Heist");
     }
 
     SECTION("Loads the full cast for Stargate SG-1")
@@ -93,12 +116,20 @@ TEST_CASE("TmdbTv scrapes show details", "[show][TmdbTv][load_data]")
         // `aggregate_credits`, which also includes e.g. "Richard Dean Anderson".
         // There are only 6 actors listed for the last season.
         const auto& actors = show.actors().actors();
-        // Yes, there are really 650 actors.
+        // Yes, there are really 650 actors. Order from TMDb can change.
         REQUIRE(actors.size() > 650);
-        CHECK(actors[0]->name == "Richard Dean Anderson");
-        CHECK(actors[0]->role == "Jack O'Neill");
-        CHECK(actors[0]->id == "26085");
-        CHECK_THAT(actors[0]->thumb, StartsWith("https://image.tmdb.org/t/p/original"));
+        const auto* anderson = [&actors]() -> const Actor* {
+            for (const Actor* actor : actors) {
+                if (actor != nullptr && actor->id == "26085") {
+                    return actor;
+                }
+            }
+            return nullptr;
+        }();
+        REQUIRE(anderson != nullptr);
+        CHECK(anderson->name == "Richard Dean Anderson");
+        CHECK(anderson->role == "Jack O'Neill");
+        CHECK_THAT(anderson->thumb, StartsWith("https://image.tmdb.org/t/p/original"));
 
         test::scraper::compareAgainstReference(show, "scrapers/tmdbtv/Stargate-SG-1-tmdb4629");
     }

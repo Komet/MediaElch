@@ -110,6 +110,7 @@ public:
         ShowTitle,
         ShowSortTitle,
         ShowOriginalTitle,
+        ShowEnglishTitle,
         ShowFirstAired,
         ShowNetwork,
         ShowGenres,

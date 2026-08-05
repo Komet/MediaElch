@@ -250,6 +250,7 @@ void CsvTvShowExport::exportTvShows(const QVector<TvShow*>& shows, std::function
             {s(Field::ShowTitle), show->title()},
             {s(Field::ShowSortTitle), show->sortTitle()},
             {s(Field::ShowOriginalTitle), show->originalTitle()},
+            {s(Field::ShowEnglishTitle), show->englishTitle()},
             {s(Field::ShowFirstAired), show->firstAired().toString(Qt::ISODate)},
             {s(Field::ShowNetwork), show->networks().join(", ")},
             {s(Field::ShowCertification), show->certification().toString()},
@@ -288,6 +289,7 @@ QString CsvTvShowExport::fieldToString(CsvTvShowExport::Field field)
     case Field::ShowTitle: return "show_title";
     case Field::ShowSortTitle: return "show_sort_title";
     case Field::ShowOriginalTitle: return "show_original_title";
+    case Field::ShowEnglishTitle: return "show_english_title";
     case Field::ShowFirstAired: return "show_first_aired";
     case Field::ShowNetwork: return "show_network";
     case Field::ShowGenres: return "show_genres";

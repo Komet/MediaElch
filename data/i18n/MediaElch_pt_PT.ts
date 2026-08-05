@@ -7013,6 +7013,18 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
         <translation>Mostrar título</translation>
     </message>
     <message>
+        <source>English Title (of the TV show)</source>
+        <translation>Título em inglês (da série)</translation>
+    </message>
+    <message>
+        <source>Original Title (of the TV show)</source>
+        <translation>Título original (da série)</translation>
+    </message>
+    <message>
+        <source>Sort Title (of the TV show)</source>
+        <translation>Título de ordenação (da série)</translation>
+    </message>
+    <message>
         <location line="-19"/>
         <location line="+29"/>
         <location filename="../../src/renamer/MovieRenamer.cpp" line="+17"/>
@@ -9579,8 +9591,13 @@ episode after scraping</source>
     </message>
     <message>
         <location line="-20"/>
-        <source>Original Title</source>
-        <translation>Título original</translation>
+        <source>Original Name</source>
+        <translation>Nome original</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>English Name</source>
+        <translation>Nome inglês</translation>
     </message>
     <message>
         <location line="+277"/>

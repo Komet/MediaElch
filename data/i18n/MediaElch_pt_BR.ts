@@ -7038,6 +7038,18 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
         <translation>Serie - Título Local</translation>
     </message>
     <message>
+        <source>English Title (of the TV show)</source>
+        <translation>Título em inglês (da série)</translation>
+    </message>
+    <message>
+        <source>Original Title (of the TV show)</source>
+        <translation>Título original (da série)</translation>
+    </message>
+    <message>
+        <source>Sort Title (of the TV show)</source>
+        <translation>Título de ordenação (da série)</translation>
+    </message>
+    <message>
         <location line="-19"/>
         <location line="+29"/>
         <location filename="../../src/renamer/MovieRenamer.cpp" line="+17"/>
@@ -9613,8 +9625,13 @@ Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o núme
     </message>
     <message>
         <location line="-20"/>
-        <source>Original Title</source>
+        <source>Original Name</source>
         <translation>Título Original</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>English Name</source>
+        <translation>Título Inglês</translation>
     </message>
     <message>
         <location line="+277"/>

@@ -7012,6 +7012,18 @@ Se vuoi cercare per un ID di TMDb inizia la stringa con &quot;id&quot;.</transla
         <translation>Titolo</translation>
     </message>
     <message>
+        <source>English Title (of the TV show)</source>
+        <translation>Titolo inglese (della serie TV)</translation>
+    </message>
+    <message>
+        <source>Original Title (of the TV show)</source>
+        <translation>Titolo originale (della serie TV)</translation>
+    </message>
+    <message>
+        <source>Sort Title (of the TV show)</source>
+        <translation>Titolo di ordinamento (della serie TV)</translation>
+    </message>
+    <message>
         <location line="-19"/>
         <location line="+29"/>
         <location filename="../../src/renamer/MovieRenamer.cpp" line="+17"/>
@@ -9581,8 +9593,13 @@ Episodio dopo lo scraping</translation>
     </message>
     <message>
         <location line="-20"/>
-        <source>Original Title</source>
-        <translation>Titolo originale</translation>
+        <source>Original Name</source>
+        <translation>Nome originale</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>English Name</source>
+        <translation>Nome inglese</translation>
     </message>
     <message>
         <location line="+277"/>

@@ -7012,6 +7012,18 @@ Wenn du bei TMDb nach einer ID suchen möchtest, stelle bitte &quot;id&quot; vor
         <translation>Serientitel</translation>
     </message>
     <message>
+        <source>English Title (of the TV show)</source>
+        <translation>Englischer Titel (der Serie)</translation>
+    </message>
+    <message>
+        <source>Original Title (of the TV show)</source>
+        <translation>Originaltitel (der Serie)</translation>
+    </message>
+    <message>
+        <source>Sort Title (of the TV show)</source>
+        <translation>Sortiertitel (der Serie)</translation>
+    </message>
+    <message>
         <location line="-19"/>
         <location line="+29"/>
         <location filename="../../src/renamer/MovieRenamer.cpp" line="+17"/>
@@ -9581,8 +9593,13 @@ automatisch nach dem Laden</translation>
     </message>
     <message>
         <location line="-20"/>
-        <source>Original Title</source>
+        <source>Original Name</source>
         <translation>Original Titel</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>English Name</source>
+        <translation>Englischer Titel</translation>
     </message>
     <message>
         <location line="+277"/>

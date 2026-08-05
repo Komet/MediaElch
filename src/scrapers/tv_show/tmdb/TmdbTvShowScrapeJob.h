@@ -20,6 +20,8 @@ public:
 
 private:
     void loadTvShow();
+    /// \brief Request show infos in English when the scrape locale is not English.
+    void loadEnglishTitle();
 
 private:
     TmdbApi& m_api;

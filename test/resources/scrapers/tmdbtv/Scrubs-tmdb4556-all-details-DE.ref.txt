@@ -8,6 +8,7 @@ tvmazeId:
 title: Scrubs – Die Anfänger
 showTitle: 
 originalTitle: Scrubs
+englishTitle: Scrubs
 sortTitle: 
 overview:
     Der junge Mediziner John “J.D.” Dorian schlägt sich mit seinen Kollegen durch de
@@ -16,7 +17,7 @@ overview:
     t nur der Job hält die Mediziner auf Trab – auch ihr Privatleben gerät immer wie
     der in Turbulenzen.
 ratings (N=1)
-  source=themoviedb | rating=7.8 | votes=30 | min=0 | max=10
+  source=themoviedb | rating=8 | votes=100 | min=0 | max=10
 userRating: 0
 imdbTop250: -1
 firstAired: 2001-10-02
@@ -30,7 +31,7 @@ tags: (N>5)
   - medical student
   - mental hospital
   - ... and <6 more
-certification: TV-14
+certification: 12
 networks: (N<6)
   - ABC
   - NBC
@@ -190,10 +191,18 @@ posters: (N<6)
     hint: 
     aspect: 0
     season: SeasonNumber=xx
+  - id: https://image.tmdb.org/t/p/original/mxUoIM134xAoJrHzh9K3ExA5hdZ.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/mxUoIM134xAoJrHzh9K3ExA5hdZ.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/mxUoIM134xAoJrHzh9K3ExA5hdZ.jpg
+    originalSize: h=1200 w=800
+    language: de
+    hint: 
+    aspect: 0
+    season: SeasonNumber=xx
 backdrops: (N<6)
-  - id: https://image.tmdb.org/t/p/original/vIqDfrp6ApLxM9yRg3xDnQqXy0T.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/vIqDfrp6ApLxM9yRg3xDnQqXy0T.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/vIqDfrp6ApLxM9yRg3xDnQqXy0T.jpg
+  - id: https://image.tmdb.org/t/p/original/rRKTV46DKVP8AfdCQDyQMAtJeCl.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/rRKTV46DKVP8AfdCQDyQMAtJeCl.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/rRKTV46DKVP8AfdCQDyQMAtJeCl.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
@@ -209,9 +218,9 @@ backdrops: (N<6)
     season: SeasonNumber=xx
 banners: (N=0)
 seasonPoster S00: (N=1)
-  - id: https://image.tmdb.org/t/p/original/A6SkeuMKdSxMDkmoKvEV9Ro61bz.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/A6SkeuMKdSxMDkmoKvEV9Ro61bz.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/A6SkeuMKdSxMDkmoKvEV9Ro61bz.jpg
+  - id: https://image.tmdb.org/t/p/original/4GfjXJXCEFTaolwmf0Mmw0j9aOX.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/4GfjXJXCEFTaolwmf0Mmw0j9aOX.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/4GfjXJXCEFTaolwmf0Mmw0j9aOX.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 

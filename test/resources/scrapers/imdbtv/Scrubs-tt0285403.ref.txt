@@ -8,6 +8,7 @@ tvmazeId:
 title: Scrubs
 showTitle: 
 originalTitle: Scrubs
+englishTitle:
 sortTitle: 
 overview:
     In the unreal world of Sacred Heart Hospital, intern John "J.D." Dorian learns t

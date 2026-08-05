@@ -30,6 +30,8 @@ public:
     /// \param json JSON document from TMDB
     /// \param locale Locale used to identify the correct certification for the given country.
     void parseInfos(const QJsonDocument& json, const Locale& locale);
+    /// \brief Assign English title from a TMDb JSON payload (language=en).
+    void parseEnglishTitle(const QJsonDocument& json);
 
 private:
     const TmdbApi& m_api;

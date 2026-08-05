@@ -353,6 +353,7 @@ void CsvExportDialog::initializeItems()
         addField(Field::ShowTitle, tr("Title"));
         addField(Field::ShowSortTitle, tr("Sort Title"));
         addField(Field::ShowOriginalTitle, tr("Original Title"));
+        addField(Field::ShowEnglishTitle, tr("English Title"));
         addField(Field::ShowFirstAired, tr("First Aired"));
         addField(Field::ShowNetwork, tr("network"));
         addField(Field::ShowCertification, tr("Certification"));

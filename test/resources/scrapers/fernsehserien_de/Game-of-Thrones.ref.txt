@@ -8,6 +8,7 @@ tvmazeId:
 title: Game of Thrones – Das Lied von Eis und Feuer
 showTitle: 
 originalTitle: Game of Thrones
+englishTitle:
 sortTitle: 
 overview:
     Die fiktive Welt von Westeros, in der Jahreszeiten sich über Jahre hinziehen: Si

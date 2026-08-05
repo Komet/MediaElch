@@ -8,6 +8,7 @@ tvmazeId:
 title: The Simpsons
 showTitle: 
 originalTitle: The Simpsons
+englishTitle:
 sortTitle: 
 overview:
     The satiric half-hour adventures of a working-class family in the misfit city of

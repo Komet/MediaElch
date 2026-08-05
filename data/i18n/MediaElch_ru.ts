@@ -7030,6 +7030,18 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <translation>Сериал</translation>
     </message>
     <message>
+        <source>English Title (of the TV show)</source>
+        <translation>Английское название (сериала)</translation>
+    </message>
+    <message>
+        <source>Original Title (of the TV show)</source>
+        <translation>Оригинальное название (сериала)</translation>
+    </message>
+    <message>
+        <source>Sort Title (of the TV show)</source>
+        <translation>Название по сортировке (сериала)</translation>
+    </message>
+    <message>
         <location line="-19"/>
         <location line="+29"/>
         <location filename="../../src/renamer/MovieRenamer.cpp" line="+17"/>
@@ -9611,8 +9623,13 @@ episode after scraping</source>
     </message>
     <message>
         <location line="-20"/>
-        <source>Original Title</source>
-        <translation>Оригинальное название</translation>
+        <source>Original Name</source>
+        <translation>Оригинальное</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>English Name</source>
+        <translation>Английское</translation>
     </message>
     <message>
         <location line="+277"/>

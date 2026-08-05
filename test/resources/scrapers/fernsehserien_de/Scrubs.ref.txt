@@ -8,6 +8,7 @@ tvmazeId:
 title: Scrubs – Die Anfänger
 showTitle: 
 originalTitle: Scrubs
+englishTitle:
 sortTitle: 
 overview:
     Die Halbstunden-Comedy beschäftigt sich mit dem hektisch-chaotischen Alltag ange

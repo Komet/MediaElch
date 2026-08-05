@@ -529,6 +529,10 @@ public:
     {
         writeToReference(m_out, "originalTitle", originalTitle);
     }
+    void exportEnglishTitle(const QString& englishTitle) override
+    {
+        writeToReference(m_out, "englishTitle", englishTitle);
+    }
     void exportSortTitle(const QString& sortTitle) override { writeToReference(m_out, "sortTitle", sortTitle); }
 
     void exportOverview(const QString& overview) override { writeToReference(m_out, "overview", overview); }

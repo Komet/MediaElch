@@ -123,6 +123,8 @@ void TvShowRenamerDialog::renameTvShows(const QVector<TvShow*>& shows, const Ren
 
 void TvShowRenamerDialog::initPlaceholders()
 {
+    // Episode placeholders also cover show-level tags used in directory patterns
+    // (originalTitle / englishTitle / sortTitle from the parent show).
     mediaelch::EpisodeRenamerPlaceholders placeholders;
     ui->placeholders->setPlaceholders(placeholders);
 }
@@ -146,8 +148,8 @@ QStringList TvShowRenamerDialog::directoryNameDefaults()
 {
     return {
         "<title> (<year>)",
-        "{movieset}<movieset> - {/movieset}<title> (<year>)",
         "<originalTitle> (<year>)",
+        "<englishTitle> (<year>)",
         "<sortTitle>{imdbId} [<imdbId>]{/imdbId} (<year>)",
         "<sortTitle>{tmdbId} tmdbId-<tmdbId>{/tmdbId} (<year>)",
     };

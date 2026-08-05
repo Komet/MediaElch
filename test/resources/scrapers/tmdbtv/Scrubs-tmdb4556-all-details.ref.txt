@@ -8,16 +8,17 @@ tvmazeId:
 title: Scrubs
 showTitle: 
 originalTitle: Scrubs
+englishTitle: Scrubs
 sortTitle: 
 overview:
     In the unreal world of Sacred Heart Hospital, John "J.D." Dorian learns the ways
      of medicine, friendship and life.
 ratings (N=1)
-  source=themoviedb | rating=7.8 | votes=30 | min=0 | max=10
+  source=themoviedb | rating=8 | votes=100 | min=0 | max=10
 userRating: 0
 imdbTop250: -1
 firstAired: 2001-10-02
-runtime: 22min
+runtime: 0min
 genres: (N=1)
   - Comedy
 tags: (N>5)
@@ -171,6 +172,22 @@ posters: (N>20)
     hint: 
     aspect: 0
     season: SeasonNumber=xx
+  - id: https://image.tmdb.org/t/p/original/bhMFEiEoBCWIbyROIGBK3mGNUVB.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/bhMFEiEoBCWIbyROIGBK3mGNUVB.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/bhMFEiEoBCWIbyROIGBK3mGNUVB.jpg
+    originalSize: h=1500 w=1000
+    language: en
+    hint: 
+    aspect: 0
+    season: SeasonNumber=xx
+  - id: https://image.tmdb.org/t/p/original/8ZfQcEErSPWNawVtY1ehOZYpcvf.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/8ZfQcEErSPWNawVtY1ehOZYpcvf.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/8ZfQcEErSPWNawVtY1ehOZYpcvf.jpg
+    originalSize: h=1500 w=1000
+    language: en
+    hint: 
+    aspect: 0
+    season: SeasonNumber=xx
   - id: https://image.tmdb.org/t/p/original/yQn2eafcjSCmB0j1ZHNWdwuqQRo.jpg
     originalUrl: https://image.tmdb.org/t/p/original/yQn2eafcjSCmB0j1ZHNWdwuqQRo.jpg
     thumbUrl: https://image.tmdb.org/t/p/original/yQn2eafcjSCmB0j1ZHNWdwuqQRo.jpg
@@ -179,27 +196,11 @@ posters: (N>20)
     hint: 
     aspect: 0
     season: SeasonNumber=xx
-  - id: https://image.tmdb.org/t/p/original/538HtaGdkP8kVtrlP77bdfVSTwI.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/538HtaGdkP8kVtrlP77bdfVSTwI.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/538HtaGdkP8kVtrlP77bdfVSTwI.jpg
-    originalSize: h=1500 w=1000
-    language: en
-    hint: 
-    aspect: 0
-    season: SeasonNumber=xx
-  - id: https://image.tmdb.org/t/p/original/iy6smGGXTLqmCgKDKVeJqD06vQY.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/iy6smGGXTLqmCgKDKVeJqD06vQY.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/iy6smGGXTLqmCgKDKVeJqD06vQY.jpg
-    originalSize: h=1248 w=832
-    language: en
-    hint: 
-    aspect: 0
-    season: SeasonNumber=xx
   - ... and >20 more
 backdrops: (N>10)
-  - id: https://image.tmdb.org/t/p/original/vIqDfrp6ApLxM9yRg3xDnQqXy0T.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/vIqDfrp6ApLxM9yRg3xDnQqXy0T.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/vIqDfrp6ApLxM9yRg3xDnQqXy0T.jpg
+  - id: https://image.tmdb.org/t/p/original/rRKTV46DKVP8AfdCQDyQMAtJeCl.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/rRKTV46DKVP8AfdCQDyQMAtJeCl.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/rRKTV46DKVP8AfdCQDyQMAtJeCl.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
@@ -240,9 +241,9 @@ backdrops: (N>10)
   - ... and >5 more
 banners: (N=0)
 seasonPoster S00: (N=1)
-  - id: https://image.tmdb.org/t/p/original/A6SkeuMKdSxMDkmoKvEV9Ro61bz.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/A6SkeuMKdSxMDkmoKvEV9Ro61bz.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/A6SkeuMKdSxMDkmoKvEV9Ro61bz.jpg
+  - id: https://image.tmdb.org/t/p/original/4GfjXJXCEFTaolwmf0Mmw0j9aOX.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/4GfjXJXCEFTaolwmf0Mmw0j9aOX.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/4GfjXJXCEFTaolwmf0Mmw0j9aOX.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 

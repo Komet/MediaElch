@@ -17,6 +17,7 @@ public:
     explicit RenamerPlaceholdersWidget(QWidget* parent = nullptr);
     ~RenamerPlaceholdersWidget() override;
     void setPlaceholders(mediaelch::RenamerPlaceholders& renamerPlaceholders);
+    void setPlaceholders(const QVector<mediaelch::Placeholder>& placeholders);
 
 private:
     Ui::RenamerPlaceholdersWidget* ui;

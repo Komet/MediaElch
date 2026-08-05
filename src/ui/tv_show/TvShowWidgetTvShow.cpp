@@ -158,6 +158,7 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget* parent) :
     connect(ui->tvmazeId,      &QLineEdit::textEdited,           this, &TvShowWidgetTvShow::onTvMazeIdChange);
     connect(ui->sortTitle,     &QLineEdit::textEdited,           this, &TvShowWidgetTvShow::onSortTitleChange);
     connect(ui->originalTitle, &QLineEdit::textEdited,           this, &TvShowWidgetTvShow::onOriginalTitleChange);
+    connect(ui->englishTitle,  &QLineEdit::textEdited,           this, &TvShowWidgetTvShow::onEnglishTitleChange);
     connect(ui->certification, &QComboBox::editTextChanged,      this, &TvShowWidgetTvShow::onCertificationChange);
     connect(ui->ratings,       &RatingsWidget::ratingsChanged,   this, [this](){
         m_show->setChanged(true);
@@ -268,6 +269,7 @@ void TvShowWidgetTvShow::onClear()
     ui->title->clear();
     ui->sortTitle->clear();
     ui->originalTitle->clear();
+    ui->englishTitle->clear();
     ui->studio->clear();
     ui->genreCloud->clear();
     ui->fanarts->clear();
@@ -337,6 +339,7 @@ void TvShowWidgetTvShow::updateTvShowInfo()
     ui->dir->setText(m_show->dir().toNativePathString());
     ui->title->setText(m_show->title());
     ui->originalTitle->setText(m_show->originalTitle());
+    ui->englishTitle->setText(m_show->englishTitle());
     ui->sortTitle->setText(m_show->sortTitle());
 
     ui->imdbId->setText(m_show->imdbId().toString());
@@ -1096,6 +1099,12 @@ void TvShowWidgetTvShow::onSortTitleChange(QString text)
 void TvShowWidgetTvShow::onOriginalTitleChange(QString text)
 {
     m_show->setOriginalTitle(std::move(text));
+    ui->buttonRevert->setVisible(true);
+}
+
+void TvShowWidgetTvShow::onEnglishTitleChange(QString text)
+{
+    m_show->setEnglishTitle(std::move(text));
     ui->buttonRevert->setVisible(true);
 }
 

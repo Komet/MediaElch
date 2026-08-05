@@ -26,8 +26,17 @@ void TmdbTvShowParser::parseInfos(const QJsonDocument& json, const Locale& local
     QJsonObject data = json.object();
 
     m_show.setTmdbId(TmdbId(QString::number(data["id"].toInt())));
-    m_show.setTitle(data["name"].toString());
-    m_show.setOriginalTitle(data["original_name"].toString());
+    const QString name = data["name"].toString();
+    const QString originalName = data["original_name"].toString();
+    m_show.setTitle(name);
+    m_show.setOriginalTitle(originalName);
+    if (locale.language() == QLatin1String("en") && !name.isEmpty()) {
+        m_show.setEnglishTitle(name);
+    }
+    // When the original language is English, original_name is the English title.
+    if (data["original_language"].toString() == QLatin1String("en") && !originalName.isEmpty()) {
+        m_show.setEnglishTitle(originalName);
+    }
     m_show.setOverview(data["overview"].toString());
     m_show.setFirstAired(QDate::fromString(data["first_air_date"].toString(), "yyyy-MM-dd"));
 
@@ -238,6 +247,17 @@ void TmdbTvShowParser::parseInfos(const QJsonDocument& json, const Locale& local
             cert = Certification(certifications.first().toObject()["rating"].toString());
         }
         m_show.setCertification(cert);
+    }
+}
+
+void TmdbTvShowParser::parseEnglishTitle(const QJsonDocument& json)
+{
+    if (json.isEmpty() || !json.isObject()) {
+        return;
+    }
+    const QString name = json.object().value(QLatin1String("name")).toString();
+    if (!name.isEmpty()) {
+        m_show.setEnglishTitle(name);
     }
 }
 

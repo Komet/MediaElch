@@ -42,6 +42,9 @@ QByteArray TvShowXmlWriterGeneric::getTvShowXml(bool testMode)
     if (!m_show.originalTitle().isEmpty()) {
         xml.writeTextElement("originaltitle", m_show.originalTitle());
     }
+    if (!m_show.englishTitle().isEmpty()) {
+        xml.writeTextElement("english_title", m_show.englishTitle());
+    }
 
     QString defaultId;
 
