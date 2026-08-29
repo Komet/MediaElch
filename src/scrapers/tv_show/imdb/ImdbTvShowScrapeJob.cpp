@@ -2,6 +2,8 @@
 
 #include "data/tv_show/TvShow.h"
 #include "log/Log.h"
+#include "scrapers/imdb/ImdbJsonParser.h"
+#include "utils/Containers.h"
 
 #include <QTimer>
 
@@ -9,19 +11,7 @@ namespace mediaelch {
 namespace scraper {
 
 ImdbTvShowScrapeJob::ImdbTvShowScrapeJob(ImdbApi& api, ShowScrapeJob::Config _config, QObject* parent) :
-    ShowScrapeJob(_config, parent),
-    m_api{api},
-    m_parser(tvShow(), _config.locale),
-    m_notLoaded{ShowScraperInfo::Title,
-        ShowScraperInfo::Genres,
-        ShowScraperInfo::Certification,
-        ShowScraperInfo::Overview,
-        ShowScraperInfo::Rating,
-        ShowScraperInfo::Tags,
-        ShowScraperInfo::Runtime,
-        ShowScraperInfo::FirstAired,
-        ShowScraperInfo::Poster},
-    m_id{config().identifier.str()}
+    ShowScrapeJob(_config, parent), m_api{api}, m_id{config().identifier.str()}
 {
 }
 
@@ -37,64 +27,75 @@ void ImdbTvShowScrapeJob::doStart()
         return;
     }
     tvShow().setImdbId(m_id);
-    // TV Show data is always loaded.
-    loadTvShow();
-}
 
-void ImdbTvShowScrapeJob::loadTvShow()
-{
-    const auto setInfosLoaded = [this]() {
-        const QSet<ShowScraperInfo> availableScraperInfos = {ShowScraperInfo::Title,
-            ShowScraperInfo::Genres,
-            ShowScraperInfo::Certification,
-            ShowScraperInfo::Overview,
-            ShowScraperInfo::Rating,
-            ShowScraperInfo::Tags,
-            ShowScraperInfo::Runtime,
-            ShowScraperInfo::FirstAired,
-            ShowScraperInfo::Poster};
-        for (const auto loaded : availableScraperInfos) {
-            if (shouldLoad(loaded)) {
-                setIsLoaded(loaded);
-            }
-        }
-    };
-
-    const auto callback = [this, setInfosLoaded](QString html, ScraperError error) {
-        if (!error.hasError()) {
-            // We need to add the loaded information but may not want to actually store the show's information.
-            error = m_parser.parseInfos(html);
-        }
+    m_api.loadTitleViaGraphQL(m_id, [this](QString data, ScraperError error) {
         if (error.hasError()) {
             setScraperError(error);
+            emitFinished();
+            return;
         }
-        setInfosLoaded();
-        checkIfDone();
-    };
-
-    m_api.loadTitle(config().locale, m_id, ImdbApi::PageKind::Reference, callback);
-}
-
-
-bool ImdbTvShowScrapeJob::shouldLoad(ShowScraperInfo info)
-{
-    return m_notLoaded.contains(info);
-}
-
-void ImdbTvShowScrapeJob::setIsLoaded(ShowScraperInfo info)
-{
-    if (m_notLoaded.contains(info)) {
-        m_notLoaded.remove(info);
-    } else {
-        qCCritical(generic) << "[ImdbTvShowScrapeJob] Loaded detail that should not be loaded?"
-                            << static_cast<int>(info);
-    }
-}
-
-void ImdbTvShowScrapeJob::checkIfDone()
-{
-    if (m_notLoaded.isEmpty()) {
+        parseAndAssignInfos(data);
         emitFinished();
+    });
+}
+
+void ImdbTvShowScrapeJob::parseAndAssignInfos(const QString& json)
+{
+    ImdbData data = ImdbJsonParser::parseFromGraphQL(json, config().locale);
+
+    if (data.imdbId.isValid()) {
+        tvShow().setImdbId(data.imdbId);
+    }
+
+    // Title: use localized title if available
+    if (data.localizedTitle.hasValue()) {
+        tvShow().setTitle(data.localizedTitle.value);
+        if (data.originalTitle.hasValue()) {
+            tvShow().setOriginalTitle(data.originalTitle.value);
+        } else if (data.title.hasValue()) {
+            tvShow().setOriginalTitle(data.title.value);
+        }
+    } else if (data.title.hasValue()) {
+        tvShow().setTitle(data.title.value);
+        if (data.originalTitle.hasValue()) {
+            tvShow().setOriginalTitle(data.originalTitle.value);
+        }
+    }
+
+    if (data.overview.hasValue()) {
+        tvShow().setOverview(data.overview.value);
+    }
+    if (data.certification.hasValue()) {
+        tvShow().setCertification(data.certification.value);
+    }
+    if (data.released.hasValue()) {
+        tvShow().setFirstAired(data.released.value);
+    }
+    if (data.runtime.hasValue()) {
+        tvShow().setRuntime(data.runtime.value);
+    }
+    for (const Rating& rating : data.ratings) {
+        tvShow().ratings().addRating(rating);
+    }
+    for (const QString& genre : data.genres) {
+        tvShow().addGenre(genre);
+    }
+    for (const QString& keyword : data.keywords) {
+        tvShow().addTag(keyword);
+    }
+    for (const Actor& actor : data.actors) {
+        tvShow().addActor(actor);
+    }
+    if (data.poster.hasValue()) {
+        tvShow().addPoster(data.poster.value);
+    }
+    for (const Poster& backdrop : data.backdrops) {
+        tvShow().addBackdrop(backdrop);
+    }
+    // Note: IMDB GraphQL API has no dedicated "network" field for TV shows.
+    // Use TMDb in the Custom TV Scraper for network information.
+    if (data.isOngoing.hasValue()) {
+        tvShow().setStatus(data.isOngoing.value ? "Continuing" : "Ended");
     }
 }
 

@@ -19,24 +19,12 @@ public:
     void doStart() override;
 
 private:
-    void loadTags();
-    void loadPlotSummary();
+    void parseAndAssignInfos(const QString& json);
 
-    void parseAndAssignInfos(const QString& html);
-    void parseAndAssignTags(const QString& html);
-    void parseAndAssignOverviewFromPlotSummaryPage(const QString& html);
-
-    static QString sanitizeAmazonMediaUrl(QString url);
-
-    void decreaseDownloadCount();
-
-private: // config
+private:
     ImdbApi& m_api;
     ImdbId m_imdbId;
     bool m_loadAllTags = false;
-
-private: // initialized during scraping
-    int m_itemsLeftToDownloads = 0;
 };
 
 } // namespace scraper

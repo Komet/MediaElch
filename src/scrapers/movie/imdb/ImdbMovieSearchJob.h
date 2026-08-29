@@ -21,8 +21,8 @@ private:
     void searchViaImdbId();
     void searchViaQuery();
 
-    void parseSearch(const QString& html);
-    void parseIdFromMovieReferencePage(const QString& html);
+    void parseSuggestResults(const QString& json);
+    void parseGraphQLResult(const QString& json);
 
 private:
     ImdbApi& m_api;

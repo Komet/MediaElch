@@ -2,7 +2,6 @@
 
 #include "scrapers/imdb/ImdbApi.h"
 #include "scrapers/tv_show/ShowScrapeJob.h"
-#include "scrapers/tv_show/imdb/ImdbTvShowParser.h"
 
 namespace mediaelch {
 namespace scraper {
@@ -17,17 +16,10 @@ public:
     void doStart() override;
 
 private:
-    void loadTvShow();
-
-    bool shouldLoad(ShowScraperInfo info);
-    void setIsLoaded(ShowScraperInfo info);
-    void checkIfDone();
+    void parseAndAssignInfos(const QString& json);
 
 private:
     ImdbApi& m_api;
-    ImdbTvShowParser m_parser;
-    QSet<ShowScraperInfo> m_notLoaded;
-    QSet<ShowScraperInfo> m_supports;
     ImdbId m_id;
 };
 

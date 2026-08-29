@@ -3,7 +3,8 @@
 #include "data/tv_show/TvShowEpisode.h"
 #include "log/Log.h"
 #include "scrapers/imdb/ImdbApi.h"
-#include "scrapers/tv_show/imdb/ImdbTvEpisodeParser.h"
+#include "scrapers/imdb/ImdbJsonParser.h"
+#include "utils/Containers.h"
 
 #include <QTimer>
 
@@ -20,13 +21,13 @@ void ImdbTvEpisodeScrapeJob::doStart()
     if (config().identifier.hasEpisodeIdentifier()) {
         loadEpisode(ImdbId(config().identifier.episodeIdentifier));
     } else {
-        loadSeason();
+        loadFromSeason();
     }
 }
 
-void ImdbTvEpisodeScrapeJob::loadSeason()
+void ImdbTvEpisodeScrapeJob::loadFromSeason()
 {
-    qCDebug(generic) << "[ImdbTvEpisodeScrapeJob] Have to load season first.";
+    qCDebug(generic) << "[ImdbTvEpisodeScrapeJob] Loading episode via season bulk query.";
 
     ImdbId showId(config().identifier.showIdentifier);
 
@@ -40,32 +41,38 @@ void ImdbTvEpisodeScrapeJob::loadSeason()
         return;
     }
 
-    // The episode parser requires season/episode to be set when
-    // calling parseIdFromSeason()
     episode().setSeason(config().identifier.seasonNumber);
     episode().setEpisode(config().identifier.episodeNumber);
 
-    m_api.loadSeason(
-        config().locale, showId, config().identifier.seasonNumber, [this, showId](QString html, ScraperError error) {
-            if (error.hasError()) {
-                setScraperError(error);
-                emitFinished();
+    // Load episodes for the specific season via GraphQL and find the one we need
+    m_api.loadSeasonEpisodesViaGraphQL(
+        showId, config().identifier.seasonNumber.toInt(), 250, [this](QString data, ScraperError error) {
+        if (error.hasError()) {
+            setScraperError(error);
+            emitFinished();
+            return;
+        }
+
+        const QVector<ImdbEpisodeData> episodes = ImdbJsonParser::parseEpisodesFromGraphQL(data, config().locale);
+        const int targetSeason = config().identifier.seasonNumber.toInt();
+        const int targetEpisode = config().identifier.episodeNumber.toInt();
+
+        for (const ImdbEpisodeData& epData : episodes) {
+            if (epData.seasonNumber == targetSeason && epData.episodeNumber == targetEpisode) {
+                // Found our episode — load its full details via individual GraphQL query
+                loadEpisode(epData.imdbId);
                 return;
             }
-            ImdbTvEpisodeParser::parseIdFromSeason(episode(), html);
-            if (!episode().imdbId().isValid()) {
-                qCWarning(generic) << "[ImdbTvEpisodeScrapeJob] Could not parse IMDb ID for episode from season page! "
-                                   << episode().seasonNumber() << episode().episodeNumber();
-                ScraperError configError;
-                configError.error = ScraperError::Type::ConfigError;
-                configError.message =
-                    tr("IMDb ID could not be loaded from season page! Cannot load requested episode.");
-                setScraperError(configError);
-                emitFinished();
-            } else {
-                loadEpisode(episode().imdbId());
-            }
-        });
+        }
+
+        qCWarning(generic) << "[ImdbTvEpisodeScrapeJob] Could not find episode S" << targetSeason << "E"
+                           << targetEpisode << "in GraphQL response";
+        ScraperError notFoundError;
+        notFoundError.error = ScraperError::Type::ConfigError;
+        notFoundError.message = tr("Episode not found in season listing.");
+        setScraperError(notFoundError);
+        emitFinished();
+    });
 }
 
 void ImdbTvEpisodeScrapeJob::loadEpisode(const ImdbId& episodeId)
@@ -81,20 +88,56 @@ void ImdbTvEpisodeScrapeJob::loadEpisode(const ImdbId& episodeId)
     }
 
     qCInfo(generic) << "[ImdbTvEpisodeScrapeJob] Loading episode with IMDb ID" << episodeId.toString();
-    m_api.loadTitle(config().locale, episodeId, ImdbApi::PageKind::Reference, [this](QString html, ScraperError error) {
+    m_api.loadTitleViaGraphQL(episodeId, [this](QString data, ScraperError error) {
         if (error.hasError()) {
             setScraperError(error);
-        } else if (html.isEmpty()) {
-            qCWarning(generic) << "[ImdbTvEpisodeScrapeJob] Empty episode HTML!";
+        } else if (data.isEmpty()) {
+            qCWarning(generic) << "[ImdbTvEpisodeScrapeJob] Empty GraphQL response!";
             ScraperError networkError;
             networkError.error = ScraperError::Type::NetworkError;
             networkError.message = tr("Loaded IMDb content is empty. Cannot load requested episode.");
             setScraperError(networkError);
         } else {
-            ImdbTvEpisodeParser::parseInfos(episode(), html, config().locale);
+            parseAndAssignInfos(data);
         }
         emitFinished();
     });
+}
+
+void ImdbTvEpisodeScrapeJob::parseAndAssignInfos(const QString& json)
+{
+    ImdbData data = ImdbJsonParser::parseFromGraphQL(json, config().locale);
+
+    if (data.imdbId.isValid()) {
+        episode().setImdbId(data.imdbId);
+    }
+    if (data.title.hasValue()) {
+        episode().setTitle(data.title.value);
+    }
+    if (data.overview.hasValue()) {
+        episode().setOverview(data.overview.value);
+    }
+    if (data.released.hasValue()) {
+        episode().setFirstAired(data.released.value);
+    }
+    for (const Rating& rating : data.ratings) {
+        episode().ratings().addRating(rating);
+    }
+    if (data.certification.hasValue()) {
+        episode().setCertification(data.certification.value);
+    }
+    if (data.poster.hasValue()) {
+        episode().setThumbnail(data.poster.value.thumbUrl);
+    }
+    if (!data.directors.isEmpty()) {
+        episode().setDirectors(setToStringList(data.directors));
+    }
+    if (!data.writers.isEmpty()) {
+        episode().setWriters(setToStringList(data.writers));
+    }
+    for (const Actor& actor : data.actors) {
+        episode().addActor(actor);
+    }
 }
 
 } // namespace scraper

@@ -10,8 +10,13 @@ showTitle:
 originalTitle: Mater's Tall Tales
 sortTitle: 
 overview:
-    Cruise into the crazy adventures of Tow Mater as you watch him be a fire truck, 
-    daredevil, import drifter, and even an astronaut.
+    Rev up your engines for this unforgettable collection of Cars Toons starring Mat
+    er, the lovable and hilarious tow truck from the hit movie Cars. From the creati
+    ve minds of Disney and Pixar, come nine highly entertaining Tall Tales involving
+     bullfights, drag races, rock concerts, monster truck showdowns, and even U.F.O.
+    s. Join Mater, the heart and soul of Radiator Springs, and all of your favorite 
+    characters from the world of Cars, as they take you on a fun-filled ride that wi
+    ll have your family roaring with laughter.
 ratings (N=1)
   source=imdb | rating=6.8 | votes=5000 | min=0 | max=10
 userRating: 0
@@ -24,31 +29,32 @@ genres: (N<6)
   - Comedy
   - Family
   - Adventure
-tags: (N<6)
+tags: (N>10)
   - astronaut
+  - lightning mcqueen character
+  - apostrophe in title
   - anthropomorphic vehicle
-  - space adventure
-  - anthropomorphic car
-  - car
+  - tow truck
+  - ... and >10 more
 certification: TV-G
 networks: (N=0)
 episodeGuideUrl: 
 actors: (N>30)
- - id: 
+ - id: nm1249256
    name: Larry the Cable Guy
-   role: Mater / Mator
+   role: Mater
    thumb:
     https://m.media-amazon.com/images/M/MV5BMTY5MjA0MjQ4Ml5BMl5BanBnXkFtZTcwNTIwMTc2
     NQ@@.jpg
    order: 0
    imageHasChanged: false
- - id: 
+ - id: nm1584992
    name: Keith Ferguson
    role: Lightning McQueen
    thumb: 
    order: 1
    imageHasChanged: false
- - id: 
+ - id: nm0172491
    name: Lindsey Collins
    role: Mia
    thumb:
@@ -56,7 +62,7 @@ actors: (N>30)
     Mw@@.jpg
    order: 2
    imageHasChanged: false
- - id: 
+ - id: nm2264184
    name: Elissa Knight
    role: Tia
    thumb:
@@ -64,98 +70,83 @@ actors: (N>30)
     MQ@@.jpg
    order: 3
    imageHasChanged: false
- - id: 
+ - id: nm0778890
    name: Bob Scott
-   role:
-    Shouting Car / Additional Voice Talent / Crane / Crush Car / Rasta Carian / NASC
-    A Pitty #1 / Rescue Squad Trooper / Kabuto Ninjas / Military Truck #1
+   role: Additional Voice Talent
    thumb: 
    order: 4
    imageHasChanged: false
- - id: 
+ - id: nm0348562
    name: Jan Rabson
-   role:
-    Plane #1 / Additional Voice Talent / Dock Pitty / Dr. Feel Bad / Paddy O'Concret
-    e / NASCA Truck / Van-San / Kabuto Ninjas / Military Truck #2 / Stanley's Oasis 
-    Population
+   role: Additional Voice Talent
    thumb:
     https://m.media-amazon.com/images/M/MV5BOTJhNDRmZWYtNWVhYS00MmNmLWE1MzQtYWZiOTMy
     NjIzNzU2XkEyXkFqcGc@.jpg
    order: 5
    imageHasChanged: false
- - id: 
+ - id: nm0542706
    name: Danny Mann
-   role:
-    Additional Voice Talent / Sparky / Clyde / Referee Pitty / Wingo / Albert / Stan
-    ley's Oasis Population
+   role: Additional Voice Talent
    thumb:
     https://m.media-amazon.com/images/M/MV5BNzI3MTUzNmEtYjJiOC00NTkwLWJlMTEtOGEzZmY4
     ZTVmZjgwXkEyXkFqcGc@.jpg
    order: 6
    imageHasChanged: false
- - id: 
+ - id: nm0194201
    name: John Cygan
-   role:
-    Green Hawk / Plane #2 / Heavy Metal Delivery Pitty / Stinky / Announcer #1 / Add
-    itional Voice Talent / Helicopter #1
+   role: Additional Voice Talent
    thumb:
     https://m.media-amazon.com/images/M/MV5BNGFjOGM4ZGQtNzQzOS00MzQwLTkxZjctM2VmMTQy
     ZGNjNmE4XkEyXkFqcGc@.jpg
    order: 7
    imageHasChanged: false
- - id: 
-   name: Lori Alan
-   role:
-    Additional Voice Talent / Blue Hawk / Red Car / Area 51 PA Announcer / Ford Mode
-    l T at Wedding
-   thumb:
-    https://m.media-amazon.com/images/M/MV5BMjk4ODUwZmQtNTJkOS00YzIzLWJlYzItMDhjNjJi
-    ODFmNDRlXkEyXkFqcGc@.jpg
-   order: 8
-   imageHasChanged: false
- - id: 
+ - id: nm0363641
    name: Jess Harnell
-   role:
-    Additional Voice Talent / Announcer / Announcer #2 / Mission Control Pitty / Boo
-    st / Broken Down Ford Model T
+   role: Additional Voice Talent
    thumb:
     https://m.media-amazon.com/images/M/MV5BMTU3YTIzYmYtMGYwZi00ZDEyLTg2Y2EtYjk3ZWQx
     MzBlN2RhXkEyXkFqcGc@.jpg
+   order: 8
+   imageHasChanged: false
+ - id: nm0015935
+   name: Lori Alan
+   role: Additional Voice Talent
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMjk4ODUwZmQtNTJkOS00YzIzLWJlYzItMDhjNjJi
+    ODFmNDRlXkEyXkFqcGc@.jpg
    order: 9
    imageHasChanged: false
- - id: 
+ - id: nm0569680
    name: Mickie McGowan
-   role: Additional Voice Talent / Female Car / Mama Ship
+   role: Additional Voice Talent
    thumb: 
    order: 10
    imageHasChanged: false
- - id: 
+ - id: nm0700760
    name: Steve Purcell
-   role: Dex / Clyde's Buddy / The I-Screamer / Pink Car / Tractors
+   role: Clyde's Buddy
    thumb:
     https://m.media-amazon.com/images/M/MV5BNjM3NTBmYWMtYzI1Yi00ZGUzLTg0NjMtNzYxNTAz
     YWNkOTA0XkEyXkFqcGc@.jpg
    order: 11
    imageHasChanged: false
- - id: 
+ - id: nm0812307
    name: Peter Sohn
-   role: Padre / Crush Car / Screaming Car / Ito-San's Modify Crew
+   role: Crush Car
    thumb:
     https://m.media-amazon.com/images/M/MV5BMTk0NzcwMzc1MF5BMl5BanBnXkFtZTcwMTY2Njkx
     OA@@.jpg
    order: 12
    imageHasChanged: false
- - id: 
+ - id: nm0677037
    name: Bob Peterson
-   role:
-    Bulldozers / Spanish Crowd Cars / Crush Car / Emergency Dispatcher / Announcer /
-     Kabuto Ninjas
+   role: Announcer
    thumb:
     https://m.media-amazon.com/images/M/MV5BMTU4NTQ4ODI5N15BMl5BanBnXkFtZTYwNzIwODA3
     .jpg
    order: 13
    imageHasChanged: false
- - id: 
+ - id: nm0702925
    name: Guido Quaroni
    role: Guido
    thumb:
@@ -163,25 +154,23 @@ actors: (N>30)
     ZTUwOTNmXkEyXkFqcGc@.jpg
    order: 14
    imageHasChanged: false
- - id: 
+ - id: nm0251646
    name: Paul Eiding
-   role:
-    Red Hawk / Drummer Pitty / Dr. Frankenwagon's Monster / Military Truck #3 / Scie
-    ntist
+   role: Dr. Frankenwagon's Monster
    thumb:
     https://m.media-amazon.com/images/M/MV5BMzRjZGRlYWYtMzQxNy00YmZkLWFmZjEtZDlkZjYx
     YzVjMmI4XkEyXkFqcGc@.jpg
    order: 15
    imageHasChanged: false
- - id: 
+ - id: nm0628170
    name: Laraine Newman
-   role: Curious Car / Additional Voice Talent / Nurse GTO / Announcer #2
+   role: Additional Voice Talent
    thumb:
     https://m.media-amazon.com/images/M/MV5BMTAxOTkwNzgxMDFeQTJeQWpwZ15BbWU4MDg0MTMy
     MTYx.jpg
    order: 16
    imageHasChanged: false
- - id: 
+ - id: nm0137506
    name: George Carlin
    role: Filmore
    thumb:
@@ -189,15 +178,15 @@ actors: (N>30)
     YzY5ODA2XkEyXkFqcGc@.jpg
    order: 17
    imageHasChanged: false
- - id: 
+ - id: nm0662088
    name: Bret 'Brook' Parker
-   role: Spanish Crowd Cars / Crush Car / Rescue Squad Ambulance
+   role: Crush Car
    thumb: 
    order: 18
    imageHasChanged: false
- - id: 
+ - id: nm0911589
    name: Jim Ward
-   role: Additional Voice Talent / NASCA Pitty #2 / Stanley's Oasis Population
+   role: Additional Voice Talent
    thumb:
     https://m.media-amazon.com/images/M/MV5BOTJhNzJkZWEtZjc4Yi00NjlhLTlmMTktMjk4OWNm
     NTYzZjU4XkEyXkFqcGc@.jpg
@@ -217,5 +206,5 @@ backdrops: (N=0)
 banners: (N=0)
 hasTune: false
 extraFanarts: (N=0)
-status: 
+status: Ended
 dateAdded: <not set or invalid>

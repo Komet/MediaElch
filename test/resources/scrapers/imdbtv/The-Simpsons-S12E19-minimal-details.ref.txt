@@ -16,8 +16,14 @@ episode: EpisodeNumber=19
 displaySeason: SeasonNumber=xx
 displayEpisode: EpisodeNumber=xx
 overview:
-    With Homer's help, Flanders tries to establish a Christian theme park based on d
-    rawings in Maude's sketch book.
+    Ned opens a theme park to the memory of his late wife Maude and it becomes a hug
+    e success when people kneeling in front of a statue of Maude experience mystic v
+    isions. The reason for this is that a grille in front of the statue is an out-pi
+    pe for a propane gas line and they are getting high on the gas. Unfortunately th
+    e park is closed down when Homer and Ned try to stop two children from lighting 
+    a candle before the altar and are charged with assault.Ned does,however,enjoy th
+    e further company of Rachel Jordan,despite his efforts to turn her into a clone 
+    of Maude.
 writers: (N<6)
   - Julie Thacker-Scully
   - Joel H. Cohen
@@ -30,28 +36,21 @@ directors: (N<6)
 playCount: 0
 lastPlayed: <not set or invalid>
 firstAired: 2001-05-06
-tags: (N<6)
-  - tv show theme song
-  - lazy man
-  - cameo
-  - lazy employee
-  - american cult tv
+tags: (N=0)
 epBookmark: <not set or invalid>
 certification: TV-14
 networks: (N=0)
 thumbnail: https://m.media-amazon.com/images/M/MV5BMzc1Njk2YzItNDZhZC00NzI1LWFhMzMtMTQ5Y2I2NDNjYzc2XkEyXkFqcGc@.jpg
-actors: (N>5)
- - id: 
+actors: (N>10)
+ - id: nm0144657
    name: Dan Castellaneta
-   role:
-    Homer Simpson / Rich Texan / Krusty / Willie / Mayor Quimby / Sideshow Mel / Joh
-    n Travolta
+   role: Homer Simpson
    thumb:
     https://m.media-amazon.com/images/M/MV5BMjAyNDY5NDEwOV5BMl5BanBnXkFtZTcwMjY0ODYy
     MQ@@.jpg
    order: 0
    imageHasChanged: false
- - id: 
+ - id: nm0001413
    name: Julie Kavner
    role: Marge Simpson
    thumb:
@@ -59,15 +58,15 @@ actors: (N>5)
     .jpg
    order: 1
    imageHasChanged: false
- - id: 
+ - id: nm0004813
    name: Nancy Cartwright
-   role: Bart Simpson / Nelson Muntz / Todd Flanders / Ralph Wiggum
+   role: Bart Simpson
    thumb:
     https://m.media-amazon.com/images/M/MV5BMjZmYTQ1YjItZTUzYi00Nzk1LTlmNzEtMmRmMjM4
     NjZmOTcyXkEyXkFqcGc@.jpg
    order: 2
    imageHasChanged: false
- - id: 
+ - id: nm0810379
    name: Yeardley Smith
    role: Lisa Simpson
    thumb:
@@ -75,27 +74,23 @@ actors: (N>5)
     MTdkODZmXkEyXkFqcGc@.jpg
    order: 3
    imageHasChanged: false
- - id: 
+ - id: nm0000279
    name: Hank Azaria
-   role:
-    Moe Szyslak / Frink / Cletus / Chief Wiggum / Carl / Dr. Nick Riviera / Apu / Ch
-    almers / Comic Book Guy / Kirk Van Houten / Captain McAllister / Disco Stu
+   role: Moe Szyslak
    thumb:
     https://m.media-amazon.com/images/M/MV5BMTQ0MzIxMzUwMV5BMl5BanBnXkFtZTcwMjE1NjM1
     Mg@@.jpg
    order: 4
    imageHasChanged: false
- - id: 
+ - id: nm0733427
    name: Harry Shearer
-   role:
-    Ned Flanders / Reverend Lovejoy / Dr. Hibbert / Kent Brockman / King David / Len
-    ny / Louie / Skinner / St. Peter
+   role: Ned Flanders
    thumb:
     https://m.media-amazon.com/images/M/MV5BMTIxNDg4MzA5OF5BMl5BanBnXkFtZTYwOTM3MDc1
     .jpg
    order: 5
    imageHasChanged: false
- - id: 
+ - id: nm0173448
    name: Shawn Colvin
    role: Rachel Jordan
    thumb:
@@ -103,7 +98,7 @@ actors: (N>5)
     .jpg
    order: 6
    imageHasChanged: false
- - id: 
+ - id: nm0908761
    name: Marcia Wallace
    role: Edna Krabappel
    thumb:
@@ -111,7 +106,7 @@ actors: (N>5)
     MDE@.jpg
    order: 7
    imageHasChanged: false
- - id: 
+ - id: nm0594217
    name: Marcia Mitzman Gaven
    role: Helen Lovejoy
    thumb:
@@ -119,13 +114,27 @@ actors: (N>5)
     OWY5MDY0XkEyXkFqcGc@.jpg
    order: 8
    imageHasChanged: false
- - id: 
+ - id: nm0370788
    name: Pamela Hayden
-   role: Milhouse Van Houten / Rod Flanders / Patches
+   role: Milhouse Van Houten
    thumb:
     https://m.media-amazon.com/images/M/MV5BMTY1NjU1ODI1Ml5BMl5BanBnXkFtZTYwNDE2ODQz
     .jpg
    order: 9
+   imageHasChanged: false
+ - id: nm0534134
+   name: Tress MacNeille
+   role: Agnes Skinner
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTQxMTQ1NzY5N15BMl5BanBnXkFtZTcwMDY5NDUw
+    OA@@.jpg
+   order: 10
+   imageHasChanged: false
+ - id: nm0927293
+   name: Karl Wiedergott
+   role: 
+   thumb: 
+   order: 11
    imageHasChanged: false
 streamDetails: <not loaded>
 files: (N=0)

@@ -17,8 +17,9 @@ public:
     void doStart() override;
 
 private:
-    void loadSeason();
     void loadEpisode(const ImdbId& episodeId);
+    void loadFromSeason();
+    void parseAndAssignInfos(const QString& json);
 
 private:
     ImdbApi& m_api;

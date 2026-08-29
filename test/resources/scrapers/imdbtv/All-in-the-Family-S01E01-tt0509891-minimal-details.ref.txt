@@ -27,18 +27,13 @@ directors: (N=1)
 playCount: 0
 lastPlayed: <not set or invalid>
 firstAired: 1971-01-12
-tags: (N<6)
-  - season premiere
-  - brunch
-  - italian slur
-  - reference to cosmopolitan magazine
-  - series premiere
+tags: (N=0)
 epBookmark: <not set or invalid>
 certification: TV-14
 networks: (N=0)
 thumbnail: https://m.media-amazon.com/images/M/MV5BY2E5MDNhZmEtZmU4OS00ZGE1LTg5M2MtODg2MjJmMDU2MzliXkEyXkFqcGc@.jpg
 actors: (N<6)
- - id: 
+ - id: nm0005279
    name: Carroll O'Connor
    role: Archie Bunker
    thumb:
@@ -46,7 +41,7 @@ actors: (N<6)
     ODdkMDI2XkEyXkFqcGc@.jpg
    order: 0
    imageHasChanged: false
- - id: 
+ - id: nm0822958
    name: Jean Stapleton
    role: Edith Bunker
    thumb:
@@ -54,7 +49,7 @@ actors: (N<6)
     NQ@@.jpg
    order: 1
    imageHasChanged: false
- - id: 
+ - id: nm0001661
    name: Rob Reiner
    role: Michael 'Meathead' Stivic
    thumb:
@@ -62,7 +57,7 @@ actors: (N<6)
     Mw@@.jpg
    order: 2
    imageHasChanged: false
- - id: 
+ - id: nm0001783
    name: Sally Struthers
    role: Gloria Bunker-Stivic
    thumb:
@@ -70,7 +65,7 @@ actors: (N<6)
     NDIzMDFkXkEyXkFqcGc@.jpg
    order: 3
    imageHasChanged: false
- - id: 
+ - id: nm0263070
    name: Mike Evans
    role: Lionel Jefferson
    thumb:
