@@ -8,6 +8,7 @@ target_sources(
     data/testLocale.cpp
     data/testTmdbId.cpp
     data/testCertification.cpp
+    data/testMovieSet.cpp
     data/testRating.cpp
     data/testResumeTime.cpp
     export/test.ExportTemplateLoader.cpp
