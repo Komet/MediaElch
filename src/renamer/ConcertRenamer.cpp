@@ -115,7 +115,8 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert& concert)
     QString parentDirName;
 
     MediaCenterInterface* mediaCenter = Manager::instance()->mediaCenterInterface();
-    QString nfo = mediaCenter->nfoFilePath(&concert);
+    // Strict lookup: do not pick up folder-level NFO fallbacks for rename.
+    QString nfo = mediaCenter->nfoFilePath(&concert, false);
 
     bool errorOccured = false;
 
@@ -223,7 +224,9 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert& concert)
 
         const auto renameImageType = [&](ImageType imageType) {
             DataFileType fileType = DataFile::dataFileTypeForImageType(imageType);
-            renameFileType(mediaCenter->imageFileName(&concert, imageType), fileType);
+            // Strict lookup: do not rename shared folder-level art via fallbacks.
+            renameFileType(
+                mediaCenter->imageFileName(&concert, imageType, QVector<DataFile>(), false, false), fileType);
         };
 
         renameFileType(nfo, DataFileType::ConcertNfo);

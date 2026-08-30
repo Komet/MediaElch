@@ -62,16 +62,19 @@ public:
     virtual QString actorImageName(TvShowEpisode* episode, Actor actor) = 0;
 
     // nfo file paths
-    virtual QString nfoFilePath(Movie* movie) = 0;
-    virtual QString nfoFilePath(Concert* concert) = 0;
-    virtual QString nfoFilePath(TvShowEpisode* episode) = 0;
+    /// \param allowLooseFallbacks When true (default), also try folder-level / movie.nfo.
+    ///        Renamer should pass false to avoid renaming shared folder sidecars unexpectedly.
+    virtual QString nfoFilePath(Movie* movie, bool allowLooseFallbacks = true) = 0;
+    virtual QString nfoFilePath(Concert* concert, bool allowLooseFallbacks = true) = 0;
+    virtual QString nfoFilePath(TvShowEpisode* episode, bool allowLooseFallbacks = true) = 0;
     virtual QString nfoFilePath(TvShow* show) = 0;
     virtual QString nfoFilePath(Artist* artist) = 0;
     virtual QString nfoFilePath(Album* album) = 0;
 
     // clang-format off
-    virtual QString imageFileName(const Movie *movie,           ImageType type, QVector<DataFile> dataFiles = QVector<DataFile>(), bool constructName = false) = 0;
-    virtual QString imageFileName(const Concert *concert,       ImageType type, QVector<DataFile> dataFiles = QVector<DataFile>(), bool constructName = false) = 0;
+    /// \param allowLooseFallbacks When true (default), also try folder-level art. Renamer should pass false.
+    virtual QString imageFileName(const Movie *movie,           ImageType type, QVector<DataFile> dataFiles = QVector<DataFile>(), bool constructName = false, bool allowLooseFallbacks = true) = 0;
+    virtual QString imageFileName(const Concert *concert,       ImageType type, QVector<DataFile> dataFiles = QVector<DataFile>(), bool constructName = false, bool allowLooseFallbacks = true) = 0;
     virtual QString imageFileName(const TvShowEpisode *episode, ImageType type, QVector<DataFile> dataFiles = QVector<DataFile>(), bool constructName = false) = 0;
     virtual QString imageFileName(const Artist *artist,         ImageType type, QVector<DataFile> dataFiles = QVector<DataFile>(), bool constructName = false) = 0;
     virtual QString imageFileName(const Album *album,           ImageType type, QVector<DataFile> dataFiles = QVector<DataFile>(), bool constructName = false) = 0;

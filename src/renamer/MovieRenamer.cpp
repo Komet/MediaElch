@@ -124,7 +124,8 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
     QString newDelimiter = (replaceDelimiter) ? m_config.delimiter : oldDelimiter;
 
     MediaCenterInterface* mediaCenter = Manager::instance()->mediaCenterInterface();
-    QString nfo = mediaCenter->nfoFilePath(&movie);
+    // Strict lookup: do not pick up folder-level / movie.nfo fallbacks for rename.
+    QString nfo = mediaCenter->nfoFilePath(&movie, false);
 
     QString newFileName;
     QStringList FilmFiles;
@@ -396,7 +397,9 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
 
         const auto renameImageType = [&](ImageType imageType) {
             DataFileType fileType = DataFile::dataFileTypeForImageType(imageType);
-            renameFileType(mediaCenter->imageFileName(&movie, imageType), fileType);
+            // Strict lookup: do not rename shared folder-level art via fallbacks.
+            renameFileType(
+                mediaCenter->imageFileName(&movie, imageType, QVector<DataFile>(), false, false), fileType);
         };
 
         renameFileType(nfo, DataFileType::MovieNfo);

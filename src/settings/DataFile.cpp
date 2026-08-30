@@ -47,7 +47,7 @@ int DataFile::pos() const
  * \param fileName File name
  * \param season Season number
  */
-QString DataFile::saveFileName(const QString& fileName, SeasonNumber season, bool stacked)
+QString DataFile::saveFileName(const QString& fileName, SeasonNumber season, bool stacked) const
 {
     if (type() == DataFileType::MovieSetBackdrop || type() == DataFileType::MovieSetPoster) {
         QString newFileName = m_fileName;
@@ -61,7 +61,10 @@ QString DataFile::saveFileName(const QString& fileName, SeasonNumber season, boo
 
     QString baseName = fi.completeBaseName();
     if (stacked) {
-        baseName = mediaelch::file::stackedBaseName(fileName);
+        // stackedBaseName keeps the video extension when there is no cd/part/disk
+        // marker (see #1175 / FilenameUtils). Sidecar patterns like
+        // "<baseFileName>.nfo" must not become "Title.mkv.nfo".
+        baseName = QFileInfo(mediaelch::file::stackedBaseName(fileName)).completeBaseName();
     }
     newFileName.replace("<baseFileName>", baseName);
 
@@ -74,6 +77,47 @@ QString DataFile::saveFileName(const QString& fileName, SeasonNumber season, boo
     }
 
     return newFileName;
+}
+
+QStringList DataFile::sidecarFileNameCandidates(const QVector<DataFile>& dataFiles,
+    const QString& videoFileName,
+    bool stacked,
+    const QString& folderName,
+    SidecarLookupOptions options)
+{
+    QStringList candidates;
+    const auto add = [&candidates](const QString& name) {
+        if (!name.isEmpty() && !candidates.contains(name)) {
+            candidates.append(name);
+        }
+    };
+
+    for (const DataFile& dataFile : dataFiles) {
+        add(dataFile.saveFileName(videoFileName, SeasonNumber::NoSeason, stacked));
+    }
+
+    // e.g. movie-cd1.avi → also try movie-cd1.nfo if stacked basename missed
+    if (options.tryNonStacked && stacked) {
+        for (const DataFile& dataFile : dataFiles) {
+            add(dataFile.saveFileName(videoFileName, SeasonNumber::NoSeason, false));
+        }
+    }
+
+    // Folder-level sidecars (TMM / multi-edition): Folder.nfo, Folder-poster.jpg, …
+    // Fake extension so completeBaseName()/saveFileName strip it cleanly.
+    if (options.tryFolderBasename && !folderName.isEmpty()) {
+        const QString folderAsVideo = folderName + QStringLiteral(".mkv");
+        for (const DataFile& dataFile : dataFiles) {
+            add(dataFile.saveFileName(folderAsVideo, SeasonNumber::NoSeason, false));
+        }
+    }
+
+    // Last resort only — after folder basename, to prefer TMM-style Folder.nfo over a stale movie.nfo.
+    if (options.tryGenericMovieNfo) {
+        add(QStringLiteral("movie.nfo"));
+    }
+
+    return candidates;
 }
 
 /**

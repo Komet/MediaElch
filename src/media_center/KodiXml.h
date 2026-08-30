@@ -76,11 +76,13 @@ public:
     QString imageFileName(const Movie* movie,
         ImageType type,
         QVector<DataFile> dataFiles = QVector<DataFile>(),
-        bool constructName = false) override;
+        bool constructName = false,
+        bool allowLooseFallbacks = true) override;
     QString imageFileName(const Concert* concert,
         ImageType type,
         QVector<DataFile> dataFiles = QVector<DataFile>(),
-        bool constructName = false) override;
+        bool constructName = false,
+        bool allowLooseFallbacks = true) override;
     QString imageFileName(const TvShowEpisode* episode,
         ImageType type,
         QVector<DataFile> dataFiles = QVector<DataFile>(),
@@ -99,9 +101,9 @@ public:
         QVector<DataFile> dataFiles = QVector<DataFile>(),
         bool constructName = false) override;
 
-    QString nfoFilePath(Movie* movie) override;
-    QString nfoFilePath(Concert* concert) override;
-    QString nfoFilePath(TvShowEpisode* episode) override;
+    QString nfoFilePath(Movie* movie, bool allowLooseFallbacks = true) override;
+    QString nfoFilePath(Concert* concert, bool allowLooseFallbacks = true) override;
+    QString nfoFilePath(TvShowEpisode* episode, bool allowLooseFallbacks = true) override;
     QString nfoFilePath(TvShow* show) override;
     QString nfoFilePath(Artist* artist) override;
     QString nfoFilePath(Album* album) override;
