@@ -131,7 +131,14 @@ private:
     bool saveFile(QString filename, QByteArray data);
     mediaelch::DirectoryPath getPath(const Movie* movie);
     mediaelch::DirectoryPath getPath(const Concert* concert);
-    QString movieSetFileName(QString setName, DataFile* dataFile);
+    /// \brief Whether to name the movie set's folder the way Kodi expects it to be.
+    enum class LegalisePath
+    {
+        Yes,
+        No
+    };
+    QString movieSetFileName(QString setName, DataFile* dataFile, LegalisePath legalise = LegalisePath::Yes);
+    QImage movieSetImage(const QString& setName, DataFileType type);
 
 private:
     mediaelch::KodiSettings& m_settings;

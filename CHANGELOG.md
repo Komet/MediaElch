@@ -30,10 +30,20 @@
 - Improved media codec detection for HDR10 and dolby vision (#1883).
   Thanks to GitHub user `@Quppa` for the help!
 - Music: If an album's cover can't be found, MediaElch may have crashed (#1918)
+- Movie sets: With "separate artwork directory", the set's sub-folder is now named the way
+  Kodi expects (`/ \ ? : * " < > |` become `_`, trailing dots and spaces are trimmed).
+  Sets whose name contains one of those characters were previously written to a folder Kodi
+  never looks in.  Artwork already stored under the old folder name is still read, so nothing
+  disappears from MediaElch; re-scrape a set's artwork to also have it written to where Kodi
+  will find it.  The file in the old folder is left untouched.
+- Movie sets: Saving a set's fanart no longer fails silently if the set has no poster yet
+  and its artwork folder therefore does not exist.
 
 ### Changed
 
-- tbd
+- The movie set artwork options are now labelled with what reads them.  "Artwork next to
+  movies" uses the Movie Set Artwork Automator naming, which Kodi does not read; "separate
+  artwork directory" writes into Kodi's movie set information folder.
 
 ### Removed
 

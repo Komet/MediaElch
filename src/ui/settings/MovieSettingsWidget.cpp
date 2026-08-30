@@ -18,9 +18,13 @@ MovieSettingsWidget::MovieSettingsWidget(QWidget* parent) : QWidget(parent), ui(
 #endif
 
     ui->comboMovieSetArtwork->addItem(
-        tr("Artwork next to movies"), static_cast<int>(MovieSetArtworkType::ArtworkNextToMovies));
-    ui->comboMovieSetArtwork->addItem(
-        tr("Separate artwork directory"), static_cast<int>(MovieSetArtworkType::SeparateArtworkFolder));
+        tr("Artwork next to movies (add-on style)"), static_cast<int>(MovieSetArtworkType::ArtworkNextToMovies));
+    ui->comboMovieSetArtwork->addItem(tr("Separate artwork directory (Kodi movie set information folder)"),
+        static_cast<int>(MovieSetArtworkType::SeparateArtworkFolder));
+    ui->comboMovieSetArtwork->setToolTip(
+        tr("\"Artwork next to movies\" writes set artwork next to the movie folders, prefixed with the "
+           "set name (Movie Set Artwork Automator naming). Kodi does not read this layout; add-ons such "
+           "as Artwork Beef do, if their movie set artwork directory points at your movies directory."));
 
     connect(ui->comboMovieSetArtwork,
         elchOverload<int>(&QComboBox::currentIndexChanged),

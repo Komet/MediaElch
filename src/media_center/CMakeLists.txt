@@ -5,6 +5,7 @@ add_library(
   kodi/ArtistXmlReader.cpp
   kodi/ArtistXmlWriter.cpp
   kodi/KodiXmlWriter.cpp
+  kodi/MakeLegalFileName.cpp
   kodi/AlbumXmlReader.cpp
   kodi/EpisodeXmlReader.cpp
   kodi/MovieXmlReader.cpp
