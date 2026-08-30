@@ -1,6 +1,6 @@
 #include "test/mocks/settings/SettingsMock.h"
 
-Settings::Value SettingsMock::value(const Settings::Key& key)
+Settings::Value SettingsMock::value(const Settings::Key& key) const
 {
     return key_string_map[key];
 }
@@ -12,5 +12,7 @@ void SettingsMock::setValue(const Settings::Key& key, const Settings::Value& val
 
 void SettingsMock::setDefaultValue(const Settings::Key& key, const Settings::Value& value)
 {
-    key_string_map[key] = value;
+    if (!key_string_map.contains(key)) {
+        key_string_map[key] = value;
+    }
 }

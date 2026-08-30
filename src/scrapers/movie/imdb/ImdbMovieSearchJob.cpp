@@ -27,7 +27,7 @@ void ImdbMovieSearchJob::doStart()
 
 void ImdbMovieSearchJob::searchViaImdbId()
 {
-    MediaElch_Debug_Ensures(ImdbId::isValidFormat(config().query));
+    MediaElch_Debug_Expects(ImdbId::isValidFormat(config().query));
 
     m_api.loadTitle(
         Locale("en"), ImdbId(config().query), ImdbApi::PageKind::Reference, [this](QString data, ScraperError error) {
@@ -42,7 +42,7 @@ void ImdbMovieSearchJob::searchViaImdbId()
 
 void ImdbMovieSearchJob::searchViaQuery()
 {
-    MediaElch_Debug_Ensures(!ImdbId::isValidFormat(config().query));
+    MediaElch_Debug_Expects(!ImdbId::isValidFormat(config().query));
 
     m_api.searchForMovie(Locale("en"), config().query, config().includeAdult, [this](QString data, ScraperError error) {
         if (error.hasError()) {
