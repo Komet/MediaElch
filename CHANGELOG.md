@@ -30,6 +30,8 @@
 - Improved media codec detection for HDR10 and dolby vision (#1883).
   Thanks to GitHub user `@Quppa` for the help!
 - Music: If an album's cover can't be found, MediaElch may have crashed (#1918)
+- Renamer: the debug-only placeholder-consistency checks only compiled when the
+  passed map happened to be named `map`; they now use the macro parameter
 
 ### Changed
 

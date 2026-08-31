@@ -11,7 +11,7 @@
         do {                                                                                                           \
             static const bool testFlag = [&dataMap]() {                                                                \
                 PlaceholderClass p;                                                                                    \
-                ensureDataEntriesMatchPlaceholders(#PlaceholderClass, map.keys(), p.placeholders());                   \
+                ensureDataEntriesMatchPlaceholders(#PlaceholderClass, dataMap.keys(), p.placeholders());               \
                 return false;                                                                                          \
             }();                                                                                                       \
             Q_UNUSED(testFlag)                                                                                         \
@@ -28,7 +28,7 @@
         do {                                                                                                           \
             static const bool testFlag = [&conditionMap]() {                                                           \
                 PlaceholderClass p;                                                                                    \
-                ensureConditionEntriesMatchPlaceholders(#PlaceholderClass, map.keys(), p.placeholders());              \
+                ensureConditionEntriesMatchPlaceholders(#PlaceholderClass, conditionMap.keys(), p.placeholders());     \
                 return false;                                                                                          \
             }();                                                                                                       \
             Q_UNUSED(testFlag)                                                                                         \
