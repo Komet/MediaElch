@@ -173,6 +173,11 @@ EpisodeRenamer::EpisodeRenamer(RenamerConfig renamerConfig, RenamerDialog* dialo
 EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode& episode,
     QVector<TvShowEpisode*>& episodesRenamed)
 {
+    if (episode.files().isEmpty()) {
+        qCWarning(generic) << "[EpisodeRenamer] Cannot rename episode without files:" << episode.title();
+        return RenameError::Error;
+    }
+
     mediaelch::EpisodeRenamerPlaceholders renamerPlaceholder;
     mediaelch::EpisodeRenamerData renamerData{episode};
 

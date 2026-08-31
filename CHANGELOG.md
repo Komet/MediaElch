@@ -30,6 +30,11 @@
 - Improved media codec detection for HDR10 and dolby vision (#1883).
   Thanks to GitHub user `@Quppa` for the help!
 - Music: If an album's cover can't be found, MediaElch may have crashed (#1918)
+- Renamer:
+  - When the target movie folder already existed, the collision counter was
+    appended repeatedly ("Movie 1 2 3") instead of counting up ("Movie 2")
+  - Renaming a movie/concert/episode that has no files no longer risks a crash;
+    it is reported as an error instead
 
 ### Changed
 

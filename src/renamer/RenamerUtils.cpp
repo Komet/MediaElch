@@ -7,6 +7,16 @@
 
 namespace mediaelch {
 
+QString uniqueDirectoryName(const QDir& dir, const QString& desiredName)
+{
+    QString name = desiredName;
+    int suffix = 0;
+    while (dir.exists(name)) {
+        name = desiredName + " " + QString::number(++suffix);
+    }
+    return name;
+}
+
 #ifdef QT_DEBUG
 void ensureDataEntriesMatchPlaceholders(const char* variant,
     const QList<QString>& dataKeys,
