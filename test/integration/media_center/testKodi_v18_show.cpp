@@ -46,6 +46,15 @@ TEST_CASE("TV show XML writer for Kodi v18", "[data][tvshow][kodi][nfo]")
         test::compareXmlAgainstResourceFile(actual, filename);
     }
 
+    SECTION("read / write TMM english_title tag")
+    {
+        createAndCompareTvShow("show/kodi_v18_show_english_title.nfo", [](TvShow& show) {
+            CHECK(show.title() == QStringLiteral("Название"));
+            CHECK(show.originalTitle() == "Original Name");
+            CHECK(show.englishTitle() == "English Title");
+        });
+    }
+
     SECTION("read / write details: Game of Thrones")
     {
         createAndCompareTvShow("show/kodi_v18_show_Game_of_Thrones.nfo", [](TvShow& show) {

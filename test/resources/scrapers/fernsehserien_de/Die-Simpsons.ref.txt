@@ -8,6 +8,7 @@ tvmazeId:
 title: Die Simpsons
 showTitle: 
 originalTitle: The Simpsons
+englishTitle:
 sortTitle: 
 overview:
     „Die Simpsons“ sind eine amerikanische Durchschnittsfamilie. Immer neue Geschich

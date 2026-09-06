@@ -203,23 +203,33 @@
                <widget class="QLineEdit" name="originalTitle"/>
               </item>
               <item row="4" column="0">
+               <widget class="QLabel" name="lblEnglishTitle">
+                <property name="text">
+                 <string>English Name</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="1">
+               <widget class="QLineEdit" name="englishTitle"/>
+              </item>
+              <item row="5" column="0">
                <widget class="QLabel" name="lblSortTitle">
                 <property name="text">
                  <string>Sort Title</string>
                 </property>
                </widget>
               </item>
-              <item row="4" column="1">
+              <item row="5" column="1">
                <widget class="QLineEdit" name="sortTitle"/>
               </item>
-              <item row="5" column="0">
+              <item row="6" column="0">
                <widget class="QLabel" name="lblSet">
                 <property name="text">
                  <string>Set</string>
                 </property>
                </widget>
               </item>
-              <item row="5" column="1">
+              <item row="6" column="1">
                <widget class="QComboBox" name="set">
                 <property name="minimumSize">
                  <size>
@@ -238,24 +248,24 @@
                 </property>
                </widget>
               </item>
-              <item row="6" column="0">
+              <item row="7" column="0">
                <widget class="QLabel" name="lblTagline">
                 <property name="text">
                  <string>Tagline</string>
                 </property>
                </widget>
               </item>
-              <item row="6" column="1">
+              <item row="7" column="1">
                <widget class="QLineEdit" name="tagline"/>
               </item>
-              <item row="7" column="0">
+              <item row="8" column="0">
                <widget class="QLabel" name="lblRatings">
                 <property name="text">
                  <string>Ratings</string>
                 </property>
                </widget>
               </item>
-              <item row="8" column="0">
+              <item row="9" column="0">
                <widget class="QLabel" name="lblReleased">
                 <property name="text">
                  <string>Released</string>
@@ -467,7 +477,7 @@
                 </item>
                </layout>
               </item>
-              <item row="7" column="1">
+              <item row="8" column="1">
                <layout class="QVBoxLayout" name="vLayoutRating">
                 <item>
                  <layout class="QHBoxLayout" name="hLayoutUserRating">
@@ -544,7 +554,7 @@
                 </item>
                </layout>
               </item>
-              <item row="8" column="1">
+              <item row="9" column="1">
                <layout class="QHBoxLayout" name="horizontalLayout_4">
                 <item>
                  <widget class="QDateEdit" name="releaseDate">

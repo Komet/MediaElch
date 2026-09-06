@@ -1208,6 +1208,10 @@
         <translation>Titre original</translation>
     </message>
     <message>
+        <source>English Title</source>
+        <translation>Titre anglais</translation>
+    </message>
+    <message>
         <location line="-132"/>
         <location line="+55"/>
         <source>Sort Title</source>
@@ -5195,6 +5199,12 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <source>Original Name</source>
         <translation>Titre Original</translation>
     </message>
+    
+    <message>
+        <location line="+10"/>
+        <source>English Name</source>
+        <translation>Titre anglais</translation>
+    </message>
     <message>
         <location line="+10"/>
         <source>Sort Title</source>
@@ -6718,6 +6728,11 @@ Vérifiez les paramètres si vous avez déjà stocké vos films dans des dossier
     </message>
     <message>
         <location line="+1"/>
+        <source>English Title</source>
+        <translation>Titre anglais</translation>
+    </message>
+    <message>
+        <location line="+1"/>
         <source>Sort Title</source>
         <translation>Odre de tri</translation>
     </message>
@@ -6997,6 +7012,18 @@ Vérifiez les paramètres si vous avez déjà stocké vos films dans des dossier
         <location line="+20"/>
         <source>Show Title</source>
         <translation>Titre de la Série</translation>
+    </message>
+    <message>
+        <source>English Title (of the TV show)</source>
+        <translation>Titre anglais (de la série)</translation>
+    </message>
+    <message>
+        <source>Original Title (of the TV show)</source>
+        <translation>Titre original (de la série)</translation>
+    </message>
+    <message>
+        <source>Sort Title (of the TV show)</source>
+        <translation>Titre de tri (de la série)</translation>
     </message>
     <message>
         <location line="-19"/>
@@ -9565,8 +9592,13 @@ episode after scraping</source>
     </message>
     <message>
         <location line="-20"/>
-        <source>Original Title</source>
+        <source>Original Name</source>
         <translation>Titre Original</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>English Name</source>
+        <translation>Titre anglais</translation>
     </message>
     <message>
         <location line="+277"/>

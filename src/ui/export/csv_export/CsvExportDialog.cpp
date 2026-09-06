@@ -295,6 +295,7 @@ void CsvExportDialog::initializeItems()
         addField(Field::WikidataId, tr("Wikidata ID"));
         addField(Field::Title, tr("Title"));
         addField(Field::OriginalTitle, tr("Original Title"));
+        addField(Field::EnglishTitle, tr("English Title"));
         addField(Field::SortTitle, tr("Sort Title"));
         addField(Field::Overview, tr("Overview"));
         addField(Field::Outline, tr("Outline"));
@@ -352,6 +353,7 @@ void CsvExportDialog::initializeItems()
         addField(Field::ShowTitle, tr("Title"));
         addField(Field::ShowSortTitle, tr("Sort Title"));
         addField(Field::ShowOriginalTitle, tr("Original Title"));
+        addField(Field::ShowEnglishTitle, tr("English Title"));
         addField(Field::ShowFirstAired, tr("First Aired"));
         addField(Field::ShowNetwork, tr("network"));
         addField(Field::ShowCertification, tr("Certification"));

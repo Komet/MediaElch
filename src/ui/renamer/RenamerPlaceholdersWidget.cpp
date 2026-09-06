@@ -39,8 +39,12 @@ RenamerPlaceholdersWidget::~RenamerPlaceholdersWidget()
 
 void RenamerPlaceholdersWidget::setPlaceholders(mediaelch::RenamerPlaceholders& renamerPlaceholders)
 {
+    setPlaceholders(renamerPlaceholders.placeholders());
+}
+
+void RenamerPlaceholdersWidget::setPlaceholders(const QVector<mediaelch::Placeholder>& placeholders)
+{
     clearLayout(ui->placeholderLayout);
-    const QVector<mediaelch::Placeholder> placeholders = renamerPlaceholders.placeholders();
     for (const auto& placeholder : placeholders) {
         QLabel* textLabel = new QLabel(this);
         textLabel->setTextFormat(Qt::TextFormat::PlainText);

@@ -36,6 +36,7 @@ bool MovieXmlReader::parseNfoDom(QDomDocument domDoc)
     // clang-format off
     tagParsers.insert("title",         &MovieXmlReader::simpleString<&Movie::setTitle>);
     tagParsers.insert("originaltitle", &MovieXmlReader::simpleString<&Movie::setOriginalTitle>);
+    tagParsers.insert("english_title", &MovieXmlReader::simpleString<&Movie::setEnglishTitle>);
     tagParsers.insert("sorttitle",     &MovieXmlReader::simpleString<&Movie::setSortTitle>);
     tagParsers.insert("plot",          &MovieXmlReader::simpleString<&Movie::setOverview>);
     tagParsers.insert("outline",       &MovieXmlReader::simpleString<&Movie::setOutline>);

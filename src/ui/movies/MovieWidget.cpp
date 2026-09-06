@@ -174,7 +174,8 @@ MovieWidget::MovieWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieWid
     connect(ui->imdbId,           &QLineEdit::textEdited,           this, &MovieWidget::onImdbIdChange);
     connect(ui->tmdbId,           &QLineEdit::textEdited,           this, &MovieWidget::onTmdbIdChange);
     connect(ui->name,             &QLineEdit::textEdited,           this, &MovieWidget::onNameChange);
-    connect(ui->originalTitle,     &QLineEdit::textEdited,           this, &MovieWidget::onOriginalNameChange);
+    connect(ui->originalTitle,    &QLineEdit::textEdited,           this, &MovieWidget::onOriginalNameChange);
+    connect(ui->englishTitle,     &QLineEdit::textEdited,           this, &MovieWidget::onEnglishTitleChange);
     connect(ui->sortTitle,        &QLineEdit::textEdited,           this, &MovieWidget::onSortTitleChange);
     connect(ui->tagline,          &QLineEdit::textEdited,           this, &MovieWidget::onTaglineChange);
 
@@ -270,6 +271,7 @@ void MovieWidget::clear()
     clear(ui->tmdbId);
     clear(ui->name);
     clear(ui->originalTitle);
+    clear(ui->englishTitle);
     clear(ui->sortTitle);
     clear(ui->tagline);
     clear(ui->userRating);
@@ -575,6 +577,7 @@ void MovieWidget::updateMovieInfo()
     ui->name->setText(m_movie->title());
     ui->movieName->setText(m_movie->title());
     ui->originalTitle->setText(m_movie->originalTitle());
+    ui->englishTitle->setText(m_movie->englishTitle());
     ui->sortTitle->setText(m_movie->sortTitle());
     ui->tagline->setText(m_movie->tagline());
     ui->userRating->setValue(m_movie->userRating());
@@ -1178,6 +1181,15 @@ void MovieWidget::onOriginalNameChange(QString text)
         return;
     }
     m_movie->setOriginalTitle(text);
+    ui->buttonRevert->setVisible(true);
+}
+
+void MovieWidget::onEnglishTitleChange(QString text)
+{
+    if (m_movie == nullptr) {
+        return;
+    }
+    m_movie->setEnglishTitle(text);
     ui->buttonRevert->setVisible(true);
 }
 

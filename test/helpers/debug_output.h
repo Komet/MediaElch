@@ -9,6 +9,9 @@
 #include <QUrl>
 #include <ostream>
 
+// EpisodeNumber/SeasonNumber already provide operator<< in libmediaelch;
+// re-defining them here causes an ODR violation with MinGW/GCC.
+
 inline std::ostream& operator<<(std::ostream& os, const QByteArray& value)
 {
     return os << '"' << (value.isEmpty() ? "" : value.constData()) << '"';
@@ -32,16 +35,6 @@ inline std::ostream& operator<<(std::ostream& os, const QDate& value)
 inline std::ostream& operator<<(std::ostream& os, const QUrl& value)
 {
     return os << value.toDisplayString();
-}
-
-inline std::ostream& operator<<(std::ostream& os, const EpisodeNumber& value)
-{
-    return os << value.toString();
-}
-
-inline std::ostream& operator<<(std::ostream& os, const SeasonNumber& value)
-{
-    return os << value.toString();
 }
 
 inline std::ostream& operator<<(std::ostream& os, const QVector<Actor*>& value)

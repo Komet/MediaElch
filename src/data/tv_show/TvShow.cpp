@@ -113,6 +113,8 @@ void TvShow::clear(QSet<ShowScraperInfo> infos)
     if (infos.contains(ShowScraperInfo::Title)) {
         m_showTitle.clear();
         m_originalTitle.clear();
+        // Cleared with Title; ShowMerger only restores englishTitle when source has a value.
+        m_englishTitle.clear();
     }
     if (infos.contains(ShowScraperInfo::Tags)) {
         m_tags.clear();
@@ -203,6 +205,7 @@ void TvShow::exportTo(Exporter& exporter) const
     exporter.exportTitle(m_title);
     exporter.exportShowTitle(m_showTitle);
     exporter.exportOriginalTitle(m_originalTitle);
+    exporter.exportEnglishTitle(m_englishTitle);
     exporter.exportSortTitle(m_sortTitle);
 
     exporter.exportOverview(m_overview);
@@ -453,6 +456,11 @@ QString TvShow::showTitle() const
 QString TvShow::originalTitle() const
 {
     return m_originalTitle;
+}
+
+QString TvShow::englishTitle() const
+{
+    return m_englishTitle;
 }
 
 QString TvShow::sortTitle() const
@@ -836,6 +844,12 @@ void TvShow::setTitle(const QString& title)
 void TvShow::setOriginalTitle(const QString& title)
 {
     m_originalTitle = title.trimmed();
+    setChanged(true);
+}
+
+void TvShow::setEnglishTitle(const QString& title)
+{
+    m_englishTitle = title.trimmed();
     setChanged(true);
 }
 
@@ -1524,6 +1538,7 @@ QDebug operator<<(QDebug dbg, const TvShow& show)
     out.append(QStringLiteral("  TMDB ID:       ").append(show.tmdbId().withPrefix()).append(nl));
     out.append(QStringLiteral("  TVMaze ID:     ").append(show.tvmazeId().toString()).append(nl));
     out.append(QStringLiteral("  OriginalTitle: ").append(show.originalTitle()).append(nl));
+    out.append(QStringLiteral("  English-Title: ").append(show.englishTitle()).append(nl));
     out.append(QStringLiteral("  ShowTitle:     ").append(show.showTitle()).append(nl));
     out.append(QStringLiteral("  SortTitle:     ").append(show.sortTitle()).append(nl));
     out.append(QString("  Ratings:").append(nl));

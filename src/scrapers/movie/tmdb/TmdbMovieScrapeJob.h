@@ -21,8 +21,12 @@ public:
 
 private:
     void parseAndAssignInfos(const QJsonDocument& json);
+    /// \brief Assign English title from a TMDb JSON payload (language=en).
+    void parseAndAssignEnglishTitle(const QJsonDocument& json);
     /// \brief Load the collection (TMDB id) and store the content in the movie.
     void loadCollection(const TmdbId& collectionTmdbId);
+    /// \brief Request movie infos in English when the scrape locale is not English.
+    void loadEnglishTitle(const QString& id);
 
 private:
     void onDownloadDone(ScraperData data);

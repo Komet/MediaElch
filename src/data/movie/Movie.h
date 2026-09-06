@@ -51,6 +51,7 @@ public:
     ELCH_NODISCARD QString title() const;
     ELCH_NODISCARD QString sortTitle() const;
     ELCH_NODISCARD QString originalTitle() const;
+    ELCH_NODISCARD QString englishTitle() const;
 
     ELCH_NODISCARD MovieImages& images();
     ELCH_NODISCARD const MovieImages& constImages() const;
@@ -116,6 +117,7 @@ public:
     void setTitle(QString title);
     void setSortTitle(QString sortTitle);
     void setOriginalTitle(QString originalTitle);
+    void setEnglishTitle(QString englishTitle);
     void setOverview(QString overview);
     void setTop250(int top250);
     void setReleased(QDate released);
@@ -202,6 +204,7 @@ public:
         virtual void exportTitle(const QString& title) = 0;
         virtual void exportSortTitle(const QString& sortTitle) = 0;
         virtual void exportOriginalTitle(const QString& originalTitle) = 0;
+        virtual void exportEnglishTitle(const QString& englishTitle) = 0;
 
         virtual void exportFiles(const mediaelch::FileList& files) = 0;
         virtual void exportMovieImages(const MovieImages& movieImages) = 0;
@@ -248,6 +251,7 @@ private:
     QString m_name;
     QString m_sortTitle;
     QString m_originalTitle;
+    QString m_englishTitle;
     QString m_overview;
     Ratings m_ratings;
     double m_userRating = 0.0;

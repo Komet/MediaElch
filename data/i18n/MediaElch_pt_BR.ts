@@ -1214,6 +1214,10 @@ Por exemplo:  &lt;baseFileName&gt;-poster.jpg,folder.jpg</translation>
         <translation>Título Original</translation>
     </message>
     <message>
+        <source>English Title</source>
+        <translation>Título em inglês</translation>
+    </message>
+    <message>
         <location line="-132"/>
         <location line="+55"/>
         <source>Sort Title</source>
@@ -5217,6 +5221,12 @@ Por exemplo:  &lt;baseFileName&gt;-poster.jpg,folder.jpg</translation>
         <source>Original Name</source>
         <translation>Título Original</translation>
     </message>
+    
+    <message>
+        <location line="+10"/>
+        <source>English Name</source>
+        <translation>Título Inglês</translation>
+    </message>
     <message>
         <location line="+10"/>
         <source>Sort Title</source>
@@ -6742,6 +6752,11 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
     </message>
     <message>
         <location line="+1"/>
+        <source>English Title</source>
+        <translation>Título em inglês</translation>
+    </message>
+    <message>
+        <location line="+1"/>
         <source>Sort Title</source>
         <translation>Título para Ordenar</translation>
     </message>
@@ -7021,6 +7036,18 @@ Por exemplo:  folder.jpg,cover.jpg</translation>
         <location line="+20"/>
         <source>Show Title</source>
         <translation>Serie - Título Local</translation>
+    </message>
+    <message>
+        <source>English Title (of the TV show)</source>
+        <translation>Título em inglês (da série)</translation>
+    </message>
+    <message>
+        <source>Original Title (of the TV show)</source>
+        <translation>Título original (da série)</translation>
+    </message>
+    <message>
+        <source>Sort Title (of the TV show)</source>
+        <translation>Título de ordenação (da série)</translation>
     </message>
     <message>
         <location line="-19"/>
@@ -9598,8 +9625,13 @@ Para as artes de temporada use o placeholder &lt;seasonNumber&gt; que é o núme
     </message>
     <message>
         <location line="-20"/>
-        <source>Original Title</source>
+        <source>Original Name</source>
         <translation>Título Original</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>English Name</source>
+        <translation>Título Inglês</translation>
     </message>
     <message>
         <location line="+277"/>

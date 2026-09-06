@@ -1208,6 +1208,10 @@
         <translation>Original Titel</translation>
     </message>
     <message>
+        <source>English Title</source>
+        <translation>Englischer Titel</translation>
+    </message>
+    <message>
         <location line="-132"/>
         <location line="+55"/>
         <source>Sort Title</source>
@@ -5193,6 +5197,12 @@ Wenn du bei TMDb nach einer ID suchen möchtest, stelle bitte &quot;id&quot; vor
         <source>Original Name</source>
         <translation>Original Titel</translation>
     </message>
+    
+    <message>
+        <location line="+10"/>
+        <source>English Name</source>
+        <translation>Englischer Titel</translation>
+    </message>
     <message>
         <location line="+10"/>
         <source>Sort Title</source>
@@ -6715,6 +6725,11 @@ Wenn du bei TMDb nach einer ID suchen möchtest, stelle bitte &quot;id&quot; vor
     </message>
     <message>
         <location line="+1"/>
+        <source>English Title</source>
+        <translation>Englischer Titel</translation>
+    </message>
+    <message>
+        <location line="+1"/>
         <source>Sort Title</source>
         <translation>Titel für Sortierung</translation>
     </message>
@@ -6995,6 +7010,18 @@ Wenn du bei TMDb nach einer ID suchen möchtest, stelle bitte &quot;id&quot; vor
         <location line="+20"/>
         <source>Show Title</source>
         <translation>Serientitel</translation>
+    </message>
+    <message>
+        <source>English Title (of the TV show)</source>
+        <translation>Englischer Titel (der Serie)</translation>
+    </message>
+    <message>
+        <source>Original Title (of the TV show)</source>
+        <translation>Originaltitel (der Serie)</translation>
+    </message>
+    <message>
+        <source>Sort Title (of the TV show)</source>
+        <translation>Sortiertitel (der Serie)</translation>
     </message>
     <message>
         <location line="-19"/>
@@ -9566,8 +9593,13 @@ automatisch nach dem Laden</translation>
     </message>
     <message>
         <location line="-20"/>
-        <source>Original Title</source>
+        <source>Original Name</source>
         <translation>Original Titel</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>English Name</source>
+        <translation>Englischer Titel</translation>
     </message>
     <message>
         <location line="+277"/>

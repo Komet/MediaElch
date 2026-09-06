@@ -1208,6 +1208,10 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>English Title</source>
+        <translation>Engelsk titel</translation>
+    </message>
+    <message>
         <location line="-132"/>
         <location line="+55"/>
         <source>Sort Title</source>
@@ -5192,6 +5196,11 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     </message>
     <message>
         <location line="+10"/>
+        <source>English Name</source>
+        <translation>Engelsk navn</translation>
+    </message>
+    <message>
+        <location line="+10"/>
         <source>Sort Title</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6712,6 +6721,11 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
     </message>
     <message>
         <location line="+1"/>
+        <source>English Title</source>
+        <translation>Engelsk titel</translation>
+    </message>
+    <message>
+        <location line="+1"/>
         <source>Sort Title</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6991,6 +7005,18 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</sourc
         <location line="+20"/>
         <source>Show Title</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>English Title (of the TV show)</source>
+        <translation>Engelsk titel (for TV-serien)</translation>
+    </message>
+    <message>
+        <source>Original Title (of the TV show)</source>
+        <translation>Originaltitel (for TV-serien)</translation>
+    </message>
+    <message>
+        <source>Sort Title (of the TV show)</source>
+        <translation>Sorteringstitel (for TV-serien)</translation>
     </message>
     <message>
         <location line="-19"/>
@@ -9559,8 +9585,13 @@ episode after scraping</source>
     </message>
     <message>
         <location line="-20"/>
-        <source>Original Title</source>
+        <source>Original Name</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>English Name</source>
+        <translation>Engelsk navn</translation>
     </message>
     <message>
         <location line="+277"/>

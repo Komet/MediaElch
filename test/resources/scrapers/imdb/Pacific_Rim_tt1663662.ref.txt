@@ -8,6 +8,7 @@ mediaCenterId: -1
 title: Pacific Rim
 sortTitle: 
 originalTitle: Pacific Rim
+englishTitle: 
 overview:
     In the near future, aliens identified as Kaijus have risen from a portal in a cr
     evasse beneath the Pacific Ocean and started to attack coastal cities resulting 

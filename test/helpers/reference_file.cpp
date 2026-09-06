@@ -425,6 +425,10 @@ public:
     {
         writeToReference(m_out, "originalTitle", originalTitle);
     }
+    void exportEnglishTitle(const QString& englishTitle) override
+    {
+        writeToReference(m_out, "englishTitle", englishTitle);
+    }
 
     void exportFiles(const mediaelch::FileList& files) override { writeToReference(m_out, "files", files); }
     void exportMovieImages(const MovieImages& movieImages) override
@@ -524,6 +528,10 @@ public:
     void exportOriginalTitle(const QString& originalTitle) override
     {
         writeToReference(m_out, "originalTitle", originalTitle);
+    }
+    void exportEnglishTitle(const QString& englishTitle) override
+    {
+        writeToReference(m_out, "englishTitle", englishTitle);
     }
     void exportSortTitle(const QString& sortTitle) override { writeToReference(m_out, "sortTitle", sortTitle); }
 

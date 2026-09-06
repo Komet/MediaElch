@@ -8,6 +8,7 @@ mediaCenterId: -1
 title: The Shawshank Redemption
 sortTitle: 
 originalTitle: The Shawshank Redemption
+englishTitle: 
 overview:
     In 1947, Andy Dufresne (Tim Robbins), a banker, is convicted of murdering his wi
     fe and her lover, a golf professional. He is sent to the notoriously harsh Shaws

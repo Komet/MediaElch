@@ -8,6 +8,7 @@ mediaCenterId: -1
 title: Finding Dory
 sortTitle: 
 originalTitle: Finding Dory
+englishTitle: Finding Dory
 overview:
     Dory is reunited with her friends Nemo and Marlin in the search for answers abou
     t her past. What can she remember? Who are her parents? And where did she learn 
@@ -28,15 +29,15 @@ writer: Andrew Stanton, Bob Peterson, Victoria Strouse, Matt Jones
 director: Andrew Stanton
 actors: (N>60)
  - id: 
-   name: Albert Brooks
-   role: Marlin (voice)
-   thumb: http://image.tmdb.org/t/p/original/8iDSGu5l93N7benjf6b3AysBore.jpg
+   name: Ellen DeGeneres
+   role: Dory (voice)
+   thumb: http://image.tmdb.org/t/p/original/z8IEEid4z63CBlJtxrTKEfsW7NA.jpg
    order: 0
    imageHasChanged: false
  - id: 
-   name: Ellen DeGeneres
-   role: Dory (voice)
-   thumb: http://image.tmdb.org/t/p/original/54NvHEAkAi9Ry5G2dJOP81ZOQT8.jpg
+   name: Albert Brooks
+   role: Marlin (voice)
+   thumb: http://image.tmdb.org/t/p/original/8iDSGu5l93N7benjf6b3AysBore.jpg
    order: 1
    imageHasChanged: false
  - id: 
@@ -48,7 +49,7 @@ actors: (N>60)
  - id: 
    name: Hayden Rolence
    role: Nemo (voice)
-   thumb: http://image.tmdb.org/t/p/original/tn9L6jViF5FMbEiglNoQgPRq1B0.jpg
+   thumb: http://image.tmdb.org/t/p/original/7VVdyfGSiq9asqfaUw4gDBLopun.jpg
    order: 3
    imageHasChanged: false
  - id: 
@@ -60,13 +61,13 @@ actors: (N>60)
  - id: 
    name: Eugene Levy
    role: Charlie (voice)
-   thumb: http://image.tmdb.org/t/p/original/u0QzUh5Iw2K8L9AOyl0pIQrojNM.jpg
+   thumb: http://image.tmdb.org/t/p/original/epZE1ZohKhEFCdCKYFyvtJEj0I7.jpg
    order: 5
    imageHasChanged: false
  - id: 
    name: Ty Burrell
    role: Bailey (voice)
-   thumb: http://image.tmdb.org/t/p/original/zXrrbvW2ZKHYHbhujDj8aBlO4yx.jpg
+   thumb: http://image.tmdb.org/t/p/original/4dwlnG1dcEPAf2cjNsYbYJn5E8Y.jpg
    order: 6
    imageHasChanged: false
  - id: 
@@ -138,7 +139,7 @@ actors: (N>60)
  - id: 
    name: John Ratzenberger
    role: Husband Crab (Bill) (voice)
-   thumb: http://image.tmdb.org/t/p/original/e5aNU09v1q6WYTx9pNzC7yjSpve.jpg
+   thumb: http://image.tmdb.org/t/p/original/oRtDEOuIO1yDhTz5dORBdxXuLMO.jpg
    order: 18
    imageHasChanged: false
  - id: 

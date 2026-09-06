@@ -1,6 +1,7 @@
 #include "renamer/EpisodeRenamer.h"
 
 #include "RenamerUtils.h"
+#include "data/tv_show/TvShow.h"
 #include "data/tv_show/TvShowEpisode.h"
 #include "database/TvShowPersistence.h"
 #include "globals/Helper.h"
@@ -21,7 +22,11 @@ QVector<Placeholder> TvShowRenamerPlaceholders::placeholders()
         // clang-format off
         { "title",            true,  false, QObject::tr("Title") },
         { "showTitle",        true,  false, QObject::tr("Show Title") },
+        { "originalTitle",    true,  false, QObject::tr("Original Title") },
+        { "englishTitle",     true,  false, QObject::tr("English Title") },
+        { "sortTitle",        true,  false, QObject::tr("Sort Title") },
         { "tmdbId",           true,  true,  QObject::tr("TMDB ID") },
+        { "imdbId",           true,  true,  QObject::tr("IMDb ID") },
         { "year",             true,  false, QObject::tr("Year") },
         // clang-format on
     };
@@ -41,6 +46,9 @@ QVector<Placeholder> EpisodeRenamerPlaceholders::placeholders()
         { "season",           true,  false, QObject::tr("Season") },
         { "seasonName",       true,  true,  QObject::tr("Season Name") },
         { "showTitle",        true,  false, QObject::tr("Show Title") },
+        { "originalTitle",    true,  false, QObject::tr("Original Title (of the TV show)") },
+        { "englishTitle",     true,  false, QObject::tr("English Title (of the TV show)") },
+        { "sortTitle",        true,  false, QObject::tr("Sort Title (of the TV show)") },
         { "year",             true,  false, QObject::tr("Year") },
         { "3D",               false, true,  QObject::tr("File is 3D") },
         { "bluray",           false, true,  QObject::tr("File is BluRay") },
@@ -65,7 +73,11 @@ ELCH_NODISCARD QString TvShowRenamerData::value(const QString& name) const
         // clang-format off
         {"title",            [this]() { return m_tvShow.title(); }},
         {"showTitle",        [this]() { return m_tvShow.title(); }},
+        {"originalTitle",    [this]() { return m_tvShow.originalTitle().isEmpty() ? m_tvShow.title() : m_tvShow.originalTitle(); }},
+        {"englishTitle",     [this]() { return m_tvShow.englishTitle().isEmpty() ? m_tvShow.title() : m_tvShow.englishTitle(); }},
+        {"sortTitle",        [this]() { return m_tvShow.sortTitle(); }},
         {"tmdbId",           [this]() { return m_tvShow.tmdbId().toString(); }},
+        {"imdbId",           [this]() { return m_tvShow.imdbId().toString(); }},
         {"year",             [this]() { return m_tvShow.firstAired().toString("yyyy"); }},
         // clang-format on
     };
@@ -120,6 +132,23 @@ ELCH_NODISCARD QString EpisodeRenamerData::value(const QString& name) const
         {"season",           [this]() { return m_episode.seasonString(); }},
         {"seasonName",       [this]() { return m_episode.seasonName(); }},
         {"showTitle",        [this]() { return m_episode.showTitle(); }},
+        {"originalTitle",    [this]() {
+            if (m_episode.tvShow() == nullptr) {
+                return m_episode.showTitle();
+            }
+            return m_episode.tvShow()->originalTitle().isEmpty() ? m_episode.tvShow()->title()
+                                                                : m_episode.tvShow()->originalTitle();
+        }},
+        {"englishTitle",     [this]() {
+            if (m_episode.tvShow() == nullptr) {
+                return m_episode.showTitle();
+            }
+            return m_episode.tvShow()->englishTitle().isEmpty() ? m_episode.tvShow()->title()
+                                                               : m_episode.tvShow()->englishTitle();
+        }},
+        {"sortTitle",        [this]() {
+            return m_episode.tvShow() != nullptr ? m_episode.tvShow()->sortTitle() : QString{};
+        }},
         {"year",             [this]() { return m_episode.firstAired().toString("yyyy"); }},
         {"audioCodec",       [this]() { return m_episode.streamDetails()->audioCodec(); }},
         {"videoCodec",       [this]() { return m_episode.streamDetails()->videoCodec(); }},

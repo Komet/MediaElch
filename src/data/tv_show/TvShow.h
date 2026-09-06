@@ -56,6 +56,8 @@ public:
     QString showTitle() const;
     /// \brief Original title of the show, i.e. in it's native language.
     QString originalTitle() const;
+    /// \brief English title of the show (e.g. from TMDb language=en).
+    QString englishTitle() const;
     /// \brief Title used to sort TV shows. Useful when using special characters, etc.
     QString sortTitle() const;
 
@@ -123,6 +125,7 @@ public:
 
     void setTitle(const QString& title);
     void setOriginalTitle(const QString& title);
+    void setEnglishTitle(const QString& title);
     void setShowTitle(const QString& title);
     void setSortTitle(const QString& sortTitle);
     void setUserRating(double rating);
@@ -242,6 +245,7 @@ public:
         virtual void exportTitle(const QString& title) = 0;
         virtual void exportShowTitle(const QString& showTitle) = 0;
         virtual void exportOriginalTitle(const QString& originalTitle) = 0;
+        virtual void exportEnglishTitle(const QString& englishTitle) = 0;
         virtual void exportSortTitle(const QString& sortTitle) = 0;
 
         virtual void exportOverview(const QString& overview) = 0;
@@ -284,6 +288,7 @@ private:
     QString m_title;
     QString m_showTitle;
     QString m_originalTitle;
+    QString m_englishTitle;
     QString m_sortTitle;
     Ratings m_ratings;
     double m_userRating = 0.0;

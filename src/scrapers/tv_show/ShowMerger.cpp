@@ -29,6 +29,11 @@ static void copyDetailToShow(TvShow& target, TvShow& source, ShowScraperInfo det
     case ShowScraperInfo::Title: {
         target.setTitle(source.title());
         target.setOriginalTitle(source.originalTitle());
+        // Only copy when the scraper provided a value; otherwise keep the user's/NFO title.
+        // Non-TMDB scrapers leave englishTitle empty.
+        if (!source.englishTitle().isEmpty()) {
+            target.setEnglishTitle(source.englishTitle());
+        }
         // sort title not merged because scrapers don't provide it
         break;
     }

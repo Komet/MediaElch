@@ -8,6 +8,7 @@ tvmazeId:
 title: The Simpsons
 showTitle: 
 originalTitle: The Simpsons
+englishTitle: The Simpsons
 sortTitle: 
 overview:
     Set in Springfield, the average American town, the show focuses on the antics an
@@ -21,9 +22,8 @@ ratings (N=1)
 userRating: 0
 imdbTop250: -1
 firstAired: 1989-12-17
-runtime: 22min
+runtime: 0min
 genres: (N<6)
-  - Family
   - Animation
   - Comedy
 tags: (N>10)
@@ -32,7 +32,7 @@ tags: (N>10)
   - cartoon
   - satire
   - parody
-  - ... and >5 more
+  - ... and >10 more
 certification: TV-14
 networks: (N=1)
   - FOX
@@ -40,37 +40,41 @@ episodeGuideUrl:
 actors: (N>900)
  - id: 198
    name: Dan Castellaneta
-   role: Homer Simpson / Abe Simpson / Barney Gumble / Krusty (voice)
+   role:
+    Homer Simpson / Abe Simpson / Barney Gumble / Krusty the Clown / Groundskeeper W
+    illie / Mayor Quimby (voice)
    thumb: https://image.tmdb.org/t/p/original/AmeqWhP4A46AWkM4kVphg6jOTQX.jpg
    order: 0
    imageHasChanged: false
  - id: 199
    name: Julie Kavner
-   role: Marge Simpson / Patty Bouvier / Selma Bouvier (voice)
+   role: Marge Simpson / Patty Bouvier / Selma Bouvier / Jacqueline Bouvier (voice)
    thumb: https://image.tmdb.org/t/p/original/87kSPYlWcHvqOVEkhdqxysiAf6w.jpg
    order: 1
    imageHasChanged: false
  - id: 200
    name: Nancy Cartwright
-   role: Bart Simpson / Nelson Muntz / Ralph Wiggum (voice)
+   role: Bart Simpson / Maggie Simpson / Nelson Muntz / Ralph Wiggum (voice)
    thumb: https://image.tmdb.org/t/p/original/kJQEz3NAwHGdb2sQzAnBf1RmMV4.jpg
    order: 2
    imageHasChanged: false
  - id: 5586
    name: Yeardley Smith
-   role: Lisa Simpson (voice)
+   role: Lisa Simpson / Maggie Simpson (voice)
    thumb: https://image.tmdb.org/t/p/original/9AjPwbb3uz4GfgOPBYsy2ILvwkB.jpg
    order: 3
    imageHasChanged: false
  - id: 5587
    name: Hank Azaria
-   role: Moe Szyslak / Chief Wiggum / Apu / Comic Book Guy / Carl (voice)
+   role:
+    Moe Szyslak / Chief Wiggum / Apu / Comic Book Guy / Carl Carlson / Superintenden
+    t Chalmers (voice)
    thumb: https://image.tmdb.org/t/p/original/uON3TWSySIy8wbDhkSzmFTDM6XO.jpg
    order: 4
    imageHasChanged: false
  - id: 6008
    name: Harry Shearer
-   role: Ned Flanders / Mr. Burns / Smithers / Skinner / Lenny (voice)
+   role: Ned Flanders / Mr. Burns / Smithers / Principal Skinner / Lenny Leonard (voice)
    thumb: https://image.tmdb.org/t/p/original/7PnGZGVKJNDTUv3DkbaMEnCseT0.jpg
    order: 5
    imageHasChanged: false
@@ -80,217 +84,217 @@ actors: (N>900)
     Milhouse Van Houten (voice), Milhouse (voice), Milhouse Van Houten / Jimbo Jones
      (voice), Rod Flanders (voice), (voice), Employment Agent / Admitted Fraud #2 / 
     Angry Woman (voice), Milhouse / Jimbo (voice), Jimbo Jones (voice), Milhouse / R
-    od Flanders (voice), Jimbo (voice), Milhouse Van Houten / Rod Flanders (voice), 
-    Additional Voices (voice), Milhouse Van Houten / Janey Powell (voice), Milhouse 
-    / Jimbo / Rod Flanders (voice), Milhouse Van Houten / Rod Flanders / Jimbo Jones
-     (voice), Milhouse Van Houten / Jimbo Jones / Rod Flanders (voice), Milhouse Van
-     Houten / Rod Flanders / Janey Powell (voice), Milhouse Van Houten / Dakota (voi
-    ce), Angry Crowd (voice), Milhouse Van Houten / Boy (voice), Little Girl (voice)
-    , Nurse (voice), Milhouse Van Houten / Orion Hughes Fan #1 (voice), Bob Arnold's
-     Secretary / Woman #1 at Lincoln Memorial (voice), Milhouse Van Houten / Jimbo J
-    ones / Sarah Wiggum (voice), Milhouse Van Houten / Ethan Foley / Boy (voice), Ja
-    ck's Girlfriend (voice), Milhouse Van Houten / 50 Cent's Manager (voice), Milhou
-    se Van Houten / Jimbo Jones / Kitten in Wheelchair (voice), Milhouse Van Houten 
-    / Wendell (voice), Daycare Center Office Lady (voice), Rod Flanders / Jimbo Jone
-    s (voice), Milhouse Van Houten / Audience Member (voice), Woman in Parking Lot (
-    voice), Milhouse Van Houten / Stewardess #1 / Woman at Pool (voice), Woman in Cr
-    owd (voice), Milhouse Van Houten / Cheery Red Tomato (voice), Airport Passerby #
-    5 / Hippy Duffman Singers (voice), Nancy (voice), Milhouse Van Houten / Milford 
-    Van Houten (voice), Tortured People (voice), Milhouse Van Houten / Rod Flanders 
-    / Sparkle (voice), Milhouse Van Houten / Sarah Wiggum / Rod Flanders (voice), Mi
-    lhouse Van Houten / Moses / Kids (voice), Rod Flanders / Girl Playing Tag / Home
-    maker / Dolph (voice), Brittany / Merchandiser #1 / Child Crowd (voice), Milhous
-    e Van Houten / Carrie / Wendell (voice), Bartender (voice), Milhouse Van Houten 
-    / Woodwinds Player #1 (voice), Janey Powell / Boy with Howie / Howie's Mother (v
-    oice), International Operator / Tobias (voice), Milhouse / Rod Flanders / Santa 
-    Woman (voice), Milhouse Van Houten / Jimbo Jones / Leslie Sky (voice), Milhouse 
-    Van Houten / Jimbo Jones / Audience (voice), People by Death Tome (voice), Girl 
-    #2 / Child (voice), Milhouse Van Houten / Martin Prince / Additional Voices (voi
-    ce), Old Woman (voice), Crowd Members (voice), Milhouse Van Houten / White House
-     Worker (voice), Ruthie / Jimbo Jones (voice), Milhouse Van Houten / Janey / Jim
-    bo (voice), Milhouse Van Houten / Rod Flanders / Miss Springfield (voice), McBai
-    n Girl / Engineer #3 (voice), Milhouse Van Houten / Lewis / Australian Actress (
-    voice), Oats Crowd (voice), Milhouse Van Houten / Shelbyville Plant Computer Voi
-    ce (voice), 'He's got a gun!' / Milhouse Van Houten / Sarah Wiggum (voice), Jimb
-    o Jones / Dracula's Wife / Rod Flanders (voice), Milhouse Van Houten / Mrs. Park
-    field (voice), Milhouse Van Houten / Commercial Narrator (voice), Retirement Cen
-    ter Lady (voice), Milhouse Van Houten / Real Estate Agent #3 (voice), Car Buyer 
-    (voice), Milhouse Van Houten / Receptionist (voice), Rod Flanders / Christmas Ch
-    oir Singer (voice), Security Guard #1 (voice), Milhouse Van Houten / Janey (voic
-    e), Milhouse Van Houten / Jimbo Jones / Janey (voice), Focus Group Lady / Afflue
-    nce Acre Children (voice), Singing Spucklers / Crowd Members (voice), Milhouse V
-    an Houten / Girl in Car (voice), Milhouse Van Houten / Jimbo Jones / Prof. Stein
-     (voice), Milhouse Van Houten / Children (voice), Mediocroto (voice), Milhouse V
-    an Houten / Applicant / Woman in Audience (voice), Milhouse Van Houten / Gina's 
-    Friend / Clerk #1 (voice), Milhouse Van Houten / Announcer (voice), Lady of Miss
-    ing Purse (voice), People at Therapy (voice), Gloria Prince (voice), Milhouse Va
-    n Houten / Richard (voice), Duff Girl #1 (voice), Rod Flanders / Mother in Comme
-    rcial (voice), Cheering Crowd (voice), Partygoer (voice), Hotel Staff #2 (voice)
-    , Running Crowd (voice), Jimbo Jones / Shelbyville Woman in Play / Mrs. Dexter (
-    voice), Milhouse Van Houten / Psychiatrist (voice), Milhouse Van Houten / Jimbo 
-    Jones / Birthday Spuckler (voice), Milhouse Van Houten / Jimbo Jones / Janey Pow
-    ell / Additional Voices (voice), Straight-Edge Spuckler (voice), Milhouse Van Ho
-    uten / Jimbo Jones / Richard (voice), Donnie (voice), Milhouse Van Houten / Cred
-    it Union Clerk / Kid (voice), Milhouse Van Houten / Rod Flanders / Lewis (voice)
-    , Milhouse Van Houten / Janey Powell / Ex-Wife (voice), Milhouse Van Houten / Sa
-    rah Wiggum (voice), Laughing Crowd (voice), Rod Flanders / Pregnant Woman (voice
-    ), Milhouse Van Houten / Lois Pennycandy (voice), Milhouse Van Houten / Granddau
-    ghter (voice), Milhouse Van Houten / Director / Cheering Crowd (voice), Jimbo Jo
-    nes / Shawna the Mistress (voice), Milhouse Van Houten / Janey Powell / Jimbo Jo
-    nes (voice), Milhouse Van Houten / Jimbo Jones / Boy in Commercial (voice), Milh
-    ouse Van Houten / Janey / Girl in Store #1 (voice), Milhouse Van Houten / Jimbo 
-    Jones / Janey Powell (voice), Milhouse / Svetlana / Woman in Audience #2 (voice)
-    , Laurie / Chimp Nurse (voice), Buxom Coed (voice), Lard Lad Donuts Employee (vo
-    ice), Milhouse Van Houten / Jimbo Jones / Radcliffe Sister (voice), Me and the S
-    pace Clown Kid (voice), Milhouse Van Houten / Jimbo Jones / Child Crowd (voice),
-     Lady (voice), Wendell (voice), Son #1 / Son #2 (voice), Milhouse Van Houten / T
-    oussaint Charbonneau (voice), Milhouse Van Houten / Janey Powell / Wendell (voic
-    e), Janey Powell / Improv Shakespeare Actress #1 / Cyclist (voice), Milhouse Van
-     Houten / Jade (voice), Ladies (voice), Jimbo / Rod Flanders (voice), Milhouse V
-    an Houten / Birthday Spuckler (voice), Milhouse Van Houten / Jimbo Jones / Jane 
-    Russell (voice), Milhouse Van Houten / Janey Powell / Dolph (voice), Babies (voi
-    ce), Milhouse Van Houten / Jimbo Jones / Ham (voice), Woman in Movie / Woman at 
-    Courthouse / Darcy's Mother (voice), Milhouse Van Houten / Rod Flanders / Maude 
-    Flanders (voice), Saultery Stevens (voice), Announcer (voice), Razzle Dazzle's P
-    izza-Tainment Palace Children (voice), Sarah Wiggum (voice), Milhouse Van Houten
-     / Bank Teller / Writer #4 (voice)
+    od Flanders (voice), Additional Voices (voice), Milhouse Van Houten / Rod Flande
+    rs (voice), Jimbo (voice), Milhouse / Jimbo / Rod Flanders (voice), Milhouse Van
+     Houten / Janey Powell (voice), Milhouse Van Houten / Jimbo Jones / Rod Flanders
+     (voice), Milhouse Van Houten / Rod Flanders / Janey Powell (voice), Milhouse Va
+    n Houten / Rod Flanders / Jimbo Jones (voice), Milhouse Van Houten / Rod Flander
+    s / Miss Springfield (voice), Milhouse Van Houten / Jimbo Jones / Ham (voice), S
+    on #1 / Son #2 (voice), Rod Flanders / Mother in Commercial (voice), Milhouse Va
+    n Houten / Jimbo Jones / Jane Russell (voice), Milhouse Van Houten / Bank Teller
+     / Writer #4 (voice), Milhouse Van Houten / Boy (voice), Retirement Center Lady 
+    (voice), Bob Arnold's Secretary / Woman #1 at Lincoln Memorial (voice), Milhouse
+     Van Houten / Rod Flanders / Lewis (voice), Ladies (voice), Milhouse Van Houten 
+    / Jimbo Jones / Kitten in Wheelchair (voice), Milhouse Van Houten / Shelbyville 
+    Plant Computer Voice (voice), Milhouse Van Houten / Ethan Foley / Boy (voice), M
+    ilhouse Van Houten / Stewardess #1 / Woman at Pool (voice), Milhouse Van Houten 
+    / Director / Cheering Crowd (voice), Angry Crowd (voice), Milhouse Van Houten / 
+    Birthday Spuckler (voice), Milhouse Van Houten / Jimbo Jones / Child Crowd (voic
+    e), Milhouse Van Houten / Carrie / Wendell (voice), Tortured People (voice), Mil
+    house Van Houten / Orion Hughes Fan #1 (voice), Woman in Crowd (voice), Nurse (v
+    oice), Focus Group Lady / Affluence Acre Children (voice), Sarah Wiggum (voice),
+     McBain Girl / Engineer #3 (voice), Wendell (voice), Milhouse Van Houten / Cheer
+    y Red Tomato (voice), Woman in Parking Lot (voice), Janey Powell / Boy with Howi
+    e / Howie's Mother (voice), Me and the Space Clown Kid (voice), Milhouse Van Hou
+    ten / White House Worker (voice), Milhouse Van Houten / Toussaint Charbonneau (v
+    oice), People at Therapy (voice), Milhouse Van Houten / Sarah Wiggum / Rod Fland
+    ers (voice), Milhouse Van Houten / Jimbo Jones / Richard (voice), Milhouse Van H
+    outen / Mrs. Parkfield (voice), Ruthie / Jimbo Jones (voice), Crowd Members (voi
+    ce), Lady of Missing Purse (voice), International Operator / Tobias (voice), Mil
+    house Van Houten / Jimbo Jones / Audience (voice), Milhouse Van Houten / Martin 
+    Prince / Additional Voices (voice), Milhouse Van Houten / Receptionist (voice), 
+    Milhouse Van Houten / Real Estate Agent #3 (voice), Jimbo Jones / Shawna the Mis
+    tress (voice), Jimbo / Rod Flanders (voice), Partygoer (voice), Milhouse Van Hou
+    ten / Janey (voice), Milhouse Van Houten / Milford Van Houten (voice), Milhouse 
+    Van Houten / Janey Powell / Dolph (voice), Singing Spucklers / Crowd Members (vo
+    ice), Milhouse Van Houten / Janey Powell / Ex-Wife (voice), Woman in Movie / Wom
+    an at Courthouse / Darcy's Mother (voice), Straight-Edge Spuckler (voice), Milho
+    use Van Houten / Rod Flanders / Maude Flanders (voice), Girl #2 / Child (voice),
+     Milhouse Van Houten / Jimbo Jones / Boy in Commercial (voice), Bartender (voice
+    ), Rod Flanders / Jimbo Jones (voice), Milhouse Van Houten / Jimbo Jones / Lesli
+    e Sky (voice), Nancy (voice), Milhouse Van Houten / Jimbo Jones / Janey Powell (
+    voice), Laughing Crowd (voice), Announcer (voice), Rod Flanders / Christmas Choi
+    r Singer (voice), Milhouse Van Houten / Jimbo Jones / Radcliffe Sister (voice), 
+    Milhouse Van Houten / Applicant / Woman in Audience (voice), Milhouse Van Houten
+     / Announcer (voice), Milhouse Van Houten / Janey / Jimbo (voice), Milhouse Van 
+    Houten / Janey Powell / Jimbo Jones (voice), Saultery Stevens (voice), Milhouse 
+    Van Houten / Rod Flanders / Sparkle (voice), Milhouse Van Houten / Commercial Na
+    rrator (voice), Running Crowd (voice), Milhouse Van Houten / Lois Pennycandy (vo
+    ice), Milhouse Van Houten / Jimbo Jones / Birthday Spuckler (voice), Old Woman (
+    voice), Jimbo Jones / Dracula's Wife / Rod Flanders (voice), Milhouse Van Houten
+     / Jade (voice), 'He's got a gun!' / Milhouse Van Houten / Sarah Wiggum (voice),
+     Janey Powell / Improv Shakespeare Actress #1 / Cyclist (voice), Hotel Staff #2 
+    (voice), Milhouse Van Houten / Girl in Car (voice), Rod Flanders / Girl Playing 
+    Tag / Homemaker / Dolph (voice), Jack's Girlfriend (voice), Milhouse Van Houten 
+    / Sarah Wiggum (voice), Milhouse Van Houten / Credit Union Clerk / Kid (voice), 
+    Milhouse Van Houten / Children (voice), Brittany / Merchandiser #1 / Child Crowd
+     (voice), Milhouse Van Houten / Jimbo Jones / Janey (voice), Jimbo Jones / Shelb
+    yville Woman in Play / Mrs. Dexter (voice), Milhouse Van Houten / Jimbo Jones / 
+    Prof. Stein (voice), Milhouse Van Houten / Janey / Girl in Store #1 (voice), Lau
+    rie / Chimp Nurse (voice), Milhouse Van Houten / Dakota (voice), Milhouse Van Ho
+    uten / Lewis / Australian Actress (voice), Duff Girl #1 (voice), Milhouse Van Ho
+    uten / Richard (voice), Lady (voice), Milhouse Van Houten / Psychiatrist (voice)
+    , Milhouse Van Houten / Gina's Friend / Clerk #1 (voice), Milhouse Van Houten / 
+    Jimbo Jones / Janey Powell / Additional Voices (voice), Milhouse Van Houten / Ja
+    ney Powell / Wendell (voice), Airport Passerby #5 / Hippy Duffman Singers (voice
+    ), Security Guard #1 (voice), Milhouse Van Houten / Moses / Kids (voice), Cheeri
+    ng Crowd (voice), Oats Crowd (voice), Car Buyer (voice), Milhouse Van Houten / J
+    imbo Jones / Sarah Wiggum (voice), Donnie (voice), Milhouse Van Houten / Woodwin
+    ds Player #1 (voice), People by Death Tome (voice), Milhouse Van Houten / Wendel
+    l (voice), Milhouse / Svetlana / Woman in Audience #2 (voice), Milhouse Van Hout
+    en / Granddaughter (voice), Milhouse / Rod Flanders / Santa Woman (voice), Milho
+    use Van Houten / Audience Member (voice), Buxom Coed (voice), Milhouse Van Houte
+    n / 50 Cent's Manager (voice), Razzle Dazzle's Pizza-Tainment Palace Children (v
+    oice), Little Girl (voice), Lard Lad Donuts Employee (voice), Gloria Prince (voi
+    ce), Babies (voice), Daycare Center Office Lady (voice), Mediocroto (voice), Rod
+     Flanders / Pregnant Woman (voice)
    thumb: https://image.tmdb.org/t/p/original/mPMtuVB6AEulRhlfn69y5RvgmNT.jpg
    order: 6
    imageHasChanged: false
  - id: 34983
    name: Tress MacNeille
    role:
-    Agnes Skinner (voice), (voice), Dolph (voice), Additional Voices (voice), Shauna
-     Chalmers (voice), Brandine Spuckler (voice), Agnes Skinner / Additional Voices 
-    (voice), Ms. Muntz (voice), Lindsey Naegle (voice), Lady (voice), Children (voic
-    e), Crazy Cat Lady / Additional Voices (voice), Dolph / Agnes Skinner (voice), A
-    gnes Skinner / Shauna Chalmers (voice), Agnes Skinner / Dolph (voice), Mrs. Chas
-    e (voice), Canadian Teacher (voice), Dolph / Agnes Skinner / Mrs Muntz / The Mum
-    my's Wife (voice), Mary / Dolph (voice), Brunella Pommelhorst / Party Guest Memb
-    er #1 (voice), Sandra (voice), Dolph Starbeam / Emily / Mermaid (voice), Dolph /
-     Carol Jones / Cosine (voice), Herstory Narrator (voice), Clara Peller / Lindsey
-     Naegle (voice), Dolph / Glasses Voice / Boy With Shades (voice), Krusty's Agent
-     / Holly Hippie (voice), Agnes Skinner / Shauna Chalmers /Brandine Spuckler (voi
-    ce), Voice on Phone / Leo's Wife / Nurse / Bronson Lady (voice), Pharmacist (voi
-    ce), Lesbian (voice), Lunchlady Dora (voice), Mrs. Muntz (voice), Insurance Brok
-    er / Brenda / Martha (voice), Dolph / Old Jewish Woman (voice), Mrs. Quimby / Mi
-    ss Springfield / Additional Voices (voice), Dolph / Lindsey Naegle (voice), Woma
-    n in Film / Betsy Ross / Mrs. Glick (voice), Candy Cane / Melina Costington / Ad
-    ditional Voices (voice), Mrs. Muntz / Physiotherapist (voice), Brunella Pommelho
-    rst / Lunchlady Dora (voice), Woman in 'The Three Stooges' (voice), Churchgoer /
-     Austin / Dr. Wexler (voice), Plaintiff / Lindsey Naegle / Teacher (voice), Oliv
-    e (voice), Old Timey Newsboy (voice), Crazy Cat Lady / Bernice Hibbert / Dolph (
-    voice), Angela Dare / Gwen the Waitress (voice), Martha the Librarian (voice), L
-    ibrarian (voice), Dolph Shapiro/Squeaky Voiced Teen's Mother/Avocado Server/Amy 
-    (voice), 'Padz' Announcer / Girl / Kenny / Sheriff / Brandine (voice), Lunchlady
-     Doris (voice), Girl in Commercial (voice), Dolph / Iraqi Woman / Cookie Kwan (v
-    oice), Lindsey Naegle / Amazon Alexa (voice), The Wizard Twins / Dolph (voice), 
-    Hazel (voice), Dolph / Agnes Skinner / Adult Maggie Simpson (voice), Janet Grody
-     / Teenage Women / Agnes Skinner (voice), Brandine / Fox Executive / Additional 
-    Voices (voice), Dolph / Lindsey / Fizix (voice), Crazy Cat Lady / Shauna Chalmer
-    s (voice), Dolph / Swimming Instructor (voice), Cookie Kwan (voice), Mrs. Muntz 
-    / Myra / Various (voice), Animal Shelter Worker / Tootsie Chiles (voice), Dolph 
-    / Producer / Nutritionist (voice), Ms. Muntz / Mrs. Bad Halloween Candy / Shauna
-     Chalmers (voice), Woman in the Theater / Writer #2 (voice), Dolph / Additional 
-    Voices (voice), Eloise / Maya Angelou / Woman at Festival (voice), Elevator Voic
-    e / Agnes Skinner / Plopper (voice), Comic Book Lady (voice), Brandine Spuckler 
-    / Ms. York (voice), Dolph / Shauna Chalmers (voice), Robot / Lindsey Neagle / Ro
-    naldo (voice), Little Boy / Paris Texan / Mayor Quimby's Mother (voice), Ndnd / 
-    Linda Van Schoonhoven (voice), Crazy Cat Lady / Mrs. Muntz (voice), Agnes Skinne
-    r / Mrs. Glick (voice), .	Dolph / Zombie Bride / Krusty's Agent (voice), Henry's
-     Wife (voice), Women on TV (voice), Majula / Noah's Mother / Additional Voices (
-    voice), Agnes Skinner / Cookie Kwan / Lindsay Neagle (voice), Angela Merkel (voi
-    ce), Jeremy (voice), Female Narrator (voice), Various Kids (voice), Crazy Cat La
-    dy / Agnes Skinner (voice), Crazy Cat Lady / Woman on Street (voice), Lindsey Na
-    egle / Agnes Skinner / Mom Squad (voice), Agnes Skinner / Doris (voice), Crazy C
-    at Lady (voice), Dolph / Brandine (voice), Japanese Friend #2 / Audrey McConnell
-     (voice), Singing Kid / Aristocrat (voice), Dolph / Agnes Skinner / Heaven Narra
-    tor (voice), Susan (voice), Moira / Bart's Imaginary Girlfriend (voice), Lewis (
-    voice), Kumiko Nakamura / News Reporter / Dolph / Wendell Borton (voice), Power 
-    Plant System (voice), Dolph Shapiro (voice), Dolph Starbeam / Cassandra Patters 
-    / Random Childon (voice), DMV Worker (voice), Acrobat / Woman in Money Bag / Bra
-    ndine / Booberella (voice), GameStation 252 / Female Activists (voice), Knockers
-     Waitress / Nurse / Old Woman (voice), Nurse (voice), Agnes Skinner / Zoe Burwel
-    l / Dolph Starbeam (voice), Lindsay Naegle / Manjula / Lunchlady Doris / Cookie 
-    Kwan (voice), Agnes Skinner / Brandine / Mrs. Glick (voice), Granny Clampett / W
-    oman at Playpit (voice), Face Mask Specialist / Children (voice), Woman in Crowd
-     (voice), Agnes Skinner / Adil Hoxha / Airport Announcer (voice), Bad Girl #1 (v
-    oice), Greta Wolfcastle / Mopey Mary (voice), Crazy Cat Lady / Professor Hessler
-     / People at Therapy (voice), Philippa (voice), Miss Pommelhorst / Dolph / Agnes
-     Skinner (voice), Brandine Del Roy / Plopper / Dubya Spuckler (voice), Brandine 
-    / Tour Guide / Nurse (voice), Sondra / Lunchlady Doris (voice), Dolph / Miss Spr
-    ingfield (voice), Fan #1 (voice), Agnes Skinner / Auntie Ovenfresh / Brandine (v
-    oice), Cookie Kwan / Sassy Black Woman / Pigs (voice), Dolph Shapiro / Madison (
-    voice), Woman at Pro Football Headquarters (voice), Agnes Skinner / Old Lady / G
-    olfers (voice), Phone Voice / Esme Delacroix (voice), Miles Wife / Additional Vo
-    ices (voice), Cookie Kwan / Brandine Del Roy (voice), Audience Member (voice), W
-    oman at Springfield Speakers Bureau / Dolph (voice), Voice on Radio / Brandine /
-     Dolph / Shoquelle (voice), Maya / Waitress / Baseball Player (voice), Mrs. Gumb
-    le / Oktober Fest Bartender (voice), Nurse / Mrs. Burns / Alexa / Wendy / Cheeri
-    ng Crowd (voice), Facial Recognition Interface (voice), Dr. Spivak's Mother (voi
-    ce), Anne Boleyn / Jane Seymour / Librarian (voice), Agnes Skinner / Henry L. Wa
-    terpark Tour Guide (voice), Socialite / Pie Woman (voice), Alexa / Dolph Starbea
-    m / Lindsey Naegle / Brandine Spuckler / Agnes Skinner / Baba Branka (voice), Ag
-    nes Skinner / First Old Lady / Brandine (voice), Dolph / Brandine / Miss Springf
-    ield / Crazy Cat Lady (voice), Milly / Don's Secretary (voice), Jimbo Jones (voi
-    ce), Little Bo Peep (voice), Luigi's Mother (voice), Lindsay Naegle / Agnes Skin
-    ner (voice), Think God I'm Dead Lady / Crowd Members (voice), Agnes Skinner / Ci
-    rce (voice), Jenny / Additional Voices (voice), Dolph Starbeam / Shauna Chalmers
-     / Girlfriends (voice), Mrs. Vanderbilt (voice), Mrs. Muntz / Crazy Cat Lady / D
-    r. Hibbert's Au Pair (voice), Headless Malibu Stacy / Dolph Starbeam / Hansel (v
-    oice), Cookie Kwan / Cookie Kwan's Baby / Miss Springfield (voice), Slimu Host /
-     Agnes Skinner (voice), Creepy Little Girl / Committe Chairwoman (voice), Nana /
-     Lindsey Neagle / Additional Voices (voice), Booberella / Brandine / Alex / Addi
-    tional Voices (voice), Lindsey Naegle / Hotel Staff #1 / Additional Voices (voic
-    e), Cathy from Personnel / Agnes Skinner / Mrs. Muntz (voice), Boy in Blockoland
-     Commercial / Aide (voice), Mrs. Pommelhorst / Dolph / Agnes Skinner (voice), Ka
-    itlyn / Additional Voices (voice), Dolph / Woman at Meeting Hall (voice), Tour G
-    uide / Female Baker / Running Crowd (voice), Pig-Pen Boy / Dolph / Elementary Bo
-    y (voice), Old Lady / Jimi Hendrix's Agent (voice), Agnes Skinner / Crazy Cat La
-    dy / Alice Glick (voice), Allison Taylor / Shauna (voice), Orphan Children (voic
-    e), Irish Mother / Female Announcer / Christmas Choir Singer (voice), Eleanor Ab
-    ernathy / Woman at Funeral (voice), Alabama Boy (voice), Lunchlady Doris / Waver
-    ly Hills Student (voice), Lunchlady Dora / Female Audience Member (voice), Baseb
-    all Player (voice), Cookie Kwan / Crazy Cat Lady (voice), Shauna Chalmers / Craz
-    y Cat Lady, Dentist / Announcer #2 (voice), Max's Widow / Opal / Dolph (voice), 
-    Cookie Kwan / Caitlin (voice), Dolph Starbeam (voice), Lewis / Nurse (voice), Wo
-    man Introducing Milton Burkhart / Additional Voices (voice), Mabel (voice), Dolp
-    h / Cuddle Kitten NFT Leader (voice), News Reporter / Camera Lady / Fausto's gir
-    lfriend (voice), Myra / Justin / Cora (voice), Brandine / Woman Who Watched Play
-     / Mrs. Dexter's Son (voice), Female Cartoonist (voice), Amy Levine Gonzalez (vo
-    ice), Sherri / Terri / Water Girl / Psychologist #3 (voice), Dolph Starbeam / Th
-    erapy Children (voice), Crabs / Additional Voices (voice), Dolph Starbeam / Nurs
-    e / Pfizer Women (voice), Ms. Albright / Churchgoer / Jimbo Jones (voice), Miss 
-    Springfield / Martha / Tracey (voice), Dolph / Heavy Black Woman / Kumiko (voice
-    ), Dolph / Cletus's Son / Brandine / Japanese Woman (voice), Little Boy / Lisa's
-     Student #2 / Mother Translator (voice), Lindsey Naegle / Additional Voices (voi
-    ce), Mother (voice), Doreen / Lady on Fire / Agnes Skinner (voice), Kim / Mrs. B
-    loominstein (voice), Nelson's Mother / Agnes Skinner / Girl in Store #2 (voice),
-     Lindsey Naegle / Glee Club Singers (voice), David / Female Robot / Witch / Agne
-    s Skinner (voice), Lunchlady Dora / Lacey Van Aster (voice), Shauna Chalmers/Lin
-    dsey Naegle/Agnes Skinner/Computer Voice (voice), Shauna Chalmers /Brandine Spuc
-    kler / Crazy Cat Lady (voice), Female Doctor (voice), Lindsey Naegle / German Wo
-    man (voice), Tea House Waitress / Dolph / Agnes Skinner (voice), FBI Agency / Nu
-    ns (voice), Girl #1 / Girl #3 / Female Hostess / Child (voice), Bernice Hibbert 
-    / Agnes Skinner / Carla Bruni-Sarkozy (voice), Agnes Skinner / Batter / Dolph / 
-    Additional Voices (voice), Tintin / Dolph / Agnes Skinner (voice), Mrs. Muntz / 
-    Dolph Starbeam (voice), Lindsay Naegle / Guard #1 / Inmate #1 / Inmate #2 (voice
-    ), Crazy Cat Lady / Linda / Agnes Skinner (voice), Dolph Shapiro / Shauna Chalme
-    rs / Orion Hughes Fan #2 (voice), Beatrice / Sylvia / Dolph (voice), Lady Androi
-    d / Accountant (voice), Female Producer (voice), PartyLine Voice (voice), Manjul
-    a Nahasapeemapetilon (voice), Gavin / Saleswoman (voice), Lady in Audience (voic
-    e), Crazy Cat Lady / Anoop Nahasapeemapetilon (voice), Lunchlady Doris / Michael
-     D'Amico (voice), Cora (voice), Agnes Skinner / Waitress / Cora / Prisoners (voi
-    ce), Lindsey Naegle / Woman at Rap Concert / Cookie Kwan (voice), Agnes Skinner 
-    / Mrs. Fornby / Flight Attendent (voice), Juliana Krellner / Lindsey Naegle / Do
-    lph (voice), Booberella / Clarice Dremond (voice), Clara / Native American #3 (v
-    oice), Gary the Unicorn / Kids / Crowd (voice)
+    Agnes Skinner (voice), (voice), Dolph (voice), Shauna Chalmers (voice), Addition
+    al Voices (voice), Brandine Spuckler (voice), Ms. Muntz (voice), Agnes Skinner /
+     Additional Voices (voice), Lindsey Naegle (voice), Lady (voice), Agnes Skinner 
+    / Shauna Chalmers (voice), Agnes Skinner / Dolph (voice), Children (voice), Craz
+    y Cat Lady / Additional Voices (voice), Dolph / Agnes Skinner (voice), Lindsay N
+    aegle / Agnes Skinner (voice), Lesbian (voice), Gary the Unicorn / Kids / Crowd 
+    (voice), Cookie Kwan / Sassy Black Woman / Pigs (voice), Dolph Shapiro/Squeaky V
+    oiced Teen's Mother/Avocado Server/Amy (voice), Shauna Chalmers/Lindsey Naegle/A
+    gnes Skinner/Computer Voice (voice), Sondra / Lunchlady Doris (voice), Brunella 
+    Pommelhorst / Lunchlady Dora (voice), Greta Wolfcastle / Mopey Mary (voice), Her
+    story Narrator (voice), David / Female Robot / Witch / Agnes Skinner (voice), Mo
+    ther (voice), Little Boy / Paris Texan / Mayor Quimby's Mother (voice), Lunchlad
+    y Dora (voice), Power Plant System (voice), Susan (voice), Dolph Starbeam / Ther
+    apy Children (voice), Crazy Cat Lady / Bernice Hibbert / Dolph (voice), Dolph / 
+    Agnes Skinner / Heaven Narrator (voice), Jenny / Additional Voices (voice), Craz
+    y Cat Lady / Anoop Nahasapeemapetilon (voice), Librarian (voice), Lindsey Naegle
+     / Agnes Skinner / Mom Squad (voice), Maya / Waitress / Baseball Player (voice),
+     Crazy Cat Lady / Woman on Street (voice), Dolph / Old Jewish Woman (voice), Hen
+    ry's Wife (voice), Brunella Pommelhorst / Party Guest Member #1 (voice), Agnes S
+    kinner / Crazy Cat Lady / Alice Glick (voice), Dolph Starbeam (voice), Dolph / P
+    roducer / Nutritionist (voice), Creepy Little Girl / Committe Chairwoman (voice)
+    , Mabel (voice), Shauna Chalmers / Crazy Cat Lady, Gavin / Saleswoman (voice), M
+    iles Wife / Additional Voices (voice), Woman in Film / Betsy Ross / Mrs. Glick (
+    voice), Brandine Spuckler / Ms. York (voice), Eloise / Maya Angelou / Woman at F
+    estival (voice), Milly / Don's Secretary (voice), Ms. Albright / Churchgoer / Ji
+    mbo Jones (voice), Kaitlyn / Additional Voices (voice), Crazy Cat Lady (voice), 
+    Miss Pommelhorst / Dolph / Agnes Skinner (voice), Female Producer (voice), Tour 
+    Guide / Female Baker / Running Crowd (voice), Insurance Broker / Brenda / Martha
+     (voice), Mrs. Vanderbilt (voice), Crazy Cat Lady / Linda / Agnes Skinner (voice
+    ), Mrs. Quimby / Miss Springfield / Additional Voices (voice), Cookie Kwan / Cai
+    tlin (voice), Agnes Skinner / Cookie Kwan / Lindsay Neagle (voice), Agnes Skinne
+    r / Brandine / Mrs. Glick (voice), Singing Kid / Aristocrat (voice), 'Padz' Anno
+    uncer / Girl / Kenny / Sheriff / Brandine (voice), Nurse / Mrs. Burns / Alexa / 
+    Wendy / Cheering Crowd (voice), Agnes Skinner / Doris (voice), Agnes Skinner / B
+    atter / Dolph / Additional Voices (voice), Elevator Voice / Agnes Skinner / Plop
+    per (voice), Nana / Lindsey Neagle / Additional Voices (voice), Lindsey Naegle /
+     Woman at Rap Concert / Cookie Kwan (voice), Churchgoer / Austin / Dr. Wexler (v
+    oice), Nurse (voice), Mrs. Pommelhorst / Dolph / Agnes Skinner (voice), FBI Agen
+    cy / Nuns (voice), Old Timey Newsboy (voice), Facial Recognition Interface (voic
+    e), .	Dolph / Zombie Bride / Krusty's Agent (voice), Voice on Radio / Brandine /
+     Dolph / Shoquelle (voice), Dolph / Agnes Skinner / Adult Maggie Simpson (voice)
+    , Lady in Audience (voice), Boy in Blockoland Commercial / Aide (voice), Woman a
+    t Pro Football Headquarters (voice), Brandine Del Roy / Plopper / Dubya Spuckler
+     (voice), Dentist / Announcer #2 (voice), Beatrice / Sylvia / Dolph (voice), Lin
+    dsey Naegle / German Woman (voice), Robot / Lindsey Neagle / Ronaldo (voice), An
+    imal Shelter Worker / Tootsie Chiles (voice), Olive (voice), Mrs. Muntz / Myra /
+     Various (voice), Crabs / Additional Voices (voice), Manjula Nahasapeemapetilon 
+    (voice), Krusty's Agent / Holly Hippie (voice), Kumiko Nakamura / News Reporter 
+    / Dolph / Wendell Borton (voice), Agnes Skinner / First Old Lady / Brandine (voi
+    ce), Mrs. Gumble / Oktober Fest Bartender (voice), Female Narrator (voice), Agne
+    s Skinner / Adil Hoxha / Airport Announcer (voice), Amy Levine Gonzalez (voice),
+     PartyLine Voice (voice), Clara / Native American #3 (voice), Agnes Skinner / Ol
+    d Lady / Golfers (voice), Agnes Skinner / Zoe Burwell / Dolph Starbeam (voice), 
+    Cora (voice), Girl #1 / Girl #3 / Female Hostess / Child (voice), Lindsey Naegle
+     / Additional Voices (voice), Candy Cane / Melina Costington / Additional Voices
+     (voice), Various Kids (voice), Angela Merkel (voice), Cathy from Personnel / Ag
+    nes Skinner / Mrs. Muntz (voice), Lunchlady Doris / Michael D'Amico (voice), Dol
+    ph / Woman at Meeting Hall (voice), Woman in 'The Three Stooges' (voice), Girl i
+    n Commercial (voice), Agnes Skinner / Shauna Chalmers /Brandine Spuckler (voice)
+    , Luigi's Mother (voice), Agnes Skinner / Mrs. Fornby / Flight Attendent (voice)
+    , Janet Grody / Teenage Women / Agnes Skinner (voice), Knockers Waitress / Nurse
+     / Old Woman (voice), Dolph / Cletus's Son / Brandine / Japanese Woman (voice), 
+    Dolph / Iraqi Woman / Cookie Kwan (voice), Agnes Skinner / Mrs. Glick (voice), S
+    andra (voice), Socialite / Pie Woman (voice), Angela Dare / Gwen the Waitress (v
+    oice), Phone Voice / Esme Delacroix (voice), Lindsey Naegle / Hotel Staff #1 / A
+    dditional Voices (voice), Fan #1 (voice), Shauna Chalmers /Brandine Spuckler / C
+    razy Cat Lady (voice), Booberella / Brandine / Alex / Additional Voices (voice),
+     Hazel (voice), Woman in Crowd (voice), Miss Springfield / Martha / Tracey (voic
+    e), Headless Malibu Stacy / Dolph Starbeam / Hansel (voice), Lewis (voice), Lind
+    sey Naegle / Glee Club Singers (voice), Ms. Muntz / Mrs. Bad Halloween Candy / S
+    hauna Chalmers (voice), Nelson's Mother / Agnes Skinner / Girl in Store #2 (voic
+    e), Allison Taylor / Shauna (voice), Anne Boleyn / Jane Seymour / Librarian (voi
+    ce), Juliana Krellner / Lindsey Naegle / Dolph (voice), Voice on Phone / Leo's W
+    ife / Nurse / Bronson Lady (voice), Agnes Skinner / Circe (voice), Lunchlady Dor
+    a / Lacey Van Aster (voice), Bernice Hibbert / Agnes Skinner / Carla Bruni-Sarko
+    zy (voice), Jeremy (voice), Cookie Kwan / Crazy Cat Lady (voice), Woman Introduc
+    ing Milton Burkhart / Additional Voices (voice), Dolph Starbeam / Cassandra Patt
+    ers / Random Childon (voice), Dolph / Glasses Voice / Boy With Shades (voice), C
+    ookie Kwan / Cookie Kwan's Baby / Miss Springfield (voice), Crazy Cat Lady / Mrs
+    . Muntz (voice), Mary / Dolph (voice), Lindsay Naegle / Manjula / Lunchlady Dori
+    s / Cookie Kwan (voice), Jimbo Jones (voice), Max's Widow / Opal / Dolph (voice)
+    , Dolph / Brandine (voice), Crazy Cat Lady / Professor Hessler / People at Thera
+    py (voice), Old Lady / Jimi Hendrix's Agent (voice), Cookie Kwan / Brandine Del 
+    Roy (voice), Orphan Children (voice), Woman in the Theater / Writer #2 (voice), 
+    Philippa (voice), Doreen / Lady on Fire / Agnes Skinner (voice), Plaintiff / Lin
+    dsey Naegle / Teacher (voice), Booberella / Clarice Dremond (voice), Acrobat / W
+    oman in Money Bag / Brandine / Booberella (voice), Pig-Pen Boy / Dolph / Element
+    ary Boy (voice), Mrs. Chase (voice), News Reporter / Camera Lady / Fausto's girl
+    friend (voice), Brandine / Woman Who Watched Play / Mrs. Dexter's Son (voice), L
+    unchlady Doris / Waverly Hills Student (voice), Baseball Player (voice), Think G
+    od I'm Dead Lady / Crowd Members (voice), Crazy Cat Lady / Shauna Chalmers (voic
+    e), Tea House Waitress / Dolph / Agnes Skinner (voice), Dolph / Heavy Black Woma
+    n / Kumiko (voice), Dolph Shapiro / Shauna Chalmers / Orion Hughes Fan #2 (voice
+    ), Comic Book Lady (voice), Martha the Librarian (voice), Dolph Starbeam / Nurse
+     / Pfizer Women (voice), Dolph Starbeam / Shauna Chalmers / Girlfriends (voice),
+     Dolph Shapiro / Madison (voice), Audience Member (voice), Lunchlady Doris (voic
+    e), Lindsey Naegle / Amazon Alexa (voice), Women on TV (voice), Alabama Boy (voi
+    ce), Granny Clampett / Woman at Playpit (voice), Face Mask Specialist / Children
+     (voice), Lunchlady Dora / Female Audience Member (voice), Tintin / Dolph / Agne
+    s Skinner (voice), Dolph Shapiro (voice), Clara Peller / Lindsey Naegle (voice),
+     Agnes Skinner / Henry L. Waterpark Tour Guide (voice), Irish Mother / Female An
+    nouncer / Christmas Choir Singer (voice), GameStation 252 / Female Activists (vo
+    ice), Bad Girl #1 (voice), Pharmacist (voice), Dolph / Agnes Skinner / Mrs Muntz
+     / The Mummy's Wife (voice), Kim / Mrs. Bloominstein (voice), Dolph / Additional
+     Voices (voice), Moira / Bart's Imaginary Girlfriend (voice), Agnes Skinner / Wa
+    itress / Cora / Prisoners (voice), Mrs. Muntz (voice), Mrs. Muntz / Dolph Starbe
+    am (voice), Brandine / Tour Guide / Nurse (voice), Ndnd / Linda Van Schoonhoven 
+    (voice), Little Bo Peep (voice), Eleanor Abernathy / Woman at Funeral (voice), D
+    r. Spivak's Mother (voice), Mrs. Muntz / Physiotherapist (voice), Dolph / Shauna
+     Chalmers (voice), Dolph / Brandine / Miss Springfield / Crazy Cat Lady (voice),
+     Majula / Noah's Mother / Additional Voices (voice), Female Cartoonist (voice), 
+    Alexa / Dolph Starbeam / Lindsey Naegle / Brandine Spuckler / Agnes Skinner / Ba
+    ba Branka (voice), Woman at Springfield Speakers Bureau / Dolph (voice), Little 
+    Boy / Lisa's Student #2 / Mother Translator (voice), Dolph / Carol Jones / Cosin
+    e (voice), Dolph / Lindsey Naegle (voice), The Wizard Twins / Dolph (voice), Dol
+    ph / Miss Springfield (voice), Agnes Skinner / Auntie Ovenfresh / Brandine (voic
+    e), Mrs. Muntz / Crazy Cat Lady / Dr. Hibbert's Au Pair (voice), Slimu Host / Ag
+    nes Skinner (voice), Dolph / Swimming Instructor (voice), Female Doctor (voice),
+     Lewis / Nurse (voice), Dolph / Lindsey / Fizix (voice), Lindsay Naegle / Guard 
+    #1 / Inmate #1 / Inmate #2 (voice), Japanese Friend #2 / Audrey McConnell (voice
+    ), Cookie Kwan (voice), DMV Worker (voice), Brandine / Fox Executive / Additiona
+    l Voices (voice), Canadian Teacher (voice), Myra / Justin / Cora (voice), Crazy 
+    Cat Lady / Agnes Skinner (voice), Lady Android / Accountant (voice), Sherri / Te
+    rri / Water Girl / Psychologist #3 (voice), Dolph / Cuddle Kitten NFT Leader (vo
+    ice), Dolph Starbeam / Emily / Mermaid (voice)
    thumb: https://image.tmdb.org/t/p/original/gI2LsgByvSffQY34vabVnPmrHzw.jpg
    order: 7
    imageHasChanged: false
  - id: 6036
    name: Marcia Wallace
-   role: Edna Krabappel (voice), Crowd (voice), Edna Krabappel / Ms. Melon (voice)
+   role: Edna Krabappel (voice), Edna Krabappel / Ms. Melon (voice), Crowd (voice)
    thumb: https://image.tmdb.org/t/p/original/bDCnZlPdUOyeQN0ewvoEjadBr9V.jpg
    order: 8
    imageHasChanged: false
@@ -298,96 +302,97 @@ actors: (N>900)
    name: Maggie Roswell
    role:
     Maude Flanders (voice), Luann Van Houten (voice), Helen Lovejoy (voice), Elizabe
-    th Hoover (voice), Helen Lovejoy / Luann Van Houten (voice), Helen Lovejoy / Eli
-    zabeth Hoover (voice), Miss Hoover (voice), Miss Hoover / Helen Lovejoy (voice),
-     Elizabeth Hoover / Luann Van Houten (voice), Luann Van Houten / Helen Lovejoy (
-    voice), Helen Lovejoy / Elizabeth Hoover / Luann Van Houten (voice), Maude Fland
-    ers / Helen Lovejoy (voice), (voice), Helen Lovejoy / Maude Flanders / Animator 
-    #3 (voice), Newsreader / Miss Hoover (voice), Wolfman's Wife / Miss Hoover / Hel
-    en Lovejoy (voice), Canadian Wife / Maude Flanders (voice), Additional Voices (v
-    oice), Rosarita / Mrs. Winfield (voice), Police Photographer / Thelma (voice), N
-    urse / Receptionist (voice), Clarice (voice), Maude Flanders #1 (voice), New Eng
-    land Church Members (voice), Miss Hoover / Mrs. Winfield (voice), Judge / Faith 
-    Crowley / Barbara Bush (voice), Miss Hoover / Maude Flanders / Helen Lovejoy (vo
-    ice), Luann Van Houten / Gavin's Mom (voice), Richard / Janey Powell (voice), El
-    izabeth Hoover / Gov. Mary Bailey (voice), Maude Flanders / Ned's Friend #1 / Cl
-    umsy Woman (voice), Nurse / Miss Hoover (voice), Hub's Mother (voice), Emma (voi
-    ce), Elizabeth Hoover / Helen Lovejoy / Luann Van Houten (voice), Estelle / Addi
-    tional Voices (voice), Mona Simpson / Board Member #1 (voice), Helen Lovejoy / A
-    dditional Voices (voice), Helen Lovejoy/Luann Van Houten (voice), Luann Van Hout
-    en / Operator / Singing Nun (voice), Miss Hoover / Fortune Teller / Librarian #1
-     (voice), Nurse / Distressed Woman (voice), Miss Hoover / School Nurse / Queen E
-    lizabeth (voice), Maude Flanders / Kristin Shepard / Additional Voices (voice), 
-    Luann Van Houten / Computer Voice (voice), Princess Kashmir / Fe-Mail-Man / Chur
-    chgoer (voice), Mrs. Spencer / Nurse (voice), Mother #2 (voice), Poet Writers (v
-    oice), Maude Flanders / Helen Lovejoy / Mrs. Norton (voice), Helen Lovejoy / Ins
-    titute Council Member #3 (voice), Gov. Mary Bailey (voice), Librarian / Miss Hoo
-    ver (voice), Old Lady (voice), Miss Hoover / Donations Lady (voice), Mail Lady (
-    voice), Helen Lovejoy / Singing Waiters (voice), Gavin's Mom / Miss Hoover / Hel
-    en Lovejoy (voice), Camper #2 / Reporter (voice), Mother #1 / Daughter / Mother 
-    in Monroe ad (voice), Strawberry (voice)
+    th Hoover (voice), Helen Lovejoy / Luann Van Houten (voice), Miss Hoover (voice)
+    , Helen Lovejoy / Elizabeth Hoover (voice), Miss Hoover / Helen Lovejoy (voice),
+     Helen Lovejoy / Elizabeth Hoover / Luann Van Houten (voice), Maude Flanders / H
+    elen Lovejoy (voice), Elizabeth Hoover / Luann Van Houten (voice), Luann Van Hou
+    ten / Helen Lovejoy (voice), Miss Hoover / Maude Flanders / Helen Lovejoy (voice
+    ), Miss Hoover / Mrs. Winfield (voice), Mother #2 (voice), Princess Kashmir / Fe
+    -Mail-Man / Churchgoer (voice), Helen Lovejoy / Singing Waiters (voice), Estelle
+     / Additional Voices (voice), Mother #1 / Daughter / Mother in Monroe ad (voice)
+    , Helen Lovejoy / Institute Council Member #3 (voice), Librarian / Miss Hoover (
+    voice), Nurse / Distressed Woman (voice), Emma (voice), Gov. Mary Bailey (voice)
+    , Mona Simpson / Board Member #1 (voice), Nurse / Miss Hoover (voice), Old Lady 
+    (voice), Nurse / Receptionist (voice), Miss Hoover / School Nurse / Queen Elizab
+    eth (voice), Helen Lovejoy / Maude Flanders / Animator #3 (voice), Gavin's Mom /
+     Miss Hoover / Helen Lovejoy (voice), Clarice (voice), New England Church Member
+    s (voice), Miss Hoover / Fortune Teller / Librarian #1 (voice), Rosarita / Mrs. 
+    Winfield (voice), Helen Lovejoy / Additional Voices (voice), Wolfman's Wife / Mi
+    ss Hoover / Helen Lovejoy (voice), Helen Lovejoy/Luann Van Houten (voice), Straw
+    berry (voice), Maude Flanders / Ned's Friend #1 / Clumsy Woman (voice), Luann Va
+    n Houten / Operator / Singing Nun (voice), Richard / Janey Powell (voice), Canad
+    ian Wife / Maude Flanders (voice), Camper #2 / Reporter (voice), Maude Flanders 
+    #1 (voice), Miss Hoover / Donations Lady (voice), Newsreader / Miss Hoover (voic
+    e), Poet Writers (voice), Elizabeth Hoover / Gov. Mary Bailey (voice), Hub's Mot
+    her (voice), Additional Voices (voice), Maude Flanders / Kristin Shepard / Addit
+    ional Voices (voice), Luann Van Houten / Computer Voice (voice), Police Photogra
+    pher / Thelma (voice), Mail Lady (voice), Judge / Faith Crowley / Barbara Bush (
+    voice), Maude Flanders / Helen Lovejoy / Mrs. Norton (voice), Luann Van Houten /
+     Gavin's Mom (voice), Mrs. Spencer / Nurse (voice), Elizabeth Hoover / Helen Lov
+    ejoy / Luann Van Houten (voice)
    thumb: https://image.tmdb.org/t/p/original/pLdSmH5HZYSwTd3aiPlZLbNzvPD.jpg
    order: 9
    imageHasChanged: false
  - id: 1216346
    name: Chris Edgerly
    role:
-    (voice), Additional Voices (voice), Laughing Crowd (voice), Cheering Crowd (voic
-    e), Crowd Members (voice), Tucker Carlson (voice), The Detonator (voice), Don (v
-    oice), Christmas Choir Singer (voice), Children (voice), Audience Members (voice
-    ), What This Crazy Place Is Narrator (voice), Springfield Retirement Home Recept
-    ionist (voice), Jimmy Kissass (voice), Homer Fan #2 / People by Death Tome (voic
-    e), Dynamic Bodymaker (voice), Office Guard (voice), Todd Flanders / No Jobs (vo
-    ice), Suited Employees (voice), Scotus Szyslak (voice), Amphibian Man (voice), P
-    arty Guest Member #2 (voice), Burning Trombone Player (voice), People at Therapy
-     (voice), FBI Agent (voice), Luigi / Nick Callahan (voice), Bernie Sanders / Fam
-    ous Ray (voice), Think God I'm Dead Guy / Crowd Members (voice), Actor Playing H
-    omer (voice), Santa Claus (voice), Weinstein (voice), Doctor (voice), George Har
-    rison / Coal Manager (voice), Tortured People (voice), Guys (voice), Gus Employe
-    e (voice), Squirrel (voice), Weed Farmer (voice), Hockey Player (voice), Custome
-    r (voice), Librarian (voice), Mark Zuckerberg / Man in Prison / Male Audience Me
-    mber (voice), Officer (voice), Religious Guy / Golfers (voice), Promise Keeper (
-    voice), Uber Hombre / Scarlet Pimpernel (voice), First Thanksgiving Celebrators 
-    (voice), Angry Crowd (voice), Roger Stone / Jack-in-the-Box (voice), Trump Voter
-     (voice), Aster (voice), Viking Masseuse / Admitted Fraud #1 / Admitted Fraud #4
-     (voice), Lexis' Grandfather / Scammer (voice), Miles / Gustavo Dudamel (voice),
-     Out-of-Breath Old Man (voice), Choir Singer (voice), Nutz Therapist (voice), Le
-    onardo DiCaprio / British Homer / Running Crowd (voice), Jim (voice), Hotel Room
-    mate (voice), Duck Song Singer (voice), Phone Operator / Canadian Player #3 / Do
-    ug Flutie (voice), Announcer #1 (voice), Commercial Guy at the Beach / Award Man
-     (voice), Boat Owner / Neighborhood Meeting Notification (voice), Bowling Alley 
-    Manager (voice), Gamer (voice), Michael Phelps (voice), William Shakespeare (voi
-    ce), Stan Laurel (voice), Record Employee / Angry Crowd (voice), Film Student #2
-    's Modified Voice (voice), Male Audience Member #3 (voice), White Co-Worker (voi
-    ce), Veteran / Bartender / Pig / Cyclist / Injured Person (voice), Townsperson (
-    voice), Bearded Man (voice), Woodwinds Player #2 (voice), Rod Flanders (voice), 
-    Helicopter Man #2 (voice), Pat / Stressed Employee (voice), Deaf Man (voice), To
-    wnspeople (voice), Parrot / Marlin (voice), Mountain Climber (voice), Orion Hugh
-    es Fan #3 (voice), Beyond Bullying Professor (voice), Male Doctor (voice), Flexu
-    lon / Hallucination Otto (voice), Hobbit (voice), TV Father / Box Instructor (vo
-    ice), People in Crowd (voice), Passenger / Boba Fett (voice)
+    (voice), Additional Voices (voice), Laughing Crowd (voice), The Detonator (voice
+    ), Tucker Carlson (voice), Crowd Members (voice), Cheering Crowd (voice), Suited
+     Employees (voice), Townspeople (voice), First Thanksgiving Celebrators (voice),
+     Lexis' Grandfather / Scammer (voice), Parrot / Marlin (voice), Burning Trombone
+     Player (voice), Nutz Therapist (voice), Leonardo DiCaprio / British Homer / Run
+    ning Crowd (voice), Aster (voice), Angry Crowd (voice), Weinstein (voice), White
+     Co-Worker (voice), Squirrel (voice), Amphibian Man (voice), Stan Laurel (voice)
+    , Film Student #2's Modified Voice (voice), Actor Playing Homer (voice), Bearded
+     Man (voice), Officer (voice), Religious Guy / Golfers (voice), Orion Hughes Fan
+     #3 (voice), Townsperson (voice), Christmas Choir Singer (voice), Grunting Victi
+    ms of Clincher (voice), Luigi / Nick Callahan (voice), Party Guest Member #2 (vo
+    ice), Boat Owner / Neighborhood Meeting Notification (voice), Think God I'm Dead
+     Guy / Crowd Members (voice), People in Crowd (voice), Office Guard (voice), Chi
+    ldren (voice), Hotel Roommate (voice), Announcer #1 (voice), People at Therapy (
+    voice), Out-of-Breath Old Man (voice), Jimmy Kissass (voice), Duck Song Singer (
+    voice), Miles / Gustavo Dudamel (voice), TV Father / Box Instructor (voice), Sco
+    tus Szyslak (voice), FBI Agent (voice), Audience Members (voice), Gus Employee (
+    voice), Pat / Stressed Employee (voice), Hockey Player (voice), Deaf Man (voice)
+    , Jim (voice), Librarian (voice), Dynamic Bodymaker (voice), Passenger / Boba Fe
+    tt (voice), Rod Flanders (voice), Woodwinds Player #2 (voice), Mountain Climber 
+    (voice), Promise Keeper (voice), Veteran / Bartender / Pig / Cyclist / Injured P
+    erson (voice), Mark Zuckerberg / Man in Prison / Male Audience Member (voice), F
+    lexulon / Hallucination Otto (voice), Guys (voice), Tortured People (voice), Geo
+    rge Harrison / Coal Manager (voice), Phone Operator / Canadian Player #3 / Doug 
+    Flutie (voice), Roger Stone / Jack-in-the-Box (voice), What This Crazy Place Is 
+    Narrator (voice), Viking Masseuse / Admitted Fraud #1 / Admitted Fraud #4 (voice
+    ), Michael Phelps (voice), Weed Farmer (voice), Todd Flanders / No Jobs (voice),
+     Bernie Sanders / Famous Ray (voice), Record Employee / Angry Crowd (voice), Cho
+    ir Singer (voice), Hobbit (voice), Homer Fan #2 / People by Death Tome (voice), 
+    Commercial Guy at the Beach / Award Man (voice), William Shakespeare (voice), Do
+    n (voice), Male Doctor (voice), Beyond Bullying Professor (voice), Helicopter Ma
+    n #2 (voice), Customer (voice), Gamer (voice), Uber Hombre / Scarlet Pimpernel (
+    voice), Santa Claus (voice), Bowling Alley Manager (voice), Trump Voter (voice),
+     Doctor (voice), Male Audience Member #3 (voice), Springfield Retirement Home Re
+    ceptionist (voice)
    thumb: https://image.tmdb.org/t/p/original/bjkN9Ugv6Kd3Z3y9p9DgWAc10Q7.jpg
    order: 10
    imageHasChanged: false
  - id: 156910
    name: Karl Wiedergott
    role:
-    Additional Voices (voice), (voice), I'm afraid (voice), Cap'n Crunch / Trix Rabb
-    it (voice), Groundskeeper Seamus (voice), Wolf 1 (voice), Poet Writers (voice), 
-    Delivery Man (voice), Attendant (voice), Wrestling Announcer / 'We broke even!' 
-    (voice), Stage Manager (voice), Caleb (voice), Legs (voice), Mr. Monopoly / Wood
-    y Allen (voice), Bum #1 / Jetskier #3 (voice), Ribhead #4 (voice), Citizen Worke
-    r / Editor / Partygoer (voice), Groundhog / Egyptian / Guard #2 / Crowd (voice),
-     Rick (voice), Psychologist #2 (voice), Mexicans (voice), Recovering Cowboy (voi
-    ce), Man (voice), Cookie (voice), Kevin (voice), Interviewer (voice), Bacon Truc
-    k Driver (voice), New England Church Members (voice), Master of Ceremonies (voic
-    e), Zombie Nurse / Sergeant (voice), Anthro Lecturer (voice), Snowman (voice), E
-    nglish Soldier #4 (voice), Uncle Tyrone / Oliver / Additional Voices (voice), An
-    gelo (voice), Howell Huser (voice), Writer #1 / Writer #3 (voice), Happy Little 
-    Elf #2 (voice), Prisoners / Burns' First Cellmate (voice), Home Plate (voice), S
-    tate Comptroller Atkins (voice), Christian Carrot Theater Announcer / Additional
-     Voices (voice), Bachelor #2 / Smithers' Friend #2 / Hairdresser (voice), , Hobo
-     / Additional Voices (voice), Spooked Soldier / Legs (voice), Garbage Man (voice
+    Additional Voices (voice), (voice), Bum #1 / Jetskier #3 (voice), Howell Huser (
+    voice), Cap'n Crunch / Trix Rabbit (voice), Poet Writers (voice), Zombie Nurse /
+     Sergeant (voice), Uncle Tyrone / Oliver / Additional Voices (voice), Legs (voic
+    e), Delivery Man (voice), Caleb (voice), Groundskeeper Seamus (voice), Ribhead #
+    4 (voice), Kevin (voice), Garbage Man (voice), Recovering Cowboy (voice), Mr. Mo
+    nopoly / Woody Allen (voice), Writer #1 / Writer #3 (voice), Spooked Soldier / L
+    egs (voice), Groundhog / Egyptian / Guard #2 / Crowd (voice), Home Plate (voice)
+    , Bacon Truck Driver (voice), Prisoners / Burns' First Cellmate (voice), State C
+    omptroller Atkins (voice), Master of Ceremonies (voice), Interviewer (voice), Ne
+    w England Church Members (voice), Wrestling Announcer / 'We broke even!' (voice)
+    , I'm afraid (voice), Citizen Worker / Editor / Partygoer (voice), Hobo / Additi
+    onal Voices (voice), Mexicans (voice), Psychologist #2 (voice), Man (voice), Coo
+    kie (voice), Snowman (voice), Angelo (voice), Anthro Lecturer (voice), Wolf 1 (v
+    oice), Happy Little Elf #2 (voice), Rick (voice), Christian Carrot Theater Annou
+    ncer / Additional Voices (voice), English Soldier #4 (voice), , Attendant (voice
+    ), Bachelor #2 / Smithers' Friend #2 / Hairdresser (voice), Stage Manager (voice
     )
    thumb: https://image.tmdb.org/t/p/original/r5alSYfltRGa6m8eUT1CuGur2YE.jpg
    order: 11
@@ -396,49 +401,49 @@ actors: (N>900)
    name: Russi Taylor
    role:
     Martin Prince (voice), Martin Prince / Sherri / Terri (voice), Uter (voice), She
-    rri / Terri (voice), Martin Prince / Wendell (voice), Additional Voices (voice),
-     Sherri / Martin Prince (voice), Martin Prince / Sherri / Terri / Mother (voice)
-    , Martin Prince / Lewis / Chuck (voice), Martin Prince / Mount Holyoke Sister / 
-    Vassar Sister (voice), Martin Prince / Sherri / Terri / Sisters (voice), Sherri 
-    / Terri / Martin Prince (voice), Martin Prince / Sherri (voice), Gummy Sue (voic
-    e), Sherri / Terri / Inanimate Carbon Rod #1 / Mrs. Winfield (voice), Martin Pri
-    nce / Janey Powell (voice), Martin Prince / Uter (voice), Martin Prince / Variou
-    s Students (voice), Sherri / Ron Howard's Son (voice), Martin Prince / Wendell /
-     Sherri / Terri / Adrian (voice), Billy (voice), Martin / Sherri / Kids (voice),
-     Sherri (voice), Martin Prince / Beezee (voice), Wendell / Sherri / Terri / Lewi
-    s / Martin (voice), Sushi (voice), Martin Prince / Singing Kid in Commercial (vo
-    ice), Martin Prince / Sidney Swift / Ian (voice), Martin Prince / Sherri / Terri
-     / Uter (voice), Martin Prince / Ronnie Beck (voice), Martin Prince / Wendell / 
-    Sherri / Terri (voice)
+    rri / Terri (voice), Martin Prince / Wendell (voice), Sherri / Martin Prince (vo
+    ice), Additional Voices (voice), Martin Prince / Wendell / Sherri / Terri (voice
+    ), Martin Prince / Wendell / Sherri / Terri / Adrian (voice), Sherri / Terri / I
+    nanimate Carbon Rod #1 / Mrs. Winfield (voice), Billy (voice), Wendell / Sherri 
+    / Terri / Lewis / Martin (voice), Martin Prince / Janey Powell (voice), Martin P
+    rince / Sidney Swift / Ian (voice), Martin Prince / Sherri / Terri / Uter (voice
+    ), Martin Prince / Beezee (voice), Gummy Sue (voice), Sherri / Ron Howard's Son 
+    (voice), Martin Prince / Sherri / Terri / Sisters (voice), Martin Prince / Uter 
+    (voice), Sushi (voice), Martin Prince / Singing Kid in Commercial (voice), Marti
+    n Prince / Various Students (voice), Martin Prince / Sherri (voice), Martin / Sh
+    erri / Kids (voice), Sherri / Terri / Martin Prince (voice), Martin Prince / Ron
+    nie Beck (voice), Martin Prince / Sherri / Terri / Mother (voice), Martin Prince
+     / Mount Holyoke Sister / Vassar Sister (voice), Sherri (voice), Martin Prince /
+     Lewis / Chuck (voice)
    thumb: https://image.tmdb.org/t/p/original/r79GVF7LyBExJP7cRMob8QQZ6IU.jpg
    order: 12
    imageHasChanged: false
  - id: 24362
    name: Kevin Michael Richardson
    role:
-    Dr. Hibbert (voice), (voice), Narrator (voice), Mark (voice), Security Guard (vo
-    ice), Jay G (voice), Police Guard / Security Guard (voice), Demogorgon / Demogor
-    gon Flanders (voice), MI5 Agents (voice), Fats (voice), Dr. Hibbert / Bleeding G
-    ums Murphy (voice), 'The Ballad of John Homer' singer (voice), Burns' Cellmate (
-    voice), Prison Guard (voice), Jelly Monster (voice), Azzlan / Icewalker (voice),
-     Knight / Marvel Fan (voice), Turtle NFT (voice), Tupac Shakur (voice), Rich Tex
-    an Accountant (voice), Jed Hawk (voice), Michael (voice), Mr. Orlando / Mr. McBr
-    ide (voice), Envelope (voice), Dr. Hibbert / Judge Snyder (voice), Mac Tonight (
-    voice), Prison Inmate (voice), Chester (voice), Jimi Hendrix (voice), Louie Arms
-    trong (voice), Pazuzu (voice), Groot (voice), Cyclist (voice), Preacher Mac (voi
-    ce), Film Student #2 (voice), Omelette Chef (voice), Anger Watkins / Lewis (voic
-    e), Security Guard / Burns' Cellmate / Various Voices (voice), Party Guest (voic
-    e), Dr. Hibbert / Shaquille O'Neal (voice), Devil Moe (voice), FBI Agent (voice)
-    , Dr. Hibbert / Lead Church Singer (voice), Dr. Hibbert/Squeaky Voiced Teen's Fa
-    ther (voice), Black Singer / Crowd Members (voice), Agent (voice), Black Voodoo 
-    / Moby Man (voice), Apology Instructor (voice), Deuce, Dave Chappelle (voice), J
-    amaican Krusty (voice), Cop with a Secret (voice), Conductor (voice), Manager (v
-    oice), Security Guard / Puppy Goo-Goo (voice), Oliver Hardy (voice), Dr. Hibbert
-     / TSA Leader (voice), Dr. Hibbert / Ad Narrator (voice), Dr. Hibbert / Denim (v
-    oice), Wakkety Yak / The Shipper (voice), SendEx Employee (voice), Co-Pilot (voi
-    ce), Distributed Ledger / People at Therapy (voice), Ghanaian Man (voice), Alber
-    t (voice), Retirement Castle Orderly (voice), Nigerian King (voice), Sonny Go-al
-    ong (voice)
+    Dr. Hibbert (voice), (voice), Narrator (voice), Security Guard (voice), Jay G (v
+    oice), Mark (voice), Dr. Hibbert/Squeaky Voiced Teen's Father (voice), Envelope 
+    (voice), Dr. Hibbert / Bleeding Gums Murphy (voice), Albert (voice), MI5 Agents 
+    (voice), Dr. Hibbert / Judge Snyder (voice), Chester (voice), Co-Pilot (voice), 
+    Party Guest (voice), Knight / Marvel Fan (voice), Black Voodoo / Moby Man (voice
+    ), Jamaican Krusty (voice), Mac Tonight (voice), Security Guard / Puppy Goo-Goo 
+    (voice), Dave Chappelle (voice), FBI Agent (voice), Manager (voice), Groot (voic
+    e), Rich Texan Accountant (voice), Michael (voice), Dr. Hibbert / Denim (voice),
+     Agent (voice), Prison Guard (voice), Devil Moe (voice), Apology Instructor (voi
+    ce), Police Guard / Security Guard (voice), Burns' Cellmate (voice), Dr. Hibbert
+     / Shaquille O'Neal (voice), Azzlan / Icewalker (voice), Demogorgon / Demogorgon
+     Flanders (voice), Sonny Go-along (voice), Nigerian King (voice), Preacher Mac (
+    voice), Pazuzu (voice), Tupac Shakur (voice), Ghanaian Man (voice), Anger Watkin
+    s / Lewis (voice), Cyclist (voice), Jimi Hendrix (voice), Cop with a Secret (voi
+    ce), Conductor (voice), Jelly Monster (voice), Dr. Hibbert / Ad Narrator (voice)
+    , Film Student #2 (voice), Omelette Chef (voice), Dr. Hibbert / Lead Church Sing
+    er (voice), 'The Ballad of John Homer' singer (voice), Louie Armstrong (voice), 
+    Security Guard / Burns' Cellmate / Various Voices (voice), Oliver Hardy (voice),
+     Jed Hawk (voice), Turtle NFT (voice), Mr. Orlando / Mr. McBride (voice), Black 
+    Singer / Crowd Members (voice), SendEx Employee (voice), Retirement Castle Order
+    ly (voice), Distributed Ledger / People at Therapy (voice), Prison Inmate (voice
+    ), Fats (voice), Wakkety Yak / The Shipper (voice), Dr. Hibbert / TSA Leader (vo
+    ice), Deuce
    thumb: https://image.tmdb.org/t/p/original/xXt9Nh7RAT5bOen66TaXreNYmCl.jpg
    order: 13
    imageHasChanged: false
@@ -446,10 +451,10 @@ actors: (N>900)
    name: Alex Désert
    role:
     Carl Carlson (voice), Lou (voice), Carl Carlson / Lou (voice), (voice), Carl Car
-    lson / Fausto (voice), Gamer (voice), Carl Carlson / Security Guard / Male Scien
-    tist (voice), Partygoer #2 (voice), Audrey II (voice), Carl Carlson / FBI Office
-    r #1 (voice), Employee Praising Dance Moves (voice), Judge (voice), Officer Lou 
-    (voice), Hockey Player (voice)
+    lson / Fausto (voice), Hockey Player (voice), Carl Carlson / Security Guard / Ma
+    le Scientist (voice), Employee Praising Dance Moves (voice), Audrey II (voice), 
+    Gamer (voice), Judge (voice), Carl Carlson / FBI Officer #1 (voice), Officer Lou
+     (voice), Partygoer #2 (voice)
    thumb: https://image.tmdb.org/t/p/original/iz5fLxrOTKYUkpUmGXgVfCfIZxn.jpg
    order: 14
    imageHasChanged: false
@@ -458,12 +463,12 @@ actors: (N>900)
    role:
     Martin Prince (voice), Sherri / Terri (voice), (voice), Sherri / Terri / Martin 
     Prince (voice), Martin Prince / Sherri Mackleberry / Terri Mackleberry (voice), 
-    Leland Huebner III (voice), Terri (voice), Martin Prince / Harper Poppyseed (voi
-    ce), Malibu Stacy (voice), Sherri and Terri Mackleberry / Martin Prince / Hub's 
-    Mother (voice), Gloria Prince / Martin Prince (voice), Sherri Mackleberry (voice
-    ), Golf Commentator (voice), Martin Prince / Young Woman (voice), Martin / Marti
-    n's Brother (voice), Martin Prince / Martin's Child #2 (voice), Terri / Sherri /
-     Martin Prince (voice), Riley (voice)
+    Leland Huebner III (voice), Sherri and Terri Mackleberry / Martin Prince / Hub's
+     Mother (voice), Martin Prince / Young Woman (voice), Terri Mackleberry / Laney 
+    (voice), Sherri Mackleberry (voice), Terri / Sherri / Martin Prince (voice), Mar
+    tin / Martin's Brother (voice), Riley (voice), Gloria Prince / Martin Prince (vo
+    ice), Golf Commentator (voice), Malibu Stacy (voice), Martin Prince / Martin's C
+    hild #2 (voice), Martin Prince / Harper Poppyseed (voice), Terri (voice)
    thumb: https://image.tmdb.org/t/p/original/vrUHaXe1pG56yZkgH7Hs3LGRLTT.jpg
    order: 15
    imageHasChanged: false
@@ -479,11 +484,11 @@ actors: (N>900)
    name: Phil Hartman
    role:
     Troy McClure (voice), Lionel Hutz (voice), Lionel Hutz / Troy McClure (voice), T
-    roy McClure / Lionel Hutz (voice), Lionel Hutz / Hospital Chairman (voice), Tom 
-    / Nelson's Dad / Football Commentator / Announcer (voice), Troy McClure / Fat To
-    ny (voice), Troy McClure / Additional Voices (voice), Charlton Heston (voice), E
-    van Conover (voice), Stockbroker / Horst (voice), Lyle Lanley (voice), Troy McCl
-    ure / Jimmy Apollo (voice), Troy McClure / Joey / Godfather / Lionel Hutz (voice
+    roy McClure / Lionel Hutz (voice), Lyle Lanley (voice), Evan Conover (voice), St
+    ockbroker / Horst (voice), Troy McClure / Fat Tony (voice), Troy McClure / Joey 
+    / Godfather / Lionel Hutz (voice), Troy McClure / Additional Voices (voice), Cha
+    rlton Heston (voice), Tom / Nelson's Dad / Football Commentator / Announcer (voi
+    ce), Lionel Hutz / Hospital Chairman (voice), Troy McClure / Jimmy Apollo (voice
     )
    thumb: https://image.tmdb.org/t/p/original/m3QyeaVLzIo2fZJZaGbJalfD56t.jpg
    order: 17
@@ -491,32 +496,32 @@ actors: (N>900)
  - id: 87819
    name: Dawnn Lewis
    role:
-    Bernice Hibbert (voice), (voice), Mrs. McBride (voice), Flight Attendant (voice)
-    , Hotshot lawyer (voice), Daly Night / Etta Pryor (voice), Juvenile Court Bailif
-    f (voice), Bernice Hibbert / Naima (voice), Bernice Hibbert / Pam / Perimenopaus
-    e: The Musical Singer (voice), Court Bailiff (voice), Lenora Carter (voice), Tex
-    xon Customer (voice), Opal (voice), Cannabis Influencer (voice), Party guest (vo
-    ice), Bernice Hibbert / Female Firefighter (voice)
+    Bernice Hibbert (voice), (voice), Hotshot lawyer (voice), Party guest (voice), B
+    ernice Hibbert / Pam / Perimenopause: The Musical Singer (voice), Court Bailiff 
+    (voice), Mrs. McBride (voice), Cannabis Influencer (voice), Lenora Carter (voice
+    ), Flight Attendant (voice), Daly Night / Etta Pryor (voice), Juvenile Court Bai
+    liff (voice), Bernice Hibbert / Naima (voice), Bernice Hibbert / Female Firefigh
+    ter (voice), Opal (voice), Texxon Customer (voice)
    thumb: https://image.tmdb.org/t/p/original/ppxGgmkTczev2VsiOSMfaGUy580.jpg
    order: 18
    imageHasChanged: false
  - id: 34521
    name: Maurice LaMarche
    role:
-    Orson Welles (voice), (voice), Additional Voices (voice), Various Characters (vo
-    ice), Vincent Price (voice), Hedonismbot Cosplayer (voice), Fox announcer / Chin
-    ese #1 / Chinese #4 / Leprechaun (voice), Screaming Cop (voice), Eudora Welty / 
-    George C. Scott (voice), Billy / Oceanographer (voice), Wlihelm Von Wonthelm (vo
-    ice), Chef Naziwa / Marlon Brando (voice), Erman Millwood (voice), Gate Guard #1
-     (voice), Jock #2 (voice), City Inspector (voice), Starsky / Hutch (voice), Comm
-    ander McBragg (voice), Milo (voice), Harvest Fest Worker (voice), Admiral Crunch
-    y (voice), Recruiter #2 / Cap'n Crunch (voice), Morbo / Hedonismbot / Lrrr (voic
+    Orson Welles (voice), (voice), Screaming Cop (voice), Fox announcer / Chinese #1
+     / Chinese #4 / Leprechaun (voice), Eudora Welty / George C. Scott (voice), Harv
+    est Fest Worker (voice), Morbo / Hedonismbot / Lrrr (voice), Recruiter #2 / Cap'
+    n Crunch (voice), Additional Voices (voice), Jock #2 (voice), Starsky / Hutch (v
+    oice), City Inspector (voice), Commander McBragg (voice), Chef Naziwa / Marlon B
+    rando (voice), Milo (voice), Hedonismbot Cosplayer (voice), Admiral Crunchy (voi
+    ce), Various Characters (voice), Wlihelm Von Wonthelm (voice), Billy / Oceanogra
+    pher (voice), Erman Millwood (voice), Vincent Price (voice), Gate Guard #1 (voic
     e)
    thumb: https://image.tmdb.org/t/p/original/qCiL3EYAhLcNo0rNj5pczWo9MwG.jpg
    order: 19
    imageHasChanged: false
   - ... and >900 more
-posters: (N>30)
+posters: (N>40)
   - id: https://image.tmdb.org/t/p/original/uWpG7GqfKGQqX4YMAo3nv5OrglV.jpg
     originalUrl: https://image.tmdb.org/t/p/original/uWpG7GqfKGQqX4YMAo3nv5OrglV.jpg
     thumbUrl: https://image.tmdb.org/t/p/original/uWpG7GqfKGQqX4YMAo3nv5OrglV.jpg
@@ -541,17 +546,17 @@ posters: (N>30)
     hint: 
     aspect: 0
     season: SeasonNumber=xx
-  - id: https://image.tmdb.org/t/p/original/sQIKgdjJRIKC88xZLTHaEfYWd1e.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/sQIKgdjJRIKC88xZLTHaEfYWd1e.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/sQIKgdjJRIKC88xZLTHaEfYWd1e.jpg
-    originalSize: h=3000 w=2000
+  - id: https://image.tmdb.org/t/p/original/Afkw5tbK1rDJ8HJ12u7ADxhTJXv.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/Afkw5tbK1rDJ8HJ12u7ADxhTJXv.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/Afkw5tbK1rDJ8HJ12u7ADxhTJXv.jpg
+    originalSize: h=1500 w=1000
     language: en
     hint: 
     aspect: 0
     season: SeasonNumber=xx
-  - id: https://image.tmdb.org/t/p/original/2IWouZK4gkgHhJa3oyYuSWfSqbG.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/2IWouZK4gkgHhJa3oyYuSWfSqbG.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/2IWouZK4gkgHhJa3oyYuSWfSqbG.jpg
+  - id: https://image.tmdb.org/t/p/original/sWcihbznFj7y07zQrcUATRt6GWi.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/sWcihbznFj7y07zQrcUATRt6GWi.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/sWcihbznFj7y07zQrcUATRt6GWi.jpg
     originalSize: h=3000 w=2000
     language: en
     hint: 
@@ -566,6 +571,14 @@ backdrops: (N>20)
     language: 
     hint: 
     aspect: 
+    season: SeasonNumber=xx
+  - id: https://image.tmdb.org/t/p/original/vrDJZgnCDmexHBQKgbOgavQDGnk.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/vrDJZgnCDmexHBQKgbOgavQDGnk.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/vrDJZgnCDmexHBQKgbOgavQDGnk.jpg
+    originalSize: h=1080 w=1920
+    language: en
+    hint: 
+    aspect: 0
     season: SeasonNumber=xx
   - id: https://image.tmdb.org/t/p/original/meRgydG6BdN9S2jML4fMYWSLdoq.jpg
     originalUrl: https://image.tmdb.org/t/p/original/meRgydG6BdN9S2jML4fMYWSLdoq.jpg
@@ -586,14 +599,6 @@ backdrops: (N>20)
   - id: https://image.tmdb.org/t/p/original/az0OXSWM3BxHbMRPE4EKkpllkbV.jpg
     originalUrl: https://image.tmdb.org/t/p/original/az0OXSWM3BxHbMRPE4EKkpllkbV.jpg
     thumbUrl: https://image.tmdb.org/t/p/original/az0OXSWM3BxHbMRPE4EKkpllkbV.jpg
-    originalSize: h=2160 w=3840
-    language: en
-    hint: 
-    aspect: 0
-    season: SeasonNumber=xx
-  - id: https://image.tmdb.org/t/p/original/7DE3BwlBgy1BN9XDdZiJXxJ4zKI.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/7DE3BwlBgy1BN9XDdZiJXxJ4zKI.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/7DE3BwlBgy1BN9XDdZiJXxJ4zKI.jpg
     originalSize: h=2160 w=3840
     language: en
     hint: 
@@ -647,9 +652,9 @@ seasonPoster S04: (N=1)
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S05: (N=1)
-  - id: https://image.tmdb.org/t/p/original/p8tRDtrkzquirArGp6S1b7Zxle3.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/p8tRDtrkzquirArGp6S1b7Zxle3.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/p8tRDtrkzquirArGp6S1b7Zxle3.jpg
+  - id: https://image.tmdb.org/t/p/original/9O7tIcS2KZk1ukMq3aOvoj8KIJZ.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/9O7tIcS2KZk1ukMq3aOvoj8KIJZ.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/9O7tIcS2KZk1ukMq3aOvoj8KIJZ.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 
@@ -737,9 +742,9 @@ seasonPoster S14: (N=1)
     aspect: 
     season: SeasonNumber=xx
 seasonPoster S15: (N=1)
-  - id: https://image.tmdb.org/t/p/original/svXs3ugVAoKSZoBQNUZ3sQIp1ly.jpg
-    originalUrl: https://image.tmdb.org/t/p/original/svXs3ugVAoKSZoBQNUZ3sQIp1ly.jpg
-    thumbUrl: https://image.tmdb.org/t/p/original/svXs3ugVAoKSZoBQNUZ3sQIp1ly.jpg
+  - id: https://image.tmdb.org/t/p/original/bmMwmEfwmziKzWP2jiU0GMw8yKd.jpg
+    originalUrl: https://image.tmdb.org/t/p/original/bmMwmEfwmziKzWP2jiU0GMw8yKd.jpg
+    thumbUrl: https://image.tmdb.org/t/p/original/bmMwmEfwmziKzWP2jiU0GMw8yKd.jpg
     originalSize: h=-1 w=-1
     language: 
     hint: 

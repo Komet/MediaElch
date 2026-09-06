@@ -8,6 +8,7 @@ tvmazeId:
 title: Stargate SG-1
 showTitle: 
 originalTitle: Stargate SG-1
+englishTitle: Stargate SG-1
 sortTitle: 
 overview:
     The story of Stargate SG-1 begins about a year after the events of the feature f
@@ -83,7 +84,7 @@ actors: (N>800)
  - id: 385220
    name: Dan Shea
    role: Sylvester Siler, Sylvester Siler (uncredited), Fireman Opening Station Door
-   thumb: https://image.tmdb.org/t/p/original/58bGSn8u45HBOMrt2E2LBW26snT.jpg
+   thumb: 
    order: 7
    imageHasChanged: false
  - id: 26048
@@ -131,9 +132,9 @@ actors: (N>800)
  - id: 118463
    name: Peter DeLuise
    role:
-    Director / Peter DeLuise, Airman, SF Guard (Uncredited), Machine Gun Guard, Free
-     Jaffa (Voice only) (Uncredited), Young Urgo in Uniform, Tok'ra Guard, Screaming
-     Villager, Man Leaving Cafe, Lieutenant, Interviewer
+    Director / Peter DeLuise, Airman, SF Guard (Uncredited), Screaming Villager, You
+    ng Urgo in Uniform, Free Jaffa (Voice only) (Uncredited), Machine Gun Guard, Lie
+    utenant, Tok'ra Guard, Interviewer, Man Leaving Cafe
    thumb: https://image.tmdb.org/t/p/original/sLkSOm6HBLB4VCfshQLdSEq63tr.jpg
    order: 15
    imageHasChanged: false

@@ -31,9 +31,18 @@ void TmdbMovieScrapeJob::doStart()
 
         m_api.sendGetRequest(config().locale,
             m_api.getMovieUrl(id, config().locale, TmdbApi::ApiMovieDetails::INFOS),
-            [this](QJsonDocument json, ScraperError error) {
+            [this, id](QJsonDocument json, ScraperError error) {
                 if (!error.hasError()) {
                     parseAndAssignInfos(json);
+
+                    // English title: if scrape locale is already English, title is enough.
+                    // Otherwise use original_title when original_language is en (see parseAndAssignInfos),
+                    // or fetch a separate English infos request if still empty.
+                    if (config().details.contains(MovieScraperInfo::Title)
+                        && config().locale.language() != QLatin1String("en")
+                        && m_movie->englishTitle().isEmpty()) {
+                        loadEnglishTitle(id);
+                    }
 
                     // if the movie is part of a collection then download the collection data
                     // and delay the call to removeFromLoadsLeft(ScraperData::Infos)
@@ -148,6 +157,28 @@ void TmdbMovieScrapeJob::loadCollection(const TmdbId& collectionTmdbId)
         });
 }
 
+void TmdbMovieScrapeJob::loadEnglishTitle(const QString& id)
+{
+    m_loadsLeft.append(ScraperData::EnglishTitle);
+    m_api.sendGetRequest(Locale::English,
+        m_api.getMovieUrl(id, Locale::English, TmdbApi::ApiMovieDetails::INFOS),
+        [this](QJsonDocument json, ScraperError error) {
+            if (!error.hasError()) {
+                parseAndAssignEnglishTitle(json);
+            }
+            // English title is optional; do not fail the whole scrape if this request fails.
+            onDownloadDone(ScraperData::EnglishTitle);
+        });
+}
+
+void TmdbMovieScrapeJob::parseAndAssignEnglishTitle(const QJsonDocument& json)
+{
+    const QString title = json.object().value("title").toString();
+    if (!title.isEmpty()) {
+        m_movie->setEnglishTitle(title);
+    }
+}
+
 void TmdbMovieScrapeJob::onDownloadDone(ScraperData data)
 {
     m_loadsLeft.removeOne(data);
@@ -171,9 +202,16 @@ void TmdbMovieScrapeJob::parseAndAssignInfos(const QJsonDocument& json)
     {
         if (!parsedJson.value("title").toString().isEmpty()) {
             m_movie->setTitle(parsedJson.value("title").toString());
+            if (config().locale.language() == QLatin1String("en")) {
+                m_movie->setEnglishTitle(parsedJson.value("title").toString());
+            }
         }
         if (!parsedJson.value("original_title").toString().isEmpty()) {
             m_movie->setOriginalTitle(parsedJson.value("original_title").toString());
+            // When the original language is English, original_title is the English title.
+            if (parsedJson.value("original_language").toString() == QLatin1String("en")) {
+                m_movie->setEnglishTitle(parsedJson.value("original_title").toString());
+            }
         }
     }
     if (parsedJson.value("belongs_to_collection").isObject()) {

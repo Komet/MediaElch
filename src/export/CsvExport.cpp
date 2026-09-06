@@ -125,6 +125,7 @@ void CsvMovieExport::exportMovies(const QVector<Movie*>& movies, std::function<v
             {s(Field::WikidataId), movie->wikidataId().toString()},
             {s(Field::Title), movie->title()},
             {s(Field::OriginalTitle), movie->originalTitle()},
+            {s(Field::EnglishTitle), movie->englishTitle()},
             {s(Field::SortTitle), movie->sortTitle()},
             {s(Field::Overview), movie->overview()},
             {s(Field::Outline), movie->outline()},
@@ -184,6 +185,7 @@ QString CsvMovieExport::fieldToString(Field field)
     case Field::WikidataId: return "movie_wikidata_id";
     case Field::Title: return "movie_title";
     case Field::OriginalTitle: return "movie_original_title";
+    case Field::EnglishTitle: return "movie_english_title";
     case Field::SortTitle: return "movie_sort_title";
     case Field::Overview: return "movie_overview";
     case Field::Outline: return "movie_outline";
@@ -248,6 +250,7 @@ void CsvTvShowExport::exportTvShows(const QVector<TvShow*>& shows, std::function
             {s(Field::ShowTitle), show->title()},
             {s(Field::ShowSortTitle), show->sortTitle()},
             {s(Field::ShowOriginalTitle), show->originalTitle()},
+            {s(Field::ShowEnglishTitle), show->englishTitle()},
             {s(Field::ShowFirstAired), show->firstAired().toString(Qt::ISODate)},
             {s(Field::ShowNetwork), show->networks().join(", ")},
             {s(Field::ShowCertification), show->certification().toString()},
@@ -286,6 +289,7 @@ QString CsvTvShowExport::fieldToString(CsvTvShowExport::Field field)
     case Field::ShowTitle: return "show_title";
     case Field::ShowSortTitle: return "show_sort_title";
     case Field::ShowOriginalTitle: return "show_original_title";
+    case Field::ShowEnglishTitle: return "show_english_title";
     case Field::ShowFirstAired: return "show_first_aired";
     case Field::ShowNetwork: return "show_network";
     case Field::ShowGenres: return "show_genres";

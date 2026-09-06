@@ -2,6 +2,7 @@
 <movie>
     <title>Allegiant</title>
     <originaltitle>AllegiantOriginal</originaltitle>
+    <english_title>Allegiant</english_title>
     <sorttitle>TmovieFc10</sorttitle>
     <ratings>
         <rating name="imdb" default="true" max="10">

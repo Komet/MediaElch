@@ -33,6 +33,9 @@ QByteArray MovieXmlWriterGeneric::getMovieXml(bool testMode)
         && (m_movie.originalTitle() != m_movie.title() || !ignoreDuplicateOriginalTitle())) {
         xml.writeTextElement("originaltitle", m_movie.originalTitle());
     }
+    if (!m_movie.englishTitle().isEmpty()) {
+        xml.writeTextElement("english_title", m_movie.englishTitle());
+    }
     if (!m_movie.sortTitle().isEmpty()) {
         xml.writeTextElement("sorttitle", m_movie.sortTitle());
     }

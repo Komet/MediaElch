@@ -32,6 +32,11 @@ void copyDetailToMovie(Movie& target,
         if (!ignoreDuplicateOriginalTitle || source.title() != source.originalTitle()) {
             target.setOriginalTitle(source.originalTitle());
         }
+        // Only copy when the scraper provided a value; otherwise keep the user's/NFO title.
+        // Non-TMDB scrapers leave englishTitle empty.
+        if (!source.englishTitle().isEmpty()) {
+            target.setEnglishTitle(source.englishTitle());
+        }
         break;
     }
     case MovieScraperInfo::Tagline: {
