@@ -21,6 +21,7 @@ target_sources(
     media/testFilenameUtils.cpp
     media/testPath.cpp
     media_center/testMakeLegalFileName.cpp
+    media_center/testMovieSetArtworkFileNames.cpp
     model/testMovieModel.cpp
     model/testTvShowModel.cpp
     model/testConcertModel.cpp

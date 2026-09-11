@@ -149,12 +149,12 @@ void MovieSettingsWidget::onComboMovieSetArtworkChanged(int comboIndex)
 
     switch (value) {
     case MovieSetArtworkType::ArtworkNextToMovies: {
-        ui->movieSetPosterFileName->setText("<setName>-folder.jpg");
+        ui->movieSetPosterFileName->setText("<setName>-poster.jpg");
         ui->movieSetFanartFileName->setText("<setName>-fanart.jpg");
         break;
     }
     case MovieSetArtworkType::SeparateArtworkFolder: {
-        ui->movieSetPosterFileName->setText("folder.jpg");
+        ui->movieSetPosterFileName->setText("poster.jpg");
         ui->movieSetFanartFileName->setText("fanart.jpg");
         break;
     }

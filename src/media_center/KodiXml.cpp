@@ -14,6 +14,7 @@
 #include "media_center/kodi/EpisodeXmlReader.h"
 #include "media_center/kodi/EpisodeXmlWriter.h"
 #include "media_center/kodi/MakeLegalFileName.h"
+#include "media_center/kodi/MovieSetArtworkFileNames.h"
 #include "media_center/kodi/MovieXmlReader.h"
 #include "media_center/kodi/MovieXmlWriter.h"
 #include "media_center/kodi/TvShowXmlReader.h"
@@ -1193,23 +1194,26 @@ QImage KodiXml::movieSetBackdrop(QString setName)
 
 QImage KodiXml::movieSetImage(const QString& setName, DataFileType type)
 {
-    const QVector<DataFile> dataFiles = Settings::instance()->dataFiles(type);
-
-    for (DataFile dataFile : dataFiles) {
-        QFileInfo fi(movieSetFileName(setName, &dataFile, LegalisePath::Yes));
-        if (fi.exists()) {
-            return QImage(fi.absoluteFilePath());
-        }
+    QStringList configuredFileNames;
+    for (const DataFile& dataFile : Settings::instance()->dataFiles(type)) {
+        configuredFileNames << dataFile.fileName();
     }
 
-    // Only if nothing was found above: older MediaElch versions used the set name verbatim as the
-    // folder name.  Kodi never read those folders, but MediaElch did, so keep reading them.
-    if (Settings::instance()->movieSetArtworkType() == MovieSetArtworkType::SeparateArtworkFolder) {
-        for (DataFile dataFile : dataFiles) {
-            QFileInfo fi(movieSetFileName(setName, &dataFile, LegalisePath::No));
-            if (fi.exists()) {
-                return QImage(fi.absoluteFilePath());
-            }
+    // The legacy spellings are deliberately *not* extra DataFile entries in the settings: saving
+    // a set's artwork writes to *every* entry of that list, so a second entry would keep writing
+    // `folder.jpg` forever instead of retiring it.  They take part in reading only, which is why
+    // the knowledge lives here and not in Settings.
+    //
+    // Two axes, configured-before-legacy and legalised-before-verbatim; see
+    // mediaelch::kodi::movieSetArtworkCandidates().
+    const QVector<mediaelch::kodi::MovieSetArtworkCandidate> candidates = mediaelch::kodi::movieSetArtworkCandidates(
+        type, Settings::instance()->movieSetArtworkType(), configuredFileNames);
+
+    for (const mediaelch::kodi::MovieSetArtworkCandidate& candidate : candidates) {
+        DataFile dataFile(type, candidate.fileName, 0);
+        QFileInfo fi(movieSetFileName(setName, &dataFile, candidate.legalise));
+        if (fi.exists()) {
+            return QImage(fi.absoluteFilePath());
         }
     }
 
@@ -1328,14 +1332,15 @@ mediaelch::DirectoryPath KodiXml::getPath(const Concert* concert)
     return mediaelch::DirectoryPath(fi.dir());
 }
 
-QString KodiXml::movieSetFileName(QString setName, DataFile* dataFile, LegalisePath legalise)
+QString KodiXml::movieSetFileName(QString setName, DataFile* dataFile, mediaelch::kodi::LegalisePath legalise)
 {
     if (Settings::instance()->movieSetArtworkType() == MovieSetArtworkType::SeparateArtworkFolder) {
         QDir dir = Settings::instance()->movieSetArtworkDirectory().dir();
         // Kodi legalises only the folder component of this path, so the file name keeps using
         // MediaElch's own sanitiser.  The two are intentionally different.
         QString fileName = dataFile->saveFileName(setName);
-        QString folderName = legalise == LegalisePath::Yes ? mediaelch::kodi::makeLegalFileName(setName) : setName;
+        QString folderName =
+            legalise == mediaelch::kodi::LegalisePath::Yes ? mediaelch::kodi::makeLegalFileName(setName) : setName;
         return dir.absolutePath() + "/" + folderName + "/" + fileName;
     }
     if (Settings::instance()->movieSetArtworkType() == MovieSetArtworkType::ArtworkNextToMovies) {

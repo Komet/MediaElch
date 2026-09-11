@@ -38,6 +38,17 @@
   will find it.  The file in the old folder is left untouched.
 - Movie sets: Saving a set's fanart no longer fails silently if the set has no poster yet
   and its artwork folder therefore does not exist.
+- Movie sets: MediaElch now suggests `poster.jpg` rather than `folder.jpg` for a set's poster
+  (and `<setName>-poster.jpg` rather than `<setName>-folder.jpg` next to the movies, which is
+  what MediaElch already shipped as the default for that layout).  Kodi's library import looks
+  only for `poster.jpg` and `poster.png`, so a set stored as `folder.jpg` came back from an
+  exported `videodb.xml` with its fanart and no poster; the Movie Set Artwork Automator and
+  Artwork Beef add-ons both read `folder` as a set's *thumb* rather than as its poster.
+  Artwork already stored under the old name is still read, so nothing disappears from MediaElch,
+  and no file on disk is moved, renamed or deleted.  If you switched the movie set artwork
+  layout under an older MediaElch, `folder.jpg` is saved in your settings as the poster's file
+  name and re-saving artwork keeps writing it: pick the layout again in the movie settings (or
+  edit the file name field), save the settings, and then re-save the set's poster.
 
 ### Changed
 
