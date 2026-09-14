@@ -8,6 +8,7 @@
 #include "database/MusicPersistence.h"
 #include "database/TvShowPersistence.h"
 #include "media_center/MediaCenterInterface.h"
+#include "media_center/kodi/MovieSetArtworkFileNames.h"
 #include "settings/KodiSettings.h"
 
 #include <QByteArray>
@@ -131,7 +132,10 @@ private:
     bool saveFile(QString filename, QByteArray data);
     mediaelch::DirectoryPath getPath(const Movie* movie);
     mediaelch::DirectoryPath getPath(const Concert* concert);
-    QString movieSetFileName(QString setName, DataFile* dataFile);
+    QString movieSetFileName(QString setName,
+        DataFile* dataFile,
+        mediaelch::kodi::LegalisePath legalise = mediaelch::kodi::LegalisePath::Yes);
+    QImage movieSetImage(const QString& setName, DataFileType type);
 
 private:
     mediaelch::KodiSettings& m_settings;
