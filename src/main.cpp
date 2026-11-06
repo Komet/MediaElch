@@ -4,7 +4,7 @@
 #include "settings/Settings.h"
 #include "ui/main/MainWindow.h"
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
 #    include "ui/MacUiUtilities.h"
 #endif
 
@@ -40,7 +40,7 @@ static QString themeStylesheetName(const QString& theme, const QString& customSt
     QString filename;
     qCDebug(generic) << "Using theme:" << theme;
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     QString mainWindowTheme;
     if (theme == "auto") {
         mainWindowTheme = mediaelch::ui::macIsInDarkTheme() ? "dark" : "light";

@@ -13,7 +13,7 @@ ImagePreviewDialog::ImagePreviewDialog(QWidget* parent) : QDialog(parent), ui(ne
 
     connect(ui->buttonClose, &QAbstractButton::clicked, this, &QDialog::accept);
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Sheet);
 #else
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Dialog);

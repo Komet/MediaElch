@@ -27,7 +27,7 @@ SetsWidget::SetsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::SetsWidget
     ui->buttonPreviewBackdrop->setEnabled(false);
     ui->buttonPreviewPoster->setEnabled(false);
 
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
     QFont nameFont = ui->setName->font();
     nameFont.setPointSize(nameFont.pointSize() - 4);
     ui->setName->setFont(nameFont);

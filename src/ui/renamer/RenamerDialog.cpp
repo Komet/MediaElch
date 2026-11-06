@@ -15,7 +15,7 @@ RenamerDialog::RenamerDialog(QWidget* parent) : QDialog(parent), ui(new Ui::Rena
 
     ui->resultsTable->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
     ui->resultsTable->horizontalHeader()->setSectionResizeMode(2, QHeaderView::Stretch);
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     QFont font = ui->resultsTable->font();
     font.setPointSize(font.pointSize() - 2);
     ui->resultsTable->setFont(font);
