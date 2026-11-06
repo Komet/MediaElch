@@ -1,4 +1,19 @@
 #!/usr/bin/env bash
+#
+# Packages a local macOS build that uses Homebrew's Qt into a self-contained
+# app bundle.  It is architecture-native, i.e. arm64 on Apple silicon, and is
+# intended for local use, not for official releases.
+#
+# Requirements:
+#   brew install cmake ninja qt libmediainfo ffmpeg
+#
+# Homebrew's Qt may require a newer macOS version than MediaElch's default.
+# Set CMAKE_OSX_DEPLOYMENT_TARGET accordingly when configuring, e.g.:
+#   cmake --preset release -DCMAKE_PREFIX_PATH="$(brew --prefix qt)" \
+#     -DCMAKE_OSX_DEPLOYMENT_TARGET=14.4
+#   cmake --build build/release
+#
+# Usage: scripts/package-macos-local.sh [build-directory]
 set -euo pipefail
 
 PROJECT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
@@ -60,11 +75,11 @@ for path in root.rglob("*"):
         if dep.startswith(("/opt/homebrew/", "/Users/", "/usr/local/")):
             problems.append(f"{path.relative_to(root)}: {dep}")
 
-print(f"{count} binaires examinés.")
+print(f"{count} binaries checked.")
 if problems:
     print("\n".join(problems))
-    sys.exit("Packaging interrompu : dépendances externes restantes.")
-print("Contrôle des chemins de dépendances réussi.")
+    sys.exit("Packaging aborted: external dependencies remain.")
+print("Dependency path check passed.")
 PY
 
 python3 - "$BUILD_DIR/CMakeCache.txt" "$APP/Contents/Info.plist" <<'PYPLIST'
@@ -78,10 +93,10 @@ match = re.search(
     r"^CMAKE_OSX_DEPLOYMENT_TARGET:[^=]+=(.+)$", cache, re.MULTILINE
 )
 if not match:
-    sys.exit("Cible minimale macOS absente du cache CMake.")
+    sys.exit("macOS deployment target missing from CMake cache.")
 target = match.group(1).strip()
 if not re.fullmatch(r"\d+(?:\.\d+){0,2}", target):
-    sys.exit(f"Cible macOS invalide : {target}")
+    sys.exit(f"Invalid macOS deployment target: {target}")
 
 path = Path(sys.argv[2])
 with path.open("rb") as handle:
@@ -89,7 +104,7 @@ with path.open("rb") as handle:
 info["LSMinimumSystemVersion"] = target
 with path.open("wb") as handle:
     plistlib.dump(info, handle, sort_keys=False)
-print(f"Version minimale du bundle : macOS {target}")
+print(f"Minimum bundle version: macOS {target}")
 PYPLIST
 
 codesign --force --deep --sign - "$APP"
@@ -97,6 +112,6 @@ codesign --verify --deep --strict "$APP"
 
 "$APP/Contents/MacOS/ffmpeg" -version > "$PACKAGE_DIR/ffmpeg-version.txt"
 
-printf '\nApplication préparée :\n%s\n' "$APP"
-printf '\nCompilation depuis le commit :\n'
+printf '\nPackaged application:\n%s\n' "$APP"
+printf '\nBuilt from commit:\n'
 git rev-parse HEAD
