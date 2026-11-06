@@ -30,6 +30,7 @@
 - Improved media codec detection for HDR10 and dolby vision (#1883).
   Thanks to GitHub user `@Quppa` for the help!
 - Music: If an album's cover can't be found, MediaElch may have crashed (#1918)
+- macOS: MediaElch can be built natively on Apple silicon with Homebrew's Qt 6.12.
 
 ### Changed
 
