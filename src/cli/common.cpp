@@ -1,5 +1,8 @@
 #include "cli/common.h"
 
+#include <ostream>
+#include <string>
+
 #include <QTextStream>
 
 // levels:
