@@ -29,9 +29,55 @@ TEST_CASE("DirectoryPath", "[media]")
 
     SECTION("isParentFolderOf")
     {
-        CHECK(DirectoryPath("/movies").isParentFolderOf(DirectoryPath("/movies/Action")));
-        CHECK(DirectoryPath("/movies").isParentFolderOf(DirectoryPath("/movies")));
-        CHECK_FALSE(DirectoryPath("/movies").isParentFolderOf(DirectoryPath("/tv")));
+        SECTION("the same folder should return true")
+        {
+            const QString parent = GENERATE(QString("/movies"), QString("/movies/"), QString("/movies/../movies"));
+            const QString child = GENERATE(QString("/movies"), QString("/movies/"), QString("/movies/../movies"));
+
+            CAPTURE(parent, child);
+            CHECK(DirectoryPath(parent).isParentFolderOf(DirectoryPath(child)));
+        }
+
+        SECTION("a parent folder should return true for a child folder")
+        {
+            const QString parent = GENERATE(QString("/movies"), QString("/movies/"), QString("/movies/../movies"));
+            const QString child = GENERATE(QString("/movies/Action"), QString("/movies/Action/Thriller"));
+
+            CAPTURE(parent, child);
+            CHECK(DirectoryPath(parent).isParentFolderOf(DirectoryPath(child)));
+        }
+
+        SECTION("the root folder should return true for itself and its children")
+        {
+            const QString child = GENERATE(QDir::rootPath(), QDir::root().filePath("movies"));
+
+            CAPTURE(child);
+            CHECK(DirectoryPath(QDir::rootPath()).isParentFolderOf(DirectoryPath(child)));
+        }
+
+        SECTION("an unrelated folder should return false")
+        {
+            const QString child = GENERATE(QString("/tv"), QString("/music/Action"));
+
+            CAPTURE(child);
+            CHECK_FALSE(DirectoryPath("/movies").isParentFolderOf(DirectoryPath(child)));
+        }
+
+        SECTION("a shared name prefix (excluding trailing slash) should return false")
+        {
+            const QString child = GENERATE(QString("/movies-extra"), QString("/movies-extra/Action"));
+
+            CAPTURE(child);
+            CHECK_FALSE(DirectoryPath("/movies").isParentFolderOf(DirectoryPath(child)));
+        }
+
+        SECTION("a child folder should return false for its parent folder")
+        {
+            const QString parent = GENERATE(QString("/movies/Action"), QString("/movies/Action/Thriller"));
+
+            CAPTURE(parent);
+            CHECK_FALSE(DirectoryPath(parent).isParentFolderOf(DirectoryPath("/movies")));
+        }
     }
 }
 
