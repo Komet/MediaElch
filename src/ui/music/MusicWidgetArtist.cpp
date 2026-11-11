@@ -400,7 +400,7 @@ void MusicWidgetArtist::onChooseImage()
 
     // TODO: Don't use "this", because we don't want to inherit the stylesheet,
     // but we can't pass "nullptr", because otherwise there won't be a modal.
-    auto* imageDialog = new ImageDialog(MainWindow::instance());
+    auto* imageDialog = new ImageDialog(*Settings::instance(), MainWindow::instance());
     imageDialog->setArtist(m_artist);
 
     if (!m_artist->images(image->imageType()).isEmpty()) {
@@ -546,7 +546,7 @@ void MusicWidgetArtist::onAddExtraFanart()
 
     // TODO: Don't use "this", because we don't want to inherit the stylesheet,
     // but we can't pass "nullptr", because otherwise there won't be a modal.
-    auto* imageDialog = new ImageDialog(MainWindow::instance());
+    auto* imageDialog = new ImageDialog(*Settings::instance(), MainWindow::instance());
     imageDialog->setMultiSelection(true);
     imageDialog->setArtist(m_artist);
     imageDialog->setDefaultDownloads(m_artist->images(ImageType::ArtistFanart));

@@ -7,6 +7,7 @@
 #include "network/NetworkManager.h"
 #include "scrapers/ScraperResult.h"
 #include "scrapers/image/ImageProvider.h"
+#include "settings/Settings.h"
 
 #include <QDialog>
 #include <QLabel>
@@ -28,13 +29,33 @@ class Movie;
 class TvShow;
 class TvShowEpisode;
 
+class ImageDialogConfiguration
+{
+public:
+    explicit ImageDialogConfiguration(Settings& settings);
+
+    void init();
+
+    ELCH_NODISCARD QSize dialogSize();
+    void setDialogSize(QSize size);
+
+    ELCH_NODISCARD QPoint dialogPosition();
+    void setDialogPosition(QPoint position);
+
+    ELCH_NODISCARD int previewSize(ImageType type);
+    void setPreviewSize(ImageType type, int size);
+
+private:
+    Settings& m_settings;
+};
+
 /// Displays a set of images
 class ImageDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit ImageDialog(QWidget* parent = nullptr);
+    explicit ImageDialog(Settings& settings, QWidget* parent = nullptr);
     ~ImageDialog() override;
 
 public:
@@ -89,6 +110,8 @@ private slots:
 
 private:
     Ui::ImageDialog* ui;
+    Settings& m_settings;
+    ImageDialogConfiguration m_config;
 
     struct DownloadElement
     {

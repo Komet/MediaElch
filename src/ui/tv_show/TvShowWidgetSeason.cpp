@@ -248,7 +248,7 @@ void TvShowWidgetSeason::onChooseImage()
 
     // TODO: Don't use "this", because we don't want to inherit the stylesheet,
     // but we can't pass "nullptr", because otherwise there won't be a modal.
-    auto* imageDialog = new ImageDialog(MainWindow::instance());
+    auto* imageDialog = new ImageDialog(*Settings::instance(), MainWindow::instance());
     imageDialog->setTvShow(m_show);
     imageDialog->setSeason(m_season);
 

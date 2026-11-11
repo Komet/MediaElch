@@ -1175,7 +1175,7 @@ void TvShowWidgetTvShow::onAddExtraFanart()
 
     // TODO: Don't use "this", because we don't want to inherit the stylesheet,
     // but we can't pass "nullptr", because otherwise there won't be a modal.
-    auto* imageDialog = new ImageDialog(MainWindow::instance());
+    auto* imageDialog = new ImageDialog(*Settings::instance(), MainWindow::instance());
     imageDialog->setMultiSelection(true);
     imageDialog->setTvShow(m_show);
     imageDialog->setDefaultDownloads(m_show->backdrops());
@@ -1249,7 +1249,7 @@ void TvShowWidgetTvShow::onChooseImage()
 
     // TODO: Don't use "this", because we don't want to inherit the stylesheet,
     // but we can't pass "nullptr", because otherwise there won't be a modal.
-    auto* imageDialog = new ImageDialog(MainWindow::instance());
+    auto* imageDialog = new ImageDialog(*Settings::instance(), MainWindow::instance());
     imageDialog->setTvShow(m_show);
     switch (image->imageType()) {
     case ImageType::TvShowPoster: imageDialog->setDefaultDownloads(m_show->posters()); break;
