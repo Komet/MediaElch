@@ -12,6 +12,8 @@ We had to change a few things, though, because of how MediaElch and Qt handle XM
 ## Changes only for movies
 
  - added empty `<sorttitle>` (not set by Kodi unless specified)
+ - added `<uniqueid type="tmdb">` inside `<set>`; Kodi neither writes nor reads it,
+   MediaElch uses it to keep a collection's TMDB id
  - removed following tags because they're set by Kodi v17 but not used:
    - see https://kodi.wiki/view/NFO_files/Movies#Known_Issues
    - `<status></status>`

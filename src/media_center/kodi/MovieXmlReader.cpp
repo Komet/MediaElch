@@ -21,6 +21,28 @@ static QString htmlUnescape(const QString& htmlEscaped)
     return doc.toPlainText();
 }
 
+/// Empty if the <set> element has no TMDB collection id.
+static QString movieSetTmdbId(const QDomElement& movieSetElement)
+{
+    for (QDomElement element = movieSetElement.firstChildElement("uniqueid"); !element.isNull();
+        element = element.nextSiblingElement("uniqueid")) {
+        const QString id = element.text().trimmed();
+        if (element.attribute("type") == "tmdb" && !id.isEmpty()) {
+            return id;
+        }
+    }
+    // <tmdbid> and Ember Media Manager's <tmdb> are only read to migrate existing files;
+    // MediaElch rewrites them as <uniqueid> the next time the movie is saved.
+    // Ember's movie-level <tmdbcolid>, read in parseNfoDom(), is a fallback of the same kind.
+    for (const QString& fallbackTag : {QStringLiteral("tmdbid"), QStringLiteral("tmdb")}) {
+        const QString id = movieSetElement.firstChildElement(fallbackTag).text().trimmed();
+        if (!id.isEmpty()) {
+            return id;
+        }
+    }
+    return {};
+}
+
 MovieXmlReader::MovieXmlReader(Movie& movie) : m_movie{movie}
 {
 }
@@ -97,18 +119,22 @@ bool MovieXmlReader::parseNfoDom(QDomDocument domDoc)
         m_movie.setLastPlayed(lastPlayed);
     }
 
+    // The id lookups below use direct children of <movie>, just like Kodi does.
+    // <set> has an id of its own that must not end up on the movie.
+    //
     // v16 imdbid
-    if (!domDoc.elementsByTagName("id").isEmpty()) {
-        m_movie.setImdbId(ImdbId(domDoc.elementsByTagName("id").at(0).toElement().text()));
+    const QDomElement idElement = movieElement.firstChildElement("id");
+    if (!idElement.isNull()) {
+        m_movie.setImdbId(ImdbId(idElement.text()));
     }
     // v16 tmdbid
-    if (!domDoc.elementsByTagName("tmdbid").isEmpty()) {
-        m_movie.setTmdbId(TmdbId(domDoc.elementsByTagName("tmdbid").at(0).toElement().text()));
+    const QDomElement tmdbIdElement = movieElement.firstChildElement("tmdbid");
+    if (!tmdbIdElement.isNull()) {
+        m_movie.setTmdbId(TmdbId(tmdbIdElement.text()));
     }
     // >v17 ids
-    auto uniqueIds = domDoc.elementsByTagName("uniqueid");
-    for (int i = 0; i < uniqueIds.size(); ++i) {
-        QDomElement element = uniqueIds.at(i).toElement();
+    for (QDomElement element = movieElement.firstChildElement("uniqueid"); !element.isNull();
+        element = element.nextSiblingElement("uniqueid")) {
         QString type = element.attribute("type");
         QString value = element.text().trimmed();
         if (type == "imdb") {
@@ -117,6 +143,18 @@ bool MovieXmlReader::parseNfoDom(QDomDocument domDoc)
             m_movie.setTmdbId(TmdbId(value));
         } else if (type == "wikidata") {
             m_movie.setWikidataId(WikidataId(value));
+        }
+    }
+
+    // Ember Media Manager writes the collection's id at movie level, next to the flat
+    // <set>Name</set> form, unless its "extended collection info" option is enabled.
+    // Relies on <set> having already been parsed by the dispatch loop above.
+    MovieSet set = m_movie.set();
+    if (!set.name.isEmpty() && set.tmdbId == TmdbId::NoId) {
+        const QString collectionId = movieElement.firstChildElement("tmdbcolid").text().trimmed();
+        if (!collectionId.isEmpty()) {
+            set.tmdbId = TmdbId(collectionId);
+            m_movie.setSet(set);
         }
     }
 
@@ -166,6 +204,7 @@ void MovieXmlReader::movieSet(const QDomElement& movieSetElement)
     //   <set>
     //     <name>Movie Set Name</name>
     //     <overview>movie collection overview</overview>
+    //     <uniqueid type="tmdb">1241</uniqueid>
     //   </set>
     //
     // Old Syntax:
@@ -179,6 +218,10 @@ void MovieXmlReader::movieSet(const QDomElement& movieSetElement)
     }
     if (!setOverviewElements.isEmpty()) {
         set.overview = htmlUnescape(setOverviewElements.at(0).toElement().text());
+    }
+    const QString tmdbId = movieSetTmdbId(movieSetElement);
+    if (!tmdbId.isEmpty()) {
+        set.tmdbId = TmdbId(tmdbId);
     }
     m_movie.setSet(set);
 }
