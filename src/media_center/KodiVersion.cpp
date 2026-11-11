@@ -36,7 +36,7 @@ KodiVersion::Version KodiVersion::fromInt(int version)
     } else if (version == 22) {
         return v22;
     } else {
-        return v20; // default
+        return DEFAULT_KODI_VERSION;
     }
 }
 
