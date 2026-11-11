@@ -5,6 +5,7 @@ add_library(
   AdvancedSettings.cpp
   DirectorySettings.cpp
   KodiSyncSettings.cpp
+  KodiXmlSettings.cpp
   Settings.cpp
   AdvancedSettingsXmlReader.cpp
   NetworkSettings.cpp

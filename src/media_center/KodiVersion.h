@@ -7,7 +7,6 @@ namespace mediaelch {
 // Kodi version represents a version of the Kodi media center API
 class KodiVersion
 {
-
 public:
     // not an enum class so that we can use KodiVersion::v18
     enum Version : int

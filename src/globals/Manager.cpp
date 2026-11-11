@@ -38,11 +38,13 @@ Manager::Manager(QObject* parent) : QObject(parent)
 
     m_kodiSyncSettings = new mediaelch::KodiSyncSettings(*m_settings, this);
     m_kodiSyncSettings->init();
+    m_kodiXmlSettings = std::make_unique<mediaelch::KodiXmlSettings>(*m_settings);
+    m_kodiXmlSettings->init();
     KodiXml::MediaPersistence persistence{
         *m_moviePersistence, *m_tvShowPersistence, *m_concertPersistence, *m_musicPersistence};
-    m_mediaCenters.append(new KodiXml(*m_kodiSyncSettings, persistence, this));
-    m_mediaCentersTvShow.append(new KodiXml(*m_kodiSyncSettings, persistence, this));
-    m_mediaCentersConcert.append(new KodiXml(*m_kodiSyncSettings, persistence, this));
+    m_mediaCenters.append(new KodiXml(*m_kodiXmlSettings, persistence, *m_movieModel, this));
+    m_mediaCentersTvShow.append(new KodiXml(*m_kodiXmlSettings, persistence, *m_movieModel, this));
+    m_mediaCentersConcert.append(new KodiXml(*m_kodiXmlSettings, persistence, *m_movieModel, this));
 
     m_trailerProviders.append(new HdTrailers(this));
 

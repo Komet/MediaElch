@@ -20,6 +20,7 @@
 #include "scrapers/image/ImageProvider.h"
 #include "scrapers/trailer/TrailerProvider.h"
 #include "settings/KodiSyncSettings.h"
+#include "settings/KodiXmlSettings.h"
 #include "settings/Settings.h"
 #include "ui/main/FileScannerDialog.h"
 #include "ui/main/MyIconFont.h"
@@ -78,6 +79,7 @@ public:
 
 private:
     mediaelch::KodiSyncSettings* m_kodiSyncSettings;
+    std::unique_ptr<mediaelch::KodiXmlSettings> m_kodiXmlSettings;
     QVector<MediaCenterInterface*> m_mediaCenters;
     QVector<MediaCenterInterface*> m_mediaCentersTvShow;
     QVector<MediaCenterInterface*> m_mediaCentersConcert;

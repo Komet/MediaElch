@@ -396,6 +396,7 @@ SOURCES += \
     src/settings/DirectorySettings.cpp \
     src/settings/ImportSettings.cpp \
     src/settings/KodiSyncSettings.cpp \
+    src/settings/KodiXmlSettings.cpp \
     src/settings/NetworkSettings.cpp \
     src/settings/Settings.cpp \
     src/settings/UpdateCheck.cpp \
@@ -817,6 +818,7 @@ HEADERS += Version.h \
     src/settings/DirectorySettings.h \
     src/settings/ImportSettings.h \
     src/settings/KodiSyncSettings.h \
+    src/settings/KodiXmlSettings.h \
     src/settings/NetworkSettings.h \
     src/settings/Settings.h \
     src/settings/UpdateCheck.h \
