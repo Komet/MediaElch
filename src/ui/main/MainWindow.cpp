@@ -171,7 +171,7 @@ MainWindow::MainWindow(MainWindowConfiguration& settings, QWidget* parent) :
     m_supportDialog = new SupportDialog(this);
     m_settingsWindow = new SettingsWindow(*Settings::instance(), this);
     m_fileScannerDialog = new FileScannerDialog(this);
-    m_xbmcSync = new KodiSync(*Manager::instance()->kodiSettings(), this);
+    m_xbmcSync = new KodiSync(*Manager::instance()->kodiSyncSettings(), this);
     m_movieRenamer = new MovieRenamerDialog(this);
     m_concertRenamer = new ConcertRenamerDialog(this);
     m_tvShowRenamer = new TvShowRenamerDialog(this);

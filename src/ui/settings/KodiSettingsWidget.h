@@ -2,7 +2,7 @@
 
 #include "globals/Globals.h"
 #include "media_center/KodiVersion.h"
-#include "settings/KodiSettings.h"
+#include "settings/KodiSyncSettings.h"
 
 #include <QWidget>
 
@@ -20,7 +20,7 @@ public:
     explicit KodiSettingsWidget(QWidget* parent = nullptr);
     ~KodiSettingsWidget() override;
 
-    void init(mediaelch::KodiSettings* settings);
+    void init(mediaelch::KodiSyncSettings* settings);
 
 private:
     void setKodiVersion(mediaelch::KodiVersion kodiVersion);

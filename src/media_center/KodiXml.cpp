@@ -27,7 +27,7 @@
 #include <array>
 #include <memory>
 
-KodiXml::KodiXml(mediaelch::KodiSettings& settings, MediaPersistence persistence, QObject* parent) :
+KodiXml::KodiXml(mediaelch::KodiSyncSettings& settings, MediaPersistence persistence, QObject* parent) :
     MediaCenterInterface(parent), m_settings{settings}, m_persistence{persistence}
 {
 }

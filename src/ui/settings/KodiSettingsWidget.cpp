@@ -12,11 +12,11 @@ KodiSettingsWidget::KodiSettingsWidget(QWidget* parent) : QWidget(parent), ui(ne
     ui->xbmcPort->setValidator(new QIntValidator(0, 99999, ui->xbmcPort));
 }
 
-void KodiSettingsWidget::init(mediaelch::KodiSettings* settings)
+void KodiSettingsWidget::init(mediaelch::KodiSyncSettings* settings)
 {
     ui->xbmcHost->setText(settings->xbmcHost());
     connect(ui->xbmcHost, &QLineEdit::textChanged, this, [settings](QString host) { settings->setXbmcHost(host); });
-    connect(settings, &mediaelch::KodiSettings::xbmcHostChanged, this, [this](QString host) {
+    connect(settings, &mediaelch::KodiSyncSettings::xbmcHostChanged, this, [this](QString host) {
         const bool blocked = ui->xbmcHost->blockSignals(true); // avoid triggering save-logic
         ui->xbmcHost->setText(host);
         ui->xbmcHost->blockSignals(blocked);
@@ -32,7 +32,7 @@ void KodiSettingsWidget::init(mediaelch::KodiSettings* settings)
         }
         // TODO: handle error state
     });
-    connect(settings, &mediaelch::KodiSettings::xbmcPortChanged, this, [this](int port) {
+    connect(settings, &mediaelch::KodiSyncSettings::xbmcPortChanged, this, [this](int port) {
         const bool blocked = ui->xbmcPort->blockSignals(true); // avoid triggering save-logic
         ui->xbmcPort->setText(QString::number(port));
         ui->xbmcPort->blockSignals(blocked);
@@ -41,7 +41,7 @@ void KodiSettingsWidget::init(mediaelch::KodiSettings* settings)
 
     ui->xbmcUser->setText(settings->xbmcUser());
     connect(ui->xbmcUser, &QLineEdit::textChanged, this, [settings](QString user) { settings->setXbmcUser(user); });
-    connect(settings, &mediaelch::KodiSettings::xbmcUserChanged, this, [this](QString user) {
+    connect(settings, &mediaelch::KodiSyncSettings::xbmcUserChanged, this, [this](QString user) {
         const bool blocked = ui->xbmcUser->blockSignals(true); // avoid triggering save-logic
         ui->xbmcUser->setText(user);
         ui->xbmcUser->blockSignals(blocked);
@@ -52,7 +52,7 @@ void KodiSettingsWidget::init(mediaelch::KodiSettings* settings)
     connect(ui->xbmcPassword, &QLineEdit::textChanged, this, [settings](QString password) {
         settings->setXbmcPassword(password);
     });
-    connect(settings, &mediaelch::KodiSettings::xbmcPasswordChanged, this, [this](QString password) {
+    connect(settings, &mediaelch::KodiSyncSettings::xbmcPasswordChanged, this, [this](QString password) {
         const bool blocked = ui->xbmcPassword->blockSignals(true); // avoid triggering save-logic
         ui->xbmcPassword->setText(password);
         ui->xbmcPassword->blockSignals(blocked);
@@ -70,7 +70,7 @@ void KodiSettingsWidget::init(mediaelch::KodiSettings* settings)
         const int version = ui->kodiVersion->itemData(index).toInt();
         settings->setKodiVersion(KodiVersion(version));
     });
-    connect(settings, &mediaelch::KodiSettings::kodiVersionChanged, this, [this](KodiVersion kodiVersion) {
+    connect(settings, &mediaelch::KodiSyncSettings::kodiVersionChanged, this, [this](KodiVersion kodiVersion) {
         const bool blocked = ui->kodiVersion->blockSignals(true); // avoid triggering save-logic or infinite loop
         setKodiVersion(kodiVersion);
         ui->kodiVersion->blockSignals(blocked);

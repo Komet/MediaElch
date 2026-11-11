@@ -82,7 +82,7 @@ SettingsWindow::SettingsWindow(Settings& settings, QWidget* parent) :
     ui->concertSettings->setSettings(m_settings);
     ui->networkSettings->setSettings(m_settings);
 
-    ui->kodiSettings->init(Manager::instance()->kodiSettings());
+    ui->kodiSettings->init(Manager::instance()->kodiSyncSettings());
 
     // clang-format off
     connect(ui->btnCancel, &QAbstractButton::clicked, this, &SettingsWindow::onCancel);
