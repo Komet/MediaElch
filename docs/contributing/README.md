@@ -11,6 +11,7 @@
  - [Continuous Integration](continuous-integration.md)
  - [Packaging](packaging.md)
  - [Dependencies](dependencies.md)
+ - [Development Guidelines](./guidelines/README.md)
 
 See also MediaElch's "[Architecture Decision Records](../adr/README.md)"
 
