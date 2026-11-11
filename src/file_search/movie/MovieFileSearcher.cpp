@@ -152,6 +152,7 @@ void MovieFileSearcher::loadNext()
     MediaElch_Assert(m_running);
 
     if (m_directoryQueue.isEmpty()) {
+        m_running = false;
         emit finished();
         return;
     }
