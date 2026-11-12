@@ -131,13 +131,14 @@ TEST_CASE("IMDb scrapes correct movie details", "[movie][IMDb][load_data]")
 
         SECTION("'load all tags' is false")
         {
+            // With the GraphQL API, all keywords are always loaded in a single request.
+            // The loadAllTags flag has no effect on the number of tags returned.
             auto scrapeJob = makeScrapeJob("tt0111161", false);
             test::scrapeMovieScraperSync(scrapeJob.get(), false);
             auto& m = scrapeJob->movie();
 
             const auto tags = m.tags();
             REQUIRE(tags.size() >= 2);
-            REQUIRE(tags.size() <= 20);
             CHECK_THAT(tags, Contains("escape from prison"));
         }
     }

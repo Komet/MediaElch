@@ -10,8 +10,10 @@ showTitle:
 originalTitle: Scrubs
 sortTitle: 
 overview:
-    In the unreal world of Sacred Heart Hospital, intern John "J.D." Dorian learns t
-    he ways of medicine, friendship and life.
+    Set in the fictional Sacred Heart hospital in California, John "J.D" Dorian make
+    s his way through the overwhelming world of medicine, with the help of his best 
+    friend, his fellow rookie doctors, and the arrogant, but brilliant attending phy
+    sician he views as his mentor.
 ratings (N=1)
   source=imdb | rating=8.4 | votes=200000 | min=0 | max=10
 userRating: 0
@@ -21,17 +23,18 @@ runtime: 30min
 genres: (N<6)
   - Comedy
   - Drama
-tags: (N<6)
+tags: (N>60)
+  - interracial relationship
+  - bisexual man character in a non gay themed movie
+  - 2010s
   - hospital
-  - bromance
-  - california
-  - male bonding
-  - 2000s
+  - dominant woman
+  - ... and >60 more
 certification: TV-14
 networks: (N=0)
 episodeGuideUrl: 
-actors: (N>50)
- - id: 
+actors: (N>200)
+ - id: nm0265668
    name: Donald Faison
    role: Dr. Christopher Turk
    thumb:
@@ -39,47 +42,47 @@ actors: (N>50)
     NA@@.jpg
    order: 0
    imageHasChanged: false
- - id: 
+ - id: nm0001525
    name: John C. McGinley
-   role: Dr. Perry Cox / Mr. Slidell
+   role: Dr. Perry Cox
    thumb:
     https://m.media-amazon.com/images/M/MV5BMTY2ODk4NzQ0NF5BMl5BanBnXkFtZTgwMzk4Mjgz
     NDE@.jpg
    order: 1
    imageHasChanged: false
- - id: 
+ - id: nm0420898
    name: Ken Jenkins
-   role: Dr. Bob Kelso / Dr. Kelso
+   role: Dr. Bob Kelso
    thumb:
     https://m.media-amazon.com/images/M/MV5BNTIwNTQxOTA1NV5BMl5BanBnXkFtZTcwMTY1MDQw
     NA@@.jpg
    order: 2
    imageHasChanged: false
- - id: 
+ - id: nm0103785
    name: Zach Braff
-   role: Dr. John 'J.D.' Dorian / Mrs. Zeebee
+   role: Dr. John 'J.D.' Dorian
    thumb:
     https://m.media-amazon.com/images/M/MV5BMTYyNjIyZGUtMDhlZC00NWYwLTlkNDEtMDU5YzBl
     NmY2NTQ2XkEyXkFqcGc@.jpg
    order: 3
    imageHasChanged: false
- - id: 
+ - id: nm0149950
    name: Sarah Chalke
-   role: Dr. Elliot Reid / Elliot
+   role: Dr. Elliot Reid
    thumb:
     https://m.media-amazon.com/images/M/MV5BMjQyNjg4NDI4NV5BMl5BanBnXkFtZTcwOTAzOTUx
     Mg@@.jpg
    order: 4
    imageHasChanged: false
- - id: 
+ - id: nm0283568
    name: Neil Flynn
-   role: Janitor / Wheelchair Guy
+   role: Janitor
    thumb:
     https://m.media-amazon.com/images/M/MV5BMTcxNTYxMzYyNV5BMl5BanBnXkFtZTcwMzA3ODY3
     Mg@@.jpg
    order: 5
    imageHasChanged: false
- - id: 
+ - id: nm0721332
    name: Judy Reyes
    role: Nurse Carla Espinosa
    thumb:
@@ -87,7 +90,7 @@ actors: (N>50)
     MQ@@.jpg
    order: 6
    imageHasChanged: false
- - id: 
+ - id: nm0556165
    name: Robert Maschio
    role: Todd Quinlan
    thumb:
@@ -95,23 +98,23 @@ actors: (N>50)
     MQ@@.jpg
    order: 7
    imageHasChanged: false
- - id: 
+ - id: nm0516127
    name: Sam Lloyd
-   role: Ted Buckland / Lawyer
+   role: Ted Buckland
    thumb:
     https://m.media-amazon.com/images/M/MV5BMzA3OWU0YjYtNWJhMS00NWI1LWJjOTAtOGQ5OWY0
     YTZmNDg3XkEyXkFqcGc@.jpg
    order: 8
    imageHasChanged: false
- - id: 
+ - id: nm0942193
    name: Aloma Wright
-   role: Nurse Roberts / Nurse Shirley / Nurse Laverne Roberts
+   role: Nurse Roberts
    thumb:
     https://m.media-amazon.com/images/M/MV5BMTMzODcwNTUwOV5BMl5BanBnXkFtZTYwNjM2MDM4
     .jpg
    order: 9
    imageHasChanged: false
- - id: 
+ - id: nm0588096
    name: Christa Miller
    role: Jordan Sullivan
    thumb:
@@ -119,7 +122,7 @@ actors: (N>50)
     .jpg
    order: 10
    imageHasChanged: false
- - id: 
+ - id: nm1056923
    name: Johnny Kastl
    role: Doug
    thumb:
@@ -127,7 +130,7 @@ actors: (N>50)
     MQ@@.jpg
    order: 11
    imageHasChanged: false
- - id: 
+ - id: nm0005402
    name: Travis Schuldt
    role: Keith
    thumb:
@@ -135,21 +138,21 @@ actors: (N>50)
     MDA5ZDZhXkEyXkFqcGc@.jpg
    order: 12
    imageHasChanged: false
- - id: 
+ - id: nm2255288
    name: Eliza Coupe
-   role: Dr. Denise Mahoney / Denise
+   role: Dr. Denise Mahoney
    thumb:
     https://m.media-amazon.com/images/M/MV5BMjQ1MDg4MDYzMF5BMl5BanBnXkFtZTgwODUxNDg3
     MzI@.jpg
    order: 13
    imageHasChanged: false
- - id: 
+ - id: nm0256727
    name: Frank Encarnacao
    role: Dr. Mickhead
    thumb: 
    order: 14
    imageHasChanged: false
- - id: 
+ - id: nm0161130
    name: Charles Rahi Chun
    role: Dr. Wen
    thumb:
@@ -157,15 +160,15 @@ actors: (N>50)
     MQ@@.jpg
    order: 15
    imageHasChanged: false
- - id: 
+ - id: nm0777372
    name: Mike Schwartz
-   role: Lloyd / Delivery Man / Patient / Delivery Guy
+   role: Lloyd
    thumb:
     https://m.media-amazon.com/images/M/MV5BMjI4NTczOTc1MV5BMl5BanBnXkFtZTgwNDIzMzcz
     MjE@.jpg
    order: 16
    imageHasChanged: false
- - id: 
+ - id: nm0006969
    name: Elizabeth Banks
    role: Dr. Kim Briggs
    thumb:
@@ -173,21 +176,21 @@ actors: (N>50)
     Y2ZkNDA4XkEyXkFqcGc@.jpg
    order: 17
    imageHasChanged: false
- - id: 
+ - id: nm1503117
    name: Michael Hobert
-   role: Lonnie / Pizza Guy
+   role: Lonnie
    thumb:
     https://m.media-amazon.com/images/M/MV5BMTQ3MTU2ODI2OF5BMl5BanBnXkFtZTgwNTIyMTgz
     MjE@.jpg
    order: 18
    imageHasChanged: false
- - id: 
+ - id: nm2466341
    name: Andrew Miller
    role: Baby Jack
    thumb: 
    order: 19
    imageHasChanged: false
-  - ... and >30 more
+  - ... and >200 more
 posters: (N=1)
   - id: 
     originalUrl: https://m.media-amazon.com/images/M/MV5BMWQ3ZmEwYmUtYWRhMS00OTllLTlkMzgtM2Q3MWFjOTI4MDE5XkEyXkFqcGc@.jpg
@@ -201,5 +204,5 @@ backdrops: (N=0)
 banners: (N=0)
 hasTune: false
 extraFanarts: (N=0)
-status: 
+status: Ended
 dateAdded: <not set or invalid>

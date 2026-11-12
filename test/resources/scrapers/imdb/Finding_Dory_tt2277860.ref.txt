@@ -201,8 +201,8 @@ released: 2016-06-17
 runtime: 97min
 writer: Andrew Stanton, Victoria Strouse
 director: Angus MacLane, Andrew Stanton
-actors: (N>5)
- - id: 
+actors: (N>60)
+ - id: nm0001122
    name: Ellen DeGeneres
    role: Dory
    thumb:
@@ -210,7 +210,7 @@ actors: (N>5)
     Mw@@.jpg
    order: 0
    imageHasChanged: false
- - id: 
+ - id: nm0000983
    name: Albert Brooks
    role: Marlin
    thumb:
@@ -218,7 +218,7 @@ actors: (N>5)
     NQ@@.jpg
    order: 1
    imageHasChanged: false
- - id: 
+ - id: nm0642145
    name: Ed O'Neill
    role: Hank
    thumb:
@@ -226,7 +226,7 @@ actors: (N>5)
     NzE@.jpg
    order: 2
    imageHasChanged: false
- - id: 
+ - id: nm0647698
    name: Kaitlin Olson
    role: Destiny
    thumb:
@@ -234,7 +234,7 @@ actors: (N>5)
     .jpg
    order: 3
    imageHasChanged: false
- - id: 
+ - id: nm5348776
    name: Hayden Rolence
    role: Nemo
    thumb:
@@ -242,7 +242,7 @@ actors: (N>5)
     OTE@.jpg
    order: 4
    imageHasChanged: false
- - id: 
+ - id: nm0123092
    name: Ty Burrell
    role: Bailey
    thumb:
@@ -250,7 +250,7 @@ actors: (N>5)
     NA@@.jpg
    order: 5
    imageHasChanged: false
- - id: 
+ - id: nm0000473
    name: Diane Keaton
    role: Jenny
    thumb:
@@ -258,7 +258,7 @@ actors: (N>5)
     NzM@.jpg
    order: 6
    imageHasChanged: false
- - id: 
+ - id: nm0506405
    name: Eugene Levy
    role: Charlie
    thumb:
@@ -266,13 +266,13 @@ actors: (N>5)
     .jpg
    order: 7
    imageHasChanged: false
- - id: 
+ - id: nm8204463
    name: Sloane Murray
    role: Young Dory
    thumb: 
    order: 8
    imageHasChanged: false
- - id: 
+ - id: nm0252961
    name: Idris Elba
    role: Fluke
    thumb:
@@ -280,6 +280,81 @@ actors: (N>5)
     OA@@.jpg
    order: 9
    imageHasChanged: false
+ - id: nm0922035
+   name: Dominic West
+   role: Rudder
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMjM1MDU1Mzg3N15BMl5BanBnXkFtZTgwNTcwNzcy
+    MzI@.jpg
+   order: 10
+   imageHasChanged: false
+ - id: nm0677037
+   name: Bob Peterson
+   role: Mr. Ray
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTU4NTQ4ODI5N15BMl5BanBnXkFtZTYwNzIwODA3
+    .jpg
+   order: 11
+   imageHasChanged: false
+ - id: nm0571952
+   name: Kate McKinnon
+   role: Wife Fish
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMjQwMzEwMDQ2NF5BMl5BanBnXkFtZTgwMzU4NTY4
+    NjE@.jpg
+   order: 12
+   imageHasChanged: false
+ - id: nm0352778
+   name: Bill Hader
+   role: Husband Fish (Stan)
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BNTY3MzgwMjE3N15BMl5BanBnXkFtZTcwNjc2MjE3
+    NA@@.jpg
+   order: 13
+   imageHasChanged: false
+ - id: nm0000244
+   name: Sigourney Weaver
+   role: Sigourney Weaver
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTk1MTcyNTE3OV5BMl5BanBnXkFtZTcwMTA0MTMy
+    Mw@@.jpg
+   order: 14
+   imageHasChanged: false
+ - id: nm1071252
+   name: Alexander Gould
+   role: Passenger Carl
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BNzBlOWI2MDEtNjhkMi00ZjAxLWFhMTctYjMzYWYz
+    MjI2MjBlXkEyXkFqcGc@.jpg
+   order: 15
+   imageHasChanged: false
+ - id: nm0120187
+   name: Torbin Xan Bullock
+   role: Gerald
+   thumb: 
+   order: 16
+   imageHasChanged: false
+ - id: nm0004056
+   name: Andrew Stanton
+   role: Crush
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMmZiOTE4NDktMmZjNi00MzcwLWJjMzAtYWVlZDUw
+    NjhiMGIwXkEyXkFqcGc@.jpg
+   order: 17
+   imageHasChanged: false
+ - id: nm0727611
+   name: Katherine Ringgold
+   role: Chickenfish
+   thumb: 
+   order: 18
+   imageHasChanged: false
+ - id: nm8204464
+   name: Lucia Geddes
+   role: Tween Dory
+   thumb: 
+   order: 19
+   imageHasChanged: false
+  - ... and >40 more
 certification: PG
 genres: (N>5)
   - Animation
@@ -288,18 +363,19 @@ genres: (N>5)
   - Adventure
   - Mystery
   - ... and =1 more
-tags: (N<6)
-  - family relationships
-  - whale
-  - father son relationship
-  - ocean
-  - fish
+tags: (N>100)
+  - animal character name in title
+  - talking in sleep
+  - billion dollar club
+  - animals family
+  - 3 dimensional
+  - ... and >90 more
 countries: (N=1)
   - US
 studios: (N<6)
   - Walt Disney Pictures
   - Pixar Animation Studios
-trailer: https://imdb-video.media-imdb.com/vi2669917209/1434659454657-dx9ykf-1464098554017.mp4?Expires=1774010682&Signature=QORVKTDOsjazLU8fTevIduj3ja3EGwdu6i89FIVjS9pPXNuX1x4jlj1NrSgOS7FBC1eEEd-xelPdvqShM7F8gyoiXIQoCUO3ElLnAH2NCZO5UCf8XGEVBAT2zcQNvgomA~72xnMX1PbhcI-kcIHhvVzsOyY0Ni15pKt6GjZSd4uV7Rgq70nPxuLi0aiDSG2k-ezYg8WDrwwxHql9Eex0taFFxYJURGE-fO~oQUKWYJAWQkfNQWp6~1wQXAiELZzzpodObnPIsyDn86loGaO2Sn3sfDvm8bAzCiQx5GKn1gar7bhTPVctWA6HeEVsTbwCcJKO~fSu5lq7W3y0hFNQSg__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA
+trailer: https://www.imdb.com/video/vi2669917209/
 showlink: (N=0)
 playcount: 0
 lastPlayed: <not set or invalid>

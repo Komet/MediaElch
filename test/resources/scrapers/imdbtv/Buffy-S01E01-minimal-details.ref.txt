@@ -16,8 +16,72 @@ episode: EpisodeNumber=01
 displaySeason: SeasonNumber=xx
 displayEpisode: EpisodeNumber=xx
 overview:
-    When teen vampire slayer Buffy tries to start a new life at Sunnydale High, she 
-    discovers that the school sits atop a demonic dimensional portal.
+    The series premiere begins at Sunnydale High School, where a boy breaks into the
+     school during the night with a seemingly reluctant girl, promising her mischief
+     and, therefore, fun. Nervous and on edge, the girl thinks she heard something a
+    nd fears something is there. The boy calls out but gets no response, during whic
+    h the girl's face morphs into that of a vampire and bites the boy, revealing to 
+    the viewer that she was the only danger all along. The girl, we will later find 
+    out, is Darla.
+
+Buffy has a nightmare the morning of her first day of school. He
+    r mother drives her to the school and encourages her to think positive. Inside t
+    he building, Principal Flutie tells her she will start with a clean slate. He re
+    considers that after realizing that Buffy burned down her previous school's gym 
+    because "it was full of vampi... asbestos."
+
+Buffy exits the office and bumps in
+    to another student, spilling the contents of her handbag over the floor. Xander 
+    sees that and helps Buffy, introducing himself. She leaves without her stake, wh
+    ich Xander pockets because he called out to her, but she had already walked away
+    . In history class, Buffy is helped by Cordelia, who afterwards tests her "cooln
+    ess factor," skipping the written as Buffy had just moved to Sunnydale, Californ
+    ia from Los Angeles. To Buffy's horror, Cordelia humiliates an awkward Willow at
+     the water fountain. Inside the library, Mr. Giles places a book titled Vampyr i
+    n front of Buffy after realizing who she was. A stunned Buffy makes a hasty exit
+    .
+
+Buffy, Willow, Jesse McNally and Xander meet during a break and Xander return
+    s the stake. Buffy claims it is standard self-defense in Los Angeles. Cordelia a
+    ppears and tells Buffy that gym is canceled "due to the extreme dead guy" in Aur
+    a's locker. Buffy asks whether there were marks on the body, freaking out Cordel
+    ia. Buffy forces her way into the locker room, examines the body, and finds the 
+    characteristic puncture wounds of a vampire on the neck.
+
+Buffy returns to the l
+    ibrary and confronts Giles, who informs her that he is her Watcher. Buffy refuse
+    s to accept her calling as a Slayer since it had gotten her kicked out of her pr
+    evious school and cost her social life. After they leave the library, Xander eme
+    rges from behind the shelves, having overheard the strange conversation.
+
+That n
+    ight, en route to her first visit to The Bronze, the cool hangout in Sunnydale, 
+    Buffy meets a mysterious, handsome stranger, who warns her that she is living on
+     a Hellmouth that is about to open, and that "the Harvest" is coming. He also gi
+    ves her a large silver cross. It isn't revealed until the next episode that the 
+    stranger's name is Angel.
+
+In The Bronze, Buffy meets Willow and encourages her 
+    to seize the moment: "Because tomorrow you might be dead." She finds Giles and t
+    ells him about Angel. Giles tells her to learn to hone her skills to sense vampi
+    res anywhere. Buffy uses her fashion sense to pick out a vampire in the club and
+     is alarmed to see Willow leave with him. She loses them and is surprised by Cor
+    delia, nearly staking her. Cordelia immediately calls her friends to tell them a
+    bout it. While Buffy looks for Willow, Jesse chats up Darla at The Bronze. Buffy
+     is stopped by Xander, whom she convinces to help her search for Willow.
+
+Meanwh
+    ile, under the streets of Sunnydale, The Master is woken by lesser vampires from
+     a long sleep to prepare for the Harvest. He sends Luke to fetch young blood.
+
+W
+    illow's new acquaintance takes her to a crypt in a cemetery where they are joine
+    d by Darla and Jesse, whom she has bitten. Buffy and Xander arrive. Buffy kills 
+    Willow's vampire. Xander and Willow help Jesse, who has been weakened, flee. Luk
+    e takes Darla's place in the fight so she can help catch the kids. Luke throws B
+    uffy in a stone coffin and is about to move in for the kill.
+
+TO BE CONTINUED...
 writers: (N<6)
   - Matt Kiene
   - Rob DesHotel
@@ -30,18 +94,13 @@ directors: (N<6)
 playCount: 0
 lastPlayed: <not set or invalid>
 firstAired: 1997-03-10
-tags: (N<6)
-  - superhero
-  - waking up from a nightmare
-  - break in
-  - first day of school
-  - skateboarding
+tags: (N=0)
 epBookmark: <not set or invalid>
 certification: TV-14
 networks: (N=0)
 thumbnail: https://m.media-amazon.com/images/M/MV5BMTU2NDQ1NTI2MF5BMl5BanBnXkFtZTgwNDMzMTM1NjM@.jpg
-actors: (N>5)
- - id: 
+actors: (N>20)
+ - id: nm0001264
    name: Sarah Michelle Gellar
    role: Buffy Summers
    thumb:
@@ -49,7 +108,7 @@ actors: (N>5)
     Nw@@.jpg
    order: 0
    imageHasChanged: false
- - id: 
+ - id: nm0107183
    name: Nicholas Brendon
    role: Xander Harris
    thumb:
@@ -57,7 +116,7 @@ actors: (N>5)
     .jpg
    order: 1
    imageHasChanged: false
- - id: 
+ - id: nm0004989
    name: Alyson Hannigan
    role: Willow Rosenberg
    thumb:
@@ -65,7 +124,7 @@ actors: (N>5)
     Nw@@.jpg
    order: 2
    imageHasChanged: false
- - id: 
+ - id: nm0004806
    name: Charisma Carpenter
    role: Cordelia Chase
    thumb:
@@ -73,7 +132,7 @@ actors: (N>5)
     ZDQwNmY4XkEyXkFqcGc@.jpg
    order: 3
    imageHasChanged: false
- - id: 
+ - id: nm0372117
    name: Anthony Head
    role: Rupert Giles
    thumb:
@@ -81,7 +140,7 @@ actors: (N>5)
     .jpg
    order: 4
    imageHasChanged: false
- - id: 
+ - id: nm0582420
    name: Mark Metcalf
    role: The Master
    thumb:
@@ -89,7 +148,7 @@ actors: (N>5)
     OA@@.jpg
    order: 5
    imageHasChanged: false
- - id: 
+ - id: nm0859921
    name: Brian Thompson
    role: Luke
    thumb:
@@ -97,7 +156,7 @@ actors: (N>5)
     .jpg
    order: 6
    imageHasChanged: false
- - id: 
+ - id: nm0004770
    name: David Boreanaz
    role: Angel
    thumb:
@@ -105,7 +164,7 @@ actors: (N>5)
     NjYzYmJlXkEyXkFqcGc@.jpg
    order: 7
    imageHasChanged: false
- - id: 
+ - id: nm0503624
    name: Ken Lerner
    role: Principal Bob Flutie
    thumb:
@@ -113,7 +172,7 @@ actors: (N>5)
     MQ@@.jpg
    order: 8
    imageHasChanged: false
- - id: 
+ - id: nm0840133
    name: Kristine Sutherland
    role: Joyce Summers
    thumb:
@@ -121,5 +180,78 @@ actors: (N>5)
     NA@@.jpg
    order: 9
    imageHasChanged: false
+ - id: nm0004748
+   name: Julie Benz
+   role: Darla
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMmE2ZjA5MWUtMDVmNi00NzgzLWFhMjktODU2NzZi
+    ODhlYmEzXkEyXkFqcGc@.jpg
+   order: 10
+   imageHasChanged: false
+ - id: nm0492551
+   name: J. Patrick Lawlor
+   role: Thomas
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BNmUxYTk2MzYtYmFkNS00ZmQwLTk2YjItMzYyYjM3
+    N2RhZDZlXkEyXkFqcGc@.jpg
+   order: 11
+   imageHasChanged: false
+ - id: nm0050156
+   name: Eric Balfour
+   role: Jesse
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BY2Y0YzdkYTctZGFiOC00ZjdhLWIxNmUtMTMxMjQx
+    NTkxM2RiXkEyXkFqcGc@.jpg
+   order: 12
+   imageHasChanged: false
+ - id: nm0833856
+   name: Natalie Strauss
+   role: Teacher
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BNzY1MjcwODQ5NV5BMl5BanBnXkFtZTcwOTE2MDYy
+    MQ@@.jpg
+   order: 13
+   imageHasChanged: false
+ - id: nm0320547
+   name: Carmine Giovinazzo
+   role: Boy
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BZTU5OTEzYzQtZGVhMy00MDFkLTlmMzAtNWZmYzI0
+    YjBiNDliXkEyXkFqcGc@.jpg
+   order: 14
+   imageHasChanged: false
+ - id: nm0151207
+   name: Amy Chance
+   role: Girl #1
+   thumb: 
+   order: 15
+   imageHasChanged: false
+ - id: nm1812949
+   name: Tupelo Jereme
+   role: Girl #2
+   thumb: 
+   order: 16
+   imageHasChanged: false
+ - id: nm0925316
+   name: Persia White
+   role: Aura
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTc3NjU3ODM1OV5BMl5BanBnXkFtZTYwNTEyMjYz
+    .jpg
+   order: 17
+   imageHasChanged: false
+ - id: nm3496968
+   name: Tony Delocht
+   role: Band Member
+   thumb: 
+   order: 18
+   imageHasChanged: false
+ - id: nm3482811
+   name: Ernie Longoria
+   role: Band Member
+   thumb: 
+   order: 19
+   imageHasChanged: false
+  - ... and <6 more
 streamDetails: <not loaded>
 files: (N=0)

@@ -1,6 +1,6 @@
 add_library(
-  mediaelch_scraper_imdb_api OBJECT ImdbApi.cpp ImdbReferencePage.cpp
-                                    ImdbJsonParser.cpp ImdbSearchPage.cpp
+  mediaelch_scraper_imdb_api OBJECT ImdbApi.cpp ImdbJsonParser.cpp
+                                    ImdbSearchPage.cpp
 )
 
 target_link_libraries(

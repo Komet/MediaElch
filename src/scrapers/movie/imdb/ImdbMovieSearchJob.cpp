@@ -1,12 +1,11 @@
 #include "scrapers/movie/imdb/ImdbMovieSearchJob.h"
 
-#include "scrapers/ScraperUtils.h"
+#include "log/Log.h"
 #include "scrapers/imdb/ImdbApi.h"
-
-#include <QFile>
-#include <QRegularExpression>
-
 #include "scrapers/imdb/ImdbSearchPage.h"
+
+#include <QJsonDocument>
+#include <QJsonObject>
 
 namespace mediaelch {
 namespace scraper {
@@ -29,64 +28,68 @@ void ImdbMovieSearchJob::searchViaImdbId()
 {
     MediaElch_Debug_Ensures(ImdbId::isValidFormat(config().query));
 
-    m_api.loadTitle(
-        Locale("en"), ImdbId(config().query), ImdbApi::PageKind::Reference, [this](QString data, ScraperError error) {
-            if (error.hasError()) {
-                setScraperError(error);
-            } else {
-                parseIdFromMovieReferencePage(data);
-            }
-            emitFinished();
-        });
+    m_api.loadTitleViaGraphQL(ImdbId(config().query), [this](QString data, ScraperError error) {
+        if (error.hasError()) {
+            setScraperError(error);
+        } else {
+            parseGraphQLResult(data);
+        }
+        emitFinished();
+    });
 }
 
 void ImdbMovieSearchJob::searchViaQuery()
 {
     MediaElch_Debug_Ensures(!ImdbId::isValidFormat(config().query));
 
-    m_api.searchForMovie(Locale("en"), config().query, config().includeAdult, [this](QString data, ScraperError error) {
+    m_api.suggestSearch(config().query, [this](QString data, ScraperError error) {
         if (error.hasError()) {
             setScraperError(error);
         } else {
-            parseSearch(data);
+            parseSuggestResults(data);
         }
         emitFinished();
     });
 }
 
-
-void ImdbMovieSearchJob::parseIdFromMovieReferencePage(const QString& html)
+void ImdbMovieSearchJob::parseSuggestResults(const QString& json)
 {
-    MovieSearchJob::Result result;
-    result.identifier = MovieIdentifier(config().query);
+    // Movie types: movie, tvMovie, short, video, tvShort
+    const QStringList movieTypes{"movie", "tvMovie", "short", "video", "tvShort"};
+    auto results = ImdbSearchPage::parseSuggestResponse(json, movieTypes);
+    for (const auto& result : results) {
+        m_results << MovieSearchJob::Result{result.title, result.released, MovieIdentifier{result.identifier}};
+    }
+}
 
-    QRegularExpression rx;
-    rx.setPatternOptions(QRegularExpression::InvertedGreedinessOption);
-    QRegularExpressionMatch match;
-
-    rx.setPattern(R"re("titleText":{"text":"([^"]+)","__typename":"TitleText")re");
-    match = rx.match(html);
-    if (match.hasMatch()) {
-        result.title = match.captured(1).trimmed();
+void ImdbMovieSearchJob::parseGraphQLResult(const QString& json)
+{
+    QJsonParseError parseError{};
+    const QJsonDocument doc = QJsonDocument::fromJson(json.toUtf8(), &parseError);
+    if (parseError.error != QJsonParseError::NoError) {
+        qCWarning(generic) << "[ImdbMovieSearchJob] JSON parse error:" << parseError.errorString();
+        return;
     }
 
-    // For search results, we are only interested in the year, not the full release date.
-    rx.setPattern(R"re("releaseYear":{"year":(\d{4}))re");
-    match = rx.match(html);
-    if (match.hasMatch()) {
-        result.released = QDate::fromString(match.captured(1), "yyyy");
+    const QJsonObject title = doc.object().value("data").toObject().value("title").toObject();
+    if (title.isEmpty()) {
+        return;
+    }
+
+    MovieSearchJob::Result result;
+    result.identifier = MovieIdentifier(config().query);
+    result.title = title.value("titleText").toObject().value("text").toString();
+
+    const QJsonObject releaseDate = title.value("releaseDate").toObject();
+    const int year = releaseDate.value("year").toInt(0);
+    if (year > 0) {
+        const int month = releaseDate.value("month").toInt(1);
+        const int day = releaseDate.value("day").toInt(1);
+        result.released = QDate(year, month, day);
     }
 
     if (!result.title.isEmpty()) {
         m_results << result;
-    }
-}
-
-void ImdbMovieSearchJob::parseSearch(const QString& html)
-{
-    auto results = ImdbSearchPage::parseSearch(html);
-    for (const auto& result : results) {
-        m_results << MovieSearchJob::Result{result.title, result.released, MovieIdentifier{result.identifier}};
     }
 }
 

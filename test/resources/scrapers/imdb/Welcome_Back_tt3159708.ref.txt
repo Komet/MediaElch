@@ -118,8 +118,8 @@ released: 2015-09-04
 runtime: 152min
 writer: Anees Bazmee, Raaj Shaandilyaa, Rajeev Kaul, Rajan Agarwal, Praful Parekh
 director: Anees Bazmee, Sushma Sunam
-actors: (N>5)
- - id: 
+actors: (N>30)
+ - id: nm1303433
    name: John Abraham
    role: Ajay 'Ajju' Ghunghroo
    thumb:
@@ -127,7 +127,7 @@ actors: (N>5)
     .jpg
    order: 0
    imageHasChanged: false
- - id: 
+ - id: nm0438463
    name: Anil Kapoor
    role: Sagar 'Majnu' Pandey
    thumb:
@@ -135,15 +135,15 @@ actors: (N>5)
     MWFjZTAwXkEyXkFqcGc@.jpg
    order: 1
    imageHasChanged: false
- - id: 
+ - id: nm0007113
    name: Nana Patekar
-   role: Uday Shankar Shetty / Shankar Shetty
+   role: Uday Shankar Shetty
    thumb:
     https://m.media-amazon.com/images/M/MV5BMjI4MzQyODYwOF5BMl5BanBnXkFtZTgwMTcxMTIz
     OTE@.jpg
    order: 2
    imageHasChanged: false
- - id: 
+ - id: nm0712546
    name: Paresh Rawal
    role: Dr. Ghunghroo
    thumb:
@@ -151,7 +151,7 @@ actors: (N>5)
     OTE@.jpg
    order: 3
    imageHasChanged: false
- - id: 
+ - id: nm1599046
    name: Shruti Haasan
    role: Ranjana Shetty
    thumb:
@@ -159,15 +159,15 @@ actors: (N>5)
     ZmJjOWJlXkEyXkFqcGc@.jpg
    order: 4
    imageHasChanged: false
- - id: 
+ - id: nm0438092
    name: Dimple Kapadia
-   role: Poonam / Maharani Padmavati
+   role: Poonam
    thumb:
     https://m.media-amazon.com/images/M/MV5BNTc4MTE1NDU5MF5BMl5BanBnXkFtZTcwNDI2MTcx
     OA@@.jpg
    order: 5
    imageHasChanged: false
- - id: 
+ - id: nm0710211
    name: Ranjeet Bedi
    role: Kapoor, 'the criminal'
    thumb:
@@ -175,7 +175,7 @@ actors: (N>5)
     NjM4MDMyXkEyXkFqcGc@.jpg
    order: 6
    imageHasChanged: false
- - id: 
+ - id: nm0787462
    name: Naseeruddin Shah
    role: Wanted Bhai
    thumb:
@@ -183,7 +183,7 @@ actors: (N>5)
     OTE@.jpg
    order: 7
    imageHasChanged: false
- - id: 
+ - id: nm1832004
    name: Shiney Ahuja
    role: Honey
    thumb:
@@ -191,12 +191,93 @@ actors: (N>5)
     OTE@.jpg
    order: 8
    imageHasChanged: false
- - id: 
+ - id: nm12574452
    name: Ankita Srivastava
-   role: Babita / Rajkumari Chandini
+   role: Babita
    thumb: 
    order: 9
    imageHasChanged: false
+ - id: nm0439828
+   name: Supriya Karnik
+   role: Payal Ghungroo
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BOGViYjJmNzctOGJkMy00Nzg0LWI3NGItMWRlNjU3
+    YjJkZjk3XkEyXkFqcGc@.jpg
+   order: 10
+   imageHasChanged: false
+ - id: nm1056425
+   name: Rajpal Naurang Yadav
+   role: The Tailor
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTQ3MTI4MzUyNl5BMl5BanBnXkFtZTgwMjAzMTMz
+    OTE@.jpg
+   order: 11
+   imageHasChanged: false
+ - id: nm0903423
+   name: Neeraj Vora
+   role: Badshah Khan
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BODgzNjYxMzMwNl5BMl5BanBnXkFtZTcwODIzNTE3
+    Mw@@.jpg
+   order: 12
+   imageHasChanged: false
+ - id: nm0451272
+   name: Mushtaq Khan
+   role: Balu
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BYzNiODA3OTktMjA2Ni00MGI4LThlMDAtOGNhNGFh
+    NzA0YTUyXkEyXkFqcGc@.jpg
+   order: 13
+   imageHasChanged: false
+ - id: nm0409779
+   name: Adi Irani
+   role: Advocate Harkesh Sahni
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BY2MxODlhOTMtOGM1NC00MWIzLTllNWYtYjQ2ZmQ5
+    YzBlOTQxXkEyXkFqcGc@.jpg
+   order: 14
+   imageHasChanged: false
+ - id: nm0196400
+   name: Snehal Dabi
+   role: Kakhil
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMmM5MmI0NzMtMjkzMC00ZWM1LWE5MGEtMjQzNTY5
+    MDQ2NGIyXkEyXkFqcGc@.jpg
+   order: 15
+   imageHasChanged: false
+ - id: nm10304343
+   name: Amjad Qureshi
+   role: Ajju bhai friend
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMGVlYWEyNTMtMDQ3ZC00M2YyLWFjYTAtZDU0YzVi
+    N2EwMmQ1XkEyXkFqcGc@.jpg
+   order: 16
+   imageHasChanged: false
+ - id: nm1617168
+   name: Javed Rizvi
+   role: Ajju's dumb and deaf friend
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BZmZmOWIyYjUtYmY5ZC00Yjc3LWE4NmItYTUxMzEw
+    OTI2ZTI0XkEyXkFqcGc@.jpg
+   order: 17
+   imageHasChanged: false
+ - id: nm2689943
+   name: Lauren Gottlieb
+   role: Special appearance in song '20-20'
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BNGM0MmE1ZTAtNjY5YS00OTc5LTlkZDctZWUyYjIy
+    NDFjNDE2XkEyXkFqcGc@.jpg
+   order: 18
+   imageHasChanged: false
+ - id: nm4427212
+   name: Reema Debnath
+   role: Special appearance in song '20-20'
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMDNkMGQ0Y2UtYTBjZi00MDRkLThlMjAtOGJlNjFm
+    NGQ4NjRmXkEyXkFqcGc@.jpg
+   order: 19
+   imageHasChanged: false
+  - ... and >10 more
 certification: Not Rated
 genres: (N<6)
   - Crime
@@ -205,11 +286,12 @@ genres: (N<6)
   - Drama
 tags: (N=1)
   - husband wife relationship
-countries: (N=1)
+countries: (N<6)
   - IN
+  - AE
 studios: (N=1)
   - Base Industries Group
-trailer: https://imdb-video.media-imdb.com/vi956348441/1434659529640-260ouz-1563738237646.mp4?Expires=1774010699&Signature=jRn3Kfoft~x1gq4DnA2h4Ig9h2ZSUboNL9x2AvGkIQRnPTkEV4vxcDUAsYgnSgC8rYtHTvoSS4I2u25sDU-JoRaETNQyIYWypKscWDH0c8piJkuuxP2Lc5~Q2fs04WKuja6dX-VM3ca3keN3GXpeEpyqdTJ7yQ5FtynglmaXpICMaNaHTrhvs2dFPM1M7YvURMoZCMyLVnhKfNo0~Df3Pvb6YarEoCg9iBv8vg3bt7tMlnpXPn75--GaJzfIXJ2R-Vyxnf9mZGgIbSphB1HZkMu8~hparcIPNBpCyRcIIdKwX~FwdOnxSIEP6bJJvDzpWlWqFQUDElFQGKd5nwGlkw__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA
+trailer: https://www.imdb.com/video/vi956348441/
 showlink: (N=0)
 playcount: 0
 lastPlayed: <not set or invalid>

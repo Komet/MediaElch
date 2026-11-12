@@ -1,7 +1,6 @@
 #pragma once
 
 #include "scrapers/tv_show/SeasonScrapeJob.h"
-#include "scrapers/tv_show/imdb/ImdbTvEpisodeParser.h"
 
 #include <QList>
 
@@ -20,15 +19,8 @@ public:
     void doStart() override;
 
 private:
-    /// \brief Loads the given episodes in a sequential way
-    /// \todo Load in parallel.
-    void loadEpisodes(QMap<SeasonNumber, QMap<EpisodeNumber, ImdbId>> episodeIds);
-    /// \brief Gathers all episode IDs for the given seasons by loading each
-    ///        season page and then calls loadEpisodes().
-    void gatherAndLoadEpisodes(QList<SeasonNumber> seasonsToLoad,
-        QMap<SeasonNumber, QMap<EpisodeNumber, ImdbId>> episodeIds);
-    void loadAllSeasons();
-    /// \brief Store the given episode in the internal season-episode map.
+    void loadEpisodes();
+    void parseAndStoreEpisodes(const QString& json);
     void storeEpisode(TvShowEpisode* episode);
 
 private:
