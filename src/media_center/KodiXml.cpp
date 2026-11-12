@@ -27,6 +27,21 @@
 #include <array>
 #include <memory>
 
+namespace {
+
+QString firstExistingFileInDir(const QString& dirPath, const QStringList& candidates)
+{
+    for (const QString& file : candidates) {
+        const QString path = dirPath + "/" + file;
+        if (QFileInfo::exists(path)) {
+            return path;
+        }
+    }
+    return {};
+}
+
+} // namespace
+
 KodiXml::KodiXml(mediaelch::KodiSettings& settings, MediaPersistence persistence, QObject* parent) :
     MediaCenterInterface(parent), m_settings{settings}, m_persistence{persistence}
 {
@@ -186,54 +201,54 @@ bool KodiXml::saveMovie(Movie* movie)
  * \param movie Movie
  * \return Path to nfo file, if none found returns an empty string
  */
-QString KodiXml::nfoFilePath(Movie* movie)
+QString KodiXml::nfoFilePath(Movie* movie, bool allowLooseFallbacks)
 {
-    QString nfoFile;
     if (movie->files().isEmpty()) {
         qCWarning(generic) << "Movie has no files";
-        return nfoFile;
+        return {};
     }
     QFileInfo fi(movie->files().first().toString());
     if (!fi.isFile()) {
         qCWarning(generic) << "First file of the movie is not readable" << movie->files().at(0);
-        return nfoFile;
+        return {};
     }
 
-    for (DataFile dataFile : Settings::instance()->dataFiles(DataFileType::MovieNfo)) {
-        QString file = dataFile.saveFileName(fi.fileName(), SeasonNumber::NoSeason, movie->files().count() > 1);
-        QFileInfo nfoFi(fi.absolutePath() + "/" + file);
-        if (nfoFi.exists()) {
-            nfoFile = fi.absolutePath() + "/" + file;
-            break;
-        }
-    }
-
-    return nfoFile;
+    const bool stacked = movie->files().count() > 1;
+    const QString folderName = QFileInfo(fi.absolutePath()).fileName();
+    const SidecarLookupOptions options =
+        allowLooseFallbacks ? SidecarLookupOptions::forMovieLoad() : SidecarLookupOptions::strict();
+    const QStringList candidates = DataFile::sidecarFileNameCandidates( //
+        Settings::instance()->dataFiles(DataFileType::MovieNfo),
+        fi.fileName(),
+        stacked,
+        folderName,
+        options);
+    return firstExistingFileInDir(fi.absolutePath(), candidates);
 }
 
-QString KodiXml::nfoFilePath(TvShowEpisode* episode)
+QString KodiXml::nfoFilePath(TvShowEpisode* episode, bool allowLooseFallbacks)
 {
-    QString nfoFile;
     if (episode->files().isEmpty()) {
         qCWarning(generic) << "[KodiXml] Episode has no files";
-        return nfoFile;
+        return {};
     }
     QFileInfo fi(episode->files().first().toString());
     if (!fi.isFile()) {
         qCWarning(generic) << "[KodiXml] First file of the episode is not readable" << episode->files().first();
-        return nfoFile;
+        return {};
     }
 
-    for (DataFile dataFile : Settings::instance()->dataFiles(DataFileType::TvShowEpisodeNfo)) {
-        QString file = dataFile.saveFileName(fi.fileName(), SeasonNumber::NoSeason, episode->files().size() > 1);
-        QFileInfo nfoFi(fi.absolutePath() + "/" + file);
-        if (nfoFi.exists()) {
-            nfoFile = fi.absolutePath() + "/" + file;
-            break;
-        }
-    }
-
-    return nfoFile;
+    const bool stacked = episode->files().size() > 1;
+    // Season/show folders: never use folder/movie.nfo fallbacks.
+    const SidecarLookupOptions options =
+        allowLooseFallbacks ? SidecarLookupOptions::forEpisodeLoad() : SidecarLookupOptions::strict();
+    const QStringList candidates = DataFile::sidecarFileNameCandidates( //
+        Settings::instance()->dataFiles(DataFileType::TvShowEpisodeNfo),
+        fi.fileName(),
+        stacked,
+        {},
+        options);
+    return firstExistingFileInDir(fi.absolutePath(), candidates);
 }
 
 QString KodiXml::nfoFilePath(TvShow* show)
@@ -260,29 +275,29 @@ QString KodiXml::nfoFilePath(TvShow* show)
  * \param concert Concert
  * \return Path to nfo file, if none found returns an empty string
  */
-QString KodiXml::nfoFilePath(Concert* concert)
+QString KodiXml::nfoFilePath(Concert* concert, bool allowLooseFallbacks)
 {
-    QString nfoFile;
     if (concert->files().isEmpty()) {
         qCWarning(generic) << "[KodiXml] Concert has no files";
-        return nfoFile;
+        return {};
     }
     QFileInfo fi(concert->files().first().toString());
     if (!fi.isFile()) {
         qCWarning(generic) << "[KodiXml] First file of the concert is not readable" << concert->files().at(0);
-        return nfoFile;
+        return {};
     }
 
-    for (DataFile dataFile : Settings::instance()->dataFiles(DataFileType::ConcertNfo)) {
-        QString file = dataFile.saveFileName(fi.fileName(), SeasonNumber::NoSeason, concert->files().size() > 1);
-        QFileInfo nfoFi(fi.absolutePath() + "/" + file);
-        if (nfoFi.exists()) {
-            nfoFile = fi.absolutePath() + "/" + file;
-            break;
-        }
-    }
-
-    return nfoFile;
+    const bool stacked = concert->files().size() > 1;
+    const QString folderName = QFileInfo(fi.absolutePath()).fileName();
+    const SidecarLookupOptions options =
+        allowLooseFallbacks ? SidecarLookupOptions::forConcertLoad() : SidecarLookupOptions::strict();
+    const QStringList candidates = DataFile::sidecarFileNameCandidates( //
+        Settings::instance()->dataFiles(DataFileType::ConcertNfo),
+        fi.fileName(),
+        stacked,
+        folderName,
+        options);
+    return firstExistingFileInDir(fi.absolutePath(), candidates);
 }
 
 /**
@@ -1332,7 +1347,11 @@ QString KodiXml::movieSetFileName(QString setName, DataFile* dataFile)
     return QString();
 }
 
-QString KodiXml::imageFileName(const Movie* movie, ImageType type, QVector<DataFile> dataFiles, bool constructName)
+QString KodiXml::imageFileName(const Movie* movie,
+    ImageType type,
+    QVector<DataFile> dataFiles,
+    bool constructName,
+    bool allowLooseFallbacks)
 {
     DataFileType fileType = [type]() {
         switch (type) {
@@ -1360,29 +1379,52 @@ QString KodiXml::imageFileName(const Movie* movie, ImageType type, QVector<DataF
         dataFiles = Settings::instance()->dataFiles(fileType);
     }
 
-    QString fileName;
     QFileInfo fi(movie->files().first().toString());
-    for (DataFile dataFile : dataFiles) {
-        QString file = dataFile.saveFileName(fi.fileName(), SeasonNumber::NoSeason, movie->files().count() > 1);
-        if (movie->discType() == DiscType::BluRay || movie->discType() == DiscType::Dvd) {
-            if (type == ImageType::MoviePoster) {
-                file = "poster.jpg";
-            } else if (type == ImageType::MovieBackdrop) {
-                file = "fanart.jpg";
+    mediaelch::DirectoryPath path = getPath(movie);
+    const bool stacked = movie->files().count() > 1;
+
+    if (constructName) {
+        for (DataFile dataFile : dataFiles) {
+            QString file = dataFile.saveFileName(fi.fileName(), SeasonNumber::NoSeason, stacked);
+            if (movie->discType() == DiscType::BluRay || movie->discType() == DiscType::Dvd) {
+                if (type == ImageType::MoviePoster) {
+                    file = "poster.jpg";
+                } else if (type == ImageType::MovieBackdrop) {
+                    file = "fanart.jpg";
+                }
             }
+            return path.filePath(file);
         }
-        mediaelch::DirectoryPath path = getPath(movie);
-        QFileInfo pFi(path.filePath(file));
-        if (pFi.isFile() || constructName) {
-            fileName = path.filePath(file);
-            break;
+        return {};
+    }
+
+    // Disc generics first (existing Kodi layout).
+    if (movie->discType() == DiscType::BluRay || movie->discType() == DiscType::Dvd) {
+        if (type == ImageType::MoviePoster && QFileInfo::exists(path.filePath(QStringLiteral("poster.jpg")))) {
+            return path.filePath(QStringLiteral("poster.jpg"));
+        }
+        if (type == ImageType::MovieBackdrop && QFileInfo::exists(path.filePath(QStringLiteral("fanart.jpg")))) {
+            return path.filePath(QStringLiteral("fanart.jpg"));
         }
     }
 
-    return fileName;
+    const QString folderName = QFileInfo(fi.absolutePath()).fileName();
+    const SidecarLookupOptions options =
+        allowLooseFallbacks ? SidecarLookupOptions::forImageLoad() : SidecarLookupOptions::strict();
+    const QStringList candidates = DataFile::sidecarFileNameCandidates( //
+        dataFiles,
+        fi.fileName(),
+        stacked,
+        folderName,
+        options);
+    return firstExistingFileInDir(path.toString(), candidates);
 }
 
-QString KodiXml::imageFileName(const Concert* concert, ImageType type, QVector<DataFile> dataFiles, bool constructName)
+QString KodiXml::imageFileName(const Concert* concert,
+    ImageType type,
+    QVector<DataFile> dataFiles,
+    bool constructName,
+    bool allowLooseFallbacks)
 {
     DataFileType fileType;
     switch (type) {
@@ -1403,27 +1445,45 @@ QString KodiXml::imageFileName(const Concert* concert, ImageType type, QVector<D
         dataFiles = Settings::instance()->dataFiles(fileType);
     }
 
-    QString fileName;
     QFileInfo fi(concert->files().first().toString());
-    for (DataFile dataFile : dataFiles) {
-        QString file = dataFile.saveFileName(fi.fileName(), SeasonNumber::NoSeason, concert->files().count() > 1);
-        if (concert->discType() == DiscType::BluRay || concert->discType() == DiscType::Dvd) {
-            if (type == ImageType::ConcertPoster) {
-                file = "poster.jpg";
+    mediaelch::DirectoryPath path = getPath(concert);
+    const bool stacked = concert->files().count() > 1;
+
+    if (constructName) {
+        for (DataFile dataFile : dataFiles) {
+            QString file = dataFile.saveFileName(fi.fileName(), SeasonNumber::NoSeason, stacked);
+            if (concert->discType() == DiscType::BluRay || concert->discType() == DiscType::Dvd) {
+                if (type == ImageType::ConcertPoster) {
+                    file = "poster.jpg";
+                }
+                if (type == ImageType::ConcertBackdrop) {
+                    file = "fanart.jpg";
+                }
             }
-            if (type == ImageType::ConcertBackdrop) {
-                file = "fanart.jpg";
-            }
+            return path.filePath(file);
         }
-        mediaelch::DirectoryPath path = getPath(concert);
-        QFileInfo pFi(path.filePath(file));
-        if (pFi.isFile() || constructName) {
-            fileName = path.filePath(file);
-            break;
+        return {};
+    }
+
+    if (concert->discType() == DiscType::BluRay || concert->discType() == DiscType::Dvd) {
+        if (type == ImageType::ConcertPoster && QFileInfo::exists(path.filePath(QStringLiteral("poster.jpg")))) {
+            return path.filePath(QStringLiteral("poster.jpg"));
+        }
+        if (type == ImageType::ConcertBackdrop && QFileInfo::exists(path.filePath(QStringLiteral("fanart.jpg")))) {
+            return path.filePath(QStringLiteral("fanart.jpg"));
         }
     }
 
-    return fileName;
+    const QString folderName = QFileInfo(fi.absolutePath()).fileName();
+    const SidecarLookupOptions options =
+        allowLooseFallbacks ? SidecarLookupOptions::forImageLoad() : SidecarLookupOptions::strict();
+    const QStringList candidates = DataFile::sidecarFileNameCandidates( //
+        dataFiles,
+        fi.fileName(),
+        stacked,
+        folderName,
+        options);
+    return firstExistingFileInDir(path.toString(), candidates);
 }
 
 QString KodiXml::imageFileName(const TvShow* show,

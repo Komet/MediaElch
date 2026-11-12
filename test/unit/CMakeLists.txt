@@ -35,6 +35,7 @@ target_sources(
     scrapers/custom_movie_scraper/testCustomMovieScraper.cpp
     scrapers/testMovieMerger.cpp
     settings/testAdvancedSettings.cpp
+    settings/testDataFile.cpp
     tv_shows/testEpisodeNumberExtraction.cpp
     tv_shows/testSeasonNumberExtraction.cpp
     tv_shows/testTvDbId.cpp
