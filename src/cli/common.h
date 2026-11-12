@@ -3,6 +3,8 @@
 #include <QMessageLogContext>
 #include <QString>
 
+#include <ostream>
+
 std::ostream& operator<<(std::ostream& os, const QString& id);
 
 namespace mediaelch {
