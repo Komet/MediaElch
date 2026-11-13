@@ -16,12 +16,16 @@ ConcertSearchWidget::ConcertSearchWidget(QWidget* parent) : QWidget(parent), ui(
 
     ui->results->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->searchString->setType(MyLineEdit::TypeLoading);
+    ui->btnTryNextScraper->hide();
+    ui->btnCancelSearch->hide();
 
     // clang-format off
     connect(ui->comboScraper, elchOverload<int>(&QComboBox::currentIndexChanged), this, &ConcertSearchWidget::onScraperChanged, Qt::QueuedConnection);
     connect(ui->comboLanguage, &LanguageCombo::languageChanged, this, &ConcertSearchWidget::onLanguageChanged, Qt::QueuedConnection);
     connect(ui->searchString, &QLineEdit::returnPressed,  this, &ConcertSearchWidget::initializeAndStartSearch);
     connect(ui->results,      &QTableWidget::itemClicked, this, &ConcertSearchWidget::onResultClicked);
+    connect(ui->btnTryNextScraper, &QPushButton::clicked, this, &ConcertSearchWidget::onTryNextScraper);
+    connect(ui->btnCancelSearch,   &QPushButton::clicked, this, &ConcertSearchWidget::onCancelSearch);
     // clang-format on
 
     ui->chkBackdrop->setMyData(static_cast<int>(ConcertScraperInfo::Backdrop));
@@ -76,6 +80,7 @@ void ConcertSearchWidget::initializeAndStartSearch()
 
     // Clear messages
     ui->lblErrorMessage->hide();
+    ui->btnTryNextScraper->hide();
     ui->lblSuccessMessage->clear();
     ui->lblSuccessMessage->show();
 
@@ -120,6 +125,7 @@ void ConcertSearchWidget::startSearch()
         return;
     }
 
+    ui->btnCancelSearch->show();
     qCInfo(generic) << "[ConcertSearch] Start search for:" << ui->searchString->text();
 
     ConcertSearchJob::Config config{ui->searchString->text().trimmed(), m_currentLanguage};
@@ -333,6 +339,8 @@ void ConcertSearchWidget::showError(const QString& message)
     ui->lblSuccessMessage->hide();
     ui->lblErrorMessage->setText(message);
     ui->lblErrorMessage->show();
+    ui->btnTryNextScraper->setVisible(hasNextScraper());
+    ui->btnCancelSearch->hide();
 }
 
 void ConcertSearchWidget::showSuccess(const QString& message)
@@ -340,6 +348,50 @@ void ConcertSearchWidget::showSuccess(const QString& message)
     ui->searchString->setLoading(false);
     ui->searchString->setFocus();
     ui->lblErrorMessage->hide();
+    ui->btnTryNextScraper->hide();
+    ui->btnCancelSearch->hide();
     ui->lblSuccessMessage->setText(message);
     ui->lblSuccessMessage->show();
+}
+
+bool ConcertSearchWidget::hasNextScraper() const
+{
+    return getNextScraperIndex() >= 0;
+}
+
+int ConcertSearchWidget::getNextScraperIndex() const
+{
+    if (m_currentScraper == nullptr) {
+        return -1;
+    }
+
+    const int currentIndex = ui->comboScraper->currentIndex();
+    const int scraperCount = ui->comboScraper->count();
+
+    if (scraperCount <= 1 || currentIndex < 0) {
+        return -1;
+    }
+
+    int nextIndex = (currentIndex + 1) % scraperCount;
+    return (nextIndex != currentIndex) ? nextIndex : -1;
+}
+
+void ConcertSearchWidget::onTryNextScraper()
+{
+    const int nextIndex = getNextScraperIndex();
+    if (nextIndex < 0) {
+        return;
+    }
+
+    qCInfo(generic) << "[ConcertSearch] Trying next scraper due to previous failure";
+    ui->btnTryNextScraper->hide();
+    ui->comboScraper->setCurrentIndex(nextIndex);
+}
+
+void ConcertSearchWidget::onCancelSearch()
+{
+    qCInfo(generic) << "[ConcertSearch] User cancelled search";
+    ui->btnCancelSearch->hide();
+    ui->searchString->setLoading(false);
+    ui->searchString->setFocus();
 }

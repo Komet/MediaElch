@@ -70,6 +70,8 @@ private slots:
     void onSeasonOrderChanged(int index);
     void onScraperChanged(int index);
     void onLanguageChanged();
+    void onTryNextScraper();
+    void onCancelSearch();
 
 private:
     void setupSeasonOrderComboBox();
@@ -82,6 +84,8 @@ private:
     void abortAndClearResults();
     void abortCurrentJobs();
     void updateCheckBoxes();
+    bool hasNextScraper() const;
+    int getNextScraperIndex() const;
 
 private:
     Ui::TvShowSearchWidget* ui = nullptr;

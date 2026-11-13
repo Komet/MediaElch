@@ -25,6 +25,8 @@ TvShowSearchWidget::TvShowSearchWidget(QWidget* parent) : QWidget{parent}, ui(ne
 
     ui->results->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->searchString->setType(MyLineEdit::TypeLoading);
+    ui->btnTryNextScraper->hide();
+    ui->btnCancelSearch->hide();
 
     ui->splitter->setStretchFactor(0, 2);
     ui->splitter->setStretchFactor(1, 1);
@@ -38,6 +40,8 @@ TvShowSearchWidget::TvShowSearchWidget(QWidget* parent) : QWidget{parent}, ui(ne
     connect(ui->results,          &QTableWidget::currentItemChanged, this, &TvShowSearchWidget::onResultChanged);
     connect(ui->comboUpdate,      indexChanged,                      this, &TvShowSearchWidget::onUpdateTypeChanged);
     connect(ui->comboSeasonOrder, indexChanged,                      this, &TvShowSearchWidget::onSeasonOrderChanged);
+    connect(ui->btnTryNextScraper, &QPushButton::clicked,            this, &TvShowSearchWidget::onTryNextScraper);
+    connect(ui->btnCancelSearch,   &QPushButton::clicked,            this, &TvShowSearchWidget::onCancelSearch);
     // clang-format on
 
     ui->chkActors->setMyData(static_cast<int>(ShowScraperInfo::Actors));
@@ -118,6 +122,7 @@ void TvShowSearchWidget::initializeAndStartSearch()
 
     // Clear messages
     ui->lblErrorMessage->hide();
+    ui->btnTryNextScraper->hide();
     ui->lblSuccessMessage->clear();
     ui->lblSuccessMessage->show();
 
@@ -150,6 +155,7 @@ void TvShowSearchWidget::startSearch()
         return;
     }
 
+    ui->btnCancelSearch->show();
     qCInfo(generic) << "[TvShowSearch] Start search for:" << ui->searchString->text();
 
     ShowSearchJob::Config config{
@@ -523,12 +529,16 @@ void TvShowSearchWidget::showError(const QString& message)
     ui->lblSuccessMessage->hide();
     ui->lblErrorMessage->setText(message);
     ui->lblErrorMessage->show();
+    ui->btnTryNextScraper->setVisible(hasNextScraper());
+    ui->btnCancelSearch->hide();
     enableSearch();
 }
 
 void TvShowSearchWidget::showSuccess(const QString& message)
 {
     ui->lblErrorMessage->hide();
+    ui->btnTryNextScraper->hide();
+    ui->btnCancelSearch->hide();
     ui->lblSuccessMessage->setText(message);
     ui->lblSuccessMessage->show();
     enableSearch();
@@ -536,6 +546,49 @@ void TvShowSearchWidget::showSuccess(const QString& message)
 
 void TvShowSearchWidget::enableSearch()
 {
+    ui->searchString->setLoading(false);
+    ui->searchString->setFocus();
+}
+
+bool TvShowSearchWidget::hasNextScraper() const
+{
+    return getNextScraperIndex() >= 0;
+}
+
+int TvShowSearchWidget::getNextScraperIndex() const
+{
+    if (m_currentScraper == nullptr) {
+        return -1;
+    }
+
+    const int currentIndex = ui->comboScraper->currentIndex();
+    const int scraperCount = ui->comboScraper->count();
+
+    if (scraperCount <= 1 || currentIndex < 0) {
+        return -1;
+    }
+
+    int nextIndex = (currentIndex + 1) % scraperCount;
+    return (nextIndex != currentIndex) ? nextIndex : -1;
+}
+
+void TvShowSearchWidget::onTryNextScraper()
+{
+    const int nextIndex = getNextScraperIndex();
+    if (nextIndex < 0) {
+        return;
+    }
+
+    qCInfo(generic) << "[TvShowSearch] Trying next scraper due to previous failure";
+    ui->btnTryNextScraper->hide();
+    ui->comboScraper->setCurrentIndex(nextIndex);
+}
+
+void TvShowSearchWidget::onCancelSearch()
+{
+    qCInfo(generic) << "[TvShowSearch] User cancelled search";
+    abortCurrentJobs();
+    ui->btnCancelSearch->hide();
     ui->searchString->setLoading(false);
     ui->searchString->setFocus();
 }
