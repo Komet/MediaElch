@@ -111,6 +111,11 @@ MovieRenamer::MovieRenamer(RenamerConfig renamerConfig, RenamerDialog* dialog) :
 
 MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
 {
+    if (movie.files().isEmpty()) {
+        qCWarning(generic) << "[MovieRenamer] Cannot rename movie without files:" << movie.title();
+        return RenameError::Error;
+    }
+
     mediaelch::MovieRenamerPlaceholders renamerPlaceholder;
     mediaelch::MovieRenamerData renamerData{movie};
 
@@ -437,10 +442,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
         helper::sanitizeFolderName(newFolderName, newDelimiter);
 
         if (dir.dirName() != newFolderName) { // check if movie is not already on good folder
-            int i = 0;
-            while (dir.exists(newFolderName)) {
-                newFolderName = newFolderName + " " + QString::number(++i);
-            }
+            newFolderName = mediaelch::uniqueDirectoryName(dir, newFolderName);
 
             if (!m_config.dryRun) {
                 const int row = m_dialog->addResultToTable(dir.dirName(), newFolderName, RenameOperation::CreateDir);

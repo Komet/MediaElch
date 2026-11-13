@@ -6,6 +6,10 @@
 #include "renamer/ConcertRenamer.h"
 #include "renamer/EpisodeRenamer.h"
 #include "renamer/MovieRenamer.h"
+#include "renamer/RenamerUtils.h"
+
+#include <QDir>
+#include <QTemporaryDir>
 
 /// Ensure that we can access all data/conditions that are provided as placeholders.
 /// This should catch cases where we access nullptr, etc.
@@ -63,5 +67,27 @@ TEST_CASE("Concert Renamer works", "[renamer][concert]")
         Concert concert;
         mediaelch::ConcertRenamerData data{concert};
         loadDataForAllPlaceholders(placeholders, data);
+    }
+}
+
+TEST_CASE("uniqueDirectoryName avoids existing directories", "[renamer][utils]")
+{
+    QTemporaryDir tmp;
+    REQUIRE(tmp.isValid());
+    QDir dir(tmp.path());
+
+    SECTION("returns the desired name when it is free")
+    { CHECK(mediaelch::uniqueDirectoryName(dir, "Movie (2024)") == "Movie (2024)"); }
+
+    SECTION("appends a counter to the desired name, never to an already-suffixed result")
+    {
+        REQUIRE(dir.mkdir("Movie"));
+        CHECK(mediaelch::uniqueDirectoryName(dir, "Movie") == "Movie 1");
+
+        REQUIRE(dir.mkdir("Movie 1"));
+        CHECK(mediaelch::uniqueDirectoryName(dir, "Movie") == "Movie 2");
+
+        REQUIRE(dir.mkdir("Movie 2"));
+        CHECK(mediaelch::uniqueDirectoryName(dir, "Movie") == "Movie 3");
     }
 }

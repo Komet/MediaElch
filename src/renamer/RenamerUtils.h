@@ -2,6 +2,7 @@
 
 #include "RenamerPlaceholders.h"
 
+#include <QDir>
 #include <QList>
 #include <QString>
 #include <QVector>
@@ -11,7 +12,7 @@
         do {                                                                                                           \
             static const bool testFlag = [&dataMap]() {                                                                \
                 PlaceholderClass p;                                                                                    \
-                ensureDataEntriesMatchPlaceholders(#PlaceholderClass, map.keys(), p.placeholders());                   \
+                ensureDataEntriesMatchPlaceholders(#PlaceholderClass, dataMap.keys(), p.placeholders());               \
                 return false;                                                                                          \
             }();                                                                                                       \
             Q_UNUSED(testFlag)                                                                                         \
@@ -28,7 +29,7 @@
         do {                                                                                                           \
             static const bool testFlag = [&conditionMap]() {                                                           \
                 PlaceholderClass p;                                                                                    \
-                ensureConditionEntriesMatchPlaceholders(#PlaceholderClass, map.keys(), p.placeholders());              \
+                ensureConditionEntriesMatchPlaceholders(#PlaceholderClass, conditionMap.keys(), p.placeholders());     \
                 return false;                                                                                          \
             }();                                                                                                       \
             Q_UNUSED(testFlag)                                                                                         \
@@ -42,6 +43,14 @@
 
 namespace mediaelch {
 
+/// \brief   Returns a directory name based on \p desiredName that does not yet
+///          exist inside \p dir.
+/// \details If \p dir has no entry called \p desiredName, it is returned as-is.
+///          Otherwise " 1", " 2", … is appended to \p desiredName (always to
+///          \p desiredName itself, never to an already-suffixed result) until a
+///          free name is found.
+QString uniqueDirectoryName(const QDir& dir, const QString& desiredName);
+
 #ifdef QT_DEBUG
 /// Test utility for asserting data / placeholder consistency.
 /// Use via macro MediaElch_Ensure_Data_Matches_Placeholders
@@ -49,7 +58,7 @@ void ensureDataEntriesMatchPlaceholders(const char* variant,
     const QList<QString>& dataKeys,
     const QVector<Placeholder>& placeholders);
 /// Test utility for asserting condition / placeholder consistency.
-/// Use via macro MEDIAELCH_ENSURE_Condition_MATCHES_PLACEHOLDERS
+/// Use via macro MediaElch_Ensure_Condition_Matches_Placeholders
 void ensureConditionEntriesMatchPlaceholders(const char* variant,
     const QList<QString>& conditionKeys,
     const QVector<Placeholder>& placeholders);

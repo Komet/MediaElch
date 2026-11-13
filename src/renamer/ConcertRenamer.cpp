@@ -99,6 +99,11 @@ ConcertRenamer::ConcertRenamer(RenamerConfig renamerConfig, RenamerDialog* dialo
 
 ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert& concert)
 {
+    if (concert.files().isEmpty()) {
+        qCWarning(generic) << "[ConcertRenamer] Cannot rename concert without files:" << concert.title();
+        return RenameError::Error;
+    }
+
     mediaelch::ConcertRenamerPlaceholders renamerPlaceholder;
     mediaelch::ConcertRenamerData renamerData{concert};
 
