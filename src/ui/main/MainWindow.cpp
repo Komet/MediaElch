@@ -31,7 +31,7 @@
 #include <QTimer>
 #include <QToolBar>
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
 #    include <QMenuBar>
 #endif
 

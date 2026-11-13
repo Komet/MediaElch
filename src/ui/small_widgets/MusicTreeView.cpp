@@ -113,7 +113,7 @@ void MusicTreeView::drawArtistRow(QPainter* painter, const QStyleOptionViewItem&
 
     style()->drawItemText(painter, artistRect, (Qt::AlignLeft | Qt::AlignVCenter), opt.palette, true, itemStr);
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     textFont.setPointSize(textFont.pointSize() - 2);
 #else
     textFont.setPointSize(textFont.pointSize() - 1);
@@ -171,7 +171,7 @@ void MusicTreeView::drawRowBackground(QPainter* painter, QStyleOptionViewItem op
     // TODO: Figure out why PE_PanelItemViewRow works on macOS (commit 3d1c37a35c52a593e78335da851f520b9151f81f)
     //       but doesn't on Linux/Windows.
     //       It could be https://stackoverflow.com/a/34646515/1603627 , but why?
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     // On macOS, PE_PanelItemViewItem works as well for selection background, but not for alternating colors.
     style()->drawPrimitive(QStyle::PE_PanelItemViewRow, &opt, painter, this);
 #else

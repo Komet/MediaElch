@@ -13,7 +13,7 @@
 #include "ui/small_widgets/MessageLabel.h"
 #include "ui/small_widgets/MyTableWidgetItem.h"
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
 #    include "ui/notifications/MacNotificationHandler.h"
 #endif
 
@@ -37,7 +37,7 @@ DownloadsWidget::DownloadsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::
     ui->tablePackages->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
 #endif
 
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
     QFont titleFont = ui->labelArchives->font();
     titleFont.setPointSize(titleFont.pointSize() - 4);
     ui->labelArchives->setFont(titleFont);
@@ -198,7 +198,7 @@ void DownloadsWidget::onDeleteImport(QString baseName)
 
 void DownloadsWidget::onExtractorError(QString baseName, QString msg)
 {
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     if (MacNotificationHandler::instance()->hasUserNotificationCenterSupport()) {
         Notificator::instance()->notify(Notificator::Class::Warning,
             tr("Extraction failed"),

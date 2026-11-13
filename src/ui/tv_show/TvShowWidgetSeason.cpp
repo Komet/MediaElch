@@ -18,7 +18,7 @@ TvShowWidgetSeason::TvShowWidgetSeason(QWidget* parent) :
 
     ui->title->clear();
 
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
     QFont nameFont = ui->title->font();
     nameFont.setPointSize(nameFont.pointSize() - 4);
     ui->title->setFont(nameFont);

@@ -8,7 +8,7 @@
 MovieSearch::MovieSearch(QWidget* parent) : QDialog(parent), ui(new Ui::MovieSearch)
 {
     ui->setupUi(this);
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Sheet);
     setStyleSheet(styleSheet() + " #MovieSearch { border: 1px solid rgba(0, 0, 0, 100); border-top: none; }");
 #else

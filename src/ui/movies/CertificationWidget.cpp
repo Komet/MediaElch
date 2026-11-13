@@ -17,7 +17,7 @@ CertificationWidget::CertificationWidget(QWidget* parent) : QWidget(parent), ui(
     ui->certifications->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->movies->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
     QFont nameFont = ui->certificationName->font();
     nameFont.setPointSize(nameFont.pointSize() - 4);
     ui->certificationName->setFont(nameFont);

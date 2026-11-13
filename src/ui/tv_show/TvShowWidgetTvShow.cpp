@@ -41,7 +41,7 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget* parent) :
     font.setPointSize(font.pointSize() - 2);
 #endif
 
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
     QFont nameFont = ui->showTitle->font();
     nameFont.setPointSize(nameFont.pointSize() - 4);
     ui->showTitle->setFont(nameFont);

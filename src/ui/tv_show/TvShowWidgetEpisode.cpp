@@ -36,7 +36,7 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget* parent) :
 
     ui->lblReloadStreamDetailsError->setVisible(false);
 
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
     QFont nameFont = ui->episodeName->font();
     nameFont.setPointSize(nameFont.pointSize() - 4);
     ui->episodeName->setFont(nameFont);

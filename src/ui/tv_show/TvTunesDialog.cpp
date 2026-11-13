@@ -16,13 +16,13 @@ TvTunesDialog::TvTunesDialog(TvShow& show, QWidget* parent) : QDialog(parent), u
     ui->searchString->setType(MyLineEdit::TypeLoading);
     ui->seekSlider->setEnabled(false);
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Sheet);
 #else
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Dialog);
 #endif
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     QFont font = ui->time->font();
     font.setPointSize(font.pointSize() - 1);
     ui->time->setFont(font);

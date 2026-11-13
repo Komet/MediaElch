@@ -14,7 +14,9 @@ TEST_CASE("Ensure Schema is Up-To-Date", "[database]")
                  "--\n"
                  "-- instead, introduce new migration scripts and run the\n"
                  "-- tests to update the reference file.\n\n"
-                 + schema;
+                 + schema
+                 // Reference files are written with a trailing newline.
+                 + "\n";
 
         test::compareStringAgainstResourceFile(schema, "../../src/database/schema/999_full_schema.sql");
     }

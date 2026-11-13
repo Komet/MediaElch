@@ -1,7 +1,7 @@
 #include "Notificator.h"
 
 #include <QMessageBox>
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
 #    include "ui/notifications/MacNotificationHandler.h"
 #    include <ApplicationServices/ApplicationServices.h>
 #endif
@@ -12,7 +12,7 @@ Notificator::Notificator(QSystemTrayIcon* trayIcon, QWidget* parent) :
     if ((m_trayIcon != nullptr) && QSystemTrayIcon::supportsMessages()) {
         m_mode = Mode::QSystemTray;
     }
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     if (MacNotificationHandler::instance()->hasUserNotificationCenterSupport()) {
         m_mode = Mode::UserNotificationCenter;
     }
@@ -38,7 +38,7 @@ void Notificator::notifyMacUserNotificationCenter(Notificator::Class cls,
 {
     Q_UNUSED(cls);
     Q_UNUSED(icon);
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     MacNotificationHandler::instance()->showNotification(title, text);
 #else
     Q_UNUSED(title);
@@ -50,7 +50,7 @@ void Notificator::notify(Class cls, const QString& title, const QString& text, c
 {
     switch (m_mode) {
     case Mode::QSystemTray: notifySystray(cls, title, text, icon, timeout); break;
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     case Mode::UserNotificationCenter: notifyMacUserNotificationCenter(cls, title, text, icon); break;
 #endif
     default:

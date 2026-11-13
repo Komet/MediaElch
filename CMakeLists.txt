@@ -112,10 +112,14 @@ endif()
 # Min version required; keep in sync with MediaElch.plist
 # Qt5 CI builds adapt MediaElch.plist before building.
 if(Qt6_FOUND)
-  set(CMAKE_OSX_DEPLOYMENT_TARGET 11)
+  if(NOT CMAKE_OSX_DEPLOYMENT_TARGET)
+    set(CMAKE_OSX_DEPLOYMENT_TARGET 11)
+  endif()
   find_package(Qt6 QUIET REQUIRED COMPONENTS Core5Compat)
 else()
-  set(CMAKE_OSX_DEPLOYMENT_TARGET 10.13)
+  if(NOT CMAKE_OSX_DEPLOYMENT_TARGET)
+    set(CMAKE_OSX_DEPLOYMENT_TARGET 10.13)
+  endif()
 endif()
 
 message(STATUS "Using Qt ${QT_VERSION}")
