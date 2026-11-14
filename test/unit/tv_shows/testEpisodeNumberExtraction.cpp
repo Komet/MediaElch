@@ -14,7 +14,7 @@ static QVector<EpisodeNumber> getEpisodeNumbers(QString filename)
 {
     CAPTURE(filename);
     auto numbers = TvShowFileSearcher::getEpisodeNumbers({filename});
-    REQUIRE(!numbers.isEmpty());
+    REQUIRE_FALSE(numbers.isEmpty());
     return numbers;
 }
 
