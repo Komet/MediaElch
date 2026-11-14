@@ -7,7 +7,7 @@
 
 namespace {
 
-static QSet<MovieScraperInfo> combineScraperDetails(
+QSet<MovieScraperInfo> combineScraperDetails(
     const mediaelch::scraper::CustomMovieScrapeJob::CustomScraperConfig& config)
 {
     // Ensure that config.details is actually a superset of all scraper details.

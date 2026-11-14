@@ -6,7 +6,8 @@
 #include "scrapers/music/MusicScraper.h"
 #include "ui/small_widgets/MyLabel.h"
 
-MusicSearchWidget::MusicSearchWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MusicSearchWidget)
+MusicSearchWidget::MusicSearchWidget(QWidget* parent) :
+    QWidget(parent), ui(new Ui::MusicSearchWidget), m_signalMapper(new QSignalMapper(ui->results))
 {
     ui->setupUi(this);
 
@@ -58,7 +59,7 @@ MusicSearchWidget::MusicSearchWidget(QWidget* parent) : QWidget(parent), ui(new 
     }
     connect(ui->chkUnCheckAll, &QAbstractButton::clicked, this, &MusicSearchWidget::chkAllToggled);
 
-    m_signalMapper = new QSignalMapper(ui->results);
+
 #if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
     connect(m_signalMapper, elchOverload<int>(&QSignalMapper::mapped), this, &MusicSearchWidget::resultClickedRow);
 #else
@@ -105,7 +106,7 @@ void MusicSearchWidget::startSearchWithIndex(int index)
     if (m_type == "artist") {
         qCInfo(generic) << "[Music Scraper] Searching for artist:" << input;
         mediaelch::scraper::ArtistSearchJob::Config config;
-        config.query = input;
+        config.query = std::move(input);
         // config.locale = …
         mediaelch::scraper::ArtistSearchJob* searchJob = scraper->searchArtist(config);
         connect(searchJob,
@@ -118,7 +119,7 @@ void MusicSearchWidget::startSearchWithIndex(int index)
         qCInfo(generic) << "[Music Scraper] Searching for album:" << input << "| artist:" << m_artistName;
         mediaelch::scraper::AlbumSearchJob::Config config;
         config.artistName = m_artistName;
-        config.albumQuery = input;
+        config.albumQuery = std::move(input);
         // config.locale = …
         mediaelch::scraper::AlbumSearchJob* searchJob = scraper->searchAlbum(config);
         connect(searchJob,

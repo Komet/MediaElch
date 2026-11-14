@@ -537,9 +537,7 @@ const UniversalMusicScraper::ScraperMeta& UniversalMusicScraper::meta() const
     return m_meta;
 }
 
-UniversalMusicScraper::~UniversalMusicScraper()
-{
-}
+UniversalMusicScraper::~UniversalMusicScraper() = default;
 
 ArtistSearchJob* UniversalMusicScraper::searchArtist(ArtistSearchJob::Config config)
 {

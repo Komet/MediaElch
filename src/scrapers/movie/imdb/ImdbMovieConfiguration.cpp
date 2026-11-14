@@ -4,9 +4,9 @@
 
 namespace {
 
-static constexpr char moduleName[] = "scrapers";
-static const Settings::Key KEY_SCRAPERS_LANGUAGE(moduleName, "Scrapers/IMDb/Language");
-static const Settings::Key KEY_SCRAPERS_LOAD_ALL_TAGS(moduleName, "Scrapers/IMDb/LoadAllTags");
+constexpr char moduleName[] = "scrapers";
+const Settings::Key KEY_SCRAPERS_LANGUAGE(moduleName, "Scrapers/IMDb/Language");
+const Settings::Key KEY_SCRAPERS_LOAD_ALL_TAGS(moduleName, "Scrapers/IMDb/LoadAllTags");
 
 } // namespace
 

@@ -21,7 +21,8 @@
 #include <QMovie>
 #include <QRegularExpression>
 
-ImportDialog::ImportDialog(QWidget* parent) : QDialog(parent), ui(new Ui::ImportDialog)
+ImportDialog::ImportDialog(QWidget* parent) :
+    QDialog(parent), ui(new Ui::ImportDialog), m_posterDownloadManager(new DownloadManager(this))
 {
     ui->setupUi(this);
 
@@ -37,7 +38,7 @@ ImportDialog::ImportDialog(QWidget* parent) : QDialog(parent), ui(new Ui::Import
 
     m_timer.setInterval(500);
 
-    m_posterDownloadManager = new DownloadManager(this);
+
     connect(m_posterDownloadManager,
         &DownloadManager::sigDownloadFinished,
         this,
@@ -157,16 +158,15 @@ int ImportDialog::execTvShow(QString searchString, TvShow* tvShow)
     int index = -1;
     const QVector<mediaelch::MediaDirectory>& dirs = Settings::instance()->directorySettings().tvShowDirectories();
     for (int i = 0, n = qsizetype_to_int(dirs.count()); i < n; ++i) {
-        if (tvShow->dir().isParentFolderOf(mediaelch::DirectoryPath(dirs.at(i).path))) {
-            if (index == -1 || dirs.at(index).path.path().length() < dirs.at(i).path.path().length()) {
-                index = i;
-            }
+        if (tvShow->dir().isParentFolderOf(mediaelch::DirectoryPath(dirs.at(i).path))
+            && (index == -1 || dirs.at(index).path.path().length() < dirs.at(i).path.path().length())) {
+            index = i;
         }
     }
     if (index != -1) {
         path = Settings::instance()->directorySettings().tvShowDirectories().at(index).path.path();
     }
-    m_importDir = path;
+    m_importDir = std::move(path);
 
     m_filesToMove.clear();
 
@@ -393,7 +393,7 @@ void ImportDialog::setImportDir(QString dir)
             break;
         }
     }
-    m_importDir = dir;
+    m_importDir = std::move(dir);
 }
 
 QString ImportDialog::importDir()

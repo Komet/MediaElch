@@ -64,7 +64,7 @@ void SlidingStackedWidget::slideInIdx(int idx, SlidingStackedWidget::direction _
 {
     if (idx > count() - 1) {
         _direction = m_vertical ? direction::TOP2BOTTOM : SlidingStackedWidget::direction::RIGHT2LEFT;
-        idx = (idx) % count();
+        idx = idx % count();
     } else if (idx < 0) {
         _direction = m_vertical ? direction::BOTTOM2TOP : SlidingStackedWidget::direction::LEFT2RIGHT;
         idx = (idx + count()) % count();
@@ -161,7 +161,7 @@ void SlidingStackedWidget::expandToOne()
 
     m_expanded = true;
 
-    setFixedWidth(frameRect().width() * count() + ((count() - 1) * 24));
+    setFixedWidth((frameRect().width() * count()) + ((count() - 1) * 24));
 
     m_widgets.clear();
     for (int i = 0, n = count(); i < n; ++i) {

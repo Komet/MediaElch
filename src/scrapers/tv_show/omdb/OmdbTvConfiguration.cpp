@@ -4,9 +4,9 @@
 
 namespace {
 
-static constexpr char moduleName[] = "scrapers";
+constexpr char moduleName[] = "scrapers";
 // Share the same settings key as the movie scraper so users only enter the key once
-static const Settings::Key KEY_SCRAPERS_API_KEY(moduleName, "Scrapers/omdb/ApiKey");
+const Settings::Key KEY_SCRAPERS_API_KEY(moduleName, "Scrapers/omdb/ApiKey");
 
 } // namespace
 

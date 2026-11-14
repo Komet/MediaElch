@@ -22,7 +22,7 @@ int checkVersionUpdate(QApplication& app, QCommandLineParser& parser)
 
     QEventLoop::connect(
         &updateCheck, &mediaelch::UpdateCheck::updateCheckFinished, &loop, [&](UpdateCheck::Result updateResult) {
-            result = updateResult;
+            result = std::move(updateResult);
             loop.quit();
         });
     updateCheck.checkForUpdate();

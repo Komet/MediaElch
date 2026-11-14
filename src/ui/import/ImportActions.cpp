@@ -7,14 +7,13 @@
 
 #include <QMessageBox>
 
-ImportActions::ImportActions(QWidget* parent) : QWidget(parent), ui(new Ui::ImportActions)
+ImportActions::ImportActions(QWidget* parent) : QWidget(parent), ui(new Ui::ImportActions), m_tvShow(nullptr)
 {
     ui->setupUi(this);
     mediaelch::ui::setButtonStyle(ui->btnImport, mediaelch::ui::ButtonStyle::Success);
     mediaelch::ui::setButtonStyle(ui->btnDelete, mediaelch::ui::ButtonStyle::Danger);
     connect(ui->btnImport, &QAbstractButton::clicked, this, &ImportActions::onImport);
     connect(ui->btnDelete, &QAbstractButton::clicked, this, &ImportActions::onDelete);
-    m_tvShow = nullptr;
 }
 
 ImportActions::~ImportActions()
@@ -29,7 +28,7 @@ void ImportActions::setButtonEnabled(bool enabled)
 
 void ImportActions::setBaseName(QString baseName)
 {
-    m_baseName = baseName;
+    m_baseName = std::move(baseName);
 }
 
 QString ImportActions::baseName()
@@ -39,7 +38,7 @@ QString ImportActions::baseName()
 
 void ImportActions::setType(QString type)
 {
-    m_type = type;
+    m_type = std::move(type);
 }
 
 QString ImportActions::type()
@@ -60,7 +59,7 @@ TvShow* ImportActions::tvShow()
 
 void ImportActions::setImportDir(QString dir)
 {
-    m_importDir = dir;
+    m_importDir = std::move(dir);
 }
 
 QString ImportActions::importDir()

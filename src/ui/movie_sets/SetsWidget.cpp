@@ -17,7 +17,11 @@
 #include <QFileDialog>
 #include <QMessageBox>
 
-SetsWidget::SetsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::SetsWidget)
+SetsWidget::SetsWidget(QWidget* parent) :
+    QWidget(parent),
+    ui(new Ui::SetsWidget),
+    m_tableContextMenu(new QMenu(ui->sets)),
+    m_downloadManager(new DownloadManager(this))
 {
     ui->setupUi(this);
 
@@ -35,7 +39,7 @@ SetsWidget::SetsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::SetsWidget
 
     m_loadingMovie = new QMovie(":/img/spinner.gif", QByteArray(), this);
     m_loadingMovie->start();
-    m_downloadManager = new DownloadManager(this);
+
 
     // clang-format off
     connect(ui->sets,                  &QTableWidget::itemSelectionChanged,   this, &SetsWidget::onSetSelected);
@@ -52,7 +56,7 @@ SetsWidget::SetsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::SetsWidget
     // clang-format on
 
     ui->sets->setContextMenuPolicy(Qt::CustomContextMenu);
-    m_tableContextMenu = new QMenu(ui->sets);
+
     auto* actionAddSet = new QAction(tr("Add Movie Set"), this);
     auto* actionDeleteSet = new QAction(tr("Delete Movie Set"), this);
     m_tableContextMenu->addAction(actionAddSet);
@@ -217,7 +221,7 @@ void SetsWidget::loadSet(QString set)
         ui->poster->setPixmap(pixmap);
         ui->posterResolution->setText(QString("%1x%2").arg(poster.width()).arg(poster.height()));
         ui->buttonPreviewPoster->setEnabled(true);
-        m_currentPoster = poster;
+        m_currentPoster = std::move(poster);
     } else if (!Manager::instance()->mediaCenterInterface()->movieSetPoster(set).isNull()) {
         QImage poster = Manager::instance()->mediaCenterInterface()->movieSetPoster(set);
         QPixmap pixmap = QPixmap::fromImage(poster).scaled(
@@ -226,7 +230,7 @@ void SetsWidget::loadSet(QString set)
         ui->poster->setPixmap(pixmap);
         ui->posterResolution->setText(QString("%1x%2").arg(poster.width()).arg(poster.height()));
         ui->buttonPreviewPoster->setEnabled(true);
-        m_currentPoster = poster;
+        m_currentPoster = std::move(poster);
     } else {
         QPixmap pixmap =
             QPixmap(":/img/placeholders/poster.png")
@@ -244,7 +248,7 @@ void SetsWidget::loadSet(QString set)
         ui->backdrop->setPixmap(pixmap);
         ui->backdropResolution->setText(QString("%1x%2").arg(backdrop.width()).arg(backdrop.height()));
         ui->buttonPreviewBackdrop->setEnabled(true);
-        m_currentBackdrop = backdrop;
+        m_currentBackdrop = std::move(backdrop);
     } else if (!Manager::instance()->mediaCenterInterface()->movieSetBackdrop(set).isNull()) {
         QImage backdrop = Manager::instance()->mediaCenterInterface()->movieSetBackdrop(set);
         QPixmap pixmap = QPixmap::fromImage(backdrop).scaled(
@@ -253,7 +257,7 @@ void SetsWidget::loadSet(QString set)
         ui->backdrop->setPixmap(pixmap);
         ui->backdropResolution->setText(QString("%1x%2").arg(backdrop.width()).arg(backdrop.height()));
         ui->buttonPreviewBackdrop->setEnabled(true);
-        m_currentBackdrop = backdrop;
+        m_currentBackdrop = std::move(backdrop);
     } else {
         QPixmap pixmap =
             QPixmap(":/img/placeholders/fanart.png")

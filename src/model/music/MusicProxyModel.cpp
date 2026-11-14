@@ -51,7 +51,7 @@ bool MusicProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& sourceP
 void MusicProxyModel::setFilter(QVector<Filter*> filters, QString text)
 {
     m_filters = filters;
-    m_filterText = text;
+    m_filterText = std::move(text);
 }
 
 bool MusicProxyModel::hasAcceptedChildren(int sourceRow, const QModelIndex& sourceParent) const

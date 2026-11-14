@@ -25,19 +25,21 @@ TheTvDbImages::TheTvDbImages(QObject* parent) : ImageProvider(parent)
     m_meta.termsOfService = "https://thetvdb.com/tos";
     m_meta.privacyPolicy = "https://thetvdb.com/privacy-policy";
     m_meta.help = "https://forums.thetvdb.com/";
-    m_meta.supportedImageTypes = {ImageType::TvShowPoster,
+    m_meta.supportedImageTypes = {
+        ImageType::TvShowPoster,
         ImageType::TvShowBackdrop,
         ImageType::TvShowBanner,
         ImageType::TvShowSeasonPoster,
         ImageType::TvShowEpisodeThumb,
         ImageType::TvShowSeasonBanner,
-        ImageType::TvShowSeasonBackdrop};
+        ImageType::TvShowSeasonBackdrop,
+    };
     m_meta.supportedLanguages = TheTvDbImagesConfiguration::supportedLanguages();
     m_meta.defaultLocale = TheTvDbImagesConfiguration::defaultLocale();
 
     m_dummyShow = new TvShow(mediaelch::DirectoryPath(), this);
     m_dummyEpisode = new TvShowEpisode(QStringList(), m_dummyShow);
-    m_searchResultLimit = 0;
+
 
     connect(m_dummyShow, &TvShow::sigLoaded, this, &TheTvDbImages::onLoadTvShowDataFinished);
     connect(m_dummyEpisode, &TvShowEpisode::sigLoaded, this, &TheTvDbImages::onLoadTvShowDataFinished);
@@ -132,12 +134,14 @@ void TheTvDbImages::loadTvShowData(TvDbId tvdbId, ImageType type, const mediaelc
         scrapeJob->start();
 
     } else {
-        const QSet<ShowScraperInfo> infosToLoad{ShowScraperInfo::Banner,
+        const QSet<ShowScraperInfo> infosToLoad{
+            ShowScraperInfo::Banner,
             ShowScraperInfo::Fanart,
             ShowScraperInfo::Poster,
             ShowScraperInfo::SeasonPoster,
             ShowScraperInfo::SeasonBanner,
-            ShowScraperInfo::SeasonBackdrop};
+            ShowScraperInfo::SeasonBackdrop,
+        };
         m_dummyShow->scrapeData(tvdb,
             mediaelch::scraper::ShowIdentifier(tvdbId),
             locale,

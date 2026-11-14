@@ -108,10 +108,9 @@ void TvShowFileSearcher::reloadEpisodes(const mediaelch::DirectoryPath& showDir)
             return;
         }
 
-        if (showDir.toString().startsWith(m_directories[i].path.path())) {
-            if (index == -1 || m_directories[index].path.path().length() < m_directories[i].path.path().length()) {
-                index = i;
-            }
+        if (showDir.toString().startsWith(m_directories[i].path.path())
+            && (index == -1 || m_directories[index].path.path().length() < m_directories[i].path.path().length())) {
+            index = i;
         }
     }
     if (index != -1) {
@@ -274,11 +273,9 @@ void TvShowFileSearcher::scanTvShowDir(const mediaelch::DirectoryPath& startPath
             QString right = file.mid(pos + match.captured(1).size() + match.captured(2).size());
             for (int x = 0; x < n; x++) {
                 QString subFile = files.at(x);
-                if (subFile != file) {
-                    if (subFile.startsWith(left) && subFile.endsWith(right)) {
-                        tvShowFiles << (path.toString() + '/' + subFile);
-                        files[x] = ""; // set an empty file name, this way we can skip this file in the main loop
-                    }
+                if ((subFile != file) && (subFile.startsWith(left) && subFile.endsWith(right))) {
+                    tvShowFiles << (path.toString() + '/' + subFile);
+                    files[x] = ""; // set an empty file name, this way we can skip this file in the main loop
                 }
             }
         }
@@ -324,11 +321,10 @@ SeasonNumber TvShowFileSearcher::getSeasonNumber(QStringList files)
         } else if (filenameParts.count() > 2 && helper::isDvd(files.at(0), true)) {
             filename = filenameParts.at(filenameParts.count() - 2);
         }
-    } else if (filename.endsWith("index.bdmv", Qt::CaseInsensitive)) {
-        if (filenameParts.count() > 2) {
-            filename = filenameParts.at(filenameParts.count() - 3);
-        }
+    } else if (filename.endsWith("index.bdmv", Qt::CaseInsensitive) && (filenameParts.count() > 2)) {
+        filename = filenameParts.at(filenameParts.count() - 3);
     }
+
 
     QRegularExpressionMatch match;
 
@@ -373,10 +369,8 @@ QVector<EpisodeNumber> TvShowFileSearcher::getEpisodeNumbers(QStringList files)
         } else if (filenameParts.count() > 2 && helper::isDvd(files.at(0), true)) {
             filename = filenameParts.at(filenameParts.count() - 2);
         }
-    } else if (filename.endsWith("index.bdmv", Qt::CaseInsensitive)) {
-        if (filenameParts.count() > 2) {
-            filename = filenameParts.at(filenameParts.count() - 3);
-        }
+    } else if (filename.endsWith("index.bdmv", Qt::CaseInsensitive) && (filenameParts.count() > 2)) {
+        filename = filenameParts.at(filenameParts.count() - 3);
     }
 
 
@@ -432,7 +426,8 @@ QVector<EpisodeNumber> TvShowFileSearcher::getEpisodeNumbers(QStringList files)
         bool mayBeAmbiguous = false;
     };
 
-    QVector<EpisodeNumberPattern> patterns{{R"([Ss]\d+[ ._-x]?[Ee](\d+))", false},
+    QVector<EpisodeNumberPattern> patterns{
+        {R"([Ss]\d+[ ._-x]?[Ee](\d+))", false},
         {R"([Ss]\d+[ ._-x]?[Ee][Pp](\d+))", false},
         {R"([Ss]eason[ ._-x]?\d+[._ -]?[Ee]pisode[ ._-]?(\d+))", false},
         {R"(ep_?(\d+))", false},
@@ -441,7 +436,8 @@ QVector<EpisodeNumber> TvShowFileSearcher::getEpisodeNumbers(QStringList files)
         // {R"((?:part|pt).((?=[MDCLXVI])M*(?:C[MD]|D?C{0,3})(?:X[CL]|L?X{0,3})(?:I[XV]|V?I{0,3}))\b)", false},
         // {R"(pt_((?=[MDCLXVI])M*(?:C[MD]|D?C{0,3})(?:X[CL]|L?X{0,3})(?:I[XV]|V?I{0,3}))\b)", false},
         {R"(\d+x(\d+))", true},
-        {R"(\d+.(\d){2,4})", true}};
+        {R"(\d+.(\d){2,4})", true},
+    };
 
     for (const auto& pattern : patterns) {
         if (scanWithPattern(pattern.regex, pattern.mayBeAmbiguous)) {

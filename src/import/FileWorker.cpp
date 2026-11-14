@@ -10,7 +10,7 @@ FileWorker::FileWorker(QObject* parent) : QObject(parent)
 
 void FileWorker::setFiles(QMap<QString, QString> files)
 {
-    m_files = files;
+    m_files = std::move(files);
 }
 
 QMap<QString, QString> FileWorker::files()

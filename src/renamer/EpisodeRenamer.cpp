@@ -132,7 +132,7 @@ ELCH_NODISCARD QString EpisodeRenamerData::value(const QString& name) const
             return helper::matchResolution(m_videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
                 m_videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
                 m_videoDetails.value(StreamDetails::VideoDetails::ScanType));
-        }},
+        },},
         // clang-format on
     };
 
@@ -187,7 +187,7 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode& episode
     const bool useSeasonDirectories = m_config.renameDirectories;
 
     // " ", i.e. space, is the default for sanitizeFileName().
-    QString delimiter = (m_config.replaceDelimiter) ? m_config.delimiter : " ";
+    QString delimiter = m_config.replaceDelimiter ? m_config.delimiter : " ";
 
     bool errorOccured = false;
 
@@ -268,12 +268,11 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode& episode
                     replaceDelimiter(newSubName);
                     const int row =
                         m_dialog->addResultToTable(subFileName, newSubName, Renamer::RenameOperation::Rename);
-                    if (!m_config.dryRun) {
-                        if (!Renamer::rename(currentDir.canonicalPath() + "/" + subFileName,
-                                currentDir.canonicalPath() + "/" + newSubName)) {
-                            m_dialog->setResultStatus(row, Renamer::RenameResult::Failed);
-                            errorOccured = true;
-                        }
+                    if ((!m_config.dryRun)
+                        && (!Renamer::rename(currentDir.canonicalPath() + "/" + subFileName,
+                            currentDir.canonicalPath() + "/" + newSubName))) {
+                        m_dialog->setResultStatus(row, Renamer::RenameResult::Failed);
+                        errorOccured = true;
                     }
                 }
             } else {
@@ -292,10 +291,8 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode& episode
                 helper::sanitizeFileName(newNfoFileName, delimiter);
                 if (newNfoFileName != nfoFileName) {
                     int row = m_dialog->addResultToTable(nfoFileName, newNfoFileName, Renamer::RenameOperation::Rename);
-                    if (!m_config.dryRun) {
-                        if (!Renamer::rename(nfo, fiCanonicalPath + "/" + newNfoFileName)) {
-                            m_dialog->setResultStatus(row, Renamer::RenameResult::Failed);
-                        }
+                    if ((!m_config.dryRun) && (!Renamer::rename(nfo, fiCanonicalPath + "/" + newNfoFileName))) {
+                        m_dialog->setResultStatus(row, Renamer::RenameResult::Failed);
                     }
                 }
             }
@@ -313,10 +310,9 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode& episode
                 if (newThumbnailFileName != thumbnailFileName) {
                     int row = m_dialog->addResultToTable(
                         thumbnailFileName, newThumbnailFileName, Renamer::RenameOperation::Rename);
-                    if (!m_config.dryRun) {
-                        if (!Renamer::rename(thumbnail, fiCanonicalPath + "/" + newThumbnailFileName)) {
-                            m_dialog->setResultStatus(row, Renamer::RenameResult::Failed);
-                        }
+                    if ((!m_config.dryRun)
+                        && (!Renamer::rename(thumbnail, fiCanonicalPath + "/" + newThumbnailFileName))) {
+                        m_dialog->setResultStatus(row, Renamer::RenameResult::Failed);
                     }
                 }
             }
@@ -346,10 +342,8 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode& episode
         QDir seasonDir(showDir.path() + "/" + seasonDirName);
         if (!seasonDir.exists()) {
             int row = m_dialog->addResultToTable(seasonDirName, "", Renamer::RenameOperation::CreateDir);
-            if (!m_config.dryRun) {
-                if (!showDir.mkdir(seasonDirName)) {
-                    m_dialog->setResultStatus(row, Renamer::RenameResult::Failed);
-                }
+            if ((!m_config.dryRun) && (!showDir.mkdir(seasonDirName))) {
+                m_dialog->setResultStatus(row, Renamer::RenameResult::Failed);
             }
         }
 
@@ -400,21 +394,19 @@ EpisodeRenamer::RenameError EpisodeRenamer::renameEpisode(TvShowEpisode& episode
 
             if (!newNfoFileName.isEmpty() && !nfo.isEmpty()) {
                 int row = m_dialog->addResultToTable(newNfoFileName, seasonDirName, Renamer::RenameOperation::Move);
-                if (!m_config.dryRun) {
-                    if (!Renamer::rename(
-                            fiCanonicalPath + "/" + newNfoFileName, seasonDir.path() + "/" + newNfoFileName)) {
-                        m_dialog->setResultStatus(row, Renamer::RenameResult::Failed);
-                    }
+                if ((!m_config.dryRun)
+                    && (!Renamer::rename(
+                        fiCanonicalPath + "/" + newNfoFileName, seasonDir.path() + "/" + newNfoFileName))) {
+                    m_dialog->setResultStatus(row, Renamer::RenameResult::Failed);
                 }
             }
             if (!thumbnail.isEmpty() && !newThumbnailFileName.isEmpty()) {
                 int row =
                     m_dialog->addResultToTable(newThumbnailFileName, seasonDirName, Renamer::RenameOperation::Move);
-                if (!m_config.dryRun) {
-                    if (!Renamer::rename(fiCanonicalPath + "/" + newThumbnailFileName,
-                            seasonDir.path() + "/" + newThumbnailFileName)) {
-                        m_dialog->setResultStatus(row, RenameResult::Failed);
-                    }
+                if ((!m_config.dryRun)
+                    && (!Renamer::rename(
+                        fiCanonicalPath + "/" + newThumbnailFileName, seasonDir.path() + "/" + newThumbnailFileName))) {
+                    m_dialog->setResultStatus(row, RenameResult::Failed);
                 }
             }
         }

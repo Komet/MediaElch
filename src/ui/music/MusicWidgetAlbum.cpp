@@ -14,11 +14,11 @@
 #include <QPainter>
 
 
-MusicWidgetAlbum::MusicWidgetAlbum(QWidget* parent) : QWidget(parent), ui(new Ui::MusicWidgetAlbum)
+MusicWidgetAlbum::MusicWidgetAlbum(QWidget* parent) : QWidget(parent), ui(new Ui::MusicWidgetAlbum), m_album(nullptr)
 {
     ui->setupUi(this);
 
-    m_album = nullptr;
+
     ui->albumName->clear();
 
 #ifndef Q_OS_MAC

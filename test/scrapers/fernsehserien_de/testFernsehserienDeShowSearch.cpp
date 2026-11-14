@@ -111,7 +111,7 @@ TEST_CASE("FernsehserienDe returns valid search results", "[FernsehserienDe][sea
         auto* searchJob = new FernsehserienDeShowSearchJob(*api, config);
         const auto p = test::searchTvScraperSync(searchJob, true);
 
-        CHECK(p.first.length() == 0);
+        CHECK(p.first.empty());
         CHECK(p.second.error == ScraperError::Type::NoError);
     }
 }

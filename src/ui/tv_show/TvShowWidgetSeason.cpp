@@ -12,7 +12,12 @@
 #include <QPainter>
 
 TvShowWidgetSeason::TvShowWidgetSeason(QWidget* parent) :
-    QWidget(parent), ui(new Ui::TvShowWidgetSeason), m_show{nullptr}, m_season{-1}
+    QWidget(parent),
+    ui(new Ui::TvShowWidgetSeason),
+    m_show{nullptr},
+    m_season{-1},
+    m_savingWidget(new QLabel(this)),
+    m_downloadManager(new DownloadManager(this))
 {
     ui->setupUi(this);
 
@@ -41,12 +46,11 @@ TvShowWidgetSeason::TvShowWidgetSeason(QWidget* parent) :
     ui->banner->setDefaultPixmap(QPixmap(":/img/placeholders/banner.png"));
     ui->thumb->setDefaultPixmap(QPixmap(":/img/placeholders/thumb.png"));
 
-    m_downloadManager = new DownloadManager(this);
 
     m_loadingMovie = new QMovie(":/img/spinner.gif", QByteArray(), this);
     m_loadingMovie->start();
 
-    m_savingWidget = new QLabel(this);
+
     m_savingWidget->setMovie(m_loadingMovie);
     m_savingWidget->hide();
 
@@ -92,7 +96,7 @@ TvShowWidgetSeason::~TvShowWidgetSeason()
 
 void TvShowWidgetSeason::resizeEvent(QResizeEvent* event)
 {
-    m_savingWidget->move(size().width() / 2 - m_savingWidget->width(), height() / 2 - m_savingWidget->height());
+    m_savingWidget->move((size().width() / 2) - m_savingWidget->width(), (height() / 2) - m_savingWidget->height());
     QWidget::resizeEvent(event);
 }
 
@@ -120,10 +124,12 @@ void TvShowWidgetSeason::updateSeasonInfo()
     }
     ui->seasonName->blockSignals(blocked);
 
-    updateImages(QSet<ImageType>{ImageType::TvShowSeasonPoster,
+    updateImages(QSet<ImageType>{
+        ImageType::TvShowSeasonPoster,
         ImageType::TvShowSeasonBackdrop,
         ImageType::TvShowSeasonBanner,
-        ImageType::TvShowSeasonThumb});
+        ImageType::TvShowSeasonThumb,
+    });
 
     ui->missingLabel->setVisible(m_show->isDummySeason(m_season));
     if (m_show->isDummySeason(m_season)) {
@@ -318,7 +324,7 @@ void TvShowWidgetSeason::onImageDropped(ImageType imageType, QUrl imageUrl)
     emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
     DownloadManagerElement d;
     d.imageType = imageType;
-    d.url = imageUrl;
+    d.url = std::move(imageUrl);
     d.season = m_season;
     d.show = m_show;
     m_downloadManager->addDownload(d);

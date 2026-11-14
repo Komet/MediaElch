@@ -33,7 +33,8 @@ TmdbConcert::TmdbConcert(QObject* parent) :
     m_meta.termsOfService = "https://www.themoviedb.org/terms-of-use";
     m_meta.privacyPolicy = "https://www.themoviedb.org/privacy-policy";
     m_meta.help = "https://www.themoviedb.org/talk";
-    m_meta.supportedDetails = {            //
+    m_meta.supportedDetails = {
+        //
         ConcertScraperInfo::Title,         //
         ConcertScraperInfo::Tagline,       //
         ConcertScraperInfo::Rating,        //
@@ -45,7 +46,8 @@ TmdbConcert::TmdbConcert(QObject* parent) :
         ConcertScraperInfo::Poster,        //
         ConcertScraperInfo::Backdrop,      //
         ConcertScraperInfo::Genres,        //
-        ConcertScraperInfo::ExtraArts};
+        ConcertScraperInfo::ExtraArts,
+    };
 
     m_meta.supportedLanguages = TmdbConcertConfiguration::supportedLanguages();
     m_meta.defaultLocale = TmdbConcertConfiguration::defaultLocale();

@@ -6,7 +6,8 @@
 #include "globals/Manager.h"
 #include "settings/Settings.h"
 
-MusicMultiScrapeDialog::MusicMultiScrapeDialog(QWidget* parent) : QDialog(parent), ui(new Ui::MusicMultiScrapeDialog)
+MusicMultiScrapeDialog::MusicMultiScrapeDialog(QWidget* parent) :
+    QDialog(parent), ui(new Ui::MusicMultiScrapeDialog), m_executed(false)
 {
     ui->setupUi(this);
 
@@ -18,9 +19,6 @@ MusicMultiScrapeDialog::MusicMultiScrapeDialog(QWidget* parent) : QDialog(parent
 #endif
     ui->itemCounter->setFont(font);
 
-    m_executed = false;
-    m_currentArtist = nullptr;
-    m_currentAlbum = nullptr;
 
     ui->chkName->setMyData(static_cast<int>(MusicScraperInfo::Name));
     ui->chkBorn->setMyData(static_cast<int>(MusicScraperInfo::Born));

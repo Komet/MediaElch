@@ -30,7 +30,7 @@ MovieSearchWidget::MovieSearchWidget(QWidget* parent) : QWidget(parent), ui(new 
     // clang-format on
 
     connect(ui->searchString, &QLineEdit::textEdited, this, [this](QString searchString) {
-        m_searchString = searchString;
+        m_searchString = std::move(searchString);
     });
 
     initializeCheckBoxes();

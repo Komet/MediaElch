@@ -11,6 +11,12 @@
 
 ImageGallery::ImageGallery(QWidget* parent) :
     QWidget(parent),
+    m_loadingLabel(new QLabel(this)),
+    m_scrollArea(new QScrollArea(this)),
+    m_buttonLeft(new QToolButton(this)),
+    m_buttonRight(new QToolButton(this)),
+    m_buttonTop(new QToolButton(this)),
+    m_buttonBottom(new QToolButton(this)),
     m_imageWidth{200},
     m_imageHeight{100},
     m_horizontalSpace{10},
@@ -21,14 +27,14 @@ ImageGallery::ImageGallery(QWidget* parent) :
 {
     auto* loadingMovie = new QMovie(":/img/spinner.gif", QByteArray(), this);
     loadingMovie->start();
-    m_loadingLabel = new QLabel(this);
+
     m_loadingLabel->hide();
     m_loadingLabel->setStyleSheet("background-color: rgba(0, 0, 0, 100); border-radius: 3px;");
     m_loadingLabel->setMovie(loadingMovie);
     m_loadingLabel->setAlignment(Qt::AlignCenter);
     m_loadingLabel->setFixedSize(size());
 
-    m_scrollArea = new QScrollArea(this);
+
     m_scrollArea->setFixedSize(size());
     m_imagesWidget = new QWidget(m_scrollArea);
     m_scrollArea->setWidget(m_imagesWidget);
@@ -44,27 +50,27 @@ ImageGallery::ImageGallery(QWidget* parent) :
     connect(m_scrollArea->horizontalScrollBar(), &QAbstractSlider::rangeChanged, this, &ImageGallery::onHorizontalScrollBarRangeChanged);
     // clang-format on
 
-    m_buttonLeft = new QToolButton(this);
+
     m_buttonLeft->setIcon(QIcon(":/img/imgButtonLeft.png"));
     m_buttonLeft->setStyleSheet("QToolButton { border: none; }");
     m_buttonLeft->setIconSize(QSize(41, 41));
     m_buttonLeft->raise();
     m_buttonLeft->setAutoRepeat(true);
     m_buttonLeft->setVisible(false);
-    m_buttonRight = new QToolButton(this);
+
     m_buttonRight->setIcon(QIcon(":/img/imgButtonRight.png"));
     m_buttonRight->setStyleSheet("QToolButton { border: none; }");
     m_buttonRight->setIconSize(QSize(41, 41));
     m_buttonRight->raise();
     m_buttonRight->setAutoRepeat(true);
     m_buttonRight->setVisible(false);
-    m_buttonTop = new QToolButton(this);
+
     m_buttonTop->setIcon(QIcon(":/img/imgButtonTop.png"));
     m_buttonTop->setStyleSheet("QToolButton { border: none; }");
     m_buttonTop->setIconSize(QSize(41, 41));
     m_buttonTop->raise();
     m_buttonTop->setAutoRepeat(true);
-    m_buttonBottom = new QToolButton(this);
+
     m_buttonBottom->setIcon(QIcon(":/img/imgButtonBottom.png"));
     m_buttonBottom->setStyleSheet("QToolButton { border: none; }");
     m_buttonBottom->setIconSize(QSize(41, 41));

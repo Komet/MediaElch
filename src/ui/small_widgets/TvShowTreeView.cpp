@@ -19,7 +19,7 @@ void TvShowTreeView::drawBranches(QPainter* painter, const QRect& rect, const QM
     Q_UNUSED(painter)
     Q_UNUSED(rect)
     Q_UNUSED(index)
-    return; // no-op
+    // no-op
 }
 
 void TvShowTreeView::drawBranches(QPainter* painter,
@@ -80,7 +80,7 @@ void TvShowTreeView::drawTvShowRow(QPainter* painter,
     const QStyleOptionViewItem& option,
     const QModelIndex& index) const
 {
-    QStyleOptionViewItem opt = option;
+    const QStyleOptionViewItem& opt = option;
 
     QColor red(255, 0, 0);
     const bool isSelected = opt.state.testFlag(QStyle::State_Selected);
@@ -100,7 +100,7 @@ void TvShowTreeView::drawTvShowRow(QPainter* painter,
     const int rowPadding = 4;
     const int itemIndent = m_branchIndent + drawNewIcon(painter, option, index, isSelected, m_branchIndent);
 
-    const int textRowHeight = (option.rect.height() - 2 * rowPadding) / 2;
+    const int textRowHeight = (option.rect.height() - (2 * rowPadding)) / 2;
     const int textRowWidth = option.rect.width() - itemIndent;
     const int posX = option.rect.x() + itemIndent;
     const int posY = option.rect.y() + rowPadding;
@@ -153,7 +153,7 @@ void TvShowTreeView::drawTvShowIcons(QPainter* painter,
             option.rect.height());
         const QPixmap icon =
             model()->index(index.row(), col).data(Qt::DecorationRole).value<QIcon>().pixmap(iconSize());
-        painter->drawPixmap(iconRect.x() + (iconRect.width() - icon.width()) / 2,
+        painter->drawPixmap(iconRect.x() + ((iconRect.width() - icon.width()) / 2),
             iconRect.y() + (iconRect.height() - icon.height()) - 6,
             icon);
     }
@@ -234,7 +234,7 @@ void TvShowTreeView::drawEpisodeRow(QPainter* painter,
 void TvShowTreeView::drawRowBackground(QPainter* painter, QStyleOptionViewItem opt, const QModelIndex& index) const
 {
     if (!isShowRow(index)) {
-        const int indent = (isSeasonRow(index)) ? m_seasonIndent : m_episodeIndent;
+        const int indent = isSeasonRow(index) ? m_seasonIndent : m_episodeIndent;
         opt.rect.setX(opt.rect.x() + indent - 4);
     }
 

@@ -14,7 +14,8 @@ namespace scraper {
 TmdbMovie::TmdbMovie(TmdbMovieConfiguration& settings, QObject* parent) :
     MovieScraper(parent),
     m_settings{settings},
-    m_scraperNativelySupports{MovieScraperInfo::Title,
+    m_scraperNativelySupports{
+        MovieScraperInfo::Title,
         MovieScraperInfo::Tagline,
         MovieScraperInfo::Rating,
         MovieScraperInfo::Released,
@@ -31,7 +32,8 @@ TmdbMovie::TmdbMovie(TmdbMovieConfiguration& settings, QObject* parent) :
         MovieScraperInfo::Countries,
         MovieScraperInfo::Director,
         MovieScraperInfo::Writer,
-        MovieScraperInfo::Set}
+        MovieScraperInfo::Set,
+    }
 {
     m_meta.identifier = ID;
     m_meta.name = "The Movie DB";
@@ -44,7 +46,8 @@ TmdbMovie::TmdbMovie(TmdbMovieConfiguration& settings, QObject* parent) :
     m_meta.termsOfService = "https://www.themoviedb.org/terms-of-use";
     m_meta.privacyPolicy = "https://www.themoviedb.org/privacy-policy";
     m_meta.help = "https://www.themoviedb.org/talk";
-    m_meta.supportedDetails = {MovieScraperInfo::Title,
+    m_meta.supportedDetails = {
+        MovieScraperInfo::Title,
         MovieScraperInfo::Tagline,
         MovieScraperInfo::Rating,
         MovieScraperInfo::Released,
@@ -66,7 +69,8 @@ TmdbMovie::TmdbMovie(TmdbMovieConfiguration& settings, QObject* parent) :
         MovieScraperInfo::Thumb,
         MovieScraperInfo::CdArt,
         MovieScraperInfo::ClearArt,
-        MovieScraperInfo::Set};
+        MovieScraperInfo::Set,
+    };
     m_meta.supportedLanguages = TmdbMovieConfiguration::supportedLanguages();
     m_meta.defaultLocale = TmdbMovieConfiguration::defaultLocale();
     m_meta.isAdult = false;
@@ -75,9 +79,7 @@ TmdbMovie::TmdbMovie(TmdbMovieConfiguration& settings, QObject* parent) :
     initialize();
 }
 
-TmdbMovie::~TmdbMovie()
-{
-}
+TmdbMovie::~TmdbMovie() = default;
 
 const MovieScraper::ScraperMeta& TmdbMovie::meta() const
 {
@@ -115,7 +117,7 @@ QSet<MovieScraperInfo> TmdbMovie::scraperNativelySupports()
 void TmdbMovie::changeLanguage(mediaelch::Locale locale)
 {
     if (m_meta.supportedLanguages.contains(locale)) {
-        m_meta.defaultLocale = locale;
+        m_meta.defaultLocale = std::move(locale);
     } else {
         qCInfo(generic) << "[TMDB] Cannot change language because it is not supported:" << locale;
     }

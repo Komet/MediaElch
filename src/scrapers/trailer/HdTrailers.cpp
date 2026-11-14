@@ -158,7 +158,7 @@ QVector<TrailerResult> HdTrailers::parseTrailers(QString html)
 
 QUrl HdTrailers::getLibraryUrl(char library)
 {
-    return QUrl(QStringLiteral("https://www.hd-trailers.net/library/%1/").arg(library));
+    return {QStringLiteral("https://www.hd-trailers.net/library/%1/").arg(library)};
 }
 
 } // namespace scraper

@@ -150,8 +150,10 @@ void CsvMovieExport::exportMovies(const QVector<Movie*>& movies, std::function<v
             {s(Field::Directory), dirFromFileList(movie->files())},
             {s(Field::Filenames), filesToString(movie->files())},
             {s(Field::LastModified), movie->fileLastModified().toString(Qt::ISODate)},
-            {s(Field::StreamDetails_Video_DurationInSeconds),
-                getStreamDetails(st, StreamDetails::VideoDetails::DurationInSeconds)},
+            {
+                s(Field::StreamDetails_Video_DurationInSeconds),
+                getStreamDetails(st, StreamDetails::VideoDetails::DurationInSeconds),
+            },
             {s(Field::StreamDetails_Video_Aspect), getStreamDetails(st, StreamDetails::VideoDetails::Aspect)},
             {s(Field::StreamDetails_Video_Width), getStreamDetails(st, StreamDetails::VideoDetails::Width)},
             {s(Field::StreamDetails_Video_Height), getStreamDetails(st, StreamDetails::VideoDetails::Height)},
@@ -159,8 +161,10 @@ void CsvMovieExport::exportMovies(const QVector<Movie*>& movies, std::function<v
             {s(Field::StreamDetails_Audio_Language), getStreamDetails(st, StreamDetails::AudioDetails::Language)},
             {s(Field::StreamDetails_Audio_Codec), getStreamDetails(st, StreamDetails::AudioDetails::Codec)},
             {s(Field::StreamDetails_Audio_Channels), getStreamDetails(st, StreamDetails::AudioDetails::Channels)},
-            {s(Field::StreamDetails_Subtitle_Language),
-                getStreamDetails(st, StreamDetails::SubtitleDetails::Language)} //
+            {
+                s(Field::StreamDetails_Subtitle_Language),
+                getStreamDetails(st, StreamDetails::SubtitleDetails::Language),
+            }, //
         });
         callback();
     }
@@ -343,21 +347,33 @@ void CsvTvEpisodeExport::exportEpisodes(const QVector<TvShow*>& shows, std::func
                 {s(Field::EpisodeActors), actorsToString(episode->actors())},
                 {s(Field::EpisodeDirectory), dirFromFileList(episode->files())},
                 {s(Field::EpisodeFilenames), filesToString(episode->files())},
-                {s(Field::EpisodeStreamDetails_Video_DurationInSeconds),
-                    getStreamDetails(st, StreamDetails::VideoDetails::DurationInSeconds)},
-                {s(Field::EpisodeStreamDetails_Video_Aspect),
-                    getStreamDetails(st, StreamDetails::VideoDetails::Aspect)},
+                {
+                    s(Field::EpisodeStreamDetails_Video_DurationInSeconds),
+                    getStreamDetails(st, StreamDetails::VideoDetails::DurationInSeconds),
+                },
+                {
+                    s(Field::EpisodeStreamDetails_Video_Aspect),
+                    getStreamDetails(st, StreamDetails::VideoDetails::Aspect),
+                },
                 {s(Field::EpisodeStreamDetails_Video_Width), getStreamDetails(st, StreamDetails::VideoDetails::Width)},
-                {s(Field::EpisodeStreamDetails_Video_Height),
-                    getStreamDetails(st, StreamDetails::VideoDetails::Height)},
+                {
+                    s(Field::EpisodeStreamDetails_Video_Height),
+                    getStreamDetails(st, StreamDetails::VideoDetails::Height),
+                },
                 {s(Field::EpisodeStreamDetails_Video_Codec), getStreamDetails(st, StreamDetails::VideoDetails::Codec)},
-                {s(Field::EpisodeStreamDetails_Audio_Language),
-                    getStreamDetails(st, StreamDetails::AudioDetails::Language)},
+                {
+                    s(Field::EpisodeStreamDetails_Audio_Language),
+                    getStreamDetails(st, StreamDetails::AudioDetails::Language),
+                },
                 {s(Field::EpisodeStreamDetails_Audio_Codec), getStreamDetails(st, StreamDetails::AudioDetails::Codec)},
-                {s(Field::EpisodeStreamDetails_Audio_Channels),
-                    getStreamDetails(st, StreamDetails::AudioDetails::Channels)},
-                {s(Field::EpisodeStreamDetails_Subtitle_Language),
-                    getStreamDetails(st, StreamDetails::SubtitleDetails::Language)} //
+                {
+                    s(Field::EpisodeStreamDetails_Audio_Channels),
+                    getStreamDetails(st, StreamDetails::AudioDetails::Channels),
+                },
+                {
+                    s(Field::EpisodeStreamDetails_Subtitle_Language),
+                    getStreamDetails(st, StreamDetails::SubtitleDetails::Language),
+                }, //
             });
         }
         callback();
@@ -574,7 +590,7 @@ void CsvArtistExport::exportArtists(const QVector<Artist*>& artists, std::functi
             {s(Field::ArtistDisbanded), artist->disbanded()},
             {s(Field::ArtistMusicBrainzId), artist->mbId().toString()},
             {s(Field::ArtistAllMusicId), artist->allMusicId().toString()},
-            {s(Field::ArtistDirectory), artist->path().toNativePathString()} //
+            {s(Field::ArtistDirectory), artist->path().toNativePathString()}, //
         });
         callback();
     }
@@ -646,7 +662,7 @@ void CsvAlbumExport::exportAlbumsOfArtists(const QVector<Artist*>& artists, std:
                 {s(Field::AlbumMusicBrainzId), album->mbAlbumId().toString()},
                 {s(Field::AlbumMusicBrainzReleaseGroupId), album->mbReleaseGroupId().toString()},
                 {s(Field::AlbumAllMusicId), album->allMusicId().toString()},
-                {s(Field::AlbumDirectory), album->path().toNativePathString()} //
+                {s(Field::AlbumDirectory), album->path().toNativePathString()}, //
             });
         }
         callback();
@@ -732,11 +748,11 @@ void CsvExport::writeEscaped(const QString& text)
         m_out << "'";
     }
 
-    m_out << (QString(text)
-            .replace(m_separator, m_replacement)
-            .replace("\r\n", "\\n")
-            .replace("\n", "\\n")
-            .replace("\r", "\\n"));
+    m_out << QString(text)
+                 .replace(m_separator, m_replacement)
+                 .replace("\r\n", "\\n")
+                 .replace("\n", "\\n")
+                 .replace("\r", "\\n");
 }
 
 } // namespace mediaelch

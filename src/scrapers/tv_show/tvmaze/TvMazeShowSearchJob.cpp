@@ -33,7 +33,7 @@ QVector<ShowSearchJob::Result> TvMazeShowSearchJob::parseSearch(const QJsonDocum
     QVector<ShowSearchJob::Result> results;
 
     const QJsonArray resultArray = json.array();
-    for (const QJsonValue& val : resultArray) {
+    for (const auto& val : resultArray) {
         ShowSearchJob::Result result = parseSingleSearchObject(val.toObject()["show"].toObject());
         if (result.isValid()) {
             results.append(result);

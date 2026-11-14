@@ -74,7 +74,7 @@ readAndResizeAndCacheImageSync(mediaelch::DirectoryPath cacheDir, mediaelch::Fil
     QSize cachedOriginalSize;
     bool cacheNeedsUpdate = true;
     if (!files.isEmpty()) {
-        const QString fileName = files.first();
+        const QString& fileName = files.first();
         const QStringList parts = fileName.split("_");
         if (parts.count() > 5) {
             cachedOriginalSize.setWidth(parts.at(3).toInt());
@@ -82,7 +82,7 @@ readAndResizeAndCacheImageSync(mediaelch::DirectoryPath cacheDir, mediaelch::Fil
         }
         bool ok = false;
         auto lastModified = std::chrono::seconds{parts.at(5).toLongLong(&ok, 10)};
-        cacheNeedsUpdate = !(ok && lastModified.count() > 0 && isLastModifiedTheSame(imgPath, lastModified));
+        cacheNeedsUpdate = !ok || lastModified.count() <= 0 || !isLastModifiedTheSame(imgPath, lastModified);
     }
 
     if (cacheNeedsUpdate) {

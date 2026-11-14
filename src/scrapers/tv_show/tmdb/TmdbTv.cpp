@@ -26,7 +26,8 @@ TmdbTv::TmdbTv(TmdbTvConfiguration& settings, QObject* parent) : TvScraper(paren
     m_meta.termsOfService = "https://www.themoviedb.org/terms-of-use";
     m_meta.privacyPolicy = "https://www.themoviedb.org/privacy-policy";
     m_meta.help = "https://www.themoviedb.org/talk";
-    m_meta.supportedShowDetails = {//
+    m_meta.supportedShowDetails = {
+        //
         ShowScraperInfo::Title,
         ShowScraperInfo::Overview,
         ShowScraperInfo::Certification,
@@ -40,7 +41,8 @@ TmdbTv::TmdbTv(TmdbTvConfiguration& settings, QObject* parent) : TvScraper(paren
         ShowScraperInfo::Genres,
         ShowScraperInfo::Actors,
         ShowScraperInfo::Network,
-        ShowScraperInfo::SeasonPoster};
+        ShowScraperInfo::SeasonPoster,
+    };
     m_meta.supportedEpisodeDetails = {
         EpisodeScraperInfo::Actors,
         // EpisodeScraperInfo::Certification,

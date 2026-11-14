@@ -15,13 +15,21 @@
 // TODO: Move manager to UI folder
 #include "ui/export/csv_export/CsvExportModule.h"
 
-Manager::Manager(QObject* parent) : QObject(parent)
+Manager::Manager(QObject* parent) :
+    QObject(parent),
+    m_settings(Settings::instance()),
+    m_scraperManager(new mediaelch::ScraperManager(*m_settings, this)),
+    m_movieModel(new MovieModel(this)),
+    m_tvShowModel(new TvShowModel(this)),
+    m_concertModel(new ConcertModel(this)),
+    m_musicModel(new MusicModel(this)),
+    m_database(new Database(this)),
+    m_musicFileSearcher(new MusicFileSearcher(*m_musicPersistence, this)),
+    m_iconFont(new MyIconFont(this)),
+    m_csvExportModule(new mediaelch::exporter::CsvExportModule(*Settings::instance()))
 {
     using namespace mediaelch::scraper;
 
-    m_settings = Settings::instance();
-    m_scraperManager = new mediaelch::ScraperManager(*m_settings, this);
-    m_database = new Database(this);
 
     m_moviePersistence = std::make_unique<mediaelch::MoviePersistence>(*m_database);
     m_tvShowPersistence = std::make_unique<mediaelch::TvShowPersistence>(*m_database);
@@ -30,28 +38,28 @@ Manager::Manager(QObject* parent) : QObject(parent)
     m_movieFileSearcher = new mediaelch::MovieFileSearcher(*m_moviePersistence, this);
     m_tvShowFileSearcher = new TvShowFileSearcher(*m_tvShowPersistence, this);
     m_concertFileSearcher = new ConcertFileSearcher(*m_concertPersistence, this);
-    m_musicFileSearcher = new MusicFileSearcher(*m_musicPersistence, this);
-    m_movieModel = new MovieModel(this);
-    m_tvShowModel = new TvShowModel(this);
-    m_concertModel = new ConcertModel(this);
-    m_musicModel = new MusicModel(this);
+
 
     m_kodiSyncSettings = new mediaelch::KodiSyncSettings(*m_settings, this);
     m_kodiSyncSettings->init();
     m_kodiXmlSettings = std::make_unique<mediaelch::KodiXmlSettings>(*m_settings);
     m_kodiXmlSettings->init();
     KodiXml::MediaPersistence persistence{
-        *m_moviePersistence, *m_tvShowPersistence, *m_concertPersistence, *m_musicPersistence};
+        *m_moviePersistence,
+        *m_tvShowPersistence,
+        *m_concertPersistence,
+        *m_musicPersistence,
+    };
     m_mediaCenters.append(new KodiXml(*m_kodiXmlSettings, persistence, *m_movieModel, this));
     m_mediaCentersTvShow.append(new KodiXml(*m_kodiXmlSettings, persistence, *m_movieModel, this));
     m_mediaCentersConcert.append(new KodiXml(*m_kodiXmlSettings, persistence, *m_movieModel, this));
 
     m_trailerProviders.append(new HdTrailers(this));
 
-    m_iconFont = new MyIconFont(this);
+
     m_iconFont->initFontAwesome();
 
-    m_csvExportModule = new mediaelch::exporter::CsvExportModule(*Settings::instance());
+
     m_csvExportModule->onInit();
 }
 

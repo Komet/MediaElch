@@ -5,7 +5,7 @@ namespace mediaelch {
 QStringList setToStringList(const QSet<QString>& set)
 {
 #if QT_VERSION >= QT_VERSION_CHECK(6, 1, 0)
-    return QStringList(set.begin(), set.end());
+    return {set.begin(), set.end()};
 #else
     QStringList list;
     auto values = set.values();

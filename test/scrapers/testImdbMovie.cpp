@@ -43,7 +43,7 @@ TEST_CASE("IMDb returns valid search results", "[movie][IMDb][search]")
         auto* searchJob = new ImdbMovieSearchJob(getImdbApi(), config);
         const auto scraperResults = test::searchMovieScraperSync(searchJob).first;
 
-        REQUIRE(scraperResults.length() >= 1);
+        REQUIRE_FALSE(scraperResults.empty());
         CHECK_THAT(scraperResults[0].title, StartsWith("Finding Dory"));
         CHECK(scraperResults[0].released == QDate(2016, 1, 1));
     }
@@ -78,7 +78,7 @@ TEST_CASE("IMDb scrapes correct movie details", "[movie][IMDb][load_data]")
         CHECK(m.certification() == Certification("PG"));
         CHECK(m.released().toString("yyyy-MM-dd") == "2016-06-17"); // in United States
         // Finding Dory is rated 7.3 (date: 2018-08-31)
-        REQUIRE(!m.ratings().isEmpty());
+        REQUIRE_FALSE(m.ratings().isEmpty());
         CHECK(m.ratings().first().rating == Approx(7).margin(0.5));
         CHECK(m.ratings().first().voteCount > 6300);
         // Movie is not in top 250
@@ -99,7 +99,7 @@ TEST_CASE("IMDb scrapes correct movie details", "[movie][IMDb][load_data]")
         REQUIRE(m.genres().size() >= 2);
         REQUIRE(m.tags().size() >= 2);
         REQUIRE(m.studios().size() >= 2);
-        REQUIRE(m.countries().size() >= 1);
+        REQUIRE_FALSE(m.countries().empty());
         REQUIRE(m.actors().actors().size() >= 2);
 
         test::scraper::compareAgainstReference(m, "scrapers/imdb/Finding_Dory_tt2277860");
@@ -188,7 +188,7 @@ TEST_CASE("IMDb scrapes correct movie details", "[movie][IMDb][load_data]")
         auto& m = scrapeJob->movie();
 
         CHECK(m.imdbId() == ImdbId("tt0068646"));
-        REQUIRE(!m.ratings().isEmpty());
+        REQUIRE_FALSE(m.ratings().isEmpty());
         CHECK(m.ratings().first().rating == Approx(9.2).margin(0.5));
 
         test::scraper::compareAgainstReference(m, "scrapers/imdb/Godfather_tt0068646");

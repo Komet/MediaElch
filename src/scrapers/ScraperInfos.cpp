@@ -16,7 +16,8 @@ QString scraperInfoToTranslatedString(EpisodeScraperInfo info)
 
 QSet<ShowScraperInfo> allShowScraperInfos()
 {
-    return {ShowScraperInfo::Actors,
+    return {
+        ShowScraperInfo::Actors,
         ShowScraperInfo::Banner,
         ShowScraperInfo::Certification,
         ShowScraperInfo::Fanart,
@@ -36,7 +37,8 @@ QSet<ShowScraperInfo> allShowScraperInfos()
         ShowScraperInfo::Thumb,
         ShowScraperInfo::SeasonThumb,
         ShowScraperInfo::Runtime,
-        ShowScraperInfo::Status};
+        ShowScraperInfo::Status,
+    };
 }
 
 QSet<EpisodeScraperInfo> allEpisodeScraperInfos()
@@ -94,7 +96,8 @@ QString scraper::movieScraperDetailToString(MovieScraperInfo detail)
 
 QSet<MovieScraperInfo> scraper::allMovieScraperInfos()
 {
-    return {MovieScraperInfo::Title,
+    return {
+        MovieScraperInfo::Title,
         MovieScraperInfo::Tagline,
         MovieScraperInfo::Rating,
         MovieScraperInfo::Released,
@@ -120,12 +123,14 @@ QSet<MovieScraperInfo> scraper::allMovieScraperInfos()
         MovieScraperInfo::Thumb,
         MovieScraperInfo::TvShowLinks,
         MovieScraperInfo::Outline,
-        MovieScraperInfo::First};
+        MovieScraperInfo::First,
+    };
 }
 
 QSet<MusicScraperInfo> allMusicScraperInfos()
 {
-    return {MusicScraperInfo::Name,
+    return {
+        MusicScraperInfo::Name,
         MusicScraperInfo::Genres,
         MusicScraperInfo::Styles,
         MusicScraperInfo::Moods,
@@ -148,7 +153,8 @@ QSet<MusicScraperInfo> allMusicScraperInfos()
         MusicScraperInfo::CdArt,
         MusicScraperInfo::Cover,
         MusicScraperInfo::ExtraFanarts,
-        MusicScraperInfo::Discography};
+        MusicScraperInfo::Discography,
+    };
 }
 
 } // namespace mediaelch

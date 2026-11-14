@@ -4,9 +4,9 @@
 
 namespace {
 
-static constexpr char moduleName[] = "scrapers";
-static const Settings::Key KEY_SCRAPERS_LANGUAGE(moduleName, "Scrapers/aebn/Language");
-static const Settings::Key KEY_SCRAPERS_GENRE(moduleName, "Scrapers/aebn/Genre");
+constexpr char moduleName[] = "scrapers";
+const Settings::Key KEY_SCRAPERS_LANGUAGE(moduleName, "Scrapers/aebn/Language");
+const Settings::Key KEY_SCRAPERS_GENRE(moduleName, "Scrapers/aebn/Genre");
 
 } // namespace
 
@@ -55,7 +55,8 @@ mediaelch::Locale AebnConfiguration::defaultLocale()
 
 QVector<Locale> AebnConfiguration::supportedLanguages()
 {
-    return QVector<Locale>({//
+    return QVector<Locale>({
+        //
         "bg",
         "zh",
         "hr",
@@ -79,7 +80,8 @@ QVector<Locale> AebnConfiguration::supportedLanguages()
         "sl",
         "es",
         "sv",
-        "tr"});
+        "tr",
+    });
 }
 
 QString AebnConfiguration::defaultGenre()

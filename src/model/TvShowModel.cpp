@@ -69,7 +69,7 @@ QVariant TvShowModel::data(const QModelIndex& index, int role) const
 {
     if (!index.isValid()) {
         // root element: no data
-        return QVariant();
+        return {};
     }
 
     const TvShowBaseModelItem& item = getItem(index);
@@ -98,7 +98,7 @@ QVariant TvShowModel::data(const QModelIndex& index, int role) const
             case 8: return tr("Banner");
             }
         }
-        return QVariant();
+        return {};
     }
 
     // column => 0
@@ -115,7 +115,7 @@ QVariant TvShowModel::data(const QModelIndex& index, int role) const
 
     if (role == TvShowRoles::SortTitleRole && item.type() == TvShowType::TvShow) {
         // Sort title or the "normalized" title if the former does not exist.
-        const QString sortTitle = item.data(static_cast<int>(TvShowModelItem::Columns::SortTitle)).toString();
+        QString sortTitle = item.data(static_cast<int>(TvShowModelItem::Columns::SortTitle)).toString();
         if (sortTitle.isEmpty()) {
             const QString title = item.data(static_cast<int>(TvShowModelItem::Columns::Title)).toString();
             return helper::appendArticle(title);
@@ -141,7 +141,7 @@ QVariant TvShowModel::data(const QModelIndex& index, int role) const
     case TvShowRoles::LogoPath: return item.data(110);
     case TvShowRoles::FilePath:
         if (item.type() == TvShowType::Episode) {
-            auto* episode = dynamic_cast<const EpisodeModelItem*>(&item);
+            const auto* episode = dynamic_cast<const EpisodeModelItem*>(&item);
             if (episode != nullptr && !episode->tvShowEpisode()->files().isEmpty()) {
                 return episode->tvShowEpisode()->files().first().toString();
             }
@@ -152,7 +152,7 @@ QVariant TvShowModel::data(const QModelIndex& index, int role) const
         break;
     case TvShowRoles::HasDummyEpisodes:
         if (item.type() == TvShowType::Season) {
-            auto* season = dynamic_cast<const SeasonModelItem*>(&item);
+            const auto* season = dynamic_cast<const SeasonModelItem*>(&item);
             if (season != nullptr && item.tvShow()->hasDummyEpisodes(season->seasonNumber())) {
                 return true;
             }

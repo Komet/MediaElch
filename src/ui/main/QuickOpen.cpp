@@ -52,7 +52,7 @@ public:
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override
     {
         if (index.column() != 0 || role != Qt::DisplayRole) {
-            return QVariant();
+            return {};
         }
         return sourceModel()->data(mapToSource(index), role);
     }
@@ -140,19 +140,23 @@ private:
 };
 
 
-QuickOpen::QuickOpen(QWidget* parent) : QMenu(parent)
+QuickOpen::QuickOpen(QWidget* parent) :
+    QMenu(parent),
+    m_treeView(new QTreeView()),
+    m_lineEdit(new QLineEdit(this)),
+    m_proxyModel(new QuickOpenFilterModel(this))
 {
     QVBoxLayout* layout = new QVBoxLayout();
     layout->setSpacing(0);
     layout->setContentsMargins(4, 4, 4, 4);
     setLayout(layout);
 
-    m_lineEdit = new QLineEdit(this);
+
     setFocusProxy(m_lineEdit);
 
     layout->addWidget(m_lineEdit);
 
-    m_treeView = new QTreeView();
+
     layout->addWidget(m_treeView, 1);
     m_treeView->setTextElideMode(Qt::ElideLeft);
     m_treeView->setUniformRowHeights(true);
@@ -160,7 +164,7 @@ QuickOpen::QuickOpen(QWidget* parent) : QMenu(parent)
     auto* delegate = new QuickOpenStyleDelegate(this);
     m_treeView->setItemDelegateForColumn(0, delegate);
 
-    m_proxyModel = new QuickOpenFilterModel(this);
+
     m_proxyModel->setFilterRole(Qt::DisplayRole);
     m_proxyModel->setFilterKeyColumn(0);
 

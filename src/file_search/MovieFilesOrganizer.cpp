@@ -39,7 +39,7 @@ void MovieFilesOrganizer::moveToDirs(mediaelch::DirectoryPath dir)
 
     for (const QStringList& movie : asConst(contents)) {
         const auto movieIndex = movie.at(0).lastIndexOf(QDir::separator());
-        if (!(movie.at(0).left(movieIndex).endsWith(dirName))) {
+        if (!movie.at(0).left(movieIndex).endsWith(dirName)) {
             qCDebug(generic) << "[MovieFilesOrganizer] skipping " << movie.at(0);
             continue;
         }
@@ -57,7 +57,7 @@ void MovieFilesOrganizer::moveToDirs(mediaelch::DirectoryPath dir)
             continue;
         }
 
-        if (!(dir2.mkdir(newFolder))) {
+        if (!dir2.mkdir(newFolder)) {
             continue;
         }
 

@@ -105,7 +105,7 @@ void OmdbMovieSearchJob::searchViaQuery()
 void OmdbMovieSearchJob::parseSearch(const QJsonDocument& json)
 {
     QJsonArray results = json.object().value("Search").toArray();
-    for (const QJsonValue& val : results) {
+    for (const auto& val : results) {
         QJsonObject obj = val.toObject();
         MovieSearchJob::Result result;
         result.title = stripYearSuffix(obj.value("Title").toString());

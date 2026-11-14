@@ -68,7 +68,7 @@ public:
 
         const float size = 0.64f;
         QRect starRect(rect.left() + 1,
-            qRound(static_cast<float>(rect.top()) + static_cast<float>(rect.height()) * (1.0f - size)) - 1.0f,
+            qRound(static_cast<float>(rect.top()) + (static_cast<float>(rect.height()) * (1.0f - size))) - 1.0f,
             qRound(static_cast<float>(rect.width()) * size),
             qRound(static_cast<float>(rect.height()) * size));
         painter->setBrush(starColor);
@@ -84,7 +84,7 @@ public:
         double markerOffset = 0.08 * drawSize;
 
         double minFontSize = 5;
-        double markerSize = (1.0 * drawSize) - (digits * digitScale + markerOffset);
+        double markerSize = (1.0 * drawSize) - ((digits * digitScale) + markerOffset);
         drawSize = static_cast<int>(qMax(minFontSize, markerSize));
 
         QFont f;
@@ -228,7 +228,7 @@ public:
 
     ~MyIconFontIconPainterIconEngine() override = default;
 
-    MyIconFontIconPainterIconEngine* clone() const override
+    ELCH_NODISCARD MyIconFontIconPainterIconEngine* clone() const override
     {
         return new MyIconFontIconPainterIconEngine(awesomeRef_, iconPainterRef_, options_);
     }
@@ -437,7 +437,7 @@ QIcon MyIconFont::icon(int character, const QVariantMap& options)
 QIcon MyIconFont::icon(const QString& name, const QVariantMap& options)
 {
     // when it's a named codepoint
-    if (namedCodepoints_.count(name) != 0) {
+    if (namedCodepoints_.contains(name)) {
         return icon(namedCodepoints_.value(name), options);
     }
 

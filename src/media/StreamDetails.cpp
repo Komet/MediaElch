@@ -8,6 +8,7 @@
 #include <QFileInfo>
 #include <QProcess>
 #include <QRegularExpression>
+#include <algorithm>
 
 StreamDetails::StreamDetails(QObject* parent, mediaelch::FileList files) :
     QObject(parent),
@@ -346,9 +347,7 @@ int StreamDetails::audioChannels() const
 {
     int channels = 0;
     for (int c : m_availableChannels) {
-        if (c > channels) {
-            channels = c;
-        }
+        channels = std::max(c, channels);
     }
     return channels;
 }

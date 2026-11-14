@@ -16,9 +16,9 @@
 
 namespace {
 
-static constexpr char moduleName[] = "ui";
-static const Settings::Key KEY_SETTINGS_WINDOW_SIZE(moduleName, "SettingsWindowSize");
-static const Settings::Key KEY_SETTINGS_WINDOW_POSITION(moduleName, "SettingsWindowPosition");
+constexpr char moduleName[] = "ui";
+const Settings::Key KEY_SETTINGS_WINDOW_SIZE(moduleName, "SettingsWindowSize");
+const Settings::Key KEY_SETTINGS_WINDOW_POSITION(moduleName, "SettingsWindowPosition");
 
 QPoint fixWindowPosition(QPoint p)
 {

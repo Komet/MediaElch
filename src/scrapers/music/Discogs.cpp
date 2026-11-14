@@ -143,7 +143,7 @@ void DiscogsArtistScrapeJob::parseAndAssignArtist(const QJsonObject& artistObj)
 void DiscogsArtistScrapeJob::parseAndAssignReleases(const QJsonObject& artistObj)
 {
     QJsonArray releases = artistObj.value("releases").toArray();
-    for (const QJsonValue& releaseVal : releases) {
+    for (const auto& releaseVal : releases) {
         QJsonObject release = releaseVal.toObject();
         DiscographyAlbum album;
         album.title = release.value("title").toString();
@@ -180,19 +180,19 @@ void DiscogsAlbumScrapeJob::parseAndAssignAlbum(const QJsonObject& albumObj)
 
     QJsonArray artistsArray = albumObj.value("artists").toArray();
     QStringList artists;
-    for (const QJsonValue& artistVal : artistsArray) {
+    for (const auto& artistVal : artistsArray) {
         QJsonObject artistObj = artistVal.toObject();
         artists << artistObj.value("name").toString();
     }
     album().setArtist(artists.join(", "));
 
     QJsonArray genresArray = albumObj.value("genres").toArray();
-    for (const QJsonValue& genre : genresArray) {
+    for (const auto& genre : genresArray) {
         album().addGenre(genre.toString());
     }
 
     QJsonArray stylesArray = albumObj.value("styles").toArray();
-    for (const QJsonValue& style : stylesArray) {
+    for (const auto& style : stylesArray) {
         album().addStyle(style.toString());
     }
 

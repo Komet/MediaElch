@@ -43,7 +43,7 @@ QVector<Actor> TmdbTvSeasonParser::parseSeasonActors(TmdbApi& api, const QJsonDo
     const QJsonObject credits = data.object()["credits"].toObject();
     const QJsonArray cast = credits["cast"].toArray();
 
-    for (const QJsonValue& val : cast) {
+    for (const auto& val : cast) {
         QJsonObject actorObj = val.toObject();
         Actor actor;
         actor.name = actorObj["name"].toString();

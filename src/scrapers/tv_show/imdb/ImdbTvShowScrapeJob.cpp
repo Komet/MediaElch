@@ -12,7 +12,8 @@ ImdbTvShowScrapeJob::ImdbTvShowScrapeJob(ImdbApi& api, ShowScrapeJob::Config _co
     ShowScrapeJob(_config, parent),
     m_api{api},
     m_parser(tvShow(), _config.locale),
-    m_notLoaded{ShowScraperInfo::Title,
+    m_notLoaded{
+        ShowScraperInfo::Title,
         ShowScraperInfo::Genres,
         ShowScraperInfo::Certification,
         ShowScraperInfo::Overview,
@@ -20,7 +21,8 @@ ImdbTvShowScrapeJob::ImdbTvShowScrapeJob(ImdbApi& api, ShowScrapeJob::Config _co
         ShowScraperInfo::Tags,
         ShowScraperInfo::Runtime,
         ShowScraperInfo::FirstAired,
-        ShowScraperInfo::Poster},
+        ShowScraperInfo::Poster,
+    },
     m_id{config().identifier.str()}
 {
 }
@@ -44,7 +46,8 @@ void ImdbTvShowScrapeJob::doStart()
 void ImdbTvShowScrapeJob::loadTvShow()
 {
     const auto setInfosLoaded = [this]() {
-        const QSet<ShowScraperInfo> availableScraperInfos = {ShowScraperInfo::Title,
+        const QSet<ShowScraperInfo> availableScraperInfos = {
+            ShowScraperInfo::Title,
             ShowScraperInfo::Genres,
             ShowScraperInfo::Certification,
             ShowScraperInfo::Overview,
@@ -52,7 +55,8 @@ void ImdbTvShowScrapeJob::loadTvShow()
             ShowScraperInfo::Tags,
             ShowScraperInfo::Runtime,
             ShowScraperInfo::FirstAired,
-            ShowScraperInfo::Poster};
+            ShowScraperInfo::Poster,
+        };
         for (const auto loaded : availableScraperInfos) {
             if (shouldLoad(loaded)) {
                 setIsLoaded(loaded);

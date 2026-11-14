@@ -1,5 +1,7 @@
 #include "TagCloud.h"
+
 #include "ui_TagCloud.h"
+#include <algorithm>
 
 #include "log/Log.h"
 
@@ -95,9 +97,7 @@ void TagCloud::drawTags(bool printAll)
             x = 0;
             y += badge->height() + m_verticalSpace;
         }
-        if (badge->height() > heightToAdd) {
-            heightToAdd = badge->height();
-        }
+        heightToAdd = std::max(badge->height(), heightToAdd);
         badge->move(x, y);
         m_badges.append(badge);
         x += badge->width() + m_horizontalSpace;
@@ -113,9 +113,7 @@ void TagCloud::drawTags(bool printAll)
             x = 0;
             y += badge->height() + m_verticalSpace;
         }
-        if (badge->height() > heightToAdd) {
-            heightToAdd = badge->height();
-        }
+        heightToAdd = std::max(badge->height(), heightToAdd);
         badge->move(x, y);
         m_badges.append(badge);
     }
@@ -136,9 +134,7 @@ void TagCloud::repositionTags()
             x = 0;
             y += badge->height() + m_verticalSpace;
         }
-        if (badge->height() > heightToAdd) {
-            heightToAdd = badge->height();
-        }
+        heightToAdd = std::max(badge->height(), heightToAdd);
         badge->move(x, y);
         x += badge->width() + 2;
     }

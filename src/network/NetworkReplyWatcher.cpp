@@ -2,7 +2,7 @@
 
 #include "log/Log.h"
 
-constexpr char NetworkReplyWatcher::TIMEOUT_PROP[];
+constexpr char NetworkReplyWatcher::TIMEOUT_PROP[]; // needed at build-time
 
 NetworkReplyWatcher::NetworkReplyWatcher(QObject* parent, QNetworkReply* reply) : QObject(parent), m_reply{nullptr}
 {
@@ -11,9 +11,8 @@ NetworkReplyWatcher::NetworkReplyWatcher(QObject* parent, QNetworkReply* reply) 
 }
 
 NetworkReplyWatcher::NetworkReplyWatcher(QObject* parent, QNetworkReply* reply, std::chrono::seconds timeout) :
-    QObject(parent), m_reply{nullptr}
+    QObject(parent), m_reply{nullptr}, m_timeoutMilliseconds(timeout.count() * 1000)
 {
-    m_timeoutMilliseconds = timeout.count() * 1000;
     connect(&m_timer, &QTimer::timeout, this, &NetworkReplyWatcher::onTimeout);
     setReply(reply);
 }

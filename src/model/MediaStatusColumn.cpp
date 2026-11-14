@@ -42,5 +42,5 @@ QIcon iconWithMediaStatusColor(const QString& iconName, MediaStatusState state)
     painter.setPen(highlight);
     painter.drawRect(pixmap.rect());
 
-    return QIcon(pixmap);
+    return {pixmap};
 }

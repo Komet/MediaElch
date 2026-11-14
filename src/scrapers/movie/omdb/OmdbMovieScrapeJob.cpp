@@ -171,7 +171,7 @@ void OmdbMovieScrapeJob::parseRatings(const QJsonObject& obj)
 
     // Rotten Tomatoes & Metacritic from the Ratings array
     const QJsonArray ratingsArray = obj.value("Ratings").toArray();
-    for (const QJsonValue& val : ratingsArray) {
+    for (const auto& val : ratingsArray) {
         QJsonObject ratingObj = val.toObject();
         const QString source = ratingObj.value("Source").toString();
         const QString value = ratingObj.value("Value").toString();

@@ -528,7 +528,7 @@ QVector<DiscographyAlbum> Artist::discographyAlbums() const
 QVector<DiscographyAlbum*> Artist::discographyAlbumsPointer()
 {
     QVector<DiscographyAlbum*> albums;
-    for (auto& i : m_discography) {
+    for (DiscographyAlbum& i : m_discography) {
         albums.append(&i);
     }
     return albums;

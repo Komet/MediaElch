@@ -17,7 +17,8 @@ TheTvDbShowScrapeJob::TheTvDbShowScrapeJob(TheTvDbApi& api, Config _config, QObj
     ShowScrapeJob(std::move(_config), parent),
     m_api{api},
     m_parser(tvShow()),
-    m_notLoaded{ShowScraperInfo::Title,
+    m_notLoaded{
+        ShowScraperInfo::Title,
         ShowScraperInfo::Certification,
         ShowScraperInfo::FirstAired,
         ShowScraperInfo::Genres,
@@ -31,7 +32,8 @@ TheTvDbShowScrapeJob::TheTvDbShowScrapeJob(TheTvDbApi& api, Config _config, QObj
         ShowScraperInfo::Poster,
         ShowScraperInfo::SeasonPoster,
         ShowScraperInfo::SeasonBanner,
-        ShowScraperInfo::Banner},
+        ShowScraperInfo::Banner,
+    },
     m_id{config().identifier.str()}
 {
     m_notLoaded.intersect(config().details);
@@ -77,7 +79,8 @@ void TheTvDbShowScrapeJob::doStart()
 void TheTvDbShowScrapeJob::loadTvShow()
 {
     const auto setInfosLoaded = [this]() {
-        const QSet<ShowScraperInfo> availableScraperInfos = {ShowScraperInfo::Certification,
+        const QSet<ShowScraperInfo> availableScraperInfos = {
+            ShowScraperInfo::Certification,
             ShowScraperInfo::FirstAired,
             ShowScraperInfo::Genres,
             ShowScraperInfo::Network,
@@ -85,7 +88,8 @@ void TheTvDbShowScrapeJob::loadTvShow()
             ShowScraperInfo::Rating,
             ShowScraperInfo::Title,
             ShowScraperInfo::Runtime,
-            ShowScraperInfo::Status};
+            ShowScraperInfo::Status,
+        };
 
         for (const auto loaded : availableScraperInfos) {
             if (shouldLoad(loaded)) {

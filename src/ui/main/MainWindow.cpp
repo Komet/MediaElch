@@ -38,11 +38,11 @@
 
 namespace {
 
-static constexpr char moduleName[] = "ui";
-static const Settings::Key KEY_MAIN_SPLITTER_STATE(moduleName, "MainSplitterState");
-static const Settings::Key KEY_MAIN_WINDOW_POSITION(moduleName, "MainWindowPosition");
-static const Settings::Key KEY_MAIN_WINDOW_SIZE(moduleName, "MainWindowSize");
-static const Settings::Key KEY_IS_MAIN_WINDOW_MAXIMIZED(moduleName, "MainWindowMaximized");
+constexpr char moduleName[] = "ui";
+const Settings::Key KEY_MAIN_SPLITTER_STATE(moduleName, "MainSplitterState");
+const Settings::Key KEY_MAIN_WINDOW_POSITION(moduleName, "MainWindowPosition");
+const Settings::Key KEY_MAIN_WINDOW_SIZE(moduleName, "MainWindowSize");
+const Settings::Key KEY_IS_MAIN_WINDOW_MAXIMIZED(moduleName, "MainWindowMaximized");
 
 QPoint fixWindowPosition(QPoint p)
 {
@@ -678,13 +678,15 @@ void MainWindow::moveSplitter(int pos, int index)
     Q_UNUSED(index)
 
     QList<int> sizes;
-    const QList<QSplitter*> splitters{ui->movieSplitter,
+    const QList<QSplitter*> splitters{
+        ui->movieSplitter,
         ui->tvShowSplitter,
         ui->setsWidget->splitter(),
         ui->genreWidget->splitter(),
         ui->certificationWidget->splitter(),
         ui->concertSplitter,
-        ui->musicSplitter};
+        ui->musicSplitter,
+    };
 
     for (const QSplitter* splitter : splitters) {
         if (splitter->sizes().at(0) == pos) {

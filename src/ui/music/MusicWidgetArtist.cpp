@@ -14,11 +14,11 @@
 
 #include <QPainter>
 
-MusicWidgetArtist::MusicWidgetArtist(QWidget* parent) : QWidget(parent), ui(new Ui::MusicWidgetArtist)
+MusicWidgetArtist::MusicWidgetArtist(QWidget* parent) :
+    QWidget(parent), ui(new Ui::MusicWidgetArtist), m_artist(nullptr)
 {
     ui->setupUi(this);
 
-    m_artist = nullptr;
 
     ui->artistName->clear();
 #ifndef Q_OS_MAC
@@ -602,7 +602,7 @@ void MusicWidgetArtist::onAddAlbum()
 void MusicWidgetArtist::onRemoveAlbum()
 {
     const int row = ui->discography->currentRow();
-    if ((m_artist.isNull()) || row < 0 || row >= ui->discography->rowCount()
+    if (m_artist.isNull() || row < 0 || row >= ui->discography->rowCount()
         || !ui->discography->currentItem()->isSelected()) {
         return;
     }

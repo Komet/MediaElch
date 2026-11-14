@@ -36,7 +36,7 @@ TvMaze::TvMaze(TvMazeConfiguration& settings, QObject* parent) : TvScraper(paren
         ShowScraperInfo::FirstAired,
         ShowScraperInfo::Genres,
         ShowScraperInfo::Rating,
-        ShowScraperInfo::ExtraArts //
+        ShowScraperInfo::ExtraArts, //
     };
     m_meta.supportedEpisodeDetails = {
         EpisodeScraperInfo::Actors,
@@ -45,7 +45,7 @@ TvMaze::TvMaze(TvMazeConfiguration& settings, QObject* parent) : TvScraper(paren
         EpisodeScraperInfo::Title,
         EpisodeScraperInfo::FirstAired,
         EpisodeScraperInfo::Thumbnail,
-        EpisodeScraperInfo::Overview //
+        EpisodeScraperInfo::Overview, //
     };
     m_meta.supportedSeasonOrders = {SeasonOrder::Aired};
     m_meta.supportedLanguages = {Locale::English};

@@ -121,8 +121,8 @@ void ClosableImage::paintEvent(QPaintEvent* event)
     }
 
     if (!m_pixmapForCloseAnimation.isNull()) {
-        const int h = height() * (width() - 2 * m_mySize) / width();
-        const int w = static_cast<int>((width() - 2 * m_mySize) * devicePixelRatioF());
+        const int h = height() * (width() - (2 * m_mySize)) / width();
+        const int w = static_cast<int>((width() - (2 * m_mySize)) * devicePixelRatioF());
         p.drawPixmap(m_mySize, (height() - h) / 2, m_pixmapForCloseAnimation.scaledToWidth(w));
         return;
     }
@@ -249,14 +249,15 @@ int ClosableImage::imageWith() const
 
 void ClosableImage::updateSize(int imageWidth, int imageHeight)
 {
-    int zoomSpace = (m_showZoomAndResolution) ? 20 : 0;
+    int zoomSpace = m_showZoomAndResolution ? 20 : 0;
     if (m_scaleTo == Qt::Horizontal) {
         // scale to width
         setFixedWidth(m_fixedSize);
         if (imageWidth == 0 || imageHeight == 0) {
             setFixedHeight((m_fixedHeight != 0) ? m_fixedHeight : 135);
         } else {
-            int calcHeight = qCeil(((static_cast<qreal>(width()) - 9.0) / imageWidth) * imageHeight + 7.0 + zoomSpace);
+            int calcHeight =
+                qCeil((((static_cast<qreal>(width()) - 9.0) / imageWidth) * imageHeight) + 7.0 + zoomSpace);
             setFixedHeight((m_fixedHeight != 0 && calcHeight < m_fixedHeight) ? m_fixedHeight : calcHeight);
         }
     } else {
@@ -265,7 +266,7 @@ void ClosableImage::updateSize(int imageWidth, int imageHeight)
         if (imageWidth == 0 || imageHeight == 0) {
             setFixedWidth(180);
         } else {
-            setFixedWidth(qCeil(((static_cast<qreal>(height()) - 7.0 - zoomSpace) / imageHeight) * imageWidth + 9.0));
+            setFixedWidth(qCeil((((static_cast<qreal>(height()) - 7.0 - zoomSpace) / imageHeight) * imageWidth) + 9.0));
         }
     }
     update();
@@ -317,7 +318,7 @@ void ClosableImage::setDefaultPixmap(QPixmap pixmap, bool useDefaultBorder)
     const int h = static_cast<int>((height() - borderHeight) * ratio);
     pixmap = pixmap.scaled(w, h, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     pixmap.setDevicePixelRatio(ratio);
-    m_defaultPixmap = pixmap;
+    m_defaultPixmap = std::move(pixmap);
 }
 
 void ClosableImage::setClickable(bool clickable)

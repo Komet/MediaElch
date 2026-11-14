@@ -30,7 +30,7 @@ UnpackButtons::~UnpackButtons()
 
 void UnpackButtons::setBaseName(QString baseName)
 {
-    m_baseName = baseName;
+    m_baseName = std::move(baseName);
 }
 
 QString UnpackButtons::baseName() const

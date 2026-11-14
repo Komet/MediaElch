@@ -119,7 +119,7 @@ void ImdbMovieScrapeJob::parseAndAssignInfos(const QString& html)
     if (data.released.hasValue()) {
         m_movie->setReleased(data.released.value);
     }
-    for (Rating rating : data.ratings) {
+    for (const Rating& rating : data.ratings) {
         m_movie->ratings().addRating(rating);
     }
 
@@ -134,7 +134,7 @@ void ImdbMovieScrapeJob::parseAndAssignInfos(const QString& html)
     if (data.trailer.hasValue()) {
         m_movie->setTrailer(data.trailer.value);
     }
-    for (Actor actor : data.actors) {
+    for (const Actor& actor : data.actors) {
         m_movie->addActor(actor);
     }
     if (!data.directors.isEmpty()) {
@@ -143,16 +143,16 @@ void ImdbMovieScrapeJob::parseAndAssignInfos(const QString& html)
     if (!data.writers.isEmpty()) {
         m_movie->setWriter(setToStringList(data.writers).join(", "));
     }
-    for (QString genre : data.genres) {
+    for (const QString& genre : data.genres) {
         m_movie->addGenre(genre);
     }
-    for (QString studio : data.studios) {
+    for (const QString& studio : data.studios) {
         m_movie->addStudio(studio);
     }
-    for (QString country : data.countries) {
+    for (const QString& country : data.countries) {
         m_movie->addCountry(country);
     }
-    for (QString keyword : data.keywords) {
+    for (const QString& keyword : data.keywords) {
         m_movie->addTag(keyword);
     }
 }

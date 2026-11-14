@@ -2,7 +2,7 @@
 
 #include "ui/export/csv_export/CsvExportDialog.h"
 
-static QString MODULE_NAME = "csv_export";
+static const QString MODULE_NAME = QStringLiteral("csv_export");
 
 namespace mediaelch {
 namespace exporter {
@@ -16,9 +16,7 @@ QString CsvExportModule::moduleName()
     return MODULE_NAME;
 }
 
-CsvExportModule::~CsvExportModule()
-{
-}
+CsvExportModule::~CsvExportModule() = default;
 
 void CsvExportModule::onInit()
 {

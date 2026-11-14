@@ -20,7 +20,8 @@ HotMovies::HotMovies(QObject* parent) : MovieScraper(parent)
     m_meta.termsOfService = "https://help.hotmovies.com/help/about/terms-and-conditions/";
     m_meta.privacyPolicy = "https://help.hotmovies.com/help/about/privacy-policy/";
     m_meta.help = "https://help.hotmovies.com/";
-    m_meta.supportedDetails = {MovieScraperInfo::Title,
+    m_meta.supportedDetails = {
+        MovieScraperInfo::Title,
         MovieScraperInfo::Rating,
         MovieScraperInfo::Released,
         MovieScraperInfo::Runtime,
@@ -32,7 +33,8 @@ HotMovies::HotMovies(QObject* parent) : MovieScraper(parent)
         MovieScraperInfo::Genres,
         MovieScraperInfo::Studios,
         MovieScraperInfo::Director,
-        MovieScraperInfo::Set};
+        MovieScraperInfo::Set,
+    };
     m_meta.supportedLanguages = {"en"};
     m_meta.defaultLocale = "en";
     m_meta.isAdult = true;

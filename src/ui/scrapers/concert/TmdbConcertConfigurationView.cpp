@@ -7,10 +7,11 @@ namespace mediaelch {
 namespace scraper {
 
 
-TmdbConcertConfigurationView::TmdbConcertConfigurationView(TmdbConcertConfiguration& settings) : m_settings(settings)
+TmdbConcertConfigurationView::TmdbConcertConfigurationView(TmdbConcertConfiguration& settings) :
+    m_settings(settings), m_languageBox(new LanguageCombo(this))
 {
-    m_languageBox = new LanguageCombo(this);
-    m_languageBox->setupLanguages(m_settings.supportedLanguages(), m_settings.language());
+    m_languageBox->setupLanguages(
+        mediaelch::scraper::TmdbConcertConfiguration::supportedLanguages(), m_settings.language());
 
     auto* layout = new QGridLayout(this);
     layout->addWidget(new QLabel(tr("Language")), 0, 0);

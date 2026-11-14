@@ -26,12 +26,12 @@ QVariant MyTableWidgetItem::data(int role) const
     const double fileSizeByte = QTableWidgetItem::data(Qt::DisplayRole).toDouble();
 
     if (role == Qt::DisplayRole && m_isSize) {
-        const QString decimalSize = helper::formatFileSize(fileSizeByte, locale);
+        QString decimalSize = helper::formatFileSize(fileSizeByte, locale);
         return decimalSize;
     }
 
     if (role == Qt::ToolTipRole && m_isSize) {
-        const QString binarySize = helper::formatFileSizeBinary(fileSizeByte, locale);
+        QString binarySize = helper::formatFileSizeBinary(fileSizeByte, locale);
         return binarySize;
     }
 

@@ -105,13 +105,13 @@ int MovieModel::columnCount(const QModelIndex& parent) const
 QVariant MovieModel::data(const QModelIndex& index, int role) const
 {
     if (index.row() < 0 || index.row() >= m_movies.count()) {
-        return QVariant();
+        return {};
     }
     if (role == Qt::UserRole) {
         return index.row();
     }
     if (!index.isValid()) {
-        return QVariant(); // root
+        return {}; // root
     }
 
     Movie* movie = m_movies[index.row()];
@@ -126,7 +126,7 @@ QVariant MovieModel::data(const QModelIndex& index, int role) const
         }
         if (role == Qt::ToolTipRole || role == Roles::FileNameRole) {
             if (movie->files().isEmpty()) {
-                return QVariant();
+                return {};
             }
             return movie->files().first().toNativePathString();
         }
@@ -183,7 +183,7 @@ QVariant MovieModel::data(const QModelIndex& index, int role) const
             icon = "edit-image-face-show";
             break;
         case MediaStatusColumn::Trailer:
-            color = (movie->trailer().isEmpty()) ? MediaStatusState::RED : MediaStatusState::GREEN;
+            color = movie->trailer().isEmpty() ? MediaStatusState::RED : MediaStatusState::GREEN;
             icon = "filmgrain";
             break;
         case MediaStatusColumn::LocalTrailer:
@@ -195,7 +195,7 @@ QVariant MovieModel::data(const QModelIndex& index, int role) const
             icon = "add-subtitle";
             break;
         case MediaStatusColumn::Tags:
-            color = (movie->tags().isEmpty()) ? MediaStatusState::RED : MediaStatusState::GREEN;
+            color = movie->tags().isEmpty() ? MediaStatusState::RED : MediaStatusState::GREEN;
             icon = "tag";
             break;
         case MediaStatusColumn::Poster:
@@ -247,7 +247,7 @@ QVariant MovieModel::data(const QModelIndex& index, int role) const
         return MovieModel::mediaStatusToText(MovieModel::columnToMediaStatus(index.column()));
     }
 
-    return QVariant();
+    return {};
 }
 
 /**

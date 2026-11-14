@@ -25,15 +25,13 @@ void MyTableWidget::dragEnterEvent(QDragEnterEvent* event)
 void MyTableWidget::dropEvent(QDropEvent* event)
 {
     const QMimeData* mimeData = event->mimeData();
-    if (mimeData->hasUrls()) {
-        if (!mimeData->urls().isEmpty()) {
-            QUrl url = mimeData->urls().at(0);
-            QStringList filters{".jpg", ".JPG", ".jpeg", ".JPeg", ".Jpg", ".png", ".PNG"};
-            for (const QString& filter : filters) {
-                if (url.toString().endsWith(filter)) {
-                    emit sigDroppedImage(url);
-                    return;
-                }
+    if (mimeData->hasUrls() && (!mimeData->urls().isEmpty())) {
+        QUrl url = mimeData->urls().at(0);
+        QStringList filters{".jpg", ".JPG", ".jpeg", ".JPeg", ".Jpg", ".png", ".PNG"};
+        for (const QString& filter : filters) {
+            if (url.toString().endsWith(filter)) {
+                emit sigDroppedImage(url);
+                return;
             }
         }
     }
