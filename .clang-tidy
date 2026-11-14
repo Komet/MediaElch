@@ -1,5 +1,5 @@
 ---
-Checks: '*, -altera-*, -boost-*, -fuchsia-*, -llvmlibc-*, -linuxkernel-*, -google-*, -misc-*, -zircon-*, -bugprone-narrowing-conversions, -bugprone-suspicious-enum-usage, -bugprone-suspicious-include, -readability-uppercase-literal-suffix, -readability-magic-numbers, -readability-identifier-naming, -readability-convert-member-functions-to-static, -readability-redundant-access-specifiers, -readability-function-cognitive-complexity, -readability-identifier-length, -readability-else-after-return, -readability-identifier-length, -performance-unnecessary-value-param, -performance-move-const-arg, -clang-analyzer-cplusplus.NewDeleteLeaks, -modernize-avoid-c-arrays, -modernize-use-trailing-return-type, -modernize-use-auto, -hicpp-no-array-decay, -hicpp-avoid-c-arrays, -hicpp-uppercase-literal-suffix, -hicpp-special-member-functions, -hicpp-move-const-arg, -hicpp-signed-bitwise, -hicpp-use-auto, -hicpp-function-size, -cert-err58-cpp, -clang-diagnostic-error, -cppcoreguidelines-pro-bounds-array-to-pointer-decay, -cppcoreguidelines-owning-memory, -cppcoreguidelines-pro-type-vararg, -cppcoreguidelines-avoid-magic-numbers, -cppcoreguidelines-avoid-c-arrays, -cppcoreguidelines-narrowing-conversions, -cppcoreguidelines-macro-usage, -cppcoreguidelines-special-member-functions, -llvm-namespace-comment, -llvm-else-after-return'
+Checks: '*, -altera-*, -abseil-*, -boost-*, -fuchsia-*, -llvmlibc-*, -linuxkernel-*, -google-*, -misc-*, -zircon-*, -bugprone-narrowing-conversions, -bugprone-suspicious-enum-usage, -bugprone-suspicious-include, -readability-uppercase-literal-suffix, -readability-magic-numbers, -readability-identifier-naming, -readability-convert-member-functions-to-static, -readability-redundant-access-specifiers, -readability-redundant-lambda-parameter-list, -readability-function-cognitive-complexity, -readability-identifier-length, -readability-else-after-return, -readability-identifier-length, -performance-unnecessary-value-param, -performance-move-const-arg, -clang-analyzer-cplusplus.NewDeleteLeaks, -modernize-avoid-c-arrays, -modernize-use-trailing-return-type, -modernize-concat-nested-namespaces, -modernize-use-auto, -hicpp-no-array-decay, -hicpp-avoid-c-arrays, -hicpp-uppercase-literal-suffix, -hicpp-special-member-functions, -hicpp-move-const-arg, -hicpp-signed-bitwise, -hicpp-use-auto, -hicpp-function-size, -cert-err58-cpp, -clang-diagnostic-error, -cppcoreguidelines-pro-bounds-array-to-pointer-decay, -cppcoreguidelines-owning-memory, -cppcoreguidelines-pro-type-vararg, -cppcoreguidelines-avoid-magic-numbers, -cppcoreguidelines-avoid-c-arrays, -cppcoreguidelines-narrowing-conversions, -cppcoreguidelines-macro-usage, -cppcoreguidelines-special-member-functions, -llvm-namespace-comment, -llvm-else-after-return, -llvm-use-ranges, -llvm-prefer-static-over-anonymous-namespace, -cppcoreguidelines-pro-bounds-avoid-unchecked-container-access'
 WarningsAsErrors: ''
 HeaderFilterRegex: ''
 FormatStyle: file
@@ -10,6 +10,7 @@ FormatStyle: file
 # They will be enabled step by step.
 #
 # altera-*                                             # Some kernel checks not meant for non-kernel stuff.
+# abseil-*                                             # We don't use it.
 # fuchsia-*                                            # Too strict for any form of normal C++ programming; degrades C++ literally to C
 # llvmlibc-*
 # linuxkernel-*
@@ -28,12 +29,14 @@ FormatStyle: file
 # readability-identifier-length                        # TODO
 # readability-else-after-return                        # Does not allow certain structured programming paradigms.
 # readability-identifier-length                        # Too noisy for variables such as "nl = '\n'"
+# readability-redundant-lambda-parameter-list          # Not our style.
 # performance-unnecessary-value-param                  # Too many warnings; we still need to fix those
 # performance-move-const-arg                           # TODO
 # clang-analyzer-cplusplus.NewDeleteLeaks              # False positive with QTimer::singleShot
 # modernize-avoid-c-arrays                             # qrc and moc files use c arrays...
 # modernize-use-trailing-return-type                   # Not our code base's style
 # modernize-use-auto                                   # Same as hicpp-use-auto
+# modernize-concat-nested-namespaces                   # Not supported in C++14
 # hicpp-no-array-decay                                 # qrc and moc files use c arrays...
 # hicpp-avoid-c-arrays                                 # qrc and moc files use c arrays...
 # hicpp-uppercase-literal-suffix                       # we use lowercase literal suffixes; clang-tidy has not option for that, though
@@ -52,8 +55,11 @@ FormatStyle: file
 # cppcoreguidelines-narrowing-conversions              # Too many warnings
 # cppcoreguidelines-macro-usage                        # Qt marcros...
 # cppcoreguidelines-special-member-functions           # in qrc_*.cpp files
+# cppcoreguidelines-pro-bounds-avoid-unchecked-container-access
 # llvm-namespace-comment                               # Useful but qrc_*.cpp files again...
 # llvm-else-after-return                               # Does not allow certain structured programming paradigms.
+# llvm-use-ranges                                      # We don't use llvm:: libraries
+# llvm-prefer-static-over-anonymous-namespace          # Not our style.
 
 CheckOptions:
   - key: bugprone-assert-side-effect.CheckFunctionCalls
