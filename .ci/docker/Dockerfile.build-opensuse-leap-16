@@ -1,0 +1,23 @@
+FROM opensuse/leap:16
+
+# Steps:
+#  - update system
+#  - install development tools
+#  - install compilers and required libraries
+
+RUN zypper --non-interactive refresh && \
+    zypper --non-interactive update && \
+    zypper --non-interactive install --type pattern devel_basis && \
+    zypper --non-interactive install git gcc 'gcc-c++' cmake \
+        libmediainfo0 libmediainfo-devel libpulse-devel Mesa-libGL-devel
+
+RUN zypper --non-interactive install \
+        qt6-base-devel qt6-base-common-devel qt6-concurrent-devel \
+        qt6-core-devel qt6-gui-devel qt6-imageformats-devel \
+        qt6-multimedia-devel qt6-multimediawidgets-devel \
+        qt6-qt5compat-devel qt6-sql-devel qt6-svg-devel \
+        qt6-tools-devel quazip-qt6-devel qt6-linguist-devel
+
+RUN git config --system --add safe.directory '*'
+
+WORKDIR /opt/src

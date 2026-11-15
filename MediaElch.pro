@@ -1,7 +1,7 @@
 # Check Qt versions
 lessThan(QT_MAJOR_VERSION, 5): error(Qt 4 is not supported!)
 equals(QT_MAJOR_VERSION, 5) {
-    lessThan(QT_MINOR_VERSION, 6): error(Qt 5.6 or higher is required!)
+    lessThan(QT_MINOR_VERSION, 9): error(Qt 5.9 or higher is required!)
 }
 equals(QT_MAJOR_VERSION, 6) {
     lessThan(QT_MINOR_VERSION, 3): error("Qt 6.3 is required as 6.0 and 6.1 do not support QMultiMedia!")

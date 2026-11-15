@@ -5,6 +5,8 @@
 
 ### Notes
 
+- MediaElch now requires at least Qt 5.9
+- Support for Ubuntu 16.04 has been dropped.
 - The renamer has been worked internally (#1834)  
   If you encounter issues, please let us know.
 - Qt was updated to v6.9.1 for macOS 11 and later.

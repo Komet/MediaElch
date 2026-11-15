@@ -38,7 +38,7 @@ file was missed.  If a file was missed, update the script above.
 ## Update Changelogs
 
  1. [main changelog](#main-changelog) (`changelog.md`)
- 2. [debian changelog](#debian-changelog) (use `dch -v "${ME_VERSION}-1" -D xenial -M`)
+ 2. [debian changelog](#debian-changelog) (use `dch -v "${ME_VERSION}-1" -D bionic -M`)
  3. [obs changelog](#obs-changelog) (`obs/MediaElch.changes`)
 
 ### Main Changelog

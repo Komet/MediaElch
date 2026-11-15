@@ -28,7 +28,7 @@ provided by MediaElch.
       <td>
         <a href="https://qt.io">Qt</a>
       </td>
-      <td>>= 5.6 || >= 6.3</td>
+      <td>>= 5.9 || >= 6.3</td>
       <td>
         Qt is the GUI framework upon which MediaElch is build.
       </td>

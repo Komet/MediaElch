@@ -85,8 +85,7 @@ void mediaelch_print_stacktrace();
 void registerAllMetaTypes();
 
 // Partially from qt/QtCore/qglobal.h
-// qAsConst was introduced in Qt 5.7, we support 5.6
-// std::as_const was introduced in C++17, we support C++14
+// Keep these helpers for existing call sites and C++14 builds.
 
 /// \brief Adds const to non-const objects (like std::as_const)
 template<typename T>
@@ -100,8 +99,7 @@ void asConst(const T&&) = delete;
 
 
 // Partially copied from Qt: qtbase/src/corelib/global/qglobal.h
-// Qt 5.6 does not support QOverload, so we have to provide it ourselves.
-// This code can be removed when Qt 5.7 is required.
+// Retained for existing elchOverload call sites.
 //
 // Copyright (C) 2019 The Qt Company Ltd.
 // Modified to avoid name clashes.

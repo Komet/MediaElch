@@ -12,11 +12,7 @@ namespace {
 std::chrono::seconds getLastModified(const mediaelch::FilePath& fileName)
 {
     using namespace std::chrono_literals;
-#if QT_VERSION < QT_VERSION_CHECK(5, 8, 0)
-    return std::chrono::seconds{QFileInfo(fileName.toString()).lastModified().toMSecsSinceEpoch() / 1000ll};
-#else
     return std::chrono::seconds{QFileInfo(fileName.toString()).lastModified().toSecsSinceEpoch()};
-#endif
 }
 
 bool isLastModifiedTheSame(const mediaelch::FilePath& fileName, std::chrono::seconds cachedSecSinceEpoch)

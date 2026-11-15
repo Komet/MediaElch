@@ -17,12 +17,12 @@ cd "$(dirname "$0")"
 PROJECT_PATH="$(make_absolute_path ../../)"
 
 DISTROS=(
-	"ubuntu-16.04"
+	"ubuntu-18.04"
 	"ubuntu-20.04"
 	"ubuntu-22.04"
 	"ubuntu-24.04"
 	"ubuntu-26.04"
-	"opensuse-leap-15"
+	"opensuse-leap-16"
 	"opensuse-tumbleweed"
 )
 

@@ -100,8 +100,8 @@ was related to network requests.  Previously we had to handle redirections
 (`3xx` responses) manually.  Qt 5.6 does this automatically which made my
 life a lot easier.
 
-On the downside we want to support Ubuntu LTS versions.  As of 2020-12-01,
-Ubuntu 16.04 is still supported by Ubuntu but no longer by MediaElch's PPA.
-But please try to support all LTS versions of Ubuntu if possible.
+We aim to support Ubuntu LTS versions.  The minimum supported release is now
+Ubuntu 18.04, which provides Qt 5.9.  Please try to support newer Ubuntu LTS
+versions as well.
 
 [qt]: https://www.qt.io/

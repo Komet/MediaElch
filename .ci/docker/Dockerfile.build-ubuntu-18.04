@@ -1,15 +1,14 @@
-FROM ubuntu:xenial
+FROM ubuntu:bionic
 
 # Note:
 # This Dockerfile is currently also used for creating
 # MediaElch AppImage.
 
 RUN apt-get update && \
-    apt-get install -y python3-distro-info=0.18~ubuntu16.04.1 && \
     apt-get install -y software-properties-common python3-software-properties
 
 RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test && \
-    add-apt-repository -y ppa:beineri/opt-qt-5.12.9-xenial
+    add-apt-repository -y ppa:beineri/opt-qt-5.12.9-bionic
 
 RUN apt-get update && \
     apt-get upgrade -y && \
@@ -24,7 +23,7 @@ RUN apt-get update && \
         tree \
         ffmpeg \
         python3-setuptools python3-pip \
-        libcurl4-openssl-dev libmediainfo-dev \
+        libcurl4-gnutls-dev libmediainfo-dev \
         libpulse-dev zlib1g-dev libzen-dev \
         libgl1-mesa-dev \
         qt512base \
@@ -36,5 +35,5 @@ RUN apt-get update && \
 RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 90 && \
     update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-8 90
 
-# Newer versions don't work with Ubuntu Xenial. Use latest patch version of 3.20.
-RUN pip3 install --user --ignore-installed cmake==3.20.5
+# Keep the CMake version compatible with Ubuntu Bionic's Python 3.6.
+RUN pip3 install --ignore-installed cmake==3.20.5

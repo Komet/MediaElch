@@ -88,7 +88,7 @@ endif()
 if(QT_VERSION_MAJOR EQUAL 6)
   set(MEDIAELCH_MIN_QT_VERSION 6.3)
 else()
-  set(MEDIAELCH_MIN_QT_VERSION 5.6)
+  set(MEDIAELCH_MIN_QT_VERSION 5.9)
 endif()
 
 find_package(

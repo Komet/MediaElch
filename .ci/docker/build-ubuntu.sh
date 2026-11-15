@@ -5,7 +5,7 @@
 # It may work standalone but it is not tested.
 ###########################################################
 
-# Special case for Ubuntu 16.04 image which we use for the AppImage
+# Special case for the Ubuntu 18.04 image used to build the AppImage
 if [[ -f /opt/qt512/bin/qt512-env.sh ]]; then
 	source /opt/qt512/bin/qt512-env.sh
 fi
