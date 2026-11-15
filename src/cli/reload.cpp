@@ -13,7 +13,7 @@ void reloadMovies()
     Manager::instance()->movieFileSearcher()->setMovieDirectories(
         Settings::instance()->directorySettings().movieDirectories());
     Manager::instance()->movieFileSearcher()->reload(true);
-    std::cout << "Movies reloaded." << std::endl;
+    std::cout << "Movies reloaded." << '\n';
 }
 
 void reloadTvShows()
@@ -24,7 +24,7 @@ void reloadTvShows()
     // TODO: Don't implicitly expect that it is instantiated somewhere.
     TvShowFilesWidget filesWidget;
     Manager::instance()->tvShowFileSearcher()->reload(true);
-    std::cout << "Concerts reloaded." << std::endl;
+    std::cout << "Concerts reloaded." << '\n';
 }
 
 void reloadConcerts()
@@ -32,7 +32,7 @@ void reloadConcerts()
     Manager::instance()->concertFileSearcher()->setConcertDirectories(
         Settings::instance()->directorySettings().concertDirectories());
     Manager::instance()->concertFileSearcher()->reload(true);
-    std::cout << "Concerts reloaded." << std::endl;
+    std::cout << "Concerts reloaded." << '\n';
 }
 
 void reloadMusic()
@@ -40,7 +40,7 @@ void reloadMusic()
     Manager::instance()->musicFileSearcher()->setMusicDirectories(
         Settings::instance()->directorySettings().musicDirectories());
     Manager::instance()->musicFileSearcher()->reload(true);
-    std::cout << "Music reloaded." << std::endl;
+    std::cout << "Music reloaded." << '\n';
 }
 
 void reloadEntries(ReloadConfig config)
@@ -76,7 +76,7 @@ int reload(QApplication& app, QCommandLineParser& parser)
     config.mediaType = mediaTypeFromString(parser.value(typeOption));
 
     if (config.mediaType == MediaType::Unknown) {
-        std::cerr << "Unknown media type: " << parser.value(typeOption).toStdString() << std::endl;
+        std::cerr << "Unknown media type: " << parser.value(typeOption).toStdString() << '\n';
         return 1;
     }
 

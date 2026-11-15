@@ -118,7 +118,7 @@ void NetworkSettings::setProxyType(int type)
  */
 void NetworkSettings::setProxyHost(QString host)
 {
-    m_proxyHost = host;
+    m_proxyHost = std::move(host);
 }
 
 /**
@@ -136,7 +136,7 @@ void NetworkSettings::setProxyPort(uint16_t port)
  */
 void NetworkSettings::setProxyUsername(QString username)
 {
-    m_proxyUsername = username;
+    m_proxyUsername = std::move(username);
 }
 
 /**
@@ -145,7 +145,7 @@ void NetworkSettings::setProxyUsername(QString username)
  */
 void NetworkSettings::setProxyPassword(QString password)
 {
-    m_proxyPassword = password;
+    m_proxyPassword = std::move(password);
 }
 
 void NetworkSettings::setupProxy()

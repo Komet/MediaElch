@@ -30,7 +30,7 @@ TEST_CASE("TheTvDb returns valid search results", "[tv][TheTvDb][search]")
         auto* searchJob = new TheTvDbShowSearchJob(getTheTvDbApi(), config);
         const auto scraperResults = test::searchTvScraperSync(searchJob).first;
 
-        REQUIRE(scraperResults.length() >= 1);
+        REQUIRE_FALSE(scraperResults.empty());
         CHECK(scraperResults[0].title == "Hoży doktorzy");
         CHECK(scraperResults[0].identifier.str() == "76156");
         CHECK(scraperResults[0].released == QDate(2001, 10, 2));
@@ -42,7 +42,7 @@ TEST_CASE("TheTvDb returns valid search results", "[tv][TheTvDb][search]")
         auto* searchJob = new TheTvDbShowSearchJob(getTheTvDbApi(), config);
         const auto p = test::searchTvScraperSync(searchJob);
 
-        CHECK(p.first.length() == 0);
+        CHECK(p.first.empty());
         CHECK(p.second.error == ScraperError::Type::NoError);
     }
 }

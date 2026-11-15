@@ -324,6 +324,7 @@ QVector<ExportTemplate*> ExportTemplateLoader::mergeTemplates(QVector<ExportTemp
                 localTemplate->setRemote(true);
                 localTemplate->setRemoteVersion(remoteTemplate->version());
                 localTemplate->setRemoteFile(remoteTemplate->remoteFile());
+                localTemplate->setRemoteFileChecksum(remoteTemplate->remoteFileChecksum());
             }
         }
         if (!found) {

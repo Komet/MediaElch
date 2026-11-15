@@ -10,13 +10,12 @@
 #include <QMenu>
 #include <QPainter>
 
-PlaceholderLineEdit::PlaceholderLineEdit(QWidget* parent) : QComboBox(parent)
+PlaceholderLineEdit::PlaceholderLineEdit(QWidget* parent) :
+    QComboBox(parent), m_defaultTextColor(palette().color(QPalette::Text))
 {
     setEditable(true);
 
     connect(this, &PlaceholderLineEdit::editTextChanged, this, &PlaceholderLineEdit::onTextChanged);
-
-    m_defaultTextColor = palette().color(QPalette::Text);
 }
 
 void PlaceholderLineEdit::onTextChanged(QString text)

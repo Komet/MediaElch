@@ -117,7 +117,7 @@ ShowScrapeJob::Config CustomShowScrapeJob::configFor(const QString& scraperId, c
 
     auto detailsForScraper = mediaelch::listToSet(m_customConfig.scraperForShowDetails.keys(scraperId));
     detailsForScraper.intersect(scraperConfig.details);
-    scraperConfig.details = detailsForScraper;
+    scraperConfig.details = std::move(detailsForScraper);
 
     return scraperConfig;
 }

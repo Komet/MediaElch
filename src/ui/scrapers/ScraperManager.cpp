@@ -84,7 +84,7 @@ QVector<mediaelch::scraper::MovieScraper*> ScraperManager::movieScrapers()
 mediaelch::scraper::MovieScraper* ScraperManager::movieScraper(const QString& identifier)
 {
     MediaElch_Debug_Assert(identifier != "");
-    for (auto& scraper : asConst(m_scraperMovies)) {
+    for (const ManagedMovieScraper& scraper : asConst(m_scraperMovies)) {
         if (scraper.scraper()->meta().identifier == identifier) {
             return scraper.scraper();
         }
@@ -98,7 +98,7 @@ mediaelch::scraper::MovieScraper* ScraperManager::movieScraper(const QString& id
 mediaelch::ScraperConfiguration* ScraperManager::movieScraperConfig(const QString& identifier)
 {
     MediaElch_Debug_Assert(identifier != "");
-    for (auto& scraper : asConst(m_scraperMovies)) {
+    for (const ManagedMovieScraper& scraper : asConst(m_scraperMovies)) {
         if (scraper.scraper()->meta().identifier == identifier) {
             return scraper.config();
         }
@@ -111,7 +111,7 @@ mediaelch::ScraperConfiguration* ScraperManager::movieScraperConfig(const QStrin
 
 scraper::ConcertScraper* ScraperManager::concertScraper(const QString& identifier)
 {
-    for (auto& scraper : asConst(m_scraperConcert)) {
+    for (const ManagedConcertScraper& scraper : asConst(m_scraperConcert)) {
         if (scraper.scraper()->meta().identifier == identifier) {
             return scraper.scraper();
         }
@@ -133,7 +133,7 @@ QVector<mediaelch::scraper::TvScraper*> ScraperManager::tvScrapers()
 
 mediaelch::scraper::TvScraper* ScraperManager::tvScraper(const QString& identifier)
 {
-    for (auto& scraper : asConst(m_scraperTv)) {
+    for (const ManagedTvScraper& scraper : asConst(m_scraperTv)) {
         if (scraper.scraper()->meta().identifier == identifier) {
             return scraper.scraper();
         }
@@ -143,7 +143,7 @@ mediaelch::scraper::TvScraper* ScraperManager::tvScraper(const QString& identifi
 
 mediaelch::ScraperConfiguration* ScraperManager::tvScraperConfig(const QString& identifier)
 {
-    for (auto& scraper : asConst(m_scraperTv)) {
+    for (const ManagedTvScraper& scraper : asConst(m_scraperTv)) {
         if (scraper.scraper()->meta().identifier == identifier) {
             return scraper.config();
         }
@@ -164,7 +164,7 @@ QVector<mediaelch::scraper::ConcertScraper*> ScraperManager::concertScrapers()
 
 mediaelch::ScraperConfiguration* ScraperManager::concertScraperConfig(const QString& identifier)
 {
-    for (auto& scraper : asConst(m_scraperConcert)) {
+    for (const ManagedConcertScraper& scraper : asConst(m_scraperConcert)) {
         if (scraper.scraper()->meta().identifier == identifier) {
             return scraper.config();
         }
@@ -185,7 +185,7 @@ QVector<mediaelch::scraper::MusicScraper*> ScraperManager::musicScrapers()
 
 mediaelch::ScraperConfiguration* ScraperManager::musicScraperConfig(const QString& identifier)
 {
-    for (auto& scraper : asConst(m_scraperMusic)) {
+    for (const ManagedMusicScraper& scraper : asConst(m_scraperMusic)) {
         if (scraper.scraper()->meta().identifier == identifier) {
             return scraper.config();
         }
@@ -373,7 +373,7 @@ void ScraperManager::initTvScrapers()
     }
 
 
-    for (auto& managed : asConst(m_scraperTv)) {
+    for (const ManagedTvScraper& managed : asConst(m_scraperTv)) {
         auto* scraper = managed.scraper();
 
         qCInfo(generic) << "[TvScraper] Initializing" << scraper->meta().name;
@@ -530,7 +530,7 @@ const std::vector<ManagedMusicScraper>& ScraperManager::allMusicScrapers()
 mediaelch::scraper::ImageProvider* ScraperManager::imageProvider(const QString& identifier)
 {
     MediaElch_Debug_Assert(identifier != "");
-    for (auto& scraper : asConst(m_imageProviders)) {
+    for (const ManagedImageProvider& scraper : asConst(m_imageProviders)) {
         if (scraper.scraper()->meta().identifier == identifier) {
             return scraper.scraper();
         }
@@ -552,7 +552,7 @@ QVector<mediaelch::scraper::ImageProvider*> ScraperManager::imageProviders()
 QVector<mediaelch::scraper::ImageProvider*> ScraperManager::imageProviders(ImageType type)
 {
     QVector<mediaelch::scraper::ImageProvider*> providers;
-    for (auto& provider : asConst(m_imageProviders)) {
+    for (const ManagedImageProvider& provider : asConst(m_imageProviders)) {
         if (provider.scraper()->meta().supportedImageTypes.contains(type)) {
             providers.append(provider.scraper());
         }
@@ -567,7 +567,7 @@ const std::vector<ManagedImageProvider>& ScraperManager::allImageProviders()
 
 mediaelch::ScraperConfiguration* ScraperManager::imageProviderConfig(const QString& identifier)
 {
-    for (auto& scraper : asConst(m_imageProviders)) {
+    for (const ManagedImageProvider& scraper : asConst(m_imageProviders)) {
         if (scraper.scraper()->meta().identifier == identifier) {
             return scraper.config();
         }

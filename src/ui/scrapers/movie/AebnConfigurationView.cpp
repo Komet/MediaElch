@@ -7,11 +7,9 @@ namespace scraper {
 
 
 AebnConfigurationView::AebnConfigurationView(AebnConfiguration& settings, QWidget* parent) :
-    QWidget(parent), m_settings(settings)
+    QWidget(parent), m_settings(settings), m_languageBox(new LanguageCombo(this)), m_genreBox(new QComboBox(this))
 {
-    m_languageBox = new LanguageCombo(this);
-    m_languageBox->setupLanguages(m_settings.supportedLanguages(), m_settings.language());
-    m_genreBox = new QComboBox(this);
+    m_languageBox->setupLanguages(mediaelch::scraper::AebnConfiguration::supportedLanguages(), m_settings.language());
 
 
     // Genre IDs overrides URL (http://[straight|gay]...)

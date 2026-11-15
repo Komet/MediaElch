@@ -4,7 +4,7 @@
 
 namespace mediaelch {
 
-void removeUnicodeSpaces(QString& str);
+void removeUnicodeSpaces(QString& input);
 
 QString removeHtmlEntities(const QString& str);
 

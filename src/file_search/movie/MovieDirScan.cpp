@@ -117,11 +117,9 @@ void MovieDirScan::scanDir(QString startPath,
             QString right = file.mid(pos + match.captured(0).size());
             for (elch_ssize_t x = 0; x < n; x++) {
                 QString subFile = files.at(x);
-                if (subFile != file) {
-                    if (subFile.startsWith(left) && subFile.endsWith(right)) {
-                        movieFiles << QDir::toNativeSeparators(path + QDir::separator() + subFile);
-                        files[x] = ""; // set an empty file name, this way we can skip this file in the main loop
-                    }
+                if ((subFile != file) && (subFile.startsWith(left) && subFile.endsWith(right))) {
+                    movieFiles << QDir::toNativeSeparators(path + QDir::separator() + subFile);
+                    files[x] = ""; // set an empty file name, this way we can skip this file in the main loop
                 }
             }
         }

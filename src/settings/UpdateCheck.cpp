@@ -87,8 +87,8 @@ UpdateCheck::Result UpdateCheck::createUpdateCheckResult(const QString& xmlStrin
     }
 
     result.versionName = QStringLiteral("MediaElch %1 - %2").arg(versionInfo.toString()).arg(versionName);
-    result.downloadUrl = downloadUrl;
-    result.releaseDate = released;
+    result.downloadUrl = std::move(downloadUrl);
+    result.releaseDate = std::move(released);
     result.isNewVersionAvailable = versionInfo.isValid() && versionInfo > mediaelch::currentVersion();
     return result;
 }

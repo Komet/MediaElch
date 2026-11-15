@@ -72,7 +72,7 @@ ELCH_NODISCARD QString MovieRenamerData::value(const QString& name) const
             return helper::matchResolution(m_videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
                 m_videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
                 m_videoDetails.value(StreamDetails::VideoDetails::ScanType));
-        }},
+        },},
         // clang-format on
     };
 
@@ -126,7 +126,7 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
 
     bool replaceDelimiter = m_config.replaceDelimiter;
     QString oldDelimiter = " ";
-    QString newDelimiter = (replaceDelimiter) ? m_config.delimiter : oldDelimiter;
+    QString newDelimiter = replaceDelimiter ? m_config.delimiter : oldDelimiter;
 
     MediaCenterInterface* mediaCenter = Manager::instance()->mediaCenterInterface();
     QString nfo = mediaCenter->nfoFilePath(&movie);
@@ -462,11 +462,10 @@ MovieRenamer::RenameError MovieRenamer::renameMovie(Movie& movie)
                     m_dialog->appendResultText(QObject::tr(R"(<b>Move File</b> "%1" to "%2")")
                             .arg(fi.fileName())
                             .arg(dir.dirName() + "/" + newFolderName + "/" + fi.fileName()));
-                    if (!m_config.dryRun) {
-                        if (!rename(dir.absolutePath() + "/" + fileName,
-                                dir.absolutePath() + "/" + newFolderName + "/" + fi.fileName())) {
-                            m_dialog->setResultStatus(row, RenameResult::Failed);
-                        }
+                    if ((!m_config.dryRun)
+                        && (!rename(dir.absolutePath() + "/" + fileName,
+                            dir.absolutePath() + "/" + newFolderName + "/" + fi.fileName()))) {
+                        m_dialog->setResultStatus(row, RenameResult::Failed);
                     }
                 }
             }

@@ -6,7 +6,7 @@
 #include <tuple>
 #include <vector>
 
-static QString LANG_INVALID_STATE = QStringLiteral("error");
+static const QString LANG_INVALID_STATE = QStringLiteral("error");
 
 LanguageCombo::LanguageCombo(QWidget* parent) : QComboBox(parent)
 {
@@ -61,12 +61,12 @@ bool LanguageCombo::isCurrentValid()
 
 mediaelch::Locale LanguageCombo::currentLocale()
 {
-    return mediaelch::Locale(itemData(currentIndex(), Qt::UserRole).toString());
+    return {itemData(currentIndex(), Qt::UserRole).toString()};
 }
 
 mediaelch::Locale LanguageCombo::localeAt(int index)
 {
-    return mediaelch::Locale(itemData(index, Qt::UserRole).toString());
+    return {itemData(index, Qt::UserRole).toString()};
 }
 
 void LanguageCombo::onIndexChanged(int index)

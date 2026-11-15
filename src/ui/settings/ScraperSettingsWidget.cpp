@@ -17,32 +17,33 @@
 #include "ui/settings/MusicScraperInfoWidget.h"
 #include "ui/settings/ScraperSettingsTable.h"
 #include "ui/settings/TvScraperInfoWidget.h"
+#include "utils/Meta.h"
 
 namespace {
 
 class MovieSettingsTableData : public mediaelch::scraper::SettingsTableData
 {
 public:
-    MovieSettingsTableData(const mediaelch::ManagedMovieScraper& scraper) : m_scraper{scraper} {}
+    explicit MovieSettingsTableData(const mediaelch::ManagedMovieScraper& scraper) : m_scraper{scraper} {}
     ~MovieSettingsTableData() override = default;
 
-    QString scraperName() const override
+    ELCH_NODISCARD QString scraperName() const override
     {
         auto* scraper = m_scraper.scraper();
         MediaElch_Ensures(scraper != nullptr);
         return scraper->meta().name;
     }
 
-    QWidget* createScraperInfoWidget() const override
+    ELCH_NODISCARD QWidget* createScraperInfoWidget() const override
     {
         auto* scraper = m_scraper.scraper();
         MediaElch_Ensures(scraper != nullptr);
         return new MovieScraperInfoWidget(*scraper);
     }
 
-    QWidget* createScraperSettingsWidget() const override { return m_scraper.createView(); }
+    ELCH_NODISCARD QWidget* createScraperSettingsWidget() const override { return m_scraper.createView(); }
 
-    bool isAdultScraper() const override { return m_scraper.scraper()->meta().isAdult; }
+    ELCH_NODISCARD bool isAdultScraper() const override { return m_scraper.scraper()->meta().isAdult; }
 
 private:
     const mediaelch::ManagedMovieScraper& m_scraper;
@@ -51,26 +52,26 @@ private:
 class TvSettingsTableData : public mediaelch::scraper::SettingsTableData
 {
 public:
-    TvSettingsTableData(const mediaelch::ManagedTvScraper& scraper) : m_scraper{scraper} {}
+    explicit TvSettingsTableData(const mediaelch::ManagedTvScraper& scraper) : m_scraper{scraper} {}
     ~TvSettingsTableData() override = default;
 
-    QString scraperName() const override
+    ELCH_NODISCARD QString scraperName() const override
     {
         auto* scraper = m_scraper.scraper();
         MediaElch_Ensures(scraper != nullptr);
         return scraper->meta().name;
     }
 
-    QWidget* createScraperInfoWidget() const override
+    ELCH_NODISCARD QWidget* createScraperInfoWidget() const override
     {
         auto* scraper = m_scraper.scraper();
         MediaElch_Ensures(scraper != nullptr);
         return new TvScraperInfoWidget(*scraper);
     }
 
-    QWidget* createScraperSettingsWidget() const override { return m_scraper.createView(); }
+    ELCH_NODISCARD QWidget* createScraperSettingsWidget() const override { return m_scraper.createView(); }
 
-    bool isAdultScraper() const override { return false; }
+    ELCH_NODISCARD bool isAdultScraper() const override { return false; }
 
 private:
     const mediaelch::ManagedTvScraper& m_scraper;
@@ -79,26 +80,26 @@ private:
 class ConcertSettingsTableData : public mediaelch::scraper::SettingsTableData
 {
 public:
-    ConcertSettingsTableData(const mediaelch::ManagedConcertScraper& scraper) : m_scraper{scraper} {}
+    explicit ConcertSettingsTableData(const mediaelch::ManagedConcertScraper& scraper) : m_scraper{scraper} {}
     ~ConcertSettingsTableData() override = default;
 
-    QString scraperName() const override
+    ELCH_NODISCARD QString scraperName() const override
     {
         auto* scraper = m_scraper.scraper();
         MediaElch_Ensures(scraper != nullptr);
         return scraper->meta().name;
     }
 
-    QWidget* createScraperInfoWidget() const override
+    ELCH_NODISCARD QWidget* createScraperInfoWidget() const override
     {
         auto* scraper = m_scraper.scraper();
         MediaElch_Ensures(scraper != nullptr);
         return new ConcertScraperInfoWidget(*scraper);
     }
 
-    QWidget* createScraperSettingsWidget() const override { return m_scraper.createView(); }
+    ELCH_NODISCARD QWidget* createScraperSettingsWidget() const override { return m_scraper.createView(); }
 
-    bool isAdultScraper() const override { return false; }
+    ELCH_NODISCARD bool isAdultScraper() const override { return false; }
 
 private:
     const mediaelch::ManagedConcertScraper& m_scraper;
@@ -107,26 +108,26 @@ private:
 class MusicSettingsTableData : public mediaelch::scraper::SettingsTableData
 {
 public:
-    MusicSettingsTableData(const mediaelch::ManagedMusicScraper& scraper) : m_scraper{scraper} {}
+    explicit MusicSettingsTableData(const mediaelch::ManagedMusicScraper& scraper) : m_scraper{scraper} {}
     ~MusicSettingsTableData() override = default;
 
-    QString scraperName() const override
+    ELCH_NODISCARD QString scraperName() const override
     {
         auto* scraper = m_scraper.scraper();
         MediaElch_Ensures(scraper != nullptr);
         return scraper->meta().name;
     }
 
-    QWidget* createScraperInfoWidget() const override
+    ELCH_NODISCARD QWidget* createScraperInfoWidget() const override
     {
         auto* scraper = m_scraper.scraper();
         MediaElch_Ensures(scraper != nullptr);
         return new MusicScraperInfoWidget(*scraper);
     }
 
-    QWidget* createScraperSettingsWidget() const override { return m_scraper.createView(); }
+    ELCH_NODISCARD QWidget* createScraperSettingsWidget() const override { return m_scraper.createView(); }
 
-    bool isAdultScraper() const override { return false; }
+    ELCH_NODISCARD bool isAdultScraper() const override { return false; }
 
 private:
     const mediaelch::ManagedMusicScraper& m_scraper;
@@ -135,26 +136,26 @@ private:
 class ImageSettingsTableData : public mediaelch::scraper::SettingsTableData
 {
 public:
-    ImageSettingsTableData(const mediaelch::ManagedImageProvider& scraper) : m_scraper{scraper} {}
+    explicit ImageSettingsTableData(const mediaelch::ManagedImageProvider& scraper) : m_scraper{scraper} {}
     ~ImageSettingsTableData() override = default;
 
-    QString scraperName() const override
+    ELCH_NODISCARD QString scraperName() const override
     {
         auto* scraper = m_scraper.scraper();
         MediaElch_Ensures(scraper != nullptr);
         return scraper->meta().name;
     }
 
-    QWidget* createScraperInfoWidget() const override
+    ELCH_NODISCARD QWidget* createScraperInfoWidget() const override
     {
         auto* scraper = m_scraper.scraper();
         MediaElch_Ensures(scraper != nullptr);
         return new ImageProviderInfoWidget(*scraper);
     }
 
-    QWidget* createScraperSettingsWidget() const override { return m_scraper.createView(); }
+    ELCH_NODISCARD QWidget* createScraperSettingsWidget() const override { return m_scraper.createView(); }
 
-    bool isAdultScraper() const override { return false; }
+    ELCH_NODISCARD bool isAdultScraper() const override { return false; }
 
 private:
     const mediaelch::ManagedImageProvider& m_scraper;
@@ -163,7 +164,8 @@ private:
 
 } // namespace
 
-ScraperSettingsWidget::ScraperSettingsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::ScraperSettingsWidget)
+ScraperSettingsWidget::ScraperSettingsWidget(QWidget* parent) :
+    QWidget(parent), ui(new Ui::ScraperSettingsWidget), m_omdbWarningLabel(new QLabel(this))
 {
     ui->setupUi(this);
 
@@ -177,7 +179,7 @@ ScraperSettingsWidget::ScraperSettingsWidget(QWidget* parent) : QWidget(parent),
     ui->customScraperTable->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
     ui->customScraperTable->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
-    m_omdbWarningLabel = new QLabel(this);
+
     m_omdbWarningLabel->setStyleSheet("QLabel { color: #e8a631; }");
     m_omdbWarningLabel->setWordWrap(true);
     m_omdbWarningLabel->hide();
@@ -230,7 +232,8 @@ void ScraperSettingsWidget::loadSettings()
 
     // QVector instead of QSet to keep order.
     // TODO: not everything is listed, but should be!
-    QVector<MovieScraperInfo> infos = {MovieScraperInfo::Title,
+    QVector<MovieScraperInfo> infos = {
+        MovieScraperInfo::Title,
         MovieScraperInfo::Set,
         MovieScraperInfo::Tagline,
         MovieScraperInfo::Rating,
@@ -253,7 +256,8 @@ void ScraperSettingsWidget::loadSettings()
         MovieScraperInfo::ClearArt,
         MovieScraperInfo::CdArt,
         MovieScraperInfo::Banner,
-        MovieScraperInfo::Thumb};
+        MovieScraperInfo::Thumb,
+    };
 
 #ifdef QT_DEBUG
     { // TODO: Maybe a simple macro?
@@ -323,13 +327,15 @@ QComboBox* ScraperSettingsWidget::comboForMovieScraperInfo(const MovieScraperInf
         }
     }
 
-    QSet<MovieScraperInfo> images{MovieScraperInfo::Backdrop,
+    QSet<MovieScraperInfo> images{
+        MovieScraperInfo::Backdrop,
         MovieScraperInfo::Logo,
         MovieScraperInfo::ClearArt,
         MovieScraperInfo::CdArt,
         MovieScraperInfo::Banner,
         MovieScraperInfo::Thumb,
-        MovieScraperInfo::Poster};
+        MovieScraperInfo::Poster,
+    };
 
     if (images.contains(info)) {
         for (auto* const img : Manager::instance()->scrapers().imageProviders()) {

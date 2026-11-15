@@ -22,7 +22,8 @@ OmdbTv::OmdbTv(OmdbTvConfiguration& settings, QObject* parent) : TvScraper(paren
     m_meta.termsOfService = "https://www.omdbapi.com/legal.htm";
     m_meta.privacyPolicy = "https://www.omdbapi.com/legal.htm";
     m_meta.help = "https://www.omdbapi.com/";
-    m_meta.supportedShowDetails = {ShowScraperInfo::Title,
+    m_meta.supportedShowDetails = {
+        ShowScraperInfo::Title,
         ShowScraperInfo::Overview,
         ShowScraperInfo::Certification,
         ShowScraperInfo::FirstAired,
@@ -30,13 +31,16 @@ OmdbTv::OmdbTv(OmdbTvConfiguration& settings, QObject* parent) : TvScraper(paren
         ShowScraperInfo::Rating,
         ShowScraperInfo::Genres,
         ShowScraperInfo::Actors,
-        ShowScraperInfo::Poster};
-    m_meta.supportedEpisodeDetails = {EpisodeScraperInfo::Title,
+        ShowScraperInfo::Poster,
+    };
+    m_meta.supportedEpisodeDetails = {
+        EpisodeScraperInfo::Title,
         EpisodeScraperInfo::Overview,
         EpisodeScraperInfo::FirstAired,
         EpisodeScraperInfo::Director,
         EpisodeScraperInfo::Writer,
-        EpisodeScraperInfo::Rating};
+        EpisodeScraperInfo::Rating,
+    };
     m_meta.supportedSeasonOrders = {SeasonOrder::Aired};
     m_meta.supportedLanguages = {Locale::English};
     m_meta.defaultLocale = Locale::English;

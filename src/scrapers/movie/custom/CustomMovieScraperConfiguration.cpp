@@ -4,8 +4,8 @@
 
 namespace {
 
-static constexpr char moduleName[] = "scrapers";
-static const Settings::Key KEY_CUSTOM_MOVIE_SCRAPER(moduleName, "CustomMovieScraper");
+constexpr char moduleName[] = "scrapers";
+const Settings::Key KEY_CUSTOM_MOVIE_SCRAPER(moduleName, "CustomMovieScraper");
 
 } // namespace
 
@@ -39,7 +39,7 @@ void CustomMovieScraperConfiguration::setLanguage(const Locale& value)
 QMap<MovieScraperInfo, QString> CustomMovieScraperConfiguration::detailScraperMap() const
 {
     // FIXME
-    return QMap<MovieScraperInfo, QString>();
+    return {};
 }
 
 void CustomMovieScraperConfiguration::setDetailScraperMap(QMap<MovieScraperInfo, QString> customMovieScraper)

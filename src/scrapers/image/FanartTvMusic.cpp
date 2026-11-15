@@ -20,7 +20,7 @@ namespace scraper {
 QString FanartTvMusic::ID = "images.fanarttv-music_lib";
 
 FanartTvMusic::FanartTvMusic(FanartTvConfiguration& settings, QObject* parent) :
-    ImageProvider(parent), m_settings{settings}
+    ImageProvider(parent), m_settings{settings}, m_apiKey("842f7a5d1cc7396f142b8dd47c4ba42b")
 {
     m_meta.identifier = ID;
     m_meta.name = "Fanart.tv Music";
@@ -29,17 +29,17 @@ FanartTvMusic::FanartTvMusic(FanartTvConfiguration& settings, QObject* parent) :
     m_meta.termsOfService = "https://fanart.tv/terms-and-conditions/";
     m_meta.privacyPolicy = "https://fanart.tv/privacy-policy/";
     m_meta.help = "https://forum.fanart.tv/";
-    m_meta.supportedImageTypes = {ImageType::AlbumCdArt,
+    m_meta.supportedImageTypes = {
+        ImageType::AlbumCdArt,
         ImageType::AlbumThumb,
         ImageType::ArtistFanart,
         ImageType::ArtistLogo,
         ImageType::ArtistThumb,
-        ImageType::ArtistExtraFanart};
+        ImageType::ArtistExtraFanart,
+    };
 
     m_meta.supportedLanguages = FanartTvConfiguration::supportedLanguages();
     m_meta.defaultLocale = FanartTvConfiguration::defaultLocale();
-
-    m_apiKey = "842f7a5d1cc7396f142b8dd47c4ba42b";
 }
 
 const ImageProvider::ScraperMeta& FanartTvMusic::meta() const

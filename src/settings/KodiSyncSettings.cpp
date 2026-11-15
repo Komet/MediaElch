@@ -1,21 +1,21 @@
-#include "settings/KodiSettings.h"
+#include "settings/KodiSyncSettings.h"
 
 #include "log/Log.h"
 
 namespace {
 
-static constexpr char moduleName[] = "import";
-static const Settings::Key KEY_SETTINGS_KODI_REMOTE_HOST(moduleName, "XBMC/RemoteHost");
-static const Settings::Key KEY_SETTINGS_KODI_REMOTE_PORT(moduleName, "XBMC/RemotePort");
-static const Settings::Key KEY_SETTINGS_KODI_REMOTE_USER(moduleName, "XBMC/RemoteUser");
-static const Settings::Key KEY_SETTINGS_KODI_REMOTE_PASSWORD(moduleName, "XBMC/RemotePassword");
-static const Settings::Key KEY_SETTINGS_KODI_VERSION(moduleName, "kodi/version");
+constexpr char moduleName[] = "import";
+const Settings::Key KEY_SETTINGS_KODI_REMOTE_HOST(moduleName, "XBMC/RemoteHost");
+const Settings::Key KEY_SETTINGS_KODI_REMOTE_PORT(moduleName, "XBMC/RemotePort");
+const Settings::Key KEY_SETTINGS_KODI_REMOTE_USER(moduleName, "XBMC/RemoteUser");
+const Settings::Key KEY_SETTINGS_KODI_REMOTE_PASSWORD(moduleName, "XBMC/RemotePassword");
+const Settings::Key KEY_SETTINGS_KODI_VERSION(moduleName, "kodi/version");
 
 } // namespace
 
 namespace mediaelch {
 
-KodiSettings::KodiSettings(Settings& settings, QObject* parent) : QObject(parent), m_settings{settings}
+KodiSyncSettings::KodiSyncSettings(Settings& settings, QObject* parent) : QObject(parent), m_settings{settings}
 {
     settings.onSettingChanged(KEY_SETTINGS_KODI_REMOTE_HOST, this, [this]() { emit xbmcHostChanged(xbmcHost()); });
     settings.onSettingChanged(KEY_SETTINGS_KODI_REMOTE_PORT, this, [this]() { emit xbmcPortChanged(xbmcPort()); });
@@ -25,7 +25,7 @@ KodiSettings::KodiSettings(Settings& settings, QObject* parent) : QObject(parent
     settings.onSettingChanged(KEY_SETTINGS_KODI_VERSION, this, [this]() { emit kodiVersionChanged(kodiVersion()); });
 }
 
-void KodiSettings::init()
+void KodiSyncSettings::init()
 {
     m_settings.setDefaultValue(KEY_SETTINGS_KODI_REMOTE_HOST, "127.0.0.1");
     m_settings.setDefaultValue(KEY_SETTINGS_KODI_REMOTE_PORT, QVariant::fromValue(80));
@@ -35,27 +35,27 @@ void KodiSettings::init()
         KEY_SETTINGS_KODI_VERSION, QVariant::fromValue(mediaelch::KodiVersion::latest().toInt()));
 }
 
-void KodiSettings::setXbmcUser(QString xbmcUser)
+void KodiSyncSettings::setXbmcUser(QString xbmcUser)
 {
     m_settings.setValue(KEY_SETTINGS_KODI_REMOTE_USER, xbmcUser);
 }
 
-QString KodiSettings::xbmcUser()
+QString KodiSyncSettings::xbmcUser()
 {
     return m_settings.value(KEY_SETTINGS_KODI_REMOTE_USER).toString();
 }
 
-QString KodiSettings::xbmcPassword()
+QString KodiSyncSettings::xbmcPassword()
 {
     return m_settings.value(KEY_SETTINGS_KODI_REMOTE_PASSWORD).toString();
 }
 
-void KodiSettings::setXbmcPassword(QString password)
+void KodiSyncSettings::setXbmcPassword(QString password)
 {
     m_settings.setValue(KEY_SETTINGS_KODI_REMOTE_PASSWORD, password);
 }
 
-mediaelch::KodiVersion KodiSettings::kodiVersion()
+mediaelch::KodiVersion KodiSyncSettings::kodiVersion()
 {
     bool ok = false;
     const int version = m_settings.value(KEY_SETTINGS_KODI_VERSION).toInt(&ok);
@@ -66,22 +66,22 @@ mediaelch::KodiVersion KodiSettings::kodiVersion()
     return mediaelch::KodiVersion(version);
 }
 
-void KodiSettings::setKodiVersion(mediaelch::KodiVersion version)
+void KodiSyncSettings::setKodiVersion(mediaelch::KodiVersion version)
 {
     m_settings.setValue(KEY_SETTINGS_KODI_VERSION, version.toInt());
 }
 
-QString KodiSettings::xbmcHost()
+QString KodiSyncSettings::xbmcHost()
 {
     return m_settings.value(KEY_SETTINGS_KODI_REMOTE_HOST).toString();
 }
 
-void KodiSettings::setXbmcHost(QString host)
+void KodiSyncSettings::setXbmcHost(QString host)
 {
     m_settings.setValue(KEY_SETTINGS_KODI_REMOTE_HOST, host);
 }
 
-int KodiSettings::xbmcPort()
+int KodiSyncSettings::xbmcPort()
 {
     int xbmcPort = m_settings.value(KEY_SETTINGS_KODI_REMOTE_PORT).toInt();
     if (xbmcPort > (2 << 16) || xbmcPort < 1) {
@@ -91,7 +91,7 @@ int KodiSettings::xbmcPort()
     return xbmcPort;
 }
 
-void KodiSettings::setXbmcPort(int port)
+void KodiSyncSettings::setXbmcPort(int port)
 {
     m_settings.setValue(KEY_SETTINGS_KODI_REMOTE_PORT, port);
 }

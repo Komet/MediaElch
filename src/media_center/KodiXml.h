@@ -8,7 +8,7 @@
 #include "database/MusicPersistence.h"
 #include "database/TvShowPersistence.h"
 #include "media_center/MediaCenterInterface.h"
-#include "settings/KodiSettings.h"
+#include "settings/KodiXmlSettings.h"
 
 #include <QByteArray>
 #include <QDomDocument>
@@ -18,6 +18,7 @@
 #include <QXmlStreamWriter>
 
 class Movie;
+class MovieModel;
 class TvShow;
 class TvShowEpisode;
 class Subtitle;
@@ -34,7 +35,10 @@ public:
         mediaelch::MusicPersistence& music;
     };
 
-    explicit KodiXml(mediaelch::KodiSettings& settings, MediaPersistence persistence, QObject* parent = nullptr);
+    explicit KodiXml(mediaelch::KodiXmlSettings& settings,
+        MediaPersistence persistence,
+        MovieModel& movieModel,
+        QObject* parent = nullptr);
     ~KodiXml() override;
 
     // movies
@@ -134,6 +138,7 @@ private:
     QString movieSetFileName(QString setName, DataFile* dataFile);
 
 private:
-    mediaelch::KodiSettings& m_settings;
+    mediaelch::KodiXmlSettings& m_settings;
+    MovieModel& m_movieModel;
     MediaPersistence m_persistence;
 };

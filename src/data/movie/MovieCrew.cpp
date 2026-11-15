@@ -23,12 +23,12 @@ const Actors& MovieCrew::actors() const
 
 void MovieCrew::setWriter(QString writer)
 {
-    m_writer = writer;
+    m_writer = std::move(writer);
 }
 
 void MovieCrew::setDirector(QString director)
 {
-    m_director = director;
+    m_director = std::move(director);
 }
 
 void MovieCrew::setActors(QVector<Actor> actors)

@@ -15,7 +15,7 @@ namespace cli {
 enum class InfoObjectType
 {
     MovieScrapers,
-    Unknown
+    Unknown,
 };
 
 static InfoObjectType infoTypeFromString(QString str)
@@ -46,9 +46,9 @@ int info(QApplication& app, QCommandLineParser& parser)
     }
     case InfoObjectType::Unknown:
         if (command.isEmpty()) {
-            std::cout << "Missing info <details>" << std::endl;
+            std::cout << "Missing info <details>" << '\n';
         } else {
-            std::cout << "Unknown info <details>: " << command.toStdString() << std::endl;
+            std::cout << "Unknown info <details>: " << command.toStdString() << '\n';
         }
         return 1;
     }

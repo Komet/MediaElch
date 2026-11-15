@@ -43,7 +43,7 @@ void WebImageLabel::onImageDownloaded()
     MediaElch_Expects(reply != nullptr);
     auto dls = makeDeleteLaterScope(reply);
 
-    if (reply->error()) {
+    if (reply->error() != 0u) {
         showPlaceholder();
         return;
     }

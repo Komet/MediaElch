@@ -88,12 +88,11 @@ void Extractor::onReadyReadError()
 
 void Extractor::onFinished(int exitCode, QProcess::ExitStatus status)
 {
-    Q_UNUSED(exitCode);
-    Q_UNUSED(status);
     auto* process = dynamic_cast<QProcess*>(QObject::sender());
     m_processes.removeAll(process);
     process->deleteLater();
-    emit sigFinished(process->property("baseName").toString(), !process->property("hasError").toBool());
+    const bool success = status == QProcess::NormalExit && exitCode == 0 && !process->property("hasError").toBool();
+    emit sigFinished(process->property("baseName").toString(), success);
 }
 
 void Extractor::stopExtraction(QString baseName)

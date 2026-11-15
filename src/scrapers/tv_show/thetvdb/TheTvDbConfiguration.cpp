@@ -4,8 +4,8 @@
 
 namespace {
 
-static constexpr char moduleName[] = "scrapers";
-static const Settings::Key KEY_SCRAPERS_LANGUAGE(moduleName, "Scrapers/thetvdb/Language");
+constexpr char moduleName[] = "scrapers";
+const Settings::Key KEY_SCRAPERS_LANGUAGE(moduleName, "Scrapers/thetvdb/Language");
 
 } // namespace
 
@@ -36,12 +36,13 @@ void TheTvDbConfiguration::setLanguage(const Locale& value)
 
 mediaelch::Locale TheTvDbConfiguration::defaultLocale()
 {
-    return mediaelch::Locale("en");
+    return {"en"};
 }
 
 QVector<Locale> TheTvDbConfiguration::supportedLanguages()
 {
-    return QVector<Locale>({//
+    return QVector<Locale>({
+        //
         "bg",
         "zh",
         "hr",
@@ -65,7 +66,8 @@ QVector<Locale> TheTvDbConfiguration::supportedLanguages()
         "sl",
         "es",
         "sv",
-        "tr"});
+        "tr",
+    });
 }
 
 

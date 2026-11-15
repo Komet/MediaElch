@@ -24,7 +24,11 @@
 #include <QPainter>
 
 TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget* parent) :
-    QWidget(parent), ui(new Ui::TvShowWidgetEpisode), m_episode{nullptr}
+    QWidget(parent),
+    ui(new Ui::TvShowWidgetEpisode),
+    m_episode{nullptr},
+    m_savingWidget(new QLabel(this)),
+    m_imageDownloadManager(new DownloadManager(this))
 {
     ui->setupUi(this);
 
@@ -64,7 +68,6 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget* parent) :
     ui->thumbnail->setDefaultPixmap(QPixmap(":/img/placeholders/thumb.png"));
     ui->thumbnail->setShowCapture(true);
 
-    m_imageDownloadManager = new DownloadManager(this);
 
     connect(ui->name, &QLineEdit::textChanged, ui->episodeName, &QLabel::setText);
     connect(ui->buttonAddDirector, &QAbstractButton::clicked, this, &TvShowWidgetEpisode::onAddDirector);
@@ -104,7 +107,7 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget* parent) :
 
     m_loadingMovie = new QMovie(":/img/spinner.gif", QByteArray(), this);
     m_loadingMovie->start();
-    m_savingWidget = new QLabel(this);
+
     m_savingWidget->setMovie(m_loadingMovie);
     m_savingWidget->hide();
 
@@ -194,7 +197,7 @@ TvShowWidgetEpisode::~TvShowWidgetEpisode()
  */
 void TvShowWidgetEpisode::resizeEvent(QResizeEvent* event)
 {
-    m_savingWidget->move(size().width() / 2 - m_savingWidget->width(), height() / 2 - m_savingWidget->height());
+    m_savingWidget->move((size().width() / 2) - m_savingWidget->width(), (height() / 2) - m_savingWidget->height());
     QWidget::resizeEvent(event);
 }
 
@@ -414,7 +417,7 @@ void TvShowWidgetEpisode::updateEpisodeInfo()
     ui->displaySeason->setValue(m_episode->displaySeason().toInt());
     ui->displayEpisode->setValue(m_episode->displayEpisode().toInt());
 
-    ui->ratings->setRatings(&(m_episode->ratings()));
+    ui->ratings->setRatings(&m_episode->ratings());
 
     ui->top250->setValue(m_episode->top250());
     ui->firstAired->setDate(m_episode->firstAired());
@@ -792,7 +795,7 @@ void TvShowWidgetEpisode::onChooseThumbnail()
 
     // TODO: Don't use "this", because we don't want to inherit the stylesheet,
     // but we can't pass "nullptr", because otherwise there won't be a modal.
-    auto* imageDialog = new ImageDialog(MainWindow::instance());
+    auto* imageDialog = new ImageDialog(*Settings::instance(), MainWindow::instance());
     imageDialog->setTvShowEpisode(m_episode);
     QVector<Poster> posters;
     if (!m_episode->thumbnail().isEmpty()) {
@@ -831,7 +834,7 @@ void TvShowWidgetEpisode::onImageDropped(ImageType imageType, QUrl imageUrl)
     emit sigSetActionSaveEnabled(false, MainWidgets::TvShows);
     DownloadManagerElement d;
     d.imageType = ImageType::TvShowEpisodeThumb;
-    d.url = imageUrl;
+    d.url = std::move(imageUrl);
     d.episode = m_episode;
     d.directDownload = true;
     m_imageDownloadManager->addDownload(d);
@@ -942,7 +945,7 @@ void TvShowWidgetEpisode::onRemoveWriter()
         return;
     }
 
-    auto writer = ui->writers->item(row, 0)->data(Qt::UserRole).value<QString*>();
+    auto* writer = ui->writers->item(row, 0)->data(Qt::UserRole).value<QString*>();
     m_episode->removeWriter(writer);
     ui->writers->blockSignals(true);
     ui->writers->removeRow(row);
@@ -956,7 +959,7 @@ void TvShowWidgetEpisode::onRemoveWriter()
  */
 void TvShowWidgetEpisode::onWriterEdited(QTableWidgetItem* item)
 {
-    auto writer = ui->writers->item(item->row(), 0)->data(Qt::UserRole).value<QString*>();
+    auto* writer = ui->writers->item(item->row(), 0)->data(Qt::UserRole).value<QString*>();
     writer->clear();
     writer->append(item->text());
     m_episode->setChanged(true);
@@ -1082,7 +1085,7 @@ void TvShowWidgetEpisode::onLastPlayedChange(QDateTime dateTime)
 void TvShowWidgetEpisode::onStudioChange(QString text)
 {
     QStringList networks = text.split(",", ElchSplitBehavior::SkipEmptyParts);
-    for (auto& network : networks) {
+    for (QString& network : networks) {
         network = network.trimmed();
     }
     m_episode->setNetworks(networks);
@@ -1167,7 +1170,7 @@ void TvShowWidgetEpisode::onRemoveTag(QString tag)
 
 void TvShowWidgetEpisode::onActorEdited(QTableWidgetItem* item)
 {
-    auto actor = ui->actors->item(item->row(), 1)->data(Qt::UserRole).value<Actor*>();
+    auto* actor = ui->actors->item(item->row(), 1)->data(Qt::UserRole).value<Actor*>();
     if (item->column() == 0) {
         actor->name = item->text();
     } else if (item->column() == 1) {
@@ -1204,7 +1207,7 @@ void TvShowWidgetEpisode::onRemoveActor()
         return;
     }
 
-    auto actor = ui->actors->item(row, 1)->data(Qt::UserRole).value<Actor*>();
+    auto* actor = ui->actors->item(row, 1)->data(Qt::UserRole).value<Actor*>();
     m_episode->removeActor(actor);
     ui->actors->blockSignals(true);
     ui->actors->removeRow(row);
@@ -1221,7 +1224,7 @@ void TvShowWidgetEpisode::onActorChanged()
         return;
     }
 
-    auto actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor*>();
+    auto* actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor*>();
     if (!actor->image.isNull()) {
         QImage img = QImage::fromData(actor->image);
         ui->actor->setPixmap(QPixmap::fromImage(img).scaled(120, 180, Qt::KeepAspectRatio, Qt::SmoothTransformation));
@@ -1251,8 +1254,8 @@ void TvShowWidgetEpisode::onChangeActorImage()
             QByteArray ba;
             QBuffer buffer(&ba);
             img.save(&buffer, "jpg", 100);
-            auto actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor*>();
-            actor->image = ba;
+            auto* actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor*>();
+            actor->image = std::move(ba);
             actor->imageHasChanged = true;
             onActorChanged();
             m_episode->setChanged(true);

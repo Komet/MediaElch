@@ -395,7 +395,8 @@ SOURCES += \
     src/settings/DataFile.cpp \
     src/settings/DirectorySettings.cpp \
     src/settings/ImportSettings.cpp \
-    src/settings/KodiSettings.cpp \
+    src/settings/KodiSyncSettings.cpp \
+    src/settings/KodiXmlSettings.cpp \
     src/settings/NetworkSettings.cpp \
     src/settings/Settings.cpp \
     src/settings/UpdateCheck.cpp \
@@ -483,6 +484,7 @@ SOURCES += \
     src/ui/settings/NetworkSettingsWidget.cpp \
     src/ui/settings/ScraperSettingsTable.cpp \
     src/ui/settings/ScraperSettingsWidget.cpp \
+    src/ui/settings/SettingsDebugTable.cpp \
     src/ui/settings/SettingsWindow.cpp \
     src/ui/settings/TvScraperInfoWidget.cpp \
     src/ui/settings/TvShowSettingsWidget.cpp \
@@ -815,7 +817,8 @@ HEADERS += Version.h \
     src/settings/DataFile.h \
     src/settings/DirectorySettings.h \
     src/settings/ImportSettings.h \
-    src/settings/KodiSettings.h \
+    src/settings/KodiSyncSettings.h \
+    src/settings/KodiXmlSettings.h \
     src/settings/NetworkSettings.h \
     src/settings/Settings.h \
     src/settings/UpdateCheck.h \
@@ -905,6 +908,7 @@ HEADERS += Version.h \
     src/ui/settings/NetworkSettingsWidget.h \
     src/ui/settings/ScraperSettingsTable.h \
     src/ui/settings/ScraperSettingsWidget.h \
+    src/ui/settings/SettingsDebugTable.h \
     src/ui/settings/SettingsWindow.h \
     src/ui/settings/TvScraperInfoWidget.h \
     src/ui/settings/TvShowSettingsWidget.h \
@@ -1025,6 +1029,7 @@ FORMS += \
     src/ui/settings/NetworkSettingsWidget.ui \
     src/ui/settings/ScraperSettingsTable.ui \
     src/ui/settings/ScraperSettingsWidget.ui \
+    src/ui/settings/SettingsDebugTable.ui \
     src/ui/settings/SettingsWindow.ui \
     src/ui/settings/TvScraperInfoWidget.ui \
     src/ui/settings/TvShowSettingsWidget.ui \

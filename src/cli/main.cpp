@@ -32,7 +32,7 @@ enum class Command
     Info,
     Help,
     Version,
-    CheckVersionUpdate
+    CheckVersionUpdate,
 };
 
 static Command commandFromString(const QString& command)
@@ -94,7 +94,7 @@ commands:
 
 static void printHelp()
 {
-    std::cout << helpMessage << std::endl;
+    std::cout << helpMessage << '\n';
 }
 
 static void printVersion()
@@ -106,7 +106,7 @@ static void printVersion()
 
 static void printUnsupported(QString command)
 {
-    std::cout << "Command '" << command.toStdString() << "' not supported, yet." << std::endl;
+    std::cout << "Command '" << command.toStdString() << "' not supported, yet." << '\n';
 }
 
 static int parseArguments(QApplication& app)
@@ -155,13 +155,13 @@ static int parseArguments(QApplication& app)
 
         parser.process(app);
         if (command.isEmpty()) {
-            std::cout << "Missing command" << std::endl;
-            std::cout << "Use --help to print help." << std::endl;
+            std::cout << "Missing command" << '\n';
+            std::cout << "Use --help to print help." << '\n';
             return 1;
         }
 
-        std::cout << "Unknown command: " << command.toStdString() << std::endl;
-        std::cout << "Use --help to print help." << std::endl;
+        std::cout << "Unknown command: " << command.toStdString() << '\n';
+        std::cout << "Use --help to print help." << '\n';
 
         return 1;
     }

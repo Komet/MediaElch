@@ -77,7 +77,9 @@ TEST_CASE("uniqueDirectoryName avoids existing directories", "[renamer][utils]")
     QDir dir(tmp.path());
 
     SECTION("returns the desired name when it is free")
-    { CHECK(mediaelch::uniqueDirectoryName(dir, "Movie (2024)") == "Movie (2024)"); }
+    {
+        CHECK(mediaelch::uniqueDirectoryName(dir, "Movie (2024)") == "Movie (2024)");
+    }
 
     SECTION("appends a counter to the desired name, never to an already-suffixed result")
     {

@@ -685,7 +685,7 @@ bool SimpleEngine::saveImageForType(const QString& type,
     bool* isPlaceHolderUsed)
 {
     std::string imageFormat = "png";
-    ImageType imageType;
+    ImageType imageType = ImageType::None;
 
     if (type == "poster") {
         imageType = ImageType::ConcertPoster;
@@ -733,7 +733,7 @@ bool SimpleEngine::saveImageForType(const QString& type,
     bool* isPlaceHolderUsed)
 {
     std::string imageFormat = "png";
-    ImageType imageType;
+    ImageType imageType = ImageType::None;
 
     if (type == "poster") {
         imageType = ImageType::TvShowPoster;

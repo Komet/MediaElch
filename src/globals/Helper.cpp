@@ -235,7 +235,7 @@ void sanitizeFileName(QString& fileName, const QString& defaultDelimiter)
 
 void sanitizeFolderName(QString& fileName, const QString& defaultDelimiter)
 {
-    return sanitizeFileName(fileName, defaultDelimiter);
+    sanitizeFileName(fileName, defaultDelimiter);
 }
 
 QString appendArticle(const QString& text)
@@ -485,7 +485,7 @@ QIcon iconForLabel(ColorLabel label)
     p.setPen(pen);
     p.drawEllipse(4, 4, 24, 24);
     p.end();
-    return QIcon(pixmap);
+    return {pixmap};
 }
 
 QString matchResolution(int width, int height, const QString& scanType)

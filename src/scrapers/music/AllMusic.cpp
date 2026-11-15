@@ -18,7 +18,7 @@ AllMusicApi::AllMusicApi(QObject* parent) : QObject(parent)
 
 QUrl AllMusicApi::makeArtistUrl(const AllMusicId& artistId)
 {
-    return QUrl(QStringLiteral("https://www.allmusic.com/artist/%1").arg(artistId.toString()));
+    return {QStringLiteral("https://www.allmusic.com/artist/%1").arg(artistId.toString())};
 }
 
 QUrl AllMusicApi::makeArtistBiographyUrl(const AllMusicId& artistId)
@@ -31,28 +31,28 @@ QUrl AllMusicApi::makeArtistBiographyUrl(const AllMusicId& artistId)
     //  - https://www.allmusic.com/artist/%1//biographyAjax
     // which only contains the biography. Sometimes with `//`, sometimes with `/`.
     // Both works with a proper referrer header.
-    return QUrl(QStringLiteral("https://www.allmusic.com/artist/%1/biographyAjax").arg(artistId.toString()));
+    return {QStringLiteral("https://www.allmusic.com/artist/%1/biographyAjax").arg(artistId.toString())};
 }
 
 QUrl AllMusicApi::makeArtistMoodsUrl(const AllMusicId& artistId)
 {
-    return QUrl(QStringLiteral("https://www.allmusic.com/artist/%1/moodsThemesAjax").arg(artistId.toString()));
+    return {QStringLiteral("https://www.allmusic.com/artist/%1/moodsThemesAjax").arg(artistId.toString())};
 }
 
 
 QUrl AllMusicApi::makeAlbumUrl(const AllMusicId& albumId)
 {
-    return QUrl(QStringLiteral("https://www.allmusic.com/artist/%1").arg(albumId.toString()));
+    return {QStringLiteral("https://www.allmusic.com/artist/%1").arg(albumId.toString())};
 }
 
 QUrl AllMusicApi::makeAlbumReviewUrl(const AllMusicId& albumId)
 {
-    return QUrl(QStringLiteral("https://www.allmusic.com/album/%1/reviewAjax").arg(albumId.toString()));
+    return {QStringLiteral("https://www.allmusic.com/album/%1/reviewAjax").arg(albumId.toString())};
 }
 
 QUrl AllMusicApi::makeAlbumMoodsUrl(const AllMusicId& albumId)
 {
-    return QUrl(QStringLiteral("https://www.allmusic.com/album/%1/moodsThemesAjax").arg(albumId.toString()));
+    return {QStringLiteral("https://www.allmusic.com/album/%1/moodsThemesAjax").arg(albumId.toString())};
 }
 
 
@@ -97,7 +97,7 @@ void AllMusic::parseAndAssignAlbum(const QString& html, Album& album, const QSet
         } else if (useJson) {
             QStringList artists;
             const QJsonArray artistArray = doc.value("byArtist").toArray();
-            for (const QJsonValue& value : artistArray) {
+            for (const auto& value : artistArray) {
                 const QString name = removeHtmlEntities(value.toObject().value("name").toString());
                 if (!name.isEmpty()) {
                     artists.append(name);

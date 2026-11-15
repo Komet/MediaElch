@@ -79,7 +79,7 @@ TEST_CASE("TheTvDb scrapes show details", "[show][TheTvDb][load_data]")
         // CHECK(actors[0]->name == "Aloma Wright");
 
         const auto& genres = show.genres();
-        REQUIRE(!genres.empty());
+        REQUIRE_FALSE(genres.empty());
         CHECK_THAT(genres[0], Contains("Comedy"));
 
         // CHECK(show.backdrops().size() > 25);
@@ -119,7 +119,7 @@ TEST_CASE("TheTvDb scrapes show details", "[show][TheTvDb][load_data]")
             // CHECK(actors[0]->name == "Aloma Wright");
 
             const auto& genres = show.genres();
-            REQUIRE(!genres.empty());
+            REQUIRE_FALSE(genres.empty());
             CHECK_THAT(genres[0], Contains("Comedy"));
 
             // CHECK(show.backdrops().size() > 25);

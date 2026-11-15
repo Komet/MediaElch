@@ -43,7 +43,7 @@ TEST_CASE("VideoBuster returns valid search results", "[movie][VideoBuster][sear
         auto* searchJob = new VideoBusterSearchJob(getVideoBusterApi(), config);
         const auto scraperResults = test::searchMovieScraperSync(searchJob).first;
 
-        REQUIRE(scraperResults.length() >= 1);
+        REQUIRE_FALSE(scraperResults.empty());
         CHECK(scraperResults[0].title == "Findet Dorie");
     }
 }

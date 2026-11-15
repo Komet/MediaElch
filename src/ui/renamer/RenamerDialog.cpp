@@ -9,7 +9,8 @@
 #include <QTimer>
 #include <algorithm>
 
-RenamerDialog::RenamerDialog(QWidget* parent) : QDialog(parent), ui(new Ui::RenamerDialog)
+RenamerDialog::RenamerDialog(QWidget* parent) :
+    QDialog(parent), ui(new Ui::RenamerDialog), m_extraFiles(Settings::instance()->advanced()->subtitleFilters())
 {
     ui->setupUi(this);
 
@@ -32,7 +33,7 @@ RenamerDialog::RenamerDialog(QWidget* parent) : QDialog(parent), ui(new Ui::Rena
     onChkRenameFiles();
     onChkReplaceDelimiter();
 
-    m_extraFiles = Settings::instance()->advanced()->subtitleFilters();
+
     ui->helpLabel->setText(tr("Please see %1 for help and examples on how to use the renamer.")
             .arg("<a "
                  "href=\"https://mediaelch.github.io/mediaelch-doc/renaming.html\">"
@@ -71,9 +72,10 @@ int RenamerDialog::exec()
     QStringList fileNameMultiDefaults = this->fileNameMultiDefaults();
     QStringList dirNameDefaults = directoryNameDefaults();
 
-    QStringList seasonNameDefaults = QStringList{//
+    QStringList seasonNameDefaults = QStringList{
         "Season <season>",
-        "Season <season> - <seasonName>"};
+        "Season <season> - <seasonName>",
+    };
 
     ui->fileNaming->setItems(fileNameDefaults);
     ui->fileNaming->setText(fileName);
@@ -189,7 +191,7 @@ int RenamerDialog::addResultToTable(const QString& oldFileName,
         case Renamer::RenameOperation::Rename: return tr("Rename");
         }
         qCCritical(generic) << "[RenamerDialog] RenameOperation: Missing case.";
-        return QString("");
+        return {""};
     }();
 
     QFont font = ui->resultsTable->font();

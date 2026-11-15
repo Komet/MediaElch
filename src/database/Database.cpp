@@ -158,13 +158,6 @@ void Database::setLabel(const FileList& fileNames, ColorLabel colorLabel)
 
     int color = static_cast<int>(colorLabel);
     QSqlQuery query(db());
-    int id = 1;
-    query.prepare("SELECT MAX(idLabel) FROM labels");
-    query.exec();
-    if (query.next()) {
-        id = query.value(0).toInt() + 1;
-    }
-
     for (const FilePath& fileName : fileNames) {
         query.prepare("SELECT idLabel FROM labels WHERE fileName=:fileName");
         query.bindValue(":fileName", fileName.toString().toUtf8());
@@ -176,8 +169,7 @@ void Database::setLabel(const FileList& fileNames, ColorLabel colorLabel)
             query.bindValue(":color", color);
             query.exec();
         } else {
-            query.prepare("INSERT INTO labels(idLabel, color, fileName) VALUES(:idLabel, :color, :fileName)");
-            query.bindValue(":idLabel", id);
+            query.prepare("INSERT INTO labels(color, fileName) VALUES(:color, :fileName)");
             query.bindValue(":color", color);
             query.bindValue(":fileName", fileName.toString().toUtf8());
             query.exec();

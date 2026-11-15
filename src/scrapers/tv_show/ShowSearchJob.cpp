@@ -13,7 +13,7 @@ QPair<QString, QString> ShowSearchJob::extractTitleAndYear(const QString& query)
               << QRegularExpression(R"(^(.+) (\d{4})$)")     //
               << QRegularExpression(R"(^(.+) - (\d{4})$)");
 
-    for (auto& rxYear : yearRegEx) {
+    for (QRegularExpression& rxYear : yearRegEx) {
         QRegularExpressionMatch match = rxYear.match(query);
         if (match.hasMatch()) {
             QString searchTitle = match.captured(1);

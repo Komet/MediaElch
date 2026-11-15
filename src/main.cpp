@@ -100,7 +100,7 @@ public:
         QApplication::connect(Settings::instance(), &Settings::sigSettingsSaved, &m_app, [this]() {
             QString newFile = themeStylesheetName(Settings::instance()->theme(), "");
             if (m_stylesheetFile != newFile) {
-                m_stylesheetFile = newFile;
+                m_stylesheetFile = std::move(newFile);
                 loadStylesheet(m_app, m_stylesheetFile, false);
             }
         });

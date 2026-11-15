@@ -10,13 +10,17 @@
 
 MusicFilesWidget* MusicFilesWidget::m_instance;
 
-MusicFilesWidget::MusicFilesWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MusicFilesWidget)
+MusicFilesWidget::MusicFilesWidget(QWidget* parent) :
+    QWidget(parent),
+    ui(new Ui::MusicFilesWidget),
+    m_proxyModel(new MusicProxyModel(this)),
+    m_contextMenu(new QMenu(ui->music))
 {
     m_instance = this;
     Manager::instance()->setMusicFilesWidget(this);
     ui->setupUi(this);
 
-    m_proxyModel = new MusicProxyModel(this);
+
     m_proxyModel->setSourceModel(Manager::instance()->musicModel());
     ui->music->setModel(m_proxyModel);
     ui->music->sortByColumn(0, Qt::AscendingOrder);
@@ -30,7 +34,7 @@ MusicFilesWidget::MusicFilesWidget(QWidget* parent) : QWidget(parent), ui(new Ui
 
     auto* actionOpenFolder = new QAction(tr("Open Folder"), this);
     auto* actionOpenNfo = new QAction(tr("Open NFO File"), this);
-    m_contextMenu = new QMenu(ui->music);
+
     m_contextMenu->addAction(actionOpenFolder);
     m_contextMenu->addAction(actionOpenNfo);
     connect(actionOpenFolder, &QAction::triggered, this, &MusicFilesWidget::onOpenFolder);

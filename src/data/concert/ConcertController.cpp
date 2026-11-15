@@ -74,39 +74,29 @@ bool ConcertController::loadData(MediaCenterInterface* mediaCenterInterface, boo
     }
 
     // Concerts should always have a name, even if a valid NFO file does not have a title tag.
-    if (!infoLoaded || m_concert->title().isEmpty()) {
-        if (!m_concert->files().isEmpty()) {
-            QFileInfo fi(m_concert->files().first().toString());
-            if (QString::compare(fi.fileName(), "VIDEO_TS.IFO", Qt::CaseInsensitive) == 0) {
-                QStringList pathElements = QDir::toNativeSeparators(fi.path()).split(QDir::separator());
-                if (!pathElements.isEmpty()
-                    && QString::compare(pathElements.last(), "VIDEO_TS", Qt::CaseInsensitive) == 0) {
-                    pathElements.removeLast();
-                }
-                if (!pathElements.isEmpty()) {
-                    m_concert->setTitle(NameFormatter::formatName(pathElements.last()));
-                }
-            } else if (QString::compare(fi.fileName(), "index.bdmv", Qt::CaseInsensitive) == 0) {
-                QStringList pathElements = QDir::toNativeSeparators(fi.path()).split(QDir::separator());
-                if (!pathElements.isEmpty()
-                    && QString::compare(pathElements.last(), "BDMV", Qt::CaseInsensitive) == 0) {
-                    pathElements.removeLast();
-                }
-                if (!pathElements.isEmpty()) {
-                    m_concert->setTitle(NameFormatter::formatName(pathElements.last()));
-                }
-            } else if (m_concert->inSeparateFolder()) {
-                QStringList splitted = QDir::toNativeSeparators(fi.path()).split(QDir::separator());
-                if (!splitted.isEmpty()) {
-                    m_concert->setTitle(NameFormatter::formatName(splitted.last()));
-                } else {
-                    if (m_concert->files().size() > 1) {
-                        m_concert->setTitle(
-                            NameFormatter::formatName(NameFormatter::removeParts(fi.completeBaseName())));
-                    } else {
-                        m_concert->setTitle(NameFormatter::formatName(fi.completeBaseName()));
-                    }
-                }
+    if ((!infoLoaded || m_concert->title().isEmpty()) && (!m_concert->files().isEmpty())) {
+        QFileInfo fi(m_concert->files().first().toString());
+        if (QString::compare(fi.fileName(), "VIDEO_TS.IFO", Qt::CaseInsensitive) == 0) {
+            QStringList pathElements = QDir::toNativeSeparators(fi.path()).split(QDir::separator());
+            if (!pathElements.isEmpty()
+                && QString::compare(pathElements.last(), "VIDEO_TS", Qt::CaseInsensitive) == 0) {
+                pathElements.removeLast();
+            }
+            if (!pathElements.isEmpty()) {
+                m_concert->setTitle(NameFormatter::formatName(pathElements.last()));
+            }
+        } else if (QString::compare(fi.fileName(), "index.bdmv", Qt::CaseInsensitive) == 0) {
+            QStringList pathElements = QDir::toNativeSeparators(fi.path()).split(QDir::separator());
+            if (!pathElements.isEmpty() && QString::compare(pathElements.last(), "BDMV", Qt::CaseInsensitive) == 0) {
+                pathElements.removeLast();
+            }
+            if (!pathElements.isEmpty()) {
+                m_concert->setTitle(NameFormatter::formatName(pathElements.last()));
+            }
+        } else if (m_concert->inSeparateFolder()) {
+            QStringList splitted = QDir::toNativeSeparators(fi.path()).split(QDir::separator());
+            if (!splitted.isEmpty()) {
+                m_concert->setTitle(NameFormatter::formatName(splitted.last()));
             } else {
                 if (m_concert->files().size() > 1) {
                     m_concert->setTitle(NameFormatter::formatName(NameFormatter::removeParts(fi.completeBaseName())));
@@ -114,8 +104,15 @@ bool ConcertController::loadData(MediaCenterInterface* mediaCenterInterface, boo
                     m_concert->setTitle(NameFormatter::formatName(fi.completeBaseName()));
                 }
             }
+        } else {
+            if (m_concert->files().size() > 1) {
+                m_concert->setTitle(NameFormatter::formatName(NameFormatter::removeParts(fi.completeBaseName())));
+            } else {
+                m_concert->setTitle(NameFormatter::formatName(fi.completeBaseName()));
+            }
         }
     }
+
 
     m_infoLoaded = infoLoaded;
     m_infoFromNfoLoaded = infoLoaded && reloadFromNfo;
@@ -249,7 +246,7 @@ void ConcertController::loadImage(ImageType type, QUrl url)
     DownloadManagerElement d;
     d.concert = m_concert;
     d.imageType = type;
-    d.url = url;
+    d.url = std::move(url);
     emit sigLoadingImages(m_concert, {type});
     m_downloadManager->addDownload(d);
 }

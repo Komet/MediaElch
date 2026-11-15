@@ -4,16 +4,16 @@
 
 namespace {
 
-static constexpr char moduleName[] = "csv_export";
-static const Settings::Key KEY_CSV_EXPORT_SEPARATOR(moduleName, "CsvExport/Separator");
-static const Settings::Key KEY_CSV_EXPORT_REPLACEMENT(moduleName, "CsvExport/Replacement");
-static const Settings::Key KEY_CSV_EXPORT_TYPES(moduleName, "CsvExport/Types");
-static const Settings::Key KEY_CSV_EXPORT_MOVIE_FIELDS(moduleName, "CsvExport/MovieFields");
-static const Settings::Key KEY_CSV_EXPORT_TV_SHOW_FIELDS(moduleName, "CsvExport/TvShowFields");
-static const Settings::Key KEY_CSV_EXPORT_TV_EPISODE_FIELDS(moduleName, "CsvExport/TvEpisodeFields");
-static const Settings::Key KEY_CSV_EXPORT_CONCERT_FIELDS(moduleName, "CsvExport/ConcertFields");
-static const Settings::Key KEY_CSV_EXPORT_MUSIC_ARTIST_FIELDS(moduleName, "CsvExport/MusicArtistFields");
-static const Settings::Key KEY_CSV_EXPORT_MUSIC_ALBUM_FIELDS(moduleName, "CsvExport/MusicAlbumFields");
+constexpr char moduleName[] = "csv_export";
+const Settings::Key KEY_CSV_EXPORT_SEPARATOR(moduleName, "CsvExport/Separator");
+const Settings::Key KEY_CSV_EXPORT_REPLACEMENT(moduleName, "CsvExport/Replacement");
+const Settings::Key KEY_CSV_EXPORT_TYPES(moduleName, "CsvExport/Types");
+const Settings::Key KEY_CSV_EXPORT_MOVIE_FIELDS(moduleName, "CsvExport/MovieFields");
+const Settings::Key KEY_CSV_EXPORT_TV_SHOW_FIELDS(moduleName, "CsvExport/TvShowFields");
+const Settings::Key KEY_CSV_EXPORT_TV_EPISODE_FIELDS(moduleName, "CsvExport/TvEpisodeFields");
+const Settings::Key KEY_CSV_EXPORT_CONCERT_FIELDS(moduleName, "CsvExport/ConcertFields");
+const Settings::Key KEY_CSV_EXPORT_MUSIC_ARTIST_FIELDS(moduleName, "CsvExport/MusicArtistFields");
+const Settings::Key KEY_CSV_EXPORT_MUSIC_ALBUM_FIELDS(moduleName, "CsvExport/MusicAlbumFields");
 
 } // namespace
 
@@ -75,7 +75,7 @@ QVector<CsvExportType> allCsvExportTypes()
 QVector<CsvExportType> deserializeCsvExportTypes(QStringList types)
 {
     QVector<CsvExportType> list;
-    for (QString type : types) {
+    for (const QString& type : types) {
         CsvExportType value = deserializeExportType(type);
         if (value != CsvExportType::Invalid) {
             list << value;

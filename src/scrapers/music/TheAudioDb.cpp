@@ -54,26 +54,26 @@ void TheAudioDbApi::sendGetRequest(const Locale& locale, const QUrl& url, TheAud
 
 QUrl TheAudioDbApi::makeArtistUrl(const MusicBrainzId& artistId)
 {
-    return QUrl(QStringLiteral("https://www.theaudiodb.com/api/v1/json/%1/artist-mb.php?i=%2")
-            .arg(m_tadbApiKey, artistId.toString()));
+    return {QStringLiteral("https://www.theaudiodb.com/api/v1/json/%1/artist-mb.php?i=%2")
+            .arg(m_tadbApiKey, artistId.toString())};
 }
 
 QUrl TheAudioDbApi::makeArtistUrl(const TheAudioDbId& artistId)
 {
-    return QUrl(QStringLiteral("https://www.theaudiodb.com/api/v1/json/%1/artist.php?i=%2")
-            .arg(m_tadbApiKey, artistId.toString()));
+    return {QStringLiteral("https://www.theaudiodb.com/api/v1/json/%1/artist.php?i=%2")
+            .arg(m_tadbApiKey, artistId.toString())};
 }
 
 QUrl TheAudioDbApi::makeArtistDiscographyUrl(const MusicBrainzId& artistId)
 {
-    return QUrl(QStringLiteral("https://www.theaudiodb.com/api/v1/json/%1/discography-mb.php?s=%2")
-            .arg(m_tadbApiKey, artistId.toString()));
+    return {QStringLiteral("https://www.theaudiodb.com/api/v1/json/%1/discography-mb.php?s=%2")
+            .arg(m_tadbApiKey, artistId.toString())};
 }
 
 QUrl TheAudioDbApi::makeArtistDiscographyUrl(const TheAudioDbId& artistId)
 {
-    return QUrl(QStringLiteral("https://www.theaudiodb.com/api/v1/json/%1/discography.php?s=%2")
-            .arg(m_tadbApiKey, artistId.toString()));
+    return {QStringLiteral("https://www.theaudiodb.com/api/v1/json/%1/discography.php?s=%2")
+            .arg(m_tadbApiKey, artistId.toString())};
 }
 
 TheAudioDb::TheAudioDb(QObject* parent) : QObject(parent)

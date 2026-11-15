@@ -24,7 +24,8 @@ ImdbTv::ImdbTv(ImdbTvConfiguration& settings, QObject* parent) : TvScraper(paren
     m_meta.termsOfService = "https://www.imdb.com/conditions";
     m_meta.privacyPolicy = "https://www.imdb.com/privacy";
     m_meta.help = "https://help.imdb.com";
-    m_meta.supportedShowDetails = {ShowScraperInfo::Title,
+    m_meta.supportedShowDetails = {
+        ShowScraperInfo::Title,
         ShowScraperInfo::Actors,
         ShowScraperInfo::Genres,
         ShowScraperInfo::Certification,
@@ -33,8 +34,10 @@ ImdbTv::ImdbTv(ImdbTvConfiguration& settings, QObject* parent) : TvScraper(paren
         ShowScraperInfo::Tags,
         ShowScraperInfo::Runtime,
         ShowScraperInfo::FirstAired,
-        ShowScraperInfo::Poster};
-    m_meta.supportedEpisodeDetails = {EpisodeScraperInfo::Title,
+        ShowScraperInfo::Poster,
+    };
+    m_meta.supportedEpisodeDetails = {
+        EpisodeScraperInfo::Title,
         EpisodeScraperInfo::Actors,
         EpisodeScraperInfo::Overview,
         EpisodeScraperInfo::Director,
@@ -43,7 +46,8 @@ ImdbTv::ImdbTv(ImdbTvConfiguration& settings, QObject* parent) : TvScraper(paren
         // EpisodeScraperInfo::Network,
         EpisodeScraperInfo::FirstAired,
         EpisodeScraperInfo::Certification,
-        EpisodeScraperInfo::Rating};
+        EpisodeScraperInfo::Rating,
+    };
 
     m_meta.supportedSeasonOrders = {SeasonOrder::Aired};
     // The returned language is always based on the user's IP address.

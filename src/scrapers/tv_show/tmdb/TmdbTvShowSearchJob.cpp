@@ -50,7 +50,7 @@ QVector<ShowSearchJob::Result> TmdbTvShowSearchJob::parseSearch(const QJsonDocum
         resultArray = searchObj["tv_results"].toArray();
     }
 
-    for (const QJsonValue& val : asConst(resultArray)) {
+    for (const auto& val : asConst(resultArray)) {
         auto searchResult = parseSingleSearchObject(val.toObject());
         if (!searchResult.identifier.str().isEmpty()) {
             results << searchResult;

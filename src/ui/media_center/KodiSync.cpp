@@ -14,7 +14,7 @@
 // KodiSync uses the Kodi JSON-RPC API
 // See: https://kodi.wiki/view/JSON-RPC_API
 
-KodiSync::KodiSync(mediaelch::KodiSettings& settings, QWidget* parent) :
+KodiSync::KodiSync(mediaelch::KodiSyncSettings& settings, QWidget* parent) :
     QDialog(parent), ui(new Ui::KodiSync), m_settings{settings}
 {
     ui->setupUi(this);

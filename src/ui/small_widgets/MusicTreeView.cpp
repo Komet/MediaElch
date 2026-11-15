@@ -18,7 +18,7 @@ void MusicTreeView::drawBranches(QPainter* painter, const QRect& rect, const QMo
     Q_UNUSED(painter)
     Q_UNUSED(rect)
     Q_UNUSED(index)
-    return; // no-op
+    // no-op
 }
 
 
@@ -78,7 +78,7 @@ void MusicTreeView::drawRow(QPainter* painter, const QStyleOptionViewItem& optio
 
 void MusicTreeView::drawArtistRow(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
-    QStyleOptionViewItem opt = option;
+    const QStyleOptionViewItem& opt = option;
 
     QColor red(255, 0, 0);
     const bool isSelected = opt.state.testFlag(QStyle::State_Selected);
@@ -97,7 +97,7 @@ void MusicTreeView::drawArtistRow(QPainter* painter, const QStyleOptionViewItem&
     const int rowPadding = 4;
     const int itemIndent = m_branchIndent + drawNewIcon(painter, option, index, isSelected, m_branchIndent);
 
-    const int textRowHeight = (option.rect.height() - 2 * rowPadding) / 2;
+    const int textRowHeight = (option.rect.height() - (2 * rowPadding)) / 2;
     const int textRowWidth = option.rect.width() - itemIndent;
     const int posX = option.rect.x() + itemIndent;
     const int posY = option.rect.y() + rowPadding;

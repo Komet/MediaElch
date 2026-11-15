@@ -105,7 +105,7 @@ void FilterWidget::onFilterTextChanged(QString text)
     }
 
     m_list->clear();
-    for (auto filter : asConst(m_availableFilters)) {
+    for (auto* filter : asConst(m_availableFilters)) {
         if (!filter->accepts(text) || m_activeFilters.contains(filter)) {
             // Each filter can only be applied once.
             continue;

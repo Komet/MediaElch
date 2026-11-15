@@ -16,12 +16,16 @@ public:
         v19 = 19, ///< Matrix
         v20 = 20, ///< Nexus
         v21 = 21, ///< Omega
-        v22 = 22, ///< ?
+        v22 = 22, ///< Piers
         // when adding new values, also adapt:
         // isValid(), all(), fromInt() and constructor
     };
 
-    /* implicit */ KodiVersion(Version version = v20) : m_version(version) {}
+private:
+    static constexpr Version DEFAULT_KODI_VERSION = v21;
+
+public:
+    /* implicit */ KodiVersion(Version version = DEFAULT_KODI_VERSION) : m_version(version) {}
     explicit KodiVersion(int version);
 
     static KodiVersion latest();
@@ -34,7 +38,7 @@ public:
 
 private:
     Version fromInt(int version);
-    Version m_version = v19;
+    Version m_version = DEFAULT_KODI_VERSION;
 };
 
 } // namespace mediaelch

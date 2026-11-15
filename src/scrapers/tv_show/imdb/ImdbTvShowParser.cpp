@@ -44,7 +44,7 @@ ScraperError ImdbTvShowParser::parseInfos(const QString& html)
     if (data.released.hasValue()) {
         m_show.setFirstAired(data.released.value);
     }
-    for (Rating rating : data.ratings) {
+    for (const Rating& rating : data.ratings) {
         m_show.ratings().addRating(rating);
     }
     if (data.top250.hasValue()) {

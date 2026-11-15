@@ -24,7 +24,11 @@
 using namespace mediaelch;
 
 TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget* parent) :
-    QWidget(parent), ui(new Ui::TvShowWidgetTvShow), m_show{nullptr}
+    QWidget(parent),
+    ui(new Ui::TvShowWidgetTvShow),
+    m_show{nullptr},
+    m_savingWidget(new QLabel(this)),
+    m_imageDownloadManager(new DownloadManager(this))
 {
     ui->setupUi(this);
 
@@ -92,7 +96,7 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget* parent) :
 
     m_loadingMovie = new QMovie(":/img/spinner.gif", QByteArray(), this);
     m_loadingMovie->start();
-    m_savingWidget = new QLabel(this);
+
     m_savingWidget->setMovie(m_loadingMovie);
     m_savingWidget->hide();
 
@@ -103,7 +107,6 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget* parent) :
     ui->btnTmdb->setText(QLatin1String(""));
     ui->btnTvmaze->setText(QLatin1String(""));
 
-    m_imageDownloadManager = new DownloadManager(this);
 
     ui->poster->setImageType(ImageType::TvShowPoster);
     ui->backdrop->setImageType(ImageType::TvShowBackdrop);
@@ -203,7 +206,7 @@ TvShowWidgetTvShow::~TvShowWidgetTvShow()
  */
 void TvShowWidgetTvShow::resizeEvent(QResizeEvent* event)
 {
-    m_savingWidget->move(size().width() / 2 - m_savingWidget->width(), height() / 2 - m_savingWidget->height());
+    m_savingWidget->move((size().width() / 2) - m_savingWidget->width(), (height() / 2) - m_savingWidget->height());
     QWidget::resizeEvent(event);
 }
 
@@ -348,7 +351,7 @@ void TvShowWidgetTvShow::updateTvShowInfo()
     ui->btnTmdb->setEnabled(m_show->tmdbId().isValid());
     ui->btnTvmaze->setEnabled(m_show->tvmazeId().isValid());
 
-    ui->ratings->setRatings(&(m_show->ratings()));
+    ui->ratings->setRatings(&m_show->ratings());
     ui->userRating->setValue(m_show->userRating());
     ui->top250->setValue(m_show->top250());
     ui->firstAired->setDate(m_show->firstAired());
@@ -537,11 +540,13 @@ void TvShowWidgetTvShow::onInfoLoadDone(TvShow* show, QSet<ShowScraperInfo> deta
         show->fillMissingEpisodes();
     }
 
-    QSet<ImageType> types{ImageType::TvShowClearArt,
+    QSet<ImageType> types{
+        ImageType::TvShowClearArt,
         ImageType::TvShowLogos,
         ImageType::TvShowCharacterArt,
         ImageType::TvShowThumb,
-        ImageType::TvShowSeasonThumb};
+        ImageType::TvShowSeasonThumb,
+    };
 
     if (show->tvdbId().isValid() && !types.isEmpty() && details.contains(ShowScraperInfo::ExtraArts)) {
         Manager::instance()->fanartTv()->tvShowImages(show, show->tvdbId(), types, locale);
@@ -1008,7 +1013,7 @@ void TvShowWidgetTvShow::onChangeActorImage()
             QBuffer buffer(&ba);
             img.save(&buffer, "jpg", 100);
             auto* actor = ui->actors->item(ui->actors->currentRow(), 1)->data(Qt::UserRole).value<Actor*>();
-            actor->image = ba;
+            actor->image = std::move(ba);
             actor->imageHasChanged = true;
             onActorChanged();
             m_show->setChanged(true);
@@ -1136,7 +1141,7 @@ void TvShowWidgetTvShow::onFirstAiredChange(QDate date)
 void TvShowWidgetTvShow::onStudioChange(QString studios)
 {
     QStringList networks = studios.split(",", ElchSplitBehavior::SkipEmptyParts);
-    for (auto& network : networks) {
+    for (QString& network : networks) {
         network = network.trimmed();
     }
     m_show->setNetworks(networks);
@@ -1175,7 +1180,7 @@ void TvShowWidgetTvShow::onAddExtraFanart()
 
     // TODO: Don't use "this", because we don't want to inherit the stylesheet,
     // but we can't pass "nullptr", because otherwise there won't be a modal.
-    auto* imageDialog = new ImageDialog(MainWindow::instance());
+    auto* imageDialog = new ImageDialog(*Settings::instance(), MainWindow::instance());
     imageDialog->setMultiSelection(true);
     imageDialog->setTvShow(m_show);
     imageDialog->setDefaultDownloads(m_show->backdrops());
@@ -1249,7 +1254,7 @@ void TvShowWidgetTvShow::onChooseImage()
 
     // TODO: Don't use "this", because we don't want to inherit the stylesheet,
     // but we can't pass "nullptr", because otherwise there won't be a modal.
-    auto* imageDialog = new ImageDialog(MainWindow::instance());
+    auto* imageDialog = new ImageDialog(*Settings::instance(), MainWindow::instance());
     imageDialog->setTvShow(m_show);
     switch (image->imageType()) {
     case ImageType::TvShowPoster: imageDialog->setDefaultDownloads(m_show->posters()); break;

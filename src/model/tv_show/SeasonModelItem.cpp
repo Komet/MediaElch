@@ -84,7 +84,7 @@ void SeasonModelItem::setTvShow(TvShow* show)
 
 void SeasonModelItem::setSeason(QString season)
 {
-    m_season = season;
+    m_season = std::move(season);
 }
 
 void SeasonModelItem::setSeasonNumber(SeasonNumber seasonNumber)

@@ -4,8 +4,8 @@
 
 namespace {
 
-static constexpr char moduleName[] = "scrapers";
-static const Settings::Key KEY_SCRAPERS_LANGUAGE(moduleName, "Scrapers/tvmaze/Language");
+constexpr char moduleName[] = "scrapers";
+const Settings::Key KEY_SCRAPERS_LANGUAGE(moduleName, "Scrapers/tvmaze/Language");
 
 } // namespace
 

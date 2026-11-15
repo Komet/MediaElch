@@ -40,11 +40,11 @@ public:
         EpisodeNumber episodeNumber;
         QString id;
 
-        bool isValid() const { return !id.isEmpty(); }
+        ELCH_NODISCARD bool isValid() const { return !id.isEmpty(); }
     };
 
 public:
-    bool hasNext() const { return m_next.isValid(); }
+    ELCH_NODISCARD bool hasNext() const { return m_next.isValid(); }
 
     Result next()
     {

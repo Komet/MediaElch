@@ -19,7 +19,11 @@ namespace scraper {
 
 QString FanartTv::ID = "images.fanarttv";
 
-FanartTv::FanartTv(FanartTvConfiguration& settings, QObject* parent) : ImageProvider(parent), m_settings{settings}
+FanartTv::FanartTv(FanartTvConfiguration& settings, QObject* parent) :
+    ImageProvider(parent),
+    m_settings{settings},
+    m_apiKey("842f7a5d1cc7396f142b8dd47c4ba42b"),
+    m_tmdb(new TmdbMovie(*m_tmdbConfig, this))
 {
     m_meta.identifier = ID;
     m_meta.name = "Fanart.tv";
@@ -28,7 +32,8 @@ FanartTv::FanartTv(FanartTvConfiguration& settings, QObject* parent) : ImageProv
     m_meta.termsOfService = "https://fanart.tv/terms-and-conditions/";
     m_meta.privacyPolicy = "https://fanart.tv/privacy-policy/";
     m_meta.help = "https://forum.fanart.tv/";
-    m_meta.supportedImageTypes = {ImageType::MovieBackdrop,
+    m_meta.supportedImageTypes = {
+        ImageType::MovieBackdrop,
         ImageType::MovieLogo,
         ImageType::MovieClearArt,
         ImageType::MovieCdArt,
@@ -47,7 +52,8 @@ FanartTv::FanartTv(FanartTvConfiguration& settings, QObject* parent) : ImageProv
         ImageType::ConcertBackdrop,
         ImageType::ConcertLogo,
         ImageType::ConcertClearArt,
-        ImageType::ConcertCdArt};
+        ImageType::ConcertCdArt,
+    };
     // Multiple languages, but no way to query for it and also no official list of languages.
     m_meta.supportedLanguages = FanartTvConfiguration::supportedLanguages();
     m_meta.defaultLocale = FanartTvConfiguration::defaultLocale();
@@ -55,9 +61,8 @@ FanartTv::FanartTv(FanartTvConfiguration& settings, QObject* parent) : ImageProv
     m_meta.languagePriority =
         QVector<QString>({settings.language().language(), FanartTvConfiguration::defaultLocale().language()});
 
-    m_apiKey = "842f7a5d1cc7396f142b8dd47c4ba42b";
+
     m_tmdbConfig = std::make_unique<mediaelch::scraper::TmdbMovieConfiguration>(*Settings::instance());
-    m_tmdb = new TmdbMovie(*m_tmdbConfig, this);
 }
 
 const ImageProvider::ScraperMeta& FanartTv::meta() const
@@ -85,7 +90,7 @@ void FanartTv::searchMovie(QString searchStr, int limit)
     m_searchResultLimit = limit;
 
     mediaelch::scraper::MovieSearchJob::Config config;
-    config.query = searchStr;
+    config.query = std::move(searchStr);
     config.locale = m_tmdbConfig->language();
     config.includeAdult = Settings::instance()->showAdultScrapers();
 

@@ -168,11 +168,11 @@ void MakeMkvCon::parseInfo(QString line)
             m_tracks.insert(trackId, t);
         }
         switch (typeId) {
-        case 2: m_tracks[trackId].name = value; break;
+        case 2: m_tracks[trackId].name = std::move(value); break;
         case 8: m_tracks[trackId].chapters = value.toInt(); break;
-        case 9: m_tracks[trackId].duration = value; break;
+        case 9: m_tracks[trackId].duration = std::move(value); break;
         case 11: m_tracks[trackId].size = value.toLongLong(); break;
-        case 27: m_tracks[trackId].fileName = value; break;
+        case 27: m_tracks[trackId].fileName = std::move(value); break;
         default: break;
         }
     }

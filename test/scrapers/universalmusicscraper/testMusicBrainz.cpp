@@ -22,7 +22,7 @@ loadMusicBrainzArtistSync(mediaelch::scraper::MusicBrainzApi& api, const Locale&
         REQUIRE_FALSE(error.hasError());
 
         REQUIRE_FALSE(data.isEmpty());
-        artistData = data;
+        artistData = std::move(data);
         loop.quit();
     });
     loop.exec();
@@ -39,7 +39,7 @@ static QString loadMusicBrainzAlbumSync(mediaelch::scraper::MusicBrainzApi& api,
         REQUIRE_FALSE(error.hasError());
 
         REQUIRE_FALSE(data.isEmpty());
-        albumData = data;
+        albumData = std::move(data);
         loop.quit();
     });
     loop.exec();
@@ -57,7 +57,7 @@ loadMusicBrainzReleaseGroupSync(mediaelch::scraper::MusicBrainzApi& api, const L
         REQUIRE_FALSE(error.hasError());
 
         REQUIRE_FALSE(data.isEmpty());
-        releaseGroupData = data;
+        releaseGroupData = std::move(data);
         loop.quit();
     });
     loop.exec();
@@ -76,7 +76,7 @@ musicBrainzGetSync(const mediaelch::Locale& locale, mediaelch::scraper::MusicBra
         REQUIRE_FALSE(error.hasError());
 
         REQUIRE_FALSE(result.isEmpty());
-        response = result;
+        response = std::move(result);
         loop.quit();
     });
 

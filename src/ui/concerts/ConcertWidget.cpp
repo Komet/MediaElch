@@ -24,7 +24,8 @@
 #include <QScrollBar>
 #include <QtCore/qmath.h>
 
-ConcertWidget::ConcertWidget(QWidget* parent) : QWidget(parent), ui(new Ui::ConcertWidget)
+ConcertWidget::ConcertWidget(QWidget* parent) :
+    QWidget(parent), ui(new Ui::ConcertWidget), m_savingWidget(new QLabel(this))
 {
     ui->setupUi(this);
     ui->concertName->clear();
@@ -99,7 +100,7 @@ ConcertWidget::ConcertWidget(QWidget* parent) : QWidget(parent), ui(new Ui::Conc
     setDisabledTrue();
     clear();
 
-    m_savingWidget = new QLabel(this);
+
     m_savingWidget->setMovie(m_loadingMovie);
     m_savingWidget->hide();
 
@@ -134,7 +135,7 @@ ConcertWidget::~ConcertWidget()
  */
 void ConcertWidget::resizeEvent(QResizeEvent* event)
 {
-    m_savingWidget->move(size().width() / 2 - m_savingWidget->width(), height() / 2 - m_savingWidget->height());
+    m_savingWidget->move((size().width() / 2) - m_savingWidget->width(), (height() / 2) - m_savingWidget->height());
     QWidget::resizeEvent(event);
 }
 
@@ -393,11 +394,13 @@ void ConcertWidget::updateConcertInfo()
     ui->genreCloud->setTags(genres, m_concert->genres());
     ui->tagCloud->setTags(tags, m_concert->tags());
 
-    updateImages(QSet<ImageType>{ImageType::ConcertPoster,
+    updateImages(QSet<ImageType>{
+        ImageType::ConcertPoster,
         ImageType::ConcertBackdrop,
         ImageType::ConcertLogo,
         ImageType::ConcertCdArt,
-        ImageType::ConcertClearArt});
+        ImageType::ConcertClearArt,
+    });
 
     ui->fanarts->setImages(m_concert->extraFanarts(Manager::instance()->mediaCenterInterfaceConcert()));
 
@@ -596,7 +599,7 @@ void ConcertWidget::onAddExtraFanart()
 
     // TODO: Don't use "this", because we don't want to inherit the stylesheet,
     // but we can't pass "nullptr", because otherwise there won't be a modal.
-    auto* imageDialog = new ImageDialog(MainWindow::instance());
+    auto* imageDialog = new ImageDialog(*Settings::instance(), MainWindow::instance());
     imageDialog->setMultiSelection(true);
     imageDialog->setConcert(m_concert);
     imageDialog->setDefaultDownloads(m_concert->backdrops());
@@ -638,7 +641,7 @@ void ConcertWidget::onChooseImage()
 
     // TODO: Don't use "this", because we don't want to inherit the stylesheet,
     // but we can't pass "nullptr", because otherwise there won't be a modal.
-    auto* imageDialog = new ImageDialog(MainWindow::instance());
+    auto* imageDialog = new ImageDialog(*Settings::instance(), MainWindow::instance());
     imageDialog->setConcert(m_concert);
     if (image->imageType() == ImageType::ConcertPoster) {
         imageDialog->setDefaultDownloads(m_concert->posters());

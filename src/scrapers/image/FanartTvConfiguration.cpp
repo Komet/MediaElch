@@ -4,10 +4,10 @@
 
 namespace {
 
-static constexpr char moduleName[] = "scrapers";
-static const Settings::Key KEY_SCRAPERS_LANGUAGE(moduleName, "Scrapers/images.fanarttv/Language");
-static const Settings::Key KEY_SCRAPERS_DISC_TYPE(moduleName, "Scrapers/images.fanarttv/DiscType");
-static const Settings::Key KEY_SCRAPERS_PERSONAL_API_KEY(moduleName, "Scrapers/images.fanarttv/PersonalApiKey");
+constexpr char moduleName[] = "scrapers";
+const Settings::Key KEY_SCRAPERS_LANGUAGE(moduleName, "Scrapers/images.fanarttv/Language");
+const Settings::Key KEY_SCRAPERS_DISC_TYPE(moduleName, "Scrapers/images.fanarttv/DiscType");
+const Settings::Key KEY_SCRAPERS_PERSONAL_API_KEY(moduleName, "Scrapers/images.fanarttv/PersonalApiKey");
 
 } // namespace
 

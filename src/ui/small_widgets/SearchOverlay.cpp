@@ -3,7 +3,7 @@
 #include <QPainter>
 #include <QStyleOption>
 
-SearchOverlay::SearchOverlay(QWidget* parent) : QWidget(parent)
+SearchOverlay::SearchOverlay(QWidget* parent) : QWidget(parent), m_label(new QLabel(this))
 {
     QSize size(100, 100);
 
@@ -12,7 +12,7 @@ SearchOverlay::SearchOverlay(QWidget* parent) : QWidget(parent)
     setStyleSheet(style);
     setFixedSize(size);
 
-    m_label = new QLabel(this);
+
     m_label->setFixedSize(size);
     m_label->setAlignment(Qt::AlignCenter | Qt::AlignVCenter);
     m_label->setStyleSheet("color: #ffffff; font-weight: bold; font-size: 16px;");

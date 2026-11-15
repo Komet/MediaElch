@@ -19,6 +19,7 @@ add_library(
   ConcertScraperInfoWidget.cpp
   MusicScraperInfoWidget.cpp
   ImageProviderInfoWidget.cpp
+  SettingsDebugTable.cpp
 )
 
 target_link_libraries(

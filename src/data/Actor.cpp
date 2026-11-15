@@ -41,7 +41,7 @@ bool Actors::hasActors() const
 
 void Actors::clearImages()
 {
-    for (auto& actor : m_actors) {
+    for (Actor* actor : m_actors) {
         actor->image = QByteArray();
     }
 }

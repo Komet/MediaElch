@@ -319,7 +319,7 @@ QString TvShowEpisode::showTitle() const
         return m_show->title();
     }
 
-    return QString();
+    return {};
 }
 
 Ratings& TvShowEpisode::ratings()
@@ -550,8 +550,8 @@ bool TvShowEpisode::hasChanged() const
 QVector<QString*> TvShowEpisode::writersPointer()
 {
     QVector<QString*> writers;
-    for (elch_ssize_t i = 0, n = m_writers.size(); i < n; ++i) {
-        writers.append(&m_writers[i]);
+    for (QString& m_writer : m_writers) {
+        writers.append(&m_writer);
     }
     return writers;
 }
@@ -563,8 +563,8 @@ QVector<QString*> TvShowEpisode::writersPointer()
 QVector<QString*> TvShowEpisode::directorsPointer()
 {
     QVector<QString*> directors;
-    for (elch_ssize_t i = 0, n = m_directors.size(); i < n; ++i) {
-        directors.append(&m_directors[i]);
+    for (auto& m_director : m_directors) {
+        directors.append(&m_director);
     }
     return directors;
 }
@@ -632,7 +632,7 @@ QStringList TvShowEpisode::tags() const
  */
 void TvShowEpisode::setTitle(QString title)
 {
-    m_title = title;
+    m_title = std::move(title);
     setChanged(true);
 }
 
@@ -641,7 +641,7 @@ void TvShowEpisode::setTitle(QString title)
  */
 void TvShowEpisode::setShowTitle(QString showTitle)
 {
-    m_showTitle = showTitle;
+    m_showTitle = std::move(showTitle);
     setChanged(true);
 }
 
@@ -702,7 +702,7 @@ void TvShowEpisode::setDisplayEpisode(EpisodeNumber episode)
  */
 void TvShowEpisode::setOverview(QString overview)
 {
-    m_overview = overview;
+    m_overview = std::move(overview);
     setChanged(true);
 }
 
@@ -775,7 +775,7 @@ void TvShowEpisode::setPlayCount(int playCount)
  */
 void TvShowEpisode::setLastPlayed(QDateTime lastPlayed)
 {
-    m_lastPlayed = lastPlayed;
+    m_lastPlayed = std::move(lastPlayed);
     setChanged(true);
 }
 
@@ -787,7 +787,7 @@ void TvShowEpisode::setFirstAired(QDate firstAired)
 
 void TvShowEpisode::setCertification(Certification certification)
 {
-    m_certification = certification;
+    m_certification = std::move(certification);
     setChanged(true);
 }
 
@@ -808,13 +808,13 @@ void TvShowEpisode::addNetwork(QString network)
 
 void TvShowEpisode::setThumbnail(QUrl url)
 {
-    m_thumbnail = url;
+    m_thumbnail = std::move(url);
     setChanged(true);
 }
 
 void TvShowEpisode::setThumbnailImage(QByteArray thumbnail)
 {
-    m_thumbnailImage = thumbnail;
+    m_thumbnailImage = std::move(thumbnail);
     m_thumbnailImageChanged = true;
     setChanged(true);
 }
@@ -869,7 +869,7 @@ void TvShowEpisode::removeTag(QString tag)
 
 void TvShowEpisode::setNfoContent(QString content)
 {
-    m_nfoContent = content;
+    m_nfoContent = std::move(content);
 }
 
 void TvShowEpisode::setDatabaseId(mediaelch::DatabaseId id)

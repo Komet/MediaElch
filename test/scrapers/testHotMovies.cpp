@@ -57,7 +57,7 @@ TEST_CASE("HotMovies returns valid search results", "[movie][HotMovies][search]"
         auto* searchJob = new HotMoviesSearchJob(getHotMoviesApi(), config);
         const auto scraperResults = test::searchMovieScraperSync(searchJob).first;
 
-        REQUIRE(scraperResults.length() >= 1);
+        REQUIRE_FALSE(scraperResults.empty());
         CHECK_THAT(scraperResults[0].title, Contains("Magic Mike XXXL"));
         // The identifier should be a full URL.
         CHECK_THAT(scraperResults[0].identifier.str(), StartsWith("https://"));

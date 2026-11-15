@@ -67,7 +67,7 @@ void TmdbTvEpisodeParser::parseInfos(const TmdbApi& api, TvShowEpisode& episode,
     // -------------------------------------
 
     auto addActors = [&](QJsonArray cast) {
-        for (const QJsonValue& val : cast) {
+        for (const auto& val : cast) {
             QJsonObject actorObj = val.toObject();
             Actor actor;
             actor.name = actorObj["name"].toString();
@@ -101,7 +101,7 @@ void TmdbTvEpisodeParser::parseInfos(const TmdbApi& api, TvShowEpisode& episode,
         crew = data["crew"].toArray();
     }
 
-    for (const QJsonValue& val : asConst(crew)) {
+    for (const auto& val : asConst(crew)) {
         QJsonObject crewObj = val.toObject();
 
         const QString name = crewObj["name"].toString();

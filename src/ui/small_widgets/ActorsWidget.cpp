@@ -8,7 +8,8 @@
 
 #include <QFileDialog>
 
-ActorsWidget::ActorsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::ActorsWidget)
+ActorsWidget::ActorsWidget(QWidget* parent) :
+    QWidget(parent), ui(new Ui::ActorsWidget), m_actorModel(new ActorModel(this))
 {
     ui->setupUi(this);
 
@@ -20,7 +21,7 @@ ActorsWidget::ActorsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::Actors
 #endif
     ui->actorResolution->setFont(font);
 
-    m_actorModel = new ActorModel(this);
+
     ui->actors->setModel(m_actorModel);
     ui->actors->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->actors->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);

@@ -16,9 +16,9 @@
 
 namespace {
 
-static constexpr char moduleName[] = "ui";
-static const Settings::Key KEY_SETTINGS_WINDOW_SIZE(moduleName, "SettingsWindowSize");
-static const Settings::Key KEY_SETTINGS_WINDOW_POSITION(moduleName, "SettingsWindowPosition");
+constexpr char moduleName[] = "ui";
+const Settings::Key KEY_SETTINGS_WINDOW_SIZE(moduleName, "SettingsWindowSize");
+const Settings::Key KEY_SETTINGS_WINDOW_POSITION(moduleName, "SettingsWindowPosition");
 
 QPoint fixWindowPosition(QPoint p)
 {
@@ -82,7 +82,7 @@ SettingsWindow::SettingsWindow(Settings& settings, QWidget* parent) :
     ui->concertSettings->setSettings(m_settings);
     ui->networkSettings->setSettings(m_settings);
 
-    ui->kodiSettings->init(Manager::instance()->kodiSettings());
+    ui->kodiSettings->init(Manager::instance()->kodiSyncSettings());
 
     // clang-format off
     connect(ui->btnCancel, &QAbstractButton::clicked, this, &SettingsWindow::onCancel);

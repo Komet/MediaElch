@@ -25,7 +25,8 @@ TheTvDb::TheTvDb(TheTvDbConfiguration& settings, QObject* parent) : TvScraper(pa
     m_meta.termsOfService = "https://thetvdb.com/tos";
     m_meta.privacyPolicy = "https://thetvdb.com/privacy-policy";
     m_meta.help = "https://forums.thetvdb.com/";
-    m_meta.supportedShowDetails = {ShowScraperInfo::Actors,
+    m_meta.supportedShowDetails = {
+        ShowScraperInfo::Actors,
         ShowScraperInfo::Banner,
         ShowScraperInfo::Certification,
         ShowScraperInfo::Fanart,
@@ -43,7 +44,8 @@ TheTvDb::TheTvDb(TheTvDbConfiguration& settings, QObject* parent) : TvScraper(pa
         ShowScraperInfo::ExtraFanarts,
         ShowScraperInfo::Thumb,
         ShowScraperInfo::Runtime,
-        ShowScraperInfo::Status};
+        ShowScraperInfo::Status,
+    };
     m_meta.supportedEpisodeDetails = {
         EpisodeScraperInfo::Actors,
         EpisodeScraperInfo::Certification,

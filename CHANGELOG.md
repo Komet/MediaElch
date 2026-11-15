@@ -39,7 +39,7 @@
 
 ### Changed
 
-- tbd
+- Default Kodi version is now v21
 
 ### Removed
 

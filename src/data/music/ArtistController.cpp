@@ -98,7 +98,7 @@ void ArtistController::loadImage(ImageType type, QUrl url)
     DownloadManagerElement d;
     d.artist = m_artist;
     d.imageType = type;
-    d.url = url;
+    d.url = std::move(url);
     emit sigLoadingImages(m_artist, {type});
     m_downloadManager->addDownload(d);
 }
@@ -160,7 +160,7 @@ void ArtistController::loadData(MusicBrainzId id,
 
     mediaelch::scraper::ArtistScrapeJob::Config config;
     config.identifier = id.toString();
-    config.details = infos;
+    config.details = std::move(infos);
 
     auto* scrapeJob = scraperInterface->loadArtist(std::move(config));
     connect(scrapeJob, &mediaelch::scraper::ArtistScrapeJob::loadFinished, this, &ArtistController::scraperLoadDone);

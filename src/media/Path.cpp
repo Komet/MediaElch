@@ -11,7 +11,16 @@ QString DirectoryPath::toNativePathString() const
 
 bool DirectoryPath::isParentFolderOf(const DirectoryPath& child) const
 {
-    return child.toString().startsWith(toString());
+    QString parentPath = toString();
+    QString childPath = child.toString();
+    if (!parentPath.endsWith('/')) {
+        parentPath += '/';
+    }
+    if (!childPath.endsWith('/')) {
+        childPath += '/';
+    }
+
+    return childPath.startsWith(parentPath);
 }
 
 QString DirectoryPath::filePath(const QString& fileName) const

@@ -30,10 +30,15 @@
 #include <QtCore/qmath.h>
 
 
-MovieWidget::MovieWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieWidget)
+MovieWidget::MovieWidget(QWidget* parent) :
+    QWidget(parent),
+    ui(new Ui::MovieWidget),
+    m_movie(nullptr),
+    m_savingWidget(new QLabel(this)),
+    m_backgroundLabel(new QLabel(this))
 {
     ui->setupUi(this);
-    m_backgroundLabel = new QLabel(this);
+
     m_backgroundLabel->show();
     m_backgroundLabel->lower();
     ui->movieName->clear();
@@ -68,7 +73,6 @@ MovieWidget::MovieWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieWid
     ui->labelPoster->setFont(font);
     ui->labelThumb->setFont(font);
 
-    m_movie = nullptr;
 
     ui->poster->setDefaultPixmap(QPixmap(":/img/placeholders/poster.png"));
     ui->backdrop->setDefaultPixmap(QPixmap(":/img/placeholders/fanart.png"));
@@ -160,7 +164,7 @@ MovieWidget::MovieWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieWid
     setDisabledTrue();
     clear();
 
-    m_savingWidget = new QLabel(this);
+
     m_savingWidget->setMovie(m_loadingMovie);
     m_savingWidget->hide();
 
@@ -233,7 +237,7 @@ MovieWidget::~MovieWidget()
  */
 void MovieWidget::resizeEvent(QResizeEvent* event)
 {
-    m_savingWidget->move(size().width() / 2 - m_savingWidget->width(), height() / 2 - m_savingWidget->height());
+    m_savingWidget->move((size().width() / 2) - m_savingWidget->width(), (height() / 2) - m_savingWidget->height());
     QWidget::resizeEvent(event);
 }
 
@@ -623,7 +627,7 @@ void MovieWidget::updateMovieInfo()
     ui->actors->setMovie(m_movie);
 
     // Ratings
-    ui->ratings->setRatings(&(m_movie->ratings()));
+    ui->ratings->setRatings(&m_movie->ratings());
 
     // Subtitles
     ui->subtitles->blockSignals(true);
@@ -688,13 +692,15 @@ void MovieWidget::updateMovieInfo()
     ui->stereoMode->setEnabled(m_movie->streamDetailsLoaded());
     ui->hdrType->setEnabled(m_movie->streamDetailsLoaded());
 
-    updateImages({ImageType::MoviePoster,
+    updateImages({
+        ImageType::MoviePoster,
         ImageType::MovieBackdrop,
         ImageType::MovieLogo,
         ImageType::MovieCdArt,
         ImageType::MovieClearArt,
         ImageType::MovieBanner,
-        ImageType::MovieThumb});
+        ImageType::MovieThumb,
+    });
 
     ui->fanarts->setImages(m_movie->images().extraFanarts(Manager::instance()->mediaCenterInterface()));
 
@@ -1202,7 +1208,7 @@ void MovieWidget::onSetChange(QString text)
         return;
     }
     MovieSet set;
-    set.name = text;
+    set.name = std::move(text);
     m_movie->setSet(set);
     ui->buttonRevert->setVisible(true);
 }
@@ -1452,7 +1458,7 @@ void MovieWidget::onAddExtraFanart()
 
     // TODO: Don't use "this", because we don't want to inherit the stylesheet,
     //       but we can't pass "nullptr", because otherwise, there won't be a modal.
-    auto* imageDialog = new ImageDialog(MainWindow::instance());
+    auto* imageDialog = new ImageDialog(*Settings::instance(), MainWindow::instance());
     imageDialog->setMultiSelection(true);
     imageDialog->setMovie(m_movie);
     imageDialog->setDefaultDownloads(m_movie->images().backdrops());
@@ -1504,7 +1510,7 @@ void MovieWidget::onChooseImage()
 
     // TODO: Don't use "this", because we don't want to inherit the stylesheet,
     // but we can't pass "nullptr", because otherwise there won't be a modal.
-    auto* imageDialog = new ImageDialog(MainWindow::instance());
+    auto* imageDialog = new ImageDialog(*Settings::instance(), MainWindow::instance());
     imageDialog->setMovie(m_movie);
     if (image->imageType() == ImageType::MoviePoster) {
         imageDialog->setDefaultDownloads(m_movie->images().posters());

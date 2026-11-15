@@ -8,12 +8,12 @@
 
 namespace mediaelch {
 
-class KodiSettings : public QObject
+class KodiSyncSettings : public QObject
 {
     Q_OBJECT
 public:
-    explicit KodiSettings(Settings& settings, QObject* parent = nullptr);
-    ~KodiSettings() override = default;
+    explicit KodiSyncSettings(Settings& settings, QObject* parent = nullptr);
+    ~KodiSyncSettings() override = default;
 
     void init();
 

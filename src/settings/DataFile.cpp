@@ -31,7 +31,7 @@ QString DataFile::fileName() const
 
 void DataFile::setFileName(QString fileName)
 {
-    m_fileName = fileName;
+    m_fileName = std::move(fileName);
 }
 
 /**

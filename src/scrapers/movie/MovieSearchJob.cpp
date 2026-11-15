@@ -13,7 +13,7 @@ QPair<QString, QString> MovieSearchJob::extractTitleAndYear(const QString& query
               << QRegularExpression(R"(^(.+) (\d{4})$)")     //
               << QRegularExpression(R"(^(.+) - (\d{4})$)");
 
-    for (auto& rxYear : yearRegEx) {
+    for (QRegularExpression& rxYear : yearRegEx) {
         // minimal matching
         rxYear.setPatternOptions(QRegularExpression::InvertedGreedinessOption);
         auto match = rxYear.match(query);

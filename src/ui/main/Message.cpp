@@ -5,13 +5,13 @@
 
 #include <QGraphicsDropShadowEffect>
 
-Message::Message(QWidget* parent) : QWidget(parent), ui(new Ui::Message)
+Message::Message(QWidget* parent) : QWidget(parent), ui(new Ui::Message), m_timer(new QTimer(this))
 {
     ui->setupUi(this);
     ui->progressBar->hide();
     ui->progressBar->setValue(0);
     ui->progressBar->setMaximum(0);
-    m_timer = new QTimer(this);
+
     connect(m_timer, &QTimer::timeout, this, &Message::timeout);
 
     if (devicePixelRatioF() >= 0.95 && devicePixelRatioF() <= 1.05) {

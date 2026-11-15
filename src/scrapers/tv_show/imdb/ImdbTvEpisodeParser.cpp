@@ -45,7 +45,7 @@ void ImdbTvEpisodeParser::parseInfos(TvShowEpisode& episode, const QString& html
     if (data.released.hasValue()) {
         episode.setFirstAired(data.released.value);
     }
-    for (Rating rating : data.ratings) {
+    for (const Rating& rating : data.ratings) {
         episode.ratings().addRating(rating);
     }
     if (data.top250.hasValue()) {

@@ -4,8 +4,8 @@
 
 namespace {
 
-static constexpr char moduleName[] = "scrapers";
-static const Settings::Key KEY_SCRAPERS_API_KEY(moduleName, "Scrapers/omdb/ApiKey");
+constexpr char moduleName[] = "scrapers";
+const Settings::Key KEY_SCRAPERS_API_KEY(moduleName, "Scrapers/omdb/ApiKey");
 
 } // namespace
 

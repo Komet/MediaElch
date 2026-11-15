@@ -84,7 +84,7 @@ QVariant MusicModelItem::data(int column) const
         }
     }
 
-    return QVariant();
+    return {};
 }
 
 MusicModelItem* MusicModelItem::appendChild(Artist* artist)

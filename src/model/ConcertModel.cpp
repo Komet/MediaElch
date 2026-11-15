@@ -87,7 +87,7 @@ int ConcertModel::columnCount(const QModelIndex& parent) const
 QVariant ConcertModel::data(const QModelIndex& index, int role) const
 {
     if (index.row() < 0 || index.row() >= m_concerts.count()) {
-        return QVariant();
+        return {};
     }
 
     if (role == Qt::UserRole) {
@@ -100,7 +100,7 @@ QVariant ConcertModel::data(const QModelIndex& index, int role) const
     }
     if (index.column() == 0 && (role == Qt::ToolTipRole || role == ConcertRoles::FileRole)) {
         if (concert->files().isEmpty()) {
-            return QVariant();
+            return {};
         }
         return concert->files().first().toString();
     }
@@ -135,7 +135,7 @@ QVariant ConcertModel::data(const QModelIndex& index, int role) const
             return m_syncIcon;
         }
     }
-    return QVariant();
+    return {};
 }
 
 /**

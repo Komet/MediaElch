@@ -63,13 +63,13 @@ void MusicBrainzApi::sendGetRequest(const Locale& locale, const QUrl& url, Music
 void MusicBrainzApi::searchForArtist(const Locale& locale, const QString& query, MusicBrainzApi::ApiCallback callback)
 {
     QUrl url = makeArtistSearchUrl(query);
-    return sendGetRequest(locale, url, std::move(callback));
+    sendGetRequest(locale, url, std::move(callback));
 }
 
 void MusicBrainzApi::searchForAlbum(const Locale& locale, const QString& query, MusicBrainzApi::ApiCallback callback)
 {
     QUrl url = makeAlbumSearchUrl(query);
-    return sendGetRequest(locale, url, std::move(callback));
+    sendGetRequest(locale, url, std::move(callback));
 }
 
 void MusicBrainzApi::searchForAlbumWithArtist(const Locale& locale,
@@ -78,7 +78,7 @@ void MusicBrainzApi::searchForAlbumWithArtist(const Locale& locale,
     MusicBrainzApi::ApiCallback callback)
 {
     QUrl url = makeAlbumWithArtistSearchUrl(albumQuery, artistName);
-    return sendGetRequest(locale, url, std::move(callback));
+    sendGetRequest(locale, url, std::move(callback));
 }
 
 
@@ -204,14 +204,14 @@ void MusicBrainzApi::loadArtist(const Locale& locale,
     MusicBrainzApi::ApiCallback callback)
 {
     QUrl url(QStringLiteral("https://musicbrainz.org/ws/2/artist/%1?inc=url-rels").arg(artistId.toString()));
-    return sendGetRequest(locale, url, std::move(callback));
+    sendGetRequest(locale, url, std::move(callback));
 }
 
 void MusicBrainzApi::loadAlbum(const Locale& locale, const MusicBrainzId& albumId, MusicBrainzApi::ApiCallback callback)
 {
     QUrl url(QStringLiteral("https://musicbrainz.org/ws/2/release/%1?inc=url-rels+labels+artist-credits")
             .arg(albumId.toString()));
-    return sendGetRequest(locale, url, std::move(callback));
+    sendGetRequest(locale, url, std::move(callback));
 }
 
 void MusicBrainzApi::loadReleaseGroup(const Locale& locale,
@@ -220,7 +220,7 @@ void MusicBrainzApi::loadReleaseGroup(const Locale& locale,
 {
     QUrl url(QStringLiteral("https://musicbrainz.org/ws/2/release-group/%1?inc=url-rels+artist-credits")
             .arg(groupId.toString()));
-    return sendGetRequest(locale, url, std::move(callback));
+    sendGetRequest(locale, url, std::move(callback));
 }
 
 MusicBrainz::MusicBrainz(QObject* parent) : QObject(parent)

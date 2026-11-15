@@ -96,38 +96,29 @@ bool MovieController::loadData(MediaCenterInterface* mediaCenterInterface, bool 
     }
 
     // Movies should always have a name, even if a valid NFO file does not have a name tag.
-    if (!infoLoaded || m_movie->title().isEmpty()) {
-        if (!m_movie->files().isEmpty()) {
-            QFileInfo fi(m_movie->files().at(0).toString());
-            if (QString::compare(fi.fileName(), "VIDEO_TS.IFO", Qt::CaseInsensitive) == 0) {
-                QStringList pathElements = QDir::toNativeSeparators(fi.path()).split(QDir::separator());
-                if (!pathElements.isEmpty()
-                    && QString::compare(pathElements.last(), "VIDEO_TS", Qt::CaseInsensitive) == 0) {
-                    pathElements.removeLast();
-                }
-                if (!pathElements.isEmpty()) {
-                    m_movie->setTitle(NameFormatter::formatName(pathElements.last(), false));
-                }
-            } else if (QString::compare(fi.fileName(), "index.bdmv", Qt::CaseInsensitive) == 0) {
-                QStringList pathElements = QDir::toNativeSeparators(fi.path()).split(QDir::separator());
-                if (!pathElements.isEmpty()
-                    && QString::compare(pathElements.last(), "BDMV", Qt::CaseInsensitive) == 0) {
-                    pathElements.removeLast();
-                }
-                if (!pathElements.isEmpty()) {
-                    m_movie->setTitle(NameFormatter::formatName(pathElements.last(), false));
-                }
-            } else if (m_movie->inSeparateFolder()) {
-                QStringList splitted = QDir::toNativeSeparators(fi.path()).split(QDir::separator());
-                if (!splitted.isEmpty()) {
-                    m_movie->setTitle(NameFormatter::formatName(splitted.last(), false));
-                } else {
-                    if (m_movie->files().size() > 1) {
-                        m_movie->setTitle(NameFormatter::formatName(NameFormatter::removeParts(fi.completeBaseName())));
-                    } else {
-                        m_movie->setTitle(NameFormatter::formatName(fi.completeBaseName()));
-                    }
-                }
+    if ((!infoLoaded || m_movie->title().isEmpty()) && (!m_movie->files().isEmpty())) {
+        QFileInfo fi(m_movie->files().at(0).toString());
+        if (QString::compare(fi.fileName(), "VIDEO_TS.IFO", Qt::CaseInsensitive) == 0) {
+            QStringList pathElements = QDir::toNativeSeparators(fi.path()).split(QDir::separator());
+            if (!pathElements.isEmpty()
+                && QString::compare(pathElements.last(), "VIDEO_TS", Qt::CaseInsensitive) == 0) {
+                pathElements.removeLast();
+            }
+            if (!pathElements.isEmpty()) {
+                m_movie->setTitle(NameFormatter::formatName(pathElements.last(), false));
+            }
+        } else if (QString::compare(fi.fileName(), "index.bdmv", Qt::CaseInsensitive) == 0) {
+            QStringList pathElements = QDir::toNativeSeparators(fi.path()).split(QDir::separator());
+            if (!pathElements.isEmpty() && QString::compare(pathElements.last(), "BDMV", Qt::CaseInsensitive) == 0) {
+                pathElements.removeLast();
+            }
+            if (!pathElements.isEmpty()) {
+                m_movie->setTitle(NameFormatter::formatName(pathElements.last(), false));
+            }
+        } else if (m_movie->inSeparateFolder()) {
+            QStringList splitted = QDir::toNativeSeparators(fi.path()).split(QDir::separator());
+            if (!splitted.isEmpty()) {
+                m_movie->setTitle(NameFormatter::formatName(splitted.last(), false));
             } else {
                 if (m_movie->files().size() > 1) {
                     m_movie->setTitle(NameFormatter::formatName(NameFormatter::removeParts(fi.completeBaseName())));
@@ -135,16 +126,23 @@ bool MovieController::loadData(MediaCenterInterface* mediaCenterInterface, bool 
                     m_movie->setTitle(NameFormatter::formatName(fi.completeBaseName()));
                 }
             }
+        } else {
+            if (m_movie->files().size() > 1) {
+                m_movie->setTitle(NameFormatter::formatName(NameFormatter::removeParts(fi.completeBaseName())));
+            } else {
+                m_movie->setTitle(NameFormatter::formatName(fi.completeBaseName()));
+            }
+        }
 
-            if (!m_movie->imdbId().isValid()) {
-                QRegularExpression rx("tt\\d+");
-                QRegularExpressionMatch match = rx.match(fi.completeBaseName());
-                if (match.hasMatch()) {
-                    m_movie->setImdbId(ImdbId(match.captured(0)));
-                }
+        if (!m_movie->imdbId().isValid()) {
+            QRegularExpression rx("tt\\d+");
+            QRegularExpressionMatch match = rx.match(fi.completeBaseName());
+            if (match.hasMatch()) {
+                m_movie->setImdbId(ImdbId(match.captured(0)));
             }
         }
     }
+
     m_infoLoaded = infoLoaded;
     m_infoFromNfoLoaded = infoLoaded && reloadFromNfo;
     m_movie->setChanged(false);
@@ -343,7 +341,7 @@ void MovieController::scraperLoadDone(mediaelch::scraper::MovieScraper* scraper,
             &MovieController::onFanartLoadDone,
             Qt::UniqueConnection);
         Manager::instance()->fanartTv()->movieImages(
-            m_movie, (m_movie->tmdbId().isValid()) ? m_movie->tmdbId() : TmdbId(m_movie->imdbId().toString()), images);
+            m_movie, m_movie->tmdbId().isValid() ? m_movie->tmdbId() : TmdbId(m_movie->imdbId().toString()), images);
     } else {
         onFanartLoadDone(m_movie, QMap<ImageType, QVector<Poster>>());
     }

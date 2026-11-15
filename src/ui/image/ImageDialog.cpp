@@ -23,11 +23,70 @@
 #include <QTimer>
 #include <QtCore/qmath.h>
 
-ImageDialog::ImageDialog(QWidget* parent) : QDialog(parent), ui(new Ui::ImageDialog)
+namespace {
+
+constexpr char moduleName[] = "image_dialog";
+const Settings::Key KEY_IMAGE_DIALOG_SIZE(moduleName, "ImageDialog/Size");
+const Settings::Key KEY_IMAGE_DIALOG_POSITION(moduleName, "ImageDialog/Pos");
+
+Settings::Key previewSizeKey(ImageType type)
+{
+    return {moduleName, QStringLiteral("ImageDialog/PreviewSize_%1").arg(static_cast<int>(type))};
+}
+
+} // namespace
+
+ImageDialogConfiguration::ImageDialogConfiguration(Settings& settings) : m_settings{settings}
+{
+}
+
+void ImageDialogConfiguration::init()
+{
+    m_settings.setDefaultValue(KEY_IMAGE_DIALOG_SIZE, QVariant{});
+    m_settings.setDefaultValue(KEY_IMAGE_DIALOG_POSITION, QVariant{});
+}
+
+QSize ImageDialogConfiguration::dialogSize()
+{
+    return m_settings.value(KEY_IMAGE_DIALOG_SIZE).toSize();
+}
+
+void ImageDialogConfiguration::setDialogSize(QSize size)
+{
+    m_settings.setValue(KEY_IMAGE_DIALOG_SIZE, size);
+}
+
+QPoint ImageDialogConfiguration::dialogPosition()
+{
+    return m_settings.value(KEY_IMAGE_DIALOG_POSITION).toPoint();
+}
+
+void ImageDialogConfiguration::setDialogPosition(QPoint position)
+{
+    m_settings.setValue(KEY_IMAGE_DIALOG_POSITION, position);
+}
+
+int ImageDialogConfiguration::previewSize(ImageType type)
+{
+    const auto key = previewSizeKey(type);
+    m_settings.setDefaultValue(key, 8);
+    return m_settings.value(key).toInt();
+}
+
+void ImageDialogConfiguration::setPreviewSize(ImageType type, int size)
+{
+    const auto key = previewSizeKey(type);
+    m_settings.setDefaultValue(key, 8);
+    m_settings.setValue(key, size);
+}
+
+ImageDialog::ImageDialog(Settings& settings, QWidget* parent) :
+    QDialog(parent), ui(new Ui::ImageDialog), m_settings{settings}, m_config{settings}
 {
     using namespace mediaelch::scraper;
 
     ui->setupUi(this);
+    m_config.init();
     ui->searchTerm->setType(MyLineEdit::TypeLoading);
     ui->results->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
@@ -104,11 +163,7 @@ int ImageDialog::execWithType(ImageType type)
     resizeAndReposition();
 
     // set slider value
-    ui->previewSizeSlider->setValue( //
-        Settings::instance()
-            ->settings()
-            ->value(QStringLiteral("ImageDialog/PreviewSize_%1").arg(static_cast<int>(m_type)), 8)
-            .toInt());
+    ui->previewSizeSlider->setValue(m_config.previewSize(m_type));
 
     m_providers = Manager::instance()->scrapers().imageProviders(type);
     // show image widget
@@ -161,9 +216,8 @@ void ImageDialog::accept()
 {
     cancelDownloads();
 #ifndef Q_OS_MACOS
-    Settings::instance()->settings()->setValue("ImageDialog/Size", size());
-    Settings::instance()->settings()->setValue("ImageDialog/Pos", pos());
-    Settings::instance()->settings()->sync();
+    m_config.setDialogSize(size());
+    m_config.setDialogPosition(pos());
 #endif
     QDialog::accept();
 }
@@ -175,9 +229,8 @@ void ImageDialog::reject()
 {
     cancelDownloads();
 #ifndef Q_OS_MACOS
-    Settings::instance()->settings()->setValue("ImageDialog/Size", size());
-    Settings::instance()->settings()->setValue("ImageDialog/Pos", pos());
-    Settings::instance()->settings()->sync();
+    m_config.setDialogSize(size());
+    m_config.setDialogPosition(pos());
 #endif
     QDialog::reject();
 }
@@ -280,10 +333,8 @@ void ImageDialog::setupProviderCombo()
 
 void ImageDialog::resizeAndReposition()
 {
-    auto* settings = Settings::instance()->settings();
-
-    const QSize savedSize = settings->value("ImageDialog/Size").toSize();
-    const QPoint savedPos = settings->value("ImageDialog/Pos").toPoint();
+    const QSize savedSize = m_config.dialogSize();
+    const QPoint savedPos = m_config.dialogPosition();
 
 #ifdef Q_OS_MACOS
     constexpr bool isMac = true;
@@ -526,7 +577,7 @@ void ImageDialog::cancelDownloads()
  */
 void ImageDialog::chooseLocalImage()
 {
-    mediaelch::DirectoryPath path = Settings::instance()->lastImagePath();
+    mediaelch::DirectoryPath path = m_settings.lastImagePath();
 
     // TODO: Multiple files via getOpenFileNames()
     QString fileName = QFileDialog::getOpenFileName(
@@ -539,7 +590,7 @@ void ImageDialog::chooseLocalImage()
     qCDebug(generic) << "[ImageDialog] Selected image with url:" << fileName;
 
     QFileInfo fi(fileName);
-    Settings::instance()->setLastImagePath(mediaelch::DirectoryPath(fi.absoluteDir().canonicalPath()));
+    m_settings.setLastImagePath(mediaelch::DirectoryPath(fi.absoluteDir().canonicalPath()));
     const elch_ssize_t index = m_elements.size();
 
     DownloadElement d;
@@ -608,7 +659,7 @@ void ImageDialog::onImageDropped(QUrl url)
         ui->gallery->addImage(ba, url.toLocalFile());
         m_imageUrls.append(url);
     } else {
-        m_imageUrl = url;
+        m_imageUrl = std::move(url);
         accept();
     }
 }
@@ -621,8 +672,7 @@ void ImageDialog::onPreviewSizeChange(int value)
 {
     ui->buttonZoomOut->setDisabled(value <= ui->previewSizeSlider->minimum());
     ui->buttonZoomIn->setDisabled(value >= ui->previewSizeSlider->maximum());
-    Settings::instance()->settings()->setValue(
-        QString("ImageDialog/PreviewSize_%1").arg(static_cast<int>(m_type)), value);
+    m_config.setPreviewSize(m_type, value);
     renderTable();
 }
 
@@ -803,7 +853,7 @@ void ImageDialog::onSearch(bool onlyFirstResult)
         // -> trigger searching for item and show search result widget
         ui->results->clearContents();
         ui->results->setRowCount(0);
-        int limit = (onlyFirstResult) ? 1 : 0;
+        int limit = onlyFirstResult ? 1 : 0;
         if (m_itemType == ItemType::Movie) {
             m_currentProvider->searchMovie(searchTerm, limit);
         } else if (m_itemType == ItemType::Concert) {
@@ -989,7 +1039,7 @@ QString ImageDialog::formatSearchText(const QString& text)
     QString fText = text;
     fText.replace(" - ", " ");
     fText.replace("-", " ");
-    NameFormatter::setExcludeWords(Settings::instance()->excludeWords());
+    NameFormatter::setExcludeWords(m_settings.excludeWords());
     fText = NameFormatter::formatName(fText);
     return fText;
 }

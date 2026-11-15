@@ -4,10 +4,9 @@
 
 namespace {
 
-static constexpr char moduleName[] = "scrapers";
-static const Settings::Key KEY_SCRAPERS_LANGUAGE(moduleName, "Scrapers/adult-dvd-empire/Language");
-static const Settings::Key KEY_SCRAPERS_BACK_COVER_AS_FANART(moduleName,
-    "Scrapers/adult-dvd-empire/StoreBackCoverAsFanart");
+constexpr char moduleName[] = "scrapers";
+const Settings::Key KEY_SCRAPERS_LANGUAGE(moduleName, "Scrapers/adult-dvd-empire/Language");
+const Settings::Key KEY_SCRAPERS_BACK_COVER_AS_FANART(moduleName, "Scrapers/adult-dvd-empire/StoreBackCoverAsFanart");
 
 } // namespace
 

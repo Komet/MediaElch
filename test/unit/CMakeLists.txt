@@ -7,6 +7,9 @@ target_sources(
     data/testImdbId.cpp
     data/testLocale.cpp
     data/testTmdbId.cpp
+    data/testWikidataId.cpp
+    data/testMusicServiceIds.cpp
+    data/testSubtitle.cpp
     data/testCertification.cpp
     data/testRating.cpp
     data/testResumeTime.cpp
@@ -20,6 +23,9 @@ target_sources(
     globals/testHelper.cpp
     media/testFilenameUtils.cpp
     media/testPath.cpp
+    media/testFileFilter.cpp
+    media/testImageUtils.cpp
+    network/testNetworkRequest.cpp
     model/testMovieModel.cpp
     model/testTvShowModel.cpp
     model/testConcertModel.cpp
@@ -34,6 +40,7 @@ target_sources(
     scrapers/custom_movie_scraper/StubMovieScraper.cpp
     scrapers/custom_movie_scraper/testCustomMovieScraper.cpp
     scrapers/testMovieMerger.cpp
+    scrapers/testScraperUtils.cpp
     settings/testAdvancedSettings.cpp
     tv_shows/testEpisodeNumberExtraction.cpp
     tv_shows/testSeasonNumberExtraction.cpp
@@ -43,6 +50,9 @@ target_sources(
     tv_shows/testSeasonNumber.cpp
     utils/testMath.cpp
     utils/testContainers.cpp
+    utils/testContainersHelpers.cpp
+    utils/testOptional.cpp
+    utils/testMeta.cpp
 )
 
 target_link_libraries(

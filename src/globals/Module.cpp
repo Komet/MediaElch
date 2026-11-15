@@ -3,13 +3,9 @@
 namespace mediaelch {
 namespace core {
 
-ModuleInterface::ModuleInterface()
-{
-}
+ModuleInterface::ModuleInterface() = default;
 
-ModuleInterface::~ModuleInterface()
-{
-}
+ModuleInterface::~ModuleInterface() = default;
 
 } // namespace core
 } // namespace mediaelch

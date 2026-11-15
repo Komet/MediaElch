@@ -19,6 +19,7 @@
 #include "ui/renamer/ConcertRenamerDialog.h"
 #include "ui/renamer/MovieRenamerDialog.h"
 #include "ui/renamer/TvShowRenamerDialog.h"
+#include "ui/settings/SettingsDebugTable.h"
 #include "ui/settings/SettingsWindow.h"
 #include "ui/support/SupportDialog.h"
 
@@ -37,11 +38,11 @@
 
 namespace {
 
-static constexpr char moduleName[] = "ui";
-static const Settings::Key KEY_MAIN_SPLITTER_STATE(moduleName, "MainSplitterState");
-static const Settings::Key KEY_MAIN_WINDOW_POSITION(moduleName, "MainWindowPosition");
-static const Settings::Key KEY_MAIN_WINDOW_SIZE(moduleName, "MainWindowSize");
-static const Settings::Key KEY_IS_MAIN_WINDOW_MAXIMIZED(moduleName, "MainWindowMaximized");
+constexpr char moduleName[] = "ui";
+const Settings::Key KEY_MAIN_SPLITTER_STATE(moduleName, "MainSplitterState");
+const Settings::Key KEY_MAIN_WINDOW_POSITION(moduleName, "MainWindowPosition");
+const Settings::Key KEY_MAIN_WINDOW_SIZE(moduleName, "MainWindowSize");
+const Settings::Key KEY_IS_MAIN_WINDOW_MAXIMIZED(moduleName, "MainWindowMaximized");
 
 QPoint fixWindowPosition(QPoint p)
 {
@@ -170,7 +171,7 @@ MainWindow::MainWindow(MainWindowConfiguration& settings, QWidget* parent) :
     m_supportDialog = new SupportDialog(this);
     m_settingsWindow = new SettingsWindow(*Settings::instance(), this);
     m_fileScannerDialog = new FileScannerDialog(this);
-    m_xbmcSync = new KodiSync(*Manager::instance()->kodiSettings(), this);
+    m_xbmcSync = new KodiSync(*Manager::instance()->kodiSyncSettings(), this);
     m_movieRenamer = new MovieRenamerDialog(this);
     m_concertRenamer = new ConcertRenamerDialog(this);
     m_tvShowRenamer = new TvShowRenamerDialog(this);
@@ -397,6 +398,14 @@ void MainWindow::setupToolbar()
     commandModelAction->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_O));
     connect(commandModelAction, &QAction::triggered, this, &MainWindow::onCommandBarOpen);
     addAction(commandModelAction);
+
+#ifdef QT_DEBUG
+    auto* settingsTableAction = new QAction("Settings Table", this);
+    settingsTableAction->setText(tr("Settings Table"));
+    settingsTableAction->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_T));
+    connect(settingsTableAction, &QAction::triggered, this, &MainWindow::onSettingsTableOpen);
+    addAction(settingsTableAction);
+#endif
 }
 
 /**
@@ -669,13 +678,15 @@ void MainWindow::moveSplitter(int pos, int index)
     Q_UNUSED(index)
 
     QList<int> sizes;
-    const QList<QSplitter*> splitters{ui->movieSplitter,
+    const QList<QSplitter*> splitters{
+        ui->movieSplitter,
         ui->tvShowSplitter,
         ui->setsWidget->splitter(),
         ui->genreWidget->splitter(),
         ui->certificationWidget->splitter(),
         ui->concertSplitter,
-        ui->musicSplitter};
+        ui->musicSplitter,
+    };
 
     for (const QSplitter* splitter : splitters) {
         if (splitter->sizes().at(0) == pos) {
@@ -808,6 +819,12 @@ void MainWindow::onCommandBarOpen()
         commandBar->setModel(Manager::instance()->concertModel());
     }
     centralWidget()->setFocusProxy(commandBar);
+}
+
+void MainWindow::onSettingsTableOpen()
+{
+    auto* window = new SettingsDebugTable(*Settings::instance());
+    window->show();
 }
 
 MainWidgets MainWindow::currentTab() const

@@ -27,7 +27,7 @@ TEST_CASE("TvMaze returns valid search results", "[tv][TvMaze][search]")
         auto* searchJob = new TvMazeShowSearchJob(getTvMazeApi(), config);
         const auto p = test::searchTvScraperSync(searchJob, true);
 
-        CHECK(p.first.length() == 0);
+        CHECK(p.first.empty());
         CHECK(p.second.error == ScraperError::Type::NoError);
     }
 }
