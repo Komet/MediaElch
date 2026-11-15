@@ -42,7 +42,7 @@ UpdateCheck::Result UpdateCheck::createUpdateCheckResult(const QString& xmlStrin
 
     QString os;
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     os = "mac";
 #endif
 #ifdef Q_OS_WIN

@@ -14,7 +14,7 @@ ActorsWidget::ActorsWidget(QWidget* parent) :
     ui->setupUi(this);
 
     QFont font = ui->actorResolution->font();
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
     font.setPointSize(font.pointSize() - 1);
 #else
     font.setPointSize(font.pointSize() - 2);

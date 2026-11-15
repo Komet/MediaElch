@@ -20,7 +20,7 @@ TrailerDialog::TrailerDialog(QWidget* parent) :
 
     ui->setupUi(this);
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     QFont font = ui->trailers->font();
     font.setPointSize(font.pointSize() - 1);
     ui->trailers->setFont(font);
@@ -35,7 +35,7 @@ TrailerDialog::TrailerDialog(QWidget* parent) :
     ui->stackedWidget->setAnimation(QEasingCurve::OutCubic);
     ui->stackedWidget->setSpeed(400);
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     // setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Sheet);
 #else
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Dialog);
@@ -315,7 +315,7 @@ void TrailerDialog::cancelDownload()
     m_output.close();
     m_downloadInProgress = false;
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     TrailerDialog::resize(width() + 1, height() + 1);
     TrailerDialog::resize(width() - 1, height() - 1);
 #endif
@@ -394,7 +394,7 @@ void TrailerDialog::downloadFinished()
 
     m_downloadReply->deleteLater();
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     TrailerDialog::resize(width() + 1, height() + 1);
     TrailerDialog::resize(width() - 1, height() - 1);
 #endif
@@ -458,7 +458,7 @@ void TrailerDialog::onStateChanged(ELCH_MEDIA_PLAYBACK_STATE newState)
 
 void TrailerDialog::onPlayPause()
 {
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     TrailerDialog::resize(width() + 1, height() + 1);
     TrailerDialog::resize(width() - 1, height() - 1);
 #endif
@@ -471,7 +471,7 @@ void TrailerDialog::onPlayPause()
     case QMediaPlayer::PlayingState: m_mediaPlayer->pause(); break;
     case QMediaPlayer::StoppedState:
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
         TrailerDialog::resize(width() + 1, height() + 1);
         TrailerDialog::resize(width() - 1, height() - 1);
 #endif
@@ -479,7 +479,7 @@ void TrailerDialog::onPlayPause()
     case QMediaPlayer::PausedState: m_mediaPlayer->play(); break;
     }
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     TrailerDialog::resize(width() + 1, height() + 1);
     TrailerDialog::resize(width() - 1, height() - 1);
 #endif

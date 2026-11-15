@@ -169,7 +169,7 @@ ScraperSettingsWidget::ScraperSettingsWidget(QWidget* parent) :
 {
     ui->setupUi(this);
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     QFont smallFont = ui->lblCustomMovieScraperHelp->font();
     smallFont.setPointSize(smallFont.pointSize() - 1);
     ui->lblCustomMovieScraperHelp->setFont(smallFont);

@@ -18,7 +18,7 @@ GenreWidget::GenreWidget(QWidget* parent) :
     ui->genres->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->movies->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
     QFont nameFont = ui->genreName->font();
     nameFont.setPointSize(nameFont.pointSize() - 4);
     ui->genreName->setFont(nameFont);

@@ -35,6 +35,7 @@
     appended repeatedly ("Movie 1 2 3") instead of counting up ("Movie 2")
   - Renaming a movie/concert/episode that has no files no longer risks a crash;
     it is reported as an error instead
+- macOS: MediaElch can be built natively on Apple silicon with Qt 6.12.
 
 ### Changed
 

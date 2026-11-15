@@ -10,7 +10,7 @@ Q_LOGGING_CATEGORY(c_movie, "movie")
 
 static QFile data;
 
-#if defined(Q_OS_MAC) || defined(Q_OS_LINUX)
+#if defined(Q_OS_MACOS) || defined(Q_OS_LINUX)
 #    include <unistd.h>
 #endif
 
@@ -34,7 +34,7 @@ static bool is_stderr_tty()
         return false;
     }
 
-#    if defined(Q_OS_MAC) || defined(Q_OS_LINUX)
+#    if defined(Q_OS_MACOS) || defined(Q_OS_LINUX)
     return isatty(fileno(stderr)) != 0;
 #    else
     // No colors for Windows, yet

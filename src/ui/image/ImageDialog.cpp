@@ -90,7 +90,7 @@ ImageDialog::ImageDialog(Settings& settings, QWidget* parent) :
     ui->searchTerm->setType(MyLineEdit::TypeLoading);
     ui->results->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Sheet);
 #else
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Dialog);
@@ -215,7 +215,7 @@ int ImageDialog::execWithType(ImageType type)
 void ImageDialog::accept()
 {
     cancelDownloads();
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
     m_config.setDialogSize(size());
     m_config.setDialogPosition(pos());
 #endif
@@ -228,7 +228,7 @@ void ImageDialog::accept()
 void ImageDialog::reject()
 {
     cancelDownloads();
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
     m_config.setDialogSize(size());
     m_config.setDialogPosition(pos());
 #endif
@@ -336,7 +336,7 @@ void ImageDialog::resizeAndReposition()
     const QSize savedSize = m_config.dialogSize();
     const QPoint savedPos = m_config.dialogPosition();
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     constexpr bool isMac = true;
 #else
     constexpr bool isMac = false;
