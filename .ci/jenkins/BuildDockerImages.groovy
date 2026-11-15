@@ -44,7 +44,7 @@ pipeline {
     stage('MediaElch AppImage Build Image') {
       environment {
         IMAGE_NAME = 'mediaelch/mediaelch-ci-appimage:latest'
-        DOCKERFILE = 'Dockerfile.build-ubuntu-16.04'
+        DOCKERFILE = 'Dockerfile.build-ubuntu-18.04'
       }
       steps {
         dir('.ci/docker') {
