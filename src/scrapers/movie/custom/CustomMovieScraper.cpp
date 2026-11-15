@@ -117,7 +117,7 @@ MovieScrapeJob* CustomMovieScraper::loadMovie(MovieScrapeJob::Config config)
     }
 
     CustomMovieScrapeJob::CustomScraperConfig scraperConfig;
-    scraperConfig.scraperMap = scraperMap;
+    scraperConfig.scraperMap = std::move(scraperMap);
 
     return new CustomMovieScrapeJob(scraperConfig, this);
 }

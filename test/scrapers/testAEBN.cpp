@@ -46,7 +46,7 @@ TEST_CASE("AEBN returns valid search results", "[movie][AEBN][search]")
         auto* searchJob = new AebnSearchJob(getAebnApi(), config, "101");
         const auto scraperResults = test::searchMovieScraperSync(searchJob).first;
 
-        REQUIRE(scraperResults.length() >= 1);
+        REQUIRE_FALSE(scraperResults.empty());
         CHECK(scraperResults[0].title == "Magic Mike XXXL: A Hardcore Parody");
     }
 }

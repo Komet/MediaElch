@@ -15,7 +15,14 @@
 
 ConcertFilesWidget* ConcertFilesWidget::m_instance;
 
-ConcertFilesWidget::ConcertFilesWidget(QWidget* parent) : QWidget(parent), ui(new Ui::ConcertFilesWidget)
+ConcertFilesWidget::ConcertFilesWidget(QWidget* parent) :
+    QWidget(parent),
+    ui(new Ui::ConcertFilesWidget),
+    m_concertProxyModel(new ConcertProxyModel(this)),
+    m_lastConcert(nullptr),
+    m_contextMenu(new QMenu(ui->files)),
+    m_alphaList(new AlphabeticalList(this)),
+    m_mouseIsIn(false)
 {
     m_instance = this;
     ui->setupUi(this);
@@ -24,10 +31,8 @@ ConcertFilesWidget::ConcertFilesWidget(QWidget* parent) : QWidget(parent), ui(ne
 #ifdef Q_OS_WIN
     ui->verticalLayout->setContentsMargins(0, 0, 0, 1);
 #endif
-    m_mouseIsIn = false;
-    m_alphaList = new AlphabeticalList(this);
-    m_lastConcert = nullptr;
-    m_concertProxyModel = new ConcertProxyModel(this);
+
+
     m_concertProxyModel->setSourceModel(Manager::instance()->concertModel());
     m_concertProxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
     m_concertProxyModel->setDynamicSortFilter(true);
@@ -48,7 +53,7 @@ ConcertFilesWidget::ConcertFilesWidget(QWidget* parent) : QWidget(parent), ui(ne
     auto* actionOpenNfo = new QAction(tr("Open NFO File"), this);
     auto* actionPlay = new QAction(tr("Play concert"), this);
 
-    m_contextMenu = new QMenu(ui->files);
+
     m_contextMenu->addAction(actionMarkAsWatched);
     m_contextMenu->addAction(actionMarkAsUnwatched);
     m_contextMenu->addSeparator();

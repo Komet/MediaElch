@@ -153,7 +153,7 @@ QUrl TmdbApi::makeApiUrl(const QString& suffix, const Locale& locale, QUrlQuery 
 QUrl TmdbApi::makeImageUrl(const QString& suffix) const
 {
     // TODO: Use image sizes
-    return QUrl(config().imageSecureBaseUrl + "original" + suffix);
+    return {config().imageSecureBaseUrl + "original" + suffix};
 }
 
 QUrl TmdbApi::getShowSearchUrl(const QString& searchStr, const Locale& locale, bool includeAdult) const
@@ -329,7 +329,7 @@ TmdbApiConfiguration TmdbApiConfiguration::from(QJsonDocument doc)
     assignStringUrl(config.imageSecureBaseUrl, images["secure_base_url"].toString());
 
     const auto assignStringArray = [](QStringList& target, const QJsonArray& array) {
-        for (const QJsonValue& val : array) {
+        for (const auto& val : array) {
             target << val.toString();
         }
     };

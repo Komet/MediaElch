@@ -170,11 +170,9 @@ void ConcertFileSearcher::scanDir(QString startPath,
             QString right = file.mid(pos + match.captured(1).size() + match.captured(2).size());
             for (int x = 0; x < n; x++) {
                 QString subFile = files.at(x);
-                if (subFile != file) {
-                    if (subFile.startsWith(left) && subFile.endsWith(right)) {
-                        concertFiles << QDir(path + QDir::separator() + subFile).path();
-                        files[x] = ""; // set an empty file name, this way we can skip this file in the main loop
-                    }
+                if ((subFile != file) && (subFile.startsWith(left) && subFile.endsWith(right))) {
+                    concertFiles << QDir(path + QDir::separator() + subFile).path();
+                    files[x] = ""; // set an empty file name, this way we can skip this file in the main loop
                 }
             }
         }

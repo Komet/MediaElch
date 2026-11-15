@@ -95,8 +95,8 @@ bool DownloadManager::hasDownloadsLeft(T*& elementToCheck)
 {
     // Note: This code looks similar to numberOfDownloadsLeft() but does not require
     // to run through all downloads.
-    for (elch_ssize_t i = 0, n = m_queue.size(); i < n; ++i) {
-        if (m_queue[i].getElement<T>() == elementToCheck) {
+    for (auto& i : m_queue) {
+        if (i.getElement<T>() == elementToCheck) {
             return true;
         }
     }
@@ -115,8 +115,8 @@ template<class T>
 int DownloadManager::numberOfDownloadsLeft(T*& elementToCheck)
 {
     int count = 0;
-    for (elch_ssize_t i = 0, n = m_queue.size(); i < n; ++i) {
-        if (m_queue[i].getElement<T>() == elementToCheck) {
+    for (auto& i : m_queue) {
+        if (i.getElement<T>() == elementToCheck) {
             ++count;
         }
     }
@@ -188,7 +188,7 @@ void DownloadManager::startNextDownload()
         download.data = data;
 
         if (download.actor != nullptr && download.imageType == ImageType::Actor && (download.movie == nullptr)) {
-            download.actor->image = data;
+            download.actor->image = std::move(data);
 
         } else if (download.imageType == ImageType::TvShowEpisodeThumb && !download.directDownload) {
             download.episode->setThumbnailImage(data);
@@ -280,7 +280,7 @@ void DownloadManager::downloadFinished()
 
     if (downloadElelement.actor != nullptr && downloadElelement.imageType == ImageType::Actor
         && downloadElelement.movie == nullptr) {
-        downloadElelement.actor->image = data;
+        downloadElelement.actor->image = std::move(data);
 
     } else if (downloadElelement.imageType == ImageType::TvShowEpisodeThumb && !downloadElelement.directDownload) {
         downloadElelement.episode->setThumbnailImage(data);

@@ -56,7 +56,7 @@ TEST_CASE("OmdbMovie returns valid search results", "[movie][OMDb][OmdbMovie][se
         auto* searchJob = new OmdbMovieSearchJob(getOmdbApi(), config);
         const auto scraperResults = test::searchMovieScraperSync(searchJob).first;
 
-        REQUIRE(scraperResults.length() >= 1);
+        REQUIRE_FALSE(scraperResults.empty());
         CHECK(scraperResults[0].title == "Finding Dory");
     }
 
@@ -77,7 +77,7 @@ TEST_CASE("OmdbMovie returns valid search results", "[movie][OMDb][OmdbMovie][se
         auto* searchJob = new OmdbMovieSearchJob(getOmdbApi(), config);
         const auto scraperResults = test::searchMovieScraperSync(searchJob).first;
 
-        REQUIRE(scraperResults.length() >= 1);
+        REQUIRE_FALSE(scraperResults.empty());
         CHECK(scraperResults[0].title == "Inception");
         CHECK(scraperResults[0].identifier.str() == "tt1375666");
     }
@@ -105,8 +105,8 @@ TEST_CASE("OmdbMovie scrapes correct movie details", "[movie][OMDb][OmdbMovie][l
         CHECK_THAT(m.overview(), Contains("Dory"));
         CHECK(m.director() == "Andrew Stanton, Angus MacLane");
         CHECK_THAT(m.writer(), Contains("Andrew Stanton"));
-        CHECK(m.genres().size() >= 1);
-        CHECK(m.countries().size() >= 1);
+        CHECK(!m.genres().empty());
+        CHECK(!m.countries().empty());
 
         // Ratings: OMDb provides IMDB, RT, and Metacritic
         CHECK(m.ratings().hasSource("imdb"));

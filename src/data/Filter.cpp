@@ -138,7 +138,7 @@ bool Filter::isInfo(ConcertFilters info) const
 
 void Filter::setText(QString text)
 {
-    m_text = text;
+    m_text = std::move(text);
 }
 
 /**
@@ -147,7 +147,7 @@ void Filter::setText(QString text)
  */
 void Filter::setShortText(QString shortText)
 {
-    m_shortText = shortText;
+    m_shortText = std::move(shortText);
 }
 
 /**

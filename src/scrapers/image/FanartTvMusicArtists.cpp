@@ -17,7 +17,7 @@ namespace scraper {
 QString FanartTvMusicArtists::ID = "images.fanarttv-music";
 
 FanartTvMusicArtists::FanartTvMusicArtists(FanartTvConfiguration& settings, QObject* parent) :
-    ImageProvider(parent), m_settings{settings}
+    ImageProvider(parent), m_settings{settings}, m_apiKey("842f7a5d1cc7396f142b8dd47c4ba42b"), m_searchResultLimit(0)
 {
     m_meta.identifier = ID;
     m_meta.name = "Fanart.tv Music Artists";
@@ -30,9 +30,6 @@ FanartTvMusicArtists::FanartTvMusicArtists(FanartTvConfiguration& settings, QObj
 
     m_meta.supportedLanguages = FanartTvConfiguration::supportedLanguages();
     m_meta.defaultLocale = FanartTvConfiguration::defaultLocale();
-
-    m_apiKey = "842f7a5d1cc7396f142b8dd47c4ba42b";
-    m_searchResultLimit = 0;
 }
 
 const ImageProvider::ScraperMeta& FanartTvMusicArtists::meta() const

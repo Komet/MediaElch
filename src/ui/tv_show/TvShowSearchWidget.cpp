@@ -153,7 +153,10 @@ void TvShowSearchWidget::startSearch()
     qCInfo(generic) << "[TvShowSearch] Start search for:" << ui->searchString->text();
 
     ShowSearchJob::Config config{
-        ui->searchString->text().trimmed(), m_currentLanguage, Settings::instance()->showAdultScrapers()};
+        ui->searchString->text().trimmed(),
+        m_currentLanguage,
+        Settings::instance()->showAdultScrapers(),
+    };
     auto* searchJob = m_currentScraper->search(config);
     connect(searchJob, &ShowSearchJob::searchFinished, this, &TvShowSearchWidget::onShowResults);
     m_currentSearchJob = searchJob;

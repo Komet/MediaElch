@@ -33,7 +33,7 @@ QVariant MusicModel::data(const QModelIndex& index, int role) const
     using namespace mediaelch;
 
     if (!index.isValid()) {
-        return QVariant();
+        return {};
     }
 
     MusicModelItem* item = getItem(index);
@@ -50,13 +50,12 @@ QVariant MusicModel::data(const QModelIndex& index, int role) const
     if (role == Qt::SizeHintRole) {
         return QSize(0, (item->type() == MusicType::Artist) ? 44 : 22);
     }
-    if (role == MusicRoles::NumOfAlbums) {
-        if (MusicType(item->data(MusicRoles::Type).toInt()) == MusicType::Artist) {
-            return item->data(MusicRoles::NumOfAlbums);
-        }
+    if ((role == MusicRoles::NumOfAlbums) && (MusicType(item->data(MusicRoles::Type).toInt()) == MusicType::Artist)) {
+        return item->data(MusicRoles::NumOfAlbums);
     }
 
-    return QVariant();
+
+    return {};
 }
 
 MusicModelItem* MusicModel::getItem(const QModelIndex& index) const

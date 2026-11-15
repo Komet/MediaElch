@@ -48,12 +48,12 @@ static void createAndCompareMultiEpisode(const QString& filename, Callback callb
     doc.setContent(test::readResourceFile(filename));
     QDomNodeList detailTags = doc.elementsByTagName("episodedetails");
 
-    for (int i = 0; i < detailTags.size(); ++i) {
+    for (const QDomNode& detailTag : detailTags) {
         episodes.push_back(std::make_unique<TvShowEpisode>());
         episodesPointer.push_back(episodes.back().get());
 
         mediaelch::kodi::EpisodeXmlReader reader(*episodesPointer.last());
-        CHECK(reader.parseNfoDom(detailTags.at(i).toElement()));
+        CHECK(reader.parseNfoDom(detailTag.toElement()));
     }
 
     callback(episodesPointer);

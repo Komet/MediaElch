@@ -12,8 +12,8 @@
 #include <QVBoxLayout>
 
 namespace {
-static const int ROLE_PAGE_INDEX = Qt::UserRole + 1;
-static const int ROLE_IS_ADULT = Qt::UserRole + 2;
+const int ROLE_PAGE_INDEX = Qt::UserRole + 1;
+const int ROLE_IS_ADULT = Qt::UserRole + 2;
 } // namespace
 
 

@@ -174,12 +174,12 @@ void TheTvDbApi::addHeadersToRequest(const Locale& locale, QNetworkRequest& requ
 
 QUrl TheTvDbApi::makeFullUrl(const QString& suffix)
 {
-    return QUrl("https://api.thetvdb.com" + suffix);
+    return {"https://api.thetvdb.com" + suffix};
 }
 
 QUrl TheTvDbApi::makeFullAssetUrl(const QString& suffix)
 {
-    return QUrl("https://www.thetvdb.com" + suffix);
+    return {"https://www.thetvdb.com" + suffix};
 }
 
 QUrl TheTvDbApi::getShowSearchUrl(const QString& searchStr) const

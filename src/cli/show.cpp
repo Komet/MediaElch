@@ -22,14 +22,14 @@ int show(QApplication& app, QCommandLineParser& parser)
     const QString command = args.size() < 2 ? QString() : args.at(1);
 
     if (command.isEmpty()) {
-        std::cerr << "Missing media identifier." << std::endl;
+        std::cerr << "Missing media identifier." << '\n';
         return 1;
     }
 
     ShowConfig config;
     config.id = command;
 
-    std::cerr << "We don't support this command, yet!" << std::endl;
+    std::cerr << "We don't support this command, yet!" << '\n';
 
     //    Manager::instance()->movieFileSearcher()->setMovieDirectories(
     //        Settings::instance()->directorySettings().movieDirectories());

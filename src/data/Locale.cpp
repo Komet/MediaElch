@@ -25,7 +25,8 @@ Locale::Locale(const QString& locale)
 
 QString Locale::languageTranslated() const
 {
-    static QMap<QString, QString> localeTextMap = {{"ar", tr("Arabic")},
+    static QMap<QString, QString> localeTextMap = {
+        {"ar", tr("Arabic")},
         {"ar-AE", tr("Arabic (U.A.E.)")},
         {"ar-SA", tr("Arabic (Saudi Arabia)")},
         {"be-BY", tr("Belarusian")},
@@ -118,9 +119,10 @@ QString Locale::languageTranslated() const
         {"zh-TW", tr("Chinese (Taiwan)")},
         {"zu-ZA", tr("Zulu")},
         // special case, see Locale::NoLocale
-        {"xx-XX", tr("No language available")}};
+        {"xx-XX", tr("No language available")},
+    };
 
-    const QString locale = toString('-');
+    QString locale = toString('-');
 
     if (localeTextMap.contains(locale)) {
         return localeTextMap[locale];

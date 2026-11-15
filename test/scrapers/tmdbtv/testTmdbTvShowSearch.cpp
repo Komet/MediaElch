@@ -39,7 +39,7 @@ TEST_CASE("TmdbTv returns valid search results", "[tv][TmdbTv][search]")
         auto* searchJob = new TmdbTvShowSearchJob(getTmdbApi(), config);
         const auto p = test::searchTvScraperSync(searchJob, true);
 
-        CHECK(p.first.length() == 0);
+        CHECK(p.first.empty());
         CHECK(p.second.error == ScraperError::Type::NoError);
     }
 
@@ -49,7 +49,7 @@ TEST_CASE("TmdbTv returns valid search results", "[tv][TmdbTv][search]")
         auto* searchJob = new TmdbTvShowSearchJob(getTmdbApi(), config);
         const auto scraperResults = test::searchTvScraperSync(searchJob).first;
 
-        REQUIRE(scraperResults.length() >= 1);
+        REQUIRE_FALSE(scraperResults.empty());
         CHECK(scraperResults[0].title == "1899");
         CHECK(scraperResults[0].identifier.str() == "90669");
         CHECK(scraperResults[0].released == QDate(2022, 11, 17));

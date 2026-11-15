@@ -20,7 +20,8 @@ AEBN::AEBN(AebnConfiguration& settings, QObject* parent) : MovieScraper(parent),
     m_meta.termsOfService = "https://straight.aebn.com/straight/policy/terms";
     m_meta.privacyPolicy = "https://straight.aebn.com/straight/policy/privacy";
     m_meta.help = "https://straight.aebn.com/straight/customer-service";
-    m_meta.supportedDetails = {MovieScraperInfo::Title,
+    m_meta.supportedDetails = {
+        MovieScraperInfo::Title,
         MovieScraperInfo::Released,
         MovieScraperInfo::Runtime,
         MovieScraperInfo::Overview,
@@ -31,15 +32,14 @@ AEBN::AEBN(AebnConfiguration& settings, QObject* parent) : MovieScraper(parent),
         MovieScraperInfo::Studios,
         MovieScraperInfo::Director,
         MovieScraperInfo::Set,
-        MovieScraperInfo::Tags};
+        MovieScraperInfo::Tags,
+    };
     m_meta.supportedLanguages = AebnConfiguration::supportedLanguages();
     m_meta.defaultLocale = AebnConfiguration::defaultLocale();
     m_meta.isAdult = true;
 }
 
-AEBN::~AEBN()
-{
-}
+AEBN::~AEBN() = default;
 
 const MovieScraper::ScraperMeta& AEBN::meta() const
 {

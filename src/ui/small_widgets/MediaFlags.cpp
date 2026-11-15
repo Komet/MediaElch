@@ -2,6 +2,7 @@
 #include "ui_MediaFlags.h"
 
 #include <QPainter>
+#include <algorithm>
 
 #include "globals/Helper.h"
 #include "log/Log.h"
@@ -49,7 +50,8 @@ void MediaFlags::setupResolution(StreamDetails* streamDetails)
 
 void MediaFlags::setupAspect(StreamDetails* streamDetails)
 {
-    QStringList availableAspects = {"1.31",
+    QStringList availableAspects = {
+        "1.31",
         "1.32",
         "1.33",
         "1.34",
@@ -88,7 +90,8 @@ void MediaFlags::setupAspect(StreamDetails* streamDetails)
         "2.52",
         "2.55",
         "2.73",
-        "2.76"};
+        "2.76",
+    };
     const double aspect = streamDetails->videoDetails().value(StreamDetails::VideoDetails::Aspect).toDouble();
     QString aspectFlag = QString::number(aspect, 'f', 2);
     ui->mediaFlagAspect->setVisible(availableAspects.contains(aspectFlag));
@@ -100,7 +103,21 @@ void MediaFlags::setupAspect(StreamDetails* streamDetails)
 void MediaFlags::setupCodec(StreamDetails* streamDetails)
 {
     QStringList availableCodecs = {
-        "avc1", "avchd", "divx", "flv", "h264", "avc", "av1", "hevc", "mpeg", "mpeg1", "mpeg2", "vc-1", "wmv3", "xvid"};
+        "avc1",
+        "avchd",
+        "divx",
+        "flv",
+        "h264",
+        "avc",
+        "av1",
+        "hevc",
+        "mpeg",
+        "mpeg1",
+        "mpeg2",
+        "vc-1",
+        "wmv3",
+        "xvid",
+    };
     QString codec = streamDetails->videoDetails().value(StreamDetails::VideoDetails::Codec).toLower();
     if (codec.startsWith("divx")) {
         codec = "divx";
@@ -114,7 +131,8 @@ void MediaFlags::setupCodec(StreamDetails* streamDetails)
 void MediaFlags::setupAudio(StreamDetails* streamDetails)
 {
     bool visible = false;
-    QStringList availableCodecs = {"dtshdma",
+    QStringList availableCodecs = {
+        "dtshdma",
         "dtshdhra",
         "dtshdx",
         "dolbytruehd",
@@ -127,7 +145,8 @@ void MediaFlags::setupAudio(StreamDetails* streamDetails)
         "mp3",
         "mp2",
         "aac",
-        "aac lc"};
+        "aac lc",
+    };
     if (streamDetails->audioDetails().count() > 0) {
         QString codec = streamDetails->audioDetails().at(0).value(StreamDetails::AudioDetails::Codec).toLower();
         if (codec == "dtshd-ma" || codec == "dts-hd" || codec == "dtshd_ma") {
@@ -166,9 +185,8 @@ void MediaFlags::setupChannels(StreamDetails* streamDetails)
 {
     int channels = -1;
     for (elch_ssize_t i = 0, n = streamDetails->audioDetails().count(); i < n; ++i) {
-        if (streamDetails->audioDetails().at(i).value(StreamDetails::AudioDetails::Channels).toInt() > channels) {
-            channels = streamDetails->audioDetails().at(i).value(StreamDetails::AudioDetails::Channels).toInt();
-        }
+        channels = std::max(
+            streamDetails->audioDetails().at(i).value(StreamDetails::AudioDetails::Channels).toInt(), channels);
     }
 
     if (channels > 8 || channels < 2 || channels == 3 || channels == 4) {

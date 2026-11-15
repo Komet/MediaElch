@@ -25,13 +25,13 @@
 
 namespace {
 
-static constexpr char moduleName[] = "image_dialog";
-static const Settings::Key KEY_IMAGE_DIALOG_SIZE(moduleName, "ImageDialog/Size");
-static const Settings::Key KEY_IMAGE_DIALOG_POSITION(moduleName, "ImageDialog/Pos");
+constexpr char moduleName[] = "image_dialog";
+const Settings::Key KEY_IMAGE_DIALOG_SIZE(moduleName, "ImageDialog/Size");
+const Settings::Key KEY_IMAGE_DIALOG_POSITION(moduleName, "ImageDialog/Pos");
 
 Settings::Key previewSizeKey(ImageType type)
 {
-    return Settings::Key(moduleName, QStringLiteral("ImageDialog/PreviewSize_%1").arg(static_cast<int>(type)));
+    return {moduleName, QStringLiteral("ImageDialog/PreviewSize_%1").arg(static_cast<int>(type))};
 }
 
 } // namespace
@@ -659,7 +659,7 @@ void ImageDialog::onImageDropped(QUrl url)
         ui->gallery->addImage(ba, url.toLocalFile());
         m_imageUrls.append(url);
     } else {
-        m_imageUrl = url;
+        m_imageUrl = std::move(url);
         accept();
     }
 }
@@ -853,7 +853,7 @@ void ImageDialog::onSearch(bool onlyFirstResult)
         // -> trigger searching for item and show search result widget
         ui->results->clearContents();
         ui->results->setRowCount(0);
-        int limit = (onlyFirstResult) ? 1 : 0;
+        int limit = onlyFirstResult ? 1 : 0;
         if (m_itemType == ItemType::Movie) {
             m_currentProvider->searchMovie(searchTerm, limit);
         } else if (m_itemType == ItemType::Concert) {

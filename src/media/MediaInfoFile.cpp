@@ -12,7 +12,8 @@
 #include <QRegularExpression>
 #include <QStringList>
 
-MediaInfoFile::MediaInfoFile(const QString& filepath) : m_mediaInfo{std::make_unique<MediaInfoDLL::MediaInfo>()}
+MediaInfoFile::MediaInfoFile(const QString& filepath) :
+    m_mediaInfo{std::make_unique<MediaInfoDLL::MediaInfo>()}, m_isReady(m_mediaInfo->IsReady())
 {
     // VERSION;APP_NAME;APP_VERSION"
     m_mediaInfo->Option(__T("Info_Version"), __T("20.03;MediaElch;2.8"));
@@ -20,7 +21,7 @@ MediaInfoFile::MediaInfoFile(const QString& filepath) : m_mediaInfo{std::make_un
     m_mediaInfo->Option(__T("Complete"), __T("1"));
     m_mediaInfo->Open(QString2MI(filepath));
 
-    m_isReady = m_mediaInfo->IsReady();
+
     if (!m_isReady) {
         qCCritical(generic) << "[MediaInfo] Unable to load libmediainfo!";
     }
@@ -196,7 +197,7 @@ QString MediaInfoFile::audioCodec(int streamIndex) const
             "Format_Commercial",       // e.g. "Dolby TrueHD"
             "Format_Commercial_IfAny", // e.g. "Dolby TrueHD"
             "CodecID",                 // e.g. A_TRUEHD => A_ == "Audio"
-            "Codec"                    // deprecated in newer MediaInfo lib versions
+            "Codec",                   // deprecated in newer MediaInfo lib versions
         });
 
     if (helper::containsIgnoreCase(searchCodecs, "TrueHD")) {
@@ -227,10 +228,8 @@ QString MediaInfoFile::audioCodec(int streamIndex) const
             }
             // "normal" dts
         }
-        if (audioCodec == "truehd") {
-            if (addFeature.toLower() == "16-ch") {
-                audioCodec = "atmos";
-            }
+        if ((audioCodec == "truehd") && (addFeature.toLower() == "16-ch")) {
+            audioCodec = "atmos";
         }
     }
 
@@ -253,10 +252,8 @@ QString MediaInfoFile::audioCodec(int streamIndex) const
                 }
             }
         }
-        if (audioCodec == "truehd") {
-            if (audioProfile.contains("Atmos")) { // Profile: "TrueHD+Atmos / TrueHD"
-                audioCodec = "atmos";
-            }
+        if ((audioCodec == "truehd") && audioProfile.contains("Atmos")) { // Profile: "TrueHD+Atmos / TrueHD"
+            audioCodec = "atmos";
         }
     }
 
@@ -318,7 +315,7 @@ QString MediaInfoFile::audioChannels(int streamIndex) const
     QString channels = getAudio(streamIndex, "Channel(s)");
     QString channelsOriginal = getAudio(streamIndex, "Channel(s)_Original");
     if (!channelsOriginal.isEmpty()) {
-        channels = channelsOriginal;
+        channels = std::move(channelsOriginal);
     }
     QRegularExpression rx(R"(^\D*(\d*)\D*)");
     QRegularExpressionMatch match = rx.match(channels);

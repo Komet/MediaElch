@@ -13,7 +13,8 @@ const QMap<AdvancedSettingsXmlReader::ParseErrorType, QString> AdvancedSettingsX
     {ParseErrorType::FileIsReadOnly, QObject::tr("Cannot open advancedsettings.xml in read-only mode.")},
     {ParseErrorType::NoMainTag, QObject::tr("Couldn't find an <advancedsettings> tag!")},
     {ParseErrorType::UnsupportedTag, QObject::tr("Found unsupported xml tag:")},
-    {ParseErrorType::InvalidValue, QObject::tr("Invalid value for xml tag:")}};
+    {ParseErrorType::InvalidValue, QObject::tr("Invalid value for xml tag:")},
+};
 
 QPair<AdvancedSettings, AdvancedSettingsXmlReader::ValidationMessages> AdvancedSettingsXmlReader::loadFromDefaultPath()
 {

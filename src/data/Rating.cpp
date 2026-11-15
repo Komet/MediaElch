@@ -15,7 +15,7 @@ QString Rating::sourceToName(const QString& source)
         {"metacritic", "Metacritic"},
         {"ofdb", "OFDb"}, // Removed in MediaElch, kept for backward compatibility
         {"default", "Default"},
-        {"thetvdb", "TheTvDb"} //
+        {"thetvdb", "TheTvDb"}, //
     });
 
     if (r.contains(source)) {

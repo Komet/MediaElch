@@ -28,7 +28,7 @@ using namespace mediaelch;
 namespace {
 
 /// Write a string to out, limiting its size at around 80 characters per line.
-static void writeToReference(QTextStream& out, const QString& key, const QString& value)
+void writeToReference(QTextStream& out, const QString& key, const QString& value)
 {
     out << key << ":";
     const int paragraphLength = 80;
@@ -51,12 +51,12 @@ static void writeToReference(QTextStream& out, const QString& key, const QString
 
 // For all types that have a toString() method.
 template<class T>
-static auto writeToReference(QTextStream& out, const QString& key, const T& value) -> decltype(value.toString(), void())
+auto writeToReference(QTextStream& out, const QString& key, const T& value) -> decltype(value.toString(), void())
 {
     writeToReference(out, key, value.toString());
 }
 
-static void writeToReference(QTextStream& out, const QString& key, const QStringList& value)
+void writeToReference(QTextStream& out, const QString& key, const QStringList& value)
 {
     out << key << ": (N" << test::approxMagnitude(value.size()) << ")\n";
     const int count = std::min(5, qsizetype_to_int(value.size()));
@@ -67,24 +67,24 @@ static void writeToReference(QTextStream& out, const QString& key, const QString
         out << "  - ... and " << test::approxMagnitude(value.size() - count) << " more\n";
     }
 }
-static void writeToReference(QTextStream& out, const QString& key, int value)
+void writeToReference(QTextStream& out, const QString& key, int value)
 {
     out << key << ": " << value << "\n";
 }
-static void writeToReference(QTextStream& out, const QString& key, bool value)
+void writeToReference(QTextStream& out, const QString& key, bool value)
 {
     out << key << ": " << (value ? "true" : "false") << "\n";
 }
-static void writeToReference(QTextStream& out, const QString& key, double value)
+void writeToReference(QTextStream& out, const QString& key, double value)
 {
     out << key << ": " << value << "\n";
 }
 // No line break for QUrl
-static void writeToReference(QTextStream& out, const QString& key, const QUrl& value)
+void writeToReference(QTextStream& out, const QString& key, const QUrl& value)
 {
     out << key << ": " << value.toString() << "\n";
 }
-static void writeToReference(QTextStream& out, const QString& key, const QDate& value)
+void writeToReference(QTextStream& out, const QString& key, const QDate& value)
 {
     out << key << ": ";
     if (value.isValid()) {
@@ -94,7 +94,7 @@ static void writeToReference(QTextStream& out, const QString& key, const QDate& 
     }
     out << "\n";
 }
-static void writeToReference(QTextStream& out, const QString& key, const QDateTime& value)
+void writeToReference(QTextStream& out, const QString& key, const QDateTime& value)
 {
     out << key << ": ";
     if (value.isValid()) {
@@ -104,7 +104,7 @@ static void writeToReference(QTextStream& out, const QString& key, const QDateTi
     }
     out << "\n";
 }
-static void writeToReference(QTextStream& out, const QString& key, const QTime& value)
+void writeToReference(QTextStream& out, const QString& key, const QTime& value)
 {
     out << key << ": ";
     if (value.isValid()) {
@@ -114,23 +114,23 @@ static void writeToReference(QTextStream& out, const QString& key, const QTime& 
     }
     out << "\n";
 }
-static void writeToReference(QTextStream& out, const QString& key, const std::chrono::minutes& value)
+void writeToReference(QTextStream& out, const QString& key, const std::chrono::minutes& value)
 {
     out << key << ": " << value.count() << "min\n";
 }
-static void writeToReference(QTextStream& out, const QString& key, const QSize& value)
+void writeToReference(QTextStream& out, const QString& key, const QSize& value)
 {
     out << key << ": h=" << value.height() << " w=" << value.width() << "\n";
 }
-static void writeToReference(QTextStream& out, const QString& key, const SeasonNumber& value)
+void writeToReference(QTextStream& out, const QString& key, const SeasonNumber& value)
 {
     out << key << ": SeasonNumber=" << value.toPaddedString() << "\n";
 }
-static void writeToReference(QTextStream& out, const QString& key, const EpisodeNumber& value)
+void writeToReference(QTextStream& out, const QString& key, const EpisodeNumber& value)
 {
     out << key << ": EpisodeNumber=" << value.toPaddedString() << "\n";
 }
-static void writeToReference(QTextStream& out, const QString& key, const DiscType& value)
+void writeToReference(QTextStream& out, const QString& key, const DiscType& value)
 {
     out << key << ": ";
     switch (value) {
@@ -140,7 +140,7 @@ static void writeToReference(QTextStream& out, const QString& key, const DiscTyp
     };
     out << "\n";
 }
-static void writeToReference(QTextStream& out, const QString& key, const Ratings& value)
+void writeToReference(QTextStream& out, const QString& key, const Ratings& value)
 {
     out << key << " (N" << test::approxMagnitude(value.size()) << ")\n";
     for (const auto& rating : value) {
@@ -153,7 +153,7 @@ static void writeToReference(QTextStream& out, const QString& key, const Ratings
             << "\n";
     }
 }
-static void writeToReference(QTextStream& out, const QString& key, const QVector<Poster>& value)
+void writeToReference(QTextStream& out, const QString& key, const QVector<Poster>& value)
 {
     out << key << ": (N" << test::approxMagnitude(value.size()) << ")\n";
     const int count = std::min(5, qsizetype_to_int(value.size()));
@@ -173,7 +173,7 @@ static void writeToReference(QTextStream& out, const QString& key, const QVector
     }
 }
 
-static void writeToReference(QTextStream& out, const QString& key, const Actors& value)
+void writeToReference(QTextStream& out, const QString& key, const Actors& value)
 {
     out << key << ": (N" << test::approxMagnitude(value.size()) << ")\n";
     const auto& actors = value.actors();
@@ -192,16 +192,16 @@ static void writeToReference(QTextStream& out, const QString& key, const Actors&
     }
 }
 
-static void writeToReference(QTextStream& out, const QString& key, const mediaelch::FileList& value)
+void writeToReference(QTextStream& out, const QString& key, const mediaelch::FileList& value)
 {
     writeToReference(out, key, value.toStringList());
 }
-static void writeToReference(QTextStream& out, const QString& key, const mediaelch::ResumeTime& value)
+void writeToReference(QTextStream& out, const QString& key, const mediaelch::ResumeTime& value)
 {
     out << key << ": position=" << value.position << " / total=" << value.total << "\n";
 }
 
-static void writeToReference(QTextStream& out, const QString& key, const StreamDetails* value)
+void writeToReference(QTextStream& out, const QString& key, const StreamDetails* value)
 {
     out << key << ": ";
     if (value == nullptr) {
@@ -214,7 +214,7 @@ static void writeToReference(QTextStream& out, const QString& key, const StreamD
     out << "\n";
 }
 
-static void writeToReference(QTextStream& out, const QString& key, const QVector<Subtitle*>& value)
+void writeToReference(QTextStream& out, const QString& key, const QVector<Subtitle*>& value)
 {
     out << key << ": (N" << test::approxMagnitude(value.size()) << ")\n";
     for (const Subtitle* subtitle : value) {
@@ -224,7 +224,7 @@ static void writeToReference(QTextStream& out, const QString& key, const QVector
     }
 }
 
-static void writeToReference(QTextStream& out, const QString& key, const QVector<DiscographyAlbum>& value)
+void writeToReference(QTextStream& out, const QString& key, const QVector<DiscographyAlbum>& value)
 {
     out << key << ": (N" << test::approxMagnitude(value.size()) << ")\n";
     for (const DiscographyAlbum& album : value) {
@@ -237,7 +237,7 @@ static void writeToReference(QTextStream& out, const QString& key, const QVector
 class AlbumTestExporter final : public Album::Exporter
 {
 public:
-    AlbumTestExporter(QTextStream& out) : m_out{out} {}
+    explicit AlbumTestExporter(QTextStream& out) : m_out{out} {}
 
     void startExport() override { m_out << "Album Reference File\n----------------------\n\n"; }
     void endExport() override { m_out.flush(); }
@@ -268,7 +268,7 @@ public:
     {
         auto i = images.constBegin();
         while (i != images.constEnd()) {
-            writeToReference(m_out, QStringLiteral("images_%1").arg(int(i.key())), i.value());
+            writeToReference(m_out, QStringLiteral("images_%1").arg(static_cast<int>(i.key())), i.value());
             ++i;
         }
     }
@@ -286,7 +286,7 @@ private:
 class ArtistTestExporter final : public Artist::Exporter
 {
 public:
-    ArtistTestExporter(QTextStream& out) : m_out{out} {}
+    explicit ArtistTestExporter(QTextStream& out) : m_out{out} {}
 
     void startExport() override { m_out << "Artist Reference File\n----------------------\n\n"; }
     void endExport() override { m_out.flush(); }
@@ -317,7 +317,7 @@ public:
     {
         auto i = images.constBegin();
         while (i != images.constEnd()) {
-            writeToReference(m_out, QStringLiteral("images_%1").arg(int(i.key())), i.value());
+            writeToReference(m_out, QStringLiteral("images_%1").arg(static_cast<int>(i.key())), i.value());
             ++i;
         }
     }
@@ -339,7 +339,7 @@ private:
 class ConcertTestExporter final : public ConcertData::Exporter
 {
 public:
-    ConcertTestExporter(QTextStream& out) : m_out{out} {}
+    explicit ConcertTestExporter(QTextStream& out) : m_out{out} {}
 
     void startExport() override { m_out << "Concert Reference File\n----------------------\n\n"; }
     void endExport() override { m_out.flush(); }
@@ -399,7 +399,7 @@ private:
 class MovieTestExporter final : public Movie::Exporter
 {
 public:
-    MovieTestExporter(QTextStream& out) : m_out{out} {}
+    explicit MovieTestExporter(QTextStream& out) : m_out{out} {}
 
     void startExport() override { m_out << "Movie Reference File\n----------------------\n\n"; }
     void endExport() override { m_out.flush(); }
@@ -481,7 +481,10 @@ public:
     }
     void exportDateAdded(const QDateTime& dateAdded) override { writeToReference(m_out, "dateAdded", dateAdded); }
     void exportDiscType(DiscType discType) override { writeToReference(m_out, "discType", discType); }
-    void exportLabel(const ColorLabel& label) override { writeToReference(m_out, "color label", int(label)); }
+    void exportLabel(const ColorLabel& label) override
+    {
+        writeToReference(m_out, "color label", static_cast<int>(label));
+    }
     void exportSubtitles(const QVector<Subtitle*>& subtitles) override
     {
         writeToReference(m_out, "subtitles", subtitles);
@@ -499,7 +502,7 @@ private:
 class TvShowTestExporter final : public TvShow::Exporter
 {
 public:
-    TvShowTestExporter(QTextStream& out) : m_out{out} {}
+    explicit TvShowTestExporter(QTextStream& out) : m_out{out} {}
 
     void startExport() override { m_out << "TvShow Reference File\n----------------------\n\n"; }
     void endExport() override { m_out.flush(); }
@@ -610,7 +613,7 @@ private:
 class TvShowEpisodeTestExporter final : public TvShowEpisode::Exporter
 {
 public:
-    TvShowEpisodeTestExporter(QTextStream& out) : m_out{out} {}
+    explicit TvShowEpisodeTestExporter(QTextStream& out) : m_out{out} {}
 
     void startExport() override { m_out << "TvShowEpisode Reference File\n------------------\n\n"; }
     void endExport() override { m_out.flush(); }

@@ -8,7 +8,8 @@
 AdvancedSettings::AdvancedSettings()
 {
     m_locale = QLocale::system();
-    m_sortTokens = QStringList{// English
+    m_sortTokens = QStringList{
+        // English
         "The",
         "A",
         "An",
@@ -50,7 +51,8 @@ AdvancedSettings::AdvancedSettings()
         "Um",
         "Uma",
         "Uns",
-        "Umas"};
+        "Umas",
+    };
 
     m_audioCodecMappings.insert("mpa1l2", "mp2");
     m_audioCodecMappings.insert("mpa1l3", "mp3");
@@ -58,7 +60,8 @@ AdvancedSettings::AdvancedSettings()
     m_videoCodecMappings.insert("v_mpeg4/iso/avc", "h264"); // older MediaInfo versions (v0.7)
     m_videoCodecMappings.insert("avc", "h264");             // newer MediaInfo versions (v17.12)
 
-    const auto videoFiles = mediaelch::FileFilter({"*.3gp",
+    const auto videoFiles = mediaelch::FileFilter({
+        "*.3gp",
         "*.asf",
         "*.asx",
         "*.avc",
@@ -109,7 +112,8 @@ AdvancedSettings::AdvancedSettings()
         "*.wtv",
         "*.xvid",
         "index.bdmv",
-        "VIDEO_TS.IFO"});
+        "VIDEO_TS.IFO",
+    });
 
     // Assign video filters.
     m_movieFilters = videoFiles;

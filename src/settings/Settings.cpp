@@ -900,7 +900,7 @@ MovieSetArtworkType Settings::movieSetArtworkType() const
 
 void Settings::setMovieSetArtworkDirectory(mediaelch::DirectoryPath dir)
 {
-    m_movieSetArtworkDirectory = dir;
+    m_movieSetArtworkDirectory = std::move(dir);
 }
 
 mediaelch::DirectoryPath Settings::movieSetArtworkDirectory() const
@@ -947,7 +947,7 @@ const QMap<MovieScraperInfo, QString>& Settings::customMovieScraper() const
 
 void Settings::setCustomMovieScraper(QMap<MovieScraperInfo, QString> customMovieScraper)
 {
-    m_customMovieScraper = customMovieScraper;
+    m_customMovieScraper = std::move(customMovieScraper);
 }
 
 const QMap<ShowScraperInfo, QString>& Settings::customTvScraperShow() const
@@ -963,7 +963,7 @@ void Settings::setCustomTvScraperShow(QMap<ShowScraperInfo, QString> customTvScr
             customTvScraper.insert(info, mediaelch::scraper::TmdbTv::ID);
         }
     }
-    m_customTvScraperShow = customTvScraper;
+    m_customTvScraperShow = std::move(customTvScraper);
 }
 
 const QMap<EpisodeScraperInfo, QString>& Settings::customTvScraperEpisode() const
@@ -979,7 +979,7 @@ void Settings::setCustomTvScraperEpisode(QMap<EpisodeScraperInfo, QString> custo
             customTvScraper.insert(info, mediaelch::scraper::TmdbTv::ID);
         }
     }
-    m_customTvScraperEpisode = customTvScraper;
+    m_customTvScraperEpisode = std::move(customTvScraper);
 }
 
 int Settings::currentMovieScraper() const
@@ -1110,7 +1110,7 @@ bool Settings::showAdultScrapers() const
 
 void Settings::setStartupSection(QString startupSection)
 {
-    m_startupSection = startupSection;
+    m_startupSection = std::move(startupSection);
 }
 
 QString Settings::startupSection()
@@ -1133,7 +1133,7 @@ bool Settings::donated() const
 
 void Settings::setTheme(QString theme)
 {
-    m_theme = theme;
+    m_theme = std::move(theme);
 }
 
 QString Settings::theme()
@@ -1144,7 +1144,7 @@ QString Settings::theme()
 void Settings::setLastImagePath(mediaelch::DirectoryPath path)
 {
     // Also save in this setter, because this method is called in ImageDialog as well.
-    m_lastImagePath = path;
+    m_lastImagePath = std::move(path);
     settings()->setValue(KEY_LAST_IMAGE_PATH, m_lastImagePath.toString());
     settings()->sync();
 }
@@ -1251,8 +1251,8 @@ void Settings::emitChangeFor(const Settings::Key& key) const
 {
     auto iter = m_callbacks.find(key);
     if (iter != m_callbacks.end()) {
-        auto& callbacks = iter.value();
-        for (auto& callback : callbacks) {
+        const auto& callbacks = iter.value();
+        for (const auto& callback : callbacks) {
             callback.second();
         }
     }
@@ -1299,9 +1299,9 @@ void Settings::addItem(Settings::Item item)
 {
     MediaElch_Debug_Expects(!item.isNull());
     if (m_isTransactionInProgress) {
-        m_localItems[item.key] = item;
+        m_localItems[item.key] = std::move(item);
     } else {
-        m_items[item.key] = item;
+        m_items[item.key] = std::move(item);
     }
 }
 

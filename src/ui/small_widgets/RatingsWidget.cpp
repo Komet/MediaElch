@@ -7,11 +7,12 @@
 
 #include "log/Log.h"
 
-RatingsWidget::RatingsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::RatingsWidget)
+RatingsWidget::RatingsWidget(QWidget* parent) :
+    QWidget(parent), ui(new Ui::RatingsWidget), m_ratingModel(new RatingModel(this))
 {
     ui->setupUi(this);
 
-    m_ratingModel = new RatingModel(this);
+
     ui->ratings->setModel(m_ratingModel);
     ui->ratings->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->ratings->verticalHeader()->setSectionResizeMode(QHeaderView::Interactive);

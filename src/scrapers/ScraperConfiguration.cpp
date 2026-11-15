@@ -1,9 +1,11 @@
 #include "scrapers/ScraperConfiguration.h"
 
+#include <utility>
+
 namespace mediaelch {
 
 ScraperConfiguration::ScraperConfiguration(QString scraperId, Settings& settings) :
-    m_scraperId(scraperId), m_settings{settings}
+    m_scraperId(std::move(scraperId)), m_settings{settings}
 {
 }
 

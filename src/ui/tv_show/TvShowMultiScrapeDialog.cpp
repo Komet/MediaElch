@@ -36,7 +36,7 @@ static scraper::ShowIdentifier getShowIdentifierForScraper(const scraper::TvScra
         // The CustomTvScraper depends on TMDB
         return ShowIdentifier(show.tmdbId());
     }
-    return ShowIdentifier();
+    return {};
 }
 
 static bool hasValidIdForScraper(const scraper::TvScraper& scraper, const TvShow& show)
@@ -410,7 +410,10 @@ void TvShowMultiScrapeDialog::scrapeNext()
             logToUser(tr("Search for TV show \"%1\" because no valid show ID was found for the episode.")
                     .arg(m_currentEpisode->tvShow()->title()));
             ShowSearchJob::Config config{
-                m_currentEpisode->tvShow()->title(), m_currentLanguage, Settings::instance()->showAdultScrapers()};
+                m_currentEpisode->tvShow()->title(),
+                m_currentLanguage,
+                Settings::instance()->showAdultScrapers(),
+            };
             auto* searchJob = m_currentScraper->search(config);
             connect(searchJob, &ShowSearchJob::searchFinished, this, &TvShowMultiScrapeDialog::onSearchFinished);
             searchJob->start();
@@ -563,11 +566,13 @@ void TvShowMultiScrapeDialog::onInfoLoadDone(TvShow* show, QSet<ShowScraperInfo>
 
     logToUser(tr("Finished scraping details of TV show \"%1\".").arg(show->title()));
 
-    QSet<ImageType> types = {ImageType::TvShowClearArt,
+    QSet<ImageType> types = {
+        ImageType::TvShowClearArt,
         ImageType::TvShowLogos,
         ImageType::TvShowCharacterArt,
         ImageType::TvShowThumb,
-        ImageType::TvShowSeasonThumb};
+        ImageType::TvShowSeasonThumb,
+    };
 
     if (show->tvdbId().isValid() && details.contains(ShowScraperInfo::ExtraArts)) {
         logToUser(tr("Start loading extra fanart from TheTvDb for TV show with ID \"%1\".") //

@@ -31,7 +31,7 @@ bool MovieProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& sourceP
         }
     }
 
-    return !(m_filterDuplicates && !movies.at(sourceRow)->hasDuplicates());
+    return !m_filterDuplicates || movies.at(sourceRow)->hasDuplicates();
 }
 
 bool MovieProxyModel::lessThan(const QModelIndex& left, const QModelIndex& right) const

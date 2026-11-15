@@ -23,7 +23,8 @@ VideoBuster::VideoBuster(QObject* parent) : MovieScraper(parent)
     m_meta.termsOfService = "https://www.videobuster.de/agb";
     m_meta.privacyPolicy = "https://www.videobuster.de/datenschutz";
     m_meta.help = "https://www.videobuster.de/helpcenter/";
-    m_meta.supportedDetails = {MovieScraperInfo::Title,
+    m_meta.supportedDetails = {
+        MovieScraperInfo::Title,
         MovieScraperInfo::Released,
         MovieScraperInfo::Countries,
         MovieScraperInfo::Certification,
@@ -38,7 +39,8 @@ VideoBuster::VideoBuster(QObject* parent) : MovieScraper(parent)
         MovieScraperInfo::Poster,
         MovieScraperInfo::Backdrop,
         MovieScraperInfo::Tags,
-        MovieScraperInfo::Director};
+        MovieScraperInfo::Director,
+    };
     m_meta.supportedLanguages = {"de"};
     m_meta.defaultLocale = "de";
     m_meta.isAdult = false;

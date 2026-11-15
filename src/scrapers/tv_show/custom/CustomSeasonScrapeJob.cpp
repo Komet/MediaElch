@@ -121,7 +121,7 @@ SeasonScrapeJob::Config CustomSeasonScrapeJob::configFor(const QString& scraperI
 
     auto detailsForScraper = mediaelch::listToSet(m_customConfig.scraperForEpisodeDetails.keys(scraperId));
     detailsForScraper.intersect(scraperConfig.details);
-    scraperConfig.details = detailsForScraper;
+    scraperConfig.details = std::move(detailsForScraper);
 
     return scraperConfig;
 }

@@ -46,7 +46,7 @@ void OmdbTvSeasonScrapeJob::loadSeason(SeasonNumber season)
     m_api.loadSeason(showId, season.toInt(), [this, season](QJsonDocument json, ScraperError error) {
         if (!error.hasError()) {
             QJsonArray episodes = json.object().value("Episodes").toArray();
-            for (const QJsonValue& val : episodes) {
+            for (const auto& val : episodes) {
                 QJsonObject obj = val.toObject();
 
                 EpisodeNumber epNum(obj.value("Episode").toString().toInt());

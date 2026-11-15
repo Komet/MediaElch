@@ -46,7 +46,8 @@ void CustomTvScraperSettingsWidget::setSettings(Settings& settings)
 void CustomTvScraperSettingsWidget::loadSettings()
 {
     // vector to keep ordering
-    QVector<ShowScraperInfo> tvInfos = {ShowScraperInfo::Actors,
+    QVector<ShowScraperInfo> tvInfos = {
+        ShowScraperInfo::Actors,
         ShowScraperInfo::Banner,
         ShowScraperInfo::Certification,
         ShowScraperInfo::Fanart,
@@ -66,7 +67,8 @@ void CustomTvScraperSettingsWidget::loadSettings()
         ShowScraperInfo::Thumb,
         ShowScraperInfo::SeasonThumb,
         ShowScraperInfo::Runtime,
-        ShowScraperInfo::Status};
+        ShowScraperInfo::Status,
+    };
     QVector<EpisodeScraperInfo> episodeInfos = {
         EpisodeScraperInfo::Actors,
         EpisodeScraperInfo::Certification,

@@ -314,8 +314,8 @@ QStringList Movie::genres() const
 QVector<QString*> Movie::genresPointer()
 {
     QVector<QString*> genres;
-    for (elch_ssize_t i = 0, n = m_genres.size(); i < n; ++i) {
-        genres.append(&m_genres[i]);
+    for (QString& m_genre : m_genres) {
+        genres.append(&m_genre);
     }
     return genres;
 }
@@ -341,8 +341,8 @@ QStringList Movie::countries() const
 QVector<QString*> Movie::countriesPointer()
 {
     QVector<QString*> countries;
-    for (elch_ssize_t i = 0, n = m_countries.size(); i < n; ++i) {
-        countries.append(&m_countries[i]);
+    for (QString& m_countrie : m_countries) {
+        countries.append(&m_countrie);
     }
     return countries;
 }
@@ -368,8 +368,8 @@ QStringList Movie::studios() const
 QVector<QString*> Movie::studiosPointer()
 {
     QVector<QString*> studios;
-    for (elch_ssize_t i = 0, n = m_studios.size(); i < n; ++i) {
-        studios.append(&m_studios[i]);
+    for (QString& m_studio : m_studios) {
+        studios.append(&m_studio);
     }
     return studios;
 }
@@ -573,7 +573,7 @@ QStringList Movie::tags() const
 
 /**
  * \brief Sets the movies name
- * \param name Name of the movie
+ * \param title Name of the movie
  * \see Movie::name
  */
 void Movie::setTitle(QString title)
@@ -1087,13 +1087,15 @@ bool Movie::lessThan(Movie* a, Movie* b)
 
 QSet<ImageType> Movie::imageTypes()
 {
-    return {ImageType::MoviePoster,
+    return {
+        ImageType::MoviePoster,
         ImageType::MovieBanner,
         ImageType::MovieCdArt,
         ImageType::MovieClearArt,
         ImageType::MovieLogo,
         ImageType::MovieThumb,
-        ImageType::MovieBackdrop};
+        ImageType::MovieBackdrop,
+    };
 }
 
 bool Movie::hasSubtitles() const

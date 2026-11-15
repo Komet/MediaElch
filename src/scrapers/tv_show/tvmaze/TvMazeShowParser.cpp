@@ -146,7 +146,7 @@ void TvMazeShowParser::parseInfos(const QJsonDocument& json)
     // -------------------------------------
     {
         const QJsonArray cast = embedded["cast"].toArray();
-        for (const QJsonValue& val : cast) {
+        for (const auto& val : cast) {
             QJsonObject castObj = val.toObject();
             QJsonObject person = castObj["person"].toObject();
             QJsonObject character = castObj["character"].toObject();

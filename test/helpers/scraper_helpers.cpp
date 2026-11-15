@@ -168,7 +168,7 @@ void scrapeEpisodeSync(mediaelch::scraper::EpisodeScrapeJob* scrapeJob, bool may
         CAPTURE(scrapeJob->errorCode());
         CAPTURE(scrapeJob->errorString());
         CAPTURE(scrapeJob->errorText());
-        REQUIRE(!scrapeJob->hasError());
+        REQUIRE_FALSE(scrapeJob->hasError());
     }
 }
 
@@ -182,7 +182,7 @@ void scrapeSeasonSync(mediaelch::scraper::SeasonScrapeJob* scrapeJob, bool mayEr
         CAPTURE(scrapeJob->errorCode());
         CAPTURE(scrapeJob->errorString());
         CAPTURE(scrapeJob->errorText());
-        REQUIRE(!scrapeJob->hasError());
+        REQUIRE_FALSE(scrapeJob->hasError());
     }
 }
 

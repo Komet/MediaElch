@@ -169,17 +169,17 @@ void listEntries(ListConfig config)
     case MediaType::Music: listMusic(); break;
     case MediaType::All:
         listMovies();
-        std::cout << std::endl;
+        std::cout << '\n';
         listTvShows();
-        std::cout << std::endl;
+        std::cout << '\n';
         listConcerts();
-        std::cout << std::endl;
+        std::cout << '\n';
         listMusic();
         break;
     case MediaType::Unknown: break;
     }
 
-    std::cout << std::endl;
+    std::cout << '\n';
 }
 
 int list(QApplication& app, QCommandLineParser& parser)
@@ -198,7 +198,7 @@ int list(QApplication& app, QCommandLineParser& parser)
     config.mediaType = mediaTypeFromString(parser.value(typeOption));
 
     if (config.mediaType == MediaType::Unknown) {
-        std::cerr << "Unknown media type: " << parser.value(typeOption).toStdString() << std::endl;
+        std::cerr << "Unknown media type: " << parser.value(typeOption).toStdString() << '\n';
         return 1;
     }
 

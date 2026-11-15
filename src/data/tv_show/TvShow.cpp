@@ -3,7 +3,6 @@
 
 #include "database/ConcertPersistence.h"
 #include "database/TvShowPersistence.h"
-#include "globals/Globals.h"
 #include "globals/Helper.h"
 #include "globals/Manager.h"
 #include "log/Log.h"
@@ -393,7 +392,7 @@ void TvShow::clearImages()
     m_seasonImages.clear();
     m_hasImageChanged.clear();
     m_hasSeasonImageChanged.clear();
-    for (auto& actor : m_actors.actors()) {
+    for (const auto& actor : m_actors.actors()) {
         actor->image = QByteArray();
     }
     m_extraFanartImagesToAdd.clear();
@@ -492,8 +491,8 @@ QStringList TvShow::genres() const
 QVector<QString*> TvShow::genresPointer()
 {
     QVector<QString*> genres;
-    for (elch_ssize_t i = 0, n = m_genres.size(); i < n; ++i) {
-        genres.append(&m_genres[i]);
+    for (QString& m_genre : m_genres) {
+        genres.append(&m_genre);
     }
     return genres;
 }
@@ -634,7 +633,7 @@ QVector<Poster> TvShow::backdrops() const
 QVector<Poster> TvShow::seasonPosters(SeasonNumber season, bool returnAll) const
 {
     if (!m_seasonPosters.contains(season) && !returnAll) {
-        return QVector<Poster>();
+        return {};
     }
     if (!returnAll) {
         return m_seasonPosters[season];
@@ -653,7 +652,7 @@ QVector<Poster> TvShow::seasonPosters(SeasonNumber season, bool returnAll) const
 QVector<Poster> TvShow::seasonBackdrops(SeasonNumber season) const
 {
     if (!m_seasonBackdrops.contains(season)) {
-        return QVector<Poster>();
+        return {};
     }
     return m_seasonBackdrops[season];
 }
@@ -661,7 +660,7 @@ QVector<Poster> TvShow::seasonBackdrops(SeasonNumber season) const
 QVector<Poster> TvShow::seasonBanners(SeasonNumber season, bool returnAll) const
 {
     if (!m_seasonBanners.contains(season) && !returnAll) {
-        return QVector<Poster>();
+        return {};
     }
     if (!returnAll) {
         return m_seasonBanners[season];
@@ -686,7 +685,7 @@ QVector<Poster> TvShow::seasonBanners(SeasonNumber season, bool returnAll) const
 QVector<Poster> TvShow::seasonThumbs(SeasonNumber season, bool returnAll) const
 {
     if (!m_seasonThumbs.contains(season) && !returnAll) {
-        return QVector<Poster>();
+        return {};
     }
     if (!returnAll) {
         return m_seasonThumbs[season];
@@ -897,7 +896,7 @@ void TvShow::addTag(QString tag)
 
 void TvShow::setCertification(Certification certification)
 {
-    m_certification = certification;
+    m_certification = std::move(certification);
     setChanged(true);
 }
 
@@ -923,31 +922,31 @@ void TvShow::addNetwork(QString network)
  */
 void TvShow::setOverview(QString overview)
 {
-    m_overview = overview;
+    m_overview = std::move(overview);
     setChanged(true);
 }
 
 void TvShow::setTmdbId(TmdbId id)
 {
-    m_tmdbId = id;
+    m_tmdbId = std::move(id);
     setChanged(true);
 }
 
 void TvShow::setTvdbId(TvDbId id)
 {
-    m_tvdbId = id;
+    m_tvdbId = std::move(id);
     setChanged(true);
 }
 
 void TvShow::setImdbId(ImdbId id)
 {
-    m_imdbId = id;
+    m_imdbId = std::move(id);
     setChanged(true);
 }
 
 void TvShow::setTvMazeId(TvMazeId id)
 {
-    m_tvmazeId = id;
+    m_tvmazeId = std::move(id);
     setChanged(true);
 }
 
@@ -957,7 +956,7 @@ void TvShow::setTvMazeId(TvMazeId id)
  */
 void TvShow::setEpisodeGuideUrl(QString url)
 {
-    m_episodeGuideUrl = url;
+    m_episodeGuideUrl = std::move(url);
     setChanged(true);
 }
 
@@ -996,7 +995,7 @@ void TvShow::setPoster(int index, Poster poster)
     if (m_posters.size() < index) {
         return;
     }
-    m_posters[index] = poster;
+    m_posters[index] = std::move(poster);
     setChanged(true);
 }
 
@@ -1019,7 +1018,7 @@ void TvShow::setBackdrop(int index, Poster backdrop)
     if (m_backdrops.size() < index) {
         return;
     }
-    m_backdrops[index] = backdrop;
+    m_backdrops[index] = std::move(backdrop);
     setChanged(true);
 }
 
@@ -1117,7 +1116,7 @@ void TvShow::setModelItem(TvShowModelItem* item)
 
 void TvShow::setMediaCenterPath(mediaelch::DirectoryPath path)
 {
-    m_mediaCenterPath = path;
+    m_mediaCenterPath = std::move(path);
 }
 
 void TvShow::setDownloadsInProgress(bool inProgress)
@@ -1157,7 +1156,7 @@ void TvShow::removeTag(QString tag)
 
 void TvShow::setNfoContent(QString content)
 {
-    m_nfoContent = content;
+    m_nfoContent = std::move(content);
 }
 
 void TvShow::setDatabaseId(mediaelch::DatabaseId id)
@@ -1285,7 +1284,7 @@ QByteArray TvShow::seasonImage(SeasonNumber season, ImageType imageType)
     if (m_seasonImages.contains(season)) {
         return m_seasonImages.value(season).value(imageType, QByteArray());
     }
-    return QByteArray();
+    return {};
 }
 
 void TvShow::setImage(ImageType imageType, QByteArray image)
@@ -1324,21 +1323,25 @@ bool TvShow::seasonImageHasChanged(SeasonNumber season, ImageType imageType) con
 
 QSet<ImageType> TvShow::imageTypes()
 {
-    return {ImageType::TvShowPoster,
+    return {
+        ImageType::TvShowPoster,
         ImageType::TvShowCharacterArt,
         ImageType::TvShowClearArt,
         ImageType::TvShowLogos,
         ImageType::TvShowBackdrop,
         ImageType::TvShowBanner,
-        ImageType::TvShowThumb};
+        ImageType::TvShowThumb,
+    };
 }
 
 QSet<ImageType> TvShow::seasonImageTypes()
 {
-    return {ImageType::TvShowSeasonBackdrop,
+    return {
+        ImageType::TvShowSeasonBackdrop,
         ImageType::TvShowSeasonBanner,
         ImageType::TvShowSeasonPoster,
-        ImageType::TvShowSeasonThumb};
+        ImageType::TvShowSeasonThumb,
+    };
 }
 
 void TvShow::setDir(const mediaelch::DirectoryPath& dir)

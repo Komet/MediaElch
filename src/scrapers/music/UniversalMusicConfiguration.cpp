@@ -4,9 +4,9 @@
 
 namespace {
 
-static constexpr char moduleName[] = "scrapers";
-static const Settings::Key KEY_SCRAPERS_LANGUAGE(moduleName, "Scrapers/UniversalMusicScraper/Language");
-static const Settings::Key KEY_SCRAPERS_PREFERRED(moduleName, "Scrapers/UniversalMusicScraper/Prefer");
+constexpr char moduleName[] = "scrapers";
+const Settings::Key KEY_SCRAPERS_LANGUAGE(moduleName, "Scrapers/UniversalMusicScraper/Language");
+const Settings::Key KEY_SCRAPERS_PREFERRED(moduleName, "Scrapers/UniversalMusicScraper/Prefer");
 
 } // namespace
 

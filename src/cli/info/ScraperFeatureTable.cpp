@@ -10,7 +10,7 @@ void mediaelch::cli::MovieScraperFeatureTable::print()
 {
     using namespace std::string_literals;
 
-    m_out << "Supported movie scraper features:" << std::endl;
+    m_out << "Supported movie scraper features:" << '\n';
 
     TableWriter table(m_out, createTableLayout());
     table.writeHeading();

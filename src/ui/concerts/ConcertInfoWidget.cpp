@@ -85,7 +85,7 @@ void ConcertInfoWidget::updateConcert(ConcertController* controller)
     ui->album->setText(m_concertController->concert()->album());
     ui->tagline->setText(m_concertController->concert()->tagline());
 
-    ui->ratings->setRatings(&(m_concertController->concert()->ratings()));
+    ui->ratings->setRatings(&m_concertController->concert()->ratings());
 
     ui->userRating->setValue(m_concertController->concert()->userRating());
     ui->released->setDate(m_concertController->concert()->released());

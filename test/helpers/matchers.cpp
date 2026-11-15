@@ -75,32 +75,32 @@ std::string RegexMatcher::describe() const
 
 EqualsMatcher Equals(const QString& str)
 {
-    return EqualsMatcher(str);
+    return {str};
 }
 
 ContainsMatcher Contains(const QString& str)
 {
-    return ContainsMatcher(str);
+    return {str};
 }
 
 ContainsNotMatcher ContainsNot(const QString& str)
 {
-    return ContainsNotMatcher(str);
+    return {str};
 }
 
 EndsWithMatcher EndsWith(const QString& str)
 {
-    return EndsWithMatcher(str);
+    return {str};
 }
 
 StartsWithMatcher StartsWith(const QString& str)
 {
-    return StartsWithMatcher(str);
+    return {str};
 }
 
 RegexMatcher Matches(const QString& regex)
 {
-    return RegexMatcher(regex);
+    return {regex};
 }
 
 std::string IsInRangeMatcher::describe() const
@@ -112,7 +112,7 @@ std::string IsInRangeMatcher::describe() const
 
 IsInRangeMatcher IsInRange(long long startInclusive, long long endExclusive)
 {
-    return IsInRangeMatcher(startInclusive, endExclusive);
+    return {startInclusive, endExclusive};
 }
 
 bool HasActorMatcher::match(const QVector<Actor*>& actors) const
@@ -134,5 +134,5 @@ std::string HasActorMatcher::describe() const
 
 HasActorMatcher HasActor(const QString& name, const QString& role)
 {
-    return HasActorMatcher(name, role);
+    return {name, role};
 }

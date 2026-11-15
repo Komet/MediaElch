@@ -10,7 +10,8 @@ namespace scraper {
 OmdbMovie::OmdbMovie(OmdbMovieConfiguration& settings, QObject* parent) :
     MovieScraper(parent),
     m_settings{settings},
-    m_scraperNativelySupports{MovieScraperInfo::Title,
+    m_scraperNativelySupports{
+        MovieScraperInfo::Title,
         MovieScraperInfo::Rating,
         MovieScraperInfo::Released,
         MovieScraperInfo::Runtime,
@@ -21,7 +22,8 @@ OmdbMovie::OmdbMovie(OmdbMovieConfiguration& settings, QObject* parent) :
         MovieScraperInfo::Genres,
         MovieScraperInfo::Director,
         MovieScraperInfo::Writer,
-        MovieScraperInfo::Countries}
+        MovieScraperInfo::Countries,
+    }
 {
     m_meta.identifier = ID;
     m_meta.name = "OMDb";
@@ -34,7 +36,8 @@ OmdbMovie::OmdbMovie(OmdbMovieConfiguration& settings, QObject* parent) :
     m_meta.termsOfService = "https://www.omdbapi.com/legal.htm";
     m_meta.privacyPolicy = "https://www.omdbapi.com/legal.htm";
     m_meta.help = "https://www.omdbapi.com/";
-    m_meta.supportedDetails = {MovieScraperInfo::Title,
+    m_meta.supportedDetails = {
+        MovieScraperInfo::Title,
         MovieScraperInfo::Rating,
         MovieScraperInfo::Released,
         MovieScraperInfo::Runtime,
@@ -45,7 +48,8 @@ OmdbMovie::OmdbMovie(OmdbMovieConfiguration& settings, QObject* parent) :
         MovieScraperInfo::Genres,
         MovieScraperInfo::Director,
         MovieScraperInfo::Writer,
-        MovieScraperInfo::Countries};
+        MovieScraperInfo::Countries,
+    };
     m_meta.supportedLanguages = {Locale::English};
     m_meta.defaultLocale = Locale::English;
     m_meta.isAdult = false;
@@ -59,9 +63,7 @@ OmdbMovie::OmdbMovie(OmdbMovieConfiguration& settings, QObject* parent) :
     initialize();
 }
 
-OmdbMovie::~OmdbMovie()
-{
-}
+OmdbMovie::~OmdbMovie() = default;
 
 const MovieScraper::ScraperMeta& OmdbMovie::meta() const
 {

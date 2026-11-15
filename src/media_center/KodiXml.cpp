@@ -586,7 +586,7 @@ void KodiXml::writeStreamDetails(QXmlStreamWriter& xml,
 QString KodiXml::actorImageName(Movie* movie, Actor actor)
 {
     if (movie->files().isEmpty()) {
-        return QString();
+        return {};
     }
     QFileInfo fi(movie->files().first().toString());
     QString actorName = actor.name;
@@ -596,7 +596,7 @@ QString KodiXml::actorImageName(Movie* movie, Actor actor)
     if (fi.isFile()) {
         return path;
     }
-    return QString();
+    return {};
 }
 
 QByteArray KodiXml::getConcertXml(Concert* concert)
@@ -759,7 +759,7 @@ bool KodiXml::loadConcert(Concert* concert, QString initialNfoContent)
 QString KodiXml::actorImageName(TvShow* show, Actor actor)
 {
     if (!show->dir().isValid()) {
-        return QString();
+        return {};
     }
     QString actorName = actor.name;
     actorName = actorName.replace(" ", "_");
@@ -768,13 +768,13 @@ QString KodiXml::actorImageName(TvShow* show, Actor actor)
     if (fi.isFile()) {
         return fileName;
     }
-    return QString();
+    return {};
 }
 
 QString KodiXml::actorImageName(TvShowEpisode* episode, Actor actor)
 {
     if (episode->files().isEmpty()) {
-        return QString();
+        return {};
     }
     QFileInfo fi(episode->files().first().toString());
     QString actorName = actor.name;
@@ -784,7 +784,7 @@ QString KodiXml::actorImageName(TvShowEpisode* episode, Actor actor)
     if (fi.isFile()) {
         return path;
     }
-    return QString();
+    return {};
 }
 
 /**
@@ -825,7 +825,7 @@ bool KodiXml::loadTvShow(TvShow* show, QString initialNfoContent)
         show->setNfoContent(nfoContent);
         file.close();
     } else {
-        nfoContent = initialNfoContent;
+        nfoContent = std::move(initialNfoContent);
     }
 
     QDomDocument domDoc;
@@ -1132,7 +1132,7 @@ QByteArray KodiXml::getEpisodeXml(const QVector<TvShowEpisode*>& episodes)
 QStringList KodiXml::extraFanartNames(Movie* movie)
 {
     if (movie->files().isEmpty() || !movie->inSeparateFolder()) {
-        return QStringList();
+        return {};
     }
     QFileInfo fi(movie->files().first().toString());
     QDir dir(fi.absolutePath() + "/extrafanart");
@@ -1147,7 +1147,7 @@ QStringList KodiXml::extraFanartNames(Movie* movie)
 QStringList KodiXml::extraFanartNames(Concert* concert)
 {
     if (concert->files().isEmpty() || !concert->inSeparateFolder()) {
-        return QStringList();
+        return {};
     }
     QFileInfo fi(concert->files().first().toString());
     QDir dir(fi.absolutePath() + "/extrafanart");
@@ -1162,7 +1162,7 @@ QStringList KodiXml::extraFanartNames(Concert* concert)
 QStringList KodiXml::extraFanartNames(TvShow* show)
 {
     if (!show->dir().isValid()) {
-        return QStringList();
+        return {};
     }
     QDir dir(show->dir().subDir("extrafanart").toString());
     QStringList filters = {"*.jpg", "*.jpeg", "*.JPEG", "*.Jpeg", "*.JPeg"};
@@ -1193,7 +1193,7 @@ QImage KodiXml::movieSetPoster(QString setName)
             return QImage(fi.absoluteFilePath());
         }
     }
-    return QImage();
+    return {};
 }
 
 QImage KodiXml::movieSetBackdrop(QString setName)
@@ -1205,7 +1205,7 @@ QImage KodiXml::movieSetBackdrop(QString setName)
             return QImage(fi.absoluteFilePath());
         }
     }
-    return QImage();
+    return {};
 }
 
 /**
@@ -1267,7 +1267,7 @@ bool KodiXml::saveFile(QString filename, QByteArray data)
 mediaelch::DirectoryPath KodiXml::getPath(const Movie* movie)
 {
     if (movie->files().isEmpty()) {
-        return mediaelch::DirectoryPath();
+        return {};
     }
     QFileInfo fi(movie->files().first().toString());
     if (movie->discType() == DiscType::BluRay) {
@@ -1290,7 +1290,7 @@ mediaelch::DirectoryPath KodiXml::getPath(const Movie* movie)
 mediaelch::DirectoryPath KodiXml::getPath(const Concert* concert)
 {
     if (concert->files().isEmpty()) {
-        return mediaelch::DirectoryPath();
+        return {};
     }
     QFileInfo fi(concert->files().first().toString());
     if (concert->discType() == DiscType::BluRay) {
@@ -1333,7 +1333,7 @@ QString KodiXml::movieSetFileName(QString setName, DataFile* dataFile)
         }
     }
 
-    return QString();
+    return {};
 }
 
 QString KodiXml::imageFileName(const Movie* movie, ImageType type, QVector<DataFile> dataFiles, bool constructName)
@@ -1388,7 +1388,7 @@ QString KodiXml::imageFileName(const Movie* movie, ImageType type, QVector<DataF
 
 QString KodiXml::imageFileName(const Concert* concert, ImageType type, QVector<DataFile> dataFiles, bool constructName)
 {
-    DataFileType fileType;
+    DataFileType fileType = DataFileType::NoType;
     switch (type) {
     case ImageType::ConcertPoster: fileType = DataFileType::ConcertPoster; break;
     case ImageType::ConcertBackdrop: fileType = DataFileType::ConcertBackdrop; break;
@@ -1436,7 +1436,7 @@ QString KodiXml::imageFileName(const TvShow* show,
     QVector<DataFile> dataFiles,
     bool constructName)
 {
-    DataFileType fileType;
+    DataFileType fileType = DataFileType::NoType;
     switch (type) {
     case ImageType::TvShowPoster: fileType = DataFileType::TvShowPoster; break;
     case ImageType::TvShowBackdrop: fileType = DataFileType::TvShowBackdrop; break;
@@ -1453,7 +1453,7 @@ QString KodiXml::imageFileName(const TvShow* show,
     }
 
     if (!show->dir().isValid()) {
-        return QString();
+        return {};
     }
 
     if (!constructName) {
@@ -1490,7 +1490,7 @@ QString saveDataFiles(mediaelch::DirectoryPath basePath,
 QString
 KodiXml::imageFileName(const TvShowEpisode* episode, ImageType type, QVector<DataFile> dataFiles, bool constructName)
 {
-    DataFileType fileType;
+    DataFileType fileType = DataFileType::NoType;
     switch (type) {
     case ImageType::TvShowEpisodeThumb: fileType = DataFileType::TvShowEpisodeThumb; break;
     default: return "";
@@ -1544,7 +1544,7 @@ bool KodiXml::loadArtist(Artist* artist, QString initialNfoContent)
         artist->setNfoContent(nfoContent);
         file.close();
     } else {
-        nfoContent = initialNfoContent;
+        nfoContent = std::move(initialNfoContent);
     }
 
     QDomDocument domDoc;
@@ -1581,7 +1581,7 @@ bool KodiXml::loadAlbum(Album* album, QString initialNfoContent)
         album->setNfoContent(nfoContent);
         file.close();
     } else {
-        nfoContent = initialNfoContent;
+        nfoContent = std::move(initialNfoContent);
     }
 
     QDomDocument domDoc;
@@ -1593,7 +1593,7 @@ bool KodiXml::loadAlbum(Album* album, QString initialNfoContent)
 
 QString KodiXml::imageFileName(const Artist* artist, ImageType type, QVector<DataFile> dataFiles, bool constructName)
 {
-    DataFileType fileType;
+    DataFileType fileType = DataFileType::NoType;
     switch (type) {
     case ImageType::ArtistThumb: fileType = DataFileType::ArtistThumb; break;
     case ImageType::ArtistFanart: fileType = DataFileType::ArtistFanart; break;
@@ -1602,7 +1602,7 @@ QString KodiXml::imageFileName(const Artist* artist, ImageType type, QVector<Dat
     }
 
     if (!artist->path().isValid()) {
-        return QString();
+        return {};
     }
 
     if (!constructName) {
@@ -1614,7 +1614,7 @@ QString KodiXml::imageFileName(const Artist* artist, ImageType type, QVector<Dat
 
 QString KodiXml::imageFileName(const Album* album, ImageType type, QVector<DataFile> dataFiles, bool constructName)
 {
-    DataFileType fileType;
+    DataFileType fileType = DataFileType::NoType;
     switch (type) {
     case ImageType::AlbumThumb: fileType = DataFileType::AlbumThumb; break;
     case ImageType::AlbumCdArt: fileType = DataFileType::AlbumCdArt; break;
@@ -1622,7 +1622,7 @@ QString KodiXml::imageFileName(const Album* album, ImageType type, QVector<DataF
     }
 
     if (!album->path().isValid()) {
-        return QString();
+        return {};
     }
 
     if (!constructName) {
@@ -1635,7 +1635,7 @@ QString KodiXml::imageFileName(const Album* album, ImageType type, QVector<DataF
 QString KodiXml::nfoFilePath(Artist* artist)
 {
     if (!artist->path().isValid()) {
-        return QString();
+        return {};
     }
 
     return artist->path().filePath("artist.nfo");

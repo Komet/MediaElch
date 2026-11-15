@@ -7,9 +7,9 @@
 
 #include "globals/Globals.h"
 
-MyLineEdit::MyLineEdit(QWidget* parent) : QLineEdit(parent), m_loadingLabel{new QLabel(nullptr)}
+MyLineEdit::MyLineEdit(QWidget* parent) :
+    QLineEdit(parent), m_loadingLabel{new QLabel(nullptr)}, m_moreLabel(new QLabel(this))
 {
-    m_moreLabel = new QLabel(this);
     m_moreLabel->setText("...");
     m_moreLabel->setStyleSheet("font-size: 10px; color: #a0a0a0;");
     m_moreLabel->hide();
@@ -103,8 +103,8 @@ void MyLineEdit::setType(LineEditType type)
         m_styleSheets.append(
             QString("QLineEdit { padding-right: %2px; }").arg(m_loadingLabel->sizeHint().width() + frameWidth + 1));
         setStyleSheet(m_styleSheets.join(" ") + QString(" QLineEdit { padding-left: %1px; }").arg(m_paddingLeft));
-        setMinimumSize(qMax(minimumSize.width(), m_loadingLabel->sizeHint().width() + frameWidth * 2 + 2),
-            qMax(minimumSize.height(), m_loadingLabel->sizeHint().height() + frameWidth * 2 + 2));
+        setMinimumSize(qMax(minimumSize.width(), m_loadingLabel->sizeHint().width() + (frameWidth * 2) + 2),
+            qMax(minimumSize.height(), m_loadingLabel->sizeHint().height() + (frameWidth * 2) + 2));
         m_loadingLabel->setHidden(true);
     }
 
@@ -126,8 +126,8 @@ void MyLineEdit::setType(LineEditType type)
         m_styleSheets.append(
             QString("QLineEdit { padding-right: %2px; } ").arg(m_clearButton->sizeHint().width() + frameWidth + 1));
         setStyleSheet(m_styleSheets.join(" ") + QString(" QLineEdit { padding-left: %1px; }").arg(m_paddingLeft));
-        setMinimumSize(qMax(minimumSize.width(), m_clearButton->sizeHint().width() + frameWidth * 2 + 2),
-            (12 + frameWidth * 2 + 2));
+        setMinimumSize(qMax(minimumSize.width(), m_clearButton->sizeHint().width() + (frameWidth * 2) + 2),
+            (12 + (frameWidth * 2) + 2));
 
         m_clearButton->setVisible(!text().isEmpty() || hasFilters());
         connect(m_clearButton, &QToolButton::clicked, this, &MyLineEdit::myClear, Qt::UniqueConnection);

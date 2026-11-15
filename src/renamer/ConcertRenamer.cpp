@@ -59,7 +59,7 @@ ELCH_NODISCARD QString ConcertRenamerData::value(const QString& name) const
             return helper::matchResolution(m_videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
                 m_videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
                 m_videoDetails.value(StreamDetails::VideoDetails::ScanType));
-        }},
+        },},
         // clang-format on
     };
 
@@ -113,7 +113,7 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert& concert)
     QString newFolderName = m_config.directoryPattern;
 
     // " ", i.e. space, is the default for sanitizeFileName().
-    QString delimiter = (m_config.replaceDelimiter) ? m_config.delimiter : " ";
+    QString delimiter = m_config.replaceDelimiter ? m_config.delimiter : " ";
 
     QString newFileName;
     QStringList newConcertFiles;
@@ -182,11 +182,10 @@ ConcertRenamer::RenameError ConcertRenamer::renameConcert(Concert& concert)
                     QString newSubName = newBaseName + subSuffix;
                     const int row =
                         m_dialog->addResultToTable(subFileName, newSubName, Renamer::RenameOperation::Rename);
-                    if (!m_config.dryRun) {
-                        if (!Renamer::rename(currentDir.canonicalPath() + "/" + subFileName,
-                                currentDir.canonicalPath() + "/" + newSubName)) {
-                            m_dialog->setResultStatus(row, Renamer::RenameResult::Failed);
-                        }
+                    if ((!m_config.dryRun)
+                        && (!Renamer::rename(currentDir.canonicalPath() + "/" + subFileName,
+                            currentDir.canonicalPath() + "/" + newSubName))) {
+                        m_dialog->setResultStatus(row, Renamer::RenameResult::Failed);
                     }
                 }
             } else {

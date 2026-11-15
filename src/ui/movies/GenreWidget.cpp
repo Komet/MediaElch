@@ -11,7 +11,8 @@
 #include "ui/movie_sets/MovieListDialog.h"
 #include "ui/notifications/NotificationBox.h"
 
-GenreWidget::GenreWidget(QWidget* parent) : QWidget(parent), ui(new Ui::GenreWidget)
+GenreWidget::GenreWidget(QWidget* parent) :
+    QWidget(parent), ui(new Ui::GenreWidget), m_tableContextMenu(new QMenu(ui->genres))
 {
     ui->setupUi(this);
     ui->genres->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
@@ -24,7 +25,7 @@ GenreWidget::GenreWidget(QWidget* parent) : QWidget(parent), ui(new Ui::GenreWid
 #endif
 
     ui->genres->setContextMenuPolicy(Qt::CustomContextMenu);
-    m_tableContextMenu = new QMenu(ui->genres);
+
     auto* actionAddGenre = new QAction(tr("Add Genre"), this);
     auto* actionDeleteGenre = new QAction(tr("Delete Genre"), this);
     m_tableContextMenu->addAction(actionAddGenre);

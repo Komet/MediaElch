@@ -6,9 +6,9 @@
 namespace mediaelch {
 namespace scraper {
 
-OmdbTvConfigurationView::OmdbTvConfigurationView(OmdbTvConfiguration& settings) : m_settings(settings)
+OmdbTvConfigurationView::OmdbTvConfigurationView(OmdbTvConfiguration& settings) :
+    m_settings(settings), m_apiKeyEdit(new QLineEdit(this))
 {
-    m_apiKeyEdit = new QLineEdit(this);
     m_apiKeyEdit->setText(m_settings.apiKey());
 
     auto* layout = new QGridLayout(this);

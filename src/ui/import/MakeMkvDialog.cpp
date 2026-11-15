@@ -11,7 +11,7 @@
 #include <QTimer>
 
 MakeMkvDialog::MakeMkvDialog(ImportSettings& settings, QWidget* parent) :
-    QDialog(parent), ui(new Ui::MakeMkvDialog), m_settings{settings}
+    QDialog(parent), ui(new Ui::MakeMkvDialog), m_settings{settings}, m_makeMkvCon(new MakeMkvCon(m_settings, this))
 {
     ui->setupUi(this);
     ui->stackedWidget->setAnimation(QEasingCurve::Linear);
@@ -25,7 +25,6 @@ MakeMkvDialog::MakeMkvDialog(ImportSettings& settings, QWidget* parent) :
     loadingMovie->start();
     ui->loading->setMovie(loadingMovie);
 
-    m_makeMkvCon = new MakeMkvCon(m_settings, this);
 
     // clang-format off
     connect(m_makeMkvCon, &MakeMkvCon::sigMessage, ui->messages, &QPlainTextEdit::appendPlainText);
@@ -192,7 +191,7 @@ void MakeMkvDialog::onScanFinished(QString title, QMap<int, MakeMkvCon::Track> t
     ui->messages->setVisible(false);
     ui->btnScanDrive->setEnabled(true);
     ui->btnClose->setEnabled(true);
-    m_title = title;
+    m_title = std::move(title);
 }
 
 void MakeMkvDialog::onImportTracks()

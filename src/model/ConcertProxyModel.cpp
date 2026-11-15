@@ -52,5 +52,5 @@ bool ConcertProxyModel::lessThan(const QModelIndex& left, const QModelIndex& rig
 void ConcertProxyModel::setFilter(QVector<Filter*> filters, QString text)
 {
     m_filters = filters;
-    m_filterText = text;
+    m_filterText = std::move(text);
 }

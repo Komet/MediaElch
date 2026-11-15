@@ -33,7 +33,7 @@ TEST_CASE("TmdbConcert returns valid search results", "[TmdbConcert][search]")
         auto* searchJob = new TmdbConcertSearchJob(getTmdbApi(), config);
         const auto scraperResults = test::searchConcertScraperSync(searchJob).first;
 
-        REQUIRE(scraperResults.length() >= 1);
+        REQUIRE_FALSE(scraperResults.empty());
         CHECK(scraperResults[0].title == "Rammstein in Amerika");
         CHECK(scraperResults[0].identifier.str() == "361631");
         CHECK(scraperResults[0].released == QDate(2015, 9, 25));

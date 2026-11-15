@@ -254,8 +254,8 @@ QStringList Concert::genres() const
 QVector<QString*> Concert::genresPointer()
 {
     QVector<QString*> genres;
-    for (elch_ssize_t i = 0, n = m_concert.genres.size(); i < n; ++i) {
-        genres.append(&m_concert.genres[i]);
+    for (QString& genre : m_concert.genres) {
+        genres.append(&genre);
     }
     return genres;
 }
@@ -876,11 +876,13 @@ bool Concert::lessThan(Concert* a, Concert* b)
 
 QSet<ImageType> Concert::imageTypes()
 {
-    return {ImageType::ConcertPoster,
+    return {
+        ImageType::ConcertPoster,
         ImageType::ConcertCdArt,
         ImageType::ConcertClearArt,
         ImageType::ConcertLogo,
-        ImageType::ConcertBackdrop};
+        ImageType::ConcertBackdrop,
+    };
 }
 
 QByteArray Concert::image(ImageType imageType) const

@@ -39,7 +39,7 @@ int MovieListDialog::exec()
     for (Movie* movie : Manager::instance()->movieModel()->movies()) {
         int row = ui->movies->rowCount();
         ui->movies->insertRow(row);
-        QString title = (movie->released().isValid())
+        QString title = movie->released().isValid()
                             ? QString("%1 (%2)").arg(movie->title()).arg(movie->released().toString("yyyy"))
                             : movie->title();
         ui->movies->setItem(row, 0, new QTableWidgetItem(title));
@@ -68,7 +68,7 @@ int MovieListDialog::execWithoutGenre(QString genre)
         }
         const int row = ui->movies->rowCount();
         ui->movies->insertRow(row);
-        const QString title = (movie->released().isValid())
+        const QString title = movie->released().isValid()
                                   ? QString("%1 (%2)").arg(movie->title()).arg(movie->released().toString("yyyy"))
                                   : movie->title();
         ui->movies->setItem(row, 0, new QTableWidgetItem(title));
@@ -97,7 +97,7 @@ int MovieListDialog::execWithoutCertification(Certification certification)
         }
         const int row = ui->movies->rowCount();
         ui->movies->insertRow(row);
-        QString title = (movie->released().isValid())
+        QString title = movie->released().isValid()
                             ? QString("%1 (%2)").arg(movie->title()).arg(movie->released().toString("yyyy"))
                             : movie->title();
         ui->movies->setItem(row, 0, new QTableWidgetItem(title));

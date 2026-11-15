@@ -4,12 +4,12 @@
 
 namespace {
 
-static constexpr char moduleName[] = "import";
-static const Settings::Key KEY_SETTINGS_KODI_REMOTE_HOST(moduleName, "XBMC/RemoteHost");
-static const Settings::Key KEY_SETTINGS_KODI_REMOTE_PORT(moduleName, "XBMC/RemotePort");
-static const Settings::Key KEY_SETTINGS_KODI_REMOTE_USER(moduleName, "XBMC/RemoteUser");
-static const Settings::Key KEY_SETTINGS_KODI_REMOTE_PASSWORD(moduleName, "XBMC/RemotePassword");
-static const Settings::Key KEY_SETTINGS_KODI_VERSION(moduleName, "kodi/version");
+constexpr char moduleName[] = "import";
+const Settings::Key KEY_SETTINGS_KODI_REMOTE_HOST(moduleName, "XBMC/RemoteHost");
+const Settings::Key KEY_SETTINGS_KODI_REMOTE_PORT(moduleName, "XBMC/RemotePort");
+const Settings::Key KEY_SETTINGS_KODI_REMOTE_USER(moduleName, "XBMC/RemoteUser");
+const Settings::Key KEY_SETTINGS_KODI_REMOTE_PASSWORD(moduleName, "XBMC/RemotePassword");
+const Settings::Key KEY_SETTINGS_KODI_VERSION(moduleName, "kodi/version");
 
 } // namespace
 

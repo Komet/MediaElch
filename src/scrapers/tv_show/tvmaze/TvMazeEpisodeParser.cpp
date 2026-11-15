@@ -58,7 +58,7 @@ void TvMazeEpisodeParser::parseEpisode(TvShowEpisode& episode, const QJsonObject
     {
         // TODO: Combine with TvMazeShowParser
         const QJsonArray cast = embedded["guestcast"].toArray();
-        for (const QJsonValue& val : cast) {
+        for (const auto& val : cast) {
             QJsonObject castObj = val.toObject();
             QJsonObject person = castObj["person"].toObject();
             QJsonObject character = castObj["character"].toObject();
@@ -76,7 +76,7 @@ void TvMazeEpisodeParser::parseEpisode(TvShowEpisode& episode, const QJsonObject
     }
     {
         const QJsonArray crew = embedded["guestcrew"].toArray();
-        for (const QJsonValue& val : crew) {
+        for (const auto& val : crew) {
             QJsonObject castObj = val.toObject();
             QJsonObject person = castObj["person"].toObject();
             QString name = person["name"].toString();
@@ -101,7 +101,7 @@ void TvMazeEpisodeParser::parseEpisodeFromOverview(TvShowEpisode& episode, const
     const int episodeNumber = episode.episodeNumber().toInt();
     const int seasonNumber = episode.seasonNumber().toInt();
 
-    for (const QJsonValue& val : asConst(episodes)) {
+    for (const auto& val : asConst(episodes)) {
         QJsonObject episodeObj = val.toObject();
         // Use default value -2 because -1 has special meaning.
         if (episodeObj["season"].toInt(-2) == seasonNumber && episodeObj["number"].toInt(-2) == episodeNumber) {

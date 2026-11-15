@@ -22,7 +22,7 @@ Usage:
 
 Environment Variables:
   MEDIAELCH_UPDATE_REF_FILES  Set to true, and reference files will be updated.
-)cerr" << std::endl;
+)cerr" << '\n';
 }
 
 
@@ -77,7 +77,7 @@ int main(int argc, char** argv)
 
     } catch (const std::runtime_error& error) {
         std::cerr << "An exception was thrown:\n";
-        std::cerr << error.what() << std::endl;
+        std::cerr << error.what() << '\n';
         std::cerr.flush();
         return 1;
     }
@@ -90,9 +90,9 @@ int main(int argc, char** argv)
 
     const int result = session.run();
     if (result != 0) {
-        std::cerr << "An error occurred!" << std::endl;
+        std::cerr << "An error occurred!" << '\n';
         if (!test::shouldUpdateResourceFiles()) {
-            std::cerr << "Try updating ref files with MEDIAELCH_UPDATE_REF_FILES=1" << std::endl;
+            std::cerr << "Try updating ref files with MEDIAELCH_UPDATE_REF_FILES=1" << '\n';
         }
     }
 

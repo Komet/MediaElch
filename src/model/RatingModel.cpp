@@ -150,7 +150,7 @@ bool RatingModel::setData(const QModelIndex& index, const QVariant& value, int r
         return false;
     }
 
-    (*m_ratings)[index.row()] = ratingCopy;
+    (*m_ratings)[index.row()] = std::move(ratingCopy);
 
     emit dataChanged(index, index, {role});
 

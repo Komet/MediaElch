@@ -21,7 +21,8 @@ ImdbMovie::ImdbMovie(ImdbMovieConfiguration& settings, QObject* parent) : MovieS
     m_meta.termsOfService = "https://www.imdb.com/conditions";
     m_meta.privacyPolicy = "https://www.imdb.com/privacy";
     m_meta.help = "https://help.imdb.com";
-    m_meta.supportedDetails = {MovieScraperInfo::Title,
+    m_meta.supportedDetails = {
+        MovieScraperInfo::Title,
         MovieScraperInfo::Director,
         MovieScraperInfo::Writer,
         MovieScraperInfo::Genres,
@@ -37,15 +38,14 @@ ImdbMovie::ImdbMovie(ImdbMovieConfiguration& settings, QObject* parent) : MovieS
         MovieScraperInfo::Trailer,
         MovieScraperInfo::Countries,
         MovieScraperInfo::Actors,
-        MovieScraperInfo::Poster};
+        MovieScraperInfo::Poster,
+    };
     m_meta.supportedLanguages = ImdbMovieConfiguration::supportedLanguages();
     m_meta.defaultLocale = ImdbMovieConfiguration::defaultLocale();
     m_meta.isAdult = false;
 }
 
-ImdbMovie::~ImdbMovie()
-{
-}
+ImdbMovie::~ImdbMovie() = default;
 
 const MovieScraper::ScraperMeta& ImdbMovie::meta() const
 {

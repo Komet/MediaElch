@@ -9,7 +9,11 @@ namespace scraper {
 
 const QString TmdbImages::ID = "images.tmdb";
 
-TmdbImages::TmdbImages(QObject* parent) : ImageProvider(parent)
+TmdbImages::TmdbImages(QObject* parent) :
+    ImageProvider(parent),
+    m_tmdbConfig(new mediaelch::scraper::TmdbMovieConfiguration(*Settings::instance(), this)),
+    m_tmdb(new mediaelch::scraper::TmdbMovie(*m_tmdbConfig, this))
+
 {
     m_meta.identifier = ID;
     m_meta.name = "TMDB Images";
@@ -22,21 +26,18 @@ TmdbImages::TmdbImages(QObject* parent) : ImageProvider(parent)
     m_meta.termsOfService = "https://www.themoviedb.org/terms-of-use";
     m_meta.privacyPolicy = "https://www.themoviedb.org/privacy-policy";
     m_meta.help = "https://www.themoviedb.org/talk";
-    m_meta.supportedImageTypes = {  //
+    m_meta.supportedImageTypes = {
+        //
         ImageType::MovieLogo,       //
         ImageType::MovieBackdrop,   //
         ImageType::MoviePoster,     //
         ImageType::ConcertBackdrop, //
-        ImageType::ConcertPoster};
+        ImageType::ConcertPoster,
+    };
     // For officially supported languages, see:
     // https://developers.themoviedb.org/3/configuration/get-primary-translations
     m_meta.supportedLanguages = TmdbMovieConfiguration::supportedLanguages();
     m_meta.defaultLocale = TmdbMovieConfiguration::defaultLocale();
-
-    m_searchResultLimit = 0;
-
-    m_tmdbConfig = new mediaelch::scraper::TmdbMovieConfiguration(*Settings::instance(), this);
-    m_tmdb = new mediaelch::scraper::TmdbMovie(*m_tmdbConfig, this);
 }
 
 TmdbImages::~TmdbImages() = default;

@@ -4,7 +4,7 @@
 
 namespace {
 
-static const Settings::Key KEY_SETTINGS_KODI_VERSION("import", "kodi/version");
+const Settings::Key KEY_SETTINGS_KODI_VERSION("import", "kodi/version");
 
 } // namespace
 

@@ -79,7 +79,7 @@ private:
 
     mediaelch::scraper::TmdbMovie* m_tmdb = nullptr;
 
-    int m_searchResultLimit = 0;
+    int m_searchResultLimit{0};
 };
 
 } // namespace scraper

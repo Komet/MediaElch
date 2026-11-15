@@ -3,10 +3,10 @@
 
 namespace {
 
-static constexpr char moduleName[] = "import";
-static const Settings::Key KEY_SETTINGS_DOWNLOAD_UNRAR(moduleName, "Downloads/Unrar");
-static const Settings::Key KEY_SETTINGS_DOWNLOAD_MAKE_MKV(moduleName, "Downloads/MakeMkvCon");
-static const Settings::Key KEY_DOWNLOADS_DELETE_ARCHIVES(moduleName, "Downloads/DeleteArchives");
+constexpr char moduleName[] = "import";
+const Settings::Key KEY_SETTINGS_DOWNLOAD_UNRAR(moduleName, "Downloads/Unrar");
+const Settings::Key KEY_SETTINGS_DOWNLOAD_MAKE_MKV(moduleName, "Downloads/MakeMkvCon");
+const Settings::Key KEY_DOWNLOADS_DELETE_ARCHIVES(moduleName, "Downloads/DeleteArchives");
 
 } // namespace
 

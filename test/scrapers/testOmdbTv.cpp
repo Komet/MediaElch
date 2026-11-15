@@ -48,7 +48,7 @@ TEST_CASE("OmdbTv returns valid search results", "[tv][OMDb][OmdbTv][search]")
         auto* searchJob = new OmdbTvShowSearchJob(getOmdbApi(), config);
         const auto scraperResults = test::searchTvScraperSync(searchJob).first;
 
-        REQUIRE(scraperResults.length() >= 1);
+        REQUIRE_FALSE(scraperResults.empty());
         CHECK(scraperResults[0].title == "Breaking Bad");
     }
 
@@ -75,7 +75,10 @@ TEST_CASE("OmdbTv scrapes correct show details", "[tv][OMDb][OmdbTv][load_data]"
     {
         // Breaking Bad
         ShowScrapeJob::Config config{
-            ShowIdentifier("tt0903747"), mediaelch::Locale::English, mediaelch::allShowScraperInfos()};
+            ShowIdentifier("tt0903747"),
+            mediaelch::Locale::English,
+            mediaelch::allShowScraperInfos(),
+        };
         auto scrapeJob = std::make_unique<OmdbTvShowScrapeJob>(getOmdbApi(), config);
         test::scrapeTvScraperSync(scrapeJob.get());
         auto& show = scrapeJob->tvShow();
@@ -83,7 +86,7 @@ TEST_CASE("OmdbTv scrapes correct show details", "[tv][OMDb][OmdbTv][load_data]"
         CHECK(show.title() == "Breaking Bad");
         CHECK(show.firstAired().year() == 2008);
         CHECK(show.certification().toString() == "TV-MA");
-        CHECK(show.genres().size() >= 1);
+        CHECK(!show.genres().empty());
         CHECK_THAT(show.overview(), Contains("Walter White"));
         CHECK(show.ratings().hasSource("imdb"));
     }

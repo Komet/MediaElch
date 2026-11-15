@@ -82,7 +82,7 @@ void ExportTemplate::setMediaElchVersionMax(mediaelch::VersionInfo maxVersion)
 
 void ExportTemplate::setDirectory(mediaelch::DirectoryPath templateDirectory)
 {
-    m_directory = templateDirectory;
+    m_directory = std::move(templateDirectory);
 }
 
 const QVector<ExportTemplate::ExportSection>& ExportTemplate::exportSections()
@@ -261,14 +261,16 @@ mediaelch::DirectoryPath ExportTemplate::getTemplateLocation()
 
 void ExportTemplate::copyTo(mediaelch::DirectoryPath path)
 {
-    QStringList excludes{"metadata.xml", //
-        "movies.html",                   //
-        "movies",                        //
-        "concerts.html",                 //
-        "concerts",                      //
-        "tvshows.html",                  //
-        "tvshows",                       //
-        "episode"};
+    QStringList excludes{
+        "metadata.xml",  //
+        "movies.html",   //
+        "movies",        //
+        "concerts.html", //
+        "concerts",      //
+        "tvshows.html",  //
+        "tvshows",       //
+        "episode",
+    };
 
     QDir templateDir(getTemplateLocation().dir());
     const auto entries = templateDir.entryInfoList(QDir::NoDotAndDotDot | QDir::Files | QDir::Dirs);
@@ -338,7 +340,7 @@ QDebug operator<<(QDebug dbg, const ExportTemplate& exportTemplate)
     out.append(QString("  Version:          ").append(exportTemplate.version()).append(newline));
     out.append(QString("  Remote Version:   ").append(exportTemplate.remoteVersion()).append(newline));
     out.append(QString("  Remote File:      ").append(exportTemplate.remoteFile()).append(newline));
-    out.append(QString("  Installed:        ").append((exportTemplate.isInstalled()) ? "yes" : "no").append(newline));
+    out.append(QString("  Installed:        ").append(exportTemplate.isInstalled() ? "yes" : "no").append(newline));
     out.append(QString("  Remote:           ").append((exportTemplate.isRemote() ? "yes" : "no")).append(newline));
     out.append(
         QString("  Update available: ").append((exportTemplate.updateAvailable() ? "yes" : "no")).append(newline));
