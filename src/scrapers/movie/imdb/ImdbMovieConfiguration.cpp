@@ -45,7 +45,26 @@ mediaelch::Locale ImdbMovieConfiguration::defaultLocale()
 
 QVector<Locale> ImdbMovieConfiguration::supportedLanguages()
 {
-    return QVector<Locale>({"en"});
+    // With the GraphQL API migration, localization is supported via AKAs and
+    // country-specific certificates/release dates. Plots remain English-only.
+    return QVector<Locale>({
+        "en",
+        "de",
+        "fr",
+        "es",
+        "it",
+        "pt",
+        "ja",
+        "ko",
+        "zh",
+        "ru",
+        "nl",
+        "pl",
+        "sv",
+        "da",
+        "fi",
+        "no",
+    });
 }
 
 bool ImdbMovieConfiguration::shouldLoadAllTags()

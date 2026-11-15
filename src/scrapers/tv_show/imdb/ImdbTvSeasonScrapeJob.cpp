@@ -3,9 +3,9 @@
 #include "data/tv_show/TvShowEpisode.h"
 #include "log/Log.h"
 #include "scrapers/imdb/ImdbApi.h"
-#include "scrapers/tv_show/imdb/ImdbTvSeasonParser.h"
+#include "scrapers/imdb/ImdbJsonParser.h"
+#include "utils/Containers.h"
 
-#include <QJsonArray>
 #include <QTimer>
 
 namespace mediaelch {
@@ -28,97 +28,75 @@ void ImdbTvSeasonScrapeJob::doStart()
         return;
     }
 
-    if (config().shouldLoadAllSeasons()) {
-        loadAllSeasons();
-
-    } else {
-        gatherAndLoadEpisodes(config().seasons.values(), {});
-    }
+    loadEpisodes();
 }
 
-void ImdbTvSeasonScrapeJob::loadEpisodes(QMap<SeasonNumber, QMap<EpisodeNumber, ImdbId>> episodeIds)
+void ImdbTvSeasonScrapeJob::loadEpisodes()
 {
-    if (episodeIds.isEmpty()) {
+    // Load all episodes in bulk via GraphQL — one request for up to 250 episodes.
+    // This replaces the old sequential per-episode loading pattern.
+    m_api.loadEpisodesViaGraphQL(m_showId, 250, [this](QString data, ScraperError error) {
+        if (error.hasError()) {
+            setScraperError(error);
+            emitFinished();
+            return;
+        }
+        parseAndStoreEpisodes(data);
         emitFinished();
-        return;
-    }
-
-    // Get next episode to load and remove it from episodeIds
-    const SeasonNumber nextSeason = episodeIds.keys().first();
-
-    // If there is no episode left in that season then remove it.
-    if (episodeIds[nextSeason].isEmpty()) {
-        episodeIds.remove(nextSeason);
-        loadEpisodes(episodeIds);
-        return;
-    }
-
-    QMap<EpisodeNumber, ImdbId> episodes = episodeIds[nextSeason];
-    const EpisodeNumber nextEpisode = episodes.keys().first();
-    const ImdbId nextEpisodeId = episodes[nextEpisode];
-    episodeIds[nextSeason].remove(nextEpisode);
-
-    // Create episode: We need to set some details because not everything is available
-    // from the single episode page (or can be scraped in a stable manner).
-    auto* episode = new TvShowEpisode({}, this);
-    episode->setSeason(nextSeason);
-    episode->setEpisode(nextEpisode);
-    episode->setImdbId(nextEpisodeId);
-
-    qCInfo(generic) << "[ImdbTvSeasonScrapeJob] Start loading season" << nextSeason.toInt() << "episode"
-                    << nextEpisode.toInt() << "of show" << config().showIdentifier.str();
-
-    m_api.loadTitle(config().locale,
-        nextEpisodeId,
-        ImdbApi::PageKind::Reference,
-        [this, episode, episodeIds](QString html, ScraperError error) {
-            if (error.hasError()) {
-                // only store error but try to load other episodes
-                setScraperError(error);
-            } else if (!html.isEmpty()) {
-                ImdbTvEpisodeParser::parseInfos(*episode, html, config().locale);
-                storeEpisode(episode);
-            }
-            loadEpisodes(episodeIds);
-        });
-}
-
-void ImdbTvSeasonScrapeJob::gatherAndLoadEpisodes(QList<SeasonNumber> seasonsToLoad,
-    QMap<SeasonNumber, QMap<EpisodeNumber, ImdbId>> episodeIds)
-{
-    if (seasonsToLoad.isEmpty()) {
-        loadEpisodes(episodeIds);
-        return;
-    }
-
-    const SeasonNumber nextSeason = seasonsToLoad.takeFirst();
-    const ImdbApi::ApiCallback callback = [this, nextSeason, seasonsToLoad, episodeIds](
-                                              QString html, ScraperError error) {
-        if (error.hasError()) {
-            setScraperError(error);
-            emitFinished();
-            return;
-        }
-        QMap<EpisodeNumber, ImdbId> episodesForSeason = ImdbTvSeasonParser::parseEpisodeIds(html, nextSeason.toInt());
-        auto ids = episodeIds;
-        ids.insert(nextSeason, episodesForSeason);
-        gatherAndLoadEpisodes(seasonsToLoad, ids);
-    };
-
-    m_api.loadSeason(config().locale, m_showId, nextSeason, callback);
-}
-
-void ImdbTvSeasonScrapeJob::loadAllSeasons()
-{
-    m_api.loadDefaultEpisodesPage(config().locale, m_showId, [this](QString html, ScraperError error) {
-        if (error.hasError()) {
-            setScraperError(error);
-            emitFinished();
-            return;
-        }
-        QSet<SeasonNumber> seasons = ImdbTvSeasonParser::parseSeasonNumbersFromEpisodesPage(html);
-        gatherAndLoadEpisodes(seasons.values(), {});
     });
+}
+
+void ImdbTvSeasonScrapeJob::parseAndStoreEpisodes(const QString& json)
+{
+    const QVector<ImdbEpisodeData> episodes = ImdbJsonParser::parseEpisodesFromGraphQL(json, config().locale);
+
+    for (const ImdbEpisodeData& epData : episodes) {
+        const SeasonNumber season(epData.seasonNumber);
+        const EpisodeNumber epNum(epData.episodeNumber);
+
+        // Skip episodes from seasons we didn't request (unless loading all)
+        if (!config().shouldLoadAllSeasons() && !config().seasons.contains(season)) {
+            continue;
+        }
+
+        auto* episode = new TvShowEpisode({}, this);
+        episode->setSeason(season);
+        episode->setEpisode(epNum);
+        episode->setImdbId(epData.imdbId);
+
+        if (epData.title.hasValue()) {
+            episode->setTitle(epData.title.value);
+        }
+        if (epData.overview.hasValue()) {
+            episode->setOverview(epData.overview.value);
+        }
+        if (epData.firstAired.hasValue()) {
+            episode->setFirstAired(epData.firstAired.value);
+        }
+        if (epData.thumbnail.hasValue()) {
+            episode->setThumbnail(epData.thumbnail.value.thumbUrl);
+        }
+        for (const Rating& rating : epData.ratings) {
+            episode->ratings().addRating(rating);
+        }
+        if (epData.runtime.hasValue()) {
+            // TvShowEpisode doesn't have setRuntime — runtime is only on TvShow level
+        }
+        if (epData.certification.hasValue()) {
+            episode->setCertification(epData.certification.value);
+        }
+        if (!epData.directors.isEmpty()) {
+            episode->setDirectors(setToStringList(epData.directors));
+        }
+        if (!epData.writers.isEmpty()) {
+            episode->setWriters(setToStringList(epData.writers));
+        }
+        for (const Actor& actor : epData.actors) {
+            episode->addActor(actor);
+        }
+
+        storeEpisode(episode);
+    }
 }
 
 void ImdbTvSeasonScrapeJob::storeEpisode(TvShowEpisode* episode)
@@ -127,7 +105,6 @@ void ImdbTvSeasonScrapeJob::storeEpisode(TvShowEpisode* episode)
     if (config().shouldLoadAllSeasons() || config().seasons.contains(season)) {
         m_episodes[{season, episode->episodeNumber()}] = episode;
     } else {
-        // Only store episodes that are actually requested.
         episode->deleteLater();
     }
 }

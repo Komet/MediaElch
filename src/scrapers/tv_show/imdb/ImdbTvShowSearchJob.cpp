@@ -1,12 +1,10 @@
 #include "scrapers/tv_show/imdb/ImdbTvShowSearchJob.h"
 
-#include "data/tv_show/TvShow.h"
-#include "scrapers/ScraperUtils.h"
-#include "scrapers/tv_show/imdb/ImdbTvShowParser.h"
-
-#include <QRegularExpression>
-
+#include "log/Log.h"
 #include "scrapers/imdb/ImdbSearchPage.h"
+
+#include <QJsonDocument>
+#include <QJsonObject>
 
 namespace mediaelch {
 namespace scraper {
@@ -25,26 +23,16 @@ void ImdbTvShowSearchJob::doStart()
     }
 }
 
-
 void ImdbTvShowSearchJob::searchViaImdbId()
 {
     MediaElch_Debug_Ensures(ImdbId::isValidFormat(config().query));
 
-    ImdbId id = ImdbId(config().query);
-    m_api.loadTitle(config().locale, id, ImdbApi::PageKind::Reference, [this](QString html, ScraperError error) {
-        if (!error.hasError()) {
-            TvShow show;
-            ImdbTvShowParser parser(show, config().locale);
-            error = parser.parseInfos(html);
-            if (!error.hasError() && !show.title().isEmpty()) {
-                ShowSearchJob::Result result;
-                result.title = show.title();
-                result.identifier = ShowIdentifier(config().query);
-                result.released = show.firstAired();
-                m_results.push_back(std::move(result));
-            }
+    m_api.loadTitleViaGraphQL(ImdbId(config().query), [this](QString data, ScraperError error) {
+        if (error.hasError()) {
+            setScraperError(error);
+        } else {
+            parseGraphQLResult(data);
         }
-        setScraperError(error);
         emitFinished();
     });
 }
@@ -53,57 +41,60 @@ void ImdbTvShowSearchJob::searchViaQuery()
 {
     MediaElch_Debug_Ensures(!ImdbId::isValidFormat(config().query));
 
-    m_api.searchForShow(config().locale, config().query, [this](QString html, ScraperError error) {
+    m_api.suggestSearch(config().query, [this](QString data, ScraperError error) {
         if (error.hasError()) {
-            // pass; already set
-        } else if (html.isEmpty()) {
-            error.error = ScraperError::Type::NetworkError;
-            error.message = tr("Loaded IMDb web page content is empty. Cannot scrape requested TV show.");
-
-        } else if (is404(html)) {
-            error.error = ScraperError::Type::InternalError;
-            error.message = tr("Could not find result table in the scraped HTML. "
-                               "Please contact MediaElch's developers.");
-
+            setScraperError(error);
+        } else if (data.isEmpty()) {
+            ScraperError emptyError;
+            emptyError.error = ScraperError::Type::NetworkError;
+            emptyError.message = tr("Loaded IMDb suggest response is empty. Cannot scrape requested TV show.");
+            setScraperError(emptyError);
         } else {
-            m_results = parseSearch(html);
+            parseSuggestResults(data);
         }
-        setScraperError(error);
         emitFinished();
     });
 }
 
-QVector<ShowSearchJob::Result> ImdbTvShowSearchJob::parseSearch(const QString& html)
+void ImdbTvShowSearchJob::parseSuggestResults(const QString& json)
 {
-    auto results = ImdbSearchPage::parseSearch(html);
-    QVector<ShowSearchJob::Result> showResults;
+    const QStringList tvTypes{"tvSeries", "tvMiniSeries"};
+    auto results = ImdbSearchPage::parseSuggestResponse(json, tvTypes);
     for (const auto& result : results) {
-        showResults << ShowSearchJob::Result{result.title, result.released, ShowIdentifier{result.identifier}};
+        m_results << ShowSearchJob::Result{result.title, result.released, ShowIdentifier{result.identifier}};
     }
-    return showResults;
 }
 
-QVector<ShowSearchJob::Result> ImdbTvShowSearchJob::parseResultFromShowPage(const QString& html)
+void ImdbTvShowSearchJob::parseGraphQLResult(const QString& json)
 {
-    QRegularExpression rx(R"(<title>([^<]+?) \(TV Series (\d{4})–(\d{4}| )\) - IMDb</title>)");
-    QRegularExpressionMatch match = rx.match(html);
-    if (!match.hasMatch()) {
-        return {};
+    QJsonParseError parseError{};
+    const QJsonDocument doc = QJsonDocument::fromJson(json.toUtf8(), &parseError);
+    if (parseError.error != QJsonParseError::NoError) {
+        qCWarning(generic) << "[ImdbTvShowSearchJob] JSON parse error:" << parseError.errorString();
+        return;
+    }
+
+    const QJsonObject title = doc.object().value("data").toObject().value("title").toObject();
+    if (title.isEmpty()) {
+        return;
     }
 
     ShowSearchJob::Result result;
     result.identifier = ShowIdentifier(config().query);
-    result.title = match.captured(1);
-    result.released = QDate::fromString(match.captured(2), "yyyy");
+    result.title = title.value("titleText").toObject().value("text").toString();
 
-    return {result};
+    const QJsonObject releaseDate = title.value("releaseDate").toObject();
+    const int year = releaseDate.value("year").toInt(0);
+    if (year > 0) {
+        const int month = releaseDate.value("month").toInt(1);
+        const int day = releaseDate.value("day").toInt(1);
+        result.released = QDate(year, month, day);
+    }
+
+    if (!result.title.isEmpty()) {
+        m_results << result;
+    }
 }
-
-bool ImdbTvShowSearchJob::is404(const QString& html) const
-{
-    return QRegularExpression(R"(<title>404 Error)").match(html).hasMatch();
-}
-
 
 } // namespace scraper
 } // namespace mediaelch

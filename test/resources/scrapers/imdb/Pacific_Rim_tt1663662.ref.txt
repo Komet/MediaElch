@@ -148,8 +148,8 @@ released: 2013-07-12
 runtime: 131min
 writer: Travis Beacham, Guillermo del Toro
 director: Guillermo del Toro
-actors: (N>5)
- - id: 
+actors: (N>90)
+ - id: nm0402271
    name: Charlie Hunnam
    role: Raleigh Becket
    thumb:
@@ -157,7 +157,7 @@ actors: (N>5)
     NTgyMjFhXkEyXkFqcGc@.jpg
    order: 0
    imageHasChanged: false
- - id: 
+ - id: nm1459109
    name: Diego Klattenhoff
    role: Yancy Becket
    thumb:
@@ -165,7 +165,7 @@ actors: (N>5)
     ODE@.jpg
    order: 1
    imageHasChanged: false
- - id: 
+ - id: nm0252961
    name: Idris Elba
    role: Stacker Pentecost
    thumb:
@@ -173,7 +173,7 @@ actors: (N>5)
     OA@@.jpg
    order: 2
    imageHasChanged: false
- - id: 
+ - id: nm0452860
    name: Rinko Kikuchi
    role: Mako Mori
    thumb:
@@ -181,7 +181,7 @@ actors: (N>5)
     .jpg
    order: 3
    imageHasChanged: false
- - id: 
+ - id: nm0206359
    name: Charlie Day
    role: Dr. Newton Geiszler
    thumb:
@@ -189,7 +189,7 @@ actors: (N>5)
     MzgyY2NiXkEyXkFqcGc@.jpg
    order: 4
    imageHasChanged: false
- - id: 
+ - id: nm1218607
    name: Burn Gorman
    role: Gottlieb
    thumb:
@@ -197,7 +197,7 @@ actors: (N>5)
     ZjU3ZmQ3XkEyXkFqcGc@.jpg
    order: 5
    imageHasChanged: false
- - id: 
+ - id: nm0242882
    name: Max Martini
    role: Herc Hansen
    thumb:
@@ -205,7 +205,7 @@ actors: (N>5)
     MGFlMmUzXkEyXkFqcGc@.jpg
    order: 6
    imageHasChanged: false
- - id: 
+ - id: nm2059117
    name: Robert Kazinsky
    role: Chuck Hansen
    thumb:
@@ -213,7 +213,7 @@ actors: (N>5)
     NzM@.jpg
    order: 7
    imageHasChanged: false
- - id: 
+ - id: nm0004286
    name: Clifton Collins Jr.
    role: Ops Tendo Choi
    thumb:
@@ -221,7 +221,7 @@ actors: (N>5)
     MQ@@.jpg
    order: 8
    imageHasChanged: false
- - id: 
+ - id: nm0000579
    name: Ron Perlman
    role: Hannibal Chau
    thumb:
@@ -229,24 +229,108 @@ actors: (N>5)
     Ng@@.jpg
    order: 9
    imageHasChanged: false
+ - id: nm0377034
+   name: Brad William Henke
+   role: Construction Foreman
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTM4NTE3NjU1Nl5BMl5BanBnXkFtZTcwMjQwNzcy
+    MQ@@.jpg
+   order: 10
+   imageHasChanged: false
+ - id: nm0132660
+   name: Larry Joe Campbell
+   role: Construction Worker
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BYjE4ZjI1YmMtM2ZiMS00YzJjLWJhOGUtYTk4NGM4
+    N2NkMmRkXkEyXkFqcGc@.jpg
+   order: 11
+   imageHasChanged: false
+ - id: nm3870544
+   name: Mana Ashida
+   role: Young Mako
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BYTBhMmM1Y2ItODdjMy00NWFkLWI2ODUtM2ExY2Fl
+    ODhiMzNmXkEyXkFqcGc@.jpg
+   order: 12
+   imageHasChanged: false
+ - id: nm0782213
+   name: Santiago Segura
+   role: Wizened Man
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMmUwZThhMDgtNWZlOS00OGM3LTlhYWMtYzM2ZTk3
+    ODQ3OTZmXkEyXkFqcGc@.jpg
+   order: 13
+   imageHasChanged: false
+ - id: nm0684187
+   name: Joe Pingue
+   role: Captain Merrit
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BYjRmNDc0Y2YtMjUwNS00NjYyLTg4NjAtZTkyNDky
+    ZWExY2E1XkEyXkFqcGc@.jpg
+   order: 14
+   imageHasChanged: false
+ - id: nm0055712
+   name: Milton Barnes
+   role: McTighe
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMWI3MDY4OWYtOTJkNi00M2NjLWFhY2ItNjliZjUx
+    YjQxZDU4XkEyXkFqcGc@.jpg
+   order: 15
+   imageHasChanged: false
+ - id: nm0290860
+   name: Brian Frank
+   role: 1st Officer
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BZmUxZTBhYjgtZTI0ZS00OTg4LWIwMmUtMGE3Y2Nl
+    ZWYxOGM5XkEyXkFqcGc@.jpg
+   order: 16
+   imageHasChanged: false
+ - id: nm1655889
+   name: Ellen McLain
+   role: Gipsy Danger AI
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BOTk4NjU4MDM1M15BMl5BanBnXkFtZTcwNjE3MTYw
+    NQ@@.jpg
+   order: 17
+   imageHasChanged: false
+ - id: nm0288944
+   name: David Fox
+   role: Old Man on Beach
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMTkzNzU1Njc1M15BMl5BanBnXkFtZTgwNDU0MDg3
+    MjE@.jpg
+   order: 18
+   imageHasChanged: false
+ - id: nm3174869
+   name: Jake Goodman
+   role: Child
+   thumb:
+    https://m.media-amazon.com/images/M/MV5BMjIxMzk0ODMxMV5BMl5BanBnXkFtZTgwMjU2NTIw
+    MzE@.jpg
+   order: 19
+   imageHasChanged: false
+  - ... and >70 more
 certification: PG-13
 genres: (N<6)
   - Sci-Fi
   - Action
   - Adventure
-tags: (N<6)
-  - human piloted robot
-  - pilot
-  - surrealism
-  - 2020s
-  - kaiju
-countries: (N=1)
+tags: (N>100)
+  - 2010s
+  - robot sci fi
+  - exoskeleton
+  - loss of brother
+  - male female friendship
+  - ... and >90 more
+countries: (N<6)
   - MX
+  - US
 studios: (N<6)
   - Warner Bros.
+  - Double Dare You (DDY)
   - Legendary Entertainment
   - Legendary Pictures
-trailer: https://imdb-video.media-imdb.com/vi1369752345/1434659529640-260ouz-1632281728566.mp4?Expires=1774010695&Signature=okyiMQqUnXOb3ePwJJIZAzOfAzksoKsuM9f~zefavZqx00BoPNVD2lpuIzvocgRhUfHIgIRNDwtmPUQGpCRLvf02T8iVUEquFQ4Nmyjcml7WWtzpJg-i4bDH5HMMuTbETgD6FVQxY7jF-6Eg6eYdRBz4rA-JXlCnZkgrOnvXa2HzetM6kvmWk22~Y127cuS46-svj1PrfPDyJjY7OUpkb7lWafD3P2BVhZIHfUA~I~ntJqKjQwxxK3ojTlquL3vW-XgGXqLHQMCyn3v7-KdjfDpa1E-FRWHd-wGa~0ppH0uOhk-GgEvVUw4y6WiDh7X4SV7M~bXRGtx9Yp2mYwRI7g__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA
+trailer: https://www.imdb.com/video/vi1369752345/
 showlink: (N=0)
 playcount: 0
 lastPlayed: <not set or invalid>

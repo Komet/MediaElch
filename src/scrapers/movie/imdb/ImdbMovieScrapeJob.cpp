@@ -1,18 +1,10 @@
 #include "scrapers/movie/imdb/ImdbMovieScrapeJob.h"
 
-#include "globals/Helper.h"
+#include "data/movie/Movie.h"
 #include "log/Log.h"
-#include "network/NetworkRequest.h"
 #include "scrapers/imdb/ImdbApi.h"
 #include "scrapers/imdb/ImdbJsonParser.h"
-#include "scrapers/imdb/ImdbReferencePage.h"
-#include "scrapers/movie/imdb/ImdbMovie.h"
-
-#include <QRegularExpression>
-
-#include "scrapers/ScraperUtils.h"
 #include "utils/Containers.h"
-
 
 namespace mediaelch {
 namespace scraper {
@@ -33,77 +25,40 @@ void ImdbMovieScrapeJob::doStart()
     m_movie->clear(config().details);
     m_movie->setImdbId(m_imdbId);
 
-    m_api.loadTitle(config().locale, m_imdbId, ImdbApi::PageKind::Reference, [this](QString html, ScraperError error) {
+    m_api.loadTitleViaGraphQL(m_imdbId, [this](QString data, ScraperError error) {
         if (error.hasError()) {
             setScraperError(error);
             emitFinished();
             return;
         }
-
-        parseAndAssignInfos(html);
-
-        // How many pages do we have to download? Count them. Initial value '1' is the reference page itself.
-        m_itemsLeftToDownloads = 1;
-
-        // IMDb has an extra page listing all tags (popular movies can have more than 100 tags).
-        if (m_loadAllTags) {
-            ++m_itemsLeftToDownloads;
-            loadTags();
-        }
-
-        if (config().details.contains(MovieScraperInfo::Overview)) {
-            // IMDb has a specific page for plot summaries, which we use for the movie's plot/overview.
-            // As this is an additional request, only do so if necessary.
-            ++m_itemsLeftToDownloads;
-            loadPlotSummary();
-        }
-
-        // It's possible that none of the above items should be loaded.
-        decreaseDownloadCount();
+        parseAndAssignInfos(data);
+        emitFinished();
     });
 }
 
-void ImdbMovieScrapeJob::loadTags()
+void ImdbMovieScrapeJob::parseAndAssignInfos(const QString& json)
 {
-    const auto cb = [this](QString html, ScraperError error) {
-        if (!error.hasError()) {
-            parseAndAssignTags(html);
-
-        } else {
-            setScraperError(error);
-        }
-        decreaseDownloadCount();
-    };
-    m_api.loadTitle(config().locale, m_imdbId, ImdbApi::PageKind::Keywords, cb);
-}
-
-void ImdbMovieScrapeJob::loadPlotSummary()
-{
-    const auto cb = [this](QString html, ScraperError error) {
-        if (!error.hasError()) {
-            parseAndAssignOverviewFromPlotSummaryPage(html);
-
-        } else {
-            setScraperError(error);
-        }
-        decreaseDownloadCount();
-    };
-    m_api.loadTitle(config().locale, m_imdbId, ImdbApi::PageKind::PlotSummary, cb);
-}
-
-void ImdbMovieScrapeJob::parseAndAssignInfos(const QString& html)
-{
-    ImdbData data = ImdbJsonParser::parseFromReferencePage(html, config().locale);
+    ImdbData data = ImdbJsonParser::parseFromGraphQL(json, config().locale);
 
     if (data.imdbId.isValid()) {
         m_movie->setImdbId(data.imdbId);
     }
-    if (data.title.hasValue()) {
+
+    // Title: use localized title if available, keep original as originalTitle
+    if (data.localizedTitle.hasValue()) {
+        m_movie->setTitle(data.localizedTitle.value);
+        if (data.originalTitle.hasValue()) {
+            m_movie->setOriginalTitle(data.originalTitle.value);
+        } else if (data.title.hasValue()) {
+            m_movie->setOriginalTitle(data.title.value);
+        }
+    } else if (data.title.hasValue()) {
         m_movie->setTitle(data.title.value);
+        if (data.originalTitle.hasValue()) {
+            m_movie->setOriginalTitle(data.originalTitle.value);
+        }
     }
-    if (data.originalTitle.hasValue()) {
-        m_movie->setOriginalTitle(data.originalTitle.value);
-    }
+
     if (data.overview.hasValue()) {
         m_movie->setOverview(data.overview.value);
     }
@@ -119,7 +74,7 @@ void ImdbMovieScrapeJob::parseAndAssignInfos(const QString& html)
     if (data.released.hasValue()) {
         m_movie->setReleased(data.released.value);
     }
-    for (Rating rating : data.ratings) {
+    for (const Rating& rating : data.ratings) {
         m_movie->ratings().addRating(rating);
     }
 
@@ -131,10 +86,13 @@ void ImdbMovieScrapeJob::parseAndAssignInfos(const QString& html)
     if (data.poster.hasValue()) {
         m_movie->images().addPoster(data.poster.value);
     }
+    for (const Poster& backdrop : data.backdrops) {
+        m_movie->images().addBackdrop(backdrop);
+    }
     if (data.trailer.hasValue()) {
         m_movie->setTrailer(data.trailer.value);
     }
-    for (Actor actor : data.actors) {
+    for (const Actor& actor : data.actors) {
         m_movie->addActor(actor);
     }
     if (!data.directors.isEmpty()) {
@@ -143,65 +101,33 @@ void ImdbMovieScrapeJob::parseAndAssignInfos(const QString& html)
     if (!data.writers.isEmpty()) {
         m_movie->setWriter(setToStringList(data.writers).join(", "));
     }
-    for (QString genre : data.genres) {
+    for (const QString& genre : data.genres) {
         m_movie->addGenre(genre);
     }
-    for (QString studio : data.studios) {
+    for (const QString& studio : data.studios) {
         m_movie->addStudio(studio);
     }
-    for (QString country : data.countries) {
+    for (const QString& country : data.countries) {
         m_movie->addCountry(country);
     }
-    for (QString keyword : data.keywords) {
-        m_movie->addTag(keyword);
-    }
-}
-
-void ImdbMovieScrapeJob::parseAndAssignTags(const QString& html)
-{
-    QRegularExpression rx;
-    rx.setPatternOptions(QRegularExpression::DotMatchesEverythingOption | QRegularExpression::InvertedGreedinessOption);
-    if (m_loadAllTags) {
-        rx.setPattern(R"(<a[^>]+href="/search/(?:title/\?)keyword[^"]+"\n?>([^<]+)</a>)");
+    if (!m_loadAllTags) {
+        // When "Load All Tags" is disabled, only add tags that are part of IMDB's
+        // default set (first ~20). The GraphQL query fetches up to 100 keywords.
+        // Since we can't distinguish "default" from "extended" keywords, we limit
+        // to the first 20 when the setting is off.
+        int tagLimit = 20;
+        int tagCount = 0;
+        for (const QString& keyword : data.keywords) {
+            if (tagCount >= tagLimit) {
+                break;
+            }
+            m_movie->addTag(keyword);
+            ++tagCount;
+        }
     } else {
-        rx.setPattern(R"(<a[^>]+href="/keyword/[^"]+"[^>]*>([^<]+)</a>)");
-    }
-
-    QRegularExpressionMatchIterator match = rx.globalMatch(html);
-    while (match.hasNext()) {
-        m_movie->addTag(match.next().captured(1).trimmed());
-    }
-}
-
-void ImdbMovieScrapeJob::parseAndAssignOverviewFromPlotSummaryPage(const QString& html)
-{
-    const Optional<QString> overview = ImdbJsonParser::parseOverviewFromPlotSummaryPage(html);
-
-    if (overview.hasValue()) {
-        m_movie->setOverview(overview.value);
-    }
-}
-
-QString ImdbMovieScrapeJob::sanitizeAmazonMediaUrl(QString url)
-{
-    // The URL can look like this:
-    //   https://m.media-amazon.com/images/M/<image ID>._V1_UY1400_CR90,0,630,1200_AL_.jpg
-    // To get the original image, everything after `._V` can be removed.
-
-    if (!url.endsWith(".jpg")) {
-        return url;
-    }
-    QRegularExpression rx(R"re(._V([^/]+).jpg$)re", QRegularExpression::InvertedGreedinessOption);
-    url.replace(rx, ".jpg");
-
-    return url;
-}
-
-void ImdbMovieScrapeJob::decreaseDownloadCount()
-{
-    --m_itemsLeftToDownloads;
-    if (m_itemsLeftToDownloads <= 0) {
-        emitFinished();
+        for (const QString& keyword : data.keywords) {
+            m_movie->addTag(keyword);
+        }
     }
 }
 

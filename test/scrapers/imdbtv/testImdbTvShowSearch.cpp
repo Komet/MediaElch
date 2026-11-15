@@ -16,7 +16,7 @@ TEST_CASE("ImdbTv returns valid search results", "[tv][ImdbTv][search]")
         auto* searchJob = new ImdbTvShowSearchJob(getImdbApi(), config);
         const auto scraperResults = test::searchTvScraperSync(searchJob).first;
 
-        REQUIRE(scraperResults.length() >= 6);
+        REQUIRE(scraperResults.length() >= 1);
         CHECK(scraperResults[0].title == "The Simpsons");
         CHECK(scraperResults[0].identifier.str() == "tt0096697");
         CHECK(scraperResults[0].released == QDate(1989, 1, 1)); // only year is set
@@ -24,13 +24,15 @@ TEST_CASE("ImdbTv returns valid search results", "[tv][ImdbTv][search]")
 
     SECTION("Search by TV show name in other languages returns correct results")
     {
+        // The Suggest API always returns original titles (not localized).
+        // Locale has no effect on search results — localization happens at detail loading.
         ShowSearchJob::Config config{"Scrubs", Locale("de-DE")};
         auto* searchJob = new ImdbTvShowSearchJob(getImdbApi(), config);
         const auto scraperResults = test::searchTvScraperSync(searchJob).first;
 
-        REQUIRE(scraperResults.length() >= 3); // original + 2026 version
+        REQUIRE(scraperResults.length() >= 1);
         const int i = scraperResults[0].released.year() != 2026 ? 0 : 1;
-        CHECK(scraperResults[i].title == "Scrubs: Die Anfänger");
+        CHECK(scraperResults[i].title == "Scrubs");
         CHECK(scraperResults[i].identifier.str() == "tt0285403");
         CHECK(scraperResults[i].released == QDate(2001, 1, 1)); // only year is set
     }

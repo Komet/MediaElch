@@ -19,12 +19,8 @@ private:
     void searchViaImdbId();
     void searchViaQuery();
 
-    QVector<ShowSearchJob::Result> parseSearch(const QString& html);
-    QVector<ShowSearchJob::Result> parseResultFromShowPage(const QString& html);
-    /// \brief   Check if the HTML page is a 404 page
-    /// \details IMDb does not return a 404 status code but instead a 204 one with
-    ///          a page that says "404 Error".
-    bool is404(const QString& html) const;
+    void parseSuggestResults(const QString& json);
+    void parseGraphQLResult(const QString& json);
 
 private:
     ImdbApi& m_api;
