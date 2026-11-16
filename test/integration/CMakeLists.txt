@@ -5,6 +5,7 @@ target_sources(
   PRIVATE
     main.cpp
     database/testSchema.cpp
+    database/testPersistence.cpp
     export/testSimpleExport.cpp
     file/testPath.cpp
     media_center/testKodi_v18_concert.cpp

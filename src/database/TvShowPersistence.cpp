@@ -86,7 +86,7 @@ void TvShowPersistence::setHideSpecialsInMissingEpisodes(TvShow* show, bool hide
     if (query.next()) {
         query.prepare(
             "UPDATE showsSettings SET hideSpecialsInMissingEpisodes=:hide, url=:url, tmdbid=:tmdbid WHERE dir=:dir");
-        query.bindValue(":show", hideSpecials ? 1 : 0);
+        query.bindValue(":hide", hideSpecials ? 1 : 0);
         query.bindValue(":dir", show->dir().toString().toUtf8());
         query.bindValue(":tmdbid", show->tmdbId().toString());
         query.bindValue(":url", show->episodeGuideUrl().isEmpty() ? "" : show->episodeGuideUrl());
