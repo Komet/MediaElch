@@ -14,6 +14,8 @@ class Database : public QObject
     Q_OBJECT
 public:
     explicit Database(QObject* parent = nullptr);
+    /// Open a specific database, including SQLite's ":memory:" database for isolated tests.
+    explicit Database(const QString& databaseName, QObject* parent = nullptr);
     ~Database() override;
 
     /// \brief Create a new connection for the calling thread.

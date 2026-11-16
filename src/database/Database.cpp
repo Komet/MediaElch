@@ -19,22 +19,29 @@ static QMutex s_initializingDatabaseMutex;
 /// \brief Used for creating a new connection name.
 static size_t s_connectionCount = 0;
 
-Database::Database(QObject* parent) : QObject(parent)
+Database::Database(QObject* parent) : Database(QString(), parent)
+{
+}
+
+Database::Database(const QString& databaseName, QObject* parent) : QObject(parent)
 {
     // This lock is required to ensure that multithreaded access only initializes
     // the database once.  Each instance of this class has its own connection name.
     QMutexLocker lock(&s_initializingDatabaseMutex);
     ++s_connectionCount;
 
-    m_dataLocation = Settings::instance()->databaseDir();
-    QDir dir(m_dataLocation.dir());
-    if (!dir.exists()) {
-        dir.mkpath(m_dataLocation.toString());
+    QString dbName = databaseName;
+    if (dbName.isEmpty()) {
+        m_dataLocation = Settings::instance()->databaseDir();
+        QDir dir(m_dataLocation.dir());
+        if (!dir.exists()) {
+            dir.mkpath(m_dataLocation.toString());
+        }
+        dbName = m_dataLocation.filePath("MediaElch.sqlite");
     }
 
     const QString connectionName = QStringLiteral("mediaDb_%1").arg(s_connectionCount);
     m_db = std::make_unique<QSqlDatabase>(QSqlDatabase::addDatabase("QSQLITE", connectionName));
-    const QString dbName = m_dataLocation.filePath("MediaElch.sqlite");
     m_db->setDatabaseName(dbName);
 
     if (!m_db->open()) {
