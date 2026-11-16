@@ -89,7 +89,7 @@ SettingsWindow::SettingsWindow(Settings& settings, QWidget* parent) :
     connect(ui->btnSave,   &QAbstractButton::clicked, this, &SettingsWindow::onSave);
     // clang-format on
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     ui->btnCancel->setVisible(false);
     ui->btnSave->setVisible(false);
     ui->horizontalSpacerButtons->setGeometry(QRect(0, 0, 1, 1));
@@ -134,7 +134,7 @@ void SettingsWindow::closeEvent(QCloseEvent* event)
     m_config.setSettingsWindowSize(size());
     m_config.setSettingsWindowPosition(pos());
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     saveSettings();
     emit sigSaved();
 #else

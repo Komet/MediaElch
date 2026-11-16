@@ -14,7 +14,7 @@ MovieMultiScrapeDialog::MovieMultiScrapeDialog(QWidget* parent) : QDialog(parent
     ui->setupUi(this);
     ui->lblError->hide();
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Sheet);
 #else
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Dialog);

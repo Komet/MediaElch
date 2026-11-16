@@ -7,7 +7,7 @@
 ExportTemplateWidget::ExportTemplateWidget(QWidget* parent) : QWidget(parent), ui(new Ui::ExportTemplateWidget)
 {
     ui->setupUi(this);
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     QFont smallFont = ui->description->font();
     smallFont.setPointSize(smallFont.pointSize() - 1);
     ui->description->setFont(smallFont);

@@ -10,7 +10,7 @@ MovieSettingsWidget::MovieSettingsWidget(QWidget* parent) : QWidget(parent), ui(
 {
     ui->setupUi(this);
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     QFont smallFont = ui->lblFilenameDescription->font();
     smallFont.setPointSize(smallFont.pointSize() - 1);
     ui->lblFilenameDescription->setFont(smallFont);

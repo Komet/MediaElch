@@ -9,7 +9,7 @@
 #include <QPainter>
 #include <QRegularExpression>
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
 #    include "ui/MacUiUtilities.h"
 #endif
 
@@ -437,7 +437,7 @@ QColor colorForLabel(ColorLabel label, QString theme)
 {
     // TODO: Introduce enum for main window theme; move macOS detection to settings (?)
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     if (theme == "auto") {
         theme = mediaelch::ui::macIsInDarkTheme() ? "dark" : "light";
     }
