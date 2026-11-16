@@ -6,6 +6,7 @@
 #include "log/Log.h"
 #include "media_center/kodi/EpisodeXmlWriter.h"
 
+#include <QSqlError>
 #include <QSqlQuery>
 #include <QSqlRecord>
 
@@ -36,18 +37,18 @@ void TvShowPersistence::add(TvShow* show, DirectoryPath path)
     query.bindValue(":dir", show->dir().toString().toUtf8());
     query.exec();
     if (query.next()) {
-        show->setShowMissingEpisodes(query.value(query.record().indexOf("showMissingEpisodes")).toInt() == 1);
+        show->setShowMissingEpisodes(query.value(query.record().indexOf("showMissingEpisodes")).toInt() == 1, false);
         show->setHideSpecialsInMissingEpisodes(
-            query.value(query.record().indexOf("hideSpecialsInMissingEpisodes")).toInt() == 1);
+            query.value(query.record().indexOf("hideSpecialsInMissingEpisodes")).toInt() == 1, false);
     } else {
         query.prepare("INSERT INTO showsSettings(showMissingEpisodes, hideSpecialsInMissingEpisodes, dir, tmdbid, url) "
                       "VALUES(0, 0, :dir, :tmdbid, :url)");
         query.bindValue(":dir", show->dir().toString().toUtf8());
-        query.bindValue(":tmdbid", show->tmdbId().toString());
+        query.bindValue(":tmdbid", show->tmdbId().isValid() ? show->tmdbId().toString() : QStringLiteral(""));
         query.bindValue(":url", show->episodeGuideUrl().isEmpty() ? "" : show->episodeGuideUrl());
         query.exec();
-        show->setShowMissingEpisodes(false);
-        show->setHideSpecialsInMissingEpisodes(false);
+        show->setShowMissingEpisodes(false, false);
+        show->setHideSpecialsInMissingEpisodes(false, false);
     }
 }
 
@@ -62,15 +63,15 @@ void TvShowPersistence::setShowMissingEpisodes(TvShow* show, bool showMissing)
         query.prepare("UPDATE showsSettings SET showMissingEpisodes=:show, url=:url, tmdbid=:tmdbid WHERE dir=:dir");
         query.bindValue(":show", showMissing ? 1 : 0);
         query.bindValue(":dir", show->dir().toString().toUtf8());
-        query.bindValue(":tmdbid", show->tmdbId().toString());
+        query.bindValue(":tmdbid", show->tmdbId().isValid() ? show->tmdbId().toString() : QStringLiteral(""));
         query.bindValue(":url", show->episodeGuideUrl().isEmpty() ? "" : show->episodeGuideUrl());
         query.exec();
     } else {
-        query.prepare(
-            "INSERT INTO showsSettings(showMissingEpisodes, dir, tmdbid, url) VALUES(:show, :dir, :tmdbid, :url)");
+        query.prepare("INSERT INTO showsSettings(showMissingEpisodes, hideSpecialsInMissingEpisodes, dir, tmdbid, url) "
+                      "VALUES(:show, 0, :dir, :tmdbid, :url)");
         query.bindValue(":dir", show->dir().toString().toUtf8());
         query.bindValue(":url", show->episodeGuideUrl().isEmpty() ? "" : show->episodeGuideUrl());
-        query.bindValue(":tmdbid", show->tmdbId().toString());
+        query.bindValue(":tmdbid", show->tmdbId().isValid() ? show->tmdbId().toString() : QStringLiteral(""));
         query.bindValue(":show", showMissing ? 1 : 0);
         query.exec();
     }
@@ -88,15 +89,15 @@ void TvShowPersistence::setHideSpecialsInMissingEpisodes(TvShow* show, bool hide
             "UPDATE showsSettings SET hideSpecialsInMissingEpisodes=:hide, url=:url, tmdbid=:tmdbid WHERE dir=:dir");
         query.bindValue(":hide", hideSpecials ? 1 : 0);
         query.bindValue(":dir", show->dir().toString().toUtf8());
-        query.bindValue(":tmdbid", show->tmdbId().toString());
+        query.bindValue(":tmdbid", show->tmdbId().isValid() ? show->tmdbId().toString() : QStringLiteral(""));
         query.bindValue(":url", show->episodeGuideUrl().isEmpty() ? "" : show->episodeGuideUrl());
         query.exec();
     } else {
-        query.prepare("INSERT INTO showsSettings(hideSpecialsInMissingEpisodes, dir, tmdbid, url) VALUES(:hide, :dir, "
-                      ":tmdbid, :url)");
+        query.prepare("INSERT INTO showsSettings(showMissingEpisodes, hideSpecialsInMissingEpisodes, dir, tmdbid, url) "
+                      "VALUES(0, :hide, :dir, :tmdbid, :url)");
         query.bindValue(":dir", show->dir().toString().toUtf8());
         query.bindValue(":url", show->episodeGuideUrl().isEmpty() ? "" : show->episodeGuideUrl());
-        query.bindValue(":tmdbid", show->tmdbId().toString());
+        query.bindValue(":tmdbid", show->tmdbId().isValid() ? show->tmdbId().toString() : QStringLiteral(""));
         query.bindValue(":hide", hideSpecials ? 1 : 0);
         query.exec();
     }
@@ -138,7 +139,7 @@ void TvShowPersistence::update(TvShow* show)
     query.bindValue(":show", show->showMissingEpisodes());
     query.bindValue(":hide", show->hideSpecialsInMissingEpisodes());
     query.bindValue(":idShow", id.toInt());
-    query.bindValue(":tmdbid", show->tmdbId().toString());
+    query.bindValue(":tmdbid", show->tmdbId().isValid() ? show->tmdbId().toString() : QStringLiteral(""));
     query.bindValue(":url", show->episodeGuideUrl().isEmpty() ? "" : show->episodeGuideUrl());
     query.exec();
 }
@@ -312,12 +313,17 @@ mediaelch::DatabaseId TvShowPersistence::showsSettingsId(TvShow* show)
         return query.value(0).toInt();
     }
 
-    query.prepare("INSERT INTO showsSettings(showMissingEpisodes, hideSpecialsInMissingEpisodes, dir) VALUES(:show, "
-                  ":hide, :dir)");
+    query.prepare("INSERT INTO showsSettings(showMissingEpisodes, hideSpecialsInMissingEpisodes, dir, tmdbid, url) "
+                  "VALUES(:show, :hide, :dir, :tmdbid, :url)");
     query.bindValue(":dir", show->dir().toString().toUtf8());
     query.bindValue(":show", 0);
     query.bindValue(":hide", 0);
-    query.exec();
+    query.bindValue(":tmdbid", show->tmdbId().isValid() ? show->tmdbId().toString() : QStringLiteral(""));
+    query.bindValue(":url", show->episodeGuideUrl().isEmpty() ? "" : show->episodeGuideUrl());
+    if (!query.exec()) {
+        qCWarning(generic) << "[Database] Could not create TV show settings:" << query.lastError().text();
+        return {};
+    }
     return query.lastInsertId().toInt();
 }
 
