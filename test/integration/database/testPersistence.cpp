@@ -73,3 +73,41 @@ TEST_CASE("Create missing TV show settings", "[database][persistence]")
     CHECK(query.value(3).toBool() == hideSpecials);
     CHECK_FALSE(query.next());
 }
+
+TEST_CASE("Keep cached episode lists separate for each show directory", "[database][persistence]")
+{
+    Database database{QStringLiteral(":memory:")};
+    mediaelch::TvShowPersistence persistence{database};
+    TvShow firstShow{mediaelch::DirectoryPath(QStringLiteral("/shows/first"))};
+    TvShow secondShow{mediaelch::DirectoryPath(QStringLiteral("/shows/second"))};
+    const auto firstId = persistence.showsSettingsId(&firstShow);
+    const auto secondId = persistence.showsSettingsId(&secondShow);
+    REQUIRE(firstId.isValid());
+    REQUIRE(secondId.isValid());
+    REQUIRE(firstId.toInt() != secondId.toInt());
+
+    TvShowEpisode episode;
+    episode.setSeason(SeasonNumber(1));
+    episode.setEpisode(EpisodeNumber(2));
+    persistence.addEpisodeToShowList(&episode, firstId, TmdbId(123));
+    persistence.addEpisodeToShowList(&episode, secondId, TmdbId(123));
+
+    // Refreshing the second directory must not reuse or remove the first directory's row.
+    persistence.clearEpisodeList(secondId);
+    episode.setEpisode(EpisodeNumber(3));
+    persistence.addEpisodeToShowList(&episode, secondId, TmdbId(123));
+    persistence.cleanUpEpisodeList(secondId);
+
+    QSqlQuery query(database.db());
+    query.prepare("SELECT episodeNumber FROM showsEpisodes WHERE idShow=:idShow");
+    query.bindValue(":idShow", firstId.toInt());
+    REQUIRE(query.exec());
+    REQUIRE(query.next());
+    CHECK(query.value(0).toInt() == 2);
+    CHECK_FALSE(query.next());
+    query.bindValue(":idShow", secondId.toInt());
+    REQUIRE(query.exec());
+    REQUIRE(query.next());
+    CHECK(query.value(0).toInt() == 3);
+    CHECK_FALSE(query.next());
+}

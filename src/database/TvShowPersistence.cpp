@@ -343,7 +343,8 @@ void TvShowPersistence::addEpisodeToShowList(TvShowEpisode* episode,
     const QByteArray xmlContent = xmlWriter.getEpisodeXml();
 
     QSqlQuery query(db());
-    query.prepare("SELECT idEpisode FROM showsEpisodes WHERE tmdbid=:tmdbId");
+    query.prepare("SELECT idEpisode FROM showsEpisodes WHERE idShow=:idShow AND tmdbid=:tmdbId");
+    query.bindValue(":idShow", showsSettingsId.toInt());
     query.bindValue(":tmdbId", tmdbId.toString());
     query.exec();
     if (query.next()) {
