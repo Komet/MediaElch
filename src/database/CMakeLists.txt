@@ -1,7 +1,7 @@
 add_library(
   mediaelch_database OBJECT
   Database.cpp DatabaseId.cpp MoviePersistence.cpp ConcertPersistence.cpp
-  MusicPersistence.cpp TvShowPersistence.cpp
+  MusicPersistence.cpp TvShowPersistence.cpp SqliteTransaction.cpp
 )
 
 target_link_libraries(

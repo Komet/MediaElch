@@ -129,6 +129,7 @@ SOURCES += \
     src/data/AllMusicId.cpp \
     src/database/Database.cpp \
     src/database/DatabaseId.cpp \
+    src/database/SqliteTransaction.cpp \
     src/database/ConcertPersistence.cpp \
     src/database/MoviePersistence.cpp \
     src/database/TvShowPersistence.cpp \
@@ -550,6 +551,7 @@ HEADERS += Version.h \
     src/data/Actor.h \
     src/data/AllMusicId.h \
     src/database/Database.h \
+    src/database/SqliteTransaction.h \
     src/database/DatabaseId.h \
     src/database/ConcertPersistence.h \
     src/database/MoviePersistence.h \

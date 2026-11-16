@@ -2,6 +2,7 @@
 
 #include "data/concert/Concert.h"
 #include "database/Database.h"
+#include "database/SqliteTransaction.h"
 #include "globals/Manager.h"
 #include "log/Log.h"
 
@@ -65,21 +66,34 @@ void ConcertPersistence::add(Concert* concert, DirectoryPath path)
 
 void ConcertPersistence::update(Concert* concert)
 {
+    SqliteTransaction transaction(db());
+    if (!transaction.isActive()) {
+        return;
+    }
+
     QSqlQuery query(db());
     query.prepare("UPDATE concerts SET content=:content WHERE idConcert=:id");
     query.bindValue(":content", concert->nfoContent().isEmpty() ? "" : concert->nfoContent());
     query.bindValue(":id", concert->databaseId().toInt());
-    query.exec();
+    if (!transaction.exec(query)) {
+        return;
+    }
 
     query.prepare("DELETE FROM concertFiles WHERE idConcert=:idConcert");
     query.bindValue(":idConcert", concert->databaseId().toInt());
-    query.exec();
+    if (!transaction.exec(query)) {
+        return;
+    }
     for (const FilePath& file : concert->files()) {
         query.prepare("INSERT INTO concertFiles(idConcert, file) VALUES(:idConcert, :file)");
         query.bindValue(":idConcert", concert->databaseId().toInt());
         query.bindValue(":file", file.toString().toUtf8());
-        query.exec();
+        if (!transaction.exec(query)) {
+            return;
+        }
     }
+
+    transaction.commit();
 }
 
 QVector<Concert*> ConcertPersistence::concertsInDirectory(DirectoryPath path)

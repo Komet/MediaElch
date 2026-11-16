@@ -1,11 +1,94 @@
 #include "test/test_helpers.h"
 
+#include "data/concert/Concert.h"
 #include "data/tv_show/TvShow.h"
+#include "database/ConcertPersistence.h"
 #include "database/Database.h"
+#include "database/MoviePersistence.h"
 #include "database/TvShowPersistence.h"
 
-#include <QSqlError>
 #include <QSqlQuery>
+#include <functional>
+
+namespace {
+
+const mediaelch::FileList oldFiles{mediaelch::FilePath(QStringLiteral("/media/old.mkv"))};
+const mediaelch::FileList newFiles{mediaelch::FilePath(QStringLiteral("/media/new-a.mkv")),
+    mediaelch::FilePath(QStringLiteral("/media/new-b.mkv"))};
+
+void checkAtomicFileUpdate(Database& database,
+    const QString& parentTable,
+    const QString& fileTable,
+    const std::function<void()>& update)
+{
+    QSqlQuery query(database.db());
+    bool succeeded = false;
+
+    SECTION("Roll back a failed content update")
+    {
+        REQUIRE(query.exec("CREATE TEMP TRIGGER fail_update BEFORE UPDATE ON " + parentTable
+                           + " BEGIN SELECT RAISE(ABORT, 'test failure'); END"));
+        update();
+    }
+    SECTION("Roll back a failed file deletion")
+    {
+        REQUIRE(query.exec("CREATE TEMP TRIGGER fail_delete BEFORE DELETE ON " + fileTable
+                           + " BEGIN SELECT RAISE(ABORT, 'test failure'); END"));
+        update();
+    }
+    SECTION("Roll back a failed second file insertion")
+    {
+        REQUIRE(
+            query.exec("CREATE TEMP TRIGGER fail_insert BEFORE INSERT ON " + fileTable + " WHEN (SELECT COUNT(*) FROM "
+                       + fileTable + ") > 0 BEGIN SELECT RAISE(ABORT, 'test failure'); END"));
+        update();
+    }
+    SECTION("Commit a successful replacement")
+    {
+        update();
+        succeeded = true;
+    }
+    SECTION("Preserve the caller's transaction")
+    {
+        REQUIRE(database.db().transaction());
+        update();
+        REQUIRE(query.exec("SELECT content FROM " + parentTable));
+        REQUIRE(query.next());
+        CHECK(query.value(0).toString() == QStringLiteral("after"));
+        query.finish();
+        REQUIRE(database.db().rollback());
+    }
+    SECTION("Preserve the caller's other writes when the update fails")
+    {
+        REQUIRE(database.db().transaction());
+        REQUIRE(query.exec("INSERT INTO importCache(filename, type, path) VALUES('test', 'movie', '/media')"));
+        REQUIRE(query.exec("CREATE TEMP TRIGGER fail_insert BEFORE INSERT ON " + fileTable
+                           + " BEGIN SELECT RAISE(ABORT, 'test failure'); END"));
+        update();
+        REQUIRE(database.db().commit());
+        REQUIRE(query.exec("SELECT COUNT(*) FROM importCache"));
+        REQUIRE(query.next());
+        CHECK(query.value(0).toInt() == 1);
+        query.finish();
+    }
+
+    REQUIRE(query.exec("SELECT content FROM " + parentTable));
+    REQUIRE(query.next());
+    CHECK(query.value(0).toString() == (succeeded ? QStringLiteral("after") : QStringLiteral("before")));
+    query.finish();
+    REQUIRE(query.exec("SELECT file FROM " + fileTable + " ORDER BY file"));
+    QStringList actualFiles;
+    while (query.next()) {
+        actualFiles << QString::fromUtf8(query.value(0).toByteArray());
+    }
+    QStringList expectedFiles;
+    for (const auto& file : succeeded ? newFiles : oldFiles) {
+        expectedFiles << file.toString();
+    }
+    CHECK(actualFiles == expectedFiles);
+}
+
+} // namespace
 
 TEST_CASE("Persist the hide-specials setting", "[database][persistence]")
 {
@@ -154,4 +237,78 @@ TEST_CASE("Cache episodes without TMDb IDs", "[database][persistence]")
     REQUIRE(query.exec("SELECT COUNT(*) FROM showsEpisodes"));
     REQUIRE(query.next());
     CHECK(query.value(0).toInt() == 1);
+}
+
+TEST_CASE("Replace cached movie files atomically", "[database][persistence]")
+{
+    Database database{QStringLiteral(":memory:")};
+    mediaelch::MoviePersistence persistence{database};
+    Movie movie{oldFiles.toStringList()};
+    movie.setNfoContent(QStringLiteral("before"));
+    persistence.addMovie(&movie, mediaelch::DirectoryPath(QStringLiteral("/media")));
+    REQUIRE(movie.databaseId().isValid());
+    movie.setNfoContent(QStringLiteral("after"));
+    movie.setFiles(newFiles);
+    checkAtomicFileUpdate(database, "movies", "movieFiles", [&]() { persistence.update(&movie); });
+}
+
+TEST_CASE("Replace cached concert files atomically", "[database][persistence]")
+{
+    Database database{QStringLiteral(":memory:")};
+    mediaelch::ConcertPersistence persistence{database};
+    Concert concert{oldFiles};
+    concert.setNfoContent(QStringLiteral("before"));
+    persistence.add(&concert, mediaelch::DirectoryPath(QStringLiteral("/media")));
+    REQUIRE(concert.databaseId().isValid());
+    concert.setNfoContent(QStringLiteral("after"));
+    concert.setFiles(newFiles);
+    checkAtomicFileUpdate(database, "concerts", "concertFiles", [&]() { persistence.update(&concert); });
+}
+
+TEST_CASE("Replace cached episode files atomically", "[database][persistence]")
+{
+    Database database{QStringLiteral(":memory:")};
+    mediaelch::TvShowPersistence persistence{database};
+    TvShowEpisode episode{oldFiles};
+    episode.setNfoContent(QStringLiteral("before"));
+    persistence.add(&episode, mediaelch::DirectoryPath(QStringLiteral("/media")), mediaelch::DatabaseId(1));
+    REQUIRE(episode.databaseId().isValid());
+    episode.setNfoContent(QStringLiteral("after"));
+    episode.setFiles(newFiles);
+    checkAtomicFileUpdate(database, "episodes", "episodeFiles", [&]() { persistence.update(&episode); });
+}
+
+TEST_CASE("Roll back movie files and content when replacing subtitles fails", "[database][persistence]")
+{
+    Database database{QStringLiteral(":memory:")};
+    mediaelch::MoviePersistence persistence{database};
+    Movie movie{oldFiles.toStringList()};
+    movie.setNfoContent(QStringLiteral("before"));
+    auto* subtitle = new Subtitle(&movie);
+    subtitle->setFiles({QStringLiteral("old.srt")});
+    subtitle->setLanguage(QStringLiteral("en"));
+    subtitle->setForced(false);
+    movie.addSubtitle(subtitle);
+    persistence.addMovie(&movie, mediaelch::DirectoryPath(QStringLiteral("/media")));
+
+    QSqlQuery query(database.db());
+    REQUIRE(query.exec("CREATE TEMP TRIGGER fail_subtitle BEFORE INSERT ON movieSubtitles "
+                       "BEGIN SELECT RAISE(ABORT, 'test failure'); END"));
+    movie.setNfoContent(QStringLiteral("after"));
+    movie.setFiles(newFiles);
+    subtitle->setFiles({QStringLiteral("new.srt")});
+    persistence.update(&movie);
+
+    REQUIRE(query.exec("SELECT content FROM movies"));
+    REQUIRE(query.next());
+    CHECK(query.value(0).toString() == QStringLiteral("before"));
+    query.finish();
+    REQUIRE(query.exec("SELECT file FROM movieFiles"));
+    REQUIRE(query.next());
+    CHECK(QString::fromUtf8(query.value(0).toByteArray()) == oldFiles.first().toString());
+    CHECK_FALSE(query.next());
+    REQUIRE(query.exec("SELECT files FROM movieSubtitles"));
+    REQUIRE(query.next());
+    CHECK(query.value(0).toString() == QStringLiteral("old.srt"));
+    CHECK_FALSE(query.next());
 }

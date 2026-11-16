@@ -2,6 +2,7 @@
 
 #include "data/movie/Movie.h"
 #include "database/Database.h"
+#include "database/SqliteTransaction.h"
 #include "globals/Manager.h"
 #include "log/Log.h"
 
@@ -98,25 +99,38 @@ void MoviePersistence::addMovie(Movie* movie, DirectoryPath path)
 
 void MoviePersistence::update(Movie* movie)
 {
+    SqliteTransaction transaction(db());
+    if (!transaction.isActive()) {
+        return;
+    }
+
     QSqlQuery query(db());
     query.prepare("UPDATE movies SET content=:content WHERE idMovie=:idMovie");
     query.bindValue(":content", movie->nfoContent().isEmpty() ? "" : movie->nfoContent());
     query.bindValue(":idMovie", movie->databaseId().toInt());
-    query.exec();
+    if (!transaction.exec(query)) {
+        return;
+    }
 
     query.prepare("DELETE FROM movieFiles WHERE idMovie=:idMovie");
     query.bindValue(":idMovie", movie->databaseId().toInt());
-    query.exec();
+    if (!transaction.exec(query)) {
+        return;
+    }
     for (const mediaelch::FilePath& file : movie->files()) {
         query.prepare("INSERT INTO movieFiles(idMovie, file) VALUES(:idMovie, :file)");
         query.bindValue(":idMovie", movie->databaseId().toInt());
         query.bindValue(":file", file.toString().toUtf8());
-        query.exec();
+        if (!transaction.exec(query)) {
+            return;
+        }
     }
 
     query.prepare("DELETE FROM movieSubtitles WHERE idMovie=:idMovie");
     query.bindValue(":idMovie", movie->databaseId().toInt());
-    query.exec();
+    if (!transaction.exec(query)) {
+        return;
+    }
     for (const Subtitle* subtitle : movie->subtitles()) {
         query.prepare("INSERT INTO movieSubtitles(idMovie, files, language, forced) VALUES(:idMovie, :files, "
                       ":language, :forced)");
@@ -124,8 +138,12 @@ void MoviePersistence::update(Movie* movie)
         query.bindValue(":files", subtitle->files().join("%§%"));
         query.bindValue(":language", subtitle->language().isEmpty() ? "" : subtitle->language());
         query.bindValue(":forced", subtitle->forced() ? 1 : 0);
-        query.exec();
+        if (!transaction.exec(query)) {
+            return;
+        }
     }
+
+    transaction.commit();
 }
 
 QVector<Movie*> MoviePersistence::moviesInDirectory(DirectoryPath path, QObject* movieParent)

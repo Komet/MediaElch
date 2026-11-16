@@ -5,7 +5,6 @@ target_sources(
   PRIVATE
     main.cpp
     database/testSchema.cpp
-    database/testPersistence.cpp
     export/testSimpleExport.cpp
     file/testPath.cpp
     media_center/testKodi_v18_concert.cpp
@@ -15,6 +14,7 @@ target_sources(
     media_center/testKodi_v18_music_artist.cpp
     media_center/testKodi_v18_show.cpp
     media_center/testKodi_v20_show.cpp
+    database/testPersistence.cpp
 )
 
 target_link_libraries(

@@ -2,6 +2,7 @@
 
 #include "data/tv_show/TvShow.h"
 #include "database/Database.h"
+#include "database/SqliteTransaction.h"
 #include "globals/Manager.h"
 #include "log/Log.h"
 #include "media_center/kodi/EpisodeXmlWriter.h"
@@ -146,22 +147,35 @@ void TvShowPersistence::update(TvShow* show)
 
 void TvShowPersistence::update(TvShowEpisode* episode)
 {
+    SqliteTransaction transaction(db());
+    if (!transaction.isActive()) {
+        return;
+    }
+
     QSqlQuery query(db());
     query.prepare("UPDATE episodes SET content=:content WHERE idEpisode=:id");
     query.bindValue(":content", episode->nfoContent().isEmpty() ? "" : episode->nfoContent());
     query.bindValue(":id", episode->databaseId().toInt());
-    query.exec();
+    if (!transaction.exec(query)) {
+        return;
+    }
 
     query.prepare("DELETE FROM episodeFiles WHERE idEpisode=:idEpisode");
     query.bindValue(":idEpisode", episode->databaseId().toInt());
-    query.exec();
+    if (!transaction.exec(query)) {
+        return;
+    }
 
     for (const FilePath& file : episode->files()) {
         query.prepare("INSERT INTO episodeFiles(idEpisode, file) VALUES(:idEpisode, :file)");
         query.bindValue(":idEpisode", episode->databaseId().toInt());
         query.bindValue(":file", file.toString().toUtf8());
-        query.exec();
+        if (!transaction.exec(query)) {
+            return;
+        }
     }
+
+    transaction.commit();
 }
 
 int TvShowPersistence::showCount(DirectoryPath path)
