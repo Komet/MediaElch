@@ -111,3 +111,47 @@ TEST_CASE("Keep cached episode lists separate for each show directory", "[databa
     CHECK(query.value(0).toInt() == 3);
     CHECK_FALSE(query.next());
 }
+
+TEST_CASE("Cache episodes without TMDb IDs", "[database][persistence]")
+{
+    Database database{QStringLiteral(":memory:")};
+    mediaelch::TvShowPersistence persistence{database};
+    TvShow show;
+    const auto id = persistence.showsSettingsId(&show);
+    REQUIRE(id.isValid());
+
+    TvShowEpisode episode;
+    for (const int season : {0, 1, 2}) {
+        episode.setSeason(SeasonNumber(season));
+        for (const int number : {1, 2}) {
+            episode.setEpisode(EpisodeNumber(number));
+            persistence.addEpisodeToShowList(&episode, id, TmdbId::NoId);
+        }
+    }
+
+    episode.setSeason(SeasonNumber(1));
+    episode.setEpisode(EpisodeNumber(2));
+    persistence.addEpisodeToShowList(&episode, id, TmdbId::NoId);
+
+    QSqlQuery query(database.db());
+    REQUIRE(query.exec("SELECT COUNT(*) FROM showsEpisodes"));
+    REQUIRE(query.next());
+    REQUIRE(query.value(0).toInt() == 6);
+    query.finish();
+
+    // Switching scrapers can add an ID, then omit it again, without duplicating the row or losing the ID.
+    persistence.addEpisodeToShowList(&episode, id, TmdbId(123));
+    persistence.addEpisodeToShowList(&episode, id, TmdbId::NoId);
+    REQUIRE(query.exec("SELECT tmdbid FROM showsEpisodes WHERE seasonNumber=1 AND episodeNumber=2"));
+    REQUIRE(query.next());
+    CHECK(query.value(0).toString() == QStringLiteral("123"));
+    CHECK_FALSE(query.next());
+    query.finish();
+
+    persistence.clearEpisodeList(id);
+    persistence.addEpisodeToShowList(&episode, id, TmdbId::NoId);
+    persistence.cleanUpEpisodeList(id);
+    REQUIRE(query.exec("SELECT COUNT(*) FROM showsEpisodes"));
+    REQUIRE(query.next());
+    CHECK(query.value(0).toInt() == 1);
+}

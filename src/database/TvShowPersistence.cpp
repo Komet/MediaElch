@@ -343,19 +343,41 @@ void TvShowPersistence::addEpisodeToShowList(TvShowEpisode* episode,
     const QByteArray xmlContent = xmlWriter.getEpisodeXml();
 
     QSqlQuery query(db());
-    query.prepare("SELECT idEpisode FROM showsEpisodes WHERE idShow=:idShow AND tmdbid=:tmdbId");
+    const QString tmdbIdValue = tmdbId.isValid() ? tmdbId.toString() : QStringLiteral("");
+    if (tmdbId.isValid()) {
+        // An episode may gain a TMDb ID after previously being scraped from another source.
+        query.prepare("SELECT idEpisode FROM showsEpisodes WHERE idShow=:idShow AND "
+                      "(tmdbid=:tmdbId OR (tmdbid='' AND seasonNumber=:seasonNumber AND episodeNumber=:episodeNumber)) "
+                      "ORDER BY (tmdbid=:tmdbId) DESC LIMIT 1");
+        query.bindValue(":tmdbId", tmdbIdValue);
+    } else {
+        if (episode->seasonNumber().toInt() < 0 || episode->episodeNumber().toInt() < 0) {
+            qCWarning(generic) << "[Database] Cannot cache an episode without a TMDb ID or season/episode numbers";
+            return;
+        }
+        query.prepare("SELECT idEpisode FROM showsEpisodes WHERE idShow=:idShow "
+                      "AND seasonNumber=:seasonNumber AND episodeNumber=:episodeNumber LIMIT 1");
+    }
     query.bindValue(":idShow", showsSettingsId.toInt());
-    query.bindValue(":tmdbId", tmdbId.toString());
-    query.exec();
+    query.bindValue(":seasonNumber", episode->seasonNumber().toInt());
+    query.bindValue(":episodeNumber", episode->episodeNumber().toInt());
+    if (!query.exec()) {
+        qCWarning(generic) << "[Database] Could not look up cached episode:" << query.lastError().text();
+        return;
+    }
     if (query.next()) {
         const int idEpisode = query.value(0).toInt();
         query.prepare("UPDATE showsEpisodes SET seasonNumber=:seasonNumber, episodeNumber=:episodeNumber, updated=1, "
-                      "content=:content WHERE idEpisode=:idEpisode");
+                      "content=:content, tmdbid=CASE WHEN :tmdbId='' THEN tmdbid ELSE :tmdbId END "
+                      "WHERE idEpisode=:idEpisode");
         query.bindValue(":content", xmlContent.isEmpty() ? "" : xmlContent);
         query.bindValue(":idEpisode", idEpisode);
+        query.bindValue(":tmdbId", tmdbIdValue);
         query.bindValue(":seasonNumber", episode->seasonNumber().toInt());
         query.bindValue(":episodeNumber", episode->episodeNumber().toInt());
-        query.exec();
+        if (!query.exec()) {
+            qCWarning(generic) << "[Database] Could not store cached episode:" << query.lastError().text();
+        }
     } else {
         query.prepare("INSERT INTO showsEpisodes(content, idShow, seasonNumber, episodeNumber, tmdbid, updated) "
                       "VALUES(:content, :idShow, :seasonNumber, :episodeNumber, :tmdbId, 1)");
@@ -363,8 +385,10 @@ void TvShowPersistence::addEpisodeToShowList(TvShowEpisode* episode,
         query.bindValue(":idShow", showsSettingsId.toInt());
         query.bindValue(":seasonNumber", episode->seasonNumber().toInt());
         query.bindValue(":episodeNumber", episode->episodeNumber().toInt());
-        query.bindValue(":tmdbId", tmdbId.toString());
-        query.exec();
+        query.bindValue(":tmdbId", tmdbIdValue);
+        if (!query.exec()) {
+            qCWarning(generic) << "[Database] Could not store cached episode:" << query.lastError().text();
+        }
     }
 }
 
