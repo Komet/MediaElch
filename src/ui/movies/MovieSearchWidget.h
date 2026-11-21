@@ -73,6 +73,8 @@ private slots:
     void onScraperChanged(int index);
     void onLanguageChanged();
     void onCustomMovieScraperSelected();
+    void onTryNextScraper();
+    void onCancelSearch();
 
 private:
     bool isCustomScrapingInProgress() { return !m_customScrapersLeft.isEmpty(); }
@@ -99,6 +101,10 @@ private:
     void resolveImdbIdFromTmdb(const QString& tmdbId, std::function<void()> onResolved);
     /// \brief Set the search text appropriate for the given scraper (IMDB ID or title).
     void setSearchTextForScraper(const QString& scraperId);
+    /// \brief Check if there's another scraper available to try
+    bool hasNextScraper() const;
+    /// \brief Get the index of the next scraper in the dropdown
+    int getNextScraperIndex() const;
 
 private:
     Ui::MovieSearchWidget* ui{nullptr};
