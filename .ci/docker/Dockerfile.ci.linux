@@ -85,7 +85,7 @@ RUN apt-get update && \
         libxkbcommon-dev \
         qt6-svg-dev \
         libqt6concurrent6t64 && \
-    apt-get install python3-sphinx && \
+    apt-get install -y python3-sphinx && \
     apt-get autoremove && \
     update-alternatives --install /usr/bin/gcc           gcc          /usr/bin/gcc-14          10 && \
     update-alternatives --install /usr/bin/gcov          gcov         /usr/bin/gcov-14         10 && \
