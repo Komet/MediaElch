@@ -59,7 +59,8 @@ TEST_CASE("Simple HTML export", "[export][simple]")
 
     SECTION("contains list of movies")
     {
-        CHECK(moviesHtml.contains("<a href=\"movies/3.html\">"));
+        const QString movieLink = QStringLiteral("<a href=\"movies/%1.html\">").arg(fakeMovies().at(2)->movieId());
+        CHECK(moviesHtml.contains(movieLink));
         CHECK(moviesHtml.contains("Guardians of the Galaxy"));
         CHECK(moviesHtml.contains("() | Rating: n/a")); // empty year, no rating
     }
