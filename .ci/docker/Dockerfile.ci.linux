@@ -1,4 +1,4 @@
-FROM ubuntu:24.04
+FROM ubuntu:26.04
 
 LABEL maintainer="info@andremeyering.de"
 
@@ -58,6 +58,7 @@ RUN apt-get update && \
         libncurses6 \
         ninja-build \
         doxygen \
+        lcov \
         graphviz \
         libmediainfo-dev && \
     apt-get install -y --no-install-recommends \
@@ -84,8 +85,7 @@ RUN apt-get update && \
         libqt6sql6-sqlite \
         libxkbcommon-dev \
         qt6-svg-dev \
-        libqt6concurrent6t64 && \
-    apt-get install -y python3-sphinx python3-sphinx-rtd-theme && \
+        libqt6concurrent6 && \
     apt-get autoremove && \
     update-alternatives --install /usr/bin/gcc           gcc          /usr/bin/gcc-14          10 && \
     update-alternatives --install /usr/bin/gcov          gcov         /usr/bin/gcov-14         10 && \
@@ -97,13 +97,6 @@ RUN apt-get update && \
     update-alternatives --install /usr/bin/llvm-config   llvm-config  /usr/bin/llvm-config-19  10 && \
     update-alternatives --install /usr/bin/llvm-cov      llvm-cov     /usr/bin/llvm-cov-19     10 && \
     rm -rf /var/lib/apt/lists/*
-
-# Use latest lcov. It requires sphinx-build for its documentation generation.
-RUN cd /opt && git clone https://github.com/linux-test-project/lcov.git && \
-    cd lcov && make install && \
-    cd ..   && rm -rf lcov
-RUN perl -MCPAN -e 'install PerlIO::gzip' && \
-    perl -MCPAN -e 'JSON'
 
 # See ./install-build-deps.sh of the mold project for deps
 # It would install older versions of clang if we were to use it.
