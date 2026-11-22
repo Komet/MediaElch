@@ -20,7 +20,6 @@ ConcertFilesWidget::ConcertFilesWidget(QWidget* parent) :
     ui(new Ui::ConcertFilesWidget),
     m_concertProxyModel(new ConcertProxyModel(this)),
     m_lastConcert(nullptr),
-    m_contextMenu(new QMenu(ui->files)),
     m_alphaList(new AlphabeticalList(this)),
     m_mouseIsIn(false)
 {
@@ -53,7 +52,8 @@ ConcertFilesWidget::ConcertFilesWidget(QWidget* parent) :
     auto* actionOpenNfo = new QAction(tr("Open NFO File"), this);
     auto* actionPlay = new QAction(tr("Play concert"), this);
 
-
+    // Must not be moved into the member initializer list: ui->files only exists after setupUi().
+    m_contextMenu = new QMenu(ui->files);
     m_contextMenu->addAction(actionMarkAsWatched);
     m_contextMenu->addAction(actionMarkAsUnwatched);
     m_contextMenu->addSeparator();

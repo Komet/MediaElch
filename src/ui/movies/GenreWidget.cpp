@@ -12,7 +12,7 @@
 #include "ui/notifications/NotificationBox.h"
 
 GenreWidget::GenreWidget(QWidget* parent) :
-    QWidget(parent), ui(new Ui::GenreWidget), m_tableContextMenu(new QMenu(ui->genres))
+    QWidget(parent), ui(new Ui::GenreWidget)
 {
     ui->setupUi(this);
     ui->genres->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
@@ -25,7 +25,8 @@ GenreWidget::GenreWidget(QWidget* parent) :
 #endif
 
     ui->genres->setContextMenuPolicy(Qt::CustomContextMenu);
-
+    // Must not be moved into the member initializer list: ui->genres only exists after setupUi().
+    m_tableContextMenu = new QMenu(ui->genres);
     auto* actionAddGenre = new QAction(tr("Add Genre"), this);
     auto* actionDeleteGenre = new QAction(tr("Delete Genre"), this);
     m_tableContextMenu->addAction(actionAddGenre);

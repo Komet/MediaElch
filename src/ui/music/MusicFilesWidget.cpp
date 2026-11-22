@@ -13,8 +13,7 @@ MusicFilesWidget* MusicFilesWidget::m_instance;
 MusicFilesWidget::MusicFilesWidget(QWidget* parent) :
     QWidget(parent),
     ui(new Ui::MusicFilesWidget),
-    m_proxyModel(new MusicProxyModel(this)),
-    m_contextMenu(new QMenu(ui->music))
+    m_proxyModel(new MusicProxyModel(this))
 {
     m_instance = this;
     Manager::instance()->setMusicFilesWidget(this);
@@ -35,6 +34,8 @@ MusicFilesWidget::MusicFilesWidget(QWidget* parent) :
     auto* actionOpenFolder = new QAction(tr("Open Folder"), this);
     auto* actionOpenNfo = new QAction(tr("Open NFO File"), this);
 
+    // Must not be moved into the member initializer list: ui->music only exists after setupUi().
+    m_contextMenu = new QMenu(ui->music);
     m_contextMenu->addAction(actionOpenFolder);
     m_contextMenu->addAction(actionOpenNfo);
     connect(actionOpenFolder, &QAction::triggered, this, &MusicFilesWidget::onOpenFolder);

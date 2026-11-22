@@ -63,7 +63,7 @@ private:
     QImage m_currentPoster;
     QImage m_currentBackdrop;
     QStringList m_addedSets;
-    QMenu* m_tableContextMenu;
+    QMenu* m_tableContextMenu = nullptr;
     DownloadManager* m_downloadManager;
     QMovie* m_loadingMovie;
 
