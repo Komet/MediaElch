@@ -20,7 +20,6 @@
 SetsWidget::SetsWidget(QWidget* parent) :
     QWidget(parent),
     ui(new Ui::SetsWidget),
-    m_tableContextMenu(new QMenu(ui->sets)),
     m_downloadManager(new DownloadManager(this))
 {
     ui->setupUi(this);
@@ -56,7 +55,8 @@ SetsWidget::SetsWidget(QWidget* parent) :
     // clang-format on
 
     ui->sets->setContextMenuPolicy(Qt::CustomContextMenu);
-
+    // Must not be moved into the member initializer list: ui->sets only exists after setupUi().
+    m_tableContextMenu = new QMenu(ui->sets);
     auto* actionAddSet = new QAction(tr("Add Movie Set"), this);
     auto* actionDeleteSet = new QAction(tr("Delete Movie Set"), this);
     m_tableContextMenu->addAction(actionAddSet);

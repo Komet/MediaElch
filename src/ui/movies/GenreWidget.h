@@ -45,7 +45,7 @@ private slots:
 
 private:
     Ui::GenreWidget* ui;
-    QMenu* m_tableContextMenu;
+    QMenu* m_tableContextMenu = nullptr;
     QStringList m_addedGenres;
 
     void clear();

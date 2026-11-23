@@ -7,9 +7,11 @@
 #include "ui/small_widgets/MyLabel.h"
 
 MusicSearchWidget::MusicSearchWidget(QWidget* parent) :
-    QWidget(parent), ui(new Ui::MusicSearchWidget), m_signalMapper(new QSignalMapper(ui->results))
+    QWidget(parent), ui(new Ui::MusicSearchWidget)
 {
     ui->setupUi(this);
+    // Must not be moved into the member initializer list: ui->results only exists after setupUi().
+    m_signalMapper = new QSignalMapper(ui->results);
 
     ui->results->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->searchString->setType(MyLineEdit::TypeLoading);

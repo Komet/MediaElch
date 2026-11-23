@@ -53,7 +53,7 @@ private:
     QSet<MusicScraperInfo> m_infosToLoad;
     QString m_type;
     QString m_artistName;
-    QSignalMapper* m_signalMapper;
+    QSignalMapper* m_signalMapper = nullptr;
 
     void clear();
     void setCheckBoxesEnabled(QSet<MusicScraperInfo> scraperSupports);
