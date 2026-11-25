@@ -9,12 +9,7 @@
 #include "scrapers/trailer/TrailerProvider.h"
 #include "utils/Meta.h"
 
-TrailerDialog::TrailerDialog(QWidget* parent) :
-    QDialog(parent),
-    ui(new Ui::TrailerDialog),
-    m_network(new mediaelch::network::NetworkManager(this)),
-    m_videoWidget(new QVideoWidget(this)),
-    m_mediaPlayer(new QMediaPlayer(this))
+TrailerDialog::TrailerDialog(QWidget* parent) : QDialog(parent), ui(new Ui::TrailerDialog)
 {
     using namespace mediaelch::scraper;
 
@@ -41,6 +36,7 @@ TrailerDialog::TrailerDialog(QWidget* parent) :
     setWindowFlags((windowFlags() & ~Qt::WindowType_Mask) | Qt::Dialog);
 #endif
 
+    m_network = new mediaelch::network::NetworkManager(this);
 
     const auto& trailers = Manager::instance()->trailerProviders();
     for (TrailerProvider* provider : trailers) {
@@ -59,7 +55,8 @@ TrailerDialog::TrailerDialog(QWidget* parent) :
     connect(ui->buttonCancelDownload, &QAbstractButton::clicked, this, &TrailerDialog::cancelDownload);
     connect(ui->stackedWidget, &SlidingStackedWidget::animationFinished, this, &TrailerDialog::onAnimationFinished);
 
-
+    m_mediaPlayer = new QMediaPlayer(this);
+    m_videoWidget = new QVideoWidget(this);
     m_mediaPlayer->setVideoOutput(m_videoWidget);
     auto* layout = new QVBoxLayout(ui->video);
     layout->addWidget(m_videoWidget);
@@ -200,7 +197,7 @@ void TrailerDialog::showTrailers(QVector<TrailerResult> trailers)
     bool hasPreview = false;
     bool hasLanguage = false;
     for (elch_ssize_t i = 0, n = trailers.size(); i < n; ++i) {
-        const TrailerResult& trailer = trailers.at(i);
+        TrailerResult trailer = trailers.at(i);
         int row = ui->trailers->rowCount();
         ui->trailers->insertRow(row);
         auto* trailerPreview = new QLabel(ui->trailers);

@@ -12,12 +12,7 @@
 #include <QPainter>
 
 TvShowWidgetSeason::TvShowWidgetSeason(QWidget* parent) :
-    QWidget(parent),
-    ui(new Ui::TvShowWidgetSeason),
-    m_show{nullptr},
-    m_season{-1},
-    m_savingWidget(new QLabel(this)),
-    m_downloadManager(new DownloadManager(this))
+    QWidget(parent), ui(new Ui::TvShowWidgetSeason), m_show{nullptr}, m_season{-1}
 {
     ui->setupUi(this);
 
@@ -46,11 +41,12 @@ TvShowWidgetSeason::TvShowWidgetSeason(QWidget* parent) :
     ui->banner->setDefaultPixmap(QPixmap(":/img/placeholders/banner.png"));
     ui->thumb->setDefaultPixmap(QPixmap(":/img/placeholders/thumb.png"));
 
+    m_downloadManager = new DownloadManager(this);
 
     m_loadingMovie = new QMovie(":/img/spinner.gif", QByteArray(), this);
     m_loadingMovie->start();
 
-
+    m_savingWidget = new QLabel(this);
     m_savingWidget->setMovie(m_loadingMovie);
     m_savingWidget->hide();
 

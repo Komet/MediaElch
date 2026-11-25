@@ -8,12 +8,12 @@ namespace scraper {
 
 
 UniversalMusicConfigurationView::UniversalMusicConfigurationView(UniversalMusicConfiguration& settings) :
-    m_settings(settings), m_languageBox(new LanguageCombo(this)), m_preferredBox(new QComboBox(this))
+    m_settings(settings)
 {
-    m_languageBox->setupLanguages(
-        mediaelch::scraper::UniversalMusicConfiguration::supportedLanguages(), m_settings.language());
+    m_languageBox = new LanguageCombo(this);
+    m_languageBox->setupLanguages(m_settings.supportedLanguages(), m_settings.language());
 
-
+    m_preferredBox = new QComboBox(this);
     m_preferredBox->addItem(tr("The Audio DB"), "theaudiodb");
     m_preferredBox->addItem(tr("MusicBrainz"), "musicbrainz");
     m_preferredBox->addItem(tr("AllMusic"), "allmusic");

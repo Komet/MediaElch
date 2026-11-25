@@ -13,10 +13,9 @@
 
 using namespace mediaelch;
 
-TvShowUpdater::TvShowUpdater(QObject* parent) :
-    QObject(parent),
-    m_tmdb{dynamic_cast<scraper::TmdbTv*>(Manager::instance()->scrapers().tvScraper(scraper::TmdbTv::ID))}
+TvShowUpdater::TvShowUpdater(QObject* parent) : QObject(parent), m_tmdb{nullptr}
 {
+    m_tmdb = dynamic_cast<scraper::TmdbTv*>(Manager::instance()->scrapers().tvScraper(scraper::TmdbTv::ID));
     if (m_tmdb == nullptr) {
         qCCritical(generic) << "[TvShowUpdater] Failing cast to TmdbTv scraper";
     }

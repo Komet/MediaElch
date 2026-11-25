@@ -11,7 +11,7 @@
 #include <QTimer>
 
 MakeMkvDialog::MakeMkvDialog(ImportSettings& settings, QWidget* parent) :
-    QDialog(parent), ui(new Ui::MakeMkvDialog), m_settings{settings}, m_makeMkvCon(new MakeMkvCon(m_settings, this))
+    QDialog(parent), ui(new Ui::MakeMkvDialog), m_settings{settings}
 {
     ui->setupUi(this);
     ui->stackedWidget->setAnimation(QEasingCurve::Linear);
@@ -25,6 +25,7 @@ MakeMkvDialog::MakeMkvDialog(ImportSettings& settings, QWidget* parent) :
     loadingMovie->start();
     ui->loading->setMovie(loadingMovie);
 
+    m_makeMkvCon = new MakeMkvCon(m_settings, this);
 
     // clang-format off
     connect(m_makeMkvCon, &MakeMkvCon::sigMessage, ui->messages, &QPlainTextEdit::appendPlainText);

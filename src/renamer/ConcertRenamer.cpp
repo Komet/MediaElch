@@ -59,7 +59,7 @@ ELCH_NODISCARD QString ConcertRenamerData::value(const QString& name) const
             return helper::matchResolution(m_videoDetails.value(StreamDetails::VideoDetails::Width).toInt(),
                 m_videoDetails.value(StreamDetails::VideoDetails::Height).toInt(),
                 m_videoDetails.value(StreamDetails::VideoDetails::ScanType));
-        },},
+        }},
         // clang-format on
     };
 

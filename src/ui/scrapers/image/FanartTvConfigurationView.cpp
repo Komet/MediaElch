@@ -7,21 +7,18 @@ namespace mediaelch {
 namespace scraper {
 
 
-FanartTvConfigurationView::FanartTvConfigurationView(FanartTvConfiguration& settings) :
-    m_settings(settings),
-    m_languageBox(new LanguageCombo(this)),
-    m_discBox(new QComboBox(this)),
-    m_personalApiKeyEdit(new QLineEdit(this))
+FanartTvConfigurationView::FanartTvConfigurationView(FanartTvConfiguration& settings) : m_settings(settings)
 {
-    m_languageBox->setupLanguages(
-        mediaelch::scraper::FanartTvConfiguration::supportedLanguages(), m_settings.language());
+    m_languageBox = new LanguageCombo(this);
+    m_languageBox->setupLanguages(m_settings.supportedLanguages(), m_settings.language());
 
-
+    m_discBox = new QComboBox(this);
     m_discBox->addItem("3D", "3D");
     m_discBox->addItem(tr("Blu-ray"), "BluRay");
     m_discBox->addItem(tr("DVD"), "DVD");
     setPreferredDiscType(m_settings.preferredDiscType());
 
+    m_personalApiKeyEdit = new QLineEdit(this);
 
     auto* layout = new QGridLayout(this);
     layout->addWidget(new QLabel(tr("Language")), 0, 0);

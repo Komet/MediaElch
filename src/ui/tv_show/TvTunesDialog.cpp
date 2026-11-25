@@ -7,12 +7,7 @@
 
 #include <QMessageBox>
 
-TvTunesDialog::TvTunesDialog(TvShow& show, QWidget* parent) :
-    QDialog(parent),
-    ui(new Ui::TvTunesDialog),
-    m_tvTunes(new mediaelch::scraper::TvTunes(*new mediaelch::network::NetworkManager(this), this)),
-    m_show{show},
-    m_mediaPlayer(new QMediaPlayer())
+TvTunesDialog::TvTunesDialog(TvShow& show, QWidget* parent) : QDialog(parent), ui(new Ui::TvTunesDialog), m_show{show}
 {
     using namespace mediaelch::scraper;
     ui->setupUi(this);
@@ -33,6 +28,7 @@ TvTunesDialog::TvTunesDialog(TvShow& show, QWidget* parent) :
     ui->time->setFont(font);
 #endif
 
+    m_tvTunes = new TvTunes(*new mediaelch::network::NetworkManager(this), this);
 
     connect(ui->btnClose, &QAbstractButton::clicked, this, &TvTunesDialog::onClose);
     connect(ui->searchString, &QLineEdit::returnPressed, this, &TvTunesDialog::onSearch);
@@ -42,7 +38,7 @@ TvTunesDialog::TvTunesDialog(TvShow& show, QWidget* parent) :
     connect(m_tvTunes, &mediaelch::scraper::TvTunes::sigSearchDone, this, &TvTunesDialog::onShowResults);
 
     // Do not set QMediaPlayer's parent to this. See ~TvTunesDialog for more details.
-
+    m_mediaPlayer = new QMediaPlayer();
     connect(m_mediaPlayer, &QMediaPlayer::durationChanged, this, &TvTunesDialog::onNewTotalTime);
     connect(m_mediaPlayer, &QMediaPlayer::positionChanged, this, &TvTunesDialog::onUpdateTime);
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)

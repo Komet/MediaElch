@@ -30,15 +30,10 @@
 #include <QtCore/qmath.h>
 
 
-MovieWidget::MovieWidget(QWidget* parent) :
-    QWidget(parent),
-    ui(new Ui::MovieWidget),
-    m_movie(nullptr),
-    m_savingWidget(new QLabel(this)),
-    m_backgroundLabel(new QLabel(this))
+MovieWidget::MovieWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieWidget)
 {
     ui->setupUi(this);
-
+    m_backgroundLabel = new QLabel(this);
     m_backgroundLabel->show();
     m_backgroundLabel->lower();
     ui->movieName->clear();
@@ -73,6 +68,7 @@ MovieWidget::MovieWidget(QWidget* parent) :
     ui->labelPoster->setFont(font);
     ui->labelThumb->setFont(font);
 
+    m_movie = nullptr;
 
     ui->poster->setDefaultPixmap(QPixmap(":/img/placeholders/poster.png"));
     ui->backdrop->setDefaultPixmap(QPixmap(":/img/placeholders/fanart.png"));
@@ -164,7 +160,7 @@ MovieWidget::MovieWidget(QWidget* parent) :
     setDisabledTrue();
     clear();
 
-
+    m_savingWidget = new QLabel(this);
     m_savingWidget->setMovie(m_loadingMovie);
     m_savingWidget->hide();
 

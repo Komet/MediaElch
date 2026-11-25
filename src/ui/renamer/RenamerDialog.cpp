@@ -9,8 +9,7 @@
 #include <QTimer>
 #include <algorithm>
 
-RenamerDialog::RenamerDialog(QWidget* parent) :
-    QDialog(parent), ui(new Ui::RenamerDialog), m_extraFiles(Settings::instance()->advanced()->subtitleFilters())
+RenamerDialog::RenamerDialog(QWidget* parent) : QDialog(parent), ui(new Ui::RenamerDialog)
 {
     ui->setupUi(this);
 
@@ -33,7 +32,7 @@ RenamerDialog::RenamerDialog(QWidget* parent) :
     onChkRenameFiles();
     onChkReplaceDelimiter();
 
-
+    m_extraFiles = Settings::instance()->advanced()->subtitleFilters();
     ui->helpLabel->setText(tr("Please see %1 for help and examples on how to use the renamer.")
             .arg("<a "
                  "href=\"https://mediaelch.github.io/mediaelch-doc/renaming.html\">"

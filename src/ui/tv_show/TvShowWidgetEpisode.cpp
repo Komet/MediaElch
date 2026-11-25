@@ -24,11 +24,7 @@
 #include <QPainter>
 
 TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget* parent) :
-    QWidget(parent),
-    ui(new Ui::TvShowWidgetEpisode),
-    m_episode{nullptr},
-    m_savingWidget(new QLabel(this)),
-    m_imageDownloadManager(new DownloadManager(this))
+    QWidget(parent), ui(new Ui::TvShowWidgetEpisode), m_episode{nullptr}
 {
     ui->setupUi(this);
 
@@ -68,6 +64,7 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget* parent) :
     ui->thumbnail->setDefaultPixmap(QPixmap(":/img/placeholders/thumb.png"));
     ui->thumbnail->setShowCapture(true);
 
+    m_imageDownloadManager = new DownloadManager(this);
 
     connect(ui->name, &QLineEdit::textChanged, ui->episodeName, &QLabel::setText);
     connect(ui->buttonAddDirector, &QAbstractButton::clicked, this, &TvShowWidgetEpisode::onAddDirector);
@@ -107,7 +104,7 @@ TvShowWidgetEpisode::TvShowWidgetEpisode(QWidget* parent) :
 
     m_loadingMovie = new QMovie(":/img/spinner.gif", QByteArray(), this);
     m_loadingMovie->start();
-
+    m_savingWidget = new QLabel(this);
     m_savingWidget->setMovie(m_loadingMovie);
     m_savingWidget->hide();
 

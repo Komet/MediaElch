@@ -23,12 +23,7 @@
 
 MovieFilesWidget* MovieFilesWidget::m_instance;
 
-MovieFilesWidget::MovieFilesWidget(QWidget* parent) :
-    QWidget(parent),
-    ui(new Ui::MovieFilesWidget),
-    m_movieProxyModel(new MovieProxyModel(this)),
-    m_lastMovie(nullptr),
-    m_mouseIsIn(false)
+MovieFilesWidget::MovieFilesWidget(QWidget* parent) : QWidget(parent), ui(new Ui::MovieFilesWidget)
 {
     m_instance = this;
     ui->setupUi(this);
@@ -38,7 +33,9 @@ MovieFilesWidget::MovieFilesWidget(QWidget* parent) :
     ui->verticalLayout->setContentsMargins(0, 0, 0, 1);
 #endif
 
-
+    m_lastMovie = nullptr;
+    m_mouseIsIn = false;
+    m_movieProxyModel = new MovieProxyModel(this);
     m_movieProxyModel->setSourceModel(Manager::instance()->movieModel());
     m_movieProxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
     m_movieProxyModel->setDynamicSortFilter(true);

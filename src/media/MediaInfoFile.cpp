@@ -12,8 +12,7 @@
 #include <QRegularExpression>
 #include <QStringList>
 
-MediaInfoFile::MediaInfoFile(const QString& filepath) :
-    m_mediaInfo{std::make_unique<MediaInfoDLL::MediaInfo>()}, m_isReady(m_mediaInfo->IsReady())
+MediaInfoFile::MediaInfoFile(const QString& filepath) : m_mediaInfo{std::make_unique<MediaInfoDLL::MediaInfo>()}
 {
     // VERSION;APP_NAME;APP_VERSION"
     m_mediaInfo->Option(__T("Info_Version"), __T("20.03;MediaElch;2.8"));
@@ -21,7 +20,7 @@ MediaInfoFile::MediaInfoFile(const QString& filepath) :
     m_mediaInfo->Option(__T("Complete"), __T("1"));
     m_mediaInfo->Open(QString2MI(filepath));
 
-
+    m_isReady = m_mediaInfo->IsReady();
     if (!m_isReady) {
         qCCritical(generic) << "[MediaInfo] Unable to load libmediainfo!";
     }

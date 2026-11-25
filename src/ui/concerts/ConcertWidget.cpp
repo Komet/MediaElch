@@ -24,8 +24,7 @@
 #include <QScrollBar>
 #include <QtCore/qmath.h>
 
-ConcertWidget::ConcertWidget(QWidget* parent) :
-    QWidget(parent), ui(new Ui::ConcertWidget), m_savingWidget(new QLabel(this))
+ConcertWidget::ConcertWidget(QWidget* parent) : QWidget(parent), ui(new Ui::ConcertWidget)
 {
     ui->setupUi(this);
     ui->concertName->clear();
@@ -100,7 +99,7 @@ ConcertWidget::ConcertWidget(QWidget* parent) :
     setDisabledTrue();
     clear();
 
-
+    m_savingWidget = new QLabel(this);
     m_savingWidget->setMovie(m_loadingMovie);
     m_savingWidget->hide();
 

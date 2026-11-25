@@ -164,8 +164,7 @@ private:
 
 } // namespace
 
-ScraperSettingsWidget::ScraperSettingsWidget(QWidget* parent) :
-    QWidget(parent), ui(new Ui::ScraperSettingsWidget), m_omdbWarningLabel(new QLabel(this))
+ScraperSettingsWidget::ScraperSettingsWidget(QWidget* parent) : QWidget(parent), ui(new Ui::ScraperSettingsWidget)
 {
     ui->setupUi(this);
 
@@ -179,7 +178,7 @@ ScraperSettingsWidget::ScraperSettingsWidget(QWidget* parent) :
     ui->customScraperTable->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
     ui->customScraperTable->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
-
+    m_omdbWarningLabel = new QLabel(this);
     m_omdbWarningLabel->setStyleSheet("QLabel { color: #e8a631; }");
     m_omdbWarningLabel->setWordWrap(true);
     m_omdbWarningLabel->hide();

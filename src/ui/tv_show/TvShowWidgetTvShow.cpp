@@ -24,11 +24,7 @@
 using namespace mediaelch;
 
 TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget* parent) :
-    QWidget(parent),
-    ui(new Ui::TvShowWidgetTvShow),
-    m_show{nullptr},
-    m_savingWidget(new QLabel(this)),
-    m_imageDownloadManager(new DownloadManager(this))
+    QWidget(parent), ui(new Ui::TvShowWidgetTvShow), m_show{nullptr}
 {
     ui->setupUi(this);
 
@@ -96,7 +92,7 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget* parent) :
 
     m_loadingMovie = new QMovie(":/img/spinner.gif", QByteArray(), this);
     m_loadingMovie->start();
-
+    m_savingWidget = new QLabel(this);
     m_savingWidget->setMovie(m_loadingMovie);
     m_savingWidget->hide();
 
@@ -107,6 +103,7 @@ TvShowWidgetTvShow::TvShowWidgetTvShow(QWidget* parent) :
     ui->btnTmdb->setText(QLatin1String(""));
     ui->btnTvmaze->setText(QLatin1String(""));
 
+    m_imageDownloadManager = new DownloadManager(this);
 
     ui->poster->setImageType(ImageType::TvShowPoster);
     ui->backdrop->setImageType(ImageType::TvShowBackdrop);

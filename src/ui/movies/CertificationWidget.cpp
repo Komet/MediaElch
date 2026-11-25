@@ -11,8 +11,7 @@
 #include "ui/movie_sets/MovieListDialog.h"
 #include "ui/notifications/NotificationBox.h"
 
-CertificationWidget::CertificationWidget(QWidget* parent) :
-    QWidget(parent), ui(new Ui::CertificationWidget), m_tableContextMenu(new QMenu(this))
+CertificationWidget::CertificationWidget(QWidget* parent) : QWidget(parent), ui(new Ui::CertificationWidget)
 {
     ui->setupUi(this);
     ui->certifications->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
@@ -25,7 +24,7 @@ CertificationWidget::CertificationWidget(QWidget* parent) :
 #endif
 
     ui->certifications->setContextMenuPolicy(Qt::CustomContextMenu);
-
+    m_tableContextMenu = new QMenu(this);
     auto* actionAddCertification = new QAction(tr("Add Certification"), this);
     auto* actionDeleteCertification = new QAction(tr("Delete Certification"), this);
     m_tableContextMenu->addAction(actionAddCertification);

@@ -21,8 +21,7 @@
 #include <QMovie>
 #include <QRegularExpression>
 
-ImportDialog::ImportDialog(QWidget* parent) :
-    QDialog(parent), ui(new Ui::ImportDialog), m_posterDownloadManager(new DownloadManager(this))
+ImportDialog::ImportDialog(QWidget* parent) : QDialog(parent), ui(new Ui::ImportDialog)
 {
     ui->setupUi(this);
 
@@ -38,7 +37,7 @@ ImportDialog::ImportDialog(QWidget* parent) :
 
     m_timer.setInterval(500);
 
-
+    m_posterDownloadManager = new DownloadManager(this);
     connect(m_posterDownloadManager,
         &DownloadManager::sigDownloadFinished,
         this,
