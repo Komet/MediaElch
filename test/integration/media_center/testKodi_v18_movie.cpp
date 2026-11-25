@@ -33,6 +33,22 @@ static void createAndCompareMovie(const QString& filename, Callback callback)
     callback(movie);
 }
 
+/// Parses a minimal <movie> document built from a <title> and the given child elements.
+static void parseMovieChildren(Movie& movie, const QString& children)
+{
+    mediaelch::kodi::MovieXmlReader reader(movie);
+    QDomDocument doc;
+    doc.setContent(QStringLiteral("<movie><title>Test</title>%1</movie>").arg(children));
+    REQUIRE(reader.parseNfoDom(doc));
+}
+
+static MovieSet parseMovieSet(const QString& setXml)
+{
+    Movie movie;
+    parseMovieChildren(movie, setXml);
+    return movie.set();
+}
+
 TEST_CASE("Movie XML writer for Kodi v18", "[data][movie][kodi][nfo]")
 {
     SECTION("Empty movie")
@@ -57,6 +73,9 @@ TEST_CASE("Movie XML writer for Kodi v18", "[data][movie][kodi][nfo]")
             CHECK(movie.images().backdrops().size() == 57); // <fanart>
             CHECK(movie.certification() == Certification("Rated R"));
             CHECK(movie.set().name == "Alien Collection");
+            CHECK(movie.set().tmdbId == TmdbId(8091));
+            // the collection's id must not be picked up as the movie's id
+            CHECK(movie.tmdbId() == TmdbId(348));
             CHECK(movie.actors().size() == 10);
         });
     }
@@ -71,8 +90,62 @@ TEST_CASE("Movie XML writer for Kodi v18", "[data][movie][kodi][nfo]")
             CHECK(movie.images().backdrops().size() == 29); // <fanart>
             CHECK(movie.certification() == Certification("Rated G"));
             CHECK(movie.set().name == "Toy Story Collection");
+            CHECK(movie.set().tmdbId == TmdbId::NoId);
             CHECK(movie.actors().size() == 59);
         });
+    }
+
+    SECTION("set id: <uniqueid> takes precedence over the migration fallbacks")
+    {
+        CHECK(parseMovieSet(R"(<set><name>S</name><uniqueid type="tmdb">1</uniqueid></set>)").tmdbId == TmdbId(1));
+        CHECK(parseMovieSet("<set><name>S</name><tmdbid>2</tmdbid></set>").tmdbId == TmdbId(2));
+        // Ember Media Manager's spelling
+        CHECK(parseMovieSet("<set><name>S</name><tmdb>3</tmdb></set>").tmdbId == TmdbId(3));
+        CHECK(parseMovieSet(
+                  R"(<set><name>S</name><uniqueid type="tmdb">1</uniqueid><tmdbid>2</tmdbid><tmdb>3</tmdb></set>)")
+                  .tmdbId
+              == TmdbId(1));
+        CHECK(parseMovieSet(R"(<set><name>S</name><uniqueid type="imdb">tt1</uniqueid></set>)").tmdbId == TmdbId::NoId);
+        // an empty candidate is skipped instead of hiding the next one
+        CHECK(
+            parseMovieSet(R"(<set><name>S</name><uniqueid type="tmdb"/><tmdbid>2</tmdbid></set>)").tmdbId == TmdbId(2));
+        CHECK(parseMovieSet(R"(<set><name>S</name><tmdbid/><tmdb>3</tmdb></set>)").tmdbId == TmdbId(3));
+    }
+
+    SECTION("set id: Ember Media Manager's movie-level <tmdbcolid>")
+    {
+        Movie ember;
+        parseMovieChildren(ember, "<tmdbcolid>2344</tmdbcolid><set>Matrix Filmreihe</set>");
+        CHECK(ember.set().name == "Matrix Filmreihe");
+        CHECK(ember.set().tmdbId == TmdbId(2344));
+        // the collection's id must not be picked up as the movie's id
+        CHECK(ember.tmdbId() == TmdbId::NoId);
+
+        Movie inSetWins;
+        parseMovieChildren(
+            inSetWins, R"(<tmdbcolid>2</tmdbcolid><set><name>S</name><uniqueid type="tmdb">1</uniqueid></set>)");
+        CHECK(inSetWins.set().tmdbId == TmdbId(1));
+
+        // a collection id without a set name says nothing we could use
+        Movie noSet;
+        parseMovieChildren(noSet, "<tmdbcolid>2344</tmdbcolid>");
+        CHECK(noSet.set().tmdbId == TmdbId::NoId);
+    }
+
+    SECTION("set id is not mistaken for the movie's id")
+    {
+        Movie movie;
+        parseMovieChildren(
+            movie, R"(<set><name>S</name><uniqueid type="tmdb">8091</uniqueid><tmdbid>7</tmdbid></set>)");
+        CHECK(movie.set().tmdbId == TmdbId(8091));
+        CHECK(movie.tmdbId() == TmdbId::NoId);
+    }
+
+    SECTION("movie ids come from direct children of <movie>")
+    {
+        Movie movie;
+        parseMovieChildren(movie, "<actor><name>A</name><id>tt99</id></actor><id>tt1</id>");
+        CHECK(movie.imdbId() == ImdbId("tt1"));
     }
 
     SECTION("Full movie details")
