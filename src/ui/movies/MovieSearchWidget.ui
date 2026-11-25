@@ -91,6 +91,39 @@ If you want to search by an TMDb id please prefix it with &quot;id&quot;.</strin
        </property>
       </widget>
      </item>
+     <item>
+      <widget class="QPushButton" name="btnTryNextScraper">
+       <property name="text">
+        <string>Try Next Scraper</string>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnCancelSearch">
+       <property name="text">
+        <string>Cancel Search</string>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_3">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
     </layout>
    </item>
    <item>
